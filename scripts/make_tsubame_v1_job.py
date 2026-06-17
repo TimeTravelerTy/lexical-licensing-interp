@@ -122,6 +122,99 @@ RUNS = {
         ),
         "hours": "02:00:00",
     },
+    "das_primary_l23": {
+        "job_name": "llv1_das_l23",
+        "command": (
+            "python3 scripts/run_pythia_das_v1.py "
+            "--data data/aligned_templates/lexical_licensing_aligned.jsonl "
+            "--model EleutherAI/pythia-1.4b "
+            "--site resid_post_layer_23 "
+            "--subtasks causative,inchoative "
+            "--regimes head,tail,xtail "
+            "--directions good_to_bad,bad_to_good "
+            "--rank 1 "
+            "--epochs 30 "
+            "--batch-size 8 "
+            "--lr 0.05 "
+            "--control none "
+            "--device cuda "
+            "--dtype bfloat16 "
+            "--allow-download "
+            "--out-dir results/das_v1 "
+            "--run-name 20260617-pythia14b-das-primary-l23"
+        ),
+        "hours": "03:00:00",
+    },
+    "das_primary_l23_shuffled": {
+        "job_name": "llv1_das_shuf",
+        "command": (
+            "python3 scripts/run_pythia_das_v1.py "
+            "--data data/aligned_templates/lexical_licensing_aligned.jsonl "
+            "--model EleutherAI/pythia-1.4b "
+            "--site resid_post_layer_23 "
+            "--subtasks causative,inchoative "
+            "--regimes head,tail,xtail "
+            "--directions good_to_bad,bad_to_good "
+            "--rank 1 "
+            "--epochs 30 "
+            "--batch-size 8 "
+            "--lr 0.05 "
+            "--control shuffled_label "
+            "--device cuda "
+            "--dtype bfloat16 "
+            "--allow-download "
+            "--out-dir results/das_v1 "
+            "--run-name 20260617-pythia14b-das-primary-l23-shuffled"
+        ),
+        "hours": "03:00:00",
+    },
+    "das_primary_l23_dummy": {
+        "job_name": "llv1_das_dummy",
+        "command": (
+            "python3 scripts/run_pythia_das_v1.py "
+            "--data data/aligned_templates/lexical_licensing_aligned.jsonl "
+            "--model EleutherAI/pythia-1.4b "
+            "--site resid_post_layer_23 "
+            "--subtasks causative,inchoative "
+            "--regimes head,tail,xtail "
+            "--directions good_to_bad,bad_to_good "
+            "--rank 1 "
+            "--epochs 30 "
+            "--batch-size 8 "
+            "--lr 0.05 "
+            "--control dummy_verb "
+            "--dummy-verb do "
+            "--device cuda "
+            "--dtype bfloat16 "
+            "--allow-download "
+            "--out-dir results/das_v1 "
+            "--run-name 20260617-pythia14b-das-primary-l23-dummy"
+        ),
+        "hours": "03:00:00",
+    },
+    "das_primary_l23_random": {
+        "job_name": "llv1_das_rand",
+        "command": (
+            "python3 scripts/run_pythia_das_v1.py "
+            "--data data/aligned_templates/lexical_licensing_aligned.jsonl "
+            "--model EleutherAI/pythia-1.4b "
+            "--site resid_post_layer_23 "
+            "--subtasks causative,inchoative "
+            "--regimes head,tail,xtail "
+            "--directions good_to_bad,bad_to_good "
+            "--rank 1 "
+            "--epochs 30 "
+            "--batch-size 8 "
+            "--lr 0.05 "
+            "--control random_direction "
+            "--device cuda "
+            "--dtype bfloat16 "
+            "--allow-download "
+            "--out-dir results/das_v1 "
+            "--run-name 20260617-pythia14b-das-primary-l23-random"
+        ),
+        "hours": "02:00:00",
+    },
 }
 
 
@@ -144,7 +237,7 @@ eval "$(/apps/t4/rhel9/free/miniconda/24.1.2/bin/conda shell.bash hook)"
 conda activate {conda_env}
 
 cd {remote_root}
-mkdir -p logs results/attribution_patching results/exact_patching
+mkdir -p logs results/attribution_patching results/exact_patching results/das_v1
 export HF_HOME=/gs/fs/tga-sip_arase/tyrone/huggingface_cache
 export HF_HUB_CACHE=$HF_HOME/hub
 mkdir -p "$HF_HOME"

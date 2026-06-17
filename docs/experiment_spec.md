@@ -100,8 +100,12 @@ activation patching before training DAS.
 Minimum controls before declaring a localization:
 
 - prefix-only baseline: score target prediction from the prefix without the
-  target verb signal, or with a neutral/dummy verb;
-- shuffled verb-label baseline within the same prefix/template;
+  target verb signal, or with a neutral/dummy verb. This tests whether the
+  scaffold is solvable without verb information; it does not rule out subject
+  animacy as the represented feature.
+- shuffled verb-label baseline within the same prefix/template. For DAS, the
+  main control is retraining the rotation/subspace on permuted labels.
+- random-direction/random-rotation baseline at the same site and rank;
 - exact activation patching at the top attribution sites;
 - held-out verb split by lemma, not by surface item.
 
@@ -136,10 +140,13 @@ Build `v2` as a causal dataset, not just a next-token proxy:
 3. Preserve balance: every prefix/context family must contain both object and
    no-object target labels, so the subject or fixed prefix cannot predict the
    answer.
-4. Include explicit control rows:
+4. Decouple subject type from target frame, including animate-subject
+   intransitives and patient-subject transitives, so an animacy representation
+   cannot masquerade as verb licensing.
+5. Include explicit control rows:
    - `prefix_only`;
    - `shuffled_label`;
    - `random_verb_same_frequency_band`;
    - passive/principle-A negative controls.
-5. Treat drop-argument as its own contrast. Do not assume it shares a site with
+6. Treat drop-argument as its own contrast. Do not assume it shares a site with
    causative/inchoative until attribution patching says so.

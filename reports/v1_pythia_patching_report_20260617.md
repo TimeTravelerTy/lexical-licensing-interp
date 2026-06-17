@@ -128,5 +128,15 @@ For infrastructure-only DAS, train/evaluate first on the primary contrast using:
   over layers 16-23;
 - train/eval split: lemma-held-out if available even in v1, otherwise report
   that v1 is scaffold-only;
-- controls: shuffled labels and prefix-only/dummy-verb baseline before treating
-  any DAS result as interpretable.
+- controls before treating any DAS result as interpretable:
+  - retrain-on-`shuffled_label`, which tests whether DAS can fit arbitrary
+    label structure;
+  - `random_direction`, which tests whether the learned subspace is special
+    relative to a same-rank random subspace at the same site;
+  - `dummy_verb`, which tests whether the fixed template is solvable with no
+    informative verb.
+
+The dummy-verb baseline is not a substitute for decorrelating subject type from
+target frame. The animacy/frame confound needs a v2 data fix: include animate
+subjects with non-alternating intransitives and patient subjects with obligatory
+transitives, so verb identity is the only reliable frame predictor.
