@@ -28,30 +28,35 @@ SUBTASKS = {
 TEMPLATES = {
     "object_frame": {
         "prompt": "In the scene, the technician will {verb}",
+        "prefix_family": "agent_object_probe",
         "good_target": " the",
         "bad_target": ".",
         "description": "Tests licensing of an object continuation after an animate-subject verb.",
     },
     "object_frame_worker": {
         "prompt": "After lunch, the worker will {verb}",
+        "prefix_family": "agent_object_probe",
         "good_target": " the",
         "bad_target": ".",
         "description": "Second object-frame scaffold with a different fixed prefix.",
     },
     "inchoative_frame": {
         "prompt": "In the scene, the glass will {verb}",
+        "prefix_family": "patient_no_object_probe",
         "good_target": ".",
         "bad_target": " the",
         "description": "Tests licensing of no-object/inchoative continuation for patient-subject verbs.",
     },
     "inchoative_frame_tomorrow": {
         "prompt": "Tomorrow, the door will {verb}",
+        "prefix_family": "patient_no_object_probe",
         "good_target": ".",
         "bad_target": " the",
         "description": "Second no-object scaffold with a different fixed prefix.",
     },
     "drop_object_frame": {
         "prompt": "In the scene, the artist will {verb}",
+        "prefix_family": "agent_drop_object_probe",
         "good_target": ".",
         "bad_target": " the",
         "description": "Tests verbs that permit object drop against strict transitives.",
@@ -156,6 +161,7 @@ def make_row(candidate: VerbCandidate) -> dict[str, Any]:
         "subtask": candidate.subtask,
         "template_id": template_id,
         "template_prompt": template["prompt"],
+        "prefix_family": template["prefix_family"],
         "prompt": prompt,
         "verb": candidate.lemma,
         "source_surface": candidate.surface,
@@ -168,6 +174,9 @@ def make_row(candidate: VerbCandidate) -> dict[str, Any]:
         "contrast_target": contrast_target,
         "source_idx": candidate.source_idx,
         "source_text": candidate.source_text,
+        "intervention_anchor": "verb_final_subtoken",
+        "anchor_index_policy": "per_example_last_prompt_token",
+        "decision_target_is_proxy": True,
         "alignment_status": "unverified",
     }
 
@@ -206,6 +215,7 @@ def verify_rows(rows: list[dict[str, Any]], model_name: str, local_files_only: b
             row["prefix_token_count"] = prefix_len
             row["prompt_token_count"] = prompt_len
             row["verb_region_token_count"] = verb_region_len
+            row["anchor_token_index"] = prompt_len - 1
             row["decision_token_index"] = prompt_len - 1
             row["expected_target_token_count"] = target_token_lengths[row["expected_target"]]
             row["contrast_target_token_count"] = target_token_lengths[row["contrast_target"]]
@@ -245,8 +255,25 @@ def write_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> None:
 
 def write_report(path: Path, rows: list[dict[str, Any]], summary: dict[str, Any] | None) -> None:
     counts = Counter((r["regime"], r["subtask"], r["side"], r["alignment_status"]) for r in rows)
+    prefix_target_counts = Counter(
+        (
+            r["regime"],
+            r["template_id"],
+            r["template_prompt"],
+            r["expected_target"],
+            r["alignment_status"],
+        )
+        for r in rows
+    )
     lines = [
         "# Aligned Template Build Report",
+        "",
+        "## Design Notes",
+        "",
+        "- Intervention anchor: `verb_final_subtoken`.",
+        "- Anchor index policy: per-example last prompt token, not one global absolute index.",
+        "- Decision target is a proxy: object introducer ` the` versus sentence end `.`.",
+        "- The current fixed-subject templates are a preview; final DAS should add prefix-only, shuffled-label, and semantic-fit controls.",
         "",
         "## Template Preview",
         "",
@@ -261,6 +288,15 @@ def write_report(path: Path, rows: list[dict[str, Any]], summary: dict[str, Any]
     for key, value in sorted(counts.items()):
         regime, subtask, side, status = key
         lines.append(f"- `{regime}` `{subtask}` `{side}` `{status}`: {value}")
+    lines.extend(["", "## Prefix/Target Balance", ""])
+    for key, value in sorted(prefix_target_counts.items()):
+        regime, template_id, template_prompt, target, status = key
+        if status != "aligned":
+            continue
+        lines.append(
+            f"- `{regime}` `{template_id}` target {target!r}: {value} aligned rows "
+            f"for prefix `{template_prompt}`"
+        )
     if summary is not None:
         lines.extend(["", "## Tokenization Summary", ""])
         lines.append(f"- model: `{summary['model']}`")

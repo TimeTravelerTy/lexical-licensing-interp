@@ -1,5 +1,12 @@
 # Aligned Template Build Report
 
+## Design Notes
+
+- Intervention anchor: `verb_final_subtoken`.
+- Anchor index policy: per-example last prompt token, not one global absolute index.
+- Decision target is a proxy: object introducer ` the` versus sentence end `.`.
+- The current fixed-subject templates are a preview; final DAS should add prefix-only, shuffled-label, and semantic-fit controls.
+
 ## Template Preview
 
 - `object_frame` `head` `causative` `good`: 'In the scene, the technician will equip' -> ' the'
@@ -71,6 +78,39 @@
 - `xtail` `transitive` `bad` `rejected_tokenization`: 7
 - `xtail` `transitive` `good` `aligned`: 20
 - `xtail` `transitive` `good` `rejected_tokenization`: 10
+
+## Prefix/Target Balance
+
+- `head` `drop_object_frame` target ' the': 30 aligned rows for prefix `In the scene, the artist will {verb}`
+- `head` `drop_object_frame` target '.': 30 aligned rows for prefix `In the scene, the artist will {verb}`
+- `head` `inchoative_frame` target ' the': 29 aligned rows for prefix `In the scene, the glass will {verb}`
+- `head` `inchoative_frame` target '.': 30 aligned rows for prefix `In the scene, the glass will {verb}`
+- `head` `inchoative_frame_tomorrow` target ' the': 29 aligned rows for prefix `Tomorrow, the door will {verb}`
+- `head` `inchoative_frame_tomorrow` target '.': 30 aligned rows for prefix `Tomorrow, the door will {verb}`
+- `head` `object_frame` target ' the': 29 aligned rows for prefix `In the scene, the technician will {verb}`
+- `head` `object_frame` target '.': 30 aligned rows for prefix `In the scene, the technician will {verb}`
+- `head` `object_frame_worker` target ' the': 29 aligned rows for prefix `After lunch, the worker will {verb}`
+- `head` `object_frame_worker` target '.': 30 aligned rows for prefix `After lunch, the worker will {verb}`
+- `tail` `drop_object_frame` target ' the': 22 aligned rows for prefix `In the scene, the artist will {verb}`
+- `tail` `drop_object_frame` target '.': 23 aligned rows for prefix `In the scene, the artist will {verb}`
+- `tail` `inchoative_frame` target ' the': 23 aligned rows for prefix `In the scene, the glass will {verb}`
+- `tail` `inchoative_frame` target '.': 22 aligned rows for prefix `In the scene, the glass will {verb}`
+- `tail` `inchoative_frame_tomorrow` target ' the': 23 aligned rows for prefix `Tomorrow, the door will {verb}`
+- `tail` `inchoative_frame_tomorrow` target '.': 24 aligned rows for prefix `Tomorrow, the door will {verb}`
+- `tail` `object_frame` target ' the': 22 aligned rows for prefix `In the scene, the technician will {verb}`
+- `tail` `object_frame` target '.': 22 aligned rows for prefix `In the scene, the technician will {verb}`
+- `tail` `object_frame_worker` target ' the': 25 aligned rows for prefix `After lunch, the worker will {verb}`
+- `tail` `object_frame_worker` target '.': 23 aligned rows for prefix `After lunch, the worker will {verb}`
+- `xtail` `drop_object_frame` target ' the': 17 aligned rows for prefix `In the scene, the artist will {verb}`
+- `xtail` `drop_object_frame` target '.': 20 aligned rows for prefix `In the scene, the artist will {verb}`
+- `xtail` `inchoative_frame` target ' the': 15 aligned rows for prefix `In the scene, the glass will {verb}`
+- `xtail` `inchoative_frame` target '.': 24 aligned rows for prefix `In the scene, the glass will {verb}`
+- `xtail` `inchoative_frame_tomorrow` target ' the': 20 aligned rows for prefix `Tomorrow, the door will {verb}`
+- `xtail` `inchoative_frame_tomorrow` target '.': 21 aligned rows for prefix `Tomorrow, the door will {verb}`
+- `xtail` `object_frame` target ' the': 19 aligned rows for prefix `In the scene, the technician will {verb}`
+- `xtail` `object_frame` target '.': 22 aligned rows for prefix `In the scene, the technician will {verb}`
+- `xtail` `object_frame_worker` target ' the': 20 aligned rows for prefix `After lunch, the worker will {verb}`
+- `xtail` `object_frame_worker` target '.': 23 aligned rows for prefix `After lunch, the worker will {verb}`
 
 ## Tokenization Summary
 
