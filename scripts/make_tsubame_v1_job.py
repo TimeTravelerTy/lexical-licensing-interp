@@ -184,6 +184,7 @@ RUNS = {
             "--lr 0.05 "
             "--control dummy_verb "
             "--dummy-verb do "
+            "--split-by pair "
             "--device cuda "
             "--dtype bfloat16 "
             "--allow-download "
