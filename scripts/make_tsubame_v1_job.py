@@ -82,6 +82,46 @@ RUNS = {
         ),
         "hours": "03:00:00",
     },
+    "secondary_exact": {
+        "job_name": "llv1_exact_secondary",
+        "command": (
+            "python3 scripts/run_pythia_exact_patching.py "
+            "--data data/aligned_templates/lexical_licensing_aligned.jsonl "
+            "--model EleutherAI/pythia-1.4b "
+            "--subtasks transitive,intransitive "
+            "--regimes head,tail,xtail "
+            "--directions good_to_bad,bad_to_good "
+            "--summary-csv results/attribution_patching/20260617-pythia14b-ap-secondary.summary.csv "
+            "--top-k 6 "
+            "--batch-size 8 "
+            "--device cuda "
+            "--dtype bfloat16 "
+            "--allow-download "
+            "--out-dir results/exact_patching "
+            "--run-name 20260617-pythia14b-ap-secondary-exact"
+        ),
+        "hours": "03:00:00",
+    },
+    "drop_argument_exact": {
+        "job_name": "llv1_exact_drop",
+        "command": (
+            "python3 scripts/run_pythia_exact_patching.py "
+            "--data data/aligned_templates/lexical_licensing_aligned.jsonl "
+            "--model EleutherAI/pythia-1.4b "
+            "--subtasks drop_argument "
+            "--regimes head,tail,xtail "
+            "--directions good_to_bad,bad_to_good "
+            "--summary-csv results/attribution_patching/20260617-pythia14b-ap-drop_argument.summary.csv "
+            "--top-k 6 "
+            "--batch-size 8 "
+            "--device cuda "
+            "--dtype bfloat16 "
+            "--allow-download "
+            "--out-dir results/exact_patching "
+            "--run-name 20260617-pythia14b-ap-drop_argument-exact"
+        ),
+        "hours": "02:00:00",
+    },
 }
 
 
