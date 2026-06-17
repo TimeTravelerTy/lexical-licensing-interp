@@ -29,7 +29,7 @@ from run_pythia_attribution_patching import (
     shell_safe_slug,
     token_id,
 )
-from run_pythia_exact_patching import normalize_model_output, parse_site, replace_model_output, site_name
+from run_pythia_exact_patching import clean_forward_with_site, normalize_model_output, parse_site, replace_model_output, site_name
 
 
 DEFAULT_SUBTASKS = ("causative", "inchoative")
@@ -196,8 +196,7 @@ def run_batch(
     anchor = batch[0].anchor_token_index
 
     with torch.no_grad():
-        clean_outputs = model(**clean_inputs, output_hidden_states=True, use_cache=False)
-        clean_site = clean_outputs.hidden_states[site_index][:, anchor, :].detach()
+        clean_outputs, clean_site = clean_forward_with_site(model, clean_inputs, site_index, anchor)
         clean_metric = metric_from_logits(clean_outputs.logits, clean_target, corrupt_target) if need_clean_metric else None
 
     patched_outputs = patched_forward(model, corrupt_inputs, site_index, anchor, clean_site, basis)
@@ -232,9 +231,8 @@ def evaluate(
                 corrupt_target = torch.tensor([target_ids[p.corrupt_target] for p in batch], device=device)
                 anchor = batch[0].anchor_token_index
 
-                clean_outputs = model(**clean_inputs, output_hidden_states=True, use_cache=False)
+                clean_outputs, clean_site = clean_forward_with_site(model, clean_inputs, site_index, anchor)
                 corrupt_outputs = model(**corrupt_inputs, output_hidden_states=False, use_cache=False)
-                clean_site = clean_outputs.hidden_states[site_index][:, anchor, :].detach()
                 clean_metric = metric_from_logits(clean_outputs.logits, clean_target, corrupt_target)
                 corrupt_metric = metric_from_logits(corrupt_outputs.logits, clean_target, corrupt_target)
                 patched_outputs = patched_forward(model, corrupt_inputs, site_index, anchor, clean_site, basis)

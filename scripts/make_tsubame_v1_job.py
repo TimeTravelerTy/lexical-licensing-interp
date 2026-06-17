@@ -141,7 +141,7 @@ RUNS = {
             "--dtype bfloat16 "
             "--allow-download "
             "--out-dir results/das_v1 "
-            "--run-name 20260617-pythia14b-das-primary-l23"
+            "--run-name 20260617-pythia14b-das-primary-l23-hookfix"
         ),
         "hours": "03:00:00",
     },
@@ -164,7 +164,7 @@ RUNS = {
             "--dtype bfloat16 "
             "--allow-download "
             "--out-dir results/das_v1 "
-            "--run-name 20260617-pythia14b-das-primary-l23-shuffled"
+            "--run-name 20260617-pythia14b-das-primary-l23-shuffled-hookfix"
         ),
         "hours": "03:00:00",
     },
@@ -189,7 +189,7 @@ RUNS = {
             "--dtype bfloat16 "
             "--allow-download "
             "--out-dir results/das_v1 "
-            "--run-name 20260617-pythia14b-das-primary-l23-dummy"
+            "--run-name 20260617-pythia14b-das-primary-l23-dummy-hookfix"
         ),
         "hours": "03:00:00",
     },
@@ -212,7 +212,7 @@ RUNS = {
             "--dtype bfloat16 "
             "--allow-download "
             "--out-dir results/das_v1 "
-            "--run-name 20260617-pythia14b-das-primary-l23-random"
+            "--run-name 20260617-pythia14b-das-primary-l23-random-hookfix"
         ),
         "hours": "02:00:00",
     },

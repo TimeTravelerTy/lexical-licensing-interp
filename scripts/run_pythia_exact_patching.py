@@ -158,6 +158,35 @@ def patch_forward(
         handle.remove()
 
 
+def clean_forward_with_site(
+    model: Any,
+    clean_inputs: Any,
+    site_index: int,
+    anchor: int,
+) -> tuple[Any, Any]:
+    captured: dict[str, Any] = {}
+
+    def capture_tensor(hidden: Any) -> None:
+        captured["site"] = hidden[:, anchor, :].detach()
+
+    if site_index == 0:
+        handle = model.gpt_neox.embed_in.register_forward_hook(
+            lambda _module, _inputs, output: capture_tensor(output)
+        )
+    else:
+        layer_idx = site_index - 1
+
+        def hook(_module: Any, _inputs: Any, output: Any) -> None:
+            capture_tensor(normalize_model_output(output))
+
+        handle = model.gpt_neox.layers[layer_idx].register_forward_hook(hook)
+    try:
+        outputs = model(**clean_inputs, output_hidden_states=False, use_cache=False)
+    finally:
+        handle.remove()
+    return outputs, captured["site"]
+
+
 def run(args: argparse.Namespace) -> None:
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -232,13 +261,14 @@ def run(args: argparse.Namespace) -> None:
                 corrupt_target = torch.tensor([target_ids[p.corrupt_target] for p in batch], device=device)
                 anchor = batch[0].anchor_token_index
 
-                clean_outputs = model(**clean_inputs, output_hidden_states=True, use_cache=False)
+                clean_outputs = model(**clean_inputs, output_hidden_states=False, use_cache=False)
                 corrupt_outputs = model(**corrupt_inputs, output_hidden_states=False, use_cache=False)
                 clean_metric = metric(clean_outputs.logits, clean_target, corrupt_target)
                 corrupt_metric = metric(corrupt_outputs.logits, clean_target, corrupt_target)
 
                 for site_index in site_indices:
-                    clean_site = clean_outputs.hidden_states[site_index][:, anchor, :].detach()
+                    clean_outputs, clean_site = clean_forward_with_site(model, clean_inputs, site_index, anchor)
+                    clean_metric = metric(clean_outputs.logits, clean_target, corrupt_target)
                     patched_outputs = patch_forward(model, corrupt_inputs, site_index, anchor, clean_site)
                     patched_metric = metric(patched_outputs.logits, clean_target, corrupt_target)
                     exact_effect = patched_metric - corrupt_metric
