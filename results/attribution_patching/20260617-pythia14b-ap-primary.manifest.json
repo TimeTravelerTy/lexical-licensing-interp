@@ -1,0 +1,270 @@
+{
+  "model": "EleutherAI/pythia-1.4b",
+  "data": "/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp/data/aligned_templates/lexical_licensing_aligned.jsonl",
+  "run_name": "20260617-pythia14b-ap-primary",
+  "subtasks": [
+    "causative",
+    "inchoative"
+  ],
+  "regimes": [
+    "head",
+    "tail",
+    "xtail"
+  ],
+  "directions": [
+    "bad_to_good",
+    "good_to_bad"
+  ],
+  "rows_loaded": 287,
+  "directed_pairs": 160,
+  "skip_counts": {
+    "missing_good_or_bad_side": 127
+  },
+  "batch_size": 8,
+  "total_batches": 26,
+  "detail_csv": "results/attribution_patching/20260617-pythia14b-ap-primary.detail.csv",
+  "summary_csv": "results/attribution_patching/20260617-pythia14b-ap-primary.summary.csv",
+  "top_sites_by_abs_mean": [
+    {
+      "regime": "head",
+      "subtask": "inchoative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_21",
+      "site_index": 22,
+      "n": 18,
+      "mean_attribution": 7.351779513888889,
+      "mean_abs_attribution": 7.351779513888889,
+      "mean_corrupt_metric": -0.3506944643126594,
+      "mean_clean_metric": 4.932291679912144
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_21",
+      "site_index": 22,
+      "n": 20,
+      "mean_attribution": 6.7482177734375,
+      "mean_abs_attribution": 6.8512939453125,
+      "mean_corrupt_metric": 0.9218750357627868,
+      "mean_clean_metric": 6.754687476158142
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_22",
+      "site_index": 23,
+      "n": 20,
+      "mean_attribution": 6.275244140625,
+      "mean_abs_attribution": 6.275244140625,
+      "mean_corrupt_metric": 0.9218750357627868,
+      "mean_clean_metric": 6.754687476158142
+    },
+    {
+      "regime": "head",
+      "subtask": "inchoative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_22",
+      "site_index": 23,
+      "n": 18,
+      "mean_attribution": 6.1640625,
+      "mean_abs_attribution": 6.1640625,
+      "mean_corrupt_metric": -0.3506944643126594,
+      "mean_clean_metric": 4.932291679912144
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_20",
+      "site_index": 21,
+      "n": 20,
+      "mean_attribution": 5.726171875,
+      "mean_abs_attribution": 6.098046875,
+      "mean_corrupt_metric": 0.9218750357627868,
+      "mean_clean_metric": 6.754687476158142
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_19",
+      "site_index": 20,
+      "n": 20,
+      "mean_attribution": 5.822314453125,
+      "mean_abs_attribution": 6.047216796875,
+      "mean_corrupt_metric": 0.9218750357627868,
+      "mean_clean_metric": 6.754687476158142
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_23",
+      "site_index": 24,
+      "n": 20,
+      "mean_attribution": 5.8287109375,
+      "mean_abs_attribution": 6.0369140625,
+      "mean_corrupt_metric": -6.754687476158142,
+      "mean_clean_metric": -0.9218750357627868
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_23",
+      "site_index": 24,
+      "n": 20,
+      "mean_attribution": 5.8287109375,
+      "mean_abs_attribution": 6.0369140625,
+      "mean_corrupt_metric": 0.9218750357627868,
+      "mean_clean_metric": 6.754687476158142
+    },
+    {
+      "regime": "head",
+      "subtask": "inchoative",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_16",
+      "site_index": 17,
+      "n": 18,
+      "mean_attribution": 5.793402777777778,
+      "mean_abs_attribution": 5.793402777777778,
+      "mean_corrupt_metric": -4.932291679912144,
+      "mean_clean_metric": 0.3506944643126594
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_20",
+      "site_index": 21,
+      "n": 20,
+      "mean_attribution": 5.290557861328125,
+      "mean_abs_attribution": 5.762567138671875,
+      "mean_corrupt_metric": -6.754687476158142,
+      "mean_clean_metric": -0.9218750357627868
+    },
+    {
+      "regime": "head",
+      "subtask": "inchoative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_20",
+      "site_index": 21,
+      "n": 18,
+      "mean_attribution": 5.753038194444445,
+      "mean_abs_attribution": 5.753038194444445,
+      "mean_corrupt_metric": -0.3506944643126594,
+      "mean_clean_metric": 4.932291679912144
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_19",
+      "site_index": 20,
+      "n": 20,
+      "mean_attribution": 4.76328125,
+      "mean_abs_attribution": 5.54453125,
+      "mean_corrupt_metric": -6.754687476158142,
+      "mean_clean_metric": -0.9218750357627868
+    },
+    {
+      "regime": "head",
+      "subtask": "inchoative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_19",
+      "site_index": 20,
+      "n": 18,
+      "mean_attribution": 5.312065972222222,
+      "mean_abs_attribution": 5.522135416666667,
+      "mean_corrupt_metric": -0.3506944643126594,
+      "mean_clean_metric": 4.932291679912144
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_18",
+      "site_index": 19,
+      "n": 20,
+      "mean_attribution": 5.2978515625,
+      "mean_abs_attribution": 5.5037109375,
+      "mean_corrupt_metric": -6.754687476158142,
+      "mean_clean_metric": -0.9218750357627868
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_16",
+      "site_index": 17,
+      "n": 20,
+      "mean_attribution": 5.3239501953125,
+      "mean_abs_attribution": 5.4614501953125,
+      "mean_corrupt_metric": -6.754687476158142,
+      "mean_clean_metric": -0.9218750357627868
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_22",
+      "site_index": 23,
+      "n": 20,
+      "mean_attribution": 5.169140625,
+      "mean_abs_attribution": 5.456640625,
+      "mean_corrupt_metric": -6.754687476158142,
+      "mean_clean_metric": -0.9218750357627868
+    },
+    {
+      "regime": "tail",
+      "subtask": "causative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_21",
+      "site_index": 22,
+      "n": 12,
+      "mean_attribution": 0.4939778645833333,
+      "mean_abs_attribution": 5.427571614583333,
+      "mean_corrupt_metric": -6.166666626930237,
+      "mean_clean_metric": -2.5494791865348816
+    },
+    {
+      "regime": "head",
+      "subtask": "inchoative",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_18",
+      "site_index": 19,
+      "n": 18,
+      "mean_attribution": 5.326822916666667,
+      "mean_abs_attribution": 5.326822916666667,
+      "mean_corrupt_metric": -4.932291679912144,
+      "mean_clean_metric": 0.3506944643126594
+    },
+    {
+      "regime": "head",
+      "subtask": "causative",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_18",
+      "site_index": 19,
+      "n": 20,
+      "mean_attribution": 5.0861083984375,
+      "mean_abs_attribution": 5.2849853515625,
+      "mean_corrupt_metric": 0.9218750357627868,
+      "mean_clean_metric": 6.754687476158142
+    },
+    {
+      "regime": "head",
+      "subtask": "inchoative",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_23",
+      "site_index": 24,
+      "n": 18,
+      "mean_attribution": 5.276041666666667,
+      "mean_abs_attribution": 5.276041666666667,
+      "mean_corrupt_metric": -0.3506944643126594,
+      "mean_clean_metric": 4.932291679912144
+    }
+  ],
+  "note": "Attribution patching screen only; confirm top sites with exact activation patching before DAS."
+}

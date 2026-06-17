@@ -1,0 +1,270 @@
+{
+  "model": "EleutherAI/pythia-1.4b",
+  "data": "/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp/data/aligned_templates/lexical_licensing_aligned.jsonl",
+  "run_name": "20260617-pythia14b-ap-secondary",
+  "subtasks": [
+    "intransitive",
+    "transitive"
+  ],
+  "regimes": [
+    "head",
+    "tail",
+    "xtail"
+  ],
+  "directions": [
+    "bad_to_good",
+    "good_to_bad"
+  ],
+  "rows_loaded": 297,
+  "directed_pairs": 170,
+  "skip_counts": {
+    "missing_good_or_bad_side": 127
+  },
+  "batch_size": 8,
+  "total_batches": 30,
+  "detail_csv": "results/attribution_patching/20260617-pythia14b-ap-secondary.detail.csv",
+  "summary_csv": "results/attribution_patching/20260617-pythia14b-ap-secondary.summary.csv",
+  "top_sites_by_abs_mean": [
+    {
+      "regime": "head",
+      "subtask": "transitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_18",
+      "site_index": 19,
+      "n": 19,
+      "mean_attribution": 6.378289473684211,
+      "mean_abs_attribution": 6.378289473684211,
+      "mean_corrupt_metric": -5.516447268034282,
+      "mean_clean_metric": -0.19078951132924934
+    },
+    {
+      "regime": "head",
+      "subtask": "transitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_19",
+      "site_index": 20,
+      "n": 19,
+      "mean_attribution": 6.031674033717105,
+      "mean_abs_attribution": 6.037404913651316,
+      "mean_corrupt_metric": -5.516447268034282,
+      "mean_clean_metric": -0.19078951132924934
+    },
+    {
+      "regime": "head",
+      "subtask": "transitive",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_21",
+      "site_index": 22,
+      "n": 19,
+      "mean_attribution": 5.9955797697368425,
+      "mean_abs_attribution": 6.0044202302631575,
+      "mean_corrupt_metric": 0.19078951132924934,
+      "mean_clean_metric": 5.516447268034282
+    },
+    {
+      "regime": "tail",
+      "subtask": "intransitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_21",
+      "site_index": 22,
+      "n": 11,
+      "mean_attribution": 5.959517045454546,
+      "mean_abs_attribution": 5.959517045454546,
+      "mean_corrupt_metric": -2.5795454545454546,
+      "mean_clean_metric": 2.03125
+    },
+    {
+      "regime": "head",
+      "subtask": "transitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_16",
+      "site_index": 17,
+      "n": 19,
+      "mean_attribution": 5.8988486842105265,
+      "mean_abs_attribution": 5.8988486842105265,
+      "mean_corrupt_metric": -5.516447268034282,
+      "mean_clean_metric": -0.19078951132924934
+    },
+    {
+      "regime": "head",
+      "subtask": "intransitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_19",
+      "site_index": 20,
+      "n": 17,
+      "mean_attribution": 5.8205422794117645,
+      "mean_abs_attribution": 5.8205422794117645,
+      "mean_corrupt_metric": -3.231617675108068,
+      "mean_clean_metric": 2.0404411484213436
+    },
+    {
+      "regime": "head",
+      "subtask": "transitive",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_22",
+      "site_index": 23,
+      "n": 19,
+      "mean_attribution": 5.518914473684211,
+      "mean_abs_attribution": 5.6587171052631575,
+      "mean_corrupt_metric": 0.19078951132924934,
+      "mean_clean_metric": 5.516447268034282
+    },
+    {
+      "regime": "head",
+      "subtask": "transitive",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_20",
+      "site_index": 21,
+      "n": 19,
+      "mean_attribution": 5.6206825657894735,
+      "mean_abs_attribution": 5.6206825657894735,
+      "mean_corrupt_metric": 0.19078951132924934,
+      "mean_clean_metric": 5.516447268034282
+    },
+    {
+      "regime": "tail",
+      "subtask": "intransitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_22",
+      "site_index": 23,
+      "n": 11,
+      "mean_attribution": 5.595170454545454,
+      "mean_abs_attribution": 5.595170454545454,
+      "mean_corrupt_metric": -2.5795454545454546,
+      "mean_clean_metric": 2.03125
+    },
+    {
+      "regime": "tail",
+      "subtask": "intransitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_19",
+      "site_index": 20,
+      "n": 11,
+      "mean_attribution": 5.463778409090909,
+      "mean_abs_attribution": 5.463778409090909,
+      "mean_corrupt_metric": -2.5795454545454546,
+      "mean_clean_metric": 2.03125
+    },
+    {
+      "regime": "head",
+      "subtask": "intransitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_21",
+      "site_index": 22,
+      "n": 17,
+      "mean_attribution": 5.194393382352941,
+      "mean_abs_attribution": 5.312040441176471,
+      "mean_corrupt_metric": -3.231617675108068,
+      "mean_clean_metric": 2.0404411484213436
+    },
+    {
+      "regime": "head",
+      "subtask": "transitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_23",
+      "site_index": 24,
+      "n": 19,
+      "mean_attribution": 5.3090049342105265,
+      "mean_abs_attribution": 5.3090049342105265,
+      "mean_corrupt_metric": -5.516447268034282,
+      "mean_clean_metric": -0.19078951132924934
+    },
+    {
+      "regime": "head",
+      "subtask": "transitive",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_23",
+      "site_index": 24,
+      "n": 19,
+      "mean_attribution": 5.3090049342105265,
+      "mean_abs_attribution": 5.3090049342105265,
+      "mean_corrupt_metric": 0.19078951132924934,
+      "mean_clean_metric": 5.516447268034282
+    },
+    {
+      "regime": "head",
+      "subtask": "intransitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_23",
+      "site_index": 24,
+      "n": 17,
+      "mean_attribution": 5.2736672794117645,
+      "mean_abs_attribution": 5.2736672794117645,
+      "mean_corrupt_metric": -3.231617675108068,
+      "mean_clean_metric": 2.0404411484213436
+    },
+    {
+      "regime": "head",
+      "subtask": "intransitive",
+      "direction": "good_to_bad",
+      "site": "resid_post_layer_23",
+      "site_index": 24,
+      "n": 17,
+      "mean_attribution": 5.2736672794117645,
+      "mean_abs_attribution": 5.2736672794117645,
+      "mean_corrupt_metric": -2.0404411484213436,
+      "mean_clean_metric": 3.231617675108068
+    },
+    {
+      "regime": "head",
+      "subtask": "transitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_17",
+      "site_index": 18,
+      "n": 19,
+      "mean_attribution": 5.262464021381579,
+      "mean_abs_attribution": 5.270636307565789,
+      "mean_corrupt_metric": -5.516447268034282,
+      "mean_clean_metric": -0.19078951132924934
+    },
+    {
+      "regime": "head",
+      "subtask": "intransitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_16",
+      "site_index": 17,
+      "n": 17,
+      "mean_attribution": 5.178366268382353,
+      "mean_abs_attribution": 5.178366268382353,
+      "mean_corrupt_metric": -3.231617675108068,
+      "mean_clean_metric": 2.0404411484213436
+    },
+    {
+      "regime": "head",
+      "subtask": "intransitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_22",
+      "site_index": 23,
+      "n": 17,
+      "mean_attribution": 5.010569852941177,
+      "mean_abs_attribution": 5.177849264705882,
+      "mean_corrupt_metric": -3.231617675108068,
+      "mean_clean_metric": 2.0404411484213436
+    },
+    {
+      "regime": "tail",
+      "subtask": "intransitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_16",
+      "site_index": 17,
+      "n": 11,
+      "mean_attribution": 5.177601207386363,
+      "mean_abs_attribution": 5.177601207386363,
+      "mean_corrupt_metric": -2.5795454545454546,
+      "mean_clean_metric": 2.03125
+    },
+    {
+      "regime": "head",
+      "subtask": "transitive",
+      "direction": "bad_to_good",
+      "site": "resid_post_layer_20",
+      "site_index": 21,
+      "n": 19,
+      "mean_attribution": 3.920435855263158,
+      "mean_abs_attribution": 5.1761924342105265,
+      "mean_corrupt_metric": -5.516447268034282,
+      "mean_clean_metric": -0.19078951132924934
+    }
+  ],
+  "note": "Attribution patching screen only; confirm top sites with exact activation patching before DAS."
+}
