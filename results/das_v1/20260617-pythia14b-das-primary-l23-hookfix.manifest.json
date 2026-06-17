@@ -1,0 +1,49 @@
+{
+  "model": "EleutherAI/pythia-1.4b",
+  "site": "resid_post_layer_23",
+  "rank": 1,
+  "control": "none",
+  "subtasks": [
+    "causative",
+    "inchoative"
+  ],
+  "regimes": [
+    "head",
+    "tail",
+    "xtail"
+  ],
+  "directions": [
+    "bad_to_good",
+    "good_to_bad"
+  ],
+  "rows_loaded": 287,
+  "directed_pairs": 160,
+  "train_pairs": 126,
+  "eval_pairs": 34,
+  "skip_counts": {
+    "missing_good_or_bad_side": 127
+  },
+  "split_by": "lemma_pair",
+  "eval_frac": 0.25,
+  "epochs": 30,
+  "lr": 0.05,
+  "train_metrics": {
+    "n": 126,
+    "mean_corrupt_metric": -1.9831349187427096,
+    "mean_patched_metric": 8.494915668926541,
+    "mean_clean_metric": 1.9831349187427096,
+    "mean_effect": 10.478050591453673,
+    "patched_success_rate": 1.0,
+    "mean_normalized_effect": 1.8774411078753388
+  },
+  "eval_metrics": {
+    "n": 34,
+    "mean_corrupt_metric": -2.4926470588235294,
+    "mean_patched_metric": 7.341366066652186,
+    "mean_clean_metric": 2.4926470588235294,
+    "mean_effect": 9.834013111451092,
+    "patched_success_rate": 0.9117647058823529,
+    "mean_normalized_effect": 2.4134037045624144
+  },
+  "note": "V1 infrastructure DAS on fixed-subject scaffold; do not treat as final semantic causal evidence. shuffled_label retrains on permuted labels; dummy_verb tests template solvability without verb signal; random_direction evaluates an untrained random subspace of the same rank."
+}
