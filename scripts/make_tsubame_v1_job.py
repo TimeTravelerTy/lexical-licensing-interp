@@ -20,6 +20,7 @@ RUNS = {
             "--batch-size 8 "
             "--device cuda "
             "--dtype bfloat16 "
+            "--allow-download "
             "--out-dir results/attribution_patching "
             "--run-name 20260617-pythia14b-ap-primary"
         ),
@@ -37,6 +38,7 @@ RUNS = {
             "--batch-size 8 "
             "--device cuda "
             "--dtype bfloat16 "
+            "--allow-download "
             "--out-dir results/attribution_patching "
             "--run-name 20260617-pythia14b-ap-secondary"
         ),
@@ -54,6 +56,7 @@ RUNS = {
             "--batch-size 8 "
             "--device cuda "
             "--dtype bfloat16 "
+            "--allow-download "
             "--out-dir results/attribution_patching "
             "--run-name 20260617-pythia14b-ap-drop_argument"
         ),
@@ -73,6 +76,7 @@ RUNS = {
             "--batch-size 8 "
             "--device cuda "
             "--dtype bfloat16 "
+            "--allow-download "
             "--out-dir results/exact_patching "
             "--run-name 20260617-pythia14b-ap-primary-exact"
         ),
@@ -101,6 +105,9 @@ conda activate {conda_env}
 
 cd {remote_root}
 mkdir -p logs results/attribution_patching results/exact_patching
+export HF_HOME=/gs/fs/tga-sip_arase/tyrone/huggingface_cache
+export HF_HUB_CACHE=$HF_HOME/hub
+mkdir -p "$HF_HOME"
 
 {spec["command"]}
 """
