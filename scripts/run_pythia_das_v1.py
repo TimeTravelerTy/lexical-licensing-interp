@@ -90,6 +90,37 @@ def make_splits(pairs: list[DirectedPair], eval_frac: float, split_by: str, seed
     return train, eval_
 
 
+def make_transfer_splits(
+    pairs: list[DirectedPair],
+    train_regimes: set[str],
+    eval_regimes: set[str],
+    eval_frac: float,
+    split_by: str,
+    seed: int,
+) -> tuple[list[DirectedPair], list[DirectedPair]]:
+    train: list[DirectedPair] = []
+    eval_: list[DirectedPair] = []
+    for pair in pairs:
+        in_train = pair.regime in train_regimes
+        in_eval = pair.regime in eval_regimes
+        if in_train and in_eval:
+            if stable_unit(split_key(pair, split_by), seed) < eval_frac:
+                eval_.append(pair)
+            else:
+                train.append(pair)
+        elif in_train:
+            train.append(pair)
+        elif in_eval:
+            eval_.append(pair)
+    if not train or not eval_:
+        raise SystemExit(
+            "Empty transfer split: "
+            f"train={len(train)} eval={len(eval_)} "
+            f"train_regimes={sorted(train_regimes)} eval_regimes={sorted(eval_regimes)}"
+        )
+    return train, eval_
+
+
 def retokenize_pairs(tokenizer: Any, pairs: list[DirectedPair]) -> list[DirectedPair]:
     checked: list[DirectedPair] = []
     for pair in pairs:
@@ -298,7 +329,9 @@ def run(args: argparse.Namespace) -> None:
     random.seed(args.seed)
     site_index = parse_site(args.site)
     subtask_filter = set(parse_csv_arg(args.subtasks))
-    regime_filter = set(parse_csv_arg(args.regimes))
+    train_regimes = set(parse_csv_arg(args.train_regimes or args.regimes))
+    eval_regimes = set(parse_csv_arg(args.eval_regimes or args.regimes))
+    regime_filter = train_regimes | eval_regimes
     directions = set(parse_csv_arg(args.directions))
     rows = load_aligned_rows(Path(args.data), subtask_filter, regime_filter)
     pairs, skip_counts = build_directed_pairs(rows, directions, args.max_pairs_per_group)
@@ -310,7 +343,14 @@ def run(args: argparse.Namespace) -> None:
     pairs = retokenize_pairs(tokenizer, pairs)
     if not pairs:
         raise SystemExit("No valid pairs after control tokenization.")
-    train_pairs, eval_pairs = make_splits(pairs, args.eval_frac, args.split_by, args.seed)
+    train_pairs, eval_pairs = make_transfer_splits(
+        pairs,
+        train_regimes,
+        eval_regimes,
+        args.eval_frac,
+        args.split_by,
+        args.seed,
+    )
     dtype = getattr(torch, args.dtype) if args.dtype != "auto" else "auto"
     model = AutoModelForCausalLM.from_pretrained(
         args.model,
@@ -382,6 +422,8 @@ def run(args: argparse.Namespace) -> None:
         "control": args.control,
         "subtasks": sorted(subtask_filter),
         "regimes": sorted(regime_filter),
+        "train_regimes": sorted(train_regimes),
+        "eval_regimes": sorted(eval_regimes),
         "directions": sorted(directions),
         "rows_loaded": len(rows),
         "directed_pairs": len(pairs),
@@ -411,6 +453,8 @@ def main() -> None:
     ap.add_argument("--site", default="resid_post_layer_23")
     ap.add_argument("--subtasks", default=",".join(DEFAULT_SUBTASKS))
     ap.add_argument("--regimes", default=",".join(DEFAULT_REGIMES))
+    ap.add_argument("--train-regimes", default="")
+    ap.add_argument("--eval-regimes", default="")
     ap.add_argument("--directions", default="good_to_bad,bad_to_good")
     ap.add_argument("--max-pairs-per-group", type=int, default=None)
     ap.add_argument("--rank", type=int, default=1)
