@@ -182,7 +182,11 @@ def main() -> None:
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    sanity_detail = read_csv(results_root / "v2_sanity" / f"{args.run_prefix}-sanity-head-low.detail.csv")
+    sanity_path = results_root / "v2_sanity" / f"{args.run_prefix}-sanity-head-low.detail.csv"
+    if not sanity_path.exists():
+        matches = sorted((results_root / "v2_sanity").glob(f"{args.run_prefix}-sanity-head-low*.detail.csv"))
+        sanity_path = matches[0] if matches else sanity_path
+    sanity_detail = read_csv(sanity_path)
     ap_summary = read_csv(results_root / "attribution_patching_v2" / f"{args.run_prefix}-ap-head-low.summary.csv")
 
     das_eval_summaries: list[dict[str, Any]] = []
