@@ -206,10 +206,14 @@ the Pythia tokenizer available:
 
 ```bash
 python3 scripts/build_aligned_templates_v2.py \
+  --subtasks causative,inchoative \
   --model EleutherAI/pythia-1.4b \
   --target-per-side-context 100 \
   --subject-variants-per-context 4
 ```
+
+On TSUBAME, set `FREQ_BLIMP_ROOT=/gs/fs/tga-sip_arase/tyrone/freq-blimp`
+before running the builder.
 
 Run v2 localization/DAS with balanced-pool pairing:
 

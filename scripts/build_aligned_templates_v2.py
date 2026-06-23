@@ -13,6 +13,7 @@ import ast
 import csv
 import hashlib
 import json
+import os
 import re
 import sys
 from collections import Counter, defaultdict
@@ -21,7 +22,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-FREQ_BLIMP_ROOT = Path("/Users/tyronewhite/masters_research_code/freq-blimp")
+FREQ_BLIMP_ROOT = Path(os.environ.get("FREQ_BLIMP_ROOT", "/Users/tyronewhite/masters_research_code/freq-blimp"))
 OVERLAY_CSV = FREQ_BLIMP_ROOT / "vocabulary_overlay.csv"
 DATA_ROOT = FREQ_BLIMP_ROOT / "data" / "freqblimp"
 OVERLAY_GUARDS = FREQ_BLIMP_ROOT / "generation_projects" / "blimp" / "overlay_guards.py"
