@@ -1,0 +1,11 @@
+{
+  "run_prefix": "20260623-pythia14b-v2",
+  "sanity_rows": 3560,
+  "ap_summary_rows": 200,
+  "exact_summary_rows": 64,
+  "das_eval_summary_rows": 32,
+  "skipped_das_files": [
+    "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l23-dummy_verb-s17.eval_detail.csv"
+  ],
+  "report": "reports/v2_head_low_results_report.md"
+}
