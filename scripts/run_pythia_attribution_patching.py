@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import math
 from collections import defaultdict
@@ -28,7 +29,7 @@ from typing import Any, Iterable
 
 
 DEFAULT_SUBTASKS = ("causative", "inchoative")
-DEFAULT_REGIMES = ("head", "tail", "xtail")
+DEFAULT_REGIMES = ("head", "low")
 DEFAULT_MODEL = "EleutherAI/pythia-1.4b"
 
 
@@ -50,6 +51,18 @@ class DirectedPair:
     prompt_token_count: int
     clean_verb: str
     corrupt_verb: str
+    context_id: str = ""
+    subject: str = ""
+    subject_class: str = ""
+    clean_source_zipf_regime: str = ""
+    corrupt_source_zipf_regime: str = ""
+    clean_inventory_source: str = ""
+    corrupt_inventory_source: str = ""
+
+
+def stable_unit(value: str, seed: int) -> float:
+    digest = hashlib.sha256(f"{seed}|{value}".encode("utf-8")).hexdigest()
+    return int(digest[:16], 16) / float(16**16)
 
 
 def iter_jsonl(path: Path) -> Iterable[dict[str, Any]]:
@@ -90,7 +103,14 @@ def build_directed_pairs(
     rows: list[dict[str, Any]],
     directions: set[str],
     max_pairs_per_group: int | None,
+    pairing: str = "source_idx",
+    seed: int = 17,
 ) -> tuple[list[DirectedPair], dict[str, int]]:
+    if pairing == "balanced_pool":
+        return build_directed_pairs_from_balanced_pools(rows, directions, max_pairs_per_group, seed)
+    if pairing != "source_idx":
+        raise ValueError(f"unknown pairing mode: {pairing}")
+
     grouped: dict[tuple[str, str, str, int], dict[str, dict[str, Any]]] = defaultdict(dict)
     for row in rows:
         key = (
@@ -143,6 +163,13 @@ def build_directed_pairs(
                     prompt_token_count=int(good["prompt_token_count"]),
                     clean_verb=str(good["verb"]),
                     corrupt_verb=str(bad["verb"]),
+                    context_id=str(good.get("context_id", "")),
+                    subject=str(good.get("subject", "")),
+                    subject_class=str(good.get("subject_class", "")),
+                    clean_source_zipf_regime=str(good.get("source_zipf_regime", "")),
+                    corrupt_source_zipf_regime=str(bad.get("source_zipf_regime", "")),
+                    clean_inventory_source=str(good.get("inventory_source", "")),
+                    corrupt_inventory_source=str(bad.get("inventory_source", "")),
                 )
             )
         if "bad_to_good" in directions:
@@ -164,8 +191,134 @@ def build_directed_pairs(
                     prompt_token_count=int(bad["prompt_token_count"]),
                     clean_verb=str(bad["verb"]),
                     corrupt_verb=str(good["verb"]),
+                    context_id=str(bad.get("context_id", "")),
+                    subject=str(bad.get("subject", "")),
+                    subject_class=str(bad.get("subject_class", "")),
+                    clean_source_zipf_regime=str(bad.get("source_zipf_regime", "")),
+                    corrupt_source_zipf_regime=str(good.get("source_zipf_regime", "")),
+                    clean_inventory_source=str(bad.get("inventory_source", "")),
+                    corrupt_inventory_source=str(good.get("inventory_source", "")),
                 )
             )
+    return pairs, dict(skip_counts)
+
+
+def build_directed_pairs_from_balanced_pools(
+    rows: list[dict[str, Any]],
+    directions: set[str],
+    max_pairs_per_group: int | None,
+    seed: int,
+) -> tuple[list[DirectedPair], dict[str, int]]:
+    grouped: dict[tuple[str, str, str, str, int, int], dict[str, list[dict[str, Any]]]] = defaultdict(
+        lambda: defaultdict(list)
+    )
+    for row in rows:
+        key = (
+            str(row["regime"]),
+            str(row["subtask"]),
+            str(row["template_id"]),
+            str(row.get("context_id", row["template_id"])),
+            int(row["prompt_token_count"]),
+            int(row["anchor_token_index"]),
+        )
+        grouped[key][str(row["side"])].append(row)
+
+    skip_counts: dict[str, int] = defaultdict(int)
+    pairs: list[DirectedPair] = []
+    for (regime, subtask, template_id, context_id, prompt_len, anchor), sides in sorted(grouped.items()):
+        good_rows = sides.get("good", [])
+        bad_rows = sides.get("bad", [])
+        if not good_rows or not bad_rows:
+            skip_counts["missing_good_or_bad_side"] += max(len(good_rows), len(bad_rows), 1)
+            continue
+
+        def sort_key(row: dict[str, Any]) -> tuple[float, str, int]:
+            stable_key = "|".join(
+                [
+                    regime,
+                    subtask,
+                    template_id,
+                    context_id,
+                    str(row.get("side", "")),
+                    str(row.get("verb", "")),
+                    str(row.get("source_idx", "")),
+                    str(row.get("row_id", "")),
+                ]
+            )
+            return (stable_unit(stable_key, seed), str(row.get("verb", "")), int(row.get("source_idx", 0)))
+
+        good_rows = sorted(good_rows, key=sort_key)
+        bad_rows = sorted(bad_rows, key=sort_key)
+        n_pairs = min(len(good_rows), len(bad_rows))
+        if max_pairs_per_group is not None:
+            if n_pairs > max_pairs_per_group:
+                skip_counts["max_pairs_per_group"] += n_pairs - max_pairs_per_group
+            n_pairs = min(n_pairs, max_pairs_per_group)
+
+        for index, (good, bad) in enumerate(zip(good_rows[:n_pairs], bad_rows[:n_pairs])):
+            if str(good.get("verb")) == str(bad.get("verb")):
+                skip_counts["same_clean_corrupt_verb"] += 1
+                continue
+            pair_key = (
+                f"{regime}|{subtask}|{template_id}|{context_id}|"
+                f"{index}|{good.get('verb')}|{bad.get('verb')}"
+            )
+            if "good_to_bad" in directions:
+                pairs.append(
+                    DirectedPair(
+                        pair_key=pair_key,
+                        regime=regime,
+                        subtask=subtask,
+                        template_id=template_id,
+                        source_idx=index,
+                        direction="good_to_bad",
+                        clean_side="good",
+                        corrupt_side="bad",
+                        clean_prompt=str(good["prompt"]),
+                        corrupt_prompt=str(bad["prompt"]),
+                        clean_target=str(good["expected_target"]),
+                        corrupt_target=str(bad["expected_target"]),
+                        anchor_token_index=anchor,
+                        prompt_token_count=prompt_len,
+                        clean_verb=str(good["verb"]),
+                        corrupt_verb=str(bad["verb"]),
+                        context_id=context_id,
+                        subject=str(good.get("subject", "")),
+                        subject_class=str(good.get("subject_class", "")),
+                        clean_source_zipf_regime=str(good.get("source_zipf_regime", "")),
+                        corrupt_source_zipf_regime=str(bad.get("source_zipf_regime", "")),
+                        clean_inventory_source=str(good.get("inventory_source", "")),
+                        corrupt_inventory_source=str(bad.get("inventory_source", "")),
+                    )
+                )
+            if "bad_to_good" in directions:
+                pairs.append(
+                    DirectedPair(
+                        pair_key=pair_key,
+                        regime=regime,
+                        subtask=subtask,
+                        template_id=template_id,
+                        source_idx=index,
+                        direction="bad_to_good",
+                        clean_side="bad",
+                        corrupt_side="good",
+                        clean_prompt=str(bad["prompt"]),
+                        corrupt_prompt=str(good["prompt"]),
+                        clean_target=str(bad["expected_target"]),
+                        corrupt_target=str(good["expected_target"]),
+                        anchor_token_index=anchor,
+                        prompt_token_count=prompt_len,
+                        clean_verb=str(bad["verb"]),
+                        corrupt_verb=str(good["verb"]),
+                        context_id=context_id,
+                        subject=str(bad.get("subject", "")),
+                        subject_class=str(bad.get("subject_class", "")),
+                        clean_source_zipf_regime=str(bad.get("source_zipf_regime", "")),
+                        corrupt_source_zipf_regime=str(good.get("source_zipf_regime", "")),
+                        clean_inventory_source=str(bad.get("inventory_source", "")),
+                        corrupt_inventory_source=str(good.get("inventory_source", "")),
+                    )
+                )
     return pairs, dict(skip_counts)
 
 
@@ -246,7 +399,7 @@ def run(args: argparse.Namespace) -> None:
         raise SystemExit("--directions must contain only good_to_bad,bad_to_good")
 
     rows = load_aligned_rows(Path(args.data), subtask_filter, regime_filter)
-    pairs, skip_counts = build_directed_pairs(rows, directions, args.max_pairs_per_group)
+    pairs, skip_counts = build_directed_pairs(rows, directions, args.max_pairs_per_group, args.pairing, args.seed)
     if not pairs:
         raise SystemExit("No valid directed pairs after filtering.")
 
@@ -350,12 +503,19 @@ def run(args: argparse.Namespace) -> None:
                             "regime": pair.regime,
                             "subtask": pair.subtask,
                             "template_id": pair.template_id,
+                            "context_id": pair.context_id,
+                            "subject": pair.subject,
+                            "subject_class": pair.subject_class,
                             "source_idx": pair.source_idx,
                             "direction": pair.direction,
                             "clean_side": pair.clean_side,
                             "corrupt_side": pair.corrupt_side,
                             "clean_verb": pair.clean_verb,
                             "corrupt_verb": pair.corrupt_verb,
+                            "clean_source_zipf_regime": pair.clean_source_zipf_regime,
+                            "corrupt_source_zipf_regime": pair.corrupt_source_zipf_regime,
+                            "clean_inventory_source": pair.clean_inventory_source,
+                            "corrupt_inventory_source": pair.corrupt_inventory_source,
                             "clean_target": pair.clean_target,
                             "corrupt_target": pair.corrupt_target,
                             "anchor_token_index": pair.anchor_token_index,
@@ -387,6 +547,7 @@ def run(args: argparse.Namespace) -> None:
         "subtasks": sorted(subtask_filter),
         "regimes": sorted(regime_filter),
         "directions": sorted(directions),
+        "pairing": args.pairing,
         "rows_loaded": len(rows),
         "directed_pairs": len(pairs),
         "skip_counts": skip_counts,
@@ -408,7 +569,9 @@ def main() -> None:
     ap.add_argument("--subtasks", default=",".join(DEFAULT_SUBTASKS))
     ap.add_argument("--regimes", default=",".join(DEFAULT_REGIMES))
     ap.add_argument("--directions", default="good_to_bad,bad_to_good")
+    ap.add_argument("--pairing", choices=("source_idx", "balanced_pool"), default="source_idx")
     ap.add_argument("--max-pairs-per-group", type=int, default=None)
+    ap.add_argument("--seed", type=int, default=17)
     ap.add_argument("--batch-size", type=int, default=8)
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--dtype", default="bfloat16")

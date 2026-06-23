@@ -195,7 +195,7 @@ def run(args: argparse.Namespace) -> None:
     regime_filter = set(parse_csv_arg(args.regimes))
     directions = set(parse_csv_arg(args.directions))
     rows = load_aligned_rows(Path(args.data), subtask_filter, regime_filter)
-    pairs, skip_counts = build_directed_pairs(rows, directions, args.max_pairs_per_group)
+    pairs, skip_counts = build_directed_pairs(rows, directions, args.max_pairs_per_group, args.pairing, args.seed)
     if not pairs:
         raise SystemExit("No valid directed pairs after filtering.")
 
@@ -290,12 +290,19 @@ def run(args: argparse.Namespace) -> None:
                                 "regime": pair.regime,
                                 "subtask": pair.subtask,
                                 "template_id": pair.template_id,
+                                "context_id": pair.context_id,
+                                "subject": pair.subject,
+                                "subject_class": pair.subject_class,
                                 "source_idx": pair.source_idx,
                                 "direction": pair.direction,
                                 "clean_side": pair.clean_side,
                                 "corrupt_side": pair.corrupt_side,
                                 "clean_verb": pair.clean_verb,
                                 "corrupt_verb": pair.corrupt_verb,
+                                "clean_source_zipf_regime": pair.clean_source_zipf_regime,
+                                "corrupt_source_zipf_regime": pair.corrupt_source_zipf_regime,
+                                "clean_inventory_source": pair.clean_inventory_source,
+                                "corrupt_inventory_source": pair.corrupt_inventory_source,
                                 "clean_target": pair.clean_target,
                                 "corrupt_target": pair.corrupt_target,
                                 "anchor_token_index": pair.anchor_token_index,
@@ -325,6 +332,7 @@ def run(args: argparse.Namespace) -> None:
         "subtasks": sorted(subtask_filter),
         "regimes": sorted(regime_filter),
         "directions": sorted(directions),
+        "pairing": args.pairing,
         "sites": [site_name(i) for i in site_indices],
         "rows_loaded": len(rows),
         "directed_pairs": len(pairs),
@@ -344,7 +352,9 @@ def main() -> None:
     ap.add_argument("--subtasks", default=",".join(DEFAULT_SUBTASKS))
     ap.add_argument("--regimes", default=",".join(DEFAULT_REGIMES))
     ap.add_argument("--directions", default="good_to_bad,bad_to_good")
+    ap.add_argument("--pairing", choices=("source_idx", "balanced_pool"), default="source_idx")
     ap.add_argument("--max-pairs-per-group", type=int, default=None)
+    ap.add_argument("--seed", type=int, default=17)
     ap.add_argument("--sites", default="")
     ap.add_argument("--summary-csv", default="")
     ap.add_argument("--top-k", type=int, default=6)

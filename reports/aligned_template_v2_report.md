@@ -1,0 +1,305 @@
+# V2 Aligned Template Build Report
+
+## Design Notes
+
+- Causative/inchoative verbs come from curated tuples in `freq-blimp/generation_projects/blimp/overlay_guards.py`.
+- Regime membership is assigned by Zipf bands `head=3.5-5.5` and `low=1.2-3.2`.
+- Low-frequency rows retain `source_zipf_regime` metadata: `xtail=1.2-2.2`, `tail=2.4-3.2`, and `low_gap=2.2-2.4`.
+- Supplemental v2 bad-side verbs are included from the repo-local JSON inventory after the same Zipf-band check.
+- Non-curated subtasks, when requested, fall back to canonical `freq-blimp` JSONL outputs.
+- Subject/object fillers come from `freq-blimp/vocabulary_overlay.csv`.
+- The archived `blimp-rare` swapping pipeline is not used.
+- Intervention anchor: `verb_final_subtoken`.
+- Subject/object fillers are sampled from overlay rows matching `arg_1`/`arg_2` constraints.
+- Noun sampling prefers `frequent=1` and `sg=1` overlay rows but falls back to the full role-matching pool.
+- Each context family is generated with both target labels.
+- Counts below distinguish row count from unique verified lemma count.
+
+## Candidate Verb Inventory
+
+- `head` `causative` `bad`: 23 unique candidate lemmas
+- `head` `causative` `good`: 33 unique candidate lemmas
+- `head` `inchoative` `bad`: 3 unique candidate lemmas
+- `head` `inchoative` `good`: 33 unique candidate lemmas
+- `low` `causative` `bad`: 36 unique candidate lemmas
+- `low` `causative` `good`: 26 unique candidate lemmas
+- `low` `inchoative` `bad`: 35 unique candidate lemmas
+- `low` `inchoative` `good`: 26 unique candidate lemmas
+
+## Candidate Inventory Sources
+
+- `head` `causative` `bad` `freqblimp_curated`: 23
+- `head` `causative` `good` `freqblimp_curated`: 33
+- `head` `inchoative` `bad` `freqblimp_curated`: 3
+- `head` `inchoative` `good` `freqblimp_curated`: 33
+- `low` `causative` `bad` `freqblimp_curated`: 7
+- `low` `causative` `bad` `supplemental_v2_bad_verbs`: 29
+- `low` `causative` `good` `freqblimp_curated`: 26
+- `low` `inchoative` `bad` `freqblimp_curated`: 1
+- `low` `inchoative` `bad` `supplemental_v2_bad_verbs`: 34
+- `low` `inchoative` `good` `freqblimp_curated`: 26
+
+## Candidate Source Frequency Bands
+
+- `head` `causative` `bad` `head`: 23
+- `head` `causative` `good` `head`: 33
+- `head` `inchoative` `bad` `head`: 3
+- `head` `inchoative` `good` `head`: 33
+- `low` `causative` `bad` `low_gap`: 4
+- `low` `causative` `bad` `tail`: 24
+- `low` `causative` `bad` `xtail`: 8
+- `low` `causative` `good` `low_gap`: 3
+- `low` `causative` `good` `tail`: 21
+- `low` `causative` `good` `xtail`: 2
+- `low` `inchoative` `bad` `low_gap`: 3
+- `low` `inchoative` `bad` `tail`: 19
+- `low` `inchoative` `bad` `xtail`: 13
+- `low` `inchoative` `good` `low_gap`: 3
+- `low` `inchoative` `good` `tail`: 21
+- `low` `inchoative` `good` `xtail`: 2
+
+## Rows By Context Schema
+
+- `head` `causative` `bad` `overlay_subject_check_s00` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_check_s01` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_check_s02` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_check_s03` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_lab_s00` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_lab_s01` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_lab_s02` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_lab_s03` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_tomorrow_s00` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_tomorrow_s01` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_tomorrow_s02` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_tomorrow_s03` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_trial_s00` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_trial_s01` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_trial_s02` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_trial_s03` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_visit_s00` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_visit_s01` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_visit_s02` `unverified`: 23
+- `head` `causative` `bad` `overlay_subject_visit_s03` `unverified`: 23
+- `head` `causative` `good` `overlay_subject_check_s00` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_check_s01` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_check_s02` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_check_s03` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_lab_s00` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_lab_s01` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_lab_s02` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_lab_s03` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_tomorrow_s00` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_tomorrow_s01` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_tomorrow_s02` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_tomorrow_s03` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_trial_s00` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_trial_s01` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_trial_s02` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_trial_s03` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_visit_s00` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_visit_s01` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_visit_s02` `unverified`: 33
+- `head` `causative` `good` `overlay_subject_visit_s03` `unverified`: 33
+- `head` `inchoative` `bad` `overlay_subject_check_s00` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_check_s01` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_check_s02` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_check_s03` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_lab_s00` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_lab_s01` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_lab_s02` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_lab_s03` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s00` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s01` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s02` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s03` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_trial_s00` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_trial_s01` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_trial_s02` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_trial_s03` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_visit_s00` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_visit_s01` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_visit_s02` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_visit_s03` `unverified`: 3
+- `head` `inchoative` `good` `overlay_subject_check_s00` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_check_s01` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_check_s02` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_check_s03` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_lab_s00` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_lab_s01` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_lab_s02` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_lab_s03` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s00` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s01` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s02` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s03` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_trial_s00` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_trial_s01` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_trial_s02` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_trial_s03` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_visit_s00` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_visit_s01` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_visit_s02` `unverified`: 33
+- `head` `inchoative` `good` `overlay_subject_visit_s03` `unverified`: 33
+- `low` `causative` `bad` `overlay_subject_check_s00` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_check_s01` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_check_s02` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_check_s03` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_lab_s00` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_lab_s01` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_lab_s02` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_lab_s03` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_tomorrow_s00` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_tomorrow_s01` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_tomorrow_s02` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_tomorrow_s03` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_trial_s00` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_trial_s01` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_trial_s02` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_trial_s03` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_visit_s00` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_visit_s01` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_visit_s02` `unverified`: 36
+- `low` `causative` `bad` `overlay_subject_visit_s03` `unverified`: 36
+- `low` `causative` `good` `overlay_subject_check_s00` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_check_s01` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_check_s02` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_check_s03` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_lab_s00` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_lab_s01` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_lab_s02` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_lab_s03` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_tomorrow_s00` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_tomorrow_s01` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_tomorrow_s02` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_tomorrow_s03` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_trial_s00` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_trial_s01` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_trial_s02` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_trial_s03` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_visit_s00` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_visit_s01` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_visit_s02` `unverified`: 26
+- `low` `causative` `good` `overlay_subject_visit_s03` `unverified`: 26
+- `low` `inchoative` `bad` `overlay_subject_check_s00` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_check_s01` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_check_s02` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_check_s03` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_lab_s00` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_lab_s01` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_lab_s02` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_lab_s03` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s00` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s01` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s02` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s03` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_trial_s00` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_trial_s01` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_trial_s02` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_trial_s03` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_visit_s00` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_visit_s01` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_visit_s02` `unverified`: 35
+- `low` `inchoative` `bad` `overlay_subject_visit_s03` `unverified`: 35
+- `low` `inchoative` `good` `overlay_subject_check_s00` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_check_s01` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_check_s02` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_check_s03` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_lab_s00` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_lab_s01` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_lab_s02` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_lab_s03` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s00` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s01` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s02` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s03` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_trial_s00` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_trial_s01` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_trial_s02` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_trial_s03` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_visit_s00` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_visit_s01` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_visit_s02` `unverified`: 26
+- `low` `inchoative` `good` `overlay_subject_visit_s03` `unverified`: 26
+
+## Sampled Subjects
+
+- `babe` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `baby` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `babyminder` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `babysitter` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `chiseller` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `choirboy` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `choirmaster` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `chooser` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `magpie` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `magus` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `mahout` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `maid` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `megatheriid` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `megatheriidae` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `megatherium` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `megillah` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `nationalist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `nativist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `naturalist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `naturist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `nauclea` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `naucrates` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `naumachia` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `naumachy` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `neurolinguist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `neurologist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `neuroscientist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `neurosurgeon` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `ovocon` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `ovolo` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `ovotestis` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `ovral` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `raftsman` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `ragamuffin` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `ragpicker` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `ragsorter` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `rhizobiaceae` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `rhizobium` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `rhizoctinia` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `rhizoid` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `scatterbrain` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `scattergood` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `scenarist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `sceneshifter` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `sharecropper` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `shareholder` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `shareowner` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `sharer` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `spinet` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `spinnaker` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `spinner` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `spinus` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `syndicalist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `syndicator` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `synonymist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `syntactician` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
+- `tsouic` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `tsuga` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `tt` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `tuamotus` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `twinkie` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `twinkler` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `twistwood` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `twitterer` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `urd` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `urinator` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `urologist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `urth` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
+- `vocative` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `vociferation` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `voiceprint` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `voile` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
+- `wayside` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `wbc` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `weakener` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `weald` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `windflower` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `windhoek` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `windjammer` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `windlass` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36

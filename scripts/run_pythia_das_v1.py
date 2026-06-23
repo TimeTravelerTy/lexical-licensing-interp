@@ -284,10 +284,17 @@ def evaluate(
                             "pair_key": pair.pair_key,
                             "regime": pair.regime,
                             "subtask": pair.subtask,
+                            "context_id": pair.context_id,
+                            "subject": pair.subject,
+                            "subject_class": pair.subject_class,
                             "direction": pair.direction,
                             "site": site_name(site_index),
                             "clean_verb": pair.clean_verb,
                             "corrupt_verb": pair.corrupt_verb,
+                            "clean_source_zipf_regime": pair.clean_source_zipf_regime,
+                            "corrupt_source_zipf_regime": pair.corrupt_source_zipf_regime,
+                            "clean_inventory_source": pair.clean_inventory_source,
+                            "corrupt_inventory_source": pair.corrupt_inventory_source,
                             "corrupt_metric": c_m,
                             "patched_metric": p_m,
                             "clean_metric": cl_m,
@@ -334,7 +341,7 @@ def run(args: argparse.Namespace) -> None:
     regime_filter = train_regimes | eval_regimes
     directions = set(parse_csv_arg(args.directions))
     rows = load_aligned_rows(Path(args.data), subtask_filter, regime_filter)
-    pairs, skip_counts = build_directed_pairs(rows, directions, args.max_pairs_per_group)
+    pairs, skip_counts = build_directed_pairs(rows, directions, args.max_pairs_per_group, args.pairing, args.seed)
     pairs = [apply_control(pair, args.control, args.dummy_verb, args.seed) for pair in pairs]
 
     tokenizer = AutoTokenizer.from_pretrained(args.model, local_files_only=not args.allow_download)
@@ -425,6 +432,7 @@ def run(args: argparse.Namespace) -> None:
         "train_regimes": sorted(train_regimes),
         "eval_regimes": sorted(eval_regimes),
         "directions": sorted(directions),
+        "pairing": args.pairing,
         "rows_loaded": len(rows),
         "directed_pairs": len(pairs),
         "train_pairs": len(train_pairs),
@@ -456,6 +464,7 @@ def main() -> None:
     ap.add_argument("--train-regimes", default="")
     ap.add_argument("--eval-regimes", default="")
     ap.add_argument("--directions", default="good_to_bad,bad_to_good")
+    ap.add_argument("--pairing", choices=("source_idx", "balanced_pool"), default="source_idx")
     ap.add_argument("--max-pairs-per-group", type=int, default=None)
     ap.add_argument("--rank", type=int, default=1)
     ap.add_argument("--epochs", type=int, default=30)
