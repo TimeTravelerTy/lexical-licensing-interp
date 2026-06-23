@@ -14,7 +14,9 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-CONTROL_RE = re.compile(r"-l23-(?P<control>none|shuffled_label|dummy_verb|random_direction)-s(?P<seed>\d+)")
+CONTROL_RE = re.compile(
+    r"-l23-(?P<control>none|shuffled_label|dummy_verb|dummy_pair|random_direction)-s(?P<seed>\d+)"
+)
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -155,6 +157,29 @@ def summarize_ap(rows: list[dict[str, str]], top_n: int) -> list[dict[str, Any]]
     return out[:top_n]
 
 
+def summarize_exact(rows: list[dict[str, str]], top_n: int) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
+    for row in rows:
+        out.append(
+            {
+                "regime": row.get("regime", ""),
+                "subtask": row.get("subtask", ""),
+                "direction": row.get("direction", ""),
+                "site": row.get("site", ""),
+                "site_index": int(row.get("site_index", 0)),
+                "n": int(row.get("n", 0)),
+                "mean_exact_effect": as_float(row.get("mean_exact_effect")),
+                "mean_abs_exact_effect": as_float(row.get("mean_abs_exact_effect")),
+                "mean_normalized_effect": as_float(row.get("mean_normalized_effect")),
+                "mean_corrupt_metric": as_float(row.get("mean_corrupt_metric")),
+                "mean_patched_metric": as_float(row.get("mean_patched_metric")),
+                "mean_clean_metric": as_float(row.get("mean_clean_metric")),
+            }
+        )
+    out.sort(key=lambda row: (row["subtask"], row["regime"], row["direction"], -row["mean_abs_exact_effect"]))
+    return out[:top_n]
+
+
 def markdown_table(rows: list[dict[str, Any]], cols: tuple[str, ...], max_rows: int = 20) -> list[str]:
     if not rows:
         return ["_No rows found._"]
@@ -188,12 +213,19 @@ def main() -> None:
         sanity_path = matches[0] if matches else sanity_path
     sanity_detail = read_csv(sanity_path)
     ap_summary = read_csv(results_root / "attribution_patching_v2" / f"{args.run_prefix}-ap-head-low.summary.csv")
+    exact_summary = read_csv(results_root / "exact_patching_v2" / f"{args.run_prefix}-exact-head-low.summary.csv")
 
     das_eval_summaries: list[dict[str, Any]] = []
     das_subject_summaries: list[dict[str, Any]] = []
     das_source_summaries: list[dict[str, Any]] = []
-    for detail_path in sorted((results_root / "das_v2_transfer").glob(f"{args.run_prefix}-das-head-to-low-l23-*-s*.eval_detail.csv")):
+    das_detail_paths = sorted((results_root / "das_v2_transfer").glob(f"{args.run_prefix}-das-head-to-low-l23-*-s*.eval_detail.csv"))
+    has_corrected_dummy = any("-dummy_pair-" in path.name for path in das_detail_paths)
+    skipped_das_files: list[str] = []
+    for detail_path in das_detail_paths:
         control, seed = infer_control(detail_path)
+        if has_corrected_dummy and control == "dummy_verb":
+            skipped_das_files.append(str(detail_path))
+            continue
         rows = read_csv(detail_path)
         das_eval_summaries.extend(summarize_das(rows, ("regime", "subtask", "direction"), control, seed))
         das_subject_summaries.extend(summarize_das(rows, ("regime", "subtask", "subject_class"), control, seed))
@@ -204,10 +236,12 @@ def main() -> None:
     sanity_main = summarize_sanity(sanity_detail, ("regime", "subtask", "side"))
     sanity_source = summarize_sanity(sanity_detail, ("regime", "subtask", "side", "source_zipf_regime", "inventory_source"))
     ap_top = summarize_ap(ap_summary, args.top_ap)
+    exact_top = summarize_exact(exact_summary, args.top_ap)
 
     write_csv(out_dir / "v2_sanity_summary.csv", sanity_main)
     write_csv(out_dir / "v2_sanity_source_summary.csv", sanity_source)
     write_csv(out_dir / "v2_ap_top_sites.csv", ap_top)
+    write_csv(out_dir / "v2_exact_top_sites.csv", exact_top)
     write_csv(out_dir / "v2_das_eval_summary.csv", das_eval_summaries)
     write_csv(out_dir / "v2_das_subject_summary.csv", das_subject_summaries)
     write_csv(out_dir / "v2_das_source_summary.csv", das_source_summaries)
@@ -228,6 +262,22 @@ def main() -> None:
         *markdown_table(
             ap_top,
             ("regime", "subtask", "direction", "site", "n", "mean_attribution", "mean_abs_attribution"),
+            max_rows=args.top_ap,
+        ),
+        "",
+        "## Exact Patching Top Sites",
+        "",
+        *markdown_table(
+            exact_top,
+            (
+                "regime",
+                "subtask",
+                "direction",
+                "site",
+                "n",
+                "mean_exact_effect",
+                "mean_normalized_effect",
+            ),
             max_rows=args.top_ap,
         ),
         "",
@@ -256,6 +306,7 @@ def main() -> None:
         "- `reports/v2_sanity_summary.csv`",
         "- `reports/v2_sanity_source_summary.csv`",
         "- `reports/v2_ap_top_sites.csv`",
+        "- `reports/v2_exact_top_sites.csv`",
         "- `reports/v2_das_eval_summary.csv`",
         "- `reports/v2_das_subject_summary.csv`",
         "- `reports/v2_das_source_summary.csv`",
@@ -267,7 +318,9 @@ def main() -> None:
         "run_prefix": args.run_prefix,
         "sanity_rows": len(sanity_detail),
         "ap_summary_rows": len(ap_summary),
+        "exact_summary_rows": len(exact_summary),
         "das_eval_summary_rows": len(das_eval_summaries),
+        "skipped_das_files": skipped_das_files,
         "report": str(report_path),
     }
     (out_dir / "v2_results_summary_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
