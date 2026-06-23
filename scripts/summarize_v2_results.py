@@ -153,8 +153,7 @@ def summarize_ap(rows: list[dict[str, str]], top_n: int) -> list[dict[str, Any]]
                 "mean_clean_metric": as_float(row.get("mean_clean_metric")),
             }
         )
-    out.sort(key=lambda row: (row["subtask"], row["regime"], row["direction"], -row["mean_abs_attribution"]))
-    return out[:top_n]
+    return top_sites_by_group(out, top_n, "mean_abs_attribution")
 
 
 def summarize_exact(rows: list[dict[str, str]], top_n: int) -> list[dict[str, Any]]:
@@ -176,8 +175,21 @@ def summarize_exact(rows: list[dict[str, str]], top_n: int) -> list[dict[str, An
                 "mean_clean_metric": as_float(row.get("mean_clean_metric")),
             }
         )
-    out.sort(key=lambda row: (row["subtask"], row["regime"], row["direction"], -row["mean_abs_exact_effect"]))
-    return out[:top_n]
+    return top_sites_by_group(out, top_n, "mean_abs_exact_effect")
+
+
+def top_sites_by_group(rows: list[dict[str, Any]], top_n: int, metric_col: str) -> list[dict[str, Any]]:
+    groups: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        groups[(row["regime"], row["subtask"], row["direction"])].append(row)
+    if not groups:
+        return []
+    per_group = max(1, top_n // len(groups))
+    selected: list[dict[str, Any]] = []
+    for key in sorted(groups, key=lambda group: (group[1], group[0], group[2])):
+        group_rows = sorted(groups[key], key=lambda row: -row[metric_col])
+        selected.extend(group_rows[:per_group])
+    return selected
 
 
 def markdown_table(rows: list[dict[str, Any]], cols: tuple[str, ...], max_rows: int = 20) -> list[str]:
