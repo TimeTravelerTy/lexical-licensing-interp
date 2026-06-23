@@ -19,7 +19,7 @@
 
 - `head` `causative` `bad`: 23 unique candidate lemmas
 - `head` `causative` `good`: 33 unique candidate lemmas
-- `head` `inchoative` `bad`: 3 unique candidate lemmas
+- `head` `inchoative` `bad`: 17 unique candidate lemmas
 - `head` `inchoative` `good`: 33 unique candidate lemmas
 - `low` `causative` `bad`: 36 unique candidate lemmas
 - `low` `causative` `good`: 26 unique candidate lemmas
@@ -31,6 +31,7 @@
 - `head` `causative` `bad` `freqblimp_curated`: 23
 - `head` `causative` `good` `freqblimp_curated`: 33
 - `head` `inchoative` `bad` `freqblimp_curated`: 3
+- `head` `inchoative` `bad` `supplemental_v2_bad_verbs`: 14
 - `head` `inchoative` `good` `freqblimp_curated`: 33
 - `low` `causative` `bad` `freqblimp_curated`: 7
 - `low` `causative` `bad` `supplemental_v2_bad_verbs`: 29
@@ -43,7 +44,7 @@
 
 - `head` `causative` `bad` `head`: 23
 - `head` `causative` `good` `head`: 33
-- `head` `inchoative` `bad` `head`: 3
+- `head` `inchoative` `bad` `head`: 17
 - `head` `inchoative` `good` `head`: 33
 - `low` `causative` `bad` `low_gap`: 4
 - `low` `causative` `bad` `tail`: 24
@@ -100,26 +101,26 @@
 - `head` `causative` `good` `overlay_subject_visit_s01` `unverified`: 33
 - `head` `causative` `good` `overlay_subject_visit_s02` `unverified`: 33
 - `head` `causative` `good` `overlay_subject_visit_s03` `unverified`: 33
-- `head` `inchoative` `bad` `overlay_subject_check_s00` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_check_s01` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_check_s02` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_check_s03` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_lab_s00` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_lab_s01` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_lab_s02` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_lab_s03` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_tomorrow_s00` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_tomorrow_s01` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_tomorrow_s02` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_tomorrow_s03` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_trial_s00` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_trial_s01` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_trial_s02` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_trial_s03` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_visit_s00` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_visit_s01` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_visit_s02` `unverified`: 3
-- `head` `inchoative` `bad` `overlay_subject_visit_s03` `unverified`: 3
+- `head` `inchoative` `bad` `overlay_subject_check_s00` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_check_s01` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_check_s02` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_check_s03` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_lab_s00` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_lab_s01` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_lab_s02` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_lab_s03` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s00` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s01` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s02` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s03` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_trial_s00` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_trial_s01` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_trial_s02` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_trial_s03` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_visit_s00` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_visit_s01` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_visit_s02` `unverified`: 17
+- `head` `inchoative` `bad` `overlay_subject_visit_s03` `unverified`: 17
 - `head` `inchoative` `good` `overlay_subject_check_s00` `unverified`: 33
 - `head` `inchoative` `good` `overlay_subject_check_s01` `unverified`: 33
 - `head` `inchoative` `good` `overlay_subject_check_s02` `unverified`: 33
@@ -251,10 +252,10 @@
 - `neurologist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
 - `neuroscientist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
 - `neurosurgeon` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `ovocon` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `ovolo` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `ovotestis` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `ovral` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `ovocon` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `ovolo` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `ovotestis` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `ovral` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
 - `raftsman` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
 - `ragamuffin` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
 - `ragpicker` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
@@ -279,14 +280,14 @@
 - `syndicator` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
 - `synonymist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
 - `syntactician` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `tsouic` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `tsuga` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `tt` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `tuamotus` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `twinkie` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `twinkler` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `twistwood` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `twitterer` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `tsouic` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `tsuga` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `tt` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `tuamotus` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `twinkie` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `twinkler` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `twistwood` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `twitterer` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
 - `urd` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
 - `urinator` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
 - `urologist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
@@ -295,11 +296,11 @@
 - `vociferation` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
 - `voiceprint` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
 - `voile` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `wayside` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `wbc` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `weakener` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `weald` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `windflower` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `windhoek` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `windjammer` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
-- `windlass` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 36
+- `wayside` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `wbc` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `weakener` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `weald` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `windflower` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `windhoek` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `windjammer` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `windlass` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
