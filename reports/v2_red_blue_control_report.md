@@ -27,7 +27,24 @@ targets are single vocabulary entries:
 | ` red` | `Ġred` | 2502 |
 | ` blue` | `Ġblue` | 4797 |
 
-## Existing V2 Control Baseline
+## Completed Runs
+
+Executed on TSUBAME from `lexical_licensing_interp` commit `3b2a931`
+(`freq-blimp` commit `67f12c5`):
+
+- sanity job `8006554`, `llv2_san_rb`
+- DAS job `8006555`, `llv2_das_rb`
+
+The summarizer/report fix was then regenerated from commit `ce7d45b`.
+
+Red/blue baseline preference over unchanged prompts:
+
+| regime | n | mean `log p(" red") - log p(" blue")` | red preferred |
+| --- | ---: | ---: | ---: |
+| head | 2000 | 0.7219 | 0.7540 |
+| low | 1560 | 0.8179 | 0.8436 |
+
+## V2 Control Comparison
 
 Current aggregate comparison from `reports/v2_das_eval_summary.csv`, weighted by
 the row counts in each subtask/direction cell:
@@ -42,8 +59,13 @@ the row counts in each subtask/direction cell:
 | random_direction | 17 | low | 1120 | 0.0027 | 0.0014 | 0.2795 |
 | shuffled_label | 17 | head | 312 | -0.0126 | 0.5203 | 0.5192 |
 | shuffled_label | 17 | low | 1120 | -0.0092 | 0.5912 | 0.5241 |
-| red_blue | 17 | head | pending | pending | pending | pending |
-| red_blue | 17 | low | pending | pending | pending | pending |
+| red_blue | 17 | head | 312 | -0.0016 | nan | 0.6987 |
+| red_blue | 17 | low | 1120 | 0.0051 | nan | 0.8295 |
+
+For `red_blue`, normalized effect is intentionally reported as `nan`: the
+control replaces both labels with an unrelated target axis, so
+`clean_metric - corrupt_metric` is not a meaningful licensing-task denominator.
+Use raw `mean effect` for this control.
 
 ## Required Runs
 
@@ -94,11 +116,10 @@ After both runs complete, regenerate the report summaries:
 python3 scripts/summarize_v2_results.py --run-prefix 20260623-pythia14b-v2
 ```
 
-## Interpretation Gate
+## Interpretation
 
-If `red_blue` has near-zero DAS effect on low, the existing head-to-low transfer
-is more plausibly tied to the original lexical-licensing continuation axis.
-
-If `red_blue` transfers strongly on low, the licensing-specific interpretation is
-weaker because the same machinery can also transfer an arbitrary binary target
-axis.
+`red_blue` has near-zero raw DAS effect on low (`0.0051`) and head (`-0.0016`),
+matching the random-direction scale and far below the real DAS transfer
+(`11.2010` on low, `12.4769` on head). This supports the interpretation that
+the original head-to-low transfer is tied to the lexical-licensing continuation
+axis rather than an arbitrary binary next-token axis.

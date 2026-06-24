@@ -13,6 +13,21 @@
 | low | inchoative | bad | 540 | 4.2734 | 0.9981 |
 | low | inchoative | good | 280 | -1.2810 | 0.2286 |
 
+## Red/Blue Baseline
+
+Prompt text is unchanged; this scores `log p(" red") - log p(" blue")` and ignores the original targets.
+
+| regime | subtask | side | n | mean_expected_logodds | expected_preferred_rate |
+| --- | --- | --- | --- | --- | --- |
+| head | causative | bad | 440 | 0.4727 | 0.6636 |
+| head | causative | good | 620 | 0.8318 | 0.7565 |
+| head | inchoative | bad | 320 | 0.7198 | 0.8156 |
+| head | inchoative | good | 620 | 0.7900 | 0.7839 |
+| low | causative | bad | 460 | 0.8616 | 0.8174 |
+| low | causative | good | 280 | 0.9863 | 0.8821 |
+| low | inchoative | bad | 540 | 0.7662 | 0.8537 |
+| low | inchoative | good | 280 | 0.6777 | 0.8286 |
+
 ## Attribution Patching Top Sites
 
 | regime | subtask | direction | site | n | mean_attribution | mean_abs_attribution |
@@ -73,6 +88,23 @@
 
 ## DAS Summary
 
+Aggregate control comparison across subtasks and directions:
+
+| control | seed | regime | n | mean_effect | mean_normalized_effect | patched_success_rate |
+| --- | --- | --- | --- | --- | --- | --- |
+| dummy_pair | 17 | head | 406 | 0.0000 | nan | 0.5000 |
+| dummy_pair | 17 | low | 1120 | 0.0000 | nan | 0.5000 |
+| none | 17 | head | 312 | 12.4769 | 3.4605 | 0.9936 |
+| none | 17 | low | 1120 | 11.2010 | 2.7103 | 0.9563 |
+| random_direction | 17 | head | 312 | 0.0027 | -0.0046 | 0.2628 |
+| random_direction | 17 | low | 1120 | 0.0027 | 0.0014 | 0.2795 |
+| red_blue | 17 | head | 312 | -0.0016 | nan | 0.6987 |
+| red_blue | 17 | low | 1120 | 0.0051 | nan | 0.8295 |
+| shuffled_label | 17 | head | 312 | -0.0126 | 0.5203 | 0.5192 |
+| shuffled_label | 17 | low | 1120 | -0.0092 | 0.5912 | 0.5241 |
+
+Per-subtask and per-direction detail:
+
 | control | seed | regime | subtask | direction | n | mean_effect | effect_ci95_lo | effect_ci95_hi | mean_normalized_effect | patched_success_rate |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | dummy_pair | 17 | head | causative | bad_to_good | 118 | 0.0000 | 0.0000 | 0.0000 | nan | 0.0000 |
@@ -99,6 +131,14 @@
 | random_direction | 17 | low | causative | good_to_bad | 280 | -0.0011 | -0.0069 | 0.0049 | -0.0020 | 0.3036 |
 | random_direction | 17 | low | inchoative | bad_to_good | 280 | 0.0074 | 0.0025 | 0.0118 | 0.0055 | 0.7607 |
 | random_direction | 17 | low | inchoative | good_to_bad | 280 | 0.0055 | 0.0013 | 0.0099 | 0.0005 | 0.0000 |
+| red_blue | 17 | head | causative | bad_to_good | 98 | -0.2186 | -0.2761 | -0.1582 | nan | 0.6735 |
+| red_blue | 17 | head | causative | good_to_bad | 98 | 0.2047 | 0.1463 | 0.2601 | nan | 0.7041 |
+| red_blue | 17 | head | inchoative | bad_to_good | 58 | 0.1352 | 0.0776 | 0.1953 | nan | 0.7241 |
+| red_blue | 17 | head | inchoative | good_to_bad | 58 | -0.1202 | -0.1724 | -0.0673 | nan | 0.7069 |
+| red_blue | 17 | low | causative | bad_to_good | 280 | -0.1727 | -0.1912 | -0.1527 | nan | 0.8143 |
+| red_blue | 17 | low | causative | good_to_bad | 280 | 0.1708 | 0.1515 | 0.1893 | nan | 0.8393 |
+| red_blue | 17 | low | inchoative | bad_to_good | 280 | 0.2080 | 0.1895 | 0.2274 | nan | 0.8714 |
+| red_blue | 17 | low | inchoative | good_to_bad | 280 | -0.1856 | -0.2022 | -0.1693 | nan | 0.7929 |
 | shuffled_label | 17 | head | causative | bad_to_good | 98 | -0.0210 | -0.5941 | 0.6272 | 0.4842 | 0.4694 |
 | shuffled_label | 17 | head | causative | good_to_bad | 98 | -0.0561 | -0.6492 | 0.5045 | 0.4483 | 0.5714 |
 | shuffled_label | 17 | head | inchoative | bad_to_good | 58 | 0.0851 | -0.5981 | 0.8287 | 0.6513 | 0.4655 |
@@ -112,8 +152,11 @@
 
 - `reports/v2_sanity_summary.csv`
 - `reports/v2_sanity_source_summary.csv`
+- `reports/v2_red_blue_sanity_summary.csv`
+- `reports/v2_red_blue_sanity_source_summary.csv`
 - `reports/v2_ap_top_sites.csv`
 - `reports/v2_exact_top_sites.csv`
 - `reports/v2_das_eval_summary.csv`
+- `reports/v2_das_control_comparison.csv`
 - `reports/v2_das_subject_summary.csv`
 - `reports/v2_das_source_summary.csv`
