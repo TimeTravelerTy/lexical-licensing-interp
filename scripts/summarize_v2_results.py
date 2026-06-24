@@ -112,7 +112,7 @@ def summarize_das(rows: list[dict[str, str]], group_cols: tuple[str, ...], contr
     out: list[dict[str, Any]] = []
     for key, group in sorted(grouped.items()):
         effect = finite(as_float(row.get("effect")) for row in group)
-        norm = finite(as_float(row.get("normalized_effect")) for row in group)
+        norm = [] if control == "red_blue" else finite(as_float(row.get("normalized_effect")) for row in group)
         corrupt = finite(as_float(row.get("corrupt_metric")) for row in group)
         patched = finite(as_float(row.get("patched_metric")) for row in group)
         clean = finite(as_float(row.get("clean_metric")) for row in group)

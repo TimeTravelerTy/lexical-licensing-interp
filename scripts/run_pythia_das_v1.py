@@ -252,6 +252,7 @@ def evaluate(
     site_index: int,
     raw: Any,
     batch_size: int,
+    normalize_effect: bool,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     import torch
 
@@ -307,7 +308,7 @@ def evaluate(
                             "patched_metric": p_m,
                             "clean_metric": cl_m,
                             "effect": eff,
-                            "normalized_effect": "" if abs(gap) < 1e-8 else eff / gap,
+                            "normalized_effect": "" if not normalize_effect or abs(gap) < 1e-8 else eff / gap,
                             "patched_success": int(p_m > 0),
                         }
                     )
@@ -420,8 +421,29 @@ def run(args: argparse.Namespace) -> None:
         history.append(row)
         print(json.dumps(row), flush=True)
 
-    train_detail, train_metrics = evaluate(model, tokenizer, train_pairs, target_ids, device, site_index, raw, args.batch_size)
-    eval_detail, eval_metrics = evaluate(model, tokenizer, eval_pairs, target_ids, device, site_index, raw, args.batch_size)
+    normalize_effect = args.control != "red_blue"
+    train_detail, train_metrics = evaluate(
+        model,
+        tokenizer,
+        train_pairs,
+        target_ids,
+        device,
+        site_index,
+        raw,
+        args.batch_size,
+        normalize_effect,
+    )
+    eval_detail, eval_metrics = evaluate(
+        model,
+        tokenizer,
+        eval_pairs,
+        target_ids,
+        device,
+        site_index,
+        raw,
+        args.batch_size,
+        normalize_effect,
+    )
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
