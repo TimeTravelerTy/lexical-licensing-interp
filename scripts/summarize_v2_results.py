@@ -15,7 +15,7 @@ from typing import Any, Iterable
 
 
 CONTROL_RE = re.compile(
-    r"-l23-(?P<control>none|shuffled_label|dummy_verb|dummy_pair|random_direction)-s(?P<seed>\d+)"
+    r"-l23-(?P<control>none|shuffled_label|dummy_verb|dummy_pair|random_direction|red_blue)-s(?P<seed>\d+)"
 )
 
 
@@ -136,6 +136,40 @@ def summarize_das(rows: list[dict[str, str]], group_cols: tuple[str, ...], contr
     return out
 
 
+def summarize_das_comparison(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        grouped[(str(row.get("control", "")), str(row.get("seed", "")), str(row.get("regime", "")))].append(row)
+
+    out: list[dict[str, Any]] = []
+    for (control, seed, regime), group in sorted(grouped.items()):
+        weighted_n = sum(int(row.get("n", 0)) for row in group)
+        if weighted_n <= 0:
+            continue
+
+        def weighted_mean(col: str) -> float:
+            values = [
+                (as_float(row.get(col)), int(row.get("n", 0)))
+                for row in group
+                if not math.isnan(as_float(row.get(col)))
+            ]
+            denom = sum(n for _value, n in values)
+            return sum(value * n for value, n in values) / denom if denom else math.nan
+
+        out.append(
+            {
+                "control": control,
+                "seed": seed,
+                "regime": regime,
+                "n": weighted_n,
+                "mean_effect": weighted_mean("mean_effect"),
+                "mean_normalized_effect": weighted_mean("mean_normalized_effect"),
+                "patched_success_rate": weighted_mean("patched_success_rate"),
+            }
+        )
+    return out
+
+
 def summarize_ap(rows: list[dict[str, str]], top_n: int) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     for row in rows:
@@ -224,6 +258,11 @@ def main() -> None:
         matches = sorted((results_root / "v2_sanity").glob(f"{args.run_prefix}-sanity-head-low*.detail.csv"))
         sanity_path = matches[0] if matches else sanity_path
     sanity_detail = read_csv(sanity_path)
+    red_blue_sanity_path = results_root / "v2_sanity" / f"{args.run_prefix}-sanity-red-blue-head-low.detail.csv"
+    if not red_blue_sanity_path.exists():
+        matches = sorted((results_root / "v2_sanity").glob(f"{args.run_prefix}*red*blue*.detail.csv"))
+        red_blue_sanity_path = matches[0] if matches else red_blue_sanity_path
+    red_blue_sanity_detail = read_csv(red_blue_sanity_path)
     ap_summary = read_csv(results_root / "attribution_patching_v2" / f"{args.run_prefix}-ap-head-low.summary.csv")
     exact_summary = read_csv(results_root / "exact_patching_v2" / f"{args.run_prefix}-exact-head-low.summary.csv")
 
@@ -247,16 +286,25 @@ def main() -> None:
 
     sanity_main = summarize_sanity(sanity_detail, ("regime", "subtask", "side"))
     sanity_source = summarize_sanity(sanity_detail, ("regime", "subtask", "side", "source_zipf_regime", "inventory_source"))
+    red_blue_sanity_main = summarize_sanity(red_blue_sanity_detail, ("regime", "subtask", "side"))
+    red_blue_sanity_source = summarize_sanity(
+        red_blue_sanity_detail,
+        ("regime", "subtask", "side", "source_zipf_regime", "inventory_source"),
+    )
     ap_top = summarize_ap(ap_summary, args.top_ap)
     exact_top = summarize_exact(exact_summary, args.top_ap)
+    das_comparison = summarize_das_comparison(das_eval_summaries)
 
     write_csv(out_dir / "v2_sanity_summary.csv", sanity_main)
     write_csv(out_dir / "v2_sanity_source_summary.csv", sanity_source)
+    write_csv(out_dir / "v2_red_blue_sanity_summary.csv", red_blue_sanity_main)
+    write_csv(out_dir / "v2_red_blue_sanity_source_summary.csv", red_blue_sanity_source)
     write_csv(out_dir / "v2_ap_top_sites.csv", ap_top)
     write_csv(out_dir / "v2_exact_top_sites.csv", exact_top)
     write_csv(out_dir / "v2_das_eval_summary.csv", das_eval_summaries)
     write_csv(out_dir / "v2_das_subject_summary.csv", das_subject_summaries)
     write_csv(out_dir / "v2_das_source_summary.csv", das_source_summaries)
+    write_csv(out_dir / "v2_das_control_comparison.csv", das_comparison)
 
     lines = [
         "# V2 Head-to-Low Results",
@@ -265,6 +313,16 @@ def main() -> None:
         "",
         *markdown_table(
             sanity_main,
+            ("regime", "subtask", "side", "n", "mean_expected_logodds", "expected_preferred_rate"),
+            max_rows=16,
+        ),
+        "",
+        "## Red/Blue Baseline",
+        "",
+        "Prompt text is unchanged; this scores `log p(\" red\") - log p(\" blue\")` and ignores the original targets.",
+        "",
+        *markdown_table(
+            red_blue_sanity_main,
             ("regime", "subtask", "side", "n", "mean_expected_logodds", "expected_preferred_rate"),
             max_rows=16,
         ),
@@ -295,6 +353,24 @@ def main() -> None:
         "",
         "## DAS Summary",
         "",
+        "Aggregate control comparison across subtasks and directions:",
+        "",
+        *markdown_table(
+            das_comparison,
+            (
+                "control",
+                "seed",
+                "regime",
+                "n",
+                "mean_effect",
+                "mean_normalized_effect",
+                "patched_success_rate",
+            ),
+            max_rows=20,
+        ),
+        "",
+        "Per-subtask and per-direction detail:",
+        "",
         *markdown_table(
             das_eval_summaries,
             (
@@ -317,9 +393,12 @@ def main() -> None:
         "",
         "- `reports/v2_sanity_summary.csv`",
         "- `reports/v2_sanity_source_summary.csv`",
+        "- `reports/v2_red_blue_sanity_summary.csv`",
+        "- `reports/v2_red_blue_sanity_source_summary.csv`",
         "- `reports/v2_ap_top_sites.csv`",
         "- `reports/v2_exact_top_sites.csv`",
         "- `reports/v2_das_eval_summary.csv`",
+        "- `reports/v2_das_control_comparison.csv`",
         "- `reports/v2_das_subject_summary.csv`",
         "- `reports/v2_das_source_summary.csv`",
     ]
@@ -329,6 +408,7 @@ def main() -> None:
     manifest = {
         "run_prefix": args.run_prefix,
         "sanity_rows": len(sanity_detail),
+        "red_blue_sanity_rows": len(red_blue_sanity_detail),
         "ap_summary_rows": len(ap_summary),
         "exact_summary_rows": len(exact_summary),
         "das_eval_summary_rows": len(das_eval_summaries),

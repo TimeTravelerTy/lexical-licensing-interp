@@ -5,6 +5,11 @@ This is a diagnostic, not a hard filter. It measures whether the base model
 already prefers each row's expected continuation over its contrast continuation:
 
     log p(expected_target | prompt) - log p(contrast_target | prompt)
+
+It can also score a fixed unrelated target pair over the same prompts, for
+example:
+
+    log p(" red" | prompt) - log p(" blue" | prompt)
 """
 
 from __future__ import annotations
@@ -69,6 +74,14 @@ def summarize(detail_rows: list[dict[str, Any]], keys: tuple[str, ...]) -> list[
     return out
 
 
+def target_pair_for_row(row: dict[str, Any], args: argparse.Namespace) -> tuple[str, str]:
+    if args.target_mode == "original":
+        return str(row["expected_target"]), str(row["contrast_target"])
+    if args.target_mode == "fixed_pair":
+        return args.fixed_expected_target, args.fixed_contrast_target
+    raise ValueError(f"unknown target mode: {args.target_mode}")
+
+
 def run(args: argparse.Namespace) -> None:
     import torch
     import torch.nn.functional as F
@@ -90,7 +103,8 @@ def run(args: argparse.Namespace) -> None:
     model.eval()
     model.config.use_cache = False
 
-    targets = sorted({str(row["expected_target"]) for row in rows} | {str(row["contrast_target"]) for row in rows})
+    row_targets = [target_pair_for_row(row, args) for row in rows]
+    targets = sorted({target for pair in row_targets for target in pair})
     target_ids = {target: token_id(tokenizer, target) for target in targets}
 
     grouped: dict[int, list[dict[str, Any]]] = defaultdict(list)
@@ -113,8 +127,8 @@ def run(args: argparse.Namespace) -> None:
                 outputs = model(**inputs, output_hidden_states=False, use_cache=False)
                 logprobs = F.log_softmax(outputs.logits[:, -1, :].float(), dim=-1)
                 row_indices = torch.arange(len(batch), device=device)
-                expected = torch.tensor([target_ids[str(row["expected_target"])] for row in batch], device=device)
-                contrast = torch.tensor([target_ids[str(row["contrast_target"])] for row in batch], device=device)
+                expected = torch.tensor([target_ids[target_pair_for_row(row, args)[0]] for row in batch], device=device)
+                contrast = torch.tensor([target_ids[target_pair_for_row(row, args)[1]] for row in batch], device=device)
                 logodds = logprobs[row_indices, expected] - logprobs[row_indices, contrast]
                 expected_lp = logprobs[row_indices, expected]
                 contrast_lp = logprobs[row_indices, contrast]
@@ -138,8 +152,11 @@ def run(args: argparse.Namespace) -> None:
                             "source_zipf": row.get("source_zipf", ""),
                             "source_zipf_regime": row.get("source_zipf_regime", ""),
                             "inventory_source": row.get("inventory_source", ""),
-                            "expected_target": row.get("expected_target", ""),
-                            "contrast_target": row.get("contrast_target", ""),
+                            "target_mode": args.target_mode,
+                            "expected_target": target_pair_for_row(row, args)[0],
+                            "contrast_target": target_pair_for_row(row, args)[1],
+                            "original_expected_target": row.get("expected_target", ""),
+                            "original_contrast_target": row.get("contrast_target", ""),
                             "expected_logprob": exp_lp,
                             "contrast_logprob": con_lp,
                             "expected_logodds": odds,
@@ -171,13 +188,20 @@ def run(args: argparse.Namespace) -> None:
         "data": str(Path(args.data).resolve()),
         "subtasks": sorted(subtasks),
         "regimes": sorted(regimes),
+        "target_mode": args.target_mode,
+        "target_ids": target_ids,
+        "fixed_expected_target": args.fixed_expected_target if args.target_mode == "fixed_pair" else "",
+        "fixed_contrast_target": args.fixed_contrast_target if args.target_mode == "fixed_pair" else "",
         "rows_loaded": len(rows),
         "detail_csv": str(detail_csv),
         "summary_csv": str(summary_csv),
         "subject_summary_csv": str(subject_csv),
         "source_summary_csv": str(source_csv),
         "overall": summarize(detail_rows, ("regime",)),
-        "note": "Baseline diagnostic only. Low scores identify cells/items to inspect; they are not automatically excluded.",
+        "note": (
+            "Baseline diagnostic only. Low scores identify cells/items to inspect; they are not automatically excluded. "
+            "For target_mode=fixed_pair, prompts are unchanged and original expected/contrast targets are ignored."
+        ),
     }
     manifest_json.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(json.dumps(manifest, indent=2), flush=True)
@@ -195,6 +219,9 @@ def main() -> None:
     ap.add_argument("--allow-download", action="store_true")
     ap.add_argument("--out-dir", default="results/v2_sanity")
     ap.add_argument("--run-name", default="")
+    ap.add_argument("--target-mode", choices=("original", "fixed_pair"), default="original")
+    ap.add_argument("--fixed-expected-target", default=" red")
+    ap.add_argument("--fixed-contrast-target", default=" blue")
     args = ap.parse_args()
     run(args)
 

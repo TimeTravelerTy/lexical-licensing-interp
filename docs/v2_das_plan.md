@@ -232,6 +232,36 @@ python3 scripts/run_pythia_das_v1.py \
   --pairing balanced_pool
 ```
 
-The local workspace Python used during implementation did not have `torch`,
-`transformers`, or `tokenizers`, so tokenizer verification and model runs remain
-pending for a transformer-enabled runtime.
+Run the unrelated target-token capacity control with the same v2 prompts and
+activation sources, but a fixed readout axis:
+
+Tokenizer sanity for `EleutherAI/pythia-1.4b`:
+
+- ` red` is a single token: `Ġred`, id `2502`;
+- ` blue` is a single token: `Ġblue`, id `4797`.
+
+```bash
+python3 scripts/run_pythia_v2_sanity.py \
+  --data data/aligned_templates_v2/lexical_licensing_v2_aligned.jsonl \
+  --subtasks causative,inchoative \
+  --regimes head,low \
+  --target-mode fixed_pair \
+  --fixed-expected-target " red" \
+  --fixed-contrast-target " blue" \
+  --run-name 20260623-pythia14b-v2-sanity-red-blue-head-low
+
+python3 scripts/run_pythia_das_v1.py \
+  --data data/aligned_templates_v2/lexical_licensing_v2_aligned.jsonl \
+  --subtasks causative,inchoative \
+  --train-regimes head \
+  --eval-regimes head,low \
+  --site resid_post_layer_23 \
+  --rank 1 \
+  --pairing balanced_pool \
+  --seed 17 \
+  --control red_blue \
+  --run-name 20260623-pythia14b-v2-das-head-to-low-l23-red_blue-s17
+```
+
+Tokenizer IDs were verified from the cached `EleutherAI/pythia-1.4b`
+tokenizer JSON. Model runs remain pending for a transformer-enabled runtime.

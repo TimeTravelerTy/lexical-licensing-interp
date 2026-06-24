@@ -51,6 +51,14 @@ def split_key(pair: DirectedPair, split_by: str) -> str:
 def apply_control(pair: DirectedPair, control: str, dummy_verb: str, seed: int) -> DirectedPair:
     if control in {"none", "random_direction"}:
         return pair
+    if control == "red_blue":
+        return DirectedPair(
+            **{
+                **pair.__dict__,
+                "clean_target": " red",
+                "corrupt_target": " blue",
+            }
+        )
     if control == "shuffled_label":
         should_swap = stable_unit(pair.pair_key + "|" + pair.direction, seed) < 0.5
         if not should_swap:
@@ -437,6 +445,7 @@ def run(args: argparse.Namespace) -> None:
         "directed_pairs": len(pairs),
         "train_pairs": len(train_pairs),
         "eval_pairs": len(eval_pairs),
+        "target_ids": target_ids,
         "skip_counts": skip_counts,
         "split_by": args.split_by,
         "eval_frac": args.eval_frac,
@@ -447,7 +456,8 @@ def run(args: argparse.Namespace) -> None:
         "note": (
             "V1 infrastructure DAS on fixed-subject scaffold; do not treat as final semantic causal evidence. "
             "shuffled_label retrains on permuted labels; dummy_verb tests template solvability without verb signal; "
-            "random_direction evaluates an untrained random subspace of the same rank."
+            "random_direction evaluates an untrained random subspace of the same rank; "
+            "red_blue keeps real prompts/activation sources but replaces all readout targets with clean=' red' and corrupt=' blue'."
         ),
     }
     (out_dir / f"{run_slug}.manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
@@ -474,7 +484,11 @@ def main() -> None:
     ap.add_argument("--grad-clip", type=float, default=1.0)
     ap.add_argument("--eval-frac", type=float, default=0.25)
     ap.add_argument("--split-by", choices=("pair", "lemma_pair"), default="lemma_pair")
-    ap.add_argument("--control", choices=("none", "shuffled_label", "dummy_verb", "random_direction"), default="none")
+    ap.add_argument(
+        "--control",
+        choices=("none", "shuffled_label", "dummy_verb", "random_direction", "red_blue"),
+        default="none",
+    )
     ap.add_argument("--dummy-verb", default="do")
     ap.add_argument("--seed", type=int, default=17)
     ap.add_argument("--device", default="cuda")
