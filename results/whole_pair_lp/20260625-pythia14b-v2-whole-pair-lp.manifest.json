@@ -1,0 +1,37 @@
+{
+  "model": "EleutherAI/pythia-1.4b",
+  "data": "/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_wholepair_55c869d/data/aligned_templates_v2/lexical_licensing_v2_aligned.jsonl",
+  "subtasks": [
+    "causative",
+    "inchoative"
+  ],
+  "regimes": [
+    "head",
+    "low"
+  ],
+  "rows_loaded": 3560,
+  "pairs_scored": 1320,
+  "skip_counts": {},
+  "detail_csv": "results/whole_pair_lp/20260625-pythia14b-v2-whole-pair-lp.detail.csv",
+  "summary_csv": "results/whole_pair_lp/20260625-pythia14b-v2-whole-pair-lp.summary.csv",
+  "source_summary_csv": "results/whole_pair_lp/20260625-pythia14b-v2-whole-pair-lp.source_summary.csv",
+  "overall": [
+    {
+      "regime": "head",
+      "n": 760,
+      "mean_good_minus_bad_lp": 3.9682134201652124,
+      "success_rate": 0.8578947368421053,
+      "min_good_minus_bad_lp": -5.997493743896484,
+      "max_good_minus_bad_lp": 14.383743286132812
+    },
+    {
+      "regime": "low",
+      "n": 560,
+      "mean_good_minus_bad_lp": 5.536946725845337,
+      "success_rate": 0.9607142857142857,
+      "min_good_minus_bad_lp": -6.315326690673828,
+      "max_good_minus_bad_lp": 14.12984848022461
+    }
+  ],
+  "note": "Whole-pair behavioral gate: success means LP(full grammatical-frame sentence) > LP(full ungrammatical-frame sentence)."
+}

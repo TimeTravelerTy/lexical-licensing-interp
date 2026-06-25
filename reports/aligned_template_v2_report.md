@@ -63,166 +63,326 @@
 
 ## Rows By Context Schema
 
-- `head` `causative` `bad` `overlay_subject_check_s00` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_check_s01` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_check_s02` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_check_s03` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_lab_s00` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_lab_s01` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_lab_s02` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_lab_s03` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_tomorrow_s00` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_tomorrow_s01` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_tomorrow_s02` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_tomorrow_s03` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_trial_s00` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_trial_s01` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_trial_s02` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_trial_s03` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_visit_s00` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_visit_s01` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_visit_s02` `unverified`: 23
-- `head` `causative` `bad` `overlay_subject_visit_s03` `unverified`: 23
-- `head` `causative` `good` `overlay_subject_check_s00` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_check_s01` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_check_s02` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_check_s03` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_lab_s00` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_lab_s01` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_lab_s02` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_lab_s03` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_tomorrow_s00` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_tomorrow_s01` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_tomorrow_s02` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_tomorrow_s03` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_trial_s00` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_trial_s01` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_trial_s02` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_trial_s03` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_visit_s00` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_visit_s01` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_visit_s02` `unverified`: 33
-- `head` `causative` `good` `overlay_subject_visit_s03` `unverified`: 33
-- `head` `inchoative` `bad` `overlay_subject_check_s00` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_check_s01` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_check_s02` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_check_s03` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_lab_s00` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_lab_s01` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_lab_s02` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_lab_s03` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_tomorrow_s00` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_tomorrow_s01` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_tomorrow_s02` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_tomorrow_s03` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_trial_s00` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_trial_s01` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_trial_s02` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_trial_s03` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_visit_s00` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_visit_s01` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_visit_s02` `unverified`: 17
-- `head` `inchoative` `bad` `overlay_subject_visit_s03` `unverified`: 17
-- `head` `inchoative` `good` `overlay_subject_check_s00` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_check_s01` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_check_s02` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_check_s03` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_lab_s00` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_lab_s01` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_lab_s02` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_lab_s03` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_tomorrow_s00` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_tomorrow_s01` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_tomorrow_s02` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_tomorrow_s03` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_trial_s00` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_trial_s01` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_trial_s02` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_trial_s03` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_visit_s00` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_visit_s01` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_visit_s02` `unverified`: 33
-- `head` `inchoative` `good` `overlay_subject_visit_s03` `unverified`: 33
-- `low` `causative` `bad` `overlay_subject_check_s00` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_check_s01` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_check_s02` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_check_s03` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_lab_s00` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_lab_s01` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_lab_s02` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_lab_s03` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_tomorrow_s00` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_tomorrow_s01` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_tomorrow_s02` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_tomorrow_s03` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_trial_s00` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_trial_s01` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_trial_s02` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_trial_s03` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_visit_s00` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_visit_s01` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_visit_s02` `unverified`: 36
-- `low` `causative` `bad` `overlay_subject_visit_s03` `unverified`: 36
-- `low` `causative` `good` `overlay_subject_check_s00` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_check_s01` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_check_s02` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_check_s03` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_lab_s00` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_lab_s01` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_lab_s02` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_lab_s03` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_tomorrow_s00` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_tomorrow_s01` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_tomorrow_s02` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_tomorrow_s03` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_trial_s00` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_trial_s01` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_trial_s02` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_trial_s03` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_visit_s00` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_visit_s01` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_visit_s02` `unverified`: 26
-- `low` `causative` `good` `overlay_subject_visit_s03` `unverified`: 26
-- `low` `inchoative` `bad` `overlay_subject_check_s00` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_check_s01` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_check_s02` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_check_s03` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_lab_s00` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_lab_s01` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_lab_s02` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_lab_s03` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_tomorrow_s00` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_tomorrow_s01` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_tomorrow_s02` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_tomorrow_s03` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_trial_s00` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_trial_s01` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_trial_s02` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_trial_s03` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_visit_s00` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_visit_s01` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_visit_s02` `unverified`: 35
-- `low` `inchoative` `bad` `overlay_subject_visit_s03` `unverified`: 35
-- `low` `inchoative` `good` `overlay_subject_check_s00` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_check_s01` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_check_s02` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_check_s03` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_lab_s00` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_lab_s01` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_lab_s02` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_lab_s03` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_tomorrow_s00` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_tomorrow_s01` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_tomorrow_s02` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_tomorrow_s03` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_trial_s00` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_trial_s01` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_trial_s02` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_trial_s03` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_visit_s00` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_visit_s01` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_visit_s02` `unverified`: 26
-- `low` `inchoative` `good` `overlay_subject_visit_s03` `unverified`: 26
+- `head` `causative` `bad` `overlay_subject_check_s00` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_check_s00` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_check_s01` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_check_s01` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_check_s02` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_check_s02` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_check_s03` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_check_s03` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_lab_s00` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_lab_s00` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_lab_s01` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_lab_s01` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_lab_s02` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_lab_s02` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_lab_s03` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_lab_s03` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_tomorrow_s00` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_tomorrow_s00` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_tomorrow_s01` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_tomorrow_s01` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_tomorrow_s02` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_tomorrow_s02` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_tomorrow_s03` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_tomorrow_s03` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_trial_s00` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_trial_s00` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_trial_s01` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_trial_s01` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_trial_s02` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_trial_s02` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_trial_s03` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_trial_s03` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_visit_s00` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_visit_s00` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_visit_s01` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_visit_s01` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_visit_s02` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_visit_s02` `rejected_tokenization`: 1
+- `head` `causative` `bad` `overlay_subject_visit_s03` `aligned`: 22
+- `head` `causative` `bad` `overlay_subject_visit_s03` `rejected_tokenization`: 1
+- `head` `causative` `good` `overlay_subject_check_s00` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_check_s00` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_check_s01` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_check_s01` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_check_s02` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_check_s02` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_check_s03` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_check_s03` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_lab_s00` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_lab_s00` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_lab_s01` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_lab_s01` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_lab_s02` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_lab_s02` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_lab_s03` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_lab_s03` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_tomorrow_s00` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_tomorrow_s00` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_tomorrow_s01` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_tomorrow_s01` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_tomorrow_s02` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_tomorrow_s02` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_tomorrow_s03` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_tomorrow_s03` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_trial_s00` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_trial_s00` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_trial_s01` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_trial_s01` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_trial_s02` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_trial_s02` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_trial_s03` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_trial_s03` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_visit_s00` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_visit_s00` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_visit_s01` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_visit_s01` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_visit_s02` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_visit_s02` `rejected_tokenization`: 2
+- `head` `causative` `good` `overlay_subject_visit_s03` `aligned`: 31
+- `head` `causative` `good` `overlay_subject_visit_s03` `rejected_tokenization`: 2
+- `head` `inchoative` `bad` `overlay_subject_check_s00` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_check_s00` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_check_s01` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_check_s01` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_check_s02` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_check_s02` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_check_s03` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_check_s03` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_lab_s00` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_lab_s00` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_lab_s01` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_lab_s01` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_lab_s02` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_lab_s02` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_lab_s03` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_lab_s03` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s00` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s00` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s01` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s01` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s02` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s02` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s03` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_tomorrow_s03` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_trial_s00` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_trial_s00` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_trial_s01` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_trial_s01` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_trial_s02` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_trial_s02` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_trial_s03` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_trial_s03` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_visit_s00` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_visit_s00` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_visit_s01` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_visit_s01` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_visit_s02` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_visit_s02` `rejected_tokenization`: 1
+- `head` `inchoative` `bad` `overlay_subject_visit_s03` `aligned`: 16
+- `head` `inchoative` `bad` `overlay_subject_visit_s03` `rejected_tokenization`: 1
+- `head` `inchoative` `good` `overlay_subject_check_s00` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_check_s00` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_check_s01` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_check_s01` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_check_s02` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_check_s02` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_check_s03` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_check_s03` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_lab_s00` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_lab_s00` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_lab_s01` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_lab_s01` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_lab_s02` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_lab_s02` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_lab_s03` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_lab_s03` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s00` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s00` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s01` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s01` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s02` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s02` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s03` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_tomorrow_s03` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_trial_s00` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_trial_s00` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_trial_s01` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_trial_s01` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_trial_s02` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_trial_s02` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_trial_s03` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_trial_s03` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_visit_s00` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_visit_s00` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_visit_s01` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_visit_s01` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_visit_s02` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_visit_s02` `rejected_tokenization`: 2
+- `head` `inchoative` `good` `overlay_subject_visit_s03` `aligned`: 31
+- `head` `inchoative` `good` `overlay_subject_visit_s03` `rejected_tokenization`: 2
+- `low` `causative` `bad` `overlay_subject_check_s00` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_check_s00` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_check_s01` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_check_s01` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_check_s02` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_check_s02` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_check_s03` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_check_s03` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_lab_s00` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_lab_s00` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_lab_s01` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_lab_s01` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_lab_s02` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_lab_s02` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_lab_s03` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_lab_s03` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_tomorrow_s00` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_tomorrow_s00` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_tomorrow_s01` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_tomorrow_s01` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_tomorrow_s02` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_tomorrow_s02` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_tomorrow_s03` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_tomorrow_s03` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_trial_s00` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_trial_s00` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_trial_s01` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_trial_s01` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_trial_s02` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_trial_s02` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_trial_s03` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_trial_s03` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_visit_s00` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_visit_s00` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_visit_s01` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_visit_s01` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_visit_s02` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_visit_s02` `rejected_tokenization`: 13
+- `low` `causative` `bad` `overlay_subject_visit_s03` `aligned`: 23
+- `low` `causative` `bad` `overlay_subject_visit_s03` `rejected_tokenization`: 13
+- `low` `causative` `good` `overlay_subject_check_s00` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_check_s00` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_check_s01` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_check_s01` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_check_s02` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_check_s02` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_check_s03` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_check_s03` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_lab_s00` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_lab_s00` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_lab_s01` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_lab_s01` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_lab_s02` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_lab_s02` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_lab_s03` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_lab_s03` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_tomorrow_s00` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_tomorrow_s00` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_tomorrow_s01` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_tomorrow_s01` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_tomorrow_s02` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_tomorrow_s02` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_tomorrow_s03` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_tomorrow_s03` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_trial_s00` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_trial_s00` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_trial_s01` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_trial_s01` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_trial_s02` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_trial_s02` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_trial_s03` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_trial_s03` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_visit_s00` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_visit_s00` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_visit_s01` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_visit_s01` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_visit_s02` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_visit_s02` `rejected_tokenization`: 12
+- `low` `causative` `good` `overlay_subject_visit_s03` `aligned`: 14
+- `low` `causative` `good` `overlay_subject_visit_s03` `rejected_tokenization`: 12
+- `low` `inchoative` `bad` `overlay_subject_check_s00` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_check_s00` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_check_s01` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_check_s01` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_check_s02` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_check_s02` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_check_s03` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_check_s03` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_lab_s00` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_lab_s00` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_lab_s01` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_lab_s01` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_lab_s02` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_lab_s02` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_lab_s03` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_lab_s03` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s00` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s00` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s01` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s01` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s02` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s02` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s03` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_tomorrow_s03` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_trial_s00` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_trial_s00` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_trial_s01` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_trial_s01` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_trial_s02` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_trial_s02` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_trial_s03` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_trial_s03` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_visit_s00` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_visit_s00` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_visit_s01` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_visit_s01` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_visit_s02` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_visit_s02` `rejected_tokenization`: 8
+- `low` `inchoative` `bad` `overlay_subject_visit_s03` `aligned`: 27
+- `low` `inchoative` `bad` `overlay_subject_visit_s03` `rejected_tokenization`: 8
+- `low` `inchoative` `good` `overlay_subject_check_s00` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_check_s00` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_check_s01` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_check_s01` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_check_s02` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_check_s02` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_check_s03` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_check_s03` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_lab_s00` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_lab_s00` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_lab_s01` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_lab_s01` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_lab_s02` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_lab_s02` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_lab_s03` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_lab_s03` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s00` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s00` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s01` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s01` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s02` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s02` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s03` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_tomorrow_s03` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_trial_s00` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_trial_s00` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_trial_s01` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_trial_s01` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_trial_s02` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_trial_s02` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_trial_s03` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_trial_s03` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_visit_s00` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_visit_s00` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_visit_s01` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_visit_s01` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_visit_s02` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_visit_s02` `rejected_tokenization`: 12
+- `low` `inchoative` `good` `overlay_subject_visit_s03` `aligned`: 14
+- `low` `inchoative` `good` `overlay_subject_visit_s03` `rejected_tokenization`: 12
 
 ## Sampled Subjects
 
@@ -241,3 +401,88 @@
 - `teacher` `manual_animate_subject` `manual_common_subject_fillers`: 373
 - `toy` `manual_inanimate_subject` `manual_common_subject_fillers`: 625
 - `worker` `manual_animate_subject` `manual_common_subject_fillers`: 440
+
+## Tokenization Summary
+
+- model: `EleutherAI/pythia-1.4b`
+- target token lengths: `{' the': 1, '.': 1}`
+- `head|causative|object_frame_overlay_subject_check_s00`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_check_s01`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_check_s02`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_check_s03`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_lab_s00`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_lab_s01`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_lab_s02`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_lab_s03`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_tomorrow_s00`: retained 53/56 at prompt_token_count=7; all prompt counts={7: 53, 8: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_tomorrow_s01`: retained 53/56 at prompt_token_count=7; all prompt counts={7: 53, 8: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_tomorrow_s02`: retained 53/56 at prompt_token_count=7; all prompt counts={7: 53, 8: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_tomorrow_s03`: retained 53/56 at prompt_token_count=7; all prompt counts={7: 53, 8: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_trial_s00`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_trial_s01`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_trial_s02`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_trial_s03`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_visit_s00`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_visit_s01`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_visit_s02`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|causative|object_frame_overlay_subject_visit_s03`: retained 53/56 at prompt_token_count=8; all prompt counts={8: 53, 9: 3}; verb-region counts={1: 53, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_check_s00`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_check_s01`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_check_s02`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_check_s03`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_lab_s00`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_lab_s01`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_lab_s02`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_lab_s03`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_tomorrow_s00`: retained 47/50 at prompt_token_count=7; all prompt counts={7: 47, 8: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_tomorrow_s01`: retained 47/50 at prompt_token_count=7; all prompt counts={7: 47, 8: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_tomorrow_s02`: retained 47/50 at prompt_token_count=7; all prompt counts={7: 47, 8: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_tomorrow_s03`: retained 47/50 at prompt_token_count=7; all prompt counts={7: 47, 8: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_trial_s00`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_trial_s01`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_trial_s02`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_trial_s03`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_visit_s00`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_visit_s01`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_visit_s02`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `head|inchoative|no_object_frame_overlay_subject_visit_s03`: retained 47/50 at prompt_token_count=8; all prompt counts={8: 47, 9: 3}; verb-region counts={1: 47, 2: 3}
+- `low|causative|object_frame_overlay_subject_check_s00`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_check_s01`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_check_s02`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_check_s03`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_lab_s00`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_lab_s01`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_lab_s02`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_lab_s03`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_tomorrow_s00`: retained 37/62 at prompt_token_count=8; all prompt counts={8: 37, 9: 9, 10: 1, 7: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_tomorrow_s01`: retained 37/62 at prompt_token_count=8; all prompt counts={8: 37, 9: 9, 10: 1, 7: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_tomorrow_s02`: retained 37/62 at prompt_token_count=8; all prompt counts={8: 37, 9: 9, 10: 1, 7: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_tomorrow_s03`: retained 37/62 at prompt_token_count=8; all prompt counts={8: 37, 9: 9, 10: 1, 7: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_trial_s00`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_trial_s01`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_trial_s02`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_trial_s03`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_visit_s00`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_visit_s01`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_visit_s02`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|causative|object_frame_overlay_subject_visit_s03`: retained 37/62 at prompt_token_count=9; all prompt counts={9: 37, 10: 9, 11: 1, 8: 15}; verb-region counts={2: 37, 3: 9, 4: 1, 1: 15}
+- `low|inchoative|no_object_frame_overlay_subject_check_s00`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_check_s01`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_check_s02`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_check_s03`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_lab_s00`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_lab_s01`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_lab_s02`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_lab_s03`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_tomorrow_s00`: retained 41/61 at prompt_token_count=8; all prompt counts={8: 41, 7: 13, 9: 6, 10: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_tomorrow_s01`: retained 41/61 at prompt_token_count=8; all prompt counts={8: 41, 7: 13, 9: 6, 10: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_tomorrow_s02`: retained 41/61 at prompt_token_count=8; all prompt counts={8: 41, 7: 13, 9: 6, 10: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_tomorrow_s03`: retained 41/61 at prompt_token_count=8; all prompt counts={8: 41, 7: 13, 9: 6, 10: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_trial_s00`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_trial_s01`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_trial_s02`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_trial_s03`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_visit_s00`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_visit_s01`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_visit_s02`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
+- `low|inchoative|no_object_frame_overlay_subject_visit_s03`: retained 41/61 at prompt_token_count=9; all prompt counts={9: 41, 8: 13, 10: 6, 11: 1}; verb-region counts={2: 41, 1: 13, 3: 6, 4: 1}
