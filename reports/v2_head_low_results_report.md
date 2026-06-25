@@ -96,6 +96,14 @@ Aggregate control comparison across subtasks and directions:
 | dummy_pair | 17 | low | 1120 | 0.0000 | nan | 0.5000 |
 | none | 17 | head | 312 | 12.4769 | 3.4605 | 0.9936 |
 | none | 17 | low | 1120 | 11.2010 | 2.7103 | 0.9563 |
+| none@l18 | 17 | head | 312 | 6.9981 | 1.8763 | 0.9359 |
+| none@l18 | 17 | low | 1120 | 6.5376 | 1.6218 | 0.8920 |
+| none@l18@verb_final_subtoken_to_subject_final_subtoken | 17 | head | 312 | 0.0748 | 0.0204 | 0.2660 |
+| none@l18@verb_final_subtoken_to_subject_final_subtoken | 17 | low | 1120 | 0.0601 | 0.0174 | 0.2875 |
+| none@l20 | 17 | head | 312 | 7.5834 | 2.0373 | 0.9391 |
+| none@l20 | 17 | low | 1120 | 7.0665 | 1.7431 | 0.9009 |
+| none@l20@verb_final_subtoken_to_subject_final_subtoken | 17 | head | 312 | 0.0502 | 0.0232 | 0.2821 |
+| none@l20@verb_final_subtoken_to_subject_final_subtoken | 17 | low | 1120 | -0.0150 | 0.0114 | 0.2920 |
 | random_direction | 17 | head | 312 | 0.0027 | -0.0046 | 0.2628 |
 | random_direction | 17 | low | 1120 | 0.0027 | 0.0014 | 0.2795 |
 | red_blue | 17 | head | 312 | -0.0016 | nan | 0.6987 |
@@ -107,6 +115,38 @@ Per-subtask and per-direction detail:
 
 | control | seed | regime | subtask | direction | n | mean_effect | effect_ci95_lo | effect_ci95_hi | mean_normalized_effect | patched_success_rate |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| none@l18@verb_final_subtoken_to_subject_final_subtoken | 17 | head | causative | bad_to_good | 98 | 0.0430 | 0.0233 | 0.0641 | 0.0055 | 0.1020 |
+| none@l18@verb_final_subtoken_to_subject_final_subtoken | 17 | head | causative | good_to_bad | 98 | 0.0759 | 0.0453 | 0.1135 | 0.0176 | 0.2245 |
+| none@l18@verb_final_subtoken_to_subject_final_subtoken | 17 | head | inchoative | bad_to_good | 58 | 0.1433 | 0.1088 | 0.1832 | 0.0477 | 0.8793 |
+| none@l18@verb_final_subtoken_to_subject_final_subtoken | 17 | head | inchoative | good_to_bad | 58 | 0.0582 | 0.0221 | 0.0964 | 0.0229 | 0.0000 |
+| none@l18@verb_final_subtoken_to_subject_final_subtoken | 17 | low | causative | bad_to_good | 280 | 0.0602 | 0.0421 | 0.0769 | 0.0158 | 0.0536 |
+| none@l18@verb_final_subtoken_to_subject_final_subtoken | 17 | low | causative | good_to_bad | 280 | 0.0487 | 0.0355 | 0.0616 | 0.0157 | 0.3107 |
+| none@l18@verb_final_subtoken_to_subject_final_subtoken | 17 | low | inchoative | bad_to_good | 280 | 0.0646 | 0.0518 | 0.0761 | 0.0174 | 0.7857 |
+| none@l18@verb_final_subtoken_to_subject_final_subtoken | 17 | low | inchoative | good_to_bad | 280 | 0.0671 | 0.0523 | 0.0835 | 0.0206 | 0.0000 |
+| none@l18 | 17 | head | causative | bad_to_good | 98 | 6.7066 | 6.1177 | 7.2803 | 1.5311 | 0.9796 |
+| none@l18 | 17 | head | causative | good_to_bad | 98 | 7.0994 | 6.4943 | 7.7034 | 1.6393 | 0.9388 |
+| none@l18 | 17 | head | inchoative | bad_to_good | 58 | 7.4604 | 6.9682 | 7.9617 | 2.4946 | 1.0000 |
+| none@l18 | 17 | head | inchoative | good_to_bad | 58 | 6.8572 | 6.4133 | 7.3109 | 2.2416 | 0.7931 |
+| none@l18 | 17 | low | causative | bad_to_good | 280 | 6.8074 | 6.4373 | 7.1462 | 1.3936 | 0.9071 |
+| none@l18 | 17 | low | causative | good_to_bad | 280 | 8.1964 | 7.7791 | 8.5842 | 1.7551 | 0.9679 |
+| none@l18 | 17 | low | inchoative | bad_to_good | 280 | 5.9195 | 5.5838 | 6.2290 | 1.7643 | 0.9964 |
+| none@l18 | 17 | low | inchoative | good_to_bad | 280 | 5.2271 | 4.9468 | 5.4853 | 1.5743 | 0.6964 |
+| none@l20@verb_final_subtoken_to_subject_final_subtoken | 17 | head | causative | bad_to_good | 98 | -0.0686 | -0.1559 | 0.0140 | 0.0104 | 0.1020 |
+| none@l20@verb_final_subtoken_to_subject_final_subtoken | 17 | head | causative | good_to_bad | 98 | 0.1301 | 0.0721 | 0.2015 | 0.0189 | 0.2551 |
+| none@l20@verb_final_subtoken_to_subject_final_subtoken | 17 | head | inchoative | bad_to_good | 58 | 0.3060 | 0.2004 | 0.4224 | 0.0858 | 0.9138 |
+| none@l20@verb_final_subtoken_to_subject_final_subtoken | 17 | head | inchoative | good_to_bad | 58 | -0.1401 | -0.2597 | -0.0145 | -0.0105 | 0.0000 |
+| none@l20@verb_final_subtoken_to_subject_final_subtoken | 17 | low | causative | bad_to_good | 280 | -0.2564 | -0.3027 | -0.2077 | -0.0328 | 0.0536 |
+| none@l20@verb_final_subtoken_to_subject_final_subtoken | 17 | low | causative | good_to_bad | 280 | 0.1231 | 0.0924 | 0.1549 | 0.0331 | 0.3214 |
+| none@l20@verb_final_subtoken_to_subject_final_subtoken | 17 | low | inchoative | bad_to_good | 280 | 0.1277 | 0.1011 | 0.1540 | 0.0472 | 0.7893 |
+| none@l20@verb_final_subtoken_to_subject_final_subtoken | 17 | low | inchoative | good_to_bad | 280 | -0.0545 | -0.0971 | -0.0115 | -0.0017 | 0.0036 |
+| none@l20 | 17 | head | causative | bad_to_good | 98 | 7.1288 | 6.4987 | 7.7417 | 1.6547 | 0.9796 |
+| none@l20 | 17 | head | causative | good_to_bad | 98 | 7.9148 | 7.1814 | 8.6455 | 1.8399 | 0.9388 |
+| none@l20 | 17 | head | inchoative | bad_to_good | 58 | 8.2085 | 7.6398 | 8.8004 | 2.7254 | 1.0000 |
+| none@l20 | 17 | head | inchoative | good_to_bad | 58 | 7.1665 | 6.6929 | 7.6369 | 2.3290 | 0.8103 |
+| none@l20 | 17 | low | causative | bad_to_good | 280 | 7.2699 | 6.8821 | 7.6214 | 1.4823 | 0.9286 |
+| none@l20 | 17 | low | causative | good_to_bad | 280 | 9.5421 | 9.0446 | 10.0067 | 2.0773 | 0.9679 |
+| none@l20 | 17 | low | inchoative | bad_to_good | 280 | 6.0545 | 5.6991 | 6.4073 | 1.7936 | 0.9964 |
+| none@l20 | 17 | low | inchoative | good_to_bad | 280 | 5.3997 | 5.1023 | 5.6794 | 1.6193 | 0.7107 |
 | dummy_pair | 17 | head | causative | bad_to_good | 118 | 0.0000 | 0.0000 | 0.0000 | nan | 0.0000 |
 | dummy_pair | 17 | head | causative | good_to_bad | 118 | 0.0000 | 0.0000 | 0.0000 | nan | 1.0000 |
 | dummy_pair | 17 | head | inchoative | bad_to_good | 85 | 0.0000 | 0.0000 | 0.0000 | nan | 1.0000 |
@@ -115,38 +155,6 @@ Per-subtask and per-direction detail:
 | dummy_pair | 17 | low | causative | good_to_bad | 280 | 0.0000 | 0.0000 | 0.0000 | nan | 1.0000 |
 | dummy_pair | 17 | low | inchoative | bad_to_good | 280 | 0.0000 | 0.0000 | 0.0000 | nan | 1.0000 |
 | dummy_pair | 17 | low | inchoative | good_to_bad | 280 | 0.0000 | 0.0000 | 0.0000 | nan | 0.0000 |
-| none | 17 | head | causative | bad_to_good | 98 | 12.9464 | 11.9962 | 13.9180 | 3.2060 | 1.0000 |
-| none | 17 | head | causative | good_to_bad | 98 | 12.4049 | 11.4833 | 13.3542 | 3.0691 | 0.9898 |
-| none | 17 | head | inchoative | bad_to_good | 58 | 12.7059 | 11.8637 | 13.5659 | 4.1977 | 1.0000 |
-| none | 17 | head | inchoative | good_to_bad | 58 | 11.5765 | 10.7732 | 12.4068 | 3.8146 | 0.9828 |
-| none | 17 | low | causative | bad_to_good | 280 | 13.6875 | 13.0446 | 14.2258 | 2.8525 | 0.9714 |
-| none | 17 | low | causative | good_to_bad | 280 | 13.5741 | 12.8996 | 14.1915 | 2.7850 | 0.9857 |
-| none | 17 | low | inchoative | bad_to_good | 280 | 9.2177 | 8.6417 | 9.7424 | 2.7478 | 0.9893 |
-| none | 17 | low | inchoative | good_to_bad | 280 | 8.3246 | 7.7978 | 8.8050 | 2.4560 | 0.8786 |
-| random_direction | 17 | head | causative | bad_to_good | 98 | -0.0086 | -0.0204 | 0.0026 | -0.0099 | 0.1020 |
-| random_direction | 17 | head | causative | good_to_bad | 98 | -0.0038 | -0.0153 | 0.0083 | -0.0082 | 0.2245 |
-| random_direction | 17 | head | inchoative | bad_to_good | 58 | 0.0221 | 0.0129 | 0.0323 | 0.0053 | 0.8621 |
-| random_direction | 17 | head | inchoative | good_to_bad | 58 | 0.0135 | 0.0027 | 0.0248 | 0.0007 | 0.0000 |
-| random_direction | 17 | low | causative | bad_to_good | 280 | -0.0009 | -0.0071 | 0.0051 | 0.0016 | 0.0536 |
-| random_direction | 17 | low | causative | good_to_bad | 280 | -0.0011 | -0.0069 | 0.0049 | -0.0020 | 0.3036 |
-| random_direction | 17 | low | inchoative | bad_to_good | 280 | 0.0074 | 0.0025 | 0.0118 | 0.0055 | 0.7607 |
-| random_direction | 17 | low | inchoative | good_to_bad | 280 | 0.0055 | 0.0013 | 0.0099 | 0.0005 | 0.0000 |
-| red_blue | 17 | head | causative | bad_to_good | 98 | -0.2186 | -0.2761 | -0.1582 | nan | 0.6735 |
-| red_blue | 17 | head | causative | good_to_bad | 98 | 0.2047 | 0.1463 | 0.2601 | nan | 0.7041 |
-| red_blue | 17 | head | inchoative | bad_to_good | 58 | 0.1352 | 0.0776 | 0.1953 | nan | 0.7241 |
-| red_blue | 17 | head | inchoative | good_to_bad | 58 | -0.1202 | -0.1724 | -0.0673 | nan | 0.7069 |
-| red_blue | 17 | low | causative | bad_to_good | 280 | -0.1727 | -0.1912 | -0.1527 | nan | 0.8143 |
-| red_blue | 17 | low | causative | good_to_bad | 280 | 0.1708 | 0.1515 | 0.1893 | nan | 0.8393 |
-| red_blue | 17 | low | inchoative | bad_to_good | 280 | 0.2080 | 0.1895 | 0.2274 | nan | 0.8714 |
-| red_blue | 17 | low | inchoative | good_to_bad | 280 | -0.1856 | -0.2022 | -0.1693 | nan | 0.7929 |
-| shuffled_label | 17 | head | causative | bad_to_good | 98 | -0.0210 | -0.5941 | 0.6272 | 0.4842 | 0.4694 |
-| shuffled_label | 17 | head | causative | good_to_bad | 98 | -0.0561 | -0.6492 | 0.5045 | 0.4483 | 0.5714 |
-| shuffled_label | 17 | head | inchoative | bad_to_good | 58 | 0.0851 | -0.5981 | 0.8287 | 0.6513 | 0.4655 |
-| shuffled_label | 17 | head | inchoative | good_to_bad | 58 | -0.0226 | -0.6202 | 0.5841 | 0.5719 | 0.5690 |
-| shuffled_label | 17 | low | causative | bad_to_good | 280 | -0.4174 | -0.7625 | -0.0345 | 0.5674 | 0.5357 |
-| shuffled_label | 17 | low | causative | good_to_bad | 280 | 0.3645 | -0.0134 | 0.7258 | 0.5529 | 0.5250 |
-| shuffled_label | 17 | low | inchoative | bad_to_good | 280 | 0.1227 | -0.1506 | 0.4041 | 0.6487 | 0.5393 |
-| shuffled_label | 17 | low | inchoative | good_to_bad | 280 | -0.1066 | -0.3721 | 0.1408 | 0.5960 | 0.4964 |
 
 ## Output Files
 

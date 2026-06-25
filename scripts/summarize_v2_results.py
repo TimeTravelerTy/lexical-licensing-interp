@@ -15,7 +15,7 @@ from typing import Any, Iterable
 
 
 CONTROL_RE = re.compile(
-    r"-l23-(?P<control>none|shuffled_label|dummy_verb|dummy_pair|random_direction|red_blue)-s(?P<seed>\d+)"
+    r"-l(?P<layer>\d+)-(?P<control>none|shuffled_label|dummy_verb|dummy_pair|random_direction|red_blue)-s(?P<seed>\d+)"
 )
 
 
@@ -98,18 +98,46 @@ def summarize_sanity(rows: list[dict[str, str]], group_cols: tuple[str, ...]) ->
     return out
 
 
-def infer_control(path: Path) -> tuple[str, str]:
+def infer_control(path: Path) -> tuple[str, str, str]:
     match = CONTROL_RE.search(path.name)
     if not match:
-        return "unknown", ""
-    return match.group("control"), match.group("seed")
+        return "unknown", "", ""
+    return match.group("control"), match.group("seed"), match.group("layer")
 
 
-def summarize_das(rows: list[dict[str, str]], group_cols: tuple[str, ...], control: str, seed: str) -> list[dict[str, Any]]:
+def display_control(control: str, rows: list[dict[str, str]], layer: str) -> str:
+    base = control if layer in {"", "23"} else f"{control}@l{layer}"
+    interventions = {
+        (row.get("eval_source_anchor", "") or "same_site", row.get("eval_anchor", ""))
+        for row in rows
+        if row.get("eval_anchor", "")
+    }
+    if interventions and interventions not in (
+        {("same_site", "train_anchor")},
+        {("train_anchor", "train_anchor")},
+    ):
+        labels = []
+        for source_anchor, patch_anchor in sorted(interventions):
+            if source_anchor == "same_site":
+                labels.append(patch_anchor)
+            else:
+                labels.append(f"{source_anchor}_to_{patch_anchor}")
+        return f"{base}@{','.join(labels)}"
+    return base
+
+
+def summarize_das(
+    rows: list[dict[str, str]],
+    group_cols: tuple[str, ...],
+    control: str,
+    seed: str,
+    layer: str,
+) -> list[dict[str, Any]]:
     grouped: dict[tuple[str, ...], list[dict[str, str]]] = defaultdict(list)
     for row in rows:
         grouped[tuple(row.get(col, "") for col in group_cols)].append(row)
     out: list[dict[str, Any]] = []
+    control_label = display_control(control, rows, layer)
     for key, group in sorted(grouped.items()):
         effect = finite(as_float(row.get("effect")) for row in group)
         norm = [] if control == "red_blue" else finite(as_float(row.get("normalized_effect")) for row in group)
@@ -119,7 +147,7 @@ def summarize_das(rows: list[dict[str, str]], group_cols: tuple[str, ...], contr
         ci_lo, ci_hi = bootstrap_ci_by_key(group, "effect")
         out.append(
             {
-                "control": control,
+                "control": control_label,
                 "seed": seed,
                 **dict(zip(group_cols, key)),
                 "n": len(group),
@@ -269,19 +297,22 @@ def main() -> None:
     das_eval_summaries: list[dict[str, Any]] = []
     das_subject_summaries: list[dict[str, Any]] = []
     das_source_summaries: list[dict[str, Any]] = []
-    das_detail_paths = sorted((results_root / "das_v2_transfer").glob(f"{args.run_prefix}-das-head-to-low-l23-*-s*.eval_detail.csv"))
+    das_detail_paths = sorted((results_root / "das_v2_transfer").glob(f"{args.run_prefix}-das-head-to-low-l*-*-s*.eval_detail.csv"))
     has_corrected_dummy = any("-dummy_pair-" in path.name for path in das_detail_paths)
     skipped_das_files: list[str] = []
     for detail_path in das_detail_paths:
-        control, seed = infer_control(detail_path)
+        control, seed, layer = infer_control(detail_path)
         if has_corrected_dummy and control == "dummy_verb":
             skipped_das_files.append(str(detail_path))
             continue
+        if layer == "23" and ("-subject_anchor." in detail_path.name or "-verb_to_subject_anchor." in detail_path.name):
+            skipped_das_files.append(str(detail_path))
+            continue
         rows = read_csv(detail_path)
-        das_eval_summaries.extend(summarize_das(rows, ("regime", "subtask", "direction"), control, seed))
-        das_subject_summaries.extend(summarize_das(rows, ("regime", "subtask", "subject_class"), control, seed))
+        das_eval_summaries.extend(summarize_das(rows, ("regime", "subtask", "direction"), control, seed, layer))
+        das_subject_summaries.extend(summarize_das(rows, ("regime", "subtask", "subject_class"), control, seed, layer))
         das_source_summaries.extend(
-            summarize_das(rows, ("regime", "subtask", "clean_source_zipf_regime", "clean_inventory_source"), control, seed)
+            summarize_das(rows, ("regime", "subtask", "clean_source_zipf_regime", "clean_inventory_source"), control, seed, layer)
         )
 
     sanity_main = summarize_sanity(sanity_detail, ("regime", "subtask", "side"))

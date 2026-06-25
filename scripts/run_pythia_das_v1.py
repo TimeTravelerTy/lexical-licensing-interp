@@ -155,6 +155,66 @@ def batch_groups(pairs: list[DirectedPair]) -> dict[tuple[str, str, str, int, in
     return grouped
 
 
+def token_index_for_text_span(tokenizer: Any, prompt: str, span_text: str) -> int | None:
+    if not span_text:
+        return None
+    start = prompt.find(span_text)
+    if start < 0:
+        return None
+    end = start + len(span_text)
+
+    try:
+        encoded = tokenizer(prompt, add_special_tokens=False, return_offsets_mapping=True)
+        offsets = encoded["offset_mapping"]
+        hits = [idx for idx, (tok_start, tok_end) in enumerate(offsets) if tok_start < end and tok_end > start]
+        return hits[-1] if hits else None
+    except (NotImplementedError, TypeError, KeyError):
+        prefix_len = len(tokenizer.encode(prompt[:start], add_special_tokens=False))
+        span_len = len(tokenizer.encode(prompt[:end], add_special_tokens=False))
+        if span_len <= prefix_len:
+            return None
+        return span_len - 1
+
+
+def eval_anchor_token_index(tokenizer: Any, pair: DirectedPair, eval_anchor: str) -> int | None:
+    if eval_anchor in {"train_anchor", "verb_final_subtoken"}:
+        return pair.anchor_token_index
+    if eval_anchor == "subject_final_subtoken":
+        clean_anchor = token_index_for_text_span(tokenizer, pair.clean_prompt, pair.subject)
+        corrupt_anchor = token_index_for_text_span(tokenizer, pair.corrupt_prompt, pair.subject)
+        if clean_anchor is None or clean_anchor != corrupt_anchor:
+            return None
+        return clean_anchor
+    raise ValueError(f"unknown eval anchor: {eval_anchor}")
+
+
+def batch_groups_for_eval_intervention(
+    tokenizer: Any,
+    pairs: list[DirectedPair],
+    eval_source_anchor: str,
+    eval_anchor: str,
+) -> tuple[dict[tuple[str, str, str, int, int, int], list[DirectedPair]], dict[str, int]]:
+    grouped: dict[tuple[str, str, str, int, int, int], list[DirectedPair]] = defaultdict(list)
+    skip_counts: dict[str, int] = defaultdict(int)
+    for pair in pairs:
+        source_anchor = eval_anchor_token_index(tokenizer, pair, eval_source_anchor)
+        patch_anchor = eval_anchor_token_index(tokenizer, pair, eval_anchor)
+        if source_anchor is None:
+            skip_counts[f"missing_{eval_source_anchor}"] += 1
+            continue
+        if patch_anchor is None:
+            skip_counts[f"missing_{eval_anchor}"] += 1
+            continue
+        if source_anchor < 0 or source_anchor >= pair.prompt_token_count:
+            skip_counts[f"out_of_range_{eval_source_anchor}"] += 1
+            continue
+        if patch_anchor < 0 or patch_anchor >= pair.prompt_token_count:
+            skip_counts[f"out_of_range_{eval_anchor}"] += 1
+            continue
+        grouped[(pair.regime, pair.subtask, pair.direction, pair.prompt_token_count, source_anchor, patch_anchor)].append(pair)
+    return grouped, dict(skip_counts)
+
+
 def metric_from_logits(logits: Any, clean_target: Any, corrupt_target: Any) -> Any:
     import torch
     import torch.nn.functional as F
@@ -171,7 +231,15 @@ def orthonormal_basis(raw: Any) -> Any:
     return q
 
 
-def patched_forward(model: Any, corrupt_inputs: Any, site_index: int, anchor: int, clean_site: Any, basis: Any) -> Any:
+def patched_forward(
+    model: Any,
+    corrupt_inputs: Any,
+    site_index: int,
+    source_anchor: int,
+    patch_anchor: int,
+    clean_site: Any,
+    basis: Any,
+) -> Any:
     import torch
 
     row_indices = torch.arange(clean_site.shape[0], device=clean_site.device)
@@ -179,10 +247,10 @@ def patched_forward(model: Any, corrupt_inputs: Any, site_index: int, anchor: in
     def patch_tensor(hidden: Any) -> Any:
         hidden_f = hidden.float()
         clean_f = clean_site.float()
-        delta = clean_f[row_indices, :] - hidden_f[row_indices, anchor, :]
+        delta = clean_f[row_indices, :] - hidden_f[row_indices, source_anchor, :]
         projected = (delta @ basis) @ basis.T
         patched = hidden_f.clone()
-        patched[row_indices, anchor, :] = hidden_f[row_indices, anchor, :] + projected
+        patched[row_indices, patch_anchor, :] = hidden_f[row_indices, patch_anchor, :] + projected
         return patched.to(dtype=hidden.dtype)
 
     if site_index == 0:
@@ -238,7 +306,7 @@ def run_batch(
         clean_outputs, clean_site = clean_forward_with_site(model, clean_inputs, site_index, anchor)
         clean_metric = metric_from_logits(clean_outputs.logits, clean_target, corrupt_target) if need_clean_metric else None
 
-    patched_outputs = patched_forward(model, corrupt_inputs, site_index, anchor, clean_site, basis)
+    patched_outputs = patched_forward(model, corrupt_inputs, site_index, anchor, anchor, clean_site, basis)
     patched_metric = metric_from_logits(patched_outputs.logits, clean_target, corrupt_target)
     return patched_metric, clean_metric, (clean_target, corrupt_target)
 
@@ -253,13 +321,16 @@ def evaluate(
     raw: Any,
     batch_size: int,
     normalize_effect: bool,
-) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    eval_source_anchor: str,
+    eval_anchor: str,
+) -> tuple[list[dict[str, Any]], dict[str, Any], dict[str, int]]:
     import torch
 
     detail_rows: list[dict[str, Any]] = []
     basis = orthonormal_basis(raw)
+    groups, skip_counts = batch_groups_for_eval_intervention(tokenizer, pairs, eval_source_anchor, eval_anchor)
     with torch.no_grad():
-        for group_key, group_pairs in sorted(batch_groups(pairs).items()):
+        for group_key, group_pairs in sorted(groups.items()):
             for start in range(0, len(group_pairs), batch_size):
                 batch = group_pairs[start : start + batch_size]
                 clean_inputs = encode_batch(tokenizer, [p.clean_prompt for p in batch], device)
@@ -269,13 +340,22 @@ def evaluate(
                     raise RuntimeError(f"Tokenizer length mismatch in eval group {group_key}")
                 clean_target = torch.tensor([target_ids[p.clean_target] for p in batch], device=device)
                 corrupt_target = torch.tensor([target_ids[p.corrupt_target] for p in batch], device=device)
-                anchor = batch[0].anchor_token_index
+                source_anchor = group_key[-2]
+                patch_anchor = group_key[-1]
 
-                clean_outputs, clean_site = clean_forward_with_site(model, clean_inputs, site_index, anchor)
+                clean_outputs, clean_site = clean_forward_with_site(model, clean_inputs, site_index, source_anchor)
                 corrupt_outputs = model(**corrupt_inputs, output_hidden_states=False, use_cache=False)
                 clean_metric = metric_from_logits(clean_outputs.logits, clean_target, corrupt_target)
                 corrupt_metric = metric_from_logits(corrupt_outputs.logits, clean_target, corrupt_target)
-                patched_outputs = patched_forward(model, corrupt_inputs, site_index, anchor, clean_site, basis)
+                patched_outputs = patched_forward(
+                    model,
+                    corrupt_inputs,
+                    site_index,
+                    source_anchor,
+                    patch_anchor,
+                    clean_site,
+                    basis,
+                )
                 patched_metric = metric_from_logits(patched_outputs.logits, clean_target, corrupt_target)
                 effect = patched_metric - corrupt_metric
                 denom = clean_metric - corrupt_metric
@@ -298,6 +378,12 @@ def evaluate(
                             "subject_class": pair.subject_class,
                             "direction": pair.direction,
                             "site": site_name(site_index),
+                            "train_anchor": "verb_final_subtoken",
+                            "train_anchor_token_index": pair.anchor_token_index,
+                            "eval_source_anchor": eval_source_anchor,
+                            "eval_source_anchor_token_index": source_anchor,
+                            "eval_anchor": eval_anchor,
+                            "eval_anchor_token_index": patch_anchor,
                             "clean_verb": pair.clean_verb,
                             "corrupt_verb": pair.corrupt_verb,
                             "clean_source_zipf_regime": pair.clean_source_zipf_regime,
@@ -313,7 +399,7 @@ def evaluate(
                         }
                     )
     if not detail_rows:
-        return detail_rows, {}
+        return detail_rows, {}, skip_counts
     metrics = {
         "n": len(detail_rows),
         "mean_corrupt_metric": sum(float(r["corrupt_metric"]) for r in detail_rows) / len(detail_rows),
@@ -324,7 +410,7 @@ def evaluate(
     }
     norm = [float(r["normalized_effect"]) for r in detail_rows if r["normalized_effect"] != ""]
     metrics["mean_normalized_effect"] = sum(norm) / len(norm) if norm else math.nan
-    return detail_rows, metrics
+    return detail_rows, metrics, skip_counts
 
 
 def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
@@ -343,6 +429,7 @@ def run(args: argparse.Namespace) -> None:
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
     random.seed(args.seed)
+    torch.manual_seed(args.seed)
     site_index = parse_site(args.site)
     subtask_filter = set(parse_csv_arg(args.subtasks))
     train_regimes = set(parse_csv_arg(args.train_regimes or args.regimes))
@@ -382,14 +469,27 @@ def run(args: argparse.Namespace) -> None:
 
     target_ids = {target: token_id(tokenizer, target) for p in pairs for target in (p.clean_target, p.corrupt_target)}
     d_model = model.config.hidden_size
-    raw = torch.randn(d_model, args.rank, device=device, dtype=torch.float32) / math.sqrt(d_model)
+    if args.load_subspace:
+        checkpoint = torch.load(args.load_subspace, map_location="cpu")
+        raw_checkpoint = checkpoint["raw"] if isinstance(checkpoint, dict) and "raw" in checkpoint else checkpoint
+        if raw_checkpoint.ndim == 1:
+            raw_checkpoint = raw_checkpoint[:, None]
+        if raw_checkpoint.shape[0] != d_model:
+            raise SystemExit(f"Loaded subspace d_model mismatch: checkpoint={raw_checkpoint.shape[0]} model={d_model}")
+        if raw_checkpoint.shape[1] != args.rank:
+            raise SystemExit(f"Loaded subspace rank mismatch: checkpoint={raw_checkpoint.shape[1]} --rank={args.rank}")
+        if isinstance(checkpoint, dict) and checkpoint.get("site") not in {None, args.site}:
+            raise SystemExit(f"Loaded subspace site mismatch: checkpoint={checkpoint.get('site')} --site={args.site}")
+        raw = raw_checkpoint.float().to(device)
+    else:
+        raw = torch.randn(d_model, args.rank, device=device, dtype=torch.float32) / math.sqrt(d_model)
     raw.requires_grad_(True)
     opt = torch.optim.AdamW([raw], lr=args.lr, weight_decay=args.weight_decay)
 
     train_groups = batch_groups(train_pairs)
     train_keys = sorted(train_groups)
     history: list[dict[str, Any]] = []
-    effective_epochs = 0 if args.control == "random_direction" else args.epochs
+    effective_epochs = 0 if args.control == "random_direction" or args.load_subspace else args.epochs
     for epoch in range(effective_epochs):
         random.shuffle(train_keys)
         total_loss = 0.0
@@ -422,7 +522,7 @@ def run(args: argparse.Namespace) -> None:
         print(json.dumps(row), flush=True)
 
     normalize_effect = args.control != "red_blue"
-    train_detail, train_metrics = evaluate(
+    train_detail, train_metrics, train_eval_anchor_skip_counts = evaluate(
         model,
         tokenizer,
         train_pairs,
@@ -432,8 +532,10 @@ def run(args: argparse.Namespace) -> None:
         raw,
         args.batch_size,
         normalize_effect,
+        args.eval_source_anchor,
+        args.eval_anchor,
     )
-    eval_detail, eval_metrics = evaluate(
+    eval_detail, eval_metrics, eval_anchor_skip_counts = evaluate(
         model,
         tokenizer,
         eval_pairs,
@@ -443,6 +545,8 @@ def run(args: argparse.Namespace) -> None:
         raw,
         args.batch_size,
         normalize_effect,
+        args.eval_source_anchor,
+        args.eval_anchor,
     )
 
     out_dir = Path(args.out_dir)
@@ -457,6 +561,7 @@ def run(args: argparse.Namespace) -> None:
         "site": args.site,
         "rank": args.rank,
         "control": args.control,
+        "load_subspace": args.load_subspace,
         "subtasks": sorted(subtask_filter),
         "regimes": sorted(regime_filter),
         "train_regimes": sorted(train_regimes),
@@ -472,6 +577,11 @@ def run(args: argparse.Namespace) -> None:
         "split_by": args.split_by,
         "eval_frac": args.eval_frac,
         "epochs": effective_epochs,
+        "train_anchor": "verb_final_subtoken",
+        "eval_source_anchor": args.eval_source_anchor,
+        "eval_anchor": args.eval_anchor,
+        "train_eval_anchor_skip_counts": train_eval_anchor_skip_counts,
+        "eval_anchor_skip_counts": eval_anchor_skip_counts,
         "lr": args.lr,
         "train_metrics": train_metrics,
         "eval_metrics": eval_metrics,
@@ -479,7 +589,9 @@ def run(args: argparse.Namespace) -> None:
             "V1 infrastructure DAS on fixed-subject scaffold; do not treat as final semantic causal evidence. "
             "shuffled_label retrains on permuted labels; dummy_verb tests template solvability without verb signal; "
             "random_direction evaluates an untrained random subspace of the same rank; "
-            "red_blue keeps real prompts/activation sources but replaces all readout targets with clean=' red' and corrupt=' blue'."
+            "red_blue keeps real prompts/activation sources but replaces all readout targets with clean=' red' and corrupt=' blue'. "
+            "eval_source_anchor selects where the clean-corrupt projected delta is read; "
+            "eval_anchor selects where that delta is injected, leaving DAS training at the verb-final anchor."
         ),
     }
     (out_dir / f"{run_slug}.manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
@@ -506,6 +618,9 @@ def main() -> None:
     ap.add_argument("--grad-clip", type=float, default=1.0)
     ap.add_argument("--eval-frac", type=float, default=0.25)
     ap.add_argument("--split-by", choices=("pair", "lemma_pair"), default="lemma_pair")
+    ap.add_argument("--eval-source-anchor", choices=("train_anchor", "verb_final_subtoken", "subject_final_subtoken"), default="train_anchor")
+    ap.add_argument("--eval-anchor", choices=("train_anchor", "verb_final_subtoken", "subject_final_subtoken"), default="train_anchor")
+    ap.add_argument("--load-subspace", default="")
     ap.add_argument(
         "--control",
         choices=("none", "shuffled_label", "dummy_verb", "random_direction", "red_blue"),

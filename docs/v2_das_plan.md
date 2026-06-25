@@ -232,6 +232,17 @@ python3 scripts/run_pythia_das_v1.py \
   --pairing balanced_pool
 ```
 
+Run the whole-pair LP behavioral gate before retraining DAS on a whole-sentence
+objective:
+
+```bash
+python3 scripts/run_pythia_whole_pair_lp.py \
+  --data data/aligned_templates_v2/lexical_licensing_v2_aligned.jsonl \
+  --subtasks causative,inchoative \
+  --regimes head,low \
+  --run-name 20260625-pythia14b-v2-whole-pair-lp
+```
+
 Run the unrelated target-token capacity control with the same v2 prompts and
 activation sources, but a fixed readout axis:
 
@@ -263,5 +274,46 @@ python3 scripts/run_pythia_das_v1.py \
   --run-name 20260623-pythia14b-v2-das-head-to-low-l23-red_blue-s17
 ```
 
+Run the injection-site specificity control by reusing the trained lexical
+subspace, reading the projected clean-corrupt delta from the verb-final slot,
+and moving only the evaluation-time patch site away from the verb:
+
+```bash
+for layer in 18 20; do
+  python3 scripts/run_pythia_das_v1.py \
+    --data data/aligned_templates_v2/lexical_licensing_v2_aligned.jsonl \
+    --subtasks causative,inchoative \
+    --train-regimes head \
+    --eval-regimes head,low \
+    --site "resid_post_layer_${layer}" \
+    --rank 1 \
+    --pairing balanced_pool \
+    --seed 17 \
+    --control none \
+    --run-name "20260623-pythia14b-v2-das-head-to-low-l${layer}-none-s17"
+
+  python3 scripts/run_pythia_das_v1.py \
+    --data data/aligned_templates_v2/lexical_licensing_v2_aligned.jsonl \
+    --subtasks causative,inchoative \
+    --train-regimes head \
+    --eval-regimes head,low \
+    --site "resid_post_layer_${layer}" \
+    --rank 1 \
+    --pairing balanced_pool \
+    --seed 17 \
+    --control none \
+    --load-subspace "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l${layer}-none-s17.subspace.pt" \
+    --eval-source-anchor verb_final_subtoken \
+    --eval-anchor subject_final_subtoken \
+    --run-name "20260623-pythia14b-v2-das-head-to-low-l${layer}-none-s17-verb_to_subject_anchor"
+done
+```
+
+The score is still the next-token continuation after the full verb-final
+prompt. Running this before the final layer leaves later attention layers
+available, so a subject-token intervention has a possible path to the final
+verb-position logits.
+
 Tokenizer IDs were verified from the cached `EleutherAI/pythia-1.4b`
-tokenizer JSON. Model runs remain pending for a transformer-enabled runtime.
+tokenizer JSON. Completed v2 model outputs are summarized under `reports/` and
+stored under `results/`.
