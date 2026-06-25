@@ -60,6 +60,45 @@ OBJECT_SCHEMAS = (
     ("overlay_subject_trial", "During the trial, the {subject} will {verb}"),
 )
 
+COMMON_OBJECT_FILLERS = (
+    "vase",
+    "box",
+    "cup",
+    "plate",
+    "toy",
+    "rope",
+    "lock",
+    "towel",
+)
+
+MANUAL_SUBJECT_FILLERS = {
+    "animate": (
+        "worker",
+        "teacher",
+        "doctor",
+        "student",
+        "driver",
+        "artist",
+        "chef",
+        "child",
+    ),
+    "inanimate": (
+        "door",
+        "glass",
+        "cup",
+        "box",
+        "rope",
+        "shirt",
+        "paper",
+        "toy",
+    ),
+}
+COMMON_SUBJECT_FILLERS = MANUAL_SUBJECT_FILLERS["animate"] + MANUAL_SUBJECT_FILLERS["inanimate"]
+SUBJECT_KIND_BY_FILLER = {
+    **{subject: "animate" for subject in MANUAL_SUBJECT_FILLERS["animate"]},
+    **{subject: "inanimate" for subject in MANUAL_SUBJECT_FILLERS["inanimate"]},
+}
+
 DROP_SCHEMAS = (
     ("overlay_subject_studio", "In the studio, the {subject} will {verb}"),
     ("overlay_subject_shift", "After the shift, the {subject} will {verb}"),
@@ -642,6 +681,75 @@ def deterministic_sample(candidates: list[VerbCandidate], limit: int | None, see
     return sorted(ordered[:limit], key=lambda c: (c.lemma, c.source_idx))
 
 
+def common_object_filler(seed_key: str, seed: int) -> dict[str, str]:
+    index = int(stable_unit(seed_key, seed) * len(COMMON_OBJECT_FILLERS)) % len(COMMON_OBJECT_FILLERS)
+    return {
+        "expression": COMMON_OBJECT_FILLERS[index],
+        "_class": "shared_common_object",
+        "_source": "manual_common_object_fillers",
+        "artifact": "1",
+        "animate": "0",
+        "frequent": "1",
+        "mass": "0",
+        "physical": "1",
+        "pl": "0",
+        "sg": "1",
+    }
+
+
+def manual_subject_fillers(subject_kind: str, count: int, seed_key: str, seed: int) -> list[dict[str, str]]:
+    fillers = MANUAL_SUBJECT_FILLERS[subject_kind]
+    start = int(stable_unit(seed_key, seed) * len(fillers)) % len(fillers)
+    out: list[dict[str, str]] = []
+    for offset in range(max(1, count)):
+        expression = fillers[(start + offset) % len(fillers)]
+        out.append(
+            {
+                "expression": expression,
+                "_class": f"manual_{subject_kind}_subject",
+                "_source": "manual_common_subject_fillers",
+                "animate": "1" if subject_kind == "animate" else "0",
+                "frequent": "1",
+                "mass": "0",
+                "physical": "1",
+                "pl": "0",
+                "sg": "1",
+            }
+        )
+    return out
+
+
+def common_subject_fillers(count: int, seed_key: str, seed: int) -> list[dict[str, str]]:
+    n = max(1, count)
+    start = int(stable_unit(seed_key, seed) * len(COMMON_SUBJECT_FILLERS)) % len(COMMON_SUBJECT_FILLERS)
+    out: list[dict[str, str]] = []
+    for offset in range(n):
+        expression = COMMON_SUBJECT_FILLERS[(start + offset) % len(COMMON_SUBJECT_FILLERS)]
+        subject_kind = SUBJECT_KIND_BY_FILLER[expression]
+        out.append(
+            {
+                "expression": expression,
+                "_class": f"manual_{subject_kind}_subject",
+                "_source": "manual_common_subject_fillers",
+                "animate": "1" if subject_kind == "animate" else "0",
+                "frequent": "1",
+                "mass": "0",
+                "physical": "1",
+                "pl": "0",
+                "sg": "1",
+            }
+        )
+    return out
+
+
+def frame_continuation_for(subtask: str, object_text: str) -> str:
+    if subtask in {"causative", "transitive"}:
+        if not object_text:
+            raise ValueError(f"object-frame subtask {subtask!r} requires an object filler")
+        return f" the {object_text}."
+    return "."
+
+
 def make_row(
     candidate: VerbCandidate,
     schema_id: str,
@@ -655,6 +763,8 @@ def make_row(
     subject_text = subject["expression"]
     object_text = obj["expression"] if obj else ""
     prompt = template.format(subject=subject_text, verb=candidate.lemma)
+    frame_continuation = frame_continuation_for(candidate.subtask, object_text)
+    full_sentence = f"{prompt}{frame_continuation}"
     subject_sig = subject_text
     context_id = f"{schema_id}_{subject_sig}"
     row_id = f"v2|{candidate.regime}|{candidate.subtask}|{context_id}|{candidate.side}|{candidate.lemma}|{row_index}"
@@ -679,6 +789,10 @@ def make_row(
         "frame_label": frame_label,
         "expected_target": expected_target,
         "contrast_target": contrast_target,
+        "frame_continuation": frame_continuation,
+        "full_sentence": full_sentence,
+        "sentence_is_grammatical": candidate.side == "good",
+        "whole_pair_object": object_text,
         "source_idx": candidate.source_idx,
         "source_text": candidate.source_text,
         "source_zipf": candidate.source_zipf,
@@ -686,14 +800,14 @@ def make_row(
         "inventory_source": candidate.inventory_source,
         "curation_reason": candidate.curation_reason,
         "subject": subject_text,
-        "subject_class": "overlay_arg_1_match",
+        "subject_class": subject.get("_class", "overlay_arg_1_match"),
         "subject_role_probe": "arg_1",
-        "subject_source": "freqblimp_vocabulary_overlay",
+        "subject_source": subject.get("_source", "freqblimp_vocabulary_overlay"),
         "subject_overlay_features": {field: subject.get(field, "") for field in NOUN_FIELDS if subject.get(field, "")},
         "object": object_text,
-        "object_class": "overlay_arg_2_match" if obj else "",
+        "object_class": obj.get("_class", "overlay_arg_2_match") if obj else "",
         "object_role_probe": "arg_2" if obj else "",
-        "object_source": "freqblimp_vocabulary_overlay" if obj else "",
+        "object_source": obj.get("_source", "freqblimp_vocabulary_overlay") if obj else "",
         "object_overlay_features": {field: obj.get(field, "") for field in NOUN_FIELDS if obj and obj.get(field, "")},
         "verb_arg_1": profile.arg_1 if profile else "",
         "verb_arg_2": profile.arg_2 if profile else "",
@@ -726,32 +840,30 @@ def build_rows(
             # Keep subjects shared across good/bad sides for the core v2
             # causative/inchoative contrasts; per-verb role constraints are
             # still recorded on each row.
-            if subtask == "causative":
-                subject_condition = "animate=1"
-            elif subtask == "inchoative":
-                subject_condition = "physical=1^animate=0"
+            if subtask in {"causative", "inchoative"}:
+                subjects = common_subject_fillers(
+                    subject_variants_per_context,
+                    f"{regime}|{subtask}|{schema_id}|subject",
+                    seed,
+                )
             else:
                 profile_conditions = [c.profile.arg_1 for c in sampled if c.profile and c.profile.arg_1]
                 subject_condition = profile_conditions[0] if profile_conditions else "noun=1"
-            subjects = sample_matching_nouns(
-                nouns,
-                subject_condition,
-                subject_variants_per_context,
-                f"{regime}|{subtask}|{schema_id}|subject",
-                seed,
-            )
+                subjects = sample_matching_nouns(
+                    nouns,
+                    subject_condition,
+                    subject_variants_per_context,
+                    f"{regime}|{subtask}|{schema_id}|subject",
+                    seed,
+                )
             for variant_idx, subject in enumerate(subjects):
+                shared_object: dict[str, str] | None = None
+                if subtask in {"causative", "transitive"}:
+                    shared_object = common_object_filler(f"{regime}|{subtask}|{schema_id}|object|{variant_idx}", seed)
                 for candidate in sampled:
                     obj = None
-                    if candidate.profile and candidate.profile.arg_2:
-                        objects = sample_matching_nouns(
-                            nouns,
-                            candidate.profile.arg_2,
-                            1,
-                            f"{candidate.lemma}|{schema_id}|object|{variant_idx}",
-                            seed,
-                        )
-                        obj = objects[0] if objects else None
+                    if subtask in {"causative", "transitive"}:
+                        obj = shared_object
                     rows.append(make_row(candidate, f"{schema_id}_s{variant_idx:02d}", template, subject, obj, row_index))
                     row_index += 1
     return rows
@@ -794,6 +906,10 @@ def verify_rows(rows: list[dict[str, Any]], model_name: str, local_files_only: b
             row["decision_token_index"] = prompt_len - 1
             row["expected_target_token_count"] = target_token_lengths[row["expected_target"]]
             row["contrast_target_token_count"] = target_token_lengths[row["contrast_target"]]
+            row["frame_continuation_token_count"] = len(
+                tokenizer.encode(str(row["frame_continuation"]), add_special_tokens=False)
+            )
+            row["full_sentence_token_count"] = len(tokenizer.encode(str(row["full_sentence"]), add_special_tokens=False))
             prompt_counts[prompt_len] += 1
             prefix_counts[prefix_len] += 1
             verb_region_counts[verb_region_len] += 1
@@ -844,12 +960,14 @@ def write_report(path: Path, candidates: list[VerbCandidate], rows: list[dict[st
         "- Low-frequency rows retain `source_zipf_regime` metadata: `xtail=1.2-2.2`, `tail=2.4-3.2`, and `low_gap=2.2-2.4`.",
         "- Supplemental v2 bad-side verbs are included from the repo-local JSON inventory after the same Zipf-band check.",
         "- Non-curated subtasks, when requested, fall back to canonical `freq-blimp` JSONL outputs.",
-        "- Subject/object fillers come from `freq-blimp/vocabulary_overlay.csv`.",
+        "- Core causative/inchoative subject fillers come from a small manual common-noun inventory.",
+        "- Non-core subject/object fillers can still fall back to `freq-blimp/vocabulary_overlay.csv`.",
         "- The archived `blimp-rare` swapping pipeline is not used.",
         "- Intervention anchor: `verb_final_subtoken`.",
-        "- Subject/object fillers are sampled from overlay rows matching `arg_1`/`arg_2` constraints.",
-        "- Noun sampling prefers `frequent=1` and `sg=1` overlay rows but falls back to the full role-matching pool.",
+        "- Subject choice is deliberately decorrelated from good/bad side and from verb argument metadata.",
+        "- Object-frame continuations use shared common object fillers within each matched context.",
         "- Each context family is generated with both target labels.",
+        "- Full-sentence fields are included for whole-pair LP scoring; `prompt` remains the verb-final prefix for interventions.",
         "- Counts below distinguish row count from unique verified lemma count.",
         "",
         "## Candidate Verb Inventory",

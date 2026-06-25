@@ -7,12 +7,14 @@
 - Low-frequency rows retain `source_zipf_regime` metadata: `xtail=1.2-2.2`, `tail=2.4-3.2`, and `low_gap=2.2-2.4`.
 - Supplemental v2 bad-side verbs are included from the repo-local JSON inventory after the same Zipf-band check.
 - Non-curated subtasks, when requested, fall back to canonical `freq-blimp` JSONL outputs.
-- Subject/object fillers come from `freq-blimp/vocabulary_overlay.csv`.
+- Core causative/inchoative subject fillers come from a small manual common-noun inventory.
+- Non-core subject/object fillers can still fall back to `freq-blimp/vocabulary_overlay.csv`.
 - The archived `blimp-rare` swapping pipeline is not used.
 - Intervention anchor: `verb_final_subtoken`.
-- Subject/object fillers are sampled from overlay rows matching `arg_1`/`arg_2` constraints.
-- Noun sampling prefers `frequent=1` and `sg=1` overlay rows but falls back to the full role-matching pool.
+- Subject choice is deliberately decorrelated from good/bad side and from verb argument metadata.
+- Object-frame continuations use shared common object fillers within each matched context.
 - Each context family is generated with both target labels.
+- Full-sentence fields are included for whole-pair LP scoring; `prompt` remains the verb-final prefix for interventions.
 - Counts below distinguish row count from unique verified lemma count.
 
 ## Candidate Verb Inventory
@@ -224,83 +226,18 @@
 
 ## Sampled Subjects
 
-- `babe` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `baby` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `babyminder` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `babysitter` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `chiseller` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `choirboy` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `choirmaster` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `chooser` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `magpie` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `magus` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `mahout` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `maid` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `megatheriid` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `megatheriidae` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `megatherium` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `megillah` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `nationalist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `nativist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `naturalist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `naturist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `nauclea` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `naucrates` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `naumachia` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `naumachy` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `neurolinguist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `neurologist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `neuroscientist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `neurosurgeon` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `ovocon` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `ovolo` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `ovotestis` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `ovral` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `raftsman` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `ragamuffin` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `ragpicker` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `ragsorter` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `rhizobiaceae` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `rhizobium` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `rhizoctinia` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `rhizoid` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `scatterbrain` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `scattergood` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `scenarist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `sceneshifter` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `sharecropper` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `shareholder` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `shareowner` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `sharer` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `spinet` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `spinnaker` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `spinner` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `spinus` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `syndicalist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `syndicator` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `synonymist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `syntactician` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 62
-- `tsouic` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `tsuga` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `tt` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `tuamotus` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `twinkie` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `twinkler` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `twistwood` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `twitterer` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `urd` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `urinator` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `urologist` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `urth` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 56
-- `vocative` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `vociferation` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `voiceprint` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `voile` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 61
-- `wayside` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `wbc` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `weakener` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `weald` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `windflower` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `windhoek` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `windjammer` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
-- `windlass` `overlay_arg_1_match` `freqblimp_vocabulary_overlay`: 50
+- `artist` `manual_animate_subject` `manual_common_subject_fillers`: 62
+- `box` `manual_inanimate_subject` `manual_common_subject_fillers`: 340
+- `child` `manual_animate_subject` `manual_common_subject_fillers`: 62
+- `cup` `manual_inanimate_subject` `manual_common_subject_fillers`: 346
+- `doctor` `manual_animate_subject` `manual_common_subject_fillers`: 435
+- `door` `manual_inanimate_subject` `manual_common_subject_fillers`: 179
+- `driver` `manual_animate_subject` `manual_common_subject_fillers`: 118
+- `glass` `manual_inanimate_subject` `manual_common_subject_fillers`: 296
+- `paper` `manual_inanimate_subject` `manual_common_subject_fillers`: 364
+- `rope` `manual_inanimate_subject` `manual_common_subject_fillers`: 408
+- `shirt` `manual_inanimate_subject` `manual_common_subject_fillers`: 414
+- `student` `manual_animate_subject` `manual_common_subject_fillers`: 118
+- `teacher` `manual_animate_subject` `manual_common_subject_fillers`: 373
+- `toy` `manual_inanimate_subject` `manual_common_subject_fillers`: 625
+- `worker` `manual_animate_subject` `manual_common_subject_fillers`: 440
