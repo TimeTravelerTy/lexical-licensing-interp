@@ -1,0 +1,4 @@
+split,regime,cell,n_causative_good,n_causative_bad,n_inchoative_good,n_inchoative_bad,causative_good_minus_bad,inchoative_good_minus_bad,calibrated_inchoative_good_minus_bad,licensing_axis_pass
+eval,head,causative_calibrated_inchoative_good_vs_bad,115,115,62,62,-0.8575325504593228,-0.8058936831451229,0.8058936831451229,1
+eval,low,causative_calibrated_inchoative_good_vs_bad,280,280,280,280,-0.21484534963965451,-0.34865852929651764,0.34865852929651764,1
+train,head,causative_calibrated_inchoative_good_vs_bad,325,325,258,258,-0.24436786216038886,-0.4939985438719279,0.4939985438719279,1
