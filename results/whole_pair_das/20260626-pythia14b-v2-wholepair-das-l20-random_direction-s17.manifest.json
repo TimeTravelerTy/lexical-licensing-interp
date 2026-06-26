@@ -1,0 +1,42 @@
+{
+  "model": "EleutherAI/pythia-1.4b",
+  "data": "data/aligned_templates_v2/lexical_licensing_v2_aligned.jsonl",
+  "site": "resid_post_layer_20",
+  "rank": 1,
+  "control": "random_direction",
+  "load_subspace": "",
+  "subtasks": [
+    "causative",
+    "inchoative"
+  ],
+  "train_regimes": [
+    "head"
+  ],
+  "eval_regimes": [
+    "head",
+    "low"
+  ],
+  "directions": [
+    "bad_to_good",
+    "good_to_bad"
+  ],
+  "rows_loaded": 3560,
+  "whole_pairs": 1320,
+  "directed_pairs_after_retokenize": 2640,
+  "train_pairs": 1166,
+  "eval_pairs": 1474,
+  "pair_skip_counts": {},
+  "retokenize_skip_counts": {},
+  "split_by": "lemma_pair",
+  "eval_frac": 0.25,
+  "epochs": 0,
+  "lr": 0.05,
+  "injection_detail_csv": "results/whole_pair_das/20260626-pythia14b-v2-wholepair-das-l20-random_direction-s17.injection_detail.csv",
+  "injection_summary_csv": "results/whole_pair_das/20260626-pythia14b-v2-wholepair-das-l20-random_direction-s17.injection_summary.csv",
+  "projection_detail_csv": "results/whole_pair_das/20260626-pythia14b-v2-wholepair-das-l20-random_direction-s17.projection_detail.csv",
+  "projection_summary_csv": "results/whole_pair_das/20260626-pythia14b-v2-wholepair-das-l20-random_direction-s17.projection_summary.csv",
+  "validation_summary_csv": "results/whole_pair_das/20260626-pythia14b-v2-wholepair-das-l20-random_direction-s17.validation_cell_summary.csv",
+  "history_csv": "results/whole_pair_das/20260626-pythia14b-v2-wholepair-das-l20-random_direction-s17.history.csv",
+  "subspace": "results/whole_pair_das/20260626-pythia14b-v2-wholepair-das-l20-random_direction-s17.subspace.pt",
+  "note": "Whole-pair DAS at the verb-final residual stream. The trained injection objective is post-anchor suffix log probability because this intervention cannot change the probability assigned to the already-observed verb token. Projection summaries read the learned subspace from full-sentence verb-anchor activations without intervention."
+}
