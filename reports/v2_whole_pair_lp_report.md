@@ -20,7 +20,7 @@ whether an object follows the verb.
 
 ## Summary
 
-| regime | subtask | n | mean good-bad LP | success rate | min | max |
+| regime | subtask | n | mean good-bad LP | accuracy | min | max |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | head | causative | 440 | 4.654 | 0.893 | -5.997 | 14.384 |
 | head | inchoative | 320 | 3.026 | 0.809 | -4.172 | 11.095 |

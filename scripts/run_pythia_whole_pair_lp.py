@@ -153,7 +153,7 @@ def summarize(detail_rows: list[dict[str, Any]], keys: tuple[str, ...]) -> list[
                 **dict(zip(keys, key_values)),
                 "n": len(rows),
                 "mean_good_minus_bad_lp": mean(margins),
-                "success_rate": mean([1.0 if value > 0 else 0.0 for value in margins]),
+                "accuracy": mean([1.0 if value > 0 else 0.0 for value in margins]),
                 "min_good_minus_bad_lp": min(margins),
                 "max_good_minus_bad_lp": max(margins),
             }
@@ -246,7 +246,7 @@ def run(args: argparse.Namespace) -> None:
         "summary_csv": str(summary_csv),
         "source_summary_csv": str(source_csv),
         "overall": summarize(detail_rows, ("regime",)),
-        "note": "Whole-pair behavioral gate: success means LP(full grammatical-frame sentence) > LP(full ungrammatical-frame sentence).",
+        "note": "Whole-pair behavioral gate: accuracy means LP(full grammatical-frame sentence) > LP(full ungrammatical-frame sentence).",
     }
     manifest_json.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(json.dumps(manifest, indent=2), flush=True)

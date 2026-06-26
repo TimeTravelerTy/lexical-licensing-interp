@@ -1,4 +1,4 @@
-regime,subtask,n,mean_good_minus_bad_lp,success_rate,min_good_minus_bad_lp,max_good_minus_bad_lp
+regime,subtask,n,mean_good_minus_bad_lp,accuracy,min_good_minus_bad_lp,max_good_minus_bad_lp
 head,causative,440,4.653551552512429,0.8931818181818182,-5.997493743896484,14.383743286132812
 head,inchoative,320,3.02587348818779,0.809375,-4.1715087890625,11.09532356262207
 low,causative,280,5.505762277330671,0.9892857142857143,-1.16229248046875,14.12984848022461

@@ -1,4 +1,4 @@
-regime,subtask,good_source_zipf_regime,bad_source_zipf_regime,good_inventory_source,bad_inventory_source,n,mean_good_minus_bad_lp,success_rate,min_good_minus_bad_lp,max_good_minus_bad_lp
+regime,subtask,good_source_zipf_regime,bad_source_zipf_regime,good_inventory_source,bad_inventory_source,n,mean_good_minus_bad_lp,accuracy,min_good_minus_bad_lp,max_good_minus_bad_lp
 head,causative,head,head,freqblimp_curated,freqblimp_curated,440,4.653551552512429,0.8931818181818182,-5.997493743896484,14.383743286132812
 head,inchoative,head,head,freqblimp_curated,freqblimp_curated,60,2.7310503641764323,0.7833333333333333,-2.8334617614746094,9.157032012939453
 head,inchoative,head,head,freqblimp_curated,supplemental_v2_bad_verbs,260,3.0939095937288723,0.8153846153846154,-4.1715087890625,11.09532356262207

@@ -20,7 +20,7 @@
       "regime": "head",
       "n": 760,
       "mean_good_minus_bad_lp": 3.9682134201652124,
-      "success_rate": 0.8578947368421053,
+      "accuracy": 0.8578947368421053,
       "min_good_minus_bad_lp": -5.997493743896484,
       "max_good_minus_bad_lp": 14.383743286132812
     },
@@ -28,10 +28,10 @@
       "regime": "low",
       "n": 560,
       "mean_good_minus_bad_lp": 5.536946725845337,
-      "success_rate": 0.9607142857142857,
+      "accuracy": 0.9607142857142857,
       "min_good_minus_bad_lp": -6.315326690673828,
       "max_good_minus_bad_lp": 14.12984848022461
     }
   ],
-  "note": "Whole-pair behavioral gate: success means LP(full grammatical-frame sentence) > LP(full ungrammatical-frame sentence)."
+  "note": "Whole-pair behavioral gate: accuracy means LP(full grammatical-frame sentence) > LP(full ungrammatical-frame sentence)."
 }
