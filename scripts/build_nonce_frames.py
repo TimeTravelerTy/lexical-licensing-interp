@@ -59,7 +59,7 @@ ONSETS = (
 )
 NUCLEI = ("a", "e", "i", "o", "u", "ai", "ee", "oo")
 CODAS = ("b", "ck", "d", "f", "g", "k", "l", "m", "n", "p", "sh", "t", "v", "x", "z")
-SUFFIXES = ("et", "en", "le", "ip", "op", "up")
+SUFFIXES = ("et", "en", "le", "ip", "op", "up", "iv", "ev", "om", "um")
 WORD_RE = re.compile(r"^[a-z]+$")
 
 PRIMING_SUBJECTS = (
