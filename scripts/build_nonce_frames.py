@@ -12,12 +12,16 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import re
 from pathlib import Path
 from typing import Any, Iterable
 
 from run_pythia_attribution_patching import DEFAULT_MODEL
 
+
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+os.environ.setdefault("RAYON_NUM_THREADS", "1")
 
 DEFAULT_OUT_DIR = "data/nonce_frames"
 DEFAULT_FRAMES = "data/nonce_frames/nonce_frames.jsonl"
@@ -119,10 +123,31 @@ def load_blocklist(paths: Iterable[Path]) -> tuple[set[str], list[str]]:
     return words, loaded
 
 
-def blocklist_reasons(stem: str, blocklist: set[str]) -> list[str]:
+def deletion_signatures(words: set[str]) -> dict[int, set[str]]:
+    signatures: dict[int, set[str]] = {}
+    for word in words:
+        if not 3 <= len(word) <= 9:
+            continue
+        bucket = signatures.setdefault(len(word), set())
+        for idx in range(len(word)):
+            bucket.add(word[:idx] + word[idx + 1 :])
+    return signatures
+
+
+def near_blocklisted_word(word: str, blocklist: set[str], signatures: dict[int, set[str]]) -> bool:
+    if word in blocklist:
+        return True
+    if any(word[:idx] + word[idx + 1 :] in blocklist for idx in range(len(word))):
+        return True
+    return any(word[:idx] + word[idx + 1 :] in signatures.get(len(word), set()) for idx in range(len(word)))
+
+
+def blocklist_reasons(stem: str, blocklist: set[str], signatures: dict[int, set[str]]) -> list[str]:
     reasons: list[str] = []
     if stem in blocklist:
         reasons.append("blocklisted_surface")
+    elif near_blocklisted_word(stem, blocklist, signatures):
+        reasons.append("near_blocklisted_surface")
     past = regular_past(stem)
     if past in blocklist:
         reasons.append("blocklisted_regular_past")
@@ -132,10 +157,13 @@ def blocklist_reasons(stem: str, blocklist: set[str]) -> list[str]:
         base = stem[: -len(suffix)]
         if len(base) >= 3 and base in blocklist:
             reasons.append(f"english_base_plus_{suffix}")
+        elif len(base) >= 4 and near_blocklisted_word(base, blocklist, signatures):
+            reasons.append(f"near_english_base_plus_{suffix}")
     return reasons
 
 
 def iter_candidate_stems(blocklist: set[str]) -> Iterable[tuple[str, list[str]]]:
+    signatures = deletion_signatures(blocklist)
     seen: set[str] = set()
     for onset in ONSETS:
         for nucleus in NUCLEI:
@@ -149,7 +177,7 @@ def iter_candidate_stems(blocklist: set[str]) -> Iterable[tuple[str, list[str]]]
                     if stem.endswith(("eed", "aid", "ood")):
                         continue
                     seen.add(stem)
-                    yield stem, blocklist_reasons(stem, blocklist)
+                    yield stem, blocklist_reasons(stem, blocklist, signatures)
 
 
 def regular_past(stem: str) -> str:
@@ -240,14 +268,14 @@ def build_rows(
         ]
         probe_schema = PROBE_SCHEMAS[pick_index(f"{lemma}|probe_schema", len(PROBE_SCHEMAS), seed)]
         probe_text = probe_schema.format(subject=probe_subject, lemma=lemma)
-        probe_token_count = len(tokenizer.encode(probe_text, add_special_tokens=False))
+        probe_context_ids = tokenizer.encode(f" {probe_text}", add_special_tokens=False)
+        probe_token_count = len(probe_context_ids)
         for frame in ("T+", "T-"):
             leads, lead_subjects = lead_sentences(lemma, frame, seed, n_leads)
             priming_text = " ".join(leads)
             full_context = f"{priming_text} {probe_text}"
             full_ids = tokenizer.encode(full_context, add_special_tokens=False)
-            probe_ids = tokenizer.encode(probe_text, add_special_tokens=False)
-            if len(full_ids) < len(probe_ids) or full_ids[-len(probe_ids) :] != probe_ids:
+            if len(full_ids) < len(probe_context_ids) or full_ids[-len(probe_context_ids) :] != probe_context_ids:
                 raise RuntimeError(f"probe text is not a suffix after tokenization for lemma={lemma} frame={frame}")
             row_id = f"nonce|{stem_index:04d}|{lemma}|{frame}"
             rows.append(
