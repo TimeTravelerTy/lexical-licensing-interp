@@ -100,6 +100,22 @@ def stem_sort_key(stem: str, seed: int) -> tuple[float, str]:
     return stable_unit(stem, seed), stem
 
 
+def suffix_for(stem: str) -> str:
+    for suffix in sorted(SUFFIXES, key=len, reverse=True):
+        if stem.endswith(suffix):
+            return suffix
+    return ""
+
+
+def target_suffix_counts(n_stems: int) -> dict[str, int]:
+    base = n_stems // len(SUFFIXES)
+    remainder = n_stems % len(SUFFIXES)
+    return {
+        suffix: base + (1 if index < remainder else 0)
+        for index, suffix in enumerate(SUFFIXES)
+    }
+
+
 def normalize_word(value: str) -> str:
     return value.strip().lower()
 
@@ -218,12 +234,14 @@ def tokenization_record(
 
     return {
         "lemma": stem,
+        "suffix": suffix_for(stem),
         "probe_surface": probe_surface,
         "probe_token_ids": ids,
         "probe_token_pieces": pieces,
         "probe_decoded_pieces": decoded_pieces,
         "probe_token_count": len(ids),
         "accepted": not reasons,
+        "selected": False,
         "reject_reasons": reasons,
     }
 
@@ -319,9 +337,11 @@ def run(args: argparse.Namespace) -> None:
     tokenizer = AutoTokenizer.from_pretrained(args.model, local_files_only=not args.allow_download)
     blocklist, blocklist_paths_loaded = load_blocklist(parse_path_arg(args.blocklists))
     candidates = sorted(iter_candidate_stems(blocklist), key=lambda item: stem_sort_key(item[0], args.seed))
+    suffix_targets = target_suffix_counts(args.n_stems)
+    suffix_selected_counts = {suffix: 0 for suffix in SUFFIXES}
 
     stem_records: list[dict[str, Any]] = []
-    accepted: list[dict[str, Any]] = []
+    selected: list[dict[str, Any]] = []
     for stem, lexical_reject_reasons in candidates:
         record = tokenization_record(
             tokenizer,
@@ -331,14 +351,17 @@ def run(args: argparse.Namespace) -> None:
             lexical_reject_reasons,
         )
         stem_records.append(record)
-        if record["accepted"]:
-            accepted.append(record)
-        if len(accepted) >= args.n_stems:
+        suffix = str(record["suffix"])
+        if record["accepted"] and suffix_selected_counts.get(suffix, 0) < suffix_targets.get(suffix, 0):
+            record["selected"] = True
+            selected.append(record)
+            suffix_selected_counts[suffix] += 1
+        if len(selected) >= args.n_stems:
             break
-    if len(accepted) < args.n_stems:
-        raise SystemExit(f"Only accepted {len(accepted)} stems; requested {args.n_stems}.")
+    if len(selected) < args.n_stems:
+        raise SystemExit(f"Only selected {len(selected)} stems under suffix quotas; requested {args.n_stems}.")
 
-    rows = build_rows(tokenizer, accepted, args.seed, args.n_leads)
+    rows = build_rows(tokenizer, selected, args.seed, args.n_leads)
     stem_path = Path(args.stem_out)
     frame_path = Path(args.out)
     write_jsonl(stem_path, stem_records)
@@ -346,9 +369,11 @@ def run(args: argparse.Namespace) -> None:
     manifest = {
         "model": args.model,
         "n_stems_requested": args.n_stems,
-        "n_stems_accepted": len(accepted),
+        "n_stems_selected": len(selected),
         "n_stem_records": len(stem_records),
         "n_frame_rows": len(rows),
+        "suffix_targets": suffix_targets,
+        "suffix_selected_counts": suffix_selected_counts,
         "frames": ["T+", "T-"],
         "n_leads": args.n_leads,
         "seed": args.seed,
