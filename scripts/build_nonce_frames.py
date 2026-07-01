@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import json
 import math
+import re
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -21,6 +22,11 @@ from run_pythia_attribution_patching import DEFAULT_MODEL
 DEFAULT_OUT_DIR = "data/nonce_frames"
 DEFAULT_FRAMES = "data/nonce_frames/nonce_frames.jsonl"
 DEFAULT_STEMS = "data/nonce_frames/nonce_stems.jsonl"
+DEFAULT_BLOCKLISTS = (
+    "data/nonce_frames/nonce_blocklist.txt",
+    "/usr/share/dict/words",
+    "/usr/dict/words",
+)
 
 ONSETS = (
     "b",
@@ -49,36 +55,8 @@ ONSETS = (
 )
 NUCLEI = ("a", "e", "i", "o", "u", "ai", "ee", "oo")
 CODAS = ("b", "ck", "d", "f", "g", "k", "l", "m", "n", "p", "sh", "t", "v", "x", "z")
-SUFFIXES = ("", "et", "en", "le", "ip", "op", "up")
-
-RESERVED_WORDS = {
-    "be",
-    "do",
-    "go",
-    "make",
-    "take",
-    "have",
-    "get",
-    "put",
-    "run",
-    "set",
-    "let",
-    "cut",
-    "hit",
-    "bet",
-    "bid",
-    "fit",
-    "bit",
-    "sit",
-    "kit",
-    "pit",
-    "bat",
-    "cat",
-    "dog",
-    "box",
-    "cup",
-    "toy",
-}
+SUFFIXES = ("et", "en", "le", "ip", "op", "up")
+WORD_RE = re.compile(r"^[a-z]+$")
 
 PRIMING_SUBJECTS = (
     ("artist", "animate"),
@@ -118,24 +96,47 @@ def stem_sort_key(stem: str, seed: int) -> tuple[float, str]:
     return stable_unit(stem, seed), stem
 
 
-def iter_candidate_stems() -> Iterable[str]:
-    manual = (
-        "blicket",
-        "dax",
-        "wug",
-        "glorp",
-        "mip",
-        "norp",
-        "plim",
-        "sprock",
-        "tav",
-        "zindle",
-    )
+def normalize_word(value: str) -> str:
+    return value.strip().lower()
+
+
+def parse_path_arg(value: str) -> tuple[Path, ...]:
+    return tuple(Path(part.strip()) for part in value.split(",") if part.strip())
+
+
+def load_blocklist(paths: Iterable[Path]) -> tuple[set[str], list[str]]:
+    words: set[str] = set()
+    loaded: list[str] = []
+    for path in paths:
+        if not path.exists():
+            continue
+        loaded.append(str(path))
+        with path.open(encoding="utf-8", errors="ignore") as f:
+            for line in f:
+                word = normalize_word(line)
+                if WORD_RE.fullmatch(word):
+                    words.add(word)
+    return words, loaded
+
+
+def blocklist_reasons(stem: str, blocklist: set[str]) -> list[str]:
+    reasons: list[str] = []
+    if stem in blocklist:
+        reasons.append("blocklisted_surface")
+    past = regular_past(stem)
+    if past in blocklist:
+        reasons.append("blocklisted_regular_past")
+    for suffix in SUFFIXES:
+        if not stem.endswith(suffix):
+            continue
+        base = stem[: -len(suffix)]
+        if len(base) >= 3 and base in blocklist:
+            reasons.append(f"english_base_plus_{suffix}")
+    return reasons
+
+
+def iter_candidate_stems(blocklist: set[str]) -> Iterable[tuple[str, list[str]]]:
     seen: set[str] = set()
-    for stem in manual:
-        if stem not in RESERVED_WORDS:
-            seen.add(stem)
-            yield stem
     for onset in ONSETS:
         for nucleus in NUCLEI:
             for coda in CODAS:
@@ -143,12 +144,12 @@ def iter_candidate_stems() -> Iterable[str]:
                     stem = f"{onset}{nucleus}{coda}{suffix}"
                     if len(stem) < 3 or len(stem) > 9:
                         continue
-                    if stem in RESERVED_WORDS or stem in seen:
+                    if stem in seen:
                         continue
                     if stem.endswith(("eed", "aid", "ood")):
                         continue
                     seen.add(stem)
-                    yield stem
+                    yield stem, blocklist_reasons(stem, blocklist)
 
 
 def regular_past(stem: str) -> str:
@@ -157,14 +158,20 @@ def regular_past(stem: str) -> str:
     return f"{stem}ed"
 
 
-def tokenization_record(tokenizer: Any, stem: str, max_probe_tokens: int, min_probe_tokens: int) -> dict[str, Any]:
+def tokenization_record(
+    tokenizer: Any,
+    stem: str,
+    max_probe_tokens: int,
+    min_probe_tokens: int,
+    lexical_reject_reasons: list[str],
+) -> dict[str, Any]:
     probe_surface = f" {stem}"
     ids = tokenizer.encode(probe_surface, add_special_tokens=False)
     pieces = tokenizer.convert_ids_to_tokens(ids)
     decoded_pieces = [tokenizer.decode([token_id]) for token_id in ids]
     stripped_decoded = [piece.strip() for piece in decoded_pieces]
 
-    reasons: list[str] = []
+    reasons: list[str] = list(lexical_reject_reasons)
     if len(ids) < min_probe_tokens:
         reasons.append("too_few_probe_tokens")
     if len(ids) > max_probe_tokens:
@@ -282,12 +289,19 @@ def run(args: argparse.Namespace) -> None:
     from transformers import AutoTokenizer
 
     tokenizer = AutoTokenizer.from_pretrained(args.model, local_files_only=not args.allow_download)
-    candidates = sorted(iter_candidate_stems(), key=lambda stem: stem_sort_key(stem, args.seed))
+    blocklist, blocklist_paths_loaded = load_blocklist(parse_path_arg(args.blocklists))
+    candidates = sorted(iter_candidate_stems(blocklist), key=lambda item: stem_sort_key(item[0], args.seed))
 
     stem_records: list[dict[str, Any]] = []
     accepted: list[dict[str, Any]] = []
-    for stem in candidates:
-        record = tokenization_record(tokenizer, stem, args.max_probe_tokens, args.min_probe_tokens)
+    for stem, lexical_reject_reasons in candidates:
+        record = tokenization_record(
+            tokenizer,
+            stem,
+            args.max_probe_tokens,
+            args.min_probe_tokens,
+            lexical_reject_reasons,
+        )
         stem_records.append(record)
         if record["accepted"]:
             accepted.append(record)
@@ -312,6 +326,9 @@ def run(args: argparse.Namespace) -> None:
         "seed": args.seed,
         "max_probe_tokens": args.max_probe_tokens,
         "min_probe_tokens": args.min_probe_tokens,
+        "blocklist_paths_requested": [str(path) for path in parse_path_arg(args.blocklists)],
+        "blocklist_paths_loaded": blocklist_paths_loaded,
+        "blocklist_word_count": len(blocklist),
         "stem_jsonl": str(stem_path),
         "frame_jsonl": str(frame_path),
         "note": "Nonce stems are filtered only on the probe surface form; T+/T- share the identical probe text.",
@@ -329,6 +346,7 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=17)
     ap.add_argument("--max-probe-tokens", type=int, default=4)
     ap.add_argument("--min-probe-tokens", type=int, default=1)
+    ap.add_argument("--blocklists", default=",".join(DEFAULT_BLOCKLISTS))
     ap.add_argument("--allow-download", action="store_true")
     ap.add_argument("--out", default=DEFAULT_FRAMES)
     ap.add_argument("--stem-out", default=DEFAULT_STEMS)
