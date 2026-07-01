@@ -1,0 +1,55 @@
+{
+  "behavior": "results/nonce_frames/20260701-pythia14b-nonce.behavior_by_lemma.csv",
+  "projection": "results/nonce_frames/20260701-pythia14b-nonce-l16.projection_by_lemma.csv",
+  "n_lemmas": 80,
+  "behavior_threshold": 0.02,
+  "projection_threshold": 0.0,
+  "merged_csv": "results/nonce_frames/20260701-pythia14b-nonce-l16.merged_by_lemma.csv",
+  "grid_csv": "results/nonce_frames/20260701-pythia14b-nonce-l16.grid.csv",
+  "pooled_csv": "results/nonce_frames/20260701-pythia14b-nonce-l16.pooled.csv",
+  "report_md": "results/nonce_frames/20260701-pythia14b-nonce-l16.report.md",
+  "pooled": {
+    "n_lemmas": 80,
+    "mean_delta_p_object": 0.7836479328048881,
+    "sem_delta_p_object": 0.018504020712529344,
+    "frac_delta_p_positive": 1.0,
+    "mean_delta_coord_calibrated": 9.702375334873796,
+    "sem_delta_coord_calibrated": 0.5037342643782583,
+    "frac_delta_coord_positive": 1.0,
+    "frac_projection_status_aligns": 1.0
+  },
+  "grid": [
+    {
+      "behavior_status": "moves",
+      "projection_status": "aligns",
+      "n": 80,
+      "mean_delta_p_object": 0.7836479328048881,
+      "mean_delta_coord_calibrated": 9.702375334873796,
+      "lemmas": "bekup bifum bipum bufen bufum buviv dezip difev dizop dizup dokip draicken draickle draickop droocken droockip droockle fazup fegom felev"
+    },
+    {
+      "behavior_status": "moves",
+      "projection_status": "off_axis",
+      "n": 0,
+      "mean_delta_p_object": NaN,
+      "mean_delta_coord_calibrated": NaN,
+      "lemmas": ""
+    },
+    {
+      "behavior_status": "flat",
+      "projection_status": "aligns",
+      "n": 0,
+      "mean_delta_p_object": NaN,
+      "mean_delta_coord_calibrated": NaN,
+      "lemmas": ""
+    },
+    {
+      "behavior_status": "flat",
+      "projection_status": "off_axis",
+      "n": 0,
+      "mean_delta_p_object": NaN,
+      "mean_delta_coord_calibrated": NaN,
+      "lemmas": ""
+    }
+  ]
+}

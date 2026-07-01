@@ -1,0 +1,53 @@
+{
+  "model": "EleutherAI/pythia-1.4b",
+  "data": "data/nonce_frames/nonce_frames.jsonl",
+  "rows_scored": 160,
+  "lemmas_scored": 80,
+  "object_starts": [
+    " the",
+    " a",
+    " an",
+    " this",
+    " that",
+    " my",
+    " his",
+    " her",
+    " their",
+    " its",
+    " our",
+    " your",
+    " it",
+    " them"
+  ],
+  "object_token_ids": [
+    253,
+    247,
+    271,
+    436,
+    326,
+    619,
+    521,
+    617,
+    616,
+    697,
+    776,
+    634,
+    352,
+    731
+  ],
+  "period_target": ".",
+  "period_token_id": 15,
+  "detail_csv": "results/nonce_frames/20260701-pythia14b-nonce.behavior_detail.csv",
+  "by_lemma_csv": "results/nonce_frames/20260701-pythia14b-nonce.behavior_by_lemma.csv",
+  "summary_csv": "results/nonce_frames/20260701-pythia14b-nonce.behavior_summary.csv",
+  "pooled": {
+    "n_lemmas": 80,
+    "mean_delta_p_object": 0.7836479328048881,
+    "sem_delta_p_object": 0.018504020712529344,
+    "median_delta_p_object": 0.8416837304830551,
+    "frac_delta_positive": 1.0,
+    "min_delta_p_object": 0.23162341117858887,
+    "max_delta_p_object": 0.9795104246586561
+  },
+  "note": "Behavioral gate compares object-start continuation mass against period only; EOS is not included."
+}

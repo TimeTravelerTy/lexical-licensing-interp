@@ -1,0 +1,40 @@
+{
+  "model": "EleutherAI/pythia-1.4b",
+  "data": "data/nonce_frames/nonce_frames.jsonl",
+  "site": "resid_post_layer_20",
+  "rank": 1,
+  "subspace": "results/whole_pair_das/20260626-pythia14b-v2-wholepair-das-l20-none-s17.subspace.pt",
+  "subspace_metadata_site": "resid_post_layer_20",
+  "rows_projected": 160,
+  "lemmas_projected": 80,
+  "detail_csv": "results/nonce_frames/20260701-pythia14b-nonce-l20.projection_detail.csv",
+  "by_lemma_csv": "results/nonce_frames/20260701-pythia14b-nonce-l20.projection_by_lemma.csv",
+  "summary_csv": "results/nonce_frames/20260701-pythia14b-nonce-l20.projection_summary.csv",
+  "calibration": {
+    "calibration_csv": "results/whole_pair_das/20260626-pythia14b-v2-wholepair-das-l20-none-s17.projection_detail.csv",
+    "orientation": -1.0,
+    "calibration_status": "calibrated_inchoative_positive_causative_negative",
+    "n_causative": 1440,
+    "n_inchoative": 1200,
+    "mean_causative_raw_coord": -8.096838173684146,
+    "mean_inchoative_raw_coord": -21.911502575675648,
+    "raw_inchoative_minus_causative": -13.814664401991502,
+    "calibrated_inchoative_minus_causative": 13.814664401991502
+  },
+  "behavior_gate": {
+    "behavior_summary_csv": "results/nonce_frames/20260701-pythia14b-nonce.behavior_summary.csv",
+    "behavior_gate_status": "passed",
+    "mean_delta_p_object": 0.7836479328048881,
+    "min_abs_delta_p": 0.02
+  },
+  "pooled": {
+    "n_lemmas": 80,
+    "mean_delta_coord_raw": -12.286409708857537,
+    "sem_delta_coord_raw": 0.6463289995837557,
+    "frac_raw_delta_positive": 0.0,
+    "mean_delta_coord_calibrated": 12.286409708857537,
+    "sem_delta_coord_calibrated": 0.6463289995837557,
+    "frac_calibrated_delta_positive": 1.0
+  },
+  "note": "Projection is descriptive only. No axis refit is performed."
+}
