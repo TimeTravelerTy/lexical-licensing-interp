@@ -7,6 +7,7 @@ import argparse
 import csv
 import json
 import math
+import re
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterable
@@ -32,6 +33,7 @@ DEFAULT_OBJECT_STARTS = (
     " it",
     " them",
 )
+TARGET_LABEL_RE = re.compile(r"[^a-z0-9]+")
 
 
 def mean(values: list[float]) -> float:
@@ -61,6 +63,11 @@ def parse_object_starts(value: str) -> tuple[str, ...]:
             stripped = f" {stripped}"
         targets.append(stripped)
     return tuple(targets)
+
+
+def target_label(target: str) -> str:
+    label = TARGET_LABEL_RE.sub("_", target.strip().lower()).strip("_")
+    return label or "blank"
 
 
 def iter_jsonl(path: Path) -> Iterable[dict[str, Any]]:
@@ -132,25 +139,67 @@ def score_batch(
     batch_indices = torch.arange(inputs.input_ids.shape[0], device=device)
     logits = outputs.logits[batch_indices, last_indices, :].float()
     probs = F.softmax(logits, dim=-1)
-    object_mass = probs[:, object_ids].sum(dim=-1)
+    object_probs = probs[:, object_ids]
+    object_mass = object_probs.sum(dim=-1)
     period_mass = probs[:, period_id]
     denom = object_mass + period_mass
     object_vs_period = object_mass / denom.clamp_min(1e-30)
 
     out: list[dict[str, Any]] = []
-    for row, obj, per, obj_v_per, last_idx in zip(
+    object_prob_rows = object_probs.detach().float().cpu().tolist()
+    object_labels = [target_label(str(row_target)) for row_target in getattr(score_batch, "object_starts", [])]
+    for row, obj, per, obj_v_per, last_idx, obj_probs in zip(
         rows,
         object_mass.detach().float().cpu().tolist(),
         period_mass.detach().float().cpu().tolist(),
         object_vs_period.detach().float().cpu().tolist(),
         last_indices.detach().cpu().tolist(),
+        object_prob_rows,
     ):
         item = dict(row)
         item["scored_token_index"] = int(last_idx)
         item["p_object_raw"] = obj
         item["p_period"] = per
         item["p_object_vs_period"] = obj_v_per
+        for label, prob in zip(object_labels, obj_probs):
+            item[f"p_token_{label}"] = prob
         out.append(item)
+    return out
+
+
+def summarize_by_token(
+    detail_rows: list[dict[str, Any]],
+    object_starts: list[str],
+    object_ids: list[int],
+) -> list[dict[str, Any]]:
+    grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in detail_rows:
+        grouped[str(row["frame"])].append(row)
+
+    out: list[dict[str, Any]] = []
+    for target, token in zip(object_starts, object_ids):
+        label = target_label(target)
+        column = f"p_token_{label}"
+        plus_values = [float(row[column]) for row in grouped.get("T+", []) if column in row]
+        minus_values = [float(row[column]) for row in grouped.get("T-", []) if column in row]
+        plus_object = [float(row["p_object_raw"]) for row in grouped.get("T+", [])]
+        minus_object = [float(row["p_object_raw"]) for row in grouped.get("T-", [])]
+        mean_plus = mean(plus_values)
+        mean_minus = mean(minus_values)
+        mean_plus_object = mean(plus_object)
+        mean_minus_object = mean(minus_object)
+        out.append(
+            {
+                "target": target,
+                "label": label,
+                "token_id": token,
+                "mean_p_raw_t_plus": mean_plus,
+                "mean_p_raw_t_minus": mean_minus,
+                "delta_p_raw": mean_plus - mean_minus,
+                "share_object_mass_t_plus": "" if mean_plus_object == 0 else mean_plus / mean_plus_object,
+                "share_object_mass_t_minus": "" if mean_minus_object == 0 else mean_minus / mean_minus_object,
+            }
+        )
     return out
 
 
@@ -222,6 +271,7 @@ def run(args: argparse.Namespace) -> None:
     model.config.use_cache = False
 
     detail_rows: list[dict[str, Any]] = []
+    setattr(score_batch, "object_starts", kept_object_starts)
     with torch.no_grad():
         for start in range(0, len(rows), args.batch_size):
             batch = rows[start : start + args.batch_size]
@@ -230,6 +280,7 @@ def run(args: argparse.Namespace) -> None:
                 torch.cuda.empty_cache()
 
     lemma_rows = summarize_by_lemma(detail_rows)
+    token_rows = summarize_by_token(detail_rows, kept_object_starts, object_ids)
     pooled_rows = summarize_pooled(lemma_rows)
 
     out_dir = Path(args.out_dir)
@@ -238,10 +289,12 @@ def run(args: argparse.Namespace) -> None:
     detail_csv = out_dir / f"{run_slug}.behavior_detail.csv"
     by_lemma_csv = out_dir / f"{run_slug}.behavior_by_lemma.csv"
     summary_csv = out_dir / f"{run_slug}.behavior_summary.csv"
+    token_summary_csv = out_dir / f"{run_slug}.behavior_token_summary.csv"
     manifest_json = out_dir / f"{run_slug}.behavior_manifest.json"
     write_csv(detail_csv, detail_rows)
     write_csv(by_lemma_csv, lemma_rows)
     write_csv(summary_csv, pooled_rows)
+    write_csv(token_summary_csv, token_rows)
 
     manifest = {
         "model": args.model,
@@ -255,6 +308,7 @@ def run(args: argparse.Namespace) -> None:
         "detail_csv": str(detail_csv),
         "by_lemma_csv": str(by_lemma_csv),
         "summary_csv": str(summary_csv),
+        "token_summary_csv": str(token_summary_csv),
         "pooled": pooled_rows[0] if pooled_rows else {},
         "note": "Behavioral gate compares object-start continuation mass against period only; EOS is not included.",
     }
