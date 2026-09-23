@@ -11,13 +11,14 @@ from __future__ import annotations
 
 import argparse
 import csv
+import heapq
 import json
 from pathlib import Path
 
 from wordfreq import zipf_frequency
 
 from build_matched_passives import (
-    BANDS, PARADIGMS, collect_forms, pair_inventory, resolve_lemmas,
+    BANDS, PARADIGMS, collect_forms, resolve_lemmas, stable_hash,
 )
 
 
@@ -36,8 +37,84 @@ BAD_EXCLUDE = {
         putrefy scoot squawk sunbathe worm zigzag
     """.split()),
 }
-GOOD_EXCLUDE = {"xtail": frozenset({"gnash", "moralize", "overreach", "wheedle"})}
+GOOD_EXCLUDE = {
+    "tail": frozenset({"breast", "lynch"}),
+    "xtail": frozenset({"gnash", "moralize", "overreach", "ravish", "wheedle"}),
+}
 TEMPLATES = ("was", "had been")
+
+
+def _minimum_gap_pairs(good, bad, max_pairs, seed):
+    """Maximum-cardinality, minimum-total-Zipf-gap one-to-one matching.
+
+    The older pilot's augmenting-path matcher maximized coverage but could
+    choose a systematically higher-frequency bad side within its calipers.
+    Unit-capacity min-cost flow makes the secondary frequency objective
+    explicit and deterministic.
+    """
+    good = sorted(good, key=lambda r: r["lemma"])
+    bad = sorted(bad, key=lambda r: r["lemma"])
+    n_good, n_bad = len(good), len(bad)
+    source, sink = n_good + n_bad, n_good + n_bad + 1
+    graph = [[] for _ in range(sink + 1)]
+
+    def edge(u, v, cost):
+        graph[u].append([v, 1, cost, len(graph[v])])
+        graph[v].append([u, 0, -cost, len(graph[u]) - 1])
+
+    for gi in range(n_good):
+        edge(source, gi, 0)
+    for bi in range(n_bad):
+        edge(n_good + bi, sink, 0)
+    for gi, g in enumerate(good):
+        for bi, b in enumerate(bad):
+            lemma_gap = abs(g["lemma_zipf"] - b["lemma_zipf"])
+            form_gap = abs(g["form_zipf"] - b["form_zipf"])
+            if g["lemma"] == b["lemma"] or lemma_gap > 0.2500001 or form_gap > 0.3500001:
+                continue
+            tie = int(stable_hash(g["lemma"] + "/" + b["lemma"], seed), 16) % 10
+            cost = round((lemma_gap + form_gap) * 100000) * 10 + tie
+            edge(gi, n_good + bi, cost)
+
+    potential = [0] * len(graph)
+    flow = 0
+    while flow < max_pairs:
+        dist = [float("inf")] * len(graph)
+        previous = [None] * len(graph)
+        dist[source] = 0
+        queue = [(0, source)]
+        while queue:
+            distance, u = heapq.heappop(queue)
+            if distance != dist[u]:
+                continue
+            for ei, (v, capacity, cost, _) in enumerate(graph[u]):
+                if not capacity:
+                    continue
+                next_distance = distance + cost + potential[u] - potential[v]
+                if next_distance < dist[v]:
+                    dist[v] = next_distance
+                    previous[v] = (u, ei)
+                    heapq.heappush(queue, (next_distance, v))
+        if previous[sink] is None:
+            break
+        for v, distance in enumerate(dist):
+            if distance < float("inf"):
+                potential[v] += distance
+        v = sink
+        while v != source:
+            u, ei = previous[v]
+            item = graph[u][ei]
+            item[1] = 0
+            graph[v][item[3]][1] = 1
+            v = u
+        flow += 1
+
+    pairs = []
+    for gi, g in enumerate(good):
+        for bi_node, capacity, _, _ in graph[gi]:
+            if n_good <= bi_node < n_good + n_bad and capacity == 0:
+                pairs.append((g, bad[bi_node - n_good]))
+    return sorted(pairs, key=lambda pair: (pair[0]["lemma_zipf"], pair[0]["lemma"]))
 
 
 def _rows_for_forms(forms, lemmas, key):
@@ -119,7 +196,7 @@ def build(args):
         bad = (reviewed_head if band == "head" else
                [r for r in _shared_inventory(forms, lemmas, band, "bad")
                 if r["lemma"] not in BAD_EXCLUDE[band]])
-        pairs = pair_inventory(good, bad, args.max_pairs_per_band, args.seed)
+        pairs = _minimum_gap_pairs(good, bad, args.max_pairs_per_band, args.seed)
         lo, hi = BANDS[band]
         audit["bands"][band] = {"good_candidates": len(good),
                                 "bad_candidates": len(bad), "verb_pairs": len(pairs),

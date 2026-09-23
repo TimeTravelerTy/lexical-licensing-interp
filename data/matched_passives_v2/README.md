@@ -4,7 +4,8 @@ This is the second Pythia-1.4B passive pilot. It uses FreqBLiMP's released
 passive good verbs and tail/xtail bad verbs, plus the audited head bad pool on
 the `codex/passive-head-coverage` branch of `freqblimp-generation` (commit
 `50eabb4`). `scripts/build_diverse_passives.py` makes one-to-one good/bad verb
-matches and combines each with a manually checked patient and agent noun.
+matches by minimum total lemma-plus-participle Zipf gap and combines each
+with a manually checked patient and agent noun.
 The model input is `pairs.jsonl`; `audit.json` records the candidate counts
 and exclusion decisions.
 
@@ -20,9 +21,12 @@ The band definition follows the **realised participle** frequencies in the
 released FreqBLiMP data. Good and bad verbs are also matched within 0.25
 Zipf for their lemmas and 0.35 Zipf for their participles. The tighter
 condition in which *both lemmas also fall inside the band's window* contains
-25 head, 18 tail, and 23 xtail pairs. The form-only primary analysis and
+25 head, 21 tail, and 15 xtail pairs. The form-only primary analysis and
 that lexical sensitivity analysis should be reported separately. `vanish`
 has lemma Zipf 3.39 but participle Zipf 3.72, as in released head data.
+The mean signed good-minus-bad lemma/form Zipf gaps are near zero in all
+three bands; `pairs.jsonl` records the selected pairs and `audit.json`
+records the calipers.
 
 The head inventory is below the requested 50 because manual review found
 plausible passive readings for several released bad verbs, and fewer than 50
@@ -34,7 +38,11 @@ those subgroups should also be inspected.
 Patient and agent nouns vary by verb pair. This increases lexical coverage
 but does not hold every surrounding word fixed across all frequency bands.
 Pair-level margins and leave-one-pair-out checks are therefore central to
-interpretation. A flat or noisy result is inconclusive at this size.
+interpretation. Some low-frequency verbs also have uncommon alternate
+transitive senses, though the selected patient nouns do not support them;
+these are sentence-level contrasts, not claims that every bad verb is
+categorically nonpassivizable. A flat or noisy result is inconclusive at
+this size.
 
 To regenerate the input locally:
 

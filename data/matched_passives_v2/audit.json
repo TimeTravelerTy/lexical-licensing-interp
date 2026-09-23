@@ -109,10 +109,15 @@
     ]
   },
   "good_exclusions": {
+    "tail": [
+      "breast",
+      "lynch"
+    ],
     "xtail": [
       "gnash",
       "moralize",
       "overreach",
+      "ravish",
       "wheedle"
     ]
   },
@@ -124,16 +129,16 @@
       "both_lemmas_in_band": 25
     },
     "tail": {
-      "good_candidates": 299,
+      "good_candidates": 297,
       "bad_candidates": 55,
       "verb_pairs": 50,
-      "both_lemmas_in_band": 18
+      "both_lemmas_in_band": 21
     },
     "xtail": {
-      "good_candidates": 116,
+      "good_candidates": 115,
       "bad_candidates": 68,
       "verb_pairs": 50,
-      "both_lemmas_in_band": 23
+      "both_lemmas_in_band": 15
     }
   },
   "n_sentence_pairs": 504
