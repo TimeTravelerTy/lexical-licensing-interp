@@ -41,10 +41,15 @@ def bootstrap_difference(head, xtail, seed, repeats=5000):
     return draws[int(0.025 * repeats)], draws[int(0.975 * repeats)]
 
 
-def markdown_report(summary, per_pair, comparison, leave_one_out):
-    lines = ["# Pythia 1.4B matched-context passive pilot", "",
-             "Positive margins favor the passivizable verb. The lexical unit is one verb pair; "
-             "eight shared contexts are averaged within each pair. Intervals bootstrap verb pairs.", "",
+def markdown_report(summary, per_pair, comparison, leave_one_out, design):
+    diverse = design == "diverse"
+    context_note = ("Two auxiliary templates are averaged within each pair. "
+                    "Patient and agent nouns were manually selected for each good verb."
+                    if diverse else "Eight shared human-patient contexts are averaged within each pair.")
+    lines = ["# Pythia 1.4B diverse-context passive pilot" if diverse else
+             "# Pythia 1.4B matched-context passive pilot", "",
+             "Positive margins favor the passivizable verb. The lexical unit is one verb pair. "
+             + context_note + " Intervals bootstrap verb pairs.", "",
              "## Regime summaries", "",
              "| Paradigm | Band | Verb pairs | Accuracy | Mean log-probability margin | 95% interval for margin |",
              "| --- | --- | ---: | ---: | ---: | ---: |"]
@@ -63,7 +68,7 @@ def markdown_report(summary, per_pair, comparison, leave_one_out):
                      f"[{x['ci_lo']:.3f}, {x['ci_hi']:.3f}] | "
                      f"[{min(values):.3f}, {max(values):.3f}] | {flips}/{len(subset)} |")
     lines += ["", "## Individual verb pairs", "",
-              "Each row is the mean across the eight contexts. See `per_verb_pair.csv` for "
+              "Each row is the mean across the tested templates. See `per_verb_pair.csv` for "
               "participle frequencies, token counts, and verb/suffix contributions.", ""]
     for paradigm in ("passive_1", "passive_2"):
         lines += [f"### {paradigm}", "",
@@ -77,10 +82,18 @@ def markdown_report(summary, per_pair, comparison, leave_one_out):
     lines += ["## Interpretation notes", "",
               "The selected verbs are unique within each paradigm and reused across the two "
               "paradigms by design. Good and bad verbs are matched within 0.25 lemma Zipf "
-              "and 0.35 participle Zipf. Shared human-patient frames are broadly plausible "
-              "for the selected good verbs, though individual meanings may still make a "
-              "sentence unusual, especially among xtail verbs. This is a small curated gate; "
-              "a flat or noisy effect is inconclusive.", ""]
+              "and 0.35 participle Zipf. " +
+              ("Bands follow realised participle frequency. The reviewed head bad inventory "
+               "contains fewer than 50 defensible verbs; the head estimate is less precise. "
+               "Patient nouns vary by pair, so semantic context may still contribute to "
+               "differences across regimes. Some head bad verbs select prepositions in active "
+               "sentences, but their bare passives omit the preposition. A flat or noisy effect "
+               "is inconclusive."
+               if diverse else
+               "Shared human-patient frames are broadly plausible for the selected good verbs, "
+               "though individual meanings may still make a sentence unusual, especially "
+               "among xtail verbs. This is a small curated gate; a flat or noisy effect is "
+               "inconclusive."), ""]
     return "\n".join(lines)
 
 
@@ -97,6 +110,7 @@ def run(args):
     for (band, paradigm, good, bad), group in sorted(by_pair.items()):
         per_pair.append({
             "band": band, "paradigm": paradigm, "good_lemma": good, "bad_lemma": bad,
+            "bad_active_class": group[0].get("bad_active_class", ""),
             "n_frames": len(group),
             "good_lemma_zipf": float(group[0]["good_lemma_zipf"]),
             "bad_lemma_zipf": float(group[0]["bad_lemma_zipf"]),
@@ -173,7 +187,7 @@ def run(args):
                        "n_verb_pairs": len(group), "accuracy": mean([int(x["correct"]) for x in group]),
                        "mean_margin": mean([float(x["whole_margin"]) for x in group])})
     write_csv(outdir / "by_frame.csv", frames)
-    (outdir / "report.md").write_text(markdown_report(summary, per_pair, comparison, leave_one_out), encoding="utf-8")
+    (outdir / "report.md").write_text(markdown_report(summary, per_pair, comparison, leave_one_out, args.design), encoding="utf-8")
     print(f"Wrote summaries and report to {outdir}")
     for item in summary:
         print(f"{item['paradigm']} {item['band']}: n={item['n_verb_pairs']}, "
@@ -185,4 +199,5 @@ if __name__ == "__main__":
     ap.add_argument("--scores", default="results/matched_passives/pythia14b_scores.csv")
     ap.add_argument("--out-dir", default="reports/matched_passives")
     ap.add_argument("--seed", type=int, default=17)
+    ap.add_argument("--design", choices=("original", "diverse"), default="original")
     run(ap.parse_args())

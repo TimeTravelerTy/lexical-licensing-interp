@@ -1,0 +1,140 @@
+{
+  "source": {
+    "source_rows": {
+      "head/passive_1": 1000,
+      "head/passive_2": 1000,
+      "tail/passive_1": 1000,
+      "tail/passive_2": 1000,
+      "xtail/passive_1": 1000,
+      "xtail/passive_2": 1000
+    },
+    "unparsed_sentences": [
+      {
+        "band": "head",
+        "paradigm": "passive_1",
+        "side": "good",
+        "sentence": "That consul wasn't baby-sat by these shows about politics."
+      },
+      {
+        "band": "head",
+        "paradigm": "passive_1",
+        "side": "good",
+        "sentence": "That syndicate was baby-sat by most genus."
+      },
+      {
+        "band": "head",
+        "paradigm": "passive_1",
+        "side": "good",
+        "sentence": "This felony is baby-sat by some nature."
+      },
+      {
+        "band": "head",
+        "paradigm": "passive_2",
+        "side": "good",
+        "sentence": "Many wolves were baby-sat."
+      },
+      {
+        "band": "head",
+        "paradigm": "passive_2",
+        "side": "good",
+        "sentence": "That handler isn't baby-sat."
+      },
+      {
+        "band": "head",
+        "paradigm": "passive_2",
+        "side": "good",
+        "sentence": "Comics are baby-sat."
+      }
+    ]
+  },
+  "head_review": "/private/tmp/freq-blimp-passive-head/generation_projects/blimp/passive_head_review.csv",
+  "contexts": "data/matched_passives_v2/contexts.csv",
+  "matching_calipers": {
+    "lemma_zipf_max_abs_gap": 0.25,
+    "form_zipf_max_abs_gap": 0.35
+  },
+  "band_definition": "realised participle Zipf only, as in released FreqBLiMP",
+  "bad_exclusions": {
+    "tail": [
+      "balk",
+      "branch",
+      "congregate",
+      "converge",
+      "decay",
+      "dine",
+      "disapprove",
+      "disembark",
+      "flop",
+      "gush",
+      "materialize",
+      "meditate",
+      "mutate",
+      "proliferate",
+      "prosper",
+      "resonate",
+      "revert",
+      "shiver",
+      "spiral",
+      "sprawl",
+      "swell",
+      "veer"
+    ],
+    "xtail": [
+      "abut",
+      "berth",
+      "billet",
+      "bluster",
+      "calve",
+      "clack",
+      "clatter",
+      "debark",
+      "drone",
+      "flounce",
+      "gyrate",
+      "hyperventilate",
+      "intermarry",
+      "jig",
+      "molt",
+      "ossify",
+      "patter",
+      "prattle",
+      "procreate",
+      "protrude",
+      "putrefy",
+      "scoot",
+      "squawk",
+      "sunbathe",
+      "worm",
+      "zigzag"
+    ]
+  },
+  "good_exclusions": {
+    "xtail": [
+      "gnash",
+      "moralize",
+      "overreach",
+      "wheedle"
+    ]
+  },
+  "bands": {
+    "head": {
+      "good_candidates": 261,
+      "bad_candidates": 26,
+      "verb_pairs": 26,
+      "both_lemmas_in_band": 25
+    },
+    "tail": {
+      "good_candidates": 299,
+      "bad_candidates": 55,
+      "verb_pairs": 50,
+      "both_lemmas_in_band": 18
+    },
+    "xtail": {
+      "good_candidates": 116,
+      "bad_candidates": 68,
+      "verb_pairs": 50,
+      "both_lemmas_in_band": 23
+    }
+  },
+  "n_sentence_pairs": 504
+}
