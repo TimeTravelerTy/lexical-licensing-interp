@@ -8,7 +8,9 @@ from collections import defaultdict
 from pathlib import Path
 
 from build_matched_passives import BANDS
-from summarize_matched_passives import bootstrap_interval, mean, read_csv, write_csv
+from summarize_matched_passives import (
+    bootstrap_difference, bootstrap_interval, mean, read_csv, write_csv,
+)
 
 
 def run(args):
@@ -26,6 +28,9 @@ def run(args):
                       "strict_lemma_band": lo <= gz <= hi and lo <= bz <= hi,
                       "bad_active_class": group[0]["bad_active_class"],
                       "margin": mean([float(r["whole_margin"]) for r in group]),
+                      "verb_margin": mean([float(r["verb_margin"]) for r in group]),
+                      "suffix_margin": mean([float(r["suffix_margin"]) for r in group]),
+                      "by_margin": mean([float(r["by_margin"]) for r in group]),
                       "accuracy": mean([int(r["correct"]) for r in group])})
 
     out = Path(args.out_dir)
@@ -46,6 +51,24 @@ def run(args):
                                   "mean_margin": mean(margins), "margin_ci_lo": lo,
                                   "margin_ci_hi": hi})
     write_csv(out / "frequency_sensitivity.csv", band_rows)
+
+    differences = []
+    for paradigm in ("passive_1", "passive_2"):
+        for subset in ("all", "both_lemmas_in_band"):
+            for metric in ("margin", "accuracy", "verb_margin", "suffix_margin", "by_margin"):
+                head = [p[metric] for p in pairs if p["paradigm"] == paradigm
+                        and p["band"] == "head"
+                        and (subset == "all" or p["strict_lemma_band"])]
+                xtail = [p[metric] for p in pairs if p["paradigm"] == paradigm
+                         and p["band"] == "xtail"
+                         and (subset == "all" or p["strict_lemma_band"])]
+                lo, hi = bootstrap_difference(head, xtail, args.seed)
+                differences.append({"paradigm": paradigm, "subset": subset,
+                                    "metric": metric, "n_head": len(head),
+                                    "n_xtail": len(xtail),
+                                    "difference": mean(head) - mean(xtail),
+                                    "ci_lo": lo, "ci_hi": hi})
+    write_csv(out / "frequency_sensitivity_comparison.csv", differences)
 
     class_rows = []
     classes = sorted({p["bad_active_class"] for p in pairs if p["band"] == "head"})

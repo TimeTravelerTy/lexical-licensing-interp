@@ -19,7 +19,7 @@ def read_csv(path):
 def write_csv(path, rows):
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -72,7 +72,7 @@ def markdown_report(summary, per_pair, comparison, leave_one_out, design):
               "participle frequencies, token counts, and verb/suffix contributions.", ""]
     for paradigm in ("passive_1", "passive_2"):
         lines += [f"### {paradigm}", "",
-                  "| Band | Passivizable / intransitive | Accuracy | Mean margin |",
+                  "| Band | Passivizable / bad verb | Accuracy | Mean margin |",
                   "| --- | --- | ---: | ---: |"]
         for x in per_pair:
             if x["paradigm"] == paradigm:

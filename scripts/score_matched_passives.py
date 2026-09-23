@@ -85,7 +85,7 @@ def run(args):
                     result[f"{segment}_margin"] = g[f"{segment}_lp"] - b[f"{segment}_lp"]
                 result["correct"] = int(result["whole_margin"] > 0)
                 if writer is None:
-                    writer = csv.DictWriter(f, fieldnames=list(result))
+                    writer = csv.DictWriter(f, fieldnames=list(result), lineterminator="\n")
                     writer.writeheader()
                 writer.writerow(result)
             print(f"Scored {min(start + len(batch), len(rows))}/{len(rows)}", flush=True)

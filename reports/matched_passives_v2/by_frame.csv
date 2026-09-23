@@ -1,0 +1,13 @@
+paradigm,band,frame_id,n_verb_pairs,accuracy,mean_margin
+passive_1,head,had_been,26,1.0,9.877705208384073
+passive_1,head,was,26,1.0,8.782768571606049
+passive_1,tail,had_been,50,1.0,10.615036211822298
+passive_1,tail,was,50,0.98,9.322102909314562
+passive_1,xtail,had_been,50,1.0,7.839387235029135
+passive_1,xtail,was,50,0.98,6.516714512599865
+passive_2,head,had_been,26,1.0,7.327834156843332
+passive_2,head,was,26,1.0,6.452236698223994
+passive_2,tail,had_been,50,1.0,8.46583906018408
+passive_2,tail,was,50,0.98,7.309657212896273
+passive_2,xtail,had_been,50,0.96,5.868020644842181
+passive_2,xtail,was,50,0.96,4.415819498162018
