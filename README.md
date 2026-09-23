@@ -18,3 +18,5 @@ The immediate workflow is:
 
 See `docs/experiment_spec.md` for the concrete plan and command layout.
 
+The real-verb passive frequency pilot is documented in
+`docs/matched_passives.md`.

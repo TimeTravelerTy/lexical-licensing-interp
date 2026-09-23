@@ -1,0 +1,81 @@
+{
+  "source_rows": {
+    "head/passive_1": 1000,
+    "head/passive_2": 1000,
+    "tail/passive_1": 1000,
+    "tail/passive_2": 1000,
+    "xtail/passive_1": 1000,
+    "xtail/passive_2": 1000
+  },
+  "unparsed_sentences": [
+    {
+      "band": "head",
+      "paradigm": "passive_1",
+      "side": "good",
+      "sentence": "That consul wasn't baby-sat by these shows about politics."
+    },
+    {
+      "band": "head",
+      "paradigm": "passive_1",
+      "side": "good",
+      "sentence": "That syndicate was baby-sat by most genus."
+    },
+    {
+      "band": "head",
+      "paradigm": "passive_1",
+      "side": "good",
+      "sentence": "This felony is baby-sat by some nature."
+    },
+    {
+      "band": "head",
+      "paradigm": "passive_2",
+      "side": "good",
+      "sentence": "Many wolves were baby-sat."
+    },
+    {
+      "band": "head",
+      "paradigm": "passive_2",
+      "side": "good",
+      "sentence": "That handler isn't baby-sat."
+    },
+    {
+      "band": "head",
+      "paradigm": "passive_2",
+      "side": "good",
+      "sentence": "Comics are baby-sat."
+    }
+  ],
+  "excluded": {
+    "lemma_outside_source_band": 844,
+    "missing_or_ambiguous_lemma": 54
+  },
+  "inventory_counts": {
+    "head/passive_1/bad": 19,
+    "head/passive_1/good": 201,
+    "head/passive_2/bad": 19,
+    "head/passive_2/good": 203,
+    "tail/passive_1/bad": 33,
+    "tail/passive_1/good": 136,
+    "tail/passive_2/bad": 33,
+    "tail/passive_2/good": 130,
+    "xtail/passive_1/bad": 32,
+    "xtail/passive_1/good": 57,
+    "xtail/passive_2/bad": 32,
+    "xtail/passive_2/good": 56
+  },
+  "pair_counts": {
+    "head/passive_1": 11,
+    "head/passive_2": 11,
+    "tail/passive_1": 15,
+    "tail/passive_2": 15,
+    "xtail/passive_1": 12,
+    "xtail/passive_2": 12
+  },
+  "seed": 17,
+  "max_pairs_per_band": 20,
+  "contexts": 8,
+  "total_pairs": 608,
+  "source_root": "../freq-blimp",
+  "inventory": "curated",
+  "design": "same human-patient frames crossed with lemma-Zipf-matched verb classes"
+}
