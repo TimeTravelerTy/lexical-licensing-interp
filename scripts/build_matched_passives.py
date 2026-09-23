@@ -34,8 +34,8 @@ FRAMES = (
     ("teacher_worker", "The teacher", "the worker"),
 )
 CURATED_GOOD = {
-    "head": {"accompany", "seize", "dismiss", "warn", "educate", "punish",
-             "praise", "monitor", "remind", "defend", "blame", "welcome"},
+    "head": {"accompany", "avoid", "blame", "bless", "condemn", "confront",
+             "defend", "monitor", "punish", "remind", "welcome"},
     "tail": {"deride", "berate", "vilify", "delude", "chastise", "defame",
              "malign", "laud", "flog", "patronize", "pacify", "scrutinize",
              "terrorize", "interrogate", "befriend"},
@@ -127,23 +127,39 @@ def inventory(forms: dict, lemmas: dict, audit: dict) -> dict:
 
 
 def pair_inventory(good: list[dict], bad: list[dict], max_pairs: int, seed: int) -> list[tuple[dict, dict]]:
-    # Match each eligible passivizable verb to its nearest unused intransitive.
-    # The lexical class is frequency matched within each source band.
+    # Maximum-cardinality one-to-one matching under explicit lemma and
+    # participle Zipf calipers. Sorted edges make the result deterministic.
     good = sorted(good, key=lambda r: (r["lemma_zipf"], stable_hash(r["lemma"], seed)))
-    if len(good) > max_pairs:
-        indices = [round((i + 0.5) * len(good) / max_pairs - 0.5) for i in range(max_pairs)]
-        good = [good[i] for i in indices]
-    unused = {r["lemma"]: r for r in bad}
-    pairs = []
+    bad = sorted(bad, key=lambda r: (r["lemma_zipf"], stable_hash(r["lemma"], seed)))
+    edges = []
     for g in good:
-        candidates = [b for b in unused.values() if g["lemma"] != b["lemma"]]
-        if not candidates:
-            break
-        b = min(candidates, key=lambda b: (abs(g["lemma_zipf"] - b["lemma_zipf"]),
-                                          stable_hash(g["lemma"] + b["lemma"], seed)))
-        pairs.append((g, b))
-        del unused[b["lemma"]]
-    return pairs
+        eligible = [i for i, b in enumerate(bad)
+                    if g["lemma"] != b["lemma"]
+                    and abs(g["lemma_zipf"] - b["lemma_zipf"]) <= 0.25
+                    and abs(g["form_zipf"] - b["form_zipf"]) <= 0.35]
+        eligible.sort(key=lambda i: (
+            abs(g["lemma_zipf"] - bad[i]["lemma_zipf"])
+            + abs(g["form_zipf"] - bad[i]["form_zipf"]),
+            stable_hash(g["lemma"] + bad[i]["lemma"], seed),
+        ))
+        edges.append(eligible)
+    bad_to_good = {}
+
+    def augment(good_index: int, seen: set[int]) -> bool:
+        for bad_index in edges[good_index]:
+            if bad_index in seen:
+                continue
+            seen.add(bad_index)
+            if bad_index not in bad_to_good or augment(bad_to_good[bad_index], seen):
+                bad_to_good[bad_index] = good_index
+                return True
+        return False
+
+    for good_index in range(len(good)):
+        augment(good_index, set())
+    pairs = [(good[good_index], bad[bad_index]) for bad_index, good_index in bad_to_good.items()]
+    pairs.sort(key=lambda pair: (pair[0]["lemma_zipf"], pair[0]["lemma"]))
+    return pairs[:max_pairs]
 
 
 def build(args: argparse.Namespace) -> None:
@@ -188,7 +204,8 @@ def build(args: argparse.Namespace) -> None:
     audit.update({"seed": args.seed, "max_pairs_per_band": args.max_pairs_per_band,
                   "contexts": args.contexts, "total_pairs": len(rows),
                   "source_root": str(root), "inventory": args.inventory,
-                  "design": "same human-patient frames crossed with lemma-Zipf-matched verb classes"})
+                  "matching_calipers": {"lemma_zipf_max_abs_gap": 0.25, "form_zipf_max_abs_gap": 0.35},
+                  "design": "same human-patient frames crossed with lemma-and-form-Zipf-matched verb classes"})
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("w", encoding="utf-8") as f:

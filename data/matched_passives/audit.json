@@ -77,5 +77,9 @@
   "total_pairs": 608,
   "source_root": "../freq-blimp",
   "inventory": "curated",
-  "design": "same human-patient frames crossed with lemma-Zipf-matched verb classes"
+  "matching_calipers": {
+    "lemma_zipf_max_abs_gap": 0.25,
+    "form_zipf_max_abs_gap": 0.35
+  },
+  "design": "same human-patient frames crossed with lemma-and-form-Zipf-matched verb classes"
 }

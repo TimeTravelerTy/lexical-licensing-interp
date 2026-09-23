@@ -9,7 +9,9 @@ decreases when surrounding words are fixed?
 and `passive_2` JSONL files for the `head`, `tail`, and `xtail` bands. It uses
 only verb forms actually observed on the good or bad side of those files. The
 FreqBLiMP vocabulary tables map participles to lemmas; `wordfreq` English
-lemma Zipf values determine frequency bands and within-band pairing. The
+lemma Zipf values determine frequency bands. Within each band, good and bad
+verbs are paired one-to-one with absolute Zipf gaps at most 0.25 for lemmas
+and 0.35 for realized participles. The
 generator excludes ambiguous mappings and lemmas outside the nominal band.
 This is stricter than the original generator, which bands the realized form
 and may backfill candidates when a pool is small.
@@ -59,8 +61,10 @@ python3 scripts/summarize_matched_passives.py \
 `summary.csv` reports accuracy, mean margin, and cluster-bootstrap 95% intervals
 by paradigm and frequency band. The bootstrap resamples verb pairs, averaging
 their eight context results first. `per_verb_pair.csv` and `by_frame.csv`
-preserve heterogeneity. Do not interpret 8 frames for one verb pair as 8
-independent lexical observations.
+preserve heterogeneity. `head_xtail_comparison.csv` and `leave_one_out.csv`
+show the head–xtail difference and its sensitivity to every individual verb
+pair; `report.md` displays all verb-pair averages beside regime summaries.
+Do not interpret 8 frames for one verb pair as 8 independent lexical observations.
 
 ## Interpretation limits
 
