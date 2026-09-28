@@ -192,7 +192,7 @@ def run(args):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--ratings", default="results/fit_ratings/qwen3_32b.csv")
+    ap.add_argument("--ratings", default="results/fit_ratings/gemma4_31b_it.csv")
     ap.add_argument("--links", default="data/fit_ratings/item_links.csv")
     ap.add_argument("--scores", default="results/passive_band_cross/pythia14b_scores.csv")
     ap.add_argument("--v2-pairs", default="data/matched_passives_v2/pairs.jsonl")

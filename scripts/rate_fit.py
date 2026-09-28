@@ -55,10 +55,22 @@ def run(args):
         if len(ids) != 1:
             raise SystemExit(f"Digit {d!r} is not a single token: {ids}")
         digit_ids.append(ids[0])
-    dtype = getattr(torch, args.dtype)
-    model = AutoModelForCausalLM.from_pretrained(args.model, dtype=dtype, device_map=args.device_map,
-                                                 local_files_only=not args.allow_download).eval()
+    kwargs = {"dtype": getattr(torch, args.dtype), "device_map": args.device_map,
+              "local_files_only": not args.allow_download}
+    try:
+        model = AutoModelForCausalLM.from_pretrained(args.model, **kwargs).eval()
+    except ValueError:
+        # Multimodal checkpoints such as Gemma 4 register only an image-text class.
+        from transformers import AutoModelForImageTextToText
+        model = AutoModelForImageTextToText.from_pretrained(args.model, **kwargs).eval()
+    print(f"Loaded {type(model).__name__}", flush=True)
     device = next(model.parameters()).device
+
+    def last_logits(enc):
+        try:
+            return model(**enc, use_cache=False, logits_to_keep=1).logits[:, -1, :]
+        except TypeError:
+            return model(**enc, use_cache=False).logits[:, -1, :]
 
     jobs = [(item, name, build_prompt(tokenizer, PROMPTS[name], item["sentence"]))
             for item in items for name in args.prompts]
@@ -79,7 +91,7 @@ def run(args):
             enc = tokenizer([j[2] for j in batch], return_tensors="pt", padding=True,
                             add_special_tokens=False).to(device)
             with torch.inference_mode():
-                logits = model(**enc, use_cache=False, logits_to_keep=1).logits[:, -1, :].float()
+                logits = last_logits(enc).float()
             probs = torch.softmax(logits, dim=-1)[:, digit_ids].cpu()
             mass = probs.sum(dim=-1)
             norm = probs / mass.unsqueeze(-1)
@@ -99,12 +111,12 @@ def run(args):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--items", default="data/fit_ratings/items.jsonl")
-    ap.add_argument("--model", default="Qwen/Qwen3-32B")
+    ap.add_argument("--model", default="google/gemma-4-31B-it")
     ap.add_argument("--prompts", nargs="+", default=list(PROMPTS), choices=list(PROMPTS))
     ap.add_argument("--dtype", default="bfloat16", choices=("bfloat16", "float16", "float32"))
     ap.add_argument("--device-map", default="auto")
     ap.add_argument("--batch-size", type=int, default=64)
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--allow-download", action="store_true")
-    ap.add_argument("--out", default="results/fit_ratings/qwen3_32b.csv")
+    ap.add_argument("--out", default="results/fit_ratings/gemma4_31b_it.csv")
     run(ap.parse_args())
