@@ -66,10 +66,15 @@ def validation(raw, rated, links, args):
               f"(mean own {pv.own.mean():.2f}, other {pv.other.mean():.2f})",
               f"  - own > role reversal (passive_1) for {(rev_diff > 0).mean() * 100:.1f}% of verb pairs "
               f"(mean difference {rev_diff.mean():.2f}); reversal is not always implausible", ""]
-    lines += ["- **Rarity check**: mean rating by verb band (own contexts should be flat)", "",
-              "| Paradigm | Verb band | Own | Other | n |", "|---|---|---:|---:|---:|"]
+    # A rater that does not know a rare verb compresses toward the middle:
+    # own ratings fall and reversal ratings rise with rarity. Lower *other*
+    # ratings alone can instead reflect narrower selectional range.
+    pv["reversal"] = pv.verb_pair.map(rev).where(pv.paradigm == "passive_1")
+    lines += ["- **Rarity check**: mean rating by verb band (own and reversal should be flat)", "",
+              "| Paradigm | Verb band | Own | Other | Reversal | n |", "|---|---|---:|---:|---:|---:|"]
     for (paradigm, band), g in pv.groupby(["paradigm", "verb_band"]):
-        lines.append(f"| {paradigm} | {band} | {g.own.mean():.2f} | {g.other.mean():.2f} | {len(g)} |")
+        reversal = f"{g.reversal.mean():.2f}" if g.reversal.notna().any() else "-"
+        lines.append(f"| {paradigm} | {band} | {g.own.mean():.2f} | {g.other.mean():.2f} | {reversal} | {len(g)} |")
     if args.v2_pairs:
         z = pd.read_json(args.v2_pairs, lines=True).drop_duplicates("good_verb").set_index("good_verb").good_form_zipf
         pv["good_form_zipf"] = pv.good_verb.map(z)
