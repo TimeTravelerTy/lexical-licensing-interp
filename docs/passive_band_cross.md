@@ -18,9 +18,15 @@ keeps the verb it was generated for. The contrasts are:
 - **interaction**: (XTail verb, XTail ctx) - (XTail verb, Head ctx) - (Head verb, XTail ctx) + (Head verb, Head ctx).
 
 A secondary set crosses every verb pair with every v2 curated context.
-`own_context` marks the context written for that verb pair. Other verbs'
-curated contexts keep common, well-formed nouns but lose the hand-picked
-thematic fit, a rough "common but strained" condition.
+`own_context` marks the context written for that verb pair. The v2 contexts
+were hand-written per good verb (`contexts.csv` keyed on band and good
+lemma) and manually checked; no fit score was computed or enforced. Other
+verbs' curated contexts keep the same frame and common nouns but have
+*unselected* fit: some remain plausible, others are strained. The manual
+check that patients do not license a transitive sense of the bad verb was
+done only for each pair's own context. Treat own-minus-other as the effect
+of hand-selected fit, and add plausibility ratings before calling the other
+cells "strained".
 
 ## Build, score, analyze
 
