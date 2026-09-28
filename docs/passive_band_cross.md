@@ -53,3 +53,10 @@ context-level OLS (margin averaged over verbs) to check whether the
 context-band effect survives frame covariates, and whether head-noun Zipf
 accounts for it. Plausibility ratings of the good sentences can be added
 later as another context-level covariate without rescoring.
+
+## Run
+
+Pythia-1.4B, TSUBAME job `8811408` (`gpu_h`, commit `f4a73e0`), exit 0.
+Score file SHA-256 `0cca37eeaf4a5181c70963dd903734662ba7fdc6acabe172b2a02c53c8a05b48`
+(67 MB; kept on TSUBAME under `lexical_licensing_interp_passive_band_cross/`
+and locally, not committed). Results: `reports/passive_band_cross/report.md`.
