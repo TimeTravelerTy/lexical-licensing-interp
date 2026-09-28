@@ -1,0 +1,78 @@
+{
+  "seed": 17,
+  "contexts_per_cell": 100,
+  "curated_included": true,
+  "inputs": {
+    "data/matched_passives_v2/pairs.jsonl": "72f0fa0116506b1d888fce989dde5b76fc5bccc40bd0664db286c5cba4ac6916",
+    "data/freqblimp_original_passives/pairs.jsonl": "353ccc052fc13874ad8de617940cb617df7ae000592a44fbd857a75de5e6b2c2"
+  },
+  "verb_pairs": {
+    "passive_1": {
+      "head": 26,
+      "tail": 50,
+      "xtail": 50
+    },
+    "passive_2": {
+      "head": 26,
+      "tail": 50,
+      "xtail": 50
+    }
+  },
+  "contexts": {
+    "released/passive_1/head": 100,
+    "released/passive_2/head": 100,
+    "released/passive_1/tail": 100,
+    "released/passive_2/tail": 100,
+    "released/passive_1/xtail": 100,
+    "released/passive_2/xtail": 100,
+    "curated/passive_1/head": 26,
+    "curated/passive_2/head": 26,
+    "curated/passive_1/tail": 50,
+    "curated/passive_2/tail": 50,
+    "curated/passive_1/xtail": 50,
+    "curated/passive_2/xtail": 50
+  },
+  "cells": {
+    "curated/passive_1/head/head": 676,
+    "curated/passive_1/head/tail": 1300,
+    "curated/passive_1/head/xtail": 1300,
+    "curated/passive_1/tail/head": 1300,
+    "curated/passive_1/tail/tail": 2500,
+    "curated/passive_1/tail/xtail": 2500,
+    "curated/passive_1/xtail/head": 1300,
+    "curated/passive_1/xtail/tail": 2500,
+    "curated/passive_1/xtail/xtail": 2500,
+    "curated/passive_2/head/head": 676,
+    "curated/passive_2/head/tail": 1300,
+    "curated/passive_2/head/xtail": 1300,
+    "curated/passive_2/tail/head": 1300,
+    "curated/passive_2/tail/tail": 2500,
+    "curated/passive_2/tail/xtail": 2500,
+    "curated/passive_2/xtail/head": 1300,
+    "curated/passive_2/xtail/tail": 2500,
+    "curated/passive_2/xtail/xtail": 2500,
+    "released/passive_1/head/head": 2600,
+    "released/passive_1/head/tail": 2600,
+    "released/passive_1/head/xtail": 2600,
+    "released/passive_1/tail/head": 5000,
+    "released/passive_1/tail/tail": 5000,
+    "released/passive_1/tail/xtail": 5000,
+    "released/passive_1/xtail/head": 5000,
+    "released/passive_1/xtail/tail": 5000,
+    "released/passive_1/xtail/xtail": 5000,
+    "released/passive_2/head/head": 2600,
+    "released/passive_2/head/tail": 2600,
+    "released/passive_2/head/xtail": 2600,
+    "released/passive_2/tail/head": 5000,
+    "released/passive_2/tail/tail": 5000,
+    "released/passive_2/tail/xtail": 5000,
+    "released/passive_2/xtail/head": 5000,
+    "released/passive_2/xtail/tail": 5000,
+    "released/passive_2/xtail/xtail": 5000
+  },
+  "total_pairs": 107352,
+  "out": "data/passive_band_cross/pairs.jsonl",
+  "out_sha256": "a19c0d99ff2ced8bd71bd1613450197ed420b99982d0d43c796d340c16d3d184",
+  "contexts_out": "data/passive_band_cross/contexts.csv",
+  "contexts_sha256": "0d81746443546d88489af9071987cb8ecb6e6adac3a04c357f1b32340e8dbd4f"
+}

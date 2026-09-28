@@ -1,0 +1,853 @@
+context_id,context_set,context_band,paradigm,context_source,context_orig_good,context_orig_bad,prefix,suffix,aux,negated,plural_aux,present_aux,patient_det,patient_is_name,patient_head,patient_zipf,agent_det,agent_is_name,agent_head,agent_zipf
+released/head/passive_1/7,released,head,passive_1,7,defined,emerged,The opinion wasn't , by that wrong.,wasn't,1,0,0,the,0,opinion,4.94,that,0,wrong,5.39
+released/head/passive_1/8,released,head,passive_1,8,regarded,died,A lamb was , by some artists' daughters.,was,0,0,0,a,0,lamb,4.02,some,0,daughters,4.28
+released/head/passive_1/25,released,head,passive_1,25,conceived,progressed,A liar isn't , by this courier.,isn't,1,0,1,a,0,liar,4.02,this,0,courier,3.68
+released/head/passive_1/26,released,head,passive_1,26,credited,vanished,These cards aren't , by many makers.,aren't,1,1,1,these,0,cards,4.76,many,0,makers,4.16
+released/head/passive_1/43,released,head,passive_1,43,qualified,died,This defendant is , by a visa.,is,0,0,1,this,0,defendant,3.98,a,0,visa,4.13
+released/head/passive_1/49,released,head,passive_1,49,blamed,arrived,Winston Churchill was , by a prince.,was,0,0,0,name,1,Churchill,3.83,a,0,prince,4.72
+released/head/passive_1/57,released,head,passive_1,57,cheated,testified,That platoon isn't , by every stab.,isn't,1,0,1,that,0,platoon,3.52,every,0,stab,3.78
+released/head/passive_1/68,released,head,passive_1,68,monitored,competed,Psychologists were , by most refugees.,were,0,1,0,name,1,Psychologists,3.56,most,0,refugees,4.26
+released/head/passive_1/84,released,head,passive_1,84,executed,remained,This blocking isn't , by the opponents.,isn't,1,0,1,this,0,blocking,4.12,the,0,opponents,4.23
+released/head/passive_1/88,released,head,passive_1,88,nominated,lied,Some investigator isn't , by a mother of Gary.,isn't,1,0,1,some,0,investigator,3.83,a,0,Gary,4.39
+released/head/passive_1/91,released,head,passive_1,91,attended,proceeded,The burner is , by every social.,is,0,0,1,the,0,burner,3.54,every,0,social,5.42
+released/head/passive_1/94,released,head,passive_1,94,launched,reacted,All murderers were , by this granddaughter of the foreigners.,were,0,1,0,all,0,murderers,3.53,this,0,foreigners,3.87
+released/head/passive_1/99,released,head,passive_1,99,cultivated,reacted,Masters were , by most delegates.,were,0,1,0,name,1,Masters,4.35,most,0,delegates,3.94
+released/head/passive_1/113,released,head,passive_1,113,lent,occurred,Most investigators are , by that raising.,are,0,1,1,most,0,investigators,3.88,that,0,raising,4.43
+released/head/passive_1/126,released,head,passive_1,126,tended,responded,The survivor wasn't , by a parameter.,wasn't,1,0,0,the,0,survivor,4.0,a,0,parameter,3.57
+released/head/passive_1/132,released,head,passive_1,132,recommended,arrived,Jason is , by all cyclists.,is,0,0,1,name,1,Jason,4.46,all,0,cyclists,3.69
+released/head/passive_1/137,released,head,passive_1,137,missed,complained,Every winner was , by every university.,was,0,0,0,every,0,winner,4.8,every,0,university,5.39
+released/head/passive_1/175,released,head,passive_1,175,terrified,replied,A lot of dealers weren't , by the founders.,weren't,1,1,0,a,0,dealers,4.01,the,0,founders,3.83
+released/head/passive_1/182,released,head,passive_1,182,acquired,arrived,The researcher isn't , by some academy.,isn't,1,0,1,the,0,researcher,3.92,some,0,academy,4.57
+released/head/passive_1/184,released,head,passive_1,184,staged,reacted,Architects were , by those jackets.,were,0,1,0,name,1,Architects,3.91,those,0,jackets,3.81
+released/head/passive_1/189,released,head,passive_1,189,earned,lied,Every fraternity wasn't , by most fools.,wasn't,1,0,0,every,0,fraternity,3.56,most,0,fools,3.88
+released/head/passive_1/190,released,head,passive_1,190,named,remained,That keeper's friends weren't , by the dean.,weren't,1,1,0,that,0,friends,5.43,the,0,dean,4.4
+released/head/passive_1/195,released,head,passive_1,195,packed,occurred,These teens aren't , by pages.,aren't,1,1,1,these,0,teens,4.16,bare,0,pages,4.62
+released/head/passive_1/197,released,head,passive_1,197,executed,emerged,Erin wasn't , by those doors.,wasn't,1,0,0,name,1,Erin,3.68,those,0,doors,4.54
+released/head/passive_1/201,released,head,passive_1,201,robbed,progressed,A vegetarian wasn't , by most writers' piano teacher.,wasn't,1,0,0,a,0,vegetarian,3.78,most,0,teacher,4.88
+released/head/passive_1/209,released,head,passive_1,209,curved,testified,Every conference wasn't , by merchants.,wasn't,1,0,0,every,0,conference,5.01,bare,0,merchants,3.85
+released/head/passive_1/218,released,head,passive_1,218,packed,responded,Every striker isn't , by a widow.,isn't,1,0,1,every,0,striker,3.9,a,0,widow,4.08
+released/head/passive_1/233,released,head,passive_1,233,owed,testified,These devils were , by some caller.,were,0,1,0,these,0,devils,3.79,some,0,caller,3.61
+released/head/passive_1/240,released,head,passive_1,240,dedicated,arrived,Every officer wasn't , by a tucker.,wasn't,1,0,0,every,0,officer,5.03,a,0,tucker,3.79
+released/head/passive_1/245,released,head,passive_1,245,taxed,screamed,Many vets weren't , by some collective.,weren't,1,1,0,many,0,vets,3.51,some,0,collective,4.3
+released/head/passive_1/249,released,head,passive_1,249,attracted,screamed,These avengers aren't , by every author.,aren't,1,1,1,these,0,avengers,3.78,every,0,author,4.95
+released/head/passive_1/254,released,head,passive_1,254,promoted,struggled,Teresa wasn't , by most doctors.,wasn't,1,0,0,name,1,Teresa,3.71,most,0,doctors,4.55
+released/head/passive_1/260,released,head,passive_1,260,barred,died,Applicants weren't , by a sniper.,weren't,1,1,0,name,1,Applicants,3.94,a,0,sniper,3.73
+released/head/passive_1/275,released,head,passive_1,275,expelled,struggled,All workers are , by many witches.,are,0,1,1,all,0,workers,4.95,many,0,witches,3.61
+released/head/passive_1/290,released,head,passive_1,290,forbidden,responded,Every sneak isn't , by some clerk.,isn't,1,0,1,every,0,sneak,3.99,some,0,clerk,4.0
+released/head/passive_1/291,released,head,passive_1,291,starred,reacted,That legion was , by a lending.,was,0,0,0,that,0,legion,3.86,a,0,lending,3.87
+released/head/passive_1/334,released,head,passive_1,334,sworn,vanished,This dean isn't , by that architecture.,isn't,1,0,1,this,0,dean,4.4,that,0,architecture,4.42
+released/head/passive_1/339,released,head,passive_1,339,planted,competed,All fools were , by this boil.,were,0,1,0,all,0,fools,3.88,this,0,boil,3.83
+released/head/passive_1/340,released,head,passive_1,340,measured,testified,A military was , by that contingent.,was,0,0,0,a,0,military,5.2,that,0,contingent,3.69
+released/head/passive_1/342,released,head,passive_1,342,equipped,laughed,Every outlaw's teacher wasn't , by these teeth.,wasn't,1,0,0,every,0,teacher,4.88,these,0,teeth,4.58
+released/head/passive_1/343,released,head,passive_1,343,selected,emerged,Some grenade was , by that virgin.,was,0,0,0,some,0,grenade,3.65,that,0,virgin,4.35
+released/head/passive_1/357,released,head,passive_1,357,completed,occurred,Some shoe isn't , by the democrat.,isn't,1,0,1,some,0,shoe,4.24,the,0,democrat,4.24
+released/head/passive_1/395,released,head,passive_1,395,acquainted,existed,Descriptions aren't , by most journalists.,aren't,1,1,1,name,1,Descriptions,3.92,most,0,journalists,4.29
+released/head/passive_1/399,released,head,passive_1,399,fulfilled,laughed,That shareholder wasn't , by Matt.,wasn't,1,0,0,that,0,shareholder,3.63,name,1,Matt,4.55
+released/head/passive_1/402,released,head,passive_1,402,tracked,remarked,The historians were , by nurses.,were,0,1,0,the,0,historians,3.82,bare,0,nurses,4.14
+released/head/passive_1/412,released,head,passive_1,412,dedicated,existed,The duchess isn't , by this sister of some fairy.,isn't,1,0,1,the,0,duchess,3.76,this,0,fairy,4.08
+released/head/passive_1/416,released,head,passive_1,416,supplied,reacted,A lot of executives are , by the senator.,are,0,1,1,a,0,executives,4.03,the,0,senator,4.58
+released/head/passive_1/420,released,head,passive_1,420,formulated,struggled,That gentleman's boss was , by travel.,was,0,0,0,that,0,boss,4.76,bare,0,travel,5.0
+released/head/passive_1/440,released,head,passive_1,440,implied,vanished,A confession is , by some leagues.,is,0,0,1,a,0,confession,3.88,some,0,leagues,3.9
+released/head/passive_1/454,released,head,passive_1,454,summed,occurred,Some pumpkin wasn't , by every slain.,wasn't,1,0,0,some,0,pumpkin,3.83,every,0,slain,3.54
+released/head/passive_1/460,released,head,passive_1,460,dismissed,proceeded,Many ex-wives weren't , by every creator.,weren't,1,1,0,many,0,ex-wives,4.0,every,0,creator,4.21
+released/head/passive_1/462,released,head,passive_1,462,completed,complained,This constable was , by Bruce's supervisors.,was,0,0,0,this,0,constable,3.79,bare,0,supervisors,3.57
+released/head/passive_1/464,released,head,passive_1,464,insured,remained,This activist was , by a lover.,was,0,0,0,this,0,activist,4.13,a,0,lover,4.26
+released/head/passive_1/473,released,head,passive_1,473,tapped,responded,Some refugee was , by Charles.,was,0,0,0,some,0,refugee,3.98,name,1,Charles,4.77
+released/head/passive_1/475,released,head,passive_1,475,exceeded,progressed,The aluminium was , by George.,was,0,0,0,the,0,aluminium,3.73,name,1,George,5.04
+released/head/passive_1/476,released,head,passive_1,476,allowed,reacted,This subset is , by some transfer.,is,0,0,1,this,0,subset,3.53,some,0,transfer,4.72
+released/head/passive_1/493,released,head,passive_1,493,controlled,emerged,These eyes are , by some blogger.,are,0,1,1,these,0,eyes,5.21,some,0,blogger,3.85
+released/head/passive_1/498,released,head,passive_1,498,deprived,testified,Andrea wasn't , by Sonia.,wasn't,1,0,0,name,1,Andrea,3.88,name,1,Sonia,3.54
+released/head/passive_1/504,released,head,passive_1,504,promised,existed,All buttons are , by every bankrupt.,are,0,1,1,all,0,buttons,3.98,every,0,bankrupt,3.73
+released/head/passive_1/517,released,head,passive_1,517,curved,competed,Some mechanics aren't , by Craig.,aren't,1,1,1,some,0,mechanics,4.13,name,1,Craig,4.18
+released/head/passive_1/518,released,head,passive_1,518,conditioned,replied,Every critic is , by John.,is,0,0,1,every,0,critic,3.95,name,1,John,5.38
+released/head/passive_1/527,released,head,passive_1,527,recovered,progressed,Rose is , by a notable.,is,0,0,1,name,1,Rose,4.82,a,0,notable,4.07
+released/head/passive_1/533,released,head,passive_1,533,reviewed,complained,These authors are , by these officials.,are,0,1,1,these,0,authors,4.49,these,0,officials,4.68
+released/head/passive_1/535,released,head,passive_1,535,sourced,progressed,This hank wasn't , by travelers.,wasn't,1,0,0,this,0,hank,3.73,bare,0,travelers,3.84
+released/head/passive_1/539,released,head,passive_1,539,frightened,died,A clerk wasn't , by every mommy.,wasn't,1,0,0,a,0,clerk,4.0,every,0,mommy,3.89
+released/head/passive_1/545,released,head,passive_1,545,supervised,replied,Some investigator isn't , by every avatar.,isn't,1,0,1,some,0,investigator,3.83,every,0,avatar,3.69
+released/head/passive_1/546,released,head,passive_1,546,assured,reacted,Most fans aren't , by some juvenile.,aren't,1,1,1,most,0,fans,5.03,some,0,juvenile,3.88
+released/head/passive_1/572,released,head,passive_1,572,abducted,progressed,The guys weren't , by many miners.,weren't,1,1,0,the,0,guys,5.41,many,0,miners,3.93
+released/head/passive_1/574,released,head,passive_1,574,rated,arrived,That confederate is , by a navy.,is,0,0,1,that,0,confederate,3.7,a,0,navy,4.57
+released/head/passive_1/621,released,head,passive_1,621,dumped,laughed,This substitute was , by some focusing.,was,0,0,0,this,0,substitute,4.17,some,0,focusing,4.25
+released/head/passive_1/628,released,head,passive_1,628,supervised,competed,All flyers' cousins are , by some teenagers.,are,0,1,1,all,0,cousins,3.95,some,0,teenagers,4.01
+released/head/passive_1/629,released,head,passive_1,629,tapped,testified,Those managers are , by the marking.,are,0,1,1,those,0,managers,4.47,the,0,marking,3.95
+released/head/passive_1/637,released,head,passive_1,637,greeted,screamed,A magistrate isn't , by these payments.,isn't,1,0,1,a,0,magistrate,3.71,these,0,payments,4.48
+released/head/passive_1/640,released,head,passive_1,640,confined,screamed,The flyer is , by the elites.,is,0,0,1,the,0,flyer,3.58,the,0,elites,3.62
+released/head/passive_1/651,released,head,passive_1,651,elected,screamed,Those strangers are , by every tactic.,are,0,1,1,those,0,strangers,4.14,every,0,tactic,3.71
+released/head/passive_1/667,released,head,passive_1,667,acclaimed,died,Every closer isn't , by this partisan.,isn't,1,0,1,every,0,closer,4.73,this,0,partisan,3.81
+released/head/passive_1/674,released,head,passive_1,674,priced,died,Every sponsor is , by some mistress.,is,0,0,1,every,0,sponsor,4.04,some,0,mistress,3.86
+released/head/passive_1/682,released,head,passive_1,682,imposed,occurred,Most locks are , by a lot of rebels' grandmother.,are,0,1,1,most,0,locks,3.94,a,0,grandmother,4.14
+released/head/passive_1/683,released,head,passive_1,683,surpassed,existed,Some adolescents weren't , by that spoiler.,weren't,1,1,0,some,0,adolescents,3.53,that,0,spoiler,3.55
+released/head/passive_1/695,released,head,passive_1,695,comprised,existed,That title isn't , by an adviser.,isn't,1,0,1,that,0,title,5.1,an,0,adviser,3.94
+released/head/passive_1/700,released,head,passive_1,700,decorated,arrived,A guru wasn't , by all ancestors.,wasn't,1,0,0,a,0,guru,3.82,all,0,ancestors,3.98
+released/head/passive_1/709,released,head,passive_1,709,adjusted,progressed,This sewage was , by the teachers.,was,0,0,0,this,0,sewage,3.55,the,0,teachers,4.74
+released/head/passive_1/725,released,head,passive_1,725,poisoned,proceeded,Some tory isn't , by all beverages.,isn't,1,0,1,some,0,tory,3.9,all,0,beverages,3.6
+released/head/passive_1/749,released,head,passive_1,749,introduced,proceeded,A lot of strawberries are , by these strangers.,are,0,1,1,a,0,strawberries,3.54,these,0,strangers,4.14
+released/head/passive_1/760,released,head,passive_1,760,borrowed,remarked,Some psychic is , by that harper.,is,0,0,1,some,0,psychic,3.8,that,0,harper,4.04
+released/head/passive_1/774,released,head,passive_1,774,crowned,arrived,This hitter isn't , by every communist.,isn't,1,0,1,this,0,hitter,3.5,every,0,communist,4.32
+released/head/passive_1/795,released,head,passive_1,795,contained,progressed,That sock wasn't , by Matt.,wasn't,1,0,0,that,0,sock,3.61,name,1,Matt,4.55
+released/head/passive_1/800,released,head,passive_1,800,launched,proceeded,That globe was , by the athletes.,was,0,0,0,that,0,globe,4.28,the,0,athletes,4.34
+released/head/passive_1/830,released,head,passive_1,830,sacked,struggled,Some captains aren't , by that deceased.,aren't,1,1,1,some,0,captains,3.62,that,0,deceased,3.96
+released/head/passive_1/873,released,head,passive_1,873,frightened,died,This patron wasn't , by a starving.,wasn't,1,0,0,this,0,patron,3.73,a,0,starving,3.79
+released/head/passive_1/884,released,head,passive_1,884,punished,laughed,A lot of inspectors aren't , by some chen.,aren't,1,1,1,a,0,inspectors,3.63,some,0,chen,3.96
+released/head/passive_1/889,released,head,passive_1,889,tolerated,lied,Some fantasy isn't , by every countdown.,isn't,1,0,1,some,0,fantasy,4.52,every,0,countdown,3.68
+released/head/passive_1/899,released,head,passive_1,899,originated,existed,A lot of controllers weren't , by this mushroom.,weren't,1,1,0,a,0,controllers,3.68,this,0,mushroom,3.63
+released/head/passive_1/910,released,head,passive_1,910,sorted,proceeded,The doors are , by this civilian.,are,0,1,1,the,0,doors,4.54,this,0,civilian,4.23
+released/head/passive_1/936,released,head,passive_1,936,enclosed,proceeded,These wizards were , by some defender.,were,0,1,0,these,0,wizards,3.62,some,0,defender,4.11
+released/head/passive_1/952,released,head,passive_1,952,slain,reacted,These councils were , by every ex-boyfriend.,were,0,1,0,these,0,councils,3.94,every,0,ex-boyfriend,4.39
+released/head/passive_1/958,released,head,passive_1,958,defined,laughed,Some warden is , by ancestors.,is,0,0,1,some,0,warden,3.63,bare,0,ancestors,3.98
+released/head/passive_1/969,released,head,passive_1,969,classified,arrived,That athlete is , by these tourists.,is,0,0,1,that,0,athlete,4.11,these,0,tourists,4.06
+released/head/passive_1/993,released,head,passive_1,993,attracted,died,Many shoppers' cousin wasn't , by that pioneer.,wasn't,1,0,0,many,0,cousin,4.41,that,0,pioneer,3.91
+released/head/passive_1/999,released,head,passive_1,999,posted,struggled,Every shark isn't , by Paula.,isn't,1,0,1,every,0,shark,4.1,name,1,Paula,3.75
+released/head/passive_2/18,released,head,passive_2,18,equipped,complained,This mother of most nationalists is ,.,is,0,0,1,this,0,nationalists,3.56,,,,
+released/head/passive_2/42,released,head,passive_2,42,rated,arrived,Adults are ,.,are,0,1,1,name,1,Adults,4.59,,,,
+released/head/passive_2/74,released,head,passive_2,74,poisoned,screamed,The auxiliary is ,.,is,0,0,1,the,0,auxiliary,3.74,,,,
+released/head/passive_2/77,released,head,passive_2,77,completed,arrived,Some growers aren't ,.,aren't,1,1,1,some,0,growers,3.5,,,,
+released/head/passive_2/79,released,head,passive_2,79,accredited,remarked,The masculine was ,.,was,0,0,0,the,0,masculine,3.71,,,,
+released/head/passive_2/111,released,head,passive_2,111,accompanied,complained,Elaine was ,.,was,0,0,0,name,1,Elaine,3.6,,,,
+released/head/passive_2/116,released,head,passive_2,116,lent,proceeded,Every ruling wasn't ,.,wasn't,1,0,0,every,0,ruling,4.29,,,,
+released/head/passive_2/120,released,head,passive_2,120,mandated,replied,These runners were ,.,were,0,1,0,these,0,runners,3.97,,,,
+released/head/passive_2/130,released,head,passive_2,130,fulfilled,arrived,Those prisoners are ,.,are,0,1,1,those,0,prisoners,4.37,,,,
+released/head/passive_2/136,released,head,passive_2,136,evaluated,screamed,The subscribers' niece wasn't ,.,wasn't,1,0,0,the,0,niece,3.82,,,,
+released/head/passive_2/148,released,head,passive_2,148,maintained,progressed,Adam isn't ,.,isn't,1,0,1,name,1,Adam,4.57,,,,
+released/head/passive_2/151,released,head,passive_2,151,lent,occurred,Most investigators aren't ,.,aren't,1,1,1,most,0,investigators,3.88,,,,
+released/head/passive_2/155,released,head,passive_2,155,termed,remarked,That relocation wasn't ,.,wasn't,1,0,0,that,0,relocation,3.57,,,,
+released/head/passive_2/156,released,head,passive_2,156,launched,struggled,Jason wasn't ,.,wasn't,1,0,0,name,1,Jason,4.46,,,,
+released/head/passive_2/157,released,head,passive_2,157,manipulated,lied,These offenders weren't ,.,weren't,1,1,0,these,0,offenders,3.79,,,,
+released/head/passive_2/184,released,head,passive_2,184,ensured,screamed,Many attendees aren't ,.,aren't,1,1,1,many,0,attendees,3.55,,,,
+released/head/passive_2/185,released,head,passive_2,185,seeded,lied,Delegates were ,.,were,0,1,0,name,1,Delegates,3.94,,,,
+released/head/passive_2/190,released,head,passive_2,190,provided,remained,The conferences weren't ,.,weren't,1,1,0,the,0,conferences,4.03,,,,
+released/head/passive_2/206,released,head,passive_2,206,limited,testified,This surgeon is ,.,is,0,0,1,this,0,surgeon,4.13,,,,
+released/head/passive_2/210,released,head,passive_2,210,originated,occurred,All suppliers weren't ,.,weren't,1,1,0,all,0,suppliers,3.91,,,,
+released/head/passive_2/222,released,head,passive_2,222,constituted,existed,The associates are ,.,are,0,1,1,the,0,associates,4.14,,,,
+released/head/passive_2/227,released,head,passive_2,227,attracted,screamed,All philosophers weren't ,.,weren't,1,1,0,all,0,philosophers,3.62,,,,
+released/head/passive_2/231,released,head,passive_2,231,bet,vanished,The printers weren't ,.,weren't,1,1,0,the,0,printers,3.62,,,,
+released/head/passive_2/234,released,head,passive_2,234,implied,competed,Gentlemen were ,.,were,0,1,0,name,1,Gentlemen,4.13,,,,
+released/head/passive_2/246,released,head,passive_2,246,dedicated,vanished,The turtles weren't ,.,weren't,1,1,0,the,0,turtles,3.72,,,,
+released/head/passive_2/248,released,head,passive_2,248,indicted,lied,Many warriors weren't ,.,weren't,1,1,0,many,0,warriors,4.3,,,,
+released/head/passive_2/259,released,head,passive_2,259,prosecuted,vanished,An aquatic isn't ,.,isn't,1,0,1,an,0,aquatic,3.62,,,,
+released/head/passive_2/267,released,head,passive_2,267,priced,competed,This conference was ,.,was,0,0,0,this,0,conference,5.01,,,,
+released/head/passive_2/271,released,head,passive_2,271,committed,existed,Many prophets are ,.,are,0,1,1,many,0,prophets,3.54,,,,
+released/head/passive_2/272,released,head,passive_2,272,accused,screamed,A dwarf isn't ,.,isn't,1,0,1,a,0,dwarf,3.75,,,,
+released/head/passive_2/278,released,head,passive_2,278,guarded,laughed,Some lover was ,.,was,0,0,0,some,0,lover,4.26,,,,
+released/head/passive_2/325,released,head,passive_2,325,lent,vanished,Some chain was ,.,was,0,0,0,some,0,chain,4.65,,,,
+released/head/passive_2/333,released,head,passive_2,333,acclaimed,struggled,The girl was ,.,was,0,0,0,the,0,girl,5.38,,,,
+released/head/passive_2/345,released,head,passive_2,345,noted,lied,That boil was ,.,was,0,0,0,that,0,boil,3.83,,,,
+released/head/passive_2/363,released,head,passive_2,363,omitted,proceeded,Some military was ,.,was,0,0,0,some,0,military,5.2,,,,
+released/head/passive_2/368,released,head,passive_2,368,adjusted,competed,A cautious is ,.,is,0,0,1,a,0,cautious,3.79,,,,
+released/head/passive_2/376,released,head,passive_2,376,weighted,laughed,Every fatty's ex-girlfriends aren't ,.,aren't,1,1,1,every,0,ex-girlfriends,3.65,,,,
+released/head/passive_2/391,released,head,passive_2,391,overcome,remained,Some veterans were ,.,were,0,1,0,some,0,veterans,4.34,,,,
+released/head/passive_2/398,released,head,passive_2,398,starred,arrived,Many cats were ,.,were,0,1,0,many,0,cats,4.46,,,,
+released/head/passive_2/401,released,head,passive_2,401,pleased,reacted,Most majors were ,.,were,0,1,0,most,0,majors,3.75,,,,
+released/head/passive_2/406,released,head,passive_2,406,fascinated,occurred,That vanilla isn't ,.,isn't,1,0,1,that,0,vanilla,3.84,,,,
+released/head/passive_2/435,released,head,passive_2,435,spared,responded,That singer's colleague was ,.,was,0,0,0,that,0,colleague,3.98,,,,
+released/head/passive_2/441,released,head,passive_2,441,tracked,replied,A marxist was ,.,was,0,0,0,a,0,marxist,3.6,,,,
+released/head/passive_2/465,released,head,passive_2,465,dismissed,struggled,A cartel wasn't ,.,wasn't,1,0,0,a,0,cartel,3.58,,,,
+released/head/passive_2/474,released,head,passive_2,474,mandated,competed,Every hierarchy wasn't ,.,wasn't,1,0,0,every,0,hierarchy,3.78,,,,
+released/head/passive_2/484,released,head,passive_2,484,provoked,reacted,Many nominees were ,.,were,0,1,0,many,0,nominees,3.66,,,,
+released/head/passive_2/496,released,head,passive_2,496,allowed,testified,Most prisoners were ,.,were,0,1,0,most,0,prisoners,4.37,,,,
+released/head/passive_2/501,released,head,passive_2,501,involved,remarked,Most growers' teachers are ,.,are,0,1,1,most,0,teachers,4.74,,,,
+released/head/passive_2/522,released,head,passive_2,522,sacked,replied,These folks weren't ,.,weren't,1,1,0,these,0,folks,4.59,,,,
+released/head/passive_2/525,released,head,passive_2,525,stationed,proceeded,That guitarist isn't ,.,isn't,1,0,1,that,0,guitarist,3.63,,,,
+released/head/passive_2/538,released,head,passive_2,538,appointed,struggled,Theodore wasn't ,.,wasn't,1,0,0,name,1,Theodore,3.67,,,,
+released/head/passive_2/571,released,head,passive_2,571,fascinated,occurred,Andrew isn't ,.,isn't,1,0,1,name,1,Andrew,4.57,,,,
+released/head/passive_2/573,released,head,passive_2,573,ensured,occurred,All criminals were ,.,were,0,1,0,all,0,criminals,4.15,,,,
+released/head/passive_2/577,released,head,passive_2,577,promoted,competed,These piano teachers weren't ,.,weren't,1,1,0,these,0,teachers,4.74,,,,
+released/head/passive_2/581,released,head,passive_2,581,ruled,occurred,That marble isn't ,.,isn't,1,0,1,that,0,marble,3.96,,,,
+released/head/passive_2/584,released,head,passive_2,584,deferred,testified,An exile is ,.,is,0,0,1,an,0,exile,3.84,,,,
+released/head/passive_2/586,released,head,passive_2,586,masked,remained,Most adults weren't ,.,weren't,1,1,0,most,0,adults,4.59,,,,
+released/head/passive_2/588,released,head,passive_2,588,owned,remained,Some recommendation isn't ,.,isn't,1,0,1,some,0,recommendation,4.09,,,,
+released/head/passive_2/621,released,head,passive_2,621,credited,remained,Some consolidation was ,.,was,0,0,0,some,0,consolidation,3.71,,,,
+released/head/passive_2/636,released,head,passive_2,636,seeded,replied,Marie wasn't ,.,wasn't,1,0,0,name,1,Marie,4.19,,,,
+released/head/passive_2/638,released,head,passive_2,638,drowned,emerged,Consultants weren't ,.,weren't,1,1,0,name,1,Consultants,3.74,,,,
+released/head/passive_2/640,released,head,passive_2,640,originated,died,A superstar was ,.,was,0,0,0,a,0,superstar,3.83,,,,
+released/head/passive_2/643,released,head,passive_2,643,promised,remarked,Some drummer was ,.,was,0,0,0,some,0,drummer,3.68,,,,
+released/head/passive_2/644,released,head,passive_2,644,retrieved,testified,Firms were ,.,were,0,1,0,name,1,Firms,4.38,,,,
+released/head/passive_2/651,released,head,passive_2,651,rated,existed,Many towels were ,.,were,0,1,0,many,0,towels,3.65,,,,
+released/head/passive_2/653,released,head,passive_2,653,fascinated,responded,Every household was ,.,was,0,0,0,every,0,household,4.47,,,,
+released/head/passive_2/664,released,head,passive_2,664,pronounced,remained,Vincent was ,.,was,0,0,0,name,1,Vincent,4.14,,,,
+released/head/passive_2/680,released,head,passive_2,680,preserved,emerged,Some sodium wasn't ,.,wasn't,1,0,0,some,0,sodium,3.87,,,,
+released/head/passive_2/690,released,head,passive_2,690,enforced,died,Every chapman is ,.,is,0,0,1,every,0,chapman,3.78,,,,
+released/head/passive_2/704,released,head,passive_2,704,barred,remarked,That wandering wasn't ,.,wasn't,1,0,0,that,0,wandering,3.8,,,,
+released/head/passive_2/705,released,head,passive_2,705,evaluated,vanished,Some pies were ,.,were,0,1,0,some,0,pies,3.58,,,,
+released/head/passive_2/724,released,head,passive_2,724,credited,replied,Angela wasn't ,.,wasn't,1,0,0,name,1,Angela,4.02,,,,
+released/head/passive_2/730,released,head,passive_2,730,stacked,existed,Every derby isn't ,.,isn't,1,0,1,every,0,derby,4.1,,,,
+released/head/passive_2/758,released,head,passive_2,758,involved,screamed,Most peers aren't ,.,aren't,1,1,1,most,0,peers,4.02,,,,
+released/head/passive_2/760,released,head,passive_2,760,prosecuted,proceeded,That coat isn't ,.,isn't,1,0,1,that,0,coat,4.36,,,,
+released/head/passive_2/764,released,head,passive_2,764,insured,complained,The interpreter isn't ,.,isn't,1,0,1,the,0,interpreter,3.54,,,,
+released/head/passive_2/768,released,head,passive_2,768,enrolled,arrived,A cousin isn't ,.,isn't,1,0,1,a,0,cousin,4.41,,,,
+released/head/passive_2/774,released,head,passive_2,774,summed,competed,Those commanders aren't ,.,aren't,1,1,1,those,0,commanders,3.74,,,,
+released/head/passive_2/801,released,head,passive_2,801,represented,arrived,This broker isn't ,.,isn't,1,0,1,this,0,broker,3.89,,,,
+released/head/passive_2/810,released,head,passive_2,810,provoked,existed,The accent was ,.,was,0,0,0,the,0,accent,4.14,,,,
+released/head/passive_2/814,released,head,passive_2,814,adjusted,occurred,A follower is ,.,is,0,0,1,a,0,follower,3.56,,,,
+released/head/passive_2/823,released,head,passive_2,823,tapped,laughed,All grandparents were ,.,were,0,1,0,all,0,grandparents,3.88,,,,
+released/head/passive_2/825,released,head,passive_2,825,tracked,existed,This graphic was ,.,was,0,0,0,this,0,graphic,4.23,,,,
+released/head/passive_2/836,released,head,passive_2,836,dumped,laughed,This substitute wasn't ,.,wasn't,1,0,0,this,0,substitute,4.17,,,,
+released/head/passive_2/845,released,head,passive_2,845,evaluated,remarked,Dennis's fathers are ,.,are,0,1,1,bare,0,fathers,4.08,,,,
+released/head/passive_2/856,released,head,passive_2,856,retrieved,vanished,Some technicians are ,.,are,0,1,1,some,0,technicians,3.57,,,,
+released/head/passive_2/862,released,head,passive_2,862,contained,occurred,Those nominees are ,.,are,0,1,1,those,0,nominees,3.66,,,,
+released/head/passive_2/866,released,head,passive_2,866,implied,progressed,Kids weren't ,.,weren't,1,1,0,name,1,Kids,5.28,,,,
+released/head/passive_2/875,released,head,passive_2,875,introduced,occurred,Omar wasn't ,.,wasn't,1,0,0,name,1,Omar,3.75,,,,
+released/head/passive_2/890,released,head,passive_2,890,retrieved,reacted,A lot of monks are ,.,are,0,1,1,a,0,monks,3.72,,,,
+released/head/passive_2/894,released,head,passive_2,894,posted,struggled,The lightweight isn't ,.,isn't,1,0,1,the,0,lightweight,3.78,,,,
+released/head/passive_2/902,released,head,passive_2,902,termed,existed,Every tailor is ,.,is,0,0,1,every,0,tailor,3.61,,,,
+released/head/passive_2/904,released,head,passive_2,904,invested,emerged,Some shotgun is ,.,is,0,0,1,some,0,shotgun,3.81,,,,
+released/head/passive_2/911,released,head,passive_2,911,owed,complained,Some investigator is ,.,is,0,0,1,some,0,investigator,3.83,,,,
+released/head/passive_2/914,released,head,passive_2,914,packed,remarked,The boys weren't ,.,weren't,1,1,0,the,0,boys,5.03,,,,
+released/head/passive_2/924,released,head,passive_2,924,constituted,occurred,This employee is ,.,is,0,0,1,this,0,employee,4.5,,,,
+released/head/passive_2/940,released,head,passive_2,940,devised,reacted,An academic's best friends are ,.,are,0,1,1,an,0,friends,5.43,,,,
+released/head/passive_2/958,released,head,passive_2,958,standardized,arrived,The beginner is ,.,is,0,0,1,the,0,beginner,3.52,,,,
+released/head/passive_2/993,released,head,passive_2,993,bet,reacted,All brothers aren't ,.,aren't,1,1,1,all,0,brothers,4.69,,,,
+released/head/passive_2/998,released,head,passive_2,998,employed,competed,Some growers were ,.,were,0,1,0,some,0,growers,3.5,,,,
+released/tail/passive_1/0,released,tail,passive_1,0,drummed,disembarked,This interrogator wasn't , by that neckline.,wasn't,1,0,0,this,0,interrogator,2.58,that,0,neckline,2.7
+released/tail/passive_1/3,released,tail,passive_1,3,pitied,raved,Some pseudoscience isn't , by some deviant.,isn't,1,0,1,some,0,pseudoscience,2.56,some,0,deviant,3.03
+released/tail/passive_1/5,released,tail,passive_1,5,admonished,functioned,This wretch is , by dashes.,is,0,0,1,this,0,wretch,2.83,bare,0,dashes,2.87
+released/tail/passive_1/22,released,tail,passive_1,22,roused,blossomed,That prude isn't , by the lifter.,isn't,1,0,1,that,0,prude,2.58,the,0,lifter,2.71
+released/tail/passive_1/25,released,tail,passive_1,25,evaded,bragged,A cavalier isn't , by all raspberries.,isn't,1,0,1,a,0,cavalier,3.17,all,0,raspberries,2.98
+released/tail/passive_1/49,released,tail,passive_1,49,ridiculed,fluctuated,The apprentices were , by that hobbyist.,were,0,1,0,the,0,apprentices,3.15,that,0,hobbyist,2.57
+released/tail/passive_1/70,released,tail,passive_1,70,decimated,disapproved,Some lobbyist is , by all loyalties.,is,0,0,1,some,0,lobbyist,3.1,all,0,loyalties,3.06
+released/tail/passive_1/78,released,tail,passive_1,78,circumcised,congregated,This paratrooper is , by this commoner.,is,0,0,1,this,0,paratrooper,2.51,this,0,commoner,2.84
+released/tail/passive_1/84,released,tail,passive_1,84,goaded,bragged,The pathologist was , by a juror.,was,0,0,0,the,0,pathologist,3.15,a,0,juror,3.13
+released/tail/passive_1/91,released,tail,passive_1,91,quarried,sprawled,Some deserters aren't , by some heterosexuals.,aren't,1,1,1,some,0,deserters,2.76,some,0,heterosexuals,2.48
+released/tail/passive_1/109,released,tail,passive_1,109,nauseated,cooperated,These propagandists aren't , by these caterers.,aren't,1,1,1,these,0,propagandists,2.65,these,0,caterers,2.6
+released/tail/passive_1/124,released,tail,passive_1,124,smothered,glared,A politico was , by every smuggler.,was,0,0,0,a,0,politico,3.16,every,0,smuggler,2.96
+released/tail/passive_1/131,released,tail,passive_1,131,overcharged,bragged,A lot of nieces of a lot of bouncers were , by a lot of liquidators.,were,0,1,0,a,0,bouncers,2.77,a,0,liquidators,2.46
+released/tail/passive_1/140,released,tail,passive_1,140,emancipated,reeled,Some sacrilege wasn't , by some athleticism.,wasn't,1,0,0,some,0,sacrilege,2.64,some,0,athleticism,2.98
+released/tail/passive_1/141,released,tail,passive_1,141,racked,disapproved,The ecologists were , by the vocalists.,were,0,1,0,the,0,ecologists,2.59,the,0,vocalists,2.81
+released/tail/passive_1/166,released,tail,passive_1,166,excommunicated,languished,Most romantics were , by every femininity.,were,0,1,0,most,0,romantics,2.74,every,0,femininity,3.12
+released/tail/passive_1/175,released,tail,passive_1,175,confided,shivered,Sceptics are , by these compatriots.,are,0,1,1,name,1,Sceptics,2.45,these,0,compatriots,2.9
+released/tail/passive_1/176,released,tail,passive_1,176,abetted,congregated,A dispersion was , by every bogeyman.,was,0,0,0,a,0,dispersion,3.18,every,0,bogeyman,2.5
+released/tail/passive_1/180,released,tail,passive_1,180,excised,peed,Many parliamentarians were , by every prankster.,were,0,1,0,many,0,parliamentarians,2.95,every,0,prankster,2.69
+released/tail/passive_1/201,released,tail,passive_1,201,disfigured,mused,A lot of blotches aren't , by some admirers.,aren't,1,1,1,a,0,blotches,2.45,some,0,admirers,3.17
+released/tail/passive_1/207,released,tail,passive_1,207,procured,dwindled,Those pensioners were , by the frills.,were,0,1,0,those,0,pensioners,3.17,the,0,frills,2.9
+released/tail/passive_1/225,released,tail,passive_1,225,exhumed,sinned,This chiller was , by the millers.,was,0,0,0,this,0,chiller,2.54,the,0,millers,3.06
+released/tail/passive_1/241,released,tail,passive_1,241,slandered,meditated,Many janitors aren't , by that amigo.,aren't,1,1,1,many,0,janitors,2.68,that,0,amigo,2.86
+released/tail/passive_1/246,released,tail,passive_1,246,furthered,lapsed,Grandfathers of the moc were , by every campaigner.,were,0,1,0,bare,0,moc,2.61,every,0,campaigner,3.0
+released/tail/passive_1/247,released,tail,passive_1,247,evaded,prospered,This gradation wasn't , by this stewardess.,wasn't,1,0,0,this,0,gradation,2.4,this,0,stewardess,2.62
+released/tail/passive_1/254,released,tail,passive_1,254,defrauded,reverted,Some hobbyist was , by the overgrowth.,was,0,0,0,some,0,hobbyist,2.57,the,0,overgrowth,2.52
+released/tail/passive_1/258,released,tail,passive_1,258,disfigured,feasted,Every tactician is , by this pediatrician.,is,0,0,1,every,0,tactician,2.57,this,0,pediatrician,3.07
+released/tail/passive_1/260,released,tail,passive_1,260,divested,resonated,The frizz is , by those apostates.,is,0,0,1,the,0,frizz,2.4,those,0,apostates,2.53
+released/tail/passive_1/266,released,tail,passive_1,266,forested,bragged,A lot of linemen weren't , by all expats.,weren't,1,1,0,a,0,linemen,2.92,all,0,expats,2.93
+released/tail/passive_1/271,released,tail,passive_1,271,lauded,receded,Most acrobats were , by a lot of claps.,were,0,1,0,most,0,acrobats,2.51,a,0,claps,2.89
+released/tail/passive_1/276,released,tail,passive_1,276,berated,emigrated,Most glimpses aren't , by those interviewers.,aren't,1,1,1,most,0,glimpses,3.19,those,0,interviewers,2.87
+released/tail/passive_1/281,released,tail,passive_1,281,purified,adhered,Every googly was , by that stooge.,was,0,0,0,every,0,googly,2.58,that,0,stooge,2.73
+released/tail/passive_1/293,released,tail,passive_1,293,hounded,crowed,These delinquents aren't , by a tycoon.,aren't,1,1,1,these,0,delinquents,2.64,a,0,tycoon,3.16
+released/tail/passive_1/324,released,tail,passive_1,324,lubricated,shivered,The schoolboys were , by some arbitrage.,were,0,1,0,the,0,schoolboys,2.66,some,0,arbitrage,2.81
+released/tail/passive_1/338,released,tail,passive_1,338,exhumed,congregated,A lot of mommies aren't , by many mutineers.,aren't,1,1,1,a,0,mommies,2.54,many,0,mutineers,2.42
+released/tail/passive_1/343,released,tail,passive_1,343,nourished,glared,That procurator is , by that lech.,is,0,0,1,that,0,procurator,2.66,that,0,lech,2.51
+released/tail/passive_1/355,released,tail,passive_1,355,encumbered,proliferated,Some conservationists are , by this abuser.,are,0,1,1,some,0,conservationists,2.77,this,0,abuser,3.14
+released/tail/passive_1/359,released,tail,passive_1,359,loathed,abstained,Every cretin is , by a proponent.,is,0,0,1,every,0,cretin,2.45,a,0,proponent,3.15
+released/tail/passive_1/366,released,tail,passive_1,366,emancipated,swelled,Acrobats aren't , by some delinquents.,aren't,1,1,1,name,1,Acrobats,2.51,some,0,delinquents,2.64
+released/tail/passive_1/371,released,tail,passive_1,371,audited,emigrated,A salter was , by the inefficiencies.,was,0,0,0,a,0,salter,2.81,the,0,inefficiencies,2.71
+released/tail/passive_1/374,released,tail,passive_1,374,enthralled,gushed,All foibles were , by some repatriate.,were,0,1,0,all,0,foibles,2.49,some,0,repatriate,2.4
+released/tail/passive_1/389,released,tail,passive_1,389,obstructed,prospered,Miscreants aren't , by every vagrant.,aren't,1,1,1,name,1,Miscreants,2.4,every,0,vagrant,2.76
+released/tail/passive_1/395,released,tail,passive_1,395,sullied,excelled,Archeologists weren't , by the quorum.,weren't,1,1,0,name,1,Archeologists,2.49,the,0,quorum,3.07
+released/tail/passive_1/396,released,tail,passive_1,396,daunted,raved,Some sizzle was , by that maimed.,was,0,0,0,some,0,sizzle,2.8,that,0,maimed,2.81
+released/tail/passive_1/401,released,tail,passive_1,401,molested,mutated,Some passer was , by the cannula.,was,0,0,0,some,0,passer,3.17,the,0,cannula,2.45
+released/tail/passive_1/407,released,tail,passive_1,407,displeased,excelled,This cheep is , by the actuary.,is,0,0,1,this,0,cheep,2.47,the,0,actuary,2.5
+released/tail/passive_1/424,released,tail,passive_1,424,overstated,dawned,Those junkies are , by the phonology.,are,0,1,1,those,0,junkies,3.04,the,0,phonology,2.66
+released/tail/passive_1/447,released,tail,passive_1,447,scorned,bargained,A lot of potters aren't , by that aberrant.,aren't,1,1,1,a,0,potters,2.85,that,0,aberrant,2.69
+released/tail/passive_1/448,released,tail,passive_1,448,popularized,stagnated,Every gastroenterology was , by those rogues.,was,0,0,0,every,0,gastroenterology,2.63,those,0,rogues,3.0
+released/tail/passive_1/458,released,tail,passive_1,458,policed,emigrated,Every individuality was , by this biographer.,was,0,0,0,every,0,individuality,3.2,this,0,biographer,3.09
+released/tail/passive_1/477,released,tail,passive_1,477,interpolated,bloomed,A lot of buccaneers weren't , by every guarantor.,weren't,1,1,0,a,0,buccaneers,2.97,every,0,guarantor,2.79
+released/tail/passive_1/486,released,tail,passive_1,486,policed,mutated,That archivist isn't , by all aggressors.,isn't,1,0,1,that,0,archivist,2.8,all,0,aggressors,2.66
+released/tail/passive_1/492,released,tail,passive_1,492,quelled,mutated,Those pollsters were , by that goer.,were,0,1,0,those,0,pollsters,2.59,that,0,goer,2.59
+released/tail/passive_1/510,released,tail,passive_1,510,regrouped,blushed,The medallist was , by some incurable's hairdressers.,was,0,0,0,the,0,medallist,3.08,some,0,hairdressers,2.74
+released/tail/passive_1/528,released,tail,passive_1,528,nabbed,transpired,The ramble wasn't , by some bambino.,wasn't,1,0,0,the,0,ramble,2.85,some,0,bambino,2.46
+released/tail/passive_1/548,released,tail,passive_1,548,disseminated,bloomed,The weakling was , by the notaries.,was,0,0,0,the,0,weakling,2.43,the,0,notaries,2.4
+released/tail/passive_1/557,released,tail,passive_1,557,feigned,stagnated,The centering was , by the workmen.,was,0,0,0,the,0,centering,2.95,the,0,workmen,2.92
+released/tail/passive_1/566,released,tail,passive_1,566,impeded,reverted,Many speculators were , by this swish.,were,0,1,0,many,0,speculators,2.94,this,0,swish,2.89
+released/tail/passive_1/570,released,tail,passive_1,570,donned,sprawled,Some aberrant was , by scapegoats.,was,0,0,0,some,0,aberrant,2.69,bare,0,scapegoats,2.5
+released/tail/passive_1/590,released,tail,passive_1,590,orphaned,proliferated,An arsonist isn't , by this valet.,isn't,1,0,1,an,0,arsonist,2.59,this,0,valet,3.17
+released/tail/passive_1/592,released,tail,passive_1,592,bronzed,raved,A lot of baddies are , by every narcissist.,are,0,1,1,a,0,baddies,2.74,every,0,narcissist,2.99
+released/tail/passive_1/599,released,tail,passive_1,599,beheld,gushed,That ogre was , by a sleuth.,was,0,0,0,that,0,ogre,3.1,a,0,sleuth,2.63
+released/tail/passive_1/600,released,tail,passive_1,600,outdone,proliferated,An aggravation is , by a grabber.,is,0,0,1,an,0,aggravation,2.76,a,0,grabber,2.54
+released/tail/passive_1/605,released,tail,passive_1,605,rationed,fluctuated,Nobodies are , by some mulatto.,are,0,1,1,name,1,Nobodies,2.61,some,0,mulatto,2.57
+released/tail/passive_1/607,released,tail,passive_1,607,tabulated,persevered,A lot of crawlers weren't , by every photojournalist.,weren't,1,1,0,a,0,crawlers,2.48,every,0,photojournalist,2.8
+released/tail/passive_1/612,released,tail,passive_1,612,contrived,sprawled,All castes weren't , by this oxymoron.,weren't,1,1,0,all,0,castes,3.06,this,0,oxymoron,2.72
+released/tail/passive_1/616,released,tail,passive_1,616,berated,interacted,Many boarders are , by that stowaway.,are,0,1,1,many,0,boarders,2.87,that,0,stowaway,2.51
+released/tail/passive_1/625,released,tail,passive_1,625,ostracized,disapproved,Every swerving isn't , by a courtier.,isn't,1,0,1,every,0,swerving,2.66,a,0,courtier,2.64
+released/tail/passive_1/633,released,tail,passive_1,633,peddled,vied,Every psychopathology is , by every wearer.,is,0,0,1,every,0,psychopathology,2.48,every,0,wearer,3.08
+released/tail/passive_1/646,released,tail,passive_1,646,annihilated,swelled,Cyborgs weren't , by the urchin.,weren't,1,1,0,name,1,Cyborgs,2.56,the,0,urchin,2.79
+released/tail/passive_1/673,released,tail,passive_1,673,garnished,dived,Challengers were , by all scarlets.,were,0,1,0,name,1,Challengers,3.18,all,0,scarlets,2.59
+released/tail/passive_1/679,released,tail,passive_1,679,perplexed,reeled,Many skirmishes are , by every weatherman.,are,0,1,1,many,0,skirmishes,2.94,every,0,weatherman,2.7
+released/tail/passive_1/684,released,tail,passive_1,684,blighted,bragged,An equating was , by some bridegroom.,was,0,0,0,an,0,equating,2.9,some,0,bridegroom,2.76
+released/tail/passive_1/688,released,tail,passive_1,688,mutilated,seeped,These grandsons were , by that seamstress.,were,0,1,0,these,0,grandsons,2.81,that,0,seamstress,2.77
+released/tail/passive_1/690,released,tail,passive_1,690,impaled,thrived,A lot of blowouts are , by some trusty.,are,0,1,1,a,0,blowouts,2.44,some,0,trusty,3.03
+released/tail/passive_1/694,released,tail,passive_1,694,annihilated,gushed,Many rowers are , by those broods.,are,0,1,1,many,0,rowers,2.77,those,0,broods,2.41
+released/tail/passive_1/695,released,tail,passive_1,695,riddled,gushed,Neocons are , by some oligarch.,are,0,1,1,name,1,Neocons,2.51,some,0,oligarch,2.69
+released/tail/passive_1/700,released,tail,passive_1,700,buffed,swelled,Every inspectorate isn't , by a crowbar.,isn't,1,0,1,every,0,inspectorate,2.78,a,0,crowbar,2.72
+released/tail/passive_1/703,released,tail,passive_1,703,promulgated,congregated,A lot of fandoms are , by a lot of liquidators.,are,0,1,1,a,0,fandoms,2.56,a,0,liquidators,2.46
+released/tail/passive_1/719,released,tail,passive_1,719,ransacked,veered,Most grantees aren't , by some goddesses.,aren't,1,1,1,most,0,grantees,2.44,some,0,goddesses,3.08
+released/tail/passive_1/722,released,tail,passive_1,722,clenched,crowed,That sufferer isn't , by most weirdos.,isn't,1,0,1,that,0,sufferer,2.94,most,0,weirdos,2.96
+released/tail/passive_1/734,released,tail,passive_1,734,splattered,reeled,That phonology isn't , by this paramilitary.,isn't,1,0,1,that,0,phonology,2.66,this,0,paramilitary,3.2
+released/tail/passive_1/773,released,tail,passive_1,773,stashed,branched,A lot of moderates weren't , by those busters.,weren't,1,1,0,a,0,moderates,3.13,those,0,busters,2.92
+released/tail/passive_1/777,released,tail,passive_1,777,diced,meditated,This playmaker is , by most depositors.,is,0,0,1,this,0,playmaker,2.92,most,0,depositors,2.78
+released/tail/passive_1/792,released,tail,passive_1,792,loathed,receded,The messengers weren't , by some governess.,weren't,1,1,0,the,0,messengers,3.14,some,0,governess,2.87
+released/tail/passive_1/804,released,tail,passive_1,804,contorted,adhered,Some smacking was , by some extractions.,was,0,0,0,some,0,smacking,3.02,some,0,extractions,2.53
+released/tail/passive_1/806,released,tail,passive_1,806,abetted,proliferated,The actuary is , by this puller.,is,0,0,1,the,0,actuary,2.5,this,0,puller,2.62
+released/tail/passive_1/835,released,tail,passive_1,835,dismayed,seeped,Most quakers weren't , by that chairwoman.,weren't,1,1,0,most,0,quakers,2.95,that,0,chairwoman,2.89
+released/tail/passive_1/850,released,tail,passive_1,850,disparaged,flopped,This astrophysicist wasn't , by a gentile.,wasn't,1,0,0,this,0,astrophysicist,2.62,a,0,gentile,3.03
+released/tail/passive_1/872,released,tail,passive_1,872,trademarked,proliferated,That erecting was , by these colonizers.,was,0,0,0,that,0,erecting,2.85,these,0,colonizers,2.46
+released/tail/passive_1/886,released,tail,passive_1,886,scrutinized,dawned,These federalists aren't , by this checkmate.,aren't,1,1,1,these,0,federalists,2.64,this,0,checkmate,2.98
+released/tail/passive_1/913,released,tail,passive_1,913,confounded,glowed,A lot of kickers aren't , by the impersonator.,aren't,1,1,1,a,0,kickers,2.83,the,0,impersonator,2.73
+released/tail/passive_1/927,released,tail,passive_1,927,calibrated,subsided,This custodian isn't , by every essayist.,isn't,1,0,1,this,0,custodian,3.12,every,0,essayist,2.66
+released/tail/passive_1/936,released,tail,passive_1,936,circumscribed,vied,A bummer is , by the hegemony.,is,0,0,1,a,0,bummer,3.2,the,0,hegemony,3.13
+released/tail/passive_1/941,released,tail,passive_1,941,whitewashed,crowed,The exchangers aren't , by some highbrow.,aren't,1,1,1,the,0,exchangers,2.66,some,0,highbrow,2.42
+released/tail/passive_1/942,released,tail,passive_1,942,transcribed,corresponded,Lackeys are , by this carpeting.,are,0,1,1,name,1,Lackeys,2.46,this,0,carpeting,2.69
+released/tail/passive_1/968,released,tail,passive_1,968,trolled,slumped,Botanists weren't , by a hombre.,weren't,1,1,0,name,1,Botanists,2.6,a,0,hombre,2.72
+released/tail/passive_1/974,released,tail,passive_1,974,reused,blossomed,Most spenders are , by those affaires.,are,0,1,1,most,0,spenders,2.46,those,0,affaires,2.68
+released/tail/passive_1/983,released,tail,passive_1,983,decimated,proliferated,The tickles weren't , by the wisps.,weren't,1,1,0,the,0,tickles,2.86,the,0,wisps,2.44
+released/tail/passive_1/987,released,tail,passive_1,987,expropriated,raged,The foreshadowing is , by a watchman.,is,0,0,1,the,0,foreshadowing,2.76,a,0,watchman,3.01
+released/tail/passive_2/2,released,tail,passive_2,2,camouflaged,dwelt,Most screenwriters were ,.,were,0,1,0,most,0,screenwriters,2.64,,,,
+released/tail/passive_2/12,released,tail,passive_2,12,disregarded,fluctuated,All biographers were ,.,were,0,1,0,all,0,biographers,2.54,,,,
+released/tail/passive_2/27,released,tail,passive_2,27,skimmed,feasted,Every ascetic wasn't ,.,wasn't,1,0,0,every,0,ascetic,2.81,,,,
+released/tail/passive_2/39,released,tail,passive_2,39,expunged,receded,Most courtiers were ,.,were,0,1,0,most,0,courtiers,2.74,,,,
+released/tail/passive_2/49,released,tail,passive_2,49,doped,chuckled,Every fiend was ,.,was,0,0,0,every,0,fiend,3.1,,,,
+released/tail/passive_2/72,released,tail,passive_2,72,electrocuted,lurked,A lot of informants weren't ,.,weren't,1,1,0,a,0,informants,3.03,,,,
+released/tail/passive_2/87,released,tail,passive_2,87,formatted,thrived,Every posterity wasn't ,.,wasn't,1,0,0,every,0,posterity,2.97,,,,
+released/tail/passive_2/93,released,tail,passive_2,93,dispelled,raged,A stockbroker wasn't ,.,wasn't,1,0,0,a,0,stockbroker,2.76,,,,
+released/tail/passive_2/96,released,tail,passive_2,96,spied,emigrated,A lot of immortals weren't ,.,weren't,1,1,0,a,0,immortals,2.94,,,,
+released/tail/passive_2/97,released,tail,passive_2,97,decimated,disapproved,Some lobbyist is ,.,is,0,0,1,some,0,lobbyist,3.1,,,,
+released/tail/passive_2/116,released,tail,passive_2,116,stockpiled,retaliated,That businesswoman isn't ,.,isn't,1,0,1,that,0,businesswoman,2.95,,,,
+released/tail/passive_2/133,released,tail,passive_2,133,outdone,slumped,Every cyberpunk was ,.,was,0,0,0,every,0,cyberpunk,2.76,,,,
+released/tail/passive_2/160,released,tail,passive_2,160,tamed,reappeared,The supergirl is ,.,is,0,0,1,the,0,supergirl,3.14,,,,
+released/tail/passive_2/175,released,tail,passive_2,175,contrived,materialized,The federalists were ,.,were,0,1,0,the,0,federalists,2.64,,,,
+released/tail/passive_2/202,released,tail,passive_2,202,refunded,stagnated,A lot of financiers weren't ,.,weren't,1,1,0,a,0,financiers,2.89,,,,
+released/tail/passive_2/214,released,tail,passive_2,214,decimated,grinned,All grooms weren't ,.,weren't,1,1,0,all,0,grooms,2.8,,,,
+released/tail/passive_2/217,released,tail,passive_2,217,circumvented,persevered,These engravers aren't ,.,aren't,1,1,1,these,0,engravers,2.41,,,,
+released/tail/passive_2/221,released,tail,passive_2,221,assailed,functioned,These heretics are ,.,are,0,1,1,these,0,heretics,3.05,,,,
+released/tail/passive_2/222,released,tail,passive_2,222,signaled,colluded,Those genomes were ,.,were,0,1,0,those,0,genomes,3.04,,,,
+released/tail/passive_2/223,released,tail,passive_2,223,devoured,lapsed,Many buccaneers weren't ,.,weren't,1,1,0,many,0,buccaneers,2.97,,,,
+released/tail/passive_2/230,released,tail,passive_2,230,surmounted,fluctuated,All peculiarities were ,.,were,0,1,0,all,0,peculiarities,2.73,,,,
+released/tail/passive_2/242,released,tail,passive_2,242,dispossessed,resonated,A geneticist's granddaughters weren't ,.,weren't,1,1,0,a,0,granddaughters,2.63,,,,
+released/tail/passive_2/258,released,tail,passive_2,258,treasured,sympathized,This dribbling is ,.,is,0,0,1,this,0,dribbling,2.92,,,,
+released/tail/passive_2/261,released,tail,passive_2,261,cluttered,disembarked,A lot of renegades are ,.,are,0,1,1,a,0,renegades,2.84,,,,
+released/tail/passive_2/264,released,tail,passive_2,264,professed,balked,The paralytic was ,.,was,0,0,0,the,0,paralytic,2.48,,,,
+released/tail/passive_2/267,released,tail,passive_2,267,stigmatized,chuckled,Many archbishops are ,.,are,0,1,1,many,0,archbishops,2.54,,,,
+released/tail/passive_2/289,released,tail,passive_2,289,defamed,receded,The soph wasn't ,.,wasn't,1,0,0,the,0,soph,2.46,,,,
+released/tail/passive_2/320,released,tail,passive_2,320,foretold,dwelt,Every filly is ,.,is,0,0,1,every,0,filly,3.15,,,,
+released/tail/passive_2/336,released,tail,passive_2,336,evaded,mused,Those daydreams are ,.,are,0,1,1,those,0,daydreams,2.59,,,,
+released/tail/passive_2/361,released,tail,passive_2,361,smeared,shivered,Many intruders aren't ,.,aren't,1,1,1,many,0,intruders,3.11,,,,
+released/tail/passive_2/370,released,tail,passive_2,370,accommodated,blossomed,Some sires aren't ,.,aren't,1,1,1,some,0,sires,2.52,,,,
+released/tail/passive_2/374,released,tail,passive_2,374,spearheaded,prospered,These pretenders aren't ,.,aren't,1,1,1,these,0,pretenders,2.65,,,,
+released/tail/passive_2/384,released,tail,passive_2,384,breasted,meditated,Many saviors are ,.,are,0,1,1,many,0,saviors,2.68,,,,
+released/tail/passive_2/390,released,tail,passive_2,390,brained,sympathized,The brownies weren't ,.,weren't,1,1,0,the,0,brownies,3.19,,,,
+released/tail/passive_2/411,released,tail,passive_2,411,embezzled,diverged,Assailants' grandsons are ,.,are,0,1,1,bare,0,grandsons,2.81,,,,
+released/tail/passive_2/424,released,tail,passive_2,424,electrocuted,swelled,This pitman isn't ,.,isn't,1,0,1,this,0,pitman,2.7,,,,
+released/tail/passive_2/435,released,tail,passive_2,435,idolized,bragged,Many pageants weren't ,.,weren't,1,1,0,many,0,pageants,2.76,,,,
+released/tail/passive_2/440,released,tail,passive_2,440,encompassed,meditated,The aspirants were ,.,were,0,1,0,the,0,aspirants,2.68,,,,
+released/tail/passive_2/444,released,tail,passive_2,444,lauded,prospered,Most registrars weren't ,.,weren't,1,1,0,most,0,registrars,2.65,,,,
+released/tail/passive_2/459,released,tail,passive_2,459,tamed,waned,Those foodies aren't ,.,aren't,1,1,1,those,0,foodies,2.73,,,,
+released/tail/passive_2/474,released,tail,passive_2,474,policed,functioned,Most consuls were ,.,were,0,1,0,most,0,consuls,2.8,,,,
+released/tail/passive_2/475,released,tail,passive_2,475,brained,sympathized,The separatists were ,.,were,0,1,0,the,0,separatists,3.03,,,,
+released/tail/passive_2/477,released,tail,passive_2,477,befriended,waned,A senpai isn't ,.,isn't,1,0,1,a,0,senpai,2.81,,,,
+released/tail/passive_2/518,released,tail,passive_2,518,terrorized,swelled,These optimists weren't ,.,weren't,1,1,0,these,0,optimists,2.41,,,,
+released/tail/passive_2/524,released,tail,passive_2,524,formatted,dived,Newbies aren't ,.,aren't,1,1,1,name,1,Newbies,2.95,,,,
+released/tail/passive_2/533,released,tail,passive_2,533,invalidated,persevered,This asymmetry isn't ,.,isn't,1,0,1,this,0,asymmetry,2.88,,,,
+released/tail/passive_2/535,released,tail,passive_2,535,uttered,shuddered,Some moderators were ,.,were,0,1,0,some,0,moderators,3.01,,,,
+released/tail/passive_2/536,released,tail,passive_2,536,subverted,clashed,Those solvers were ,.,were,0,1,0,those,0,solvers,2.62,,,,
+released/tail/passive_2/541,released,tail,passive_2,541,popularized,reeled,Every immunotherapy is ,.,is,0,0,1,every,0,immunotherapy,2.76,,,,
+released/tail/passive_2/552,released,tail,passive_2,552,balled,waned,Victors weren't ,.,weren't,1,1,0,name,1,Victors,2.98,,,,
+released/tail/passive_2/553,released,tail,passive_2,553,cleansed,inquired,A lot of fandoms weren't ,.,weren't,1,1,0,a,0,fandoms,2.56,,,,
+released/tail/passive_2/557,released,tail,passive_2,557,disinfected,branched,Those vips are ,.,are,0,1,1,those,0,vips,2.85,,,,
+released/tail/passive_2/563,released,tail,passive_2,563,divested,toiled,The brownies are ,.,are,0,1,1,the,0,brownies,3.19,,,,
+released/tail/passive_2/575,released,tail,passive_2,575,overstated,feasted,That berk is ,.,is,0,0,1,that,0,berk,2.66,,,,
+released/tail/passive_2/578,released,tail,passive_2,578,inundated,decayed,This mooch is ,.,is,0,0,1,this,0,mooch,2.43,,,,
+released/tail/passive_2/580,released,tail,passive_2,580,garnished,raged,Many conservators weren't ,.,weren't,1,1,0,many,0,conservators,2.4,,,,
+released/tail/passive_2/586,released,tail,passive_2,586,ridiculed,disembarked,These salesmen aren't ,.,aren't,1,1,1,these,0,salesmen,2.97,,,,
+released/tail/passive_2/589,released,tail,passive_2,589,interrogated,subsided,Every dropout was ,.,was,0,0,0,every,0,dropout,3.08,,,,
+released/tail/passive_2/594,released,tail,passive_2,594,surmounted,dwelt,Those pensioners are ,.,are,0,1,1,those,0,pensioners,3.17,,,,
+released/tail/passive_2/616,released,tail,passive_2,616,shunned,waned,Every huntsman isn't ,.,isn't,1,0,1,every,0,huntsman,2.98,,,,
+released/tail/passive_2/623,released,tail,passive_2,623,engendered,seeped,Some supremacists were ,.,were,0,1,0,some,0,supremacists,2.97,,,,
+released/tail/passive_2/626,released,tail,passive_2,626,salvaged,flopped,This mariner was ,.,was,0,0,0,this,0,mariner,3.03,,,,
+released/tail/passive_2/650,released,tail,passive_2,650,interpolated,blossomed,These drummers were ,.,were,0,1,0,these,0,drummers,2.88,,,,
+released/tail/passive_2/655,released,tail,passive_2,655,spearheaded,crept,Most mobsters are ,.,are,0,1,1,most,0,mobsters,2.73,,,,
+released/tail/passive_2/661,released,tail,passive_2,661,disenfranchised,transpired,A cropper isn't ,.,isn't,1,0,1,a,0,cropper,2.53,,,,
+released/tail/passive_2/682,released,tail,passive_2,682,sated,dwelt,The stalwarts aren't ,.,aren't,1,1,1,the,0,stalwarts,2.52,,,,
+released/tail/passive_2/687,released,tail,passive_2,687,annulled,glowed,Some pappy was ,.,was,0,0,0,some,0,pappy,2.56,,,,
+released/tail/passive_2/689,released,tail,passive_2,689,ousted,chuckled,Queers aren't ,.,aren't,1,1,1,name,1,Queers,2.58,,,,
+released/tail/passive_2/697,released,tail,passive_2,697,disfigured,lurked,The traumas were ,.,were,0,1,0,the,0,traumas,2.79,,,,
+released/tail/passive_2/701,released,tail,passive_2,701,flabbergasted,veered,Every ventriloquist isn't ,.,isn't,1,0,1,every,0,ventriloquist,2.45,,,,
+released/tail/passive_2/708,released,tail,passive_2,708,conned,crept,Some pursuers were ,.,were,0,1,0,some,0,pursuers,2.55,,,,
+released/tail/passive_2/715,released,tail,passive_2,715,audited,stagnated,A lot of mommies weren't ,.,weren't,1,1,0,a,0,mommies,2.54,,,,
+released/tail/passive_2/716,released,tail,passive_2,716,fleeced,fluctuated,Some butchery is ,.,is,0,0,1,some,0,butchery,2.56,,,,
+released/tail/passive_2/731,released,tail,passive_2,731,enthralled,swelled,Some disqualification isn't ,.,isn't,1,0,1,some,0,disqualification,3.11,,,,
+released/tail/passive_2/735,released,tail,passive_2,735,expunged,reappeared,Some supers weren't ,.,weren't,1,1,0,some,0,supers,2.44,,,,
+released/tail/passive_2/756,released,tail,passive_2,756,pacified,reappeared,Some stewards were ,.,were,0,1,0,some,0,stewards,3.17,,,,
+released/tail/passive_2/766,released,tail,passive_2,766,superimposed,bargained,That italic is ,.,is,0,0,1,that,0,italic,2.73,,,,
+released/tail/passive_2/767,released,tail,passive_2,767,disseminated,sympathized,Some ideologue isn't ,.,isn't,1,0,1,some,0,ideologue,2.41,,,,
+released/tail/passive_2/772,released,tail,passive_2,772,audited,feasted,The possessor isn't ,.,isn't,1,0,1,the,0,possessor,2.58,,,,
+released/tail/passive_2/777,released,tail,passive_2,777,mutilated,receded,Every biochemist is ,.,is,0,0,1,every,0,biochemist,2.52,,,,
+released/tail/passive_2/801,released,tail,passive_2,801,orphaned,inquired,This abuser is ,.,is,0,0,1,this,0,abuser,3.14,,,,
+released/tail/passive_2/803,released,tail,passive_2,803,bronzed,raved,A lot of baddies aren't ,.,aren't,1,1,1,a,0,baddies,2.74,,,,
+released/tail/passive_2/811,released,tail,passive_2,811,commandeered,lurked,Many magpies were ,.,were,0,1,0,many,0,magpies,2.87,,,,
+released/tail/passive_2/813,released,tail,passive_2,813,razed,flopped,Many purists aren't ,.,aren't,1,1,1,many,0,purists,2.66,,,,
+released/tail/passive_2/830,released,tail,passive_2,830,elbowed,bargained,Most foresters were ,.,were,0,1,0,most,0,foresters,2.74,,,,
+released/tail/passive_2/837,released,tail,passive_2,837,overestimated,bloomed,All savers weren't ,.,weren't,1,1,0,all,0,savers,2.97,,,,
+released/tail/passive_2/850,released,tail,passive_2,850,doped,slumped,Those archeologists aren't ,.,aren't,1,1,1,those,0,archeologists,2.49,,,,
+released/tail/passive_2/867,released,tail,passive_2,867,eschewed,abstained,These interpreters weren't ,.,weren't,1,1,0,these,0,interpreters,3.09,,,,
+released/tail/passive_2/873,released,tail,passive_2,873,ported,veered,A succubus was ,.,was,0,0,0,a,0,succubus,2.53,,,,
+released/tail/passive_2/882,released,tail,passive_2,882,institutionalized,glared,Every groupie was ,.,was,0,0,0,every,0,groupie,2.65,,,,
+released/tail/passive_2/884,released,tail,passive_2,884,deducted,glowed,A cannibal isn't ,.,isn't,1,0,1,a,0,cannibal,3.05,,,,
+released/tail/passive_2/905,released,tail,passive_2,905,outdone,crowed,Some adopters aren't ,.,aren't,1,1,1,some,0,adopters,2.85,,,,
+released/tail/passive_2/911,released,tail,passive_2,911,telegraphed,glared,The saxophonist wasn't ,.,wasn't,1,0,0,the,0,saxophonist,2.74,,,,
+released/tail/passive_2/914,released,tail,passive_2,914,lubricated,blossomed,Most fundamentalists are ,.,are,0,1,1,most,0,fundamentalists,2.85,,,,
+released/tail/passive_2/917,released,tail,passive_2,917,wielded,emigrated,That pyre was ,.,was,0,0,0,that,0,pyre,2.69,,,,
+released/tail/passive_2/919,released,tail,passive_2,919,approximated,congregated,An importer was ,.,was,0,0,0,an,0,importer,3.08,,,,
+released/tail/passive_2/920,released,tail,passive_2,920,disinfected,languished,Every gynaecology was ,.,was,0,0,0,every,0,gynaecology,2.49,,,,
+released/tail/passive_2/954,released,tail,passive_2,954,uttered,sprawled,Some hiker wasn't ,.,wasn't,1,0,0,some,0,hiker,2.78,,,,
+released/tail/passive_2/988,released,tail,passive_2,988,petrified,dived,Those profs aren't ,.,aren't,1,1,1,those,0,profs,2.52,,,,
+released/tail/passive_2/999,released,tail,passive_2,999,accommodated,bargained,A lot of storytellers aren't ,.,aren't,1,1,1,a,0,storytellers,2.76,,,,
+released/xtail/passive_1/5,released,xtail,passive_1,5,rutted,lumbered,A rainmaking is , by accompanists.,is,0,0,1,a,0,rainmaking,1.4,bare,0,accompanists,1.5
+released/xtail/passive_1/15,released,xtail,passive_1,15,parboiled,hyperventilated,This bursar isn't , by some vender.,isn't,1,0,1,this,0,bursar,2.19,some,0,vender,1.86
+released/xtail/passive_1/20,released,xtail,passive_1,20,espied,debarked,Every controversialist wasn't , by the toolmaker.,wasn't,1,0,0,every,0,controversialist,1.67,the,0,toolmaker,1.71
+released/xtail/passive_1/45,released,xtail,passive_1,45,purloined,bustled,A solfeggio wasn't , by the neurobiologist.,wasn't,1,0,0,a,0,solfeggio,1.48,the,0,neurobiologist,1.65
+released/xtail/passive_1/60,released,xtail,passive_1,60,lugged,burgeoned,A groaner was , by pyromaniacs.,was,0,0,0,a,0,groaner,1.2,bare,0,pyromaniacs,1.44
+released/xtail/passive_1/72,released,xtail,passive_1,72,stupefied,teemed,Some landlubbers are , by these gunrunners.,are,0,1,1,some,0,landlubbers,1.52,these,0,gunrunners,1.2
+released/xtail/passive_1/93,released,xtail,passive_1,93,interposed,defecated,Every reenlistment isn't , by the dyers.,isn't,1,0,1,every,0,reenlistment,1.61,the,0,dyers,2.05
+released/xtail/passive_1/97,released,xtail,passive_1,97,extirpated,prattled,Those dilettantes are , by many redeemers.,are,0,1,1,those,0,dilettantes,1.69,many,0,redeemers,1.63
+released/xtail/passive_1/99,released,xtail,passive_1,99,bluffed,slouched,Some reenactor isn't , by those fiats.,isn't,1,0,1,some,0,reenactor,1.61,those,0,fiats,1.71
+released/xtail/passive_1/121,released,xtail,passive_1,121,slaked,putrefied,All leches weren't , by some shouter.,weren't,1,1,0,all,0,leches,1.58,some,0,shouter,1.57
+released/xtail/passive_1/128,released,xtail,passive_1,128,bluffed,tingled,Nonconformists are , by most hairballs.,are,0,1,1,name,1,Nonconformists,1.96,most,0,hairballs,1.64
+released/xtail/passive_1/134,released,xtail,passive_1,134,despoiled,putrefied,All misuses weren't , by most maestros.,weren't,1,1,0,all,0,misuses,2.08,most,0,maestros,2.04
+released/xtail/passive_1/142,released,xtail,passive_1,142,rearmed,picnicked,Many gilders are , by the juntas.,are,0,1,1,many,0,gilders,1.31,the,0,juntas,2.14
+released/xtail/passive_1/168,released,xtail,passive_1,168,pilfered,vacillated,The tinsmith is , by many sawhorses.,is,0,0,1,the,0,tinsmith,1.6,many,0,sawhorses,1.36
+released/xtail/passive_1/169,released,xtail,passive_1,169,counteracted,panted,Some booklovers aren't , by the defiler.,aren't,1,1,1,some,0,booklovers,1.56,the,0,defiler,1.62
+released/xtail/passive_1/181,released,xtail,passive_1,181,clouted,scrammed,These snoopers are , by that manageress.,are,0,1,1,these,0,snoopers,1.84,that,0,manageress,1.77
+released/xtail/passive_1/188,released,xtail,passive_1,188,craned,bustled,Some massagers were , by these ignoramuses.,were,0,1,0,some,0,massagers,1.59,these,0,ignoramuses,1.74
+released/xtail/passive_1/211,released,xtail,passive_1,211,sundered,eavesdropped,All suborders weren't , by a plage.,weren't,1,1,0,all,0,suborders,1.56,a,0,plage,2.12
+released/xtail/passive_1/225,released,xtail,passive_1,225,unlatched,intermarried,This authoress is , by those continuations.,is,0,0,1,this,0,authoress,1.63,those,0,continuations,2.19
+released/xtail/passive_1/238,released,xtail,passive_1,238,lopped,scooted,Many participations weren't , by this grandniece.,weren't,1,1,0,many,0,participations,2.19,this,0,grandniece,1.56
+released/xtail/passive_1/240,released,xtail,passive_1,240,suckled,slogged,Those masseurs are , by an absorbency.,are,0,1,1,those,0,masseurs,1.71,an,0,absorbency,1.88
+released/xtail/passive_1/247,released,xtail,passive_1,247,chunked,pontificated,Every theologist was , by every lagopus.,was,0,0,0,every,0,theologist,1.2,every,0,lagopus,1.59
+released/xtail/passive_1/259,released,xtail,passive_1,259,suckled,gyrated,Embroiderers were , by those neurotics.,were,0,1,0,name,1,Embroiderers,1.66,those,0,neurotics,1.83
+released/xtail/passive_1/281,released,xtail,passive_1,281,blabbed,gyrated,A lot of picnickers are , by many conveyancers.,are,0,1,1,a,0,picnickers,1.75,many,0,conveyancers,1.63
+released/xtail/passive_1/287,released,xtail,passive_1,287,suckled,procreated,These inspectorates weren't , by a bluestocking.,weren't,1,1,0,these,0,inspectorates,1.4,a,0,bluestocking,1.59
+released/xtail/passive_1/295,released,xtail,passive_1,295,disabused,putrefied,This counterterrorist wasn't , by most crackpots.,wasn't,1,0,0,this,0,counterterrorist,1.74,most,0,crackpots,1.96
+released/xtail/passive_1/296,released,xtail,passive_1,296,obviated,picnicked,The croupiers weren't , by every fungibility.,weren't,1,1,0,the,0,croupiers,1.33,every,0,fungibility,1.51
+released/xtail/passive_1/301,released,xtail,passive_1,301,prettified,swaggered,These interlopers were , by that persecutor.,were,0,1,0,these,0,interlopers,2.16,that,0,persecutor,2.0
+released/xtail/passive_1/303,released,xtail,passive_1,303,tenderized,burgeoned,Most ropers were , by the paparazzo.,were,0,1,0,most,0,ropers,1.68,the,0,paparazzo,2.11
+released/xtail/passive_1/310,released,xtail,passive_1,310,bridled,pulsated,Victimizers weren't , by all educationists.,weren't,1,1,0,name,1,Victimizers,1.39,all,0,educationists,1.72
+released/xtail/passive_1/314,released,xtail,passive_1,314,recompensed,gusted,All thanes are , by every supermom.,are,0,1,1,all,0,thanes,1.71,every,0,supermom,1.64
+released/xtail/passive_1/319,released,xtail,passive_1,319,recollected,coexisted,Some evacuee is , by the tubercular.,is,0,0,1,some,0,evacuee,1.93,the,0,tubercular,1.93
+released/xtail/passive_1/338,released,xtail,passive_1,338,carjacked,basked,This lunger isn't , by this sensualist.,isn't,1,0,1,this,0,lunger,1.58,this,0,sensualist,1.4
+released/xtail/passive_1/344,released,xtail,passive_1,344,swaddled,ossified,Many beloveds are , by that shedder.,are,0,1,1,many,0,beloveds,1.71,that,0,shedder,1.34
+released/xtail/passive_1/358,released,xtail,passive_1,358,garlanded,hyperventilated,Some millwrights were , by that transcriber.,were,0,1,0,some,0,millwrights,1.61,that,0,transcriber,2.05
+released/xtail/passive_1/363,released,xtail,passive_1,363,edified,whizzed,Most handymen aren't , by every troglodyte.,aren't,1,1,1,most,0,handymen,1.84,every,0,troglodyte,1.96
+released/xtail/passive_1/364,released,xtail,passive_1,364,recollected,hitchhiked,Hayseeds aren't , by every looter.,aren't,1,1,1,name,1,Hayseeds,1.33,every,0,looter,2.03
+released/xtail/passive_1/366,released,xtail,passive_1,366,emulsified,clacked,Many litterbugs aren't , by that fatalist.,aren't,1,1,1,many,0,litterbugs,1.32,that,0,fatalist,1.8
+released/xtail/passive_1/373,released,xtail,passive_1,373,cajoled,sulked,Those adjudicators were , by those boozers.,were,0,1,0,those,0,adjudicators,2.04,those,0,boozers,1.65
+released/xtail/passive_1/375,released,xtail,passive_1,375,mistimed,remonstrated,Some isotropy isn't , by this segregationist.,isn't,1,0,1,some,0,isotropy,1.56,this,0,segregationist,2.18
+released/xtail/passive_1/377,released,xtail,passive_1,377,pilfered,putrefied,Clockmakers weren't , by all renovators.,weren't,1,1,0,name,1,Clockmakers,1.78,all,0,renovators,1.73
+released/xtail/passive_1/380,released,xtail,passive_1,380,disembowelled,writhed,Those hubbies weren't , by a lot of sterilizations.,weren't,1,1,0,those,0,hubbies,1.5,a,0,sterilizations,1.88
+released/xtail/passive_1/454,released,xtail,passive_1,454,gnashed,burgeoned,Most maestros were , by every alky.,were,0,1,0,most,0,maestros,2.04,every,0,alky,1.34
+released/xtail/passive_1/470,released,xtail,passive_1,470,walloped,decamped,Most sharers are , by many castrates.,are,0,1,1,most,0,sharers,2.04,many,0,castrates,1.52
+released/xtail/passive_1/509,released,xtail,passive_1,509,shoplifted,putrefied,A lot of gipsies are , by the assemblywoman.,are,0,1,1,a,0,gipsies,1.86,the,0,assemblywoman,2.14
+released/xtail/passive_1/533,released,xtail,passive_1,533,recollected,teemed,Most utopians are , by those hurdlers.,are,0,1,1,most,0,utopians,1.77,those,0,hurdlers,1.68
+released/xtail/passive_1/535,released,xtail,passive_1,535,wheedled,hungered,This stridency isn't , by most egalitarians.,isn't,1,0,1,this,0,stridency,1.49,most,0,egalitarians,1.68
+released/xtail/passive_1/544,released,xtail,passive_1,544,hefted,hyperventilated,Bunglers aren't , by every spoilsport.,aren't,1,1,1,name,1,Bunglers,1.28,every,0,spoilsport,1.73
+released/xtail/passive_1/550,released,xtail,passive_1,550,titillated,gloried,Litterbugs are , by all duckies.,are,0,1,1,name,1,Litterbugs,1.32,all,0,duckies,1.83
+released/xtail/passive_1/551,released,xtail,passive_1,551,shooed,quivered,The osteopaths are , by a lot of underwoods.,are,0,1,1,the,0,osteopaths,1.74,a,0,underwoods,1.75
+released/xtail/passive_1/563,released,xtail,passive_1,563,obviated,sidled,Many chauvinists aren't , by all lubbers.,aren't,1,1,1,many,0,chauvinists,1.82,all,0,lubbers,1.8
+released/xtail/passive_1/568,released,xtail,passive_1,568,decontaminated,empathized,Every curacy was , by a sutler.,was,0,0,0,every,0,curacy,1.9,a,0,sutler,1.8
+released/xtail/passive_1/579,released,xtail,passive_1,579,demeaned,sunbathed,Roughnecks are , by every glassmaker.,are,0,1,1,name,1,Roughnecks,2.06,every,0,glassmaker,1.39
+released/xtail/passive_1/583,released,xtail,passive_1,583,titillated,calved,Those positivists were , by that sodomite.,were,0,1,0,those,0,positivists,1.73,that,0,sodomite,1.86
+released/xtail/passive_1/599,released,xtail,passive_1,599,recompensed,toddled,These featherweights weren't , by these anchorites.,weren't,1,1,0,these,0,featherweights,1.45,these,0,anchorites,1.41
+released/xtail/passive_1/602,released,xtail,passive_1,602,misspent,sulked,This craniotomy was , by many sisterhoods.,was,0,0,0,this,0,craniotomy,1.97,many,0,sisterhoods,1.22
+released/xtail/passive_1/616,released,xtail,passive_1,616,blasphemed,teemed,Those dairymen were , by some skyhook.,were,0,1,0,those,0,dairymen,1.3,some,0,skyhook,1.81
+released/xtail/passive_1/623,released,xtail,passive_1,623,slaked,hiccupped,These gigolos aren't , by the forgiver.,aren't,1,1,1,these,0,gigolos,1.63,the,0,forgiver,1.36
+released/xtail/passive_1/628,released,xtail,passive_1,628,enunciated,slouched,Maskers aren't , by this bookman.,aren't,1,1,1,name,1,Maskers,1.58,this,0,bookman,2.2
+released/xtail/passive_1/637,released,xtail,passive_1,637,kneaded,hibernated,This shipmate is , by all precipitators.,is,0,0,1,this,0,shipmate,2.06,all,0,precipitators,1.31
+released/xtail/passive_1/647,released,xtail,passive_1,647,disdained,whizzed,Most typists are , by some bibliographer.,are,0,1,1,most,0,typists,2.07,some,0,bibliographer,1.89
+released/xtail/passive_1/651,released,xtail,passive_1,651,lugged,seethed,A pedant is , by these inabilities.,is,0,0,1,a,0,pedant,2.13,these,0,inabilities,1.52
+released/xtail/passive_1/669,released,xtail,passive_1,669,upbraided,debarked,Some preservers were , by these duellists.,were,0,1,0,some,0,preservers,1.94,these,0,duellists,1.39
+released/xtail/passive_1/682,released,xtail,passive_1,682,abased,fizzed,That assignee is , by these psychotics.,is,0,0,1,that,0,assignee,2.18,these,0,psychotics,2.03
+released/xtail/passive_1/689,released,xtail,passive_1,689,guzzled,flounced,A lot of complainers were , by a lot of bacteriologists.,were,0,1,0,a,0,complainers,2.2,a,0,bacteriologists,1.59
+released/xtail/passive_1/702,released,xtail,passive_1,702,tantalized,empathized,These toastmasters were , by some blackmailers.,were,0,1,0,these,0,toastmasters,2.19,some,0,blackmailers,1.86
+released/xtail/passive_1/704,released,xtail,passive_1,704,despoiled,wormed,All geriatricians aren't , by probables.,aren't,1,1,1,all,0,geriatricians,1.3,bare,0,probables,1.6
+released/xtail/passive_1/705,released,xtail,passive_1,705,larded,drooled,Most philanthropies weren't , by that moviemaking.,weren't,1,1,0,most,0,philanthropies,2.12,that,0,moviemaking,1.86
+released/xtail/passive_1/713,released,xtail,passive_1,713,discomfited,perspired,Most musicologists were , by a lot of folies.,were,0,1,0,most,0,musicologists,1.76,a,0,folies,1.95
+released/xtail/passive_1/727,released,xtail,passive_1,727,discomfited,kayaked,A lot of itinerants were , by this kinswoman.,were,0,1,0,a,0,itinerants,1.47,this,0,kinswoman,1.52
+released/xtail/passive_1/729,released,xtail,passive_1,729,recollected,putrefied,Those stepmothers were , by some cementite.,were,0,1,0,those,0,stepmothers,1.68,some,0,cementite,1.2
+released/xtail/passive_1/737,released,xtail,passive_1,737,shoplifted,hyperventilated,A lot of daubers aren't , by a gimmickry.,aren't,1,1,1,a,0,daubers,1.33,a,0,gimmickry,1.59
+released/xtail/passive_1/748,released,xtail,passive_1,748,effaced,empathized,All noncombatants were , by a bounciness.,were,0,1,0,all,0,noncombatants,2.05,a,0,bounciness,1.24
+released/xtail/passive_1/763,released,xtail,passive_1,763,overawed,tottered,Most crackpots aren't , by a lot of homemakers.,aren't,1,1,1,most,0,crackpots,1.96,a,0,homemakers,2.17
+released/xtail/passive_1/788,released,xtail,passive_1,788,decontaminated,intermarried,Many teetotallers were , by this multicollinearity.,were,0,1,0,many,0,teetotallers,1.31,this,0,multicollinearity,1.27
+released/xtail/passive_1/814,released,xtail,passive_1,814,craned,pulsated,Every permissibility isn't , by that cabdriver.,isn't,1,0,1,every,0,permissibility,1.74,that,0,cabdriver,1.73
+released/xtail/passive_1/815,released,xtail,passive_1,815,craned,gloated,All loiterers weren't , by bruisers.,weren't,1,1,0,all,0,loiterers,1.37,bare,0,bruisers,1.92
+released/xtail/passive_1/827,released,xtail,passive_1,827,shooed,droned,Most lurchers weren't , by some imponderable.,weren't,1,1,0,most,0,lurchers,1.33,some,0,imponderable,1.66
+released/xtail/passive_1/829,released,xtail,passive_1,829,sodded,eavesdropped,The embezzlers weren't , by a lot of munchers.,weren't,1,1,0,the,0,embezzlers,1.47,a,0,munchers,1.69
+released/xtail/passive_1/830,released,xtail,passive_1,830,unpinned,slumbered,This cataleptic isn't , by some preservationist.,isn't,1,0,1,this,0,cataleptic,1.24,some,0,preservationist,1.85
+released/xtail/passive_1/832,released,xtail,passive_1,832,biassed,remonstrated,The profundity was , by most poseurs.,was,0,0,0,the,0,profundity,2.2,most,0,poseurs,1.67
+released/xtail/passive_1/851,released,xtail,passive_1,851,stupefied,quivered,All slickers aren't , by a parolee.,aren't,1,1,1,all,0,slickers,2.05,a,0,parolee,2.16
+released/xtail/passive_1/874,released,xtail,passive_1,874,edified,eventuated,Anorexics are , by ploughmen.,are,0,1,1,name,1,Anorexics,1.76,bare,0,ploughmen,1.21
+released/xtail/passive_1/875,released,xtail,passive_1,875,salved,zigzagged,Those partakers aren't , by some europium.,aren't,1,1,1,those,0,partakers,1.98,some,0,europium,1.97
+released/xtail/passive_1/881,released,xtail,passive_1,881,tithed,remonstrated,A lot of utopians are , by slipways.,are,0,1,1,a,0,utopians,1.77,bare,0,slipways,1.62
+released/xtail/passive_1/882,released,xtail,passive_1,882,misspent,decamped,This assignor was , by necromancers.,was,0,0,0,this,0,assignor,1.6,bare,0,necromancers,1.97
+released/xtail/passive_1/885,released,xtail,passive_1,885,effaced,lolled,Every yardbird wasn't , by this godparent.,wasn't,1,0,0,every,0,yardbird,1.46,this,0,godparent,1.77
+released/xtail/passive_1/900,released,xtail,passive_1,900,guzzled,quacked,Those tragedians are , by the downfalls.,are,0,1,1,those,0,tragedians,1.49,the,0,downfalls,2.16
+released/xtail/passive_1/908,released,xtail,passive_1,908,wadded,quacked,Every sartor was , by some monetarist.,was,0,0,0,every,0,sartor,1.73,some,0,monetarist,1.74
+released/xtail/passive_1/912,released,xtail,passive_1,912,recompensed,vegetated,Corollaries aren't , by this servitor.,aren't,1,1,1,name,1,Corollaries,1.66,this,0,servitor,1.88
+released/xtail/passive_1/915,released,xtail,passive_1,915,upbraided,niggled,Many scamps aren't , by those zanies.,aren't,1,1,1,many,0,scamps,1.68,those,0,zanies,1.29
+released/xtail/passive_1/929,released,xtail,passive_1,929,counteracted,salivated,That assignation isn't , by some preschooler.,isn't,1,0,1,that,0,assignation,2.07,some,0,preschooler,2.13
+released/xtail/passive_1/944,released,xtail,passive_1,944,reproached,slunk,That countrywoman wasn't , by those gyroscopes.,wasn't,1,0,0,that,0,countrywoman,1.71,those,0,gyroscopes,2.07
+released/xtail/passive_1/959,released,xtail,passive_1,959,stupefied,defecated,Those careerists were , by that pillock.,were,0,1,0,those,0,careerists,1.68,that,0,pillock,1.78
+released/xtail/passive_1/970,released,xtail,passive_1,970,overawed,clattered,Every crasher isn't , by the herpetologist.,isn't,1,0,1,every,0,crasher,2.12,the,0,herpetologist,1.77
+released/xtail/passive_1/978,released,xtail,passive_1,978,clouted,pattered,Some brawlers weren't , by the hurdlers.,weren't,1,1,0,some,0,brawlers,2.18,the,0,hurdlers,1.68
+released/xtail/passive_1/980,released,xtail,passive_1,980,rued,seethed,All spritzes were , by the ambassadress.,were,0,1,0,all,0,spritzes,1.32,the,0,ambassadress,1.42
+released/xtail/passive_1/983,released,xtail,passive_1,983,gulled,lolled,The exacerbations were , by that ceramist.,were,0,1,0,the,0,exacerbations,2.15,that,0,ceramist,1.63
+released/xtail/passive_1/995,released,xtail,passive_1,995,ravished,prattled,Every photosensitivity is , by the generalists.,is,0,0,1,every,0,photosensitivity,1.87,the,0,generalists,2.13
+released/xtail/passive_1/997,released,xtail,passive_1,997,sodded,desisted,Every baronage wasn't , by that impounding.,wasn't,1,0,0,every,0,baronage,1.38,that,0,impounding,2.05
+released/xtail/passive_2/16,released,xtail,passive_2,16,suctioned,salivated,Some lymphadenopathy wasn't ,.,wasn't,1,0,0,some,0,lymphadenopathy,1.84,,,,
+released/xtail/passive_2/24,released,xtail,passive_2,24,importuned,intermarried,Monetarists were ,.,were,0,1,0,name,1,Monetarists,1.49,,,,
+released/xtail/passive_2/38,released,xtail,passive_2,38,pursed,gyrated,Some coveys aren't ,.,aren't,1,1,1,some,0,coveys,1.23,,,,
+released/xtail/passive_2/40,released,xtail,passive_2,40,pastured,sleepwalked,These herpetologists are ,.,are,0,1,1,these,0,herpetologists,1.36,,,,
+released/xtail/passive_2/54,released,xtail,passive_2,54,kneaded,basked,The enology is ,.,is,0,0,1,the,0,enology,1.6,,,,
+released/xtail/passive_2/61,released,xtail,passive_2,61,parboiled,pulsated,Votings weren't ,.,weren't,1,1,0,name,1,Votings,1.2,,,,
+released/xtail/passive_2/67,released,xtail,passive_2,67,despoiled,slouched,An officeholder wasn't ,.,wasn't,1,0,0,an,0,officeholder,1.77,,,,
+released/xtail/passive_2/84,released,xtail,passive_2,84,pastured,drooled,This patency wasn't ,.,wasn't,1,0,0,this,0,patency,1.73,,,,
+released/xtail/passive_2/88,released,xtail,passive_2,88,resupplied,wormed,A lot of levellers were ,.,were,0,1,0,a,0,levellers,1.93,,,,
+released/xtail/passive_2/89,released,xtail,passive_2,89,leached,zigzagged,A lot of prohibitionists weren't ,.,weren't,1,1,0,a,0,prohibitionists,1.85,,,,
+released/xtail/passive_2/97,released,xtail,passive_2,97,tithed,billeted,Casanovas were ,.,were,0,1,0,name,1,Casanovas,1.27,,,,
+released/xtail/passive_2/108,released,xtail,passive_2,108,leashed,gloried,This rhetorician is ,.,is,0,0,1,this,0,rhetorician,1.91,,,,
+released/xtail/passive_2/110,released,xtail,passive_2,110,unpinned,quacked,This redact isn't ,.,isn't,1,0,1,this,0,redact,2.02,,,,
+released/xtail/passive_2/111,released,xtail,passive_2,111,purloined,niggled,Most tomboys weren't ,.,weren't,1,1,0,most,0,tomboys,1.57,,,,
+released/xtail/passive_2/120,released,xtail,passive_2,120,blasphemed,burgeoned,A lot of foundlings aren't ,.,aren't,1,1,1,a,0,foundlings,1.66,,,,
+released/xtail/passive_2/124,released,xtail,passive_2,124,incriminated,tingled,Some pardoner is ,.,is,0,0,1,some,0,pardoner,1.44,,,,
+released/xtail/passive_2/136,released,xtail,passive_2,136,garlanded,sunbathed,This cosigner isn't ,.,isn't,1,0,1,this,0,cosigner,1.81,,,,
+released/xtail/passive_2/142,released,xtail,passive_2,142,despoiled,fizzed,Many narks weren't ,.,weren't,1,1,0,many,0,narks,1.3,,,,
+released/xtail/passive_2/148,released,xtail,passive_2,148,rued,resounded,Most oldtimers weren't ,.,weren't,1,1,0,most,0,oldtimers,1.47,,,,
+released/xtail/passive_2/151,released,xtail,passive_2,151,unlaced,lumbered,A lot of ninnies aren't ,.,aren't,1,1,1,a,0,ninnies,1.48,,,,
+released/xtail/passive_2/164,released,xtail,passive_2,164,papered,procreated,The bombardiers are ,.,are,0,1,1,the,0,bombardiers,1.54,,,,
+released/xtail/passive_2/172,released,xtail,passive_2,172,wagged,teemed,An unilateralist wasn't ,.,wasn't,1,0,0,an,0,unilateralist,1.21,,,,
+released/xtail/passive_2/176,released,xtail,passive_2,176,overreached,teemed,The hypotensive was ,.,was,0,0,0,the,0,hypotensive,2.09,,,,
+released/xtail/passive_2/181,released,xtail,passive_2,181,espied,empathized,The probationer is ,.,is,0,0,1,the,0,probationer,1.81,,,,
+released/xtail/passive_2/183,released,xtail,passive_2,183,ogled,quivered,This absconder was ,.,was,0,0,0,this,0,absconder,1.32,,,,
+released/xtail/passive_2/220,released,xtail,passive_2,220,shampooed,oscillated,Some highjack isn't ,.,isn't,1,0,1,some,0,highjack,1.4,,,,
+released/xtail/passive_2/224,released,xtail,passive_2,224,bridled,hiccupped,The autonomies are ,.,are,0,1,1,the,0,autonomies,1.35,,,,
+released/xtail/passive_2/237,released,xtail,passive_2,237,reappraised,slogged,Quins are ,.,are,0,1,1,name,1,Quins,1.96,,,,
+released/xtail/passive_2/243,released,xtail,passive_2,243,blasphemed,oscillated,This requiescat wasn't ,.,wasn't,1,0,0,this,0,requiescat,1.48,,,,
+released/xtail/passive_2/252,released,xtail,passive_2,252,chunked,ruminated,This printmaker is ,.,is,0,0,1,this,0,printmaker,2.11,,,,
+released/xtail/passive_2/253,released,xtail,passive_2,253,clouted,sunbathed,The knacker was ,.,was,0,0,0,the,0,knacker,1.63,,,,
+released/xtail/passive_2/259,released,xtail,passive_2,259,prettified,wallowed,A lot of mavens aren't ,.,aren't,1,1,1,a,0,mavens,1.82,,,,
+released/xtail/passive_2/265,released,xtail,passive_2,265,eulogized,billeted,That haycock isn't ,.,isn't,1,0,1,that,0,haycock,1.7,,,,
+released/xtail/passive_2/269,released,xtail,passive_2,269,rummaged,fawned,A lot of apparatchiks aren't ,.,aren't,1,1,1,a,0,apparatchiks,1.68,,,,
+released/xtail/passive_2/293,released,xtail,passive_2,293,discomfited,empathized,That tellurian is ,.,is,0,0,1,that,0,tellurian,1.23,,,,
+released/xtail/passive_2/340,released,xtail,passive_2,340,gulled,eventuated,Some homeopath is ,.,is,0,0,1,some,0,homeopath,1.73,,,,
+released/xtail/passive_2/350,released,xtail,passive_2,350,husked,tingled,Some scofflaw is ,.,is,0,0,1,some,0,scofflaw,1.51,,,,
+released/xtail/passive_2/352,released,xtail,passive_2,352,discomfited,oscillated,The sportswoman wasn't ,.,wasn't,1,0,0,the,0,sportswoman,1.99,,,,
+released/xtail/passive_2/354,released,xtail,passive_2,354,flummoxed,whizzed,The hurdlers were ,.,were,0,1,0,the,0,hurdlers,1.68,,,,
+released/xtail/passive_2/355,released,xtail,passive_2,355,supplicated,scrammed,That streetwalker is ,.,is,0,0,1,that,0,streetwalker,1.58,,,,
+released/xtail/passive_2/358,released,xtail,passive_2,358,suckled,gyrated,Embroiderers were ,.,were,0,1,0,name,1,Embroiderers,1.66,,,,
+released/xtail/passive_2/364,released,xtail,passive_2,364,leached,bantered,That leveler was ,.,was,0,0,0,that,0,leveler,1.9,,,,
+released/xtail/passive_2/369,released,xtail,passive_2,369,leached,quivered,Commencements were ,.,were,0,1,0,name,1,Commencements,1.68,,,,
+released/xtail/passive_2/372,released,xtail,passive_2,372,placated,exulted,The armorer was ,.,was,0,0,0,the,0,armorer,1.95,,,,
+released/xtail/passive_2/375,released,xtail,passive_2,375,sodded,jested,Those dalliances aren't ,.,aren't,1,1,1,those,0,dalliances,1.8,,,,
+released/xtail/passive_2/377,released,xtail,passive_2,377,prettified,remonstrated,A yardman wasn't ,.,wasn't,1,0,0,a,0,yardman,1.31,,,,
+released/xtail/passive_2/386,released,xtail,passive_2,386,obviated,leered,Dyslexics weren't ,.,weren't,1,1,0,name,1,Dyslexics,1.9,,,,
+released/xtail/passive_2/397,released,xtail,passive_2,397,inveigled,hitchhiked,That victrix isn't ,.,isn't,1,0,1,that,0,victrix,1.52,,,,
+released/xtail/passive_2/445,released,xtail,passive_2,445,crated,scrammed,The tearjerker isn't ,.,isn't,1,0,1,the,0,tearjerker,2.02,,,,
+released/xtail/passive_2/453,released,xtail,passive_2,453,husked,debarked,Some rooters are ,.,are,0,1,1,some,0,rooters,1.43,,,,
+released/xtail/passive_2/473,released,xtail,passive_2,473,hocked,tingled,Every arteriography isn't ,.,isn't,1,0,1,every,0,arteriography,1.21,,,,
+released/xtail/passive_2/485,released,xtail,passive_2,485,emulsified,vacillated,Some numismatists are ,.,are,0,1,1,some,0,numismatists,1.47,,,,
+released/xtail/passive_2/502,released,xtail,passive_2,502,leached,fawned,Some hatmaker isn't ,.,isn't,1,0,1,some,0,hatmaker,1.34,,,,
+released/xtail/passive_2/505,released,xtail,passive_2,505,gulled,hiccupped,Those geriatricians aren't ,.,aren't,1,1,1,those,0,geriatricians,1.3,,,,
+released/xtail/passive_2/512,released,xtail,passive_2,512,walloped,remonstrated,That septuagenarian isn't ,.,isn't,1,0,1,that,0,septuagenarian,1.84,,,,
+released/xtail/passive_2/519,released,xtail,passive_2,519,pulped,kayaked,The orchestrator is ,.,is,0,0,1,the,0,orchestrator,2.1,,,,
+released/xtail/passive_2/531,released,xtail,passive_2,531,rummaged,intermarried,These chewers were ,.,were,0,1,0,these,0,chewers,1.61,,,,
+released/xtail/passive_2/534,released,xtail,passive_2,534,readjusted,luxuriated,Some conformations are ,.,are,0,1,1,some,0,conformations,2.13,,,,
+released/xtail/passive_2/536,released,xtail,passive_2,536,guzzled,pontificated,Some sorceries are ,.,are,0,1,1,some,0,sorceries,1.68,,,,
+released/xtail/passive_2/541,released,xtail,passive_2,541,decontaminated,ruminated,A fatalist wasn't ,.,wasn't,1,0,0,a,0,fatalist,1.8,,,,
+released/xtail/passive_2/553,released,xtail,passive_2,553,overreached,leered,These poseurs were ,.,were,0,1,0,these,0,poseurs,1.67,,,,
+released/xtail/passive_2/557,released,xtail,passive_2,557,hazarded,empathized,Many whirrs were ,.,were,0,1,0,many,0,whirrs,1.29,,,,
+released/xtail/passive_2/567,released,xtail,passive_2,567,eulogized,toddled,Every precentor isn't ,.,isn't,1,0,1,every,0,precentor,1.73,,,,
+released/xtail/passive_2/572,released,xtail,passive_2,572,unlaced,exulted,All intermarriages weren't ,.,weren't,1,1,0,all,0,intermarriages,1.63,,,,
+released/xtail/passive_2/580,released,xtail,passive_2,580,effaced,vegetated,Many stagers were ,.,were,0,1,0,many,0,stagers,1.61,,,,
+released/xtail/passive_2/609,released,xtail,passive_2,609,inveigled,gyrated,Taxidermists aren't ,.,aren't,1,1,1,name,1,Taxidermists,1.65,,,,
+released/xtail/passive_2/612,released,xtail,passive_2,612,craned,gusted,Every baronage wasn't ,.,wasn't,1,0,0,every,0,baronage,1.38,,,,
+released/xtail/passive_2/619,released,xtail,passive_2,619,supplicated,goggled,These loudmouths are ,.,are,0,1,1,these,0,loudmouths,1.48,,,,
+released/xtail/passive_2/621,released,xtail,passive_2,621,sodded,salivated,The semifinalist isn't ,.,isn't,1,0,1,the,0,semifinalist,2.09,,,,
+released/xtail/passive_2/622,released,xtail,passive_2,622,mulched,whizzed,Some graziers weren't ,.,weren't,1,1,0,some,0,graziers,1.96,,,,
+released/xtail/passive_2/623,released,xtail,passive_2,623,readjusted,scrammed,All probationers were ,.,were,0,1,0,all,0,probationers,1.87,,,,
+released/xtail/passive_2/627,released,xtail,passive_2,627,bluffed,pattered,This tribesman isn't ,.,isn't,1,0,1,this,0,tribesman,2.11,,,,
+released/xtail/passive_2/628,released,xtail,passive_2,628,flummoxed,hyperventilated,Gatecrashers are ,.,are,0,1,1,name,1,Gatecrashers,1.35,,,,
+released/xtail/passive_2/645,released,xtail,passive_2,645,moralized,coexisted,These surrealists were ,.,were,0,1,0,these,0,surrealists,2.16,,,,
+released/xtail/passive_2/656,released,xtail,passive_2,656,disquieted,goggled,A differentiator was ,.,was,0,0,0,a,0,differentiator,2.17,,,,
+released/xtail/passive_2/683,released,xtail,passive_2,683,prettified,flounced,Most underclassmen weren't ,.,weren't,1,1,0,most,0,underclassmen,2.18,,,,
+released/xtail/passive_2/703,released,xtail,passive_2,703,overreached,hungered,Every darning is ,.,is,0,0,1,every,0,darning,1.94,,,,
+released/xtail/passive_2/728,released,xtail,passive_2,728,sundered,gyrated,Some trachoma isn't ,.,isn't,1,0,1,some,0,trachoma,1.89,,,,
+released/xtail/passive_2/740,released,xtail,passive_2,740,cajoled,bantered,A semipro wasn't ,.,wasn't,1,0,0,a,0,semipro,1.55,,,,
+released/xtail/passive_2/745,released,xtail,passive_2,745,effaced,gyrated,Overcomers weren't ,.,weren't,1,1,0,name,1,Overcomers,1.41,,,,
+released/xtail/passive_2/758,released,xtail,passive_2,758,placated,luxuriated,Some possessors were ,.,were,0,1,0,some,0,possessors,1.95,,,,
+released/xtail/passive_2/772,released,xtail,passive_2,772,rutted,scrammed,These cellists are ,.,are,0,1,1,these,0,cellists,1.75,,,,
+released/xtail/passive_2/774,released,xtail,passive_2,774,prettified,tottered,The clarinetist isn't ,.,isn't,1,0,1,the,0,clarinetist,2.02,,,,
+released/xtail/passive_2/790,released,xtail,passive_2,790,gulled,slouched,The mummers weren't ,.,weren't,1,1,0,the,0,mummers,1.9,,,,
+released/xtail/passive_2/821,released,xtail,passive_2,821,pulped,defecated,A lot of harpists aren't ,.,aren't,1,1,1,a,0,harpists,1.47,,,,
+released/xtail/passive_2/839,released,xtail,passive_2,839,decontaminated,tingled,Most bumpkins weren't ,.,weren't,1,1,0,most,0,bumpkins,1.78,,,,
+released/xtail/passive_2/845,released,xtail,passive_2,845,salved,scrammed,A lot of cutthroats are ,.,are,0,1,1,a,0,cutthroats,1.85,,,,
+released/xtail/passive_2/849,released,xtail,passive_2,849,leashed,scooted,Most nacs weren't ,.,weren't,1,1,0,most,0,nacs,1.75,,,,
+released/xtail/passive_2/856,released,xtail,passive_2,856,interposed,drooled,That parimutuel isn't ,.,isn't,1,0,1,that,0,parimutuel,1.48,,,,
+released/xtail/passive_2/871,released,xtail,passive_2,871,hefted,hibernated,The diathermy isn't ,.,isn't,1,0,1,the,0,diathermy,1.48,,,,
+released/xtail/passive_2/885,released,xtail,passive_2,885,rutted,pattered,The misanthrope was ,.,was,0,0,0,the,0,misanthrope,2.2,,,,
+released/xtail/passive_2/887,released,xtail,passive_2,887,immolated,hitchhiked,These chauvinists aren't ,.,aren't,1,1,1,these,0,chauvinists,1.82,,,,
+released/xtail/passive_2/920,released,xtail,passive_2,920,debugged,picnicked,These roundheads weren't ,.,weren't,1,1,0,these,0,roundheads,1.79,,,,
+released/xtail/passive_2/942,released,xtail,passive_2,942,abased,droned,The hypoparathyroidism isn't ,.,isn't,1,0,1,the,0,hypoparathyroidism,1.38,,,,
+released/xtail/passive_2/960,released,xtail,passive_2,960,satirized,billeted,Many birders aren't ,.,aren't,1,1,1,many,0,birders,2.1,,,,
+released/xtail/passive_2/967,released,xtail,passive_2,967,readjusted,quivered,Examinees weren't ,.,weren't,1,1,0,name,1,Examinees,1.96,,,,
+released/xtail/passive_2/978,released,xtail,passive_2,978,swaddled,quivered,A syllogism was ,.,was,0,0,0,a,0,syllogism,2.12,,,,
+released/xtail/passive_2/983,released,xtail,passive_2,983,mistrusted,pulsated,These individualists aren't ,.,aren't,1,1,1,these,0,individualists,2.0,,,,
+released/xtail/passive_2/986,released,xtail,passive_2,986,disabused,quivered,The bootlegger is ,.,is,0,0,1,the,0,bootlegger,2.15,,,,
+released/xtail/passive_2/998,released,xtail,passive_2,998,debugged,bantered,An anorectic wasn't ,.,wasn't,1,0,0,an,0,anorectic,1.39,,,,
+curated/passive_1/head/insure,curated,head,passive_1,head/insure,insured,vanished,The house was , by the company.,was,0,0,0,the,0,house,5.71,the,0,company,5.6
+curated/passive_2/head/insure,curated,head,passive_2,head/insure,insured,vanished,The house was ,.,was,0,0,0,the,0,house,5.71,,,,
+curated/passive_1/head/confront,curated,head,passive_1,head/confront,confronted,testified,The suspect was , by the officer.,was,0,0,0,the,0,suspect,4.51,the,0,officer,5.03
+curated/passive_2/head/confront,curated,head,passive_2,head/confront,confronted,testified,The suspect was ,.,was,0,0,0,the,0,suspect,4.51,,,,
+curated/passive_1/head/impose,curated,head,passive_1,head/impose,imposed,emerged,The fine was , by the judge.,was,0,0,0,the,0,fine,5.23,the,0,judge,4.95
+curated/passive_2/head/impose,curated,head,passive_2,head/impose,imposed,emerged,The fine was ,.,was,0,0,0,the,0,fine,5.23,,,,
+curated/passive_1/head/lend,curated,head,passive_1,head/lend,lent,opted,The book was , by the librarian.,was,0,0,0,the,0,book,5.43,the,0,librarian,3.59
+curated/passive_2/head/lend,curated,head,passive_2,head/lend,lent,opted,The book was ,.,was,0,0,0,the,0,book,5.43,,,,
+curated/passive_1/head/exhibit,curated,head,passive_1,head/exhibit,exhibited,proceeded,The painting was , by the museum.,was,0,0,0,the,0,painting,4.6,the,0,museum,4.71
+curated/passive_2/head/exhibit,curated,head,passive_2,head/exhibit,exhibited,proceeded,The painting was ,.,was,0,0,0,the,0,painting,4.6,,,,
+curated/passive_1/head/lease,curated,head,passive_1,head/lease,leased,apologized,The apartment was , by the landlord.,was,0,0,0,the,0,apartment,4.65,the,0,landlord,3.89
+curated/passive_2/head/lease,curated,head,passive_2,head/lease,leased,apologized,The apartment was ,.,was,0,0,0,the,0,apartment,4.65,,,,
+curated/passive_1/head/upgrade,curated,head,passive_1,head/upgrade,upgraded,complained,The software was , by the engineer.,was,0,0,0,the,0,software,4.77,the,0,engineer,4.5
+curated/passive_2/head/upgrade,curated,head,passive_2,head/upgrade,upgraded,complained,The software was ,.,was,0,0,0,the,0,software,4.77,,,,
+curated/passive_1/head/sum,curated,head,passive_1,head/sum,summed,competed,The amount was , by the accountant.,was,0,0,0,the,0,amount,5.13,the,0,accountant,3.76
+curated/passive_2/head/sum,curated,head,passive_2,head/sum,summed,competed,The amount was ,.,was,0,0,0,the,0,amount,5.13,,,,
+curated/passive_1/head/rob,curated,head,passive_1,head/rob,robbed,belonged,The bank was , by the thief.,was,0,0,0,the,0,bank,5.16,the,0,thief,3.88
+curated/passive_2/head/rob,curated,head,passive_2,head/rob,robbed,belonged,The bank was ,.,was,0,0,0,the,0,bank,5.16,,,,
+curated/passive_1/head/introduce,curated,head,passive_1,head/introduce,introduced,arrived,The guest was , by the host.,was,0,0,0,the,0,guest,4.58,the,0,host,4.77
+curated/passive_2/head/introduce,curated,head,passive_2,head/introduce,introduced,arrived,The guest was ,.,was,0,0,0,the,0,guest,4.58,,,,
+curated/passive_1/head/defend,curated,head,passive_1,head/defend,defended,participated,The city was , by the soldier.,was,0,0,0,the,0,city,5.61,the,0,soldier,4.46
+curated/passive_2/head/defend,curated,head,passive_2,head/defend,defended,participated,The city was ,.,was,0,0,0,the,0,city,5.61,,,,
+curated/passive_1/head/earn,curated,head,passive_1,head/earn,earned,occurred,The prize was , by the student.,was,0,0,0,the,0,prize,4.59,the,0,student,5.02
+curated/passive_2/head/earn,curated,head,passive_2,head/earn,earned,occurred,The prize was ,.,was,0,0,0,the,0,prize,4.59,,,,
+curated/passive_1/head/celebrate,curated,head,passive_1,head/celebrate,celebrated,replied,The victory was , by the team.,was,0,0,0,the,0,victory,4.73,the,0,team,5.67
+curated/passive_2/head/celebrate,curated,head,passive_2,head/celebrate,celebrated,replied,The victory was ,.,was,0,0,0,the,0,victory,4.73,,,,
+curated/passive_1/head/crown,curated,head,passive_1,head/crown,crowned,objected,The king was , by the priest.,was,0,0,0,the,0,king,5.17,the,0,priest,4.33
+curated/passive_2/head/crown,curated,head,passive_2,head/crown,crowned,objected,The king was ,.,was,0,0,0,the,0,king,5.17,,,,
+curated/passive_1/head/load,curated,head,passive_1,head/load,loaded,responded,The truck was , by the worker.,was,0,0,0,the,0,truck,4.64,the,0,worker,4.43
+curated/passive_2/head/load,curated,head,passive_2,head/load,loaded,responded,The truck was ,.,was,0,0,0,the,0,truck,4.64,,,,
+curated/passive_1/head/blame,curated,head,passive_1,head/blame,blamed,struggled,The manager was , by the worker.,was,0,0,0,the,0,manager,4.97,the,0,worker,4.43
+curated/passive_2/head/blame,curated,head,passive_2,head/blame,blamed,struggled,The manager was ,.,was,0,0,0,the,0,manager,4.97,,,,
+curated/passive_1/head/measure,curated,head,passive_1,head/measure,measured,laughed,The distance was , by the scientist.,was,0,0,0,the,0,distance,4.85,the,0,scientist,4.21
+curated/passive_2/head/measure,curated,head,passive_2,head/measure,measured,laughed,The distance was ,.,was,0,0,0,the,0,distance,4.85,,,,
+curated/passive_1/head/host,curated,head,passive_1,head/host,hosted,existed,The conference was , by the university.,was,0,0,0,the,0,conference,5.01,the,0,university,5.39
+curated/passive_2/head/host,curated,head,passive_2,head/host,hosted,existed,The conference was ,.,was,0,0,0,the,0,conference,5.01,,,,
+curated/passive_1/head/bet,curated,head,passive_1,head/bet,bet,appeared,The money was , by the gambler.,was,0,0,0,the,0,money,5.64,the,0,gambler,3.15
+curated/passive_2/head/bet,curated,head,passive_2,head/bet,bet,appeared,The money was ,.,was,0,0,0,the,0,money,5.64,,,,
+curated/passive_1/head/target,curated,head,passive_1,head/target,targeted,lied,The building was , by the soldier.,was,0,0,0,the,0,building,5.29,the,0,soldier,4.46
+curated/passive_2/head/target,curated,head,passive_2,head/target,targeted,lied,The building was ,.,was,0,0,0,the,0,building,5.29,,,,
+curated/passive_1/head/score,curated,head,passive_1,head/score,scored,remained,The goal was , by the player.,was,0,0,0,the,0,goal,5.06,the,0,player,5.19
+curated/passive_2/head/score,curated,head,passive_2,head/score,scored,remained,The goal was ,.,was,0,0,0,the,0,goal,5.06,,,,
+curated/passive_1/head/hate,curated,head,passive_1,head/hate,hated,listened,The rival was , by the coach.,was,0,0,0,the,0,rival,4.18,the,0,coach,4.96
+curated/passive_2/head/hate,curated,head,passive_2,head/hate,hated,listened,The rival was ,.,was,0,0,0,the,0,rival,4.18,,,,
+curated/passive_1/head/send,curated,head,passive_1,head/send,sent,died,The letter was , by the clerk.,was,0,0,0,the,0,letter,4.95,the,0,clerk,4.0
+curated/passive_2/head/send,curated,head,passive_2,head/send,sent,died,The letter was ,.,was,0,0,0,the,0,letter,4.95,,,,
+curated/passive_1/head/rate,curated,head,passive_1,head/rate,rated,resulted,The film was , by the critic.,was,0,0,0,the,0,film,5.2,the,0,critic,3.95
+curated/passive_2/head/rate,curated,head,passive_2,head/rate,rated,resulted,The film was ,.,was,0,0,0,the,0,film,5.2,,,,
+curated/passive_1/head/include,curated,head,passive_1,head/include,included,happened,The chapter was , by the editor.,was,0,0,0,the,0,chapter,4.65,the,0,editor,4.62
+curated/passive_2/head/include,curated,head,passive_2,head/include,included,happened,The chapter was ,.,was,0,0,0,the,0,chapter,4.65,,,,
+curated/passive_1/head/thank,curated,head,passive_1,head/thank,thanked,mattered,The teacher was , by the student.,was,0,0,0,the,0,teacher,4.88,the,0,student,5.02
+curated/passive_2/head/thank,curated,head,passive_2,head/thank,thanked,mattered,The teacher was ,.,was,0,0,0,the,0,teacher,4.88,,,,
+curated/passive_1/tail/galvanize,curated,tail,passive_1,tail/galvanize,galvanized,transpired,The crowd was , by the leader.,was,0,0,0,the,0,crowd,4.7,the,0,leader,4.95
+curated/passive_2/tail/galvanize,curated,tail,passive_2,tail/galvanize,galvanized,transpired,The crowd was ,.,was,0,0,0,the,0,crowd,4.7,,,,
+curated/passive_1/tail/subjugate,curated,tail,passive_1,tail/subjugate,subjugated,colluded,The province was , by the empire.,was,0,0,0,the,0,province,4.47,the,0,empire,4.54
+curated/passive_2/tail/subjugate,curated,tail,passive_2,tail/subjugate,subjugated,colluded,The province was ,.,was,0,0,0,the,0,province,4.47,,,,
+curated/passive_1/tail/blurt,curated,tail,passive_1,tail/blurt,blurted,stagnated,The secret was , by the witness.,was,0,0,0,the,0,secret,4.92,the,0,witness,4.52
+curated/passive_2/tail/blurt,curated,tail,passive_2,tail/blurt,blurted,stagnated,The secret was ,.,was,0,0,0,the,0,secret,4.92,,,,
+curated/passive_1/tail/eschew,curated,tail,passive_1,tail/eschew,eschewed,languished,The habit was , by the monk.,was,0,0,0,the,0,habit,4.24,the,0,monk,3.93
+curated/passive_2/tail/eschew,curated,tail,passive_2,tail/eschew,eschewed,languished,The habit was ,.,was,0,0,0,the,0,habit,4.24,,,,
+curated/passive_1/tail/christen,curated,tail,passive_1,tail/christen,christened,dwindled,The infant was , by the priest.,was,0,0,0,the,0,infant,3.99,the,0,priest,4.33
+curated/passive_2/tail/christen,curated,tail,passive_2,tail/christen,christened,dwindled,The infant was ,.,was,0,0,0,the,0,infant,3.99,,,,
+curated/passive_1/tail/outdo,curated,tail,passive_1,tail/outdo,outdone,receded,The champion was , by the challenger.,was,0,0,0,the,0,champion,4.62,the,0,challenger,3.74
+curated/passive_2/tail/outdo,curated,tail,passive_2,tail/outdo,outdone,receded,The champion was ,.,was,0,0,0,the,0,champion,4.62,,,,
+curated/passive_1/tail/reinstall,curated,tail,passive_1,tail/reinstall,reinstalled,seeped,The program was , by the technician.,was,0,0,0,the,0,program,5.27,the,0,technician,3.7
+curated/passive_2/tail/reinstall,curated,tail,passive_2,tail/reinstall,reinstalled,seeped,The program was ,.,was,0,0,0,the,0,program,5.27,,,,
+curated/passive_1/tail/whitewash,curated,tail,passive_1,tail/whitewash,whitewashed,waned,The wall was , by the painter.,was,0,0,0,the,0,wall,5.04,the,0,painter,3.93
+curated/passive_2/tail/whitewash,curated,tail,passive_2,tail/whitewash,whitewashed,waned,The wall was ,.,was,0,0,0,the,0,wall,5.04,,,,
+curated/passive_1/tail/ingest,curated,tail,passive_1,tail/ingest,ingested,conspired,The pill was , by the patient.,was,0,0,0,the,0,pill,4.03,the,0,patient,4.77
+curated/passive_2/tail/ingest,curated,tail,passive_2,tail/ingest,ingested,conspired,The pill was ,.,was,0,0,0,the,0,pill,4.03,,,,
+curated/passive_1/tail/overestimate,curated,tail,passive_1,tail/overestimate,overestimated,diverged,The cost was , by the accountant.,was,0,0,0,the,0,cost,5.24,the,0,accountant,3.76
+curated/passive_2/tail/overestimate,curated,tail,passive_2,tail/overestimate,overestimated,diverged,The cost was ,.,was,0,0,0,the,0,cost,5.24,,,,
+curated/passive_1/tail/smother,curated,tail,passive_1,tail/smother,smothered,subsided,The victim was , by the assailant.,was,0,0,0,the,0,victim,4.56,the,0,assailant,3.09
+curated/passive_2/tail/smother,curated,tail,passive_2,tail/smother,smothered,subsided,The victim was ,.,was,0,0,0,the,0,victim,4.56,,,,
+curated/passive_1/tail/coerce,curated,tail,passive_1,tail/coerce,coerced,emigrated,The witness was , by the officer.,was,0,0,0,the,0,witness,4.52,the,0,officer,5.03
+curated/passive_2/tail/coerce,curated,tail,passive_2,tail/coerce,coerced,emigrated,The witness was ,.,was,0,0,0,the,0,witness,4.52,,,,
+curated/passive_1/tail/recast,curated,tail,passive_1,tail/recast,recast,reappeared,The statue was , by the sculptor.,was,0,0,0,the,0,statue,4.09,the,0,sculptor,3.34
+curated/passive_2/tail/recast,curated,tail,passive_2,tail/recast,recast,reappeared,The statue was ,.,was,0,0,0,the,0,statue,4.09,,,,
+curated/passive_1/tail/subvert,curated,tail,passive_1,tail/subvert,subverted,persevered,The plan was , by the spy.,was,0,0,0,the,0,plan,5.29,the,0,spy,4.24
+curated/passive_2/tail/subvert,curated,tail,passive_2,tail/subvert,subverted,persevered,The plan was ,.,was,0,0,0,the,0,plan,5.29,,,,
+curated/passive_1/tail/quell,curated,tail,passive_1,tail/quell,quelled,sympathized,The riot was , by the officer.,was,0,0,0,the,0,riot,4.09,the,0,officer,5.03
+curated/passive_2/tail/quell,curated,tail,passive_2,tail/quell,quelled,sympathized,The riot was ,.,was,0,0,0,the,0,riot,4.09,,,,
+curated/passive_1/tail/preclude,curated,tail,passive_1,tail/preclude,precluded,fluctuated,The option was , by the rule.,was,0,0,0,the,0,option,4.8,the,0,rule,4.94
+curated/passive_2/tail/preclude,curated,tail,passive_2,tail/preclude,precluded,fluctuated,The option was ,.,was,0,0,0,the,0,option,4.8,,,,
+curated/passive_1/tail/garnish,curated,tail,passive_1,tail/garnish,garnished,toiled,The dish was , by the chef.,was,0,0,0,the,0,dish,4.21,the,0,chef,4.23
+curated/passive_2/tail/garnish,curated,tail,passive_2,tail/garnish,garnished,toiled,The dish was ,.,was,0,0,0,the,0,dish,4.21,,,,
+curated/passive_1/tail/stow,curated,tail,passive_1,tail/stow,stowed,abstained,The luggage was , by the traveler.,was,0,0,0,the,0,luggage,3.8,the,0,traveler,3.57
+curated/passive_2/tail/stow,curated,tail,passive_2,tail/stow,stowed,abstained,The luggage was ,.,was,0,0,0,the,0,luggage,3.8,,,,
+curated/passive_1/tail/rouse,curated,tail,passive_1,tail/rouse,roused,lurked,The sleeper was , by the nurse.,was,0,0,0,the,0,sleeper,3.46,the,0,nurse,4.4
+curated/passive_2/tail/rouse,curated,tail,passive_2,tail/rouse,roused,lurked,The sleeper was ,.,was,0,0,0,the,0,sleeper,3.46,,,,
+curated/passive_1/tail/transcend,curated,tail,passive_1,tail/transcend,transcended,concurred,The limit was , by the athlete.,was,0,0,0,the,0,limit,4.7,the,0,athlete,4.11
+curated/passive_2/tail/transcend,curated,tail,passive_2,tail/transcend,transcended,concurred,The limit was ,.,was,0,0,0,the,0,limit,4.7,,,,
+curated/passive_1/tail/nab,curated,tail,passive_1,tail/nab,nabbed,retaliated,The thief was , by the officer.,was,0,0,0,the,0,thief,3.88,the,0,officer,5.03
+curated/passive_2/tail/nab,curated,tail,passive_2,tail/nab,nabbed,retaliated,The thief was ,.,was,0,0,0,the,0,thief,3.88,,,,
+curated/passive_1/tail/stockpile,curated,tail,passive_1,tail/stockpile,stockpiled,shuddered,The medicine was , by the government.,was,0,0,0,the,0,medicine,4.73,the,0,government,5.57
+curated/passive_2/tail/stockpile,curated,tail,passive_2,tail/stockpile,stockpiled,shuddered,The medicine was ,.,was,0,0,0,the,0,medicine,4.73,,,,
+curated/passive_1/tail/imitate,curated,tail,passive_1,tail/imitate,imitated,lingered,The singer was , by the comic.,was,0,0,0,the,0,singer,4.52,the,0,comic,4.42
+curated/passive_2/tail/imitate,curated,tail,passive_2,tail/imitate,imitated,lingered,The singer was ,.,was,0,0,0,the,0,singer,4.52,,,,
+curated/passive_1/tail/slander,curated,tail,passive_1,tail/slander,slandered,glared,The politician was , by the journalist.,was,0,0,0,the,0,politician,4.16,the,0,journalist,4.38
+curated/passive_2/tail/slander,curated,tail,passive_2,tail/slander,slandered,glared,The politician was ,.,was,0,0,0,the,0,politician,4.16,,,,
+curated/passive_1/tail/exert,curated,tail,passive_1,tail/exert,exerted,slumped,The influence was , by the manager.,was,0,0,0,the,0,influence,4.78,the,0,manager,4.97
+curated/passive_2/tail/exert,curated,tail,passive_2,tail/exert,exerted,slumped,The influence was ,.,was,0,0,0,the,0,influence,4.78,,,,
+curated/passive_1/tail/fleece,curated,tail,passive_1,tail/fleece,fleeced,vied,The tourist was , by the vendor.,was,0,0,0,the,0,tourist,4.2,the,0,vendor,3.79
+curated/passive_2/tail/fleece,curated,tail,passive_2,tail/fleece,fleeced,vied,The tourist was ,.,was,0,0,0,the,0,tourist,4.2,,,,
+curated/passive_1/tail/evade,curated,tail,passive_1,tail/evade,evaded,inquired,The guard was , by the prisoner.,was,0,0,0,the,0,guard,4.73,the,0,prisoner,4.2
+curated/passive_2/tail/evade,curated,tail,passive_2,tail/evade,evaded,inquired,The guard was ,.,was,0,0,0,the,0,guard,4.73,,,,
+curated/passive_1/tail/deter,curated,tail,passive_1,tail/deter,deterred,flirted,The burglar was , by the guard.,was,0,0,0,the,0,burglar,3.34,the,0,guard,4.73
+curated/passive_2/tail/deter,curated,tail,passive_2,tail/deter,deterred,flirted,The burglar was ,.,was,0,0,0,the,0,burglar,3.34,,,,
+curated/passive_1/tail/commemorate,curated,tail,passive_1,tail/commemorate,commemorated,bragged,The event was , by the community.,was,0,0,0,the,0,event,5.18,the,0,community,5.34
+curated/passive_2/tail/commemorate,curated,tail,passive_2,tail/commemorate,commemorated,bragged,The event was ,.,was,0,0,0,the,0,event,5.18,,,,
+curated/passive_1/tail/bribe,curated,tail,passive_1,tail/bribe,bribed,corresponded,The guard was , by the smuggler.,was,0,0,0,the,0,guard,4.73,the,0,smuggler,2.96
+curated/passive_2/tail/bribe,curated,tail,passive_2,tail/bribe,bribed,corresponded,The guard was ,.,was,0,0,0,the,0,guard,4.73,,,,
+curated/passive_1/tail/safeguard,curated,tail,passive_1,tail/safeguard,safeguarded,blushed,The document was , by the clerk.,was,0,0,0,the,0,document,4.5,the,0,clerk,4.0
+curated/passive_2/tail/safeguard,curated,tail,passive_2,tail/safeguard,safeguarded,blushed,The document was ,.,was,0,0,0,the,0,document,4.5,,,,
+curated/passive_1/tail/tame,curated,tail,passive_1,tail/tame,tamed,chuckled,The horse was , by the trainer.,was,0,0,0,the,0,horse,4.76,the,0,trainer,4.08
+curated/passive_2/tail/tame,curated,tail,passive_2,tail/tame,tamed,chuckled,The horse was ,.,was,0,0,0,the,0,horse,4.76,,,,
+curated/passive_1/tail/orphan,curated,tail,passive_1,tail/orphan,orphaned,adhered,The child was , by the war.,was,0,0,0,the,0,child,5.3,the,0,war,5.46
+curated/passive_2/tail/orphan,curated,tail,passive_2,tail/orphan,orphaned,adhered,The child was ,.,was,0,0,0,the,0,child,5.3,,,,
+curated/passive_1/tail/heap,curated,tail,passive_1,tail/heap,heaped,grinned,The soil was , by the gardener.,was,0,0,0,the,0,soil,4.42,the,0,gardener,3.49
+curated/passive_2/tail/heap,curated,tail,passive_2,tail/heap,heaped,grinned,The soil was ,.,was,0,0,0,the,0,soil,4.42,,,,
+curated/passive_1/tail/quarry,curated,tail,passive_1,tail/quarry,quarried,raved,The stone was , by the miner.,was,0,0,0,the,0,stone,4.8,the,0,miner,3.58
+curated/passive_2/tail/quarry,curated,tail,passive_2,tail/quarry,quarried,raved,The stone was ,.,was,0,0,0,the,0,stone,4.8,,,,
+curated/passive_1/tail/gag,curated,tail,passive_1,tail/gag,gagged,blossomed,The prisoner was , by the guard.,was,0,0,0,the,0,prisoner,4.2,the,0,guard,4.73
+curated/passive_2/tail/gag,curated,tail,passive_2,tail/gag,gagged,blossomed,The prisoner was ,.,was,0,0,0,the,0,prisoner,4.2,,,,
+curated/passive_1/tail/approximate,curated,tail,passive_1,tail/approximate,approximated,mused,The value was , by the scientist.,was,0,0,0,the,0,value,5.15,the,0,scientist,4.21
+curated/passive_2/tail/approximate,curated,tail,passive_2,tail/approximate,approximated,mused,The value was ,.,was,0,0,0,the,0,value,5.15,,,,
+curated/passive_1/tail/scrub,curated,tail,passive_1,tail/scrub,scrubbed,thrived,The floor was , by the cleaner.,was,0,0,0,the,0,floor,4.94,the,0,cleaner,3.9
+curated/passive_2/tail/scrub,curated,tail,passive_2,tail/scrub,scrubbed,thrived,The floor was ,.,was,0,0,0,the,0,floor,4.94,,,,
+curated/passive_1/tail/perfume,curated,tail,passive_1,tail/perfume,perfumed,reeled,The room was , by the florist.,was,0,0,0,the,0,room,5.39,the,0,florist,3.01
+curated/passive_2/tail/perfume,curated,tail,passive_2,tail/perfume,perfumed,reeled,The room was ,.,was,0,0,0,the,0,room,5.39,,,,
+curated/passive_1/tail/dice,curated,tail,passive_1,tail/dice,diced,cooperated,The onion was , by the chef.,was,0,0,0,the,0,onion,3.89,the,0,chef,4.23
+curated/passive_2/tail/dice,curated,tail,passive_2,tail/dice,diced,cooperated,The onion was ,.,was,0,0,0,the,0,onion,3.89,,,,
+curated/passive_1/tail/awe,curated,tail,passive_1,tail/awe,awed,glowed,The crowd was , by the magician.,was,0,0,0,the,0,crowd,4.7,the,0,magician,3.53
+curated/passive_2/tail/awe,curated,tail,passive_2,tail/awe,awed,glowed,The crowd was ,.,was,0,0,0,the,0,crowd,4.7,,,,
+curated/passive_1/tail/utter,curated,tail,passive_1,tail/utter,uttered,crept,The word was , by the speaker.,was,0,0,0,the,0,word,5.26,the,0,speaker,4.49
+curated/passive_2/tail/utter,curated,tail,passive_2,tail/utter,uttered,crept,The word was ,.,was,0,0,0,the,0,word,5.26,,,,
+curated/passive_1/tail/trademark,curated,tail,passive_1,tail/trademark,trademarked,bloomed,The logo was , by the company.,was,0,0,0,the,0,logo,4.28,the,0,company,5.6
+curated/passive_2/tail/trademark,curated,tail,passive_2,tail/trademark,trademarked,bloomed,The logo was ,.,was,0,0,0,the,0,logo,4.28,,,,
+curated/passive_1/tail/dope,curated,tail,passive_1,tail/dope,doped,bargained,The horse was , by the trainer.,was,0,0,0,the,0,horse,4.76,the,0,trainer,4.08
+curated/passive_2/tail/dope,curated,tail,passive_2,tail/dope,doped,bargained,The horse was ,.,was,0,0,0,the,0,horse,4.76,,,,
+curated/passive_1/tail/refund,curated,tail,passive_1,tail/refund,refunded,clashed,The fee was , by the clerk.,was,0,0,0,the,0,fee,4.51,the,0,clerk,4.0
+curated/passive_2/tail/refund,curated,tail,passive_2,tail/refund,refunded,clashed,The fee was ,.,was,0,0,0,the,0,fee,4.51,,,,
+curated/passive_1/tail/spice,curated,tail,passive_1,tail/spice,spiced,peed,The soup was , by the chef.,was,0,0,0,the,0,soup,4.15,the,0,chef,4.23
+curated/passive_2/tail/spice,curated,tail,passive_2,tail/spice,spiced,peed,The soup was ,.,was,0,0,0,the,0,soup,4.15,,,,
+curated/passive_1/tail/audit,curated,tail,passive_1,tail/audit,audited,interacted,The account was , by the auditor.,was,0,0,0,the,0,account,5.21,the,0,auditor,3.48
+curated/passive_2/tail/audit,curated,tail,passive_2,tail/audit,audited,interacted,The account was ,.,was,0,0,0,the,0,account,5.21,,,,
+curated/passive_1/tail/duck,curated,tail,passive_1,tail/duck,ducked,dawned,The question was , by the politician.,was,0,0,0,the,0,question,5.35,the,0,politician,4.16
+curated/passive_2/tail/duck,curated,tail,passive_2,tail/duck,ducked,dawned,The question was ,.,was,0,0,0,the,0,question,5.35,,,,
+curated/passive_1/tail/rear,curated,tail,passive_1,tail/rear,reared,sinned,The child was , by the guardian.,was,0,0,0,the,0,child,5.3,the,0,guardian,4.26
+curated/passive_2/tail/rear,curated,tail,passive_2,tail/rear,reared,sinned,The child was ,.,was,0,0,0,the,0,child,5.3,,,,
+curated/passive_1/tail/forest,curated,tail,passive_1,tail/forest,forested,functioned,The hill was , by the community.,was,0,0,0,the,0,hill,4.82,the,0,community,5.34
+curated/passive_2/tail/forest,curated,tail,passive_2,tail/forest,forested,functioned,The hill was ,.,was,0,0,0,the,0,hill,4.82,,,,
+curated/passive_1/xtail/unlatch,curated,xtail,passive_1,xtail/unlatch,unlatched,burgeoned,The gate was , by the caretaker.,was,0,0,0,the,0,gate,4.47,the,0,caretaker,3.45
+curated/passive_2/xtail/unlatch,curated,xtail,passive_2,xtail/unlatch,unlatched,burgeoned,The gate was ,.,was,0,0,0,the,0,gate,4.47,,,,
+curated/passive_1/xtail/extirpate,curated,xtail,passive_1,xtail/extirpate,extirpated,vegetated,The weed was , by the gardener.,was,0,0,0,the,0,weed,4.27,the,0,gardener,3.49
+curated/passive_2/xtail/extirpate,curated,xtail,passive_2,xtail/extirpate,extirpated,vegetated,The weed was ,.,was,0,0,0,the,0,weed,4.27,,,,
+curated/passive_1/xtail/immolate,curated,xtail,passive_1,xtail/immolate,immolated,vacillated,The prisoner was , by the priest.,was,0,0,0,the,0,prisoner,4.2,the,0,priest,4.33
+curated/passive_2/xtail/immolate,curated,xtail,passive_2,xtail/immolate,immolated,vacillated,The prisoner was ,.,was,0,0,0,the,0,prisoner,4.2,,,,
+curated/passive_1/xtail/disgorge,curated,xtail,passive_1,xtail/disgorge,disgorged,exulted,The cargo was , by the ship.,was,0,0,0,the,0,cargo,4.19,the,0,ship,4.93
+curated/passive_2/xtail/disgorge,curated,xtail,passive_2,xtail/disgorge,disgorged,exulted,The cargo was ,.,was,0,0,0,the,0,cargo,4.19,,,,
+curated/passive_1/xtail/reprove,curated,xtail,passive_1,xtail/reprove,reproved,remonstrated,The student was , by the teacher.,was,0,0,0,the,0,student,5.02,the,0,teacher,4.88
+curated/passive_2/xtail/reprove,curated,xtail,passive_2,xtail/reprove,reproved,remonstrated,The student was ,.,was,0,0,0,the,0,student,5.02,,,,
+curated/passive_1/xtail/edify,curated,xtail,passive_1,xtail/edify,edified,toddled,The student was , by the teacher.,was,0,0,0,the,0,student,5.02,the,0,teacher,4.88
+curated/passive_2/xtail/edify,curated,xtail,passive_2,xtail/edify,edified,toddled,The student was ,.,was,0,0,0,the,0,student,5.02,,,,
+curated/passive_1/xtail/filch,curated,xtail,passive_1,xtail/filch,filched,smoldered,The wallet was , by the pickpocket.,was,0,0,0,the,0,wallet,4.15,the,0,pickpocket,2.5
+curated/passive_2/xtail/filch,curated,xtail,passive_2,xtail/filch,filched,smoldered,The wallet was ,.,was,0,0,0,the,0,wallet,4.15,,,,
+curated/passive_1/xtail/disabuse,curated,xtail,passive_1,xtail/disabuse,disabused,sidled,The student was , by the teacher.,was,0,0,0,the,0,student,5.02,the,0,teacher,4.88
+curated/passive_2/xtail/disabuse,curated,xtail,passive_2,xtail/disabuse,disabused,sidled,The student was ,.,was,0,0,0,the,0,student,5.02,,,,
+curated/passive_1/xtail/shoplift,curated,xtail,passive_1,xtail/shoplift,shoplifted,eventuated,The shirt was , by the teenager.,was,0,0,0,the,0,shirt,4.63,the,0,teenager,4.09
+curated/passive_2/xtail/shoplift,curated,xtail,passive_2,xtail/shoplift,shoplifted,eventuated,The shirt was ,.,was,0,0,0,the,0,shirt,4.63,,,,
+curated/passive_1/xtail/doff,curated,xtail,passive_1,xtail/doff,doffed,salivated,The hat was , by the gentleman.,was,0,0,0,the,0,hat,4.53,the,0,gentleman,4.16
+curated/passive_2/xtail/doff,curated,xtail,passive_2,xtail/doff,doffed,salivated,The hat was ,.,was,0,0,0,the,0,hat,4.53,,,,
+curated/passive_1/xtail/obviate,curated,xtail,passive_1,xtail/obviate,obviated,teemed,The need was , by the innovation.,was,0,0,0,the,0,need,5.97,the,0,innovation,4.32
+curated/passive_2/xtail/obviate,curated,xtail,passive_2,xtail/obviate,obviated,teemed,The need was ,.,was,0,0,0,the,0,need,5.97,,,,
+curated/passive_1/xtail/rearm,curated,xtail,passive_1,xtail/rearm,rearmed,tottered,The militia was , by the government.,was,0,0,0,the,0,militia,3.88,the,0,government,5.57
+curated/passive_2/xtail/rearm,curated,xtail,passive_2,xtail/rearm,rearmed,tottered,The militia was ,.,was,0,0,0,the,0,militia,3.88,,,,
+curated/passive_1/xtail/blaspheme,curated,xtail,passive_1,xtail/blaspheme,blasphemed,seethed,The deity was , by the heretic.,was,0,0,0,the,0,deity,3.55,the,0,heretic,3.0
+curated/passive_2/xtail/blaspheme,curated,xtail,passive_2,xtail/blaspheme,blasphemed,seethed,The deity was ,.,was,0,0,0,the,0,deity,3.55,,,,
+curated/passive_1/xtail/daub,curated,xtail,passive_1,xtail/daub,daubed,resounded,The wall was , by the painter.,was,0,0,0,the,0,wall,5.04,the,0,painter,3.93
+curated/passive_2/xtail/daub,curated,xtail,passive_2,xtail/daub,daubed,resounded,The wall was ,.,was,0,0,0,the,0,wall,5.04,,,,
+curated/passive_1/xtail/guzzle,curated,xtail,passive_1,xtail/guzzle,guzzled,commiserated,The beer was , by the sailor.,was,0,0,0,the,0,beer,4.7,the,0,sailor,3.78
+curated/passive_2/xtail/guzzle,curated,xtail,passive_2,xtail/guzzle,guzzled,commiserated,The beer was ,.,was,0,0,0,the,0,beer,4.7,,,,
+curated/passive_1/xtail/swaddle,curated,xtail,passive_1,xtail/swaddle,swaddled,decamped,The baby was , by the nurse.,was,0,0,0,the,0,baby,5.26,the,0,nurse,4.4
+curated/passive_2/xtail/swaddle,curated,xtail,passive_2,xtail/swaddle,swaddled,decamped,The baby was ,.,was,0,0,0,the,0,baby,5.26,,,,
+curated/passive_1/xtail/pigeonhole,curated,xtail,passive_1,xtail/pigeonhole,pigeonholed,hitchhiked,The applicant was , by the recruiter.,was,0,0,0,the,0,applicant,3.64,the,0,recruiter,3.26
+curated/passive_2/xtail/pigeonhole,curated,xtail,passive_2,xtail/pigeonhole,pigeonholed,hitchhiked,The applicant was ,.,was,0,0,0,the,0,applicant,3.64,,,,
+curated/passive_1/xtail/regale,curated,xtail,passive_1,xtail/regale,regaled,writhed,The guest was , by the host.,was,0,0,0,the,0,guest,4.58,the,0,host,4.77
+curated/passive_2/xtail/regale,curated,xtail,passive_2,xtail/regale,regaled,writhed,The guest was ,.,was,0,0,0,the,0,guest,4.58,,,,
+curated/passive_1/xtail/blab,curated,xtail,passive_1,xtail/blab,blabbed,lolled,The secret was , by the child.,was,0,0,0,the,0,secret,4.92,the,0,child,5.3
+curated/passive_2/xtail/blab,curated,xtail,passive_2,xtail/blab,blabbed,lolled,The secret was ,.,was,0,0,0,the,0,secret,4.92,,,,
+curated/passive_1/xtail/espy,curated,xtail,passive_1,xtail/espy,espied,scrammed,The ship was , by the sailor.,was,0,0,0,the,0,ship,4.93,the,0,sailor,3.78
+curated/passive_2/xtail/espy,curated,xtail,passive_2,xtail/espy,espied,scrammed,The ship was ,.,was,0,0,0,the,0,ship,4.93,,,,
+curated/passive_1/xtail/suckle,curated,xtail,passive_1,xtail/suckle,suckled,defecated,The calf was , by the cow.,was,0,0,0,the,0,calf,3.71,the,0,cow,4.14
+curated/passive_2/xtail/suckle,curated,xtail,passive_2,xtail/suckle,suckled,defecated,The calf was ,.,was,0,0,0,the,0,calf,3.71,,,,
+curated/passive_1/xtail/prise,curated,xtail,passive_1,xtail/prise,prised,jutted,The lid was , by the mechanic.,was,0,0,0,the,0,lid,3.81,the,0,mechanic,3.79
+curated/passive_2/xtail/prise,curated,xtail,passive_2,xtail/prise,prised,jutted,The lid was ,.,was,0,0,0,the,0,lid,3.81,,,,
+curated/passive_1/xtail/sunder,curated,xtail,passive_1,xtail/sunder,sundered,eavesdropped,The alliance was , by the war.,was,0,0,0,the,0,alliance,4.4,the,0,war,5.46
+curated/passive_2/xtail/sunder,curated,xtail,passive_2,xtail/sunder,sundered,eavesdropped,The alliance was ,.,was,0,0,0,the,0,alliance,4.4,,,,
+curated/passive_1/xtail/disquiet,curated,xtail,passive_1,xtail/disquiet,disquieted,goggled,The family was , by the news.,was,0,0,0,the,0,family,5.66,the,0,news,5.44
+curated/passive_2/xtail/disquiet,curated,xtail,passive_2,xtail/disquiet,disquieted,goggled,The family was ,.,was,0,0,0,the,0,family,5.66,,,,
+curated/passive_1/xtail/outshine,curated,xtail,passive_1,xtail/outshine,outshone,gaped,The rival was , by the dancer.,was,0,0,0,the,0,rival,4.18,the,0,dancer,3.99
+curated/passive_2/xtail/outshine,curated,xtail,passive_2,xtail/outshine,outshone,gaped,The rival was ,.,was,0,0,0,the,0,rival,4.18,,,,
+curated/passive_1/xtail/incriminate,curated,xtail,passive_1,xtail/incriminate,incriminated,sulked,The suspect was , by the witness.,was,0,0,0,the,0,suspect,4.51,the,0,witness,4.52
+curated/passive_2/xtail/incriminate,curated,xtail,passive_2,xtail/incriminate,incriminated,sulked,The suspect was ,.,was,0,0,0,the,0,suspect,4.51,,,,
+curated/passive_1/xtail/recompense,curated,xtail,passive_1,xtail/recompense,recompensed,leered,The worker was , by the employer.,was,0,0,0,the,0,worker,4.43,the,0,employer,4.22
+curated/passive_2/xtail/recompense,curated,xtail,passive_2,xtail/recompense,recompensed,leered,The worker was ,.,was,0,0,0,the,0,worker,4.43,,,,
+curated/passive_1/xtail/wallop,curated,xtail,passive_1,xtail/wallop,walloped,gloated,The boxer was , by the opponent.,was,0,0,0,the,0,boxer,3.74,the,0,opponent,4.2
+curated/passive_2/xtail/wallop,curated,xtail,passive_2,xtail/wallop,walloped,gloated,The boxer was ,.,was,0,0,0,the,0,boxer,3.74,,,,
+curated/passive_1/xtail/ogle,curated,xtail,passive_1,xtail/ogle,ogled,wallowed,The model was , by the spectator.,was,0,0,0,the,0,model,5.13,the,0,spectator,3.51
+curated/passive_2/xtail/ogle,curated,xtail,passive_2,xtail/ogle,ogled,wallowed,The model was ,.,was,0,0,0,the,0,model,5.13,,,,
+curated/passive_1/xtail/lather,curated,xtail,passive_1,xtail/lather,lathered,slouched,The face was , by the barber.,was,0,0,0,the,0,face,5.45,the,0,barber,3.81
+curated/passive_2/xtail/lather,curated,xtail,passive_2,xtail/lather,lathered,slouched,The face was ,.,was,0,0,0,the,0,face,5.45,,,,
+curated/passive_1/xtail/heft,curated,xtail,passive_1,xtail/heft,hefted,hibernated,The stone was , by the athlete.,was,0,0,0,the,0,stone,4.8,the,0,athlete,4.11
+curated/passive_2/xtail/heft,curated,xtail,passive_2,xtail/heft,hefted,hibernated,The stone was ,.,was,0,0,0,the,0,stone,4.8,,,,
+curated/passive_1/xtail/placate,curated,xtail,passive_1,xtail/placate,placated,crackled,The crowd was , by the mayor.,was,0,0,0,the,0,crowd,4.7,the,0,mayor,4.62
+curated/passive_2/xtail/placate,curated,xtail,passive_2,xtail/placate,placated,crackled,The crowd was ,.,was,0,0,0,the,0,crowd,4.7,,,,
+curated/passive_1/xtail/shoo,curated,xtail,passive_1,xtail/shoo,shooed,quivered,The pigeon was , by the child.,was,0,0,0,the,0,pigeon,3.61,the,0,child,5.3
+curated/passive_2/xtail/shoo,curated,xtail,passive_2,xtail/shoo,shooed,quivered,The pigeon was ,.,was,0,0,0,the,0,pigeon,3.61,,,,
+curated/passive_1/xtail/debug,curated,xtail,passive_1,xtail/debug,debugged,tingled,The program was , by the engineer.,was,0,0,0,the,0,program,5.27,the,0,engineer,4.5
+curated/passive_2/xtail/debug,curated,xtail,passive_2,xtail/debug,debugged,tingled,The program was ,.,was,0,0,0,the,0,program,5.27,,,,
+curated/passive_1/xtail/resupply,curated,xtail,passive_1,xtail/resupply,resupplied,slogged,The platoon was , by the quartermaster.,was,0,0,0,the,0,platoon,3.52,the,0,quartermaster,3.04
+curated/passive_2/xtail/resupply,curated,xtail,passive_2,xtail/resupply,resupplied,slogged,The platoon was ,.,was,0,0,0,the,0,platoon,3.52,,,,
+curated/passive_1/xtail/tithe,curated,xtail,passive_1,xtail/tithe,tithed,puttered,The harvest was , by the farmer.,was,0,0,0,the,0,harvest,4.03,the,0,farmer,4.15
+curated/passive_2/xtail/tithe,curated,xtail,passive_2,xtail/tithe,tithed,puttered,The harvest was ,.,was,0,0,0,the,0,harvest,4.03,,,,
+curated/passive_1/xtail/mulch,curated,xtail,passive_1,xtail/mulch,mulched,bustled,The garden was , by the gardener.,was,0,0,0,the,0,garden,4.77,the,0,gardener,3.49
+curated/passive_2/xtail/mulch,curated,xtail,passive_2,xtail/mulch,mulched,bustled,The garden was ,.,was,0,0,0,the,0,garden,4.77,,,,
+curated/passive_1/xtail/reproach,curated,xtail,passive_1,xtail/reproach,reproached,whizzed,The student was , by the teacher.,was,0,0,0,the,0,student,5.02,the,0,teacher,4.88
+curated/passive_2/xtail/reproach,curated,xtail,passive_2,xtail/reproach,reproached,whizzed,The student was ,.,was,0,0,0,the,0,student,5.02,,,,
+curated/passive_1/xtail/lard,curated,xtail,passive_1,xtail/lard,larded,fizzed,The roast was , by the cook.,was,0,0,0,the,0,roast,3.87,the,0,cook,4.65
+curated/passive_2/xtail/lard,curated,xtail,passive_2,xtail/lard,larded,fizzed,The roast was ,.,was,0,0,0,the,0,roast,3.87,,,,
+curated/passive_1/xtail/gull,curated,xtail,passive_1,xtail/gull,gulled,desisted,The tourist was , by the conman.,was,0,0,0,the,0,tourist,4.2,the,0,conman,2.63
+curated/passive_2/xtail/gull,curated,xtail,passive_2,xtail/gull,gulled,desisted,The tourist was ,.,was,0,0,0,the,0,tourist,4.2,,,,
+curated/passive_1/xtail/wag,curated,xtail,passive_1,xtail/wag,wagged,basked,The tail was , by the dog.,was,0,0,0,the,0,tail,4.34,the,0,dog,5.1
+curated/passive_2/xtail/wag,curated,xtail,passive_2,xtail/wag,wagged,basked,The tail was ,.,was,0,0,0,the,0,tail,4.34,,,,
+curated/passive_1/xtail/mistrust,curated,xtail,passive_1,xtail/mistrust,mistrusted,coexisted,The colleague was , by the supervisor.,was,0,0,0,the,0,colleague,3.98,the,0,supervisor,3.95
+curated/passive_2/xtail/mistrust,curated,xtail,passive_2,xtail/mistrust,mistrusted,coexisted,The colleague was ,.,was,0,0,0,the,0,colleague,3.98,,,,
+curated/passive_1/xtail/wad,curated,xtail,passive_1,xtail/wad,wadded,shimmered,The paper was , by the child.,was,0,0,0,the,0,paper,5.07,the,0,child,5.3
+curated/passive_2/xtail/wad,curated,xtail,passive_2,xtail/wad,wadded,shimmered,The paper was ,.,was,0,0,0,the,0,paper,5.07,,,,
+curated/passive_1/xtail/lug,curated,xtail,passive_1,xtail/lug,lugged,drooled,The suitcase was , by the porter.,was,0,0,0,the,0,suitcase,3.55,the,0,porter,3.98
+curated/passive_2/xtail/lug,curated,xtail,passive_2,xtail/lug,lugged,drooled,The suitcase was ,.,was,0,0,0,the,0,suitcase,3.55,,,,
+curated/passive_1/xtail/stopper,curated,xtail,passive_1,xtail/stopper,stoppered,quacked,The bottle was , by the winemaker.,was,0,0,0,the,0,bottle,4.57,the,0,winemaker,2.69
+curated/passive_2/xtail/stopper,curated,xtail,passive_2,xtail/stopper,stoppered,quacked,The bottle was ,.,was,0,0,0,the,0,bottle,4.57,,,,
+curated/passive_1/xtail/perm,curated,xtail,passive_1,xtail/perm,permed,fawned,The hair was , by the stylist.,was,0,0,0,the,0,hair,5.08,the,0,stylist,3.4
+curated/passive_2/xtail/perm,curated,xtail,passive_2,xtail/perm,permed,fawned,The hair was ,.,was,0,0,0,the,0,hair,5.08,,,,
+curated/passive_1/xtail/redress,curated,xtail,passive_1,xtail/redress,redressed,panted,The grievance was , by the judge.,was,0,0,0,the,0,grievance,3.15,the,0,judge,4.95
+curated/passive_2/xtail/redress,curated,xtail,passive_2,xtail/redress,redressed,panted,The grievance was ,.,was,0,0,0,the,0,grievance,3.15,,,,
+curated/passive_1/xtail/clout,curated,xtail,passive_1,xtail/clout,clouted,groused,The opponent was , by the boxer.,was,0,0,0,the,0,opponent,4.2,the,0,boxer,3.74
+curated/passive_2/xtail/clout,curated,xtail,passive_2,xtail/clout,clouted,groused,The opponent was ,.,was,0,0,0,the,0,opponent,4.2,,,,
+curated/passive_1/xtail/garland,curated,xtail,passive_1,xtail/garland,garlanded,bantered,The bride was , by the florist.,was,0,0,0,the,0,bride,4.08,the,0,florist,3.01
+curated/passive_2/xtail/garland,curated,xtail,passive_2,xtail/garland,garlanded,bantered,The bride was ,.,was,0,0,0,the,0,bride,4.08,,,,
+curated/passive_1/xtail/crate,curated,xtail,passive_1,xtail/crate,crated,lumbered,The vase was , by the mover.,was,0,0,0,the,0,vase,3.54,the,0,mover,3.21
+curated/passive_2/xtail/crate,curated,xtail,passive_2,xtail/crate,crated,lumbered,The vase was ,.,was,0,0,0,the,0,vase,3.54,,,,
