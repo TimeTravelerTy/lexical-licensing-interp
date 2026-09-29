@@ -6,6 +6,7 @@
 - **Prompt agreement**: Spearman 0.966
 - **Mean bad-side rating by bad-verb band**: head 4.71, tail 4.12, xtail 3.84
 - **Second rater agreement**: Spearman 0.860
+- **Human agreement**: Spearman 0.831 on 59 items
 
 Lowest rated: The money chuckled.; The money slouched.; The gate hibernated.; The tail glared.; The secret bragged.; The beer lumbered.; The statue quacked.; The statue thrived.
 
