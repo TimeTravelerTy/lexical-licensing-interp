@@ -3,7 +3,7 @@
 
 1. band_cross_accuracy.png: accuracy by verb band x context band (released).
 2. fit_accuracy.png: accuracy vs fit rating by verb band, and fit distributions.
-3. xtail_effect_matched.png: XTail - Head with and without fit adjustment.
+3. xtail_effect_matched.png: XTail - Head with no, good, and good+bad fit control.
 """
 
 from __future__ import annotations
@@ -32,14 +32,6 @@ def style(ax):
     ax.tick_params(colors=MUTED, labelcolor=INK, labelsize=9)
     ax.grid(axis="y", color=GRID, linewidth=0.8)
     ax.set_axisbelow(True)
-
-
-def weights(rng, labels, n_boot):
-    w = np.ones((n_boot + 1, len(labels)))
-    for band in np.unique(labels):
-        idx = np.flatnonzero(labels == band)
-        w[1:, idx] = rng.multinomial(len(idx), np.full(len(idx), 1 / len(idx)), size=n_boot)
-    return w
 
 
 def band_cross_figure(cells, out):
@@ -119,61 +111,34 @@ def fit_figure(cur, out, n_boot, rng):
     plt.close(fig)
 
 
-def adjusted_effects(cur, n_boot, rng):
-    rows = []
-    for paradigm, sub in cur.groupby("paradigm"):
-        verbs = sub.drop_duplicates("verb_pair").sort_values("verb_pair")
-        ctxs = sub.drop_duplicates("context_id").sort_values("context_id")
-        vi = sub.verb_pair.map({v: i for i, v in enumerate(verbs.verb_pair)}).to_numpy()
-        ci = sub.context_id.map({c: i for i, c in enumerate(ctxs.context_id)}).to_numpy()
-        wv, wc = weights(rng, verbs.verb_band.to_numpy(), n_boot), weights(rng, ctxs.context_band.to_numpy(), n_boot)
-        fit = sub.rating.to_numpy() - 4
-        t, x = (sub.verb_band == "tail").to_numpy(float), (sub.verb_band == "xtail").to_numpy(float)
-        one = np.ones(len(sub))
-        designs = {"Unmatched": np.column_stack([one, t, x]),
-                   "Fit-matched": np.column_stack([one, fit, t, x, fit * t, fit * x])}
-        xcol = {"Unmatched": 2, "Fit-matched": 3}
-        for metric in ("correct", "whole_margin", "verb_margin"):
-            y = sub[metric].to_numpy(float) * (100 if metric == "correct" else 1)
-            for name, X in designs.items():
-                draws = []
-                for b in range(n_boot + 1):
-                    w = wv[b, vi] * wc[b, ci]
-                    k = w > 0
-                    sw = np.sqrt(w[k])
-                    beta, *_ = np.linalg.lstsq(X[k] * sw[:, None], y[k] * sw, rcond=None)
-                    draws.append(beta[xcol[name]])
-                d = np.array(draws)
-                rows.append({"paradigm": paradigm, "metric": metric, "model": name, "estimate": d[0],
-                             "ci_low": np.percentile(d[1:], 2.5), "ci_high": np.percentile(d[1:], 97.5)})
-    return pd.DataFrame(rows)
-
-
-def effect_figure(eff, out):
+def effect_figure(models, out):
+    """XTail - Head from analyze_bad_fit.py's shared-slope models (one source for all numbers)."""
     metrics = [("correct", "Accuracy (pp)"), ("whole_margin", "Full-sentence margin"),
                ("verb_margin", "Participle-token margin")]
-    shade = {"Unmatched": "#9ec5f4", "Fit-matched": "#1c5cab"}
-    fig, axes = plt.subplots(1, 3, figsize=(10, 3.4))
+    steps = [("unmatched", "No fit control", "#b7d3f6"), ("good", "+ good fit", "#3987e5"),
+             ("good+bad", "+ good and bad fit", "#104281")]
+    eff = models[models.term == "xtail"]
+    fig, axes = plt.subplots(1, 3, figsize=(12, 3.6))
     for ax, (metric, title) in zip(axes, metrics):
-        for j, model in enumerate(("Unmatched", "Fit-matched")):
+        for j, (model, label, color) in enumerate(steps):
             r = eff[(eff.metric == metric) & (eff.model == model)].set_index("paradigm").loc[list(PARADIGM)]
-            x = np.arange(2) + (j - 0.5) * 0.28
+            x = np.arange(2) + (j - 1) * 0.3
             ax.errorbar(x, r.estimate, yerr=[r.estimate - r.ci_low, r.ci_high - r.estimate], fmt="o",
-                        color=shade[model], ms=8, lw=2.2, capsize=0, mec="white", mew=1.5, label=model)
+                        color=color, ms=7, lw=2.2, capsize=0, mec="white", mew=1.5, label=label)
             for xi, v in zip(x, r.estimate):
-                ax.annotate(f"{v:.1f}" if metric == "correct" else f"{v:.2f}", (xi, v), xytext=(7, 0),
-                            textcoords="offset points", va="center", fontsize=8, color=INK)
+                ax.annotate(f"{v:.1f}" if metric == "correct" else f"{v:.2f}", (xi, v), xytext=(6, 0),
+                            textcoords="offset points", va="center", fontsize=7.5, color=INK)
         ax.axhline(0, color=MUTED, lw=1)
         ax.set_xticks(range(2), ["passive_1", "passive_2"])
-        ax.set_xlim(-0.6, 1.6)
+        ax.set_xlim(-0.55, 1.75)
         ax.set_title(title, fontsize=10, color=INK, loc="left")
         style(ax)
     axes[0].set_ylabel("XTail - Head", color=INK)
-    axes[0].legend(frameon=False, fontsize=8.5, loc="lower left")
-    fig.suptitle("Fit explains about half of the rare-verb deficit; a participle-token deficit remains",
+    axes[0].legend(frameon=False, fontsize=8, loc="lower left")
+    fig.suptitle("Fit explains part of the rare-verb deficit; a participle-token deficit remains",
                  x=0.01, ha="left", fontsize=11, color=INK)
-    fig.text(0.01, -0.03, "Curated cross (126 verb pairs x 126 contexts per paradigm). Fit-matched = XTail "
-             "coefficient with fit x band terms, at rating 4. 95% two-way cluster bootstrap.",
+    fig.text(0.01, -0.03, "Curated cross (126 verb pairs x 126 contexts per paradigm). XTail coefficient with a "
+             "shared fit slope; bad fit = patient (+ agent in passive_1). 95% two-way cluster bootstrap.",
              fontsize=8, color=MUTED)
     fig.tight_layout()
     fig.savefig(out, dpi=200, bbox_inches="tight")
@@ -190,10 +155,7 @@ def run(args):
     rating = pd.read_csv(args.ratings).groupby("item_id").rating.mean().rename("rating")
     cur = scores[scores.context_set == "curated"].merge(links, on="pair_id").merge(rating, on="item_id")
     fit_figure(cur, out / "fit_accuracy.png", args.n_boot, rng)
-    eff = adjusted_effects(cur, args.n_boot, rng)
-    eff.to_csv(out / "xtail_effect_matched.csv", index=False)
-    effect_figure(eff, out / "xtail_effect_matched.png")
-    print(eff.round(3).to_string(index=False))
+    effect_figure(pd.read_csv(args.models), out / "xtail_effect_matched.png")
 
 
 if __name__ == "__main__":
@@ -202,6 +164,7 @@ if __name__ == "__main__":
     ap.add_argument("--scores", default="results/passive_band_cross/pythia14b_scores.csv")
     ap.add_argument("--links", default="data/fit_ratings/item_links.csv")
     ap.add_argument("--ratings", default="results/fit_ratings/gemma4_31b_it.csv")
+    ap.add_argument("--models", default="reports/fit_ratings/bad_fit_models.csv")
     ap.add_argument("--out-dir", default="reports/figures")
     ap.add_argument("--n-boot", type=int, default=1000)
     ap.add_argument("--seed", type=int, default=17)
