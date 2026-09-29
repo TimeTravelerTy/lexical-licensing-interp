@@ -8,7 +8,7 @@ item_id,sentence,rating_1_to_7
 f873eeffcedb,The fine was quarried by the judge.,3
 7907eddc58c7,The prisoner was gagged by the guard.,7
 79830a2a2381,The host was regaled by the guest.,7
-96239e1f7304,The soup was lent.,6
+96239e1f7304,The soup was lent.,3
 7f98adf8f631,The guest was introduced by the host.,7
 0dfec0be1617,The floor was scrubbed by the cleaner.,7
 7ab562264be6,The value was doffed.,1
@@ -33,7 +33,7 @@ cfea65983d79,The weed was extirpated.,7
 73154588cc3f,The letter was sent by the clerk.,7
 76d475e2d074,The suspect was blabbed by the witness.,5
 0fdd5ca4478f,The cost was overestimated by the accountant.,7
-25400aa7b8f8,The baby was trademarked.,6
+25400aa7b8f8,The baby was trademarked.,2
 8311834b238e,The soup was christened.,6
 e10ef6e4232f,The conference was hosted by the university.,7
 03d812704cd1,The money was precluded.,4
@@ -85,7 +85,7 @@ c1a9c096eff3,The account was subjugated by the auditor.,3
 7d8231c235c7,The teacher was thanked.,7
 e252e14d00a2,The secret was espied by the child.,7
 a263ceaebeb6,The need was obviated.,7
-73f28e9cee88,The calf was suckled by the cow.,2
+73f28e9cee88,The calf was suckled by the cow.,7
 5be33ea56787,The heretic was blasphemed by the deity.,3
 23d999c4e925,The bank was robbed.,7
 2a30d86c3440,The opponent was clouted.,7
@@ -107,7 +107,7 @@ c7e0265b06cb,The vase was crated by the mover.,7
 102924a39de7,The victory was celebrated.,7
 0ff446f708dc,The company was insured by the house.,3
 f69f4c98e586,The hair was permed.,7
-f0e3baa41c3f,The boxer was doffed.,6
+f0e3baa41c3f,The boxer was doffed.,1
 9a61b3ff9146,The suitcase was lugged by the porter.,7
 96b04a258fb3,The manager was blamed.,7
 28957f764201,The cargo was measured.,7

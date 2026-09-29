@@ -42,15 +42,13 @@ Both ran at commit `3083477` from the HDD model cache
   *shoplift*), not rater ignorance.
 - Rater agreement with Qwen2.5-7B: Spearman 0.726.
 - Human agreement (one author, 132 blind stratified items in
-  `data/fit_ratings/human_sheet.csv`): Gemma Spearman 0.818
-  [0.742, 0.875]; Qwen-7B 0.647 [0.519, 0.743]. Within other contexts only
-  (n = 62), Gemma agrees at 0.645. Condition means match (human vs Gemma):
-  own 6.88 / 6.92, reversal 2.83 / 2.88, other 4.44 / 3.50. Gemma is harsher
+  `data/fit_ratings/human_sheet.csv`; four mis-keys corrected by the rater):
+  Gemma Spearman 0.853 [0.801, 0.892]; Qwen-7B 0.697. Within other contexts
+  only (n = 62), Gemma agrees at 0.698. Condition means (human vs Gemma):
+  own 6.97 / 6.92, reversal 2.83 / 2.88, other 4.24 / 3.50. Gemma is harsher
   on unselected contexts but ranks them similarly. The human also rates
-  Head verbs highest in other contexts (5.20 vs 3.81 Tail, 4.33 XTail;
+  Head verbs highest in other contexts (5.05 vs 3.62 Tail, 4.10 XTail;
   about 20 items each). This supports the selectional-range reading.
-  Removing four possibly mis-keyed items (e.g. "The baby was trademarked"
-  = 6, "The calf was suckled by the cow" = 2) raises agreement to 0.849.
 
 ## Findings
 

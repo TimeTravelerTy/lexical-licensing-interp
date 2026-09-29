@@ -23,7 +23,7 @@
 
 - Spearman(own rating, participle Zipf): 0.141; Spearman(other rating, participle Zipf): 0.164
 
-- **Human agreement**: Spearman 0.647 on 132 items
+- **Human agreement**: Spearman 0.697 on 132 items
 
 - **Second rater agreement**: Spearman 0.726 on 28971 items
 
