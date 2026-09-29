@@ -32,7 +32,7 @@ def spearman(a, b):
 
 
 def mean_rating(path):
-    r = pd.read_csv(path)
+    r = pd.read_csv(path, dtype={"item_id": str})
     wide = r.pivot_table(index="item_id", columns="prompt", values="rating")
     wide.columns = [f"rating_{c}" for c in wide.columns]
     wide["rating"] = wide.mean(axis=1)
@@ -81,7 +81,7 @@ def validation(raw, rated, links, args):
         lines += ["", f"- Spearman(own rating, participle Zipf): {spearman(pv.own, pv.good_form_zipf):.3f}; "
                   f"Spearman(other rating, participle Zipf): {spearman(pv.other, pv.good_form_zipf):.3f}"]
     if args.human:
-        h = pd.read_csv(args.human).dropna(subset=["rating_1_to_7"])
+        h = pd.read_csv(args.human, dtype={"item_id": str}).dropna(subset=["rating_1_to_7"])
         if len(h):
             hm = h.merge(rated, on="item_id")
             lines += ["", f"- **Human agreement**: Spearman {spearman(hm.rating_1_to_7, hm.rating):.3f} "
@@ -156,7 +156,7 @@ def run(args):
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     raw, rated = mean_rating(args.ratings)
-    links = pd.read_csv(args.links)
+    links = pd.read_csv(args.links, dtype={"item_id": str})
     lines = [f"# Fit ratings: {Path(args.ratings).stem}", ""]
     val_lines, per_verb = validation(raw, rated, links, args)
     lines += val_lines

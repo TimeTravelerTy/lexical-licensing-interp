@@ -44,7 +44,7 @@ def validation(raw, rated, links, args):
         m = rated.merge(other, on="item_id", suffixes=("", "_second"))
         lines.append(f"- **Second rater agreement**: Spearman {spearman(m.rating, m.rating_second):.3f}")
     if args.human:
-        h = pd.read_csv(args.human).dropna(subset=["rating_1_to_7"])
+        h = pd.read_csv(args.human, dtype={"item_id": str}).dropna(subset=["rating_1_to_7"])
         if len(h):
             hm = h.merge(rated, on="item_id")
             lines.append(f"- **Human agreement**: Spearman {spearman(hm.rating_1_to_7, hm.rating):.3f} "
@@ -103,14 +103,14 @@ def run(args):
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     raw, rated = mean_rating(args.ratings)
-    links = pd.read_csv(args.links)
+    links = pd.read_csv(args.links, dtype={"item_id": str})
     lines = [f"# Bad-side fit: {Path(args.ratings).stem}", ""] + validation(raw, rated, links, args)
 
     bad = links.merge(rated[["item_id", "rating"]], on="item_id") \
         .pivot_table(index="pair_id", columns="role", values="rating")
     bad.columns = [f"bad_{c}" for c in bad.columns]
     _, good = mean_rating(args.good_ratings)
-    good_links = pd.read_csv(args.good_links)[["pair_id", "item_id"]]
+    good_links = pd.read_csv(args.good_links, dtype={"item_id": str})[["pair_id", "item_id"]]
     scores = pd.read_csv(args.scores, low_memory=False)
     cur = scores[scores.context_set == "curated"].merge(good_links, on="pair_id") \
         .merge(good[["item_id", "rating"]].rename(columns={"rating": "good_fit"}), on="item_id") \
