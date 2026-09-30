@@ -78,13 +78,23 @@ def models(df, n_boot, rng):
         one = np.ones(len(sub))
         t, x = (sub.verb_band == "tail").to_numpy(float), (sub.verb_band == "xtail").to_numpy(float)
         good = sub.good_fit.to_numpy() - 4
+        patient = sub.bad_patient.to_numpy() - 4
+        own = sub.own_context.to_numpy(float)
         bad_terms = ["bad_patient"] + (["bad_agent"] if paradigm == "passive_1" else [])
         bad = [sub[c].to_numpy() - 4 for c in bad_terms]
         designs = {
             "unmatched": (["intercept", "tail", "xtail"], np.column_stack([one, t, x])),
             "good": (["intercept", "good_fit", "tail", "xtail"], np.column_stack([one, good, t, x])),
+            # Primary bad-side control: the patient precedes the participle; the
+            # agent term behaves like a verb-property confound (see docs).
+            "good+bad_patient": (["intercept", "good_fit", "bad_patient", "tail", "xtail"],
+                                 np.column_stack([one, good, patient, t, x])),
             "good+bad": (["intercept", "good_fit"] + bad_terms + ["tail", "xtail"],
                          np.column_stack([one, good] + bad + [t, x])),
+            # Own-context advantage before and after good-side fit.
+            "own": (["intercept", "tail", "xtail", "own"], np.column_stack([one, t, x, own])),
+            "good+own": (["intercept", "good_fit", "tail", "xtail", "own"],
+                         np.column_stack([one, good, t, x, own])),
         }
         for metric in METRICS:
             if metric == "by_margin" and paradigm == "passive_2":
@@ -138,10 +148,18 @@ def run(args):
             lines.append(f"| {term} | " + " | ".join(vals) + " |")
         lines += ["", f"XTail - Head across models ({paradigm}):", "",
                   "| Model | " + " | ".join(metrics) + " |", "|---|" + "---:|" * len(metrics)]
-        for model in ("unmatched", "good", "good+bad"):
+        for model in ("unmatched", "good", "good+bad_patient", "good+bad"):
             vals = []
             for m in metrics:
                 r = c[(c.model == model) & (c.term == "xtail") & (c.metric == m)].iloc[0]
+                vals.append(f"{r.estimate:.2f} [{r.ci_low:.2f}, {r.ci_high:.2f}]")
+            lines.append(f"| {model} | " + " | ".join(vals) + " |")
+        lines += ["", f"Own-context advantage ({paradigm}):", "",
+                  "| Model | " + " | ".join(metrics) + " |", "|---|" + "---:|" * len(metrics)]
+        for model in ("own", "good+own"):
+            vals = []
+            for m in metrics:
+                r = c[(c.model == model) & (c.term == "own") & (c.metric == m)].iloc[0]
                 vals.append(f"{r.estimate:.2f} [{r.ci_low:.2f}, {r.ci_high:.2f}]")
             lines.append(f"| {model} | " + " | ".join(vals) + " |")
         lines.append("")

@@ -3,7 +3,7 @@
 
 1. band_cross_accuracy.png: accuracy by verb band x context band (released).
 2. fit_accuracy.png: accuracy vs fit rating by verb band, and fit distributions.
-3. xtail_effect_matched.png: XTail - Head with no, good, and good+bad fit control.
+3. xtail_effect_matched.png: XTail - Head with no, good, and good + bad-patient fit control.
 """
 
 from __future__ import annotations
@@ -116,7 +116,7 @@ def effect_figure(models, out):
     metrics = [("correct", "Accuracy (pp)"), ("whole_margin", "Full-sentence margin"),
                ("verb_margin", "Participle-token margin")]
     steps = [("unmatched", "No fit control", "#b7d3f6"), ("good", "+ good fit", "#3987e5"),
-             ("good+bad", "+ good and bad fit", "#104281")]
+             ("good+bad_patient", "+ good and bad-patient fit", "#104281")]
     eff = models[models.term == "xtail"]
     fig, axes = plt.subplots(1, 3, figsize=(12, 3.6))
     for ax, (metric, title) in zip(axes, metrics):
@@ -138,7 +138,7 @@ def effect_figure(models, out):
     fig.suptitle("Fit explains part of the rare-verb deficit; a participle-token deficit remains",
                  x=0.01, ha="left", fontsize=11, color=INK)
     fig.text(0.01, -0.03, "Curated cross (126 verb pairs x 126 contexts per paradigm). XTail coefficient with a "
-             "shared fit slope; bad fit = patient (+ agent in passive_1). 95% two-way cluster bootstrap.",
+             "shared fit slope; bad fit = patient as subject of the intransitive. 95% two-way cluster bootstrap.",
              fontsize=8, color=MUTED)
     fig.tight_layout()
     fig.savefig(out, dpi=200, bbox_inches="tight")
