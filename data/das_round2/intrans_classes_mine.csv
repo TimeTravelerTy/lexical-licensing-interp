@@ -1,0 +1,226 @@
+lemma,source,mine_class,prep,example
+care,new,prep_object,for,the patient was cared for
+react,new,prep_object,to,the news was reacted to
+rely,new,prep_object,on,the data was relied on
+stare,new,prep_object,at,the stranger was stared at
+step,new,prep_object,on,the toy was stepped on
+stumble,new,prep_object,upon,the cave was stumbled upon
+subscribe,new,prep_object,to,the view was subscribed to
+ache,new,plain,,
+allude,new,prep_object,to,the scandal was alluded to
+arise,new,plain,,
+chat,new,plain,,
+coincide,new,plain,,
+collaborate,new,prep_object,with,the lab was collaborated with
+comply,new,prep_object,with,the rules were complied with
+converse,new,plain,,
+cringe,new,plain,,
+defect,new,plain,,
+depend,new,prep_object,on,the supply was depended on
+differ,new,plain,,
+disagree,new,prep_object,with,the verdict was disagreed with
+dissent,new,prep_object,from,the ruling was dissented from
+dwell,new,prep_object,on,the loss was dwelt on
+ensue,new,plain,,
+err,new,plain,,
+excel,new,prep_object,at,(also transitive: the record was excelled)
+faint,new,plain,,
+fart,new,plain,,
+feud,new,plain,,
+frown,new,prep_object,upon,the practice was frowned upon
+gaze,new,prep_object,at,the painting was gazed at
+glance,new,prep_object,at,the note was glanced at
+hesitate,new,plain,,
+intervene,new,prep_object,in,the market was intervened in
+kneel,new,plain,,
+limp,new,plain,,
+loom,new,plain,,
+malfunction,new,plain,,
+meditate,new,prep_object,on,the question was meditated on
+peek,new,prep_object,at,the gift was peeked at
+peer,new,prep_object,at,the sample was peered at
+perish,new,plain,,
+persist,new,plain,,
+preside,new,prep_object,over,the trial was presided over
+prevail,new,prep_object,upon,the judge was prevailed upon
+quarrel,new,plain,,
+rebel,new,prep_object,against,the regime was rebelled against
+recur,new,plain,,
+reign,new,prep_object,over,the land was reigned over
+relapse,new,plain,,
+reside,new,plain,,
+resort,new,prep_object,to,force was resorted to
+sneeze,new,plain,,
+sprint,new,plain,,
+strive,new,prep_object,for,the goal was striven for
+succumb,new,plain,,
+tamper,new,prep_object,with,the lock was tampered with
+tower,new,prep_object,over,the child was towered over
+tremble,new,plain,,
+triumph,new,prep_object,over,the enemy was triumphed over
+yearn,new,prep_object,for,the past was yearned for
+abound,new,plain,,
+accede,new,prep_object,to,the demand was acceded to
+acquiesce,new,prep_object,in,the plan was acquiesced in
+elope,new,plain,,
+encroach,new,prep_object,upon,the land was encroached upon
+flinch,new,plain,,
+overreact,new,prep_object,to,the remark was overreacted to
+relent,new,plain,,
+waver,new,plain,,
+assent,new,prep_object,to,the terms were assented to
+bicker,new,plain,,
+cavort,new,plain,,
+convalesce,new,plain,,
+dally,new,prep_object,with,the idea was dallied with
+equivocate,new,plain,,
+frolic,new,plain,,
+grovel,new,plain,,
+hobnob,new,plain,,
+intercede,new,plain,,
+inveigh,new,prep_object,against,the tax was inveighed against
+loiter,new,plain,,
+luxuriate,new,plain,,
+menstruate,new,plain,,
+mosey,new,plain,,
+pontificate,new,prep_object,about,the topic was pontificated about
+prevaricate,new,plain,,
+pulsate,new,plain,,
+reoccur,new,plain,,
+skulk,new,plain,,
+sojourn,new,plain,,
+tarry,new,plain,,
+throb,new,plain,,
+tiptoe,new,plain,,
+waddle,new,plain,,
+cohabit,new,plain,,
+fraternize,new,plain,,
+impinge,new,prep_object,upon,the right was impinged upon
+reemerge,new,plain,,
+saunter,new,plain,,
+abstain,original,prep_object,from,the vote was abstained from
+adhere,original,prep_object,to,the rule was adhered to
+apologize,original,prep_object,to,the guest was apologized to
+appear,original,plain,,
+arrive,original,prep_object,at,the decision was arrived at
+banter,original,plain,,
+bargain,original,prep_object,for,more than was bargained for
+bask,original,plain,,
+belong,original,plain,,
+bloom,original,plain,,
+blossom,original,plain,,
+blush,original,plain,,
+brag,original,prep_object,about,the win was bragged about
+burgeon,original,plain,,
+bustle,original,plain,,
+chuckle,original,prep_object,at,the joke was chuckled at
+clash,original,plain,,
+coexist,original,plain,,
+collude,original,plain,,
+commiserate,original,plain,,
+compete,original,plain,,
+complain,original,prep_object,about,the noise was complained about
+concur,original,plain,,
+conspire,original,prep_object,against,the king was conspired against
+cooperate,original,plain,,
+correspond,original,plain,,
+crackle,original,contaminated_bad,,(transitive: crackle = crush with a crackling sound)
+creep,original,plain,,
+dawn,original,plain,,
+decamp,original,plain,,
+defecate,original,prep_object,on,the car was defecated on
+desist,original,plain,,
+die,original,plain,,
+diverge,original,plain,,
+drool,original,prep_object,over,the car was drooled over
+dwindle,original,plain,,
+eavesdrop,original,prep_object,on,the call was eavesdropped on
+emerge,original,plain,,
+emigrate,original,plain,,
+eventuate,original,plain,,
+exist,original,plain,,
+exult,original,plain,,
+fawn,original,prep_object,over,the star was fawned over
+fizz,original,plain,,
+flirt,original,prep_object,with,the idea was flirted with
+fluctuate,original,plain,,
+function,original,plain,,
+gape,original,prep_object,at,the wreck was gaped at
+glare,original,prep_object,at,the boy was glared at
+gloat,original,prep_object,over,the defeat was gloated over
+glow,original,plain,,
+goggle,original,prep_object,at,the car was goggled at
+grin,original,prep_object,at,the baby was grinned at
+grouse,original,plain,,
+happen,original,plain,,
+hibernate,original,plain,,
+hitchhike,original,plain,,
+inquire,original,prep_object,into,the matter was inquired into
+interact,original,prep_object,with,the button was interacted with
+jut,original,contaminated_bad,,(transitive: jut one's chin)
+languish,original,plain,,
+laugh,original,prep_object,at,the clown was laughed at
+leer,original,prep_object,at,the waitress was leered at
+lie,original,prep_object,to,the jury was lied to
+linger,original,plain,,
+listen,original,prep_object,to,the song was listened to
+loll,original,plain,,
+lumber,original,plain,,
+lurk,original,plain,,
+matter,original,plain,,
+muse,original,prep_object,about,the idea was mused about
+object,original,prep_object,to,the plan was objected to
+occur,original,plain,,
+opt,original,prep_object,for,the cheaper plan was opted for
+pant,original,plain,,
+participate,original,prep_object,in,the survey was participated in
+pee,original,prep_object,on,the rug was peed on
+persevere,original,plain,,
+proceed,original,prep_object,with,the case was proceeded with
+putter,original,plain,,
+quack,original,plain,,
+quiver,original,plain,,
+rave,original,prep_object,about,the film was raved about
+reappear,original,plain,,
+recede,original,plain,,
+reel,original,plain,,
+remain,original,plain,,
+remonstrate,original,plain,,
+reply,original,prep_object,to,the letter was replied to
+resound,original,contaminated_bad,,(transitive: resound someone's praises)
+respond,original,prep_object,to,the email was responded to
+result,original,plain,,
+retaliate,original,prep_object,against,the worker was retaliated against
+salivate,original,prep_object,over,the dish was salivated over
+scram,original,contaminated_bad,,(transitive: scram a reactor)
+seep,original,plain,,
+seethe,original,plain,,
+shimmer,original,plain,,
+shudder,original,plain,,
+sidle,original,plain,,
+sin,original,prep_object,against,he was sinned against
+slog,original,plain,,
+slouch,original,plain,,
+slump,original,plain,,
+smolder,original,plain,,
+stagnate,original,plain,,
+struggle,original,prep_object,with,the task was struggled with
+subside,original,plain,,
+sulk,original,plain,,
+sympathize,original,prep_object,with,the victim was sympathized with
+teem,original,plain,,
+testify,original,prep_object,to,the fact was testified to
+thrive,original,plain,,
+tingle,original,plain,,
+toddle,original,plain,,
+toil,original,plain,,
+totter,original,plain,,
+transpire,original,plain,,
+vacillate,original,plain,,
+vanish,original,plain,,
+vegetate,original,plain,,
+vie,original,plain,,
+wallow,original,plain,,
+wane,original,plain,,
+whiz,original,plain,,
+writhe,original,plain,,

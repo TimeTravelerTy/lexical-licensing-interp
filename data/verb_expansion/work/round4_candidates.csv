@@ -1,0 +1,6 @@
+list,class,lemma,past,participle,justification,round
+intransitive,intrans,account,accounted,accounted,Head Zipf 3.82 and one token; flag prepositional account for and literary transitive account oneself lucky meaning consider.,4
+intransitive,intrans,seem,seemed,seemed,Head Zipf 4.82 and one token; nonpassivizable linking verb with no ordinary direct object; active controls require a predicative or clausal complement.,4
+intransitive,intrans,become,became,become,Head Zipf 5.40 and one token; ordinary copular use requires a predicate; flag literary transitive this hat becomes you meaning suits.,4
+head_multi,intrans,side,sided,sided,Head Zipf 3.94 and two tokens; flag prepositional side with or against plus transitive side a house meaning install siding and compound-adjective -sided.,4
+head_multi,intrans,subscribe,subscribed,subscribed,Head Zipf 3.53 and two tokens; flag prepositional subscribe to or for plus specialized transitive subscribe a document or pledge money or purchase shares.,4

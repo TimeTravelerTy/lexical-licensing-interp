@@ -1,0 +1,83 @@
+lemma,source,class,rule_class,kind,inventory_frames,prep,decided_by
+ache,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr_pp:for intr intr_pp:from intr_pp:with intr_pp:in,,round-2 classification
+appear,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:on intr_pp:at intr_pp:to intr_pp:before intr_pp:with intr_pp:from intr_pp:for intr_pp:after intr_pp:behind intr_pp:by intr_pp:under intr_pp:over intr_pp:around intr_pp:through intr_pp:near,,round-2 classification
+arise,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:from intr_pp:in intr_pp:at intr_pp:for intr_pp:about intr_pp:on intr_pp:after intr_pp:under intr_pp:over,,round-2 classification
+bloom,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:with intr_pp:in intr_pp:on,,round-2 classification
+blossom,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:with intr_pp:into intr_pp:in,,round-2 classification
+bustle,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to intr_pp:with,,round-2 classification
+creep,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to intr_pp:with intr_pp:into intr_pp:through intr_pp:across intr_pp:toward intr_pp:up intr_pp:over intr_pp:in,,round-2 classification
+die,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:of intr_pp:from intr_pp:for intr_pp:after intr_pp:on intr_pp:at intr_pp:with intr_pp:by intr_pp:before intr_pp:to intr_pp:under intr_pp:along intr_pp:over,,round-2 classification
+dwindle,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:to,,round-2 classification
+emerge,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:from intr_pp:in intr_pp:with intr_pp:on intr_pp:at intr_pp:into intr_pp:for intr_pp:about intr_pp:after intr_pp:through intr_pp:over intr_pp:onto,,round-2 classification
+emigrate,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to intr_pp:from,,round-2 classification
+exist,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:on intr_pp:in intr_pp:for intr_pp:at intr_pp:before intr_pp:with intr_pp:to intr_pp:from intr_pp:by intr_pp:under intr_pp:of intr_pp:about intr_pp:after intr_pp:across,,round-2 classification
+fizz,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:with,,round-2 classification
+function,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:at intr_pp:on intr_pp:with intr_pp:for,,round-2 classification
+glow,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:with intr_pp:in intr_pp:at intr_pp:from intr_pp:on,,round-2 classification
+happen,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to intr_pp:in intr_pp:on intr_pp:at intr_pp:for intr_pp:after intr_pp:before intr_pp:by intr_pp:over intr_pp:around intr_pp:from intr_pp:under intr_pp:behind intr_pp:across intr_pp:through intr_pp:about trans_particle,,round-2 classification
+hitchhike,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to,,round-2 classification
+kneel,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to intr_pp:in intr_pp:on intr_pp:before intr_pp:at intr_pp:by,,round-2 classification
+languish,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:for,,round-2 classification
+limp,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to intr_pp:into,,round-2 classification
+linger,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:over intr_pp:in intr_pp:on intr_pp:for intr_pp:at,,round-2 classification
+loom,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:over intr_pp:in intr_pp:on intr_pp:for,,round-2 classification
+lumber,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to,,round-2 classification
+matter,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to intr_pp:in intr_pp:for intr_pp:at,,round-2 classification
+mosey,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to,,round-2 classification
+occur,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:to intr_pp:at intr_pp:on intr_pp:with intr_pp:after intr_pp:for intr_pp:before intr_pp:from intr_pp:through intr_pp:over intr_pp:by intr_pp:under intr_pp:across intr_pp:around intr_pp:near,,round-2 classification
+perish,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:of intr_pp:from intr_pp:in,,round-2 classification
+persist,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:for intr_pp:with intr_pp:through intr_pp:into intr_pp:to,,round-2 classification
+putter,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:with,,round-2 classification
+quiver,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:with intr_pp:in,,round-2 classification
+reappear,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:on intr_pp:with,,round-2 classification
+remain,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:on intr_pp:at intr_pp:of intr_pp:with intr_pp:for intr_pp:under intr_pp:to intr_pp:from intr_pp:about intr_pp:after intr_pp:behind intr_pp:before intr_pp:near,,round-2 classification
+reside,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:at intr_pp:in intr_pp:on intr_pp:with,,round-2 classification
+saunter,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to,,round-2 classification
+seethe,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr_pp:with intr,,round-2 classification
+shimmer,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:with intr_pp:in,,round-2 classification
+shudder,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:from intr_pp:at intr_pp:with,,round-2 classification
+sidle,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to,,round-2 classification
+slog,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to intr_pp:through intr_particle,,round-2 classification
+slump,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:to intr_pp:against intr_pp:on intr_pp:into intr_pp:over,,round-2 classification
+smolder,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:with,,round-2 classification
+sprint,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to intr_pp:for intr_pp:across intr_pp:toward intr_pp:through,,round-2 classification
+thrive,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:on intr_pp:in intr_pp:under intr_pp:at intr_pp:with,,round-2 classification
+throb,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:from intr_pp:with intr_pp:in,,round-2 classification
+tingle,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:from intr_pp:with,,round-2 classification
+tiptoe,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to intr_pp:around,,round-2 classification
+toddle,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to,,round-2 classification
+toil,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:in intr_pp:for,,round-2 classification
+totter,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to,,round-2 classification
+tremble,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:from intr_pp:with intr_pp:in intr_pp:at intr_pp:on,,round-2 classification
+vanish,original,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:from intr_pp:into intr_pp:in intr_pp:with,,round-2 classification
+waddle,new,plain,plain,"inventory lists an argument-type P, rule says plain",intr intr_pp:to,,round-2 classification
+abound,new,prep_object,plain,inventory obligatory P overrides plain,intr_pp:with intr_pp:in,in/with,inventory: no bare intr frame (obligatory P)
+dally,new,prep_object,plain,inventory obligatory P overrides plain,intr_pp:with,with,inventory: no bare intr frame (obligatory P)
+hesitate,new,prep_object,plain,inventory obligatory P overrides plain,intr_pp:over intr_pp:for intr_pp:before intr_pp:in intr_pp:at,at/before/for/in/over,inventory: no bare intr frame (obligatory P)
+abstain,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:from,from,argument-PP rule
+bask,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:in,in,argument-PP rule
+defecate,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:on,on,round-2 classification
+desist,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:from,from,argument-PP rule
+diverge,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr_pp:from intr,from,argument-PP rule
+drool,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:on intr_pp:from intr_pp:over,over,round-2 classification
+eavesdrop,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:on,on,round-2 classification
+eventuate,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr,in,argument-PP rule
+excel,new,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:in intr_pp:at,at,argument-PP rule
+exult,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:in,in,argument-PP rule
+fawn,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:over,over,round-2 classification
+frown,new,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:at intr_pp:on,upon,round-2 classification
+gape,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:in intr_pp:at,at,round-2 classification
+gaze,new,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:at intr_pp:into intr_pp:across intr_pp:in intr_pp:through,at,round-2 classification
+glare,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:in intr_pp:at,at,round-2 classification
+gloat,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr,over,round-2 classification
+goggle,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr,at,round-2 classification
+leer,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:at,at,round-2 classification
+luxuriate,new,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:in,in,argument-PP rule
+meditate,new,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr_pp:on intr,on,round-2 classification
+peek,new,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:at intr_pp:through intr_pp:into intr_pp:over intr_pp:in intr_pp:from intr_pp:around,at,round-2 classification
+peer,new,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:into intr_pp:at intr_pp:through intr_pp:over intr_pp:around intr_pp:from intr_pp:in,at,round-2 classification
+result,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:in intr_pp:from,in,argument-PP rule
+salivate,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr,over,round-2 classification
+tower,new,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:over,over,round-2 classification
+triumph,new,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr trans intr_pp:over intr_pp:in,over,argument-PP rule
+wallow,original,prep_object,prep_object,"rule says prep_object, inventory lists spatial P only",intr intr_pp:in,in,argument-PP rule

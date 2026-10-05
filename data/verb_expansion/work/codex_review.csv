@@ -1,0 +1,406 @@
+lemma,class,verdict,marginal_severity,reason
+account,intrans,doubtful,strong,Common account for complement; bare accounted remains ungrammatical.
+agree,intrans,drop,strong,Ordinary British agree the terms permits the terms were agreed.
+amount,intrans,doubtful,strong,Common amount to complement; bare amounted remains ungrammatical.
+appeal,intrans,drop,strong,Ordinary legal appeal a decision permits a bare passive.
+become,intrans,drop,weak,Copular change-of-state verb; literary transitive this dress becomes you is an additional complication.
+behave,intrans,doubtful,weak,Restricted reflexive behave oneself conflicts with strict objectlessness.
+care,intrans,doubtful,strong,Common care for and care about complements require flagging.
+comment,intrans,doubtful,strong,Common comment on; reported-content complements complicate strict intransitivity.
+consist,intrans,doubtful,strong,Common consist of and consist in complements require flagging.
+depart,intrans,drop,strong,Depart the station takes a location object; departed also means deceased.
+disappear,intrans,drop,strong,Established causative disappear a dissident permits people were disappeared.
+hope,intrans,doubtful,strong,Ordinary clausal complements permit impersonal it was hoped; noun patients still require for. [Merriam-Webster](https://www.merriam-webster.com/dictionary/hope)
+insist,intrans,doubtful,strong,Ordinary clausal complements and insist on complicate strict intransitivity. [Merriam-Webster](https://www.merriam-webster.com/dictionary/insist)
+last,intrans,drop,strong,Ordinary supplies lasted us a week has an object; also technical shoe-lasting. [Merriam-Webster](https://www.merriam-webster.com/dictionary/last)
+look,intrans,doubtful,strong,Common look at; copular look tired and fixed look someone in the eye complicate controls.
+pray,intrans,drop,strong,Ordinary pray the rosary and pray a prayer violate transitive and cognate-object exclusions.
+react,intrans,doubtful,strong,Common react to; chemistry also permits technical causative react the compounds.
+rely,intrans,doubtful,strong,Common rely on complement; bare relied remains ungrammatical.
+remark,intrans,doubtful,strong,Common remark on and reported-content complements; literary remark a discrepancy also exists.
+scream,intrans,drop,strong,Ordinary scream obscenities or scream someone's name permits a bare passive.
+seem,intrans,drop,none,Raising or copular verb requires a predicate; unsuitable ordinary intransitive control.
+shout,intrans,drop,strong,Ordinary shout instructions permits a bare passive.
+side,intrans,drop,strong,Side a house is transitive; sided also occurs in adjectival compounds.
+stare,intrans,doubtful,strong,Common stare at complement; bare stared remains ungrammatical.
+stay,intrans,drop,strong,Ordinary stay an execution permits the execution was stayed.
+step,intrans,doubtful,weak,Technical step a mast and fixed step foot introduce restricted objects.
+stumble,intrans,doubtful,strong,Common stumble upon complement; uncommon causative stumble someone also exists. [Merriam-Webster](https://www.merriam-webster.com/dictionary/stumble)
+subscribe,intrans,doubtful,strong,Common subscribe to; financial and signing senses allow restricted direct objects.
+succeed,intrans,drop,strong,Ordinary succeed a predecessor permits the predecessor was succeeded.
+wait,intrans,drop,strong,Ordinary wait tables and wait your turn take direct objects.
+wonder,intrans,doubtful,strong,Common wonder about and interrogative complements complicate strict intransitivity. [Merriam-Webster](https://www.merriam-webster.com/dictionary/wonder)
+yell,intrans,drop,strong,Ordinary yell a name or yell instructions permits a bare passive.
+ache,intrans,doubtful,strong,Common desire sense ache for takes a prepositional object; bare ached remains ungrammatical.
+allude,intrans,doubtful,strong,Common allude to complement; bare alluded remains ungrammatical.
+arise,intrans,keep,none,No ordinary direct object or causative use; arisen rejects a bare passive.
+chat,intrans,doubtful,strong,Common chat with and chat about complements require flagging.
+coincide,intrans,doubtful,strong,Common coincide with complement; bare coincided remains ungrammatical.
+collaborate,intrans,doubtful,strong,Common collaborate with and collaborate on complements require flagging.
+comply,intrans,doubtful,strong,Common comply with complement; bare complied remains ungrammatical.
+consent,intrans,doubtful,strong,Common consent to complement; bare consented remains ungrammatical.
+contend,intrans,doubtful,strong,Ordinary assertive clausal complements permit it was contended; competitive uses take prepositions. [Merriam-Webster](https://www.merriam-webster.com/dictionary/contend)
+converse,intrans,doubtful,strong,Common converse with and converse about complements require flagging.
+crawl,intrans,drop,strong,Location-object crawl the streets is available; computing also allows crawl a website.
+cringe,intrans,doubtful,strong,Common cringe at complement; bare cringed remains ungrammatical.
+defect,intrans,doubtful,strong,Common defect from and defect to complements require flagging.
+deliberate,intrans,doubtful,strong,Common deliberate on; formal deliberate a question also allows direct objects.
+depend,intrans,doubtful,strong,Common depend on complement; bare depended remains ungrammatical.
+differ,intrans,doubtful,strong,Common differ from and differ with complements require flagging.
+disagree,intrans,doubtful,strong,Common disagree with and disagree about complements require flagging.
+dissent,intrans,doubtful,strong,Common dissent from complement; bare dissented remains ungrammatical.
+dwell,intrans,doubtful,strong,Common dwell on complement; bare dwelt remains ungrammatical.
+ensue,intrans,doubtful,weak,Obsolete transitive ensue meaning pursue; ordinary usage remains intransitive.
+err,intrans,keep,none,No ordinary direct object or causative use; erred rejects a bare passive.
+erupt,intrans,drop,strong,Erupt lava takes an emitted object; not strictly intransitive. [Merriam-Webster](https://www.merriam-webster.com/dictionary/erupt)
+excel,intrans,doubtful,strong,Common excel at; formal transitive excel rivals also exists.
+faint,intrans,keep,none,Fainted has no ordinary direct-object use or adjectival reading.
+fart,intrans,keep,none,No ordinary direct object or causative use; farted rejects a bare passive.
+feud,intrans,doubtful,strong,Common feud with complement; bare feuded remains ungrammatical.
+flourish,intrans,drop,strong,Ordinary flourish a sword permits the sword was flourished.
+frown,intrans,doubtful,strong,Common frown on or upon; literary expression objects also occur.
+gasp,intrans,drop,strong,Ordinary narrative gasp an answer allows a speech object and bare passive.
+gaze,intrans,doubtful,strong,Common gaze at complement; bare gazed remains ungrammatical.
+giggle,intrans,doubtful,weak,Literary giggle a reply and occasional cognate objects need checking.
+glance,intrans,doubtful,strong,Common glance at; projectile-deflection sense also admits restricted transitive uses.
+groan,intrans,drop,strong,Narrative groan an apology permits a speech object and bare passive.
+growl,intrans,drop,strong,Ordinary growl a warning permits the warning was growled.
+hesitate,intrans,doubtful,strong,Common hesitate over or about complements; bare hesitated remains ungrammatical.
+hint,intrans,drop,strong,Transitive hint a suspicion and clausal objects permit bare passives. [Merriam-Webster](https://www.merriam-webster.com/dictionary/hint)
+howl,intrans,drop,strong,Ordinary howl insults or howl a protest permits a bare passive.
+intervene,intrans,doubtful,strong,Common intervene in complement; bare intervened remains ungrammatical.
+kneel,intrans,keep,none,Knelt has no ordinary direct-object use or adjectival reading.
+limp,intrans,keep,none,Limped has no ordinary direct-object use; adjective limp is a different form.
+long,intrans,doubtful,strong,Common long for complement; bare longed remains ungrammatical.
+loom,intrans,doubtful,strong,Common loom over; textile loom cloth adds a technical transitive homonym. [Collins](https://www.collinsdictionary.com/us/dictionary/english/loom)
+major,intrans,doubtful,strong,Common major in complement; bare majored remains ungrammatical.
+malfunction,intrans,keep,none,No ordinary direct object or causative use; malfunctioned rejects a bare passive.
+meditate,intrans,doubtful,strong,Common meditate on; literary meditate revenge also takes a direct object.
+moonlight,intrans,keep,none,Second-job sense has no ordinary direct object or adjectival participle.
+party,intrans,keep,none,Celebration sense has no ordinary direct object or adjectival participle.
+peek,intrans,doubtful,strong,Common peek at complement; bare peeked remains ungrammatical.
+peer,intrans,doubtful,strong,Common peer at and peer into complements require flagging.
+perish,intrans,doubtful,weak,Fixed perish the thought is transitive; ordinary dying sense rejects passives.
+persist,intrans,doubtful,strong,Common persist in; computing persist data supplies a technical transitive sense.
+plead,intrans,drop,strong,Ordinary plead a case and plead ignorance take direct objects.
+preside,intrans,doubtful,strong,Common preside over complement; bare presided remains ungrammatical.
+prevail,intrans,doubtful,strong,Common prevail over and prevail on complements require flagging.
+quarrel,intrans,doubtful,strong,Common quarrel with and quarrel over complements require flagging.
+rant,intrans,drop,strong,Rant nonsense and rant threats allow ordinary content objects.
+rebel,intrans,doubtful,strong,Common rebel against complement; bare rebelled remains ungrammatical.
+recur,intrans,keep,none,Repeated occurrence has no ordinary object or adjectival participle.
+reign,intrans,doubtful,strong,Common reign over complement; bare reigned remains ungrammatical.
+relapse,intrans,doubtful,strong,Common relapse into old habits or illness; bare relapsed remains ungrammatical.
+reside,intrans,doubtful,strong,Common reside in and reside at complements require flagging.
+resort,intrans,doubtful,strong,Common resort to complement; bare resorted remains ungrammatical.
+roam,intrans,drop,strong,Ordinary roam the countryside permits location objects and bare passives.
+sigh,intrans,drop,strong,Common sigh a sigh of relief violates the cognate-object exclusion.
+sneeze,intrans,doubtful,weak,Coerced sneeze a napkin off the table; no ordinary transitive sense.
+sob,intrans,drop,strong,Ordinary sob an apology permits a speech object and bare passive.
+speculate,intrans,doubtful,strong,Ordinary clausal complements permit it was speculated; common speculate about also needs flagging.
+sprint,intrans,doubtful,strong,Common sprint a distance raises objecthood concerns; distance expressions may be measures.
+strive,intrans,doubtful,strong,Common strive for and strive against complements require flagging.
+stroll,intrans,drop,strong,Stroll the streets takes an ordinary location object.
+succumb,intrans,doubtful,strong,Common succumb to complement; bare succumbed remains ungrammatical.
+tamper,intrans,doubtful,strong,Common tamper with complement; bare tampered remains ungrammatical.
+tower,intrans,doubtful,strong,Common tower over complement; bare towered remains ungrammatical.
+tremble,intrans,keep,none,No ordinary causative counterpart or noun object; trembled is not adjectival. [Merriam-Webster](https://www.merriam-webster.com/dictionary/tremble)
+trespass,intrans,drop,strong,Regional trespass someone is ordinary transitive usage; trespass on is also common.
+triumph,intrans,doubtful,strong,Common triumph over; archaic transitive conquer sense also exists.
+vacation,intrans,keep,none,Holiday sense has no ordinary direct object or adjectival participle.
+wander,intrans,drop,strong,Ordinary wander the streets takes a location object.
+whine,intrans,drop,strong,Ordinary whine a complaint permits a speech object and bare passive.
+yearn,intrans,doubtful,strong,Common yearn for complement; bare yearned remains ungrammatical.
+abound,intrans,doubtful,strong,Common abound in and abound with complements require flagging.
+accede,intrans,doubtful,strong,Common accede to complement; bare acceded remains ungrammatical.
+acquiesce,intrans,doubtful,strong,Common acquiesce in and acquiesce to complements require flagging.
+elapse,intrans,drop,none,Elapsed is an established adjective in elapsed time; participle fails the adjective exclusion.
+elope,intrans,keep,none,No ordinary direct object or causative use; eloped is not adjectival.
+encroach,intrans,doubtful,strong,Common encroach on or upon complement; bare encroached remains ungrammatical.
+exclaim,intrans,doubtful,weak,Restricted exclaim an objection and quotation objects merit checking.
+flinch,intrans,doubtful,strong,Common flinch at complement; bare flinched remains ungrammatical.
+overreact,intrans,doubtful,strong,Common overreact to complement; bare overreacted remains ungrammatical.
+relent,intrans,doubtful,strong,Common relent on a demand; bare relented remains ungrammatical.
+waver,intrans,doubtful,strong,Common waver between alternatives; bare wavered remains ungrammatical.
+assent,intrans,doubtful,strong,Common assent to complement; bare assented remains ungrammatical.
+bicker,intrans,doubtful,strong,Common bicker with and bicker over complements require flagging.
+cavort,intrans,keep,none,No ordinary direct object or causative use; cavorted is not adjectival.
+cohabit,intrans,doubtful,strong,Common cohabit with complement; bare cohabited remains ungrammatical.
+convalesce,intrans,keep,none,No ordinary direct object or causative use; convalesced is not adjectival.
+dally,intrans,doubtful,strong,Common dally with complement; bare dallied remains ungrammatical.
+equivocate,intrans,doubtful,strong,Common equivocate on or about an issue; bare equivocated remains ungrammatical.
+fraternize,intrans,doubtful,strong,Common fraternize with complement; bare fraternized remains ungrammatical.
+frolic,intrans,keep,none,No ordinary direct object or causative use; frolicked is not adjectival.
+grovel,intrans,doubtful,strong,Common grovel to or before someone; bare grovelled remains ungrammatical.
+hobnob,intrans,doubtful,strong,Common hobnob with complement; bare hobnobbed remains ungrammatical.
+impinge,intrans,doubtful,strong,Common impinge on or upon complement; bare impinged remains ungrammatical.
+intercede,intrans,doubtful,strong,Common intercede for or with complements require flagging.
+inveigh,intrans,doubtful,strong,Common inveigh against complement; bare inveighed remains ungrammatical.
+loiter,intrans,keep,none,No ordinary direct object or causative use; loitered is not adjectival.
+luxuriate,intrans,doubtful,strong,Common luxuriate in complement; bare luxuriated remains ungrammatical.
+menstruate,intrans,doubtful,weak,Obsolete transitive sense means stain with menses; current menstrual-cycle sense is intransitive. [Wiktionary](https://en.wiktionary.org/wiki/menstruate)
+mosey,intrans,keep,none,No ordinary direct object or causative use; moseyed is not adjectival.
+pontificate,intrans,doubtful,strong,Common pontificate on or about complements require flagging.
+prevaricate,intrans,doubtful,strong,Common prevaricate about an issue; bare prevaricated remains ungrammatical.
+pulsate,intrans,keep,none,No ordinary causative counterpart or noun object; pulsated is not adjectival. [Merriam-Webster](https://www.merriam-webster.com/dictionary/pulsate)
+reemerge,intrans,keep,none,Reappearance has no ordinary causative counterpart or adjectival participle.
+reoccur,intrans,keep,none,Repeated occurrence has no ordinary direct object or adjectival participle.
+saunter,intrans,doubtful,weak,Literary saunter the streets introduces marginal location objects.
+skulk,intrans,keep,none,No ordinary direct object or causative use; skulked is not adjectival.
+sojourn,intrans,keep,none,Temporary residence has no ordinary direct object or adjectival participle.
+tarry,intrans,keep,none,Tarried has no ordinary direct object; homographic adjective tarry is a different form. [Merriam-Webster](https://www.merriam-webster.com/dictionary/tarry)
+throb,intrans,keep,none,No ordinary causative counterpart or noun object; throbbed is not adjectival. [Cambridge](https://dictionary.cambridge.org/us/dictionary/english/throb)
+tiptoe,intrans,keep,none,No ordinary direct object or causative use; tiptoed is not adjectival.
+waddle,intrans,keep,none,No ordinary direct object or causative use; waddled is not adjectival.
+abduct,trans,keep,none,Clean abducted passive with a child; no required particle or spontaneous alternation.
+accept,trans,keep,none,Clean accepted passive with a request; no required particle or spontaneous alternation.
+accuse,trans,keep,none,Clean accused passive with a suspect; no required particle or spontaneous alternation.
+acquire,trans,keep,none,Clean acquired passive with a painting; no required particle or spontaneous alternation.
+address,trans,keep,none,Clean addressed passive with a problem; no required particle or spontaneous alternation.
+adopt,trans,keep,none,Clean adopted passive with a policy; no required particle or spontaneous alternation.
+advise,trans,keep,none,Clean advised passive with a client; no required particle or spontaneous alternation.
+allow,trans,keep,none,Clean allowed passive with an extension; no required particle or spontaneous alternation.
+analyze,trans,keep,none,Clean analyzed passive with a sample; no required particle or spontaneous alternation.
+annex,trans,keep,none,Clean annexed passive with a territory; no required particle or spontaneous alternation.
+announce,trans,keep,none,Clean announced passive with a decision; no required particle or spontaneous alternation.
+appoint,trans,keep,none,Clean appointed passive with a chairperson; no required particle or spontaneous alternation.
+arrest,trans,keep,none,Clean arrested passive with a suspect; no required particle or spontaneous alternation.
+assess,trans,keep,none,Clean assessed passive with a proposal; no required particle or spontaneous alternation.
+assist,trans,doubtful,none,Common assist with and assist in compete with direct-object assist a visitor.
+attack,trans,keep,none,Clean attacked passive with a fortress; no required particle or spontaneous alternation.
+authorise,trans,keep,none,Clean authorised passive with a payment; no required particle or spontaneous alternation.
+ban,trans,keep,none,Clean banned passive with a product; no required particle or spontaneous alternation.
+bomb,trans,keep,none,Clean bombed passive with a bridge; no required particle or spontaneous alternation.
+bully,trans,keep,none,Clean bullied passive with a pupil; no required particle or spontaneous alternation.
+bury,trans,keep,none,Clean buried passive with a treasure; no required particle or spontaneous alternation.
+capture,trans,keep,none,Clean captured passive with a fugitive; no required particle or spontaneous alternation.
+charter,trans,doubtful,none,Chartered has a salient professional-status adjective sense alongside clean rental passives.
+chase,trans,keep,none,Clean chased passive with a thief; no required particle or spontaneous alternation.
+cheat,trans,doubtful,none,Common exam-cheating sense is intransitive; patient passive selects defrauding sense.
+cite,trans,keep,none,Clean cited passive with a paper; no required particle or spontaneous alternation.
+command,trans,keep,none,Clean commanded passive with a withdrawal; no required particle or spontaneous alternation.
+condemn,trans,keep,none,Clean condemned passive with an atrocity; no required particle or spontaneous alternation.
+conduct,trans,keep,none,Clean conducted passive with an experiment; no required particle or spontaneous alternation.
+confirm,trans,keep,none,Clean confirmed passive with a booking; no required particle or spontaneous alternation.
+contact,trans,keep,none,Clean contacted passive with a customer; no required particle or spontaneous alternation.
+convict,trans,keep,none,Clean convicted passive with a defendant; no required particle or spontaneous alternation.
+criticize,trans,keep,none,Clean criticized passive with a proposal; no required particle or spontaneous alternation.
+deliver,trans,keep,none,Clean delivered passive with a package; no required particle or spontaneous alternation.
+demolish,trans,keep,none,Clean demolished passive with a building; no required particle or spontaneous alternation.
+deny,trans,keep,none,Clean denied passive with a request; no required particle or spontaneous alternation.
+depict,trans,keep,none,Clean depicted passive with a scene; no required particle or spontaneous alternation.
+describe,trans,keep,none,Clean described passive with a scene; no required particle or spontaneous alternation.
+design,trans,keep,none,Clean designed passive with a bridge; no required particle or spontaneous alternation.
+destroy,trans,keep,none,Clean destroyed passive with a monument; no required particle or spontaneous alternation.
+detect,trans,keep,none,Clean detected passive with an error; no required particle or spontaneous alternation.
+diagnose,trans,keep,none,Clean diagnosed passive with a disease; no required particle or spontaneous alternation.
+dismiss,trans,keep,none,Clean dismissed passive with an appeal; no required particle or spontaneous alternation.
+donate,trans,keep,none,Clean donated passive with a painting; no required particle or spontaneous alternation.
+elect,trans,keep,none,Clean elected passive with a chairperson; no required particle or spontaneous alternation.
+enact,trans,keep,none,Clean enacted passive with a law; no required particle or spontaneous alternation.
+enforce,trans,keep,none,Clean enforced passive with a rule; no required particle or spontaneous alternation.
+engrave,trans,keep,none,Clean engraved passive with a plaque; no required particle or spontaneous alternation.
+evaluate,trans,keep,none,Clean evaluated passive with a proposal; no required particle or spontaneous alternation.
+examine,trans,keep,none,Clean examined passive with a patient; no required particle or spontaneous alternation.
+execute,trans,keep,none,Clean executed passive with an order; no required particle or spontaneous alternation.
+fabricate,trans,keep,none,Clean fabricated passive with a document; no required particle or spontaneous alternation.
+finance,trans,keep,none,Clean financed passive with a campaign; no required particle or spontaneous alternation.
+fine,trans,keep,none,Clean fined passive with a driver; no required particle or spontaneous alternation.
+fool,trans,keep,none,Clean fooled passive with a customer; no required particle or spontaneous alternation.
+greet,trans,keep,none,Clean greeted passive with a visitor; no required particle or spontaneous alternation.
+harass,trans,keep,none,Clean harassed passive with a witness; no required particle or spontaneous alternation.
+honour,trans,keep,none,Clean honoured passive with a veteran; no required particle or spontaneous alternation.
+hype,trans,doubtful,none,Publicity passive is clean; hyped also has a common excited adjective reading.
+identify,trans,keep,none,Clean identified passive with a suspect; no required particle or spontaneous alternation.
+insult,trans,keep,none,Clean insulted passive with a visitor; no required particle or spontaneous alternation.
+jail,trans,keep,none,Clean jailed passive with a defendant; no required particle or spontaneous alternation.
+manufacture,trans,keep,none,Clean manufactured passive with an instrument; no required particle or spontaneous alternation.
+master,trans,keep,none,Clean mastered passive with a technique; no required particle or spontaneous alternation.
+nail,trans,doubtful,none,Apprehension sense is colloquial; fastening sense often supplies a location complement.
+pressure,trans,keep,none,Clean pressured passive with a witness; no required particle or spontaneous alternation.
+publish,trans,doubtful,none,Publishing usage allows patient-subject the book publishes tomorrow; check dialect and register.
+renovate,trans,keep,none,Clean renovated passive with a house; no required particle or spontaneous alternation.
+ride,trans,drop,none,Ordinary riding is frequently intransitive; ridden also occurs in adjectival compounds.
+rig,trans,keep,none,Clean rigged passive with an election; no required particle or spontaneous alternation.
+sack,trans,keep,none,Clean sacked passive with a manager; no required particle or spontaneous alternation.
+scrap,trans,keep,none,Clean scrapped passive with a proposal; no required particle or spontaneous alternation.
+shave,trans,doubtful,none,Common self-grooming use is intransitive; beard removal often prefers shaved off.
+sight,trans,drop,none,Sighted has a lexical adjective meaning able to see. [Oxford](https://www.oxfordlearnersdictionaries.com/us/definition/english/sighted)
+skin,trans,keep,none,Clean skinned passive with a rabbit; no required particle or spontaneous alternation.
+slaughter,trans,keep,none,Clean slaughtered passive with an animal; no required particle or spontaneous alternation.
+tape,trans,keep,none,Clean taped passive with an interview; no required particle or spontaneous alternation.
+televise,trans,keep,none,Clean televised passive with a match; no required particle or spontaneous alternation.
+accord,trans,doubtful,none,Granting sense usually specifies a recipient; common accord with is intransitive.
+acquit,trans,keep,none,Clean acquitted passive with a defendant; no required particle or spontaneous alternation.
+archive,trans,keep,none,Clean archived passive with a letter; no required particle or spontaneous alternation.
+assassinate,trans,keep,none,Clean assassinated passive with a ruler; no required particle or spontaneous alternation.
+author,trans,keep,none,Clean authored passive with a manuscript; no required particle or spontaneous alternation.
+banish,trans,keep,none,Clean banished passive with a courtier; no required particle or spontaneous alternation.
+baptize,trans,keep,none,Clean baptized passive with a child; no required particle or spontaneous alternation.
+cache,trans,keep,none,Clean cached passive with supplies; no required particle or spontaneous alternation.
+censor,trans,keep,none,Clean censored passive with a letter; no required particle or spontaneous alternation.
+chair,trans,keep,none,Clean chaired passive with a meeting; no required particle or spontaneous alternation.
+clone,trans,doubtful,none,Biological cells clone introduces a technical patient-subject use.
+coin,trans,keep,none,Clean coined passive with a phrase; no required particle or spontaneous alternation.
+compute,trans,keep,none,Clean computed passive with a total; no required particle or spontaneous alternation.
+confiscate,trans,keep,none,Clean confiscated passive with a weapon; no required particle or spontaneous alternation.
+congratulate,trans,keep,none,Clean congratulated passive with a winner; no required particle or spontaneous alternation.
+conserve,trans,keep,none,Clean conserved passive with a painting; no required particle or spontaneous alternation.
+contradict,trans,keep,none,Clean contradicted passive with a witness; no required particle or spontaneous alternation.
+convey,trans,keep,none,Clean conveyed passive with a message; no required particle or spontaneous alternation.
+copyright,trans,keep,none,Clean copyrighted passive with a photograph; no required particle or spontaneous alternation.
+counterfeit,trans,keep,none,Clean counterfeited passive with a banknote; no required particle or spontaneous alternation.
+curate,trans,keep,none,Clean curated passive with an exhibition; no required particle or spontaneous alternation.
+deceive,trans,keep,none,Clean deceived passive with a customer; no required particle or spontaneous alternation.
+denounce,trans,keep,none,Clean denounced passive with a policy; no required particle or spontaneous alternation.
+dictate,trans,keep,none,Clean dictated passive with a letter; no required particle or spontaneous alternation.
+discredit,trans,keep,none,Clean discredited passive with a witness; no required particle or spontaneous alternation.
+disqualify,trans,keep,none,Clean disqualified passive with a contestant; no required particle or spontaneous alternation.
+duplicate,trans,drop,none,Patient-subject DNA duplicates supplies a causative alternation. [Merriam-Webster](https://www.merriam-webster.com/dictionary/duplicate)
+elaborate,trans,drop,none,Common elaborate on is intransitive; dictionary also lists become elaborate. [Merriam-Webster](https://www.merriam-webster.com/dictionary/elaborate)
+encrypt,trans,keep,none,Clean encrypted passive with a message; no required particle or spontaneous alternation.
+envision,trans,keep,none,Clean envisioned passive with a future; no required particle or spontaneous alternation.
+escort,trans,keep,none,Clean escorted passive with a visitor; no required particle or spontaneous alternation.
+evict,trans,keep,none,Clean evicted passive with a tenant; no required particle or spontaneous alternation.
+evoke,trans,keep,none,Clean evoked passive with a memory; no required particle or spontaneous alternation.
+facilitate,trans,keep,none,Clean facilitated passive with a meeting; no required particle or spontaneous alternation.
+forfeit,trans,doubtful,none,Deposit-loss sense often lacks volitional agency; deliberate forfeiting a match is cleaner.
+format,trans,doubtful,none,Computing the disk formats allows a patient subject; check middle versus causative alternation.
+grade,trans,keep,none,Clean graded passive with an essay; no required particle or spontaneous alternation.
+grasp,trans,keep,none,Clean grasped passive with a rope; no required particle or spontaneous alternation.
+grate,trans,doubtful,none,Common grate on one's nerves and abrasive-sound uses are intransitive; vegetable-grating passive is clean.
+grip,trans,keep,none,Clean gripped passive with a handle; no required particle or spontaneous alternation.
+haul,trans,keep,none,Clean hauled passive with a crate; no required particle or spontaneous alternation.
+hoard,trans,keep,none,Clean hoarded passive with a supply; no required particle or spontaneous alternation.
+hug,trans,keep,none,Clean hugged passive with a child; no required particle or spontaneous alternation.
+image,trans,keep,none,Clean imaged passive with an organ; no required particle or spontaneous alternation.
+infer,trans,keep,none,Clean inferred passive with a conclusion; no required particle or spontaneous alternation.
+inhale,trans,doubtful,none,Ordinary breathing can be intransitive; smoke-taking passive is nevertheless natural.
+inscribe,trans,keep,none,Clean inscribed passive with a motto; no required particle or spontaneous alternation.
+institute,trans,keep,none,Clean instituted passive with a policy; no required particle or spontaneous alternation.
+interrogate,trans,keep,none,Clean interrogated passive with a suspect; no required particle or spontaneous alternation.
+loot,trans,keep,none,Clean looted passive with a shop; no required particle or spontaneous alternation.
+lynch,trans,keep,none,Clean lynched passive with a prisoner; no required particle or spontaneous alternation.
+mine,trans,keep,none,Clean mined passive with an ore deposit; no required particle or spontaneous alternation.
+minimize,trans,drop,none,Patient-subject the window minimized is natural in the ordinary computing sense.
+mock,trans,keep,none,Clean mocked passive with a speaker; no required particle or spontaneous alternation.
+obey,trans,keep,none,Clean obeyed passive with an order; no required particle or spontaneous alternation.
+pardon,trans,keep,none,Clean pardoned passive with a prisoner; no required particle or spontaneous alternation.
+pen,trans,keep,none,Clean penned passive with a poem; no required particle or spontaneous alternation.
+persecute,trans,keep,none,Clean persecuted passive with a dissident; no required particle or spontaneous alternation.
+probe,trans,keep,none,Clean probed passive with a wound; no required particle or spontaneous alternation.
+quantify,trans,keep,none,Clean quantified passive with a loss; no required particle or spontaneous alternation.
+raid,trans,keep,none,Clean raided passive with a warehouse; no required particle or spontaneous alternation.
+ratify,trans,keep,none,Clean ratified passive with a treaty; no required particle or spontaneous alternation.
+recite,trans,keep,none,Clean recited passive with a poem; no required particle or spontaneous alternation.
+refurbish,trans,doubtful,none,Refurbished has a prominent product-condition adjective reading.
+regain,trans,keep,none,Clean regained passive with a title; no required particle or spontaneous alternation.
+relegate,trans,keep,none,Clean relegated passive with a team; no required particle or spontaneous alternation.
+renounce,trans,keep,none,Clean renounced passive with a claim; no required particle or spontaneous alternation.
+repeal,trans,keep,none,Clean repealed passive with a statute; no required particle or spontaneous alternation.
+ridicule,trans,keep,none,Clean ridiculed passive with a speaker; no required particle or spontaneous alternation.
+rinse,trans,keep,none,Clean rinsed passive with a plate; no required particle or spontaneous alternation.
+sabotage,trans,keep,none,Clean sabotaged passive with a machine; no required particle or spontaneous alternation.
+sample,trans,keep,none,Clean sampled passive with a wine; no required particle or spontaneous alternation.
+sequence,trans,keep,none,Clean sequenced passive with a genome; no required particle or spontaneous alternation.
+shun,trans,keep,none,Clean shunned passive with a visitor; no required particle or spontaneous alternation.
+signal,trans,keep,none,Clean signaled passive with a retreat; no required particle or spontaneous alternation.
+simulate,trans,doubtful,none,Simulated commonly means artificial as an adjective; accident-staging passive remains eventive.
+snatch,trans,keep,none,Clean snatched passive with a bag; no required particle or spontaneous alternation.
+solicit,trans,keep,none,Clean solicited passive with a donation; no required particle or spontaneous alternation.
+summarize,trans,keep,none,Clean summarized passive with a report; no required particle or spontaneous alternation.
+taunt,trans,keep,none,Clean taunted passive with a player; no required particle or spontaneous alternation.
+thwart,trans,keep,none,Clean thwarted passive with a plan; no required particle or spontaneous alternation.
+tow,trans,keep,none,Clean towed passive with a vehicle; no required particle or spontaneous alternation.
+transplant,trans,keep,none,Clean transplanted passive with a shrub; no required particle or spontaneous alternation.
+trick,trans,keep,none,Clean tricked passive with a customer; no required particle or spontaneous alternation.
+underestimate,trans,keep,none,Clean underestimated passive with a rival; no required particle or spontaneous alternation.
+validate,trans,keep,none,Clean validated passive with a ticket; no required particle or spontaneous alternation.
+visualize,trans,keep,none,Clean visualized passive with a landscape; no required particle or spontaneous alternation.
+waive,trans,keep,none,Clean waived passive with a fee; no required particle or spontaneous alternation.
+withhold,trans,keep,none,Clean withheld passive with a document; no required particle or spontaneous alternation.
+worship,trans,keep,none,Clean worshipped passive with an idol; no required particle or spontaneous alternation.
+abbreviate,trans,doubtful,none,Abbreviated has a common shortened adjective reading alongside eventive editorial passives.
+admonish,trans,keep,none,Clean admonished passive with a pupil; no required particle or spontaneous alternation.
+adulterate,trans,keep,none,Clean adulterated passive with milk; no required particle or spontaneous alternation.
+append,trans,keep,none,Clean appended passive with a note; no required particle or spontaneous alternation.
+apportion,trans,keep,none,Clean apportioned passive with food; no required particle or spontaneous alternation.
+appraise,trans,keep,none,Clean appraised passive with a necklace; no required particle or spontaneous alternation.
+arraign,trans,keep,none,Clean arraigned passive with a defendant; no required particle or spontaneous alternation.
+ascertain,trans,keep,none,Clean ascertained passive with a cause; no required particle or spontaneous alternation.
+assail,trans,keep,none,Clean assailed passive with a traveler; no required particle or spontaneous alternation.
+bequeath,trans,keep,none,Clean bequeathed passive with a necklace; no required particle or spontaneous alternation.
+berate,trans,keep,none,Clean berated passive with a clerk; no required particle or spontaneous alternation.
+bludgeon,trans,keep,none,Clean bludgeoned passive with a victim; no required particle or spontaneous alternation.
+calibrate,trans,keep,none,Clean calibrated passive with a thermometer; no required particle or spontaneous alternation.
+commandeer,trans,keep,none,Clean commandeered passive with a truck; no required particle or spontaneous alternation.
+computerize,trans,drop,none,Computerized commonly describes a system state; organizational patient subjects can also computerize. [Collins](https://www.collinsdictionary.com/us/dictionary/english/computerize)
+corroborate,trans,keep,none,Clean corroborated passive with an account; no required particle or spontaneous alternation.
+decode,trans,keep,none,Clean decoded passive with a message; no required particle or spontaneous alternation.
+deduce,trans,keep,none,Clean deduced passive with a conclusion; no required particle or spontaneous alternation.
+deface,trans,keep,none,Clean defaced passive with a poster; no required particle or spontaneous alternation.
+defraud,trans,keep,none,Clean defrauded passive with a customer; no required particle or spontaneous alternation.
+deprecate,trans,doubtful,none,Software-support sense competes with intended criticism; deprecated often describes a current status. [Merriam-Webster](https://www.merriam-webster.com/dictionary/deprecate)
+desecrate,trans,keep,none,Clean desecrated passive with a grave; no required particle or spontaneous alternation.
+disavow,trans,keep,none,Clean disavowed passive with a statement; no required particle or spontaneous alternation.
+disparage,trans,keep,none,Clean disparaged passive with a painting; no required particle or spontaneous alternation.
+dissect,trans,keep,none,Clean dissected passive with a specimen; no required particle or spontaneous alternation.
+disseminate,trans,drop,none,Patient-subject information disseminates permits a spreading alternation. [Merriam-Webster](https://www.merriam-webster.com/dictionary/disseminate)
+elicit,trans,keep,none,Clean elicited passive with a response; no required particle or spontaneous alternation.
+elucidate,trans,keep,none,Clean elucidated passive with a mechanism; no required particle or spontaneous alternation.
+embezzle,trans,keep,none,Clean embezzled passive with money; no required particle or spontaneous alternation.
+encapsulate,trans,keep,none,Clean encapsulated passive with a specimen; no required particle or spontaneous alternation.
+entomb,trans,keep,none,Clean entombed passive with a body; no required particle or spontaneous alternation.
+enumerate,trans,keep,none,Clean enumerated passive with the options; no required particle or spontaneous alternation.
+excise,trans,keep,none,Clean excised passive with a tumor; no required particle or spontaneous alternation.
+exemplify,trans,doubtful,none,Common illustrate-by-being-an-example sense is nonagentive; intentional demonstration requires careful subjects.
+exonerate,trans,keep,none,Clean exonerated passive with a suspect; no required particle or spontaneous alternation.
+expend,trans,keep,none,Clean expended passive with a budget; no required particle or spontaneous alternation.
+extradite,trans,keep,none,Clean extradited passive with a fugitive; no required particle or spontaneous alternation.
+falsify,trans,keep,none,Clean falsified passive with a record; no required particle or spontaneous alternation.
+hypothesize,trans,keep,none,Clean hypothesized passive with a mechanism; no required particle or spontaneous alternation.
+immobilize,trans,keep,none,Clean immobilized passive with a limb; no required particle or spontaneous alternation.
+immunize,trans,keep,none,Clean immunized passive with a child; no required particle or spontaneous alternation.
+impound,trans,keep,none,Clean impounded passive with a car; no required particle or spontaneous alternation.
+individualize,trans,doubtful,none,Individualized commonly describes tailored care or instruction as an adjective. [Merriam-Webster](https://www.merriam-webster.com/dictionary/individualize)
+inoculate,trans,keep,none,Clean inoculated passive with a patient; no required particle or spontaneous alternation.
+irradiate,trans,keep,none,Clean irradiated passive with a sample; no required particle or spontaneous alternation.
+maul,trans,keep,none,Clean mauled passive with a visitor; no required particle or spontaneous alternation.
+mince,trans,keep,none,Clean minced passive with meat; no required particle or spontaneous alternation.
+misquote,trans,keep,none,Clean misquoted passive with a speaker; no required particle or spontaneous alternation.
+misrepresent,trans,keep,none,Clean misrepresented passive with a position; no required particle or spontaneous alternation.
+murmur,trans,drop,none,Common quiet sound-production use is intransitive; speech-object sense does not ensure transitive predominance.
+mutter,trans,drop,none,Common muttering is intransitive; speech-object sense does not ensure transitive predominance.
+notarize,trans,keep,none,Clean notarized passive with a document; no required particle or spontaneous alternation.
+overrule,trans,keep,none,Clean overruled passive with an objection; no required particle or spontaneous alternation.
+pillage,trans,keep,none,Clean pillaged passive with a village; no required particle or spontaneous alternation.
+plagiarize,trans,keep,none,Clean plagiarized passive with an essay; no required particle or spontaneous alternation.
+postulate,trans,keep,none,Clean postulated passive with a mechanism; no required particle or spontaneous alternation.
+proffer,trans,keep,none,Clean proffered passive with a document; no required particle or spontaneous alternation.
+randomise,trans,keep,none,Clean randomised passive with an item order; no required particle or spontaneous alternation.
+ransack,trans,keep,none,Clean ransacked passive with a house; no required particle or spontaneous alternation.
+raze,trans,keep,none,Clean razed passive with a building; no required particle or spontaneous alternation.
+reprimand,trans,keep,none,Clean reprimanded passive with a worker; no required particle or spontaneous alternation.
+repudiate,trans,keep,none,Clean repudiated passive with an agreement; no required particle or spontaneous alternation.
+requisition,trans,keep,none,Clean requisitioned passive with a vehicle; no required particle or spontaneous alternation.
+revile,trans,keep,none,Clean reviled passive with a politician; no required particle or spontaneous alternation.
+scold,trans,keep,none,Clean scolded passive with a child; no required particle or spontaneous alternation.
+secrete,trans,doubtful,none,Concealment sense competes with biological secretion and commonly specifies a hiding location.
+serialize,trans,doubtful,none,Computing the object serializes supplies a technical patient-subject frame.
+sheathe,trans,keep,none,Clean sheathed passive with a sword; no required particle or spontaneous alternation.
+subtract,trans,keep,none,Clean subtracted passive with a fee; no required particle or spontaneous alternation.
+superimpose,trans,doubtful,none,A base surface is normally understood; isolated bare passive can feel incomplete.
+transcribe,trans,keep,none,Clean transcribed passive with a recording; no required particle or spontaneous alternation.
+truncate,trans,doubtful,none,Truncated has a common shortened adjective reading alongside eventive editing passives. [Merriam-Webster](https://www.merriam-webster.com/dictionary/truncate)
+usurp,trans,keep,none,Clean usurped passive with a throne; no required particle or spontaneous alternation.
+vandalize,trans,keep,none,Clean vandalized passive with a car; no required particle or spontaneous alternation.
+besmirch,trans,keep,none,Clean besmirched passive with a reputation; no required particle or spontaneous alternation.
+browbeat,trans,keep,none,Clean browbeaten passive with a witness; no required particle or spontaneous alternation.
+cajole,trans,keep,none,Clean cajoled passive with a child; no required particle or spontaneous alternation.
+centrifuge,trans,keep,none,Clean centrifuged passive with a sample; no required particle or spontaneous alternation.
+despoil,trans,keep,none,Clean despoiled passive with a village; no required particle or spontaneous alternation.
+eulogize,trans,keep,none,Clean eulogized passive with a poet; no required particle or spontaneous alternation.
+pilfer,trans,keep,none,Clean pilfered passive with a wallet; no required particle or spontaneous alternation.
+pretreat,trans,keep,none,Clean pretreated passive with a sample; no required particle or spontaneous alternation.
+transfect,trans,keep,none,Clean transfected passive with a cell; no required particle or spontaneous alternation.
+waylay,trans,keep,none,Clean waylaid passive with a traveler; no required particle or spontaneous alternation.

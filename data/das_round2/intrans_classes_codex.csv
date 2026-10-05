@@ -1,0 +1,226 @@
+lemma,label,prep,example
+care,prep_object,for,The child was cared for.
+react,prep_object,to,The announcement was reacted to angrily.
+rely,prep_object,on,The guide was relied on.
+stare,prep_object,at,The stranger was stared at.
+step,prep_object,on,The flower was stepped on.
+stumble,prep_object,upon,The solution was stumbled upon by accident.
+subscribe,transitive_use,,She subscribed me to the newsletter.
+ache,plain,,
+allude,prep_object,to,The scandal was alluded to.
+arise,plain,,
+chat,prep_object,about,The wedding was chatted about over lunch.
+coincide,plain,,
+collaborate,prep_object,on,The project was collaborated on by three labs.
+comply,prep_object,with,The rules were complied with.
+converse,plain,,
+cringe,plain,,
+defect,plain,,
+depend,prep_object,on,The nurse was depended on.
+differ,plain,,
+disagree,prep_object,with,The conclusion was disagreed with by both reviewers.
+dissent,prep_object,from,The decision was dissented from by two judges.
+dwell,prep_object,on,The mistake was dwelt on.
+ensue,plain,,
+err,plain,,
+excel,plain,,
+faint,plain,,
+fart,prep_object,on,The roommate was farted on as a prank.
+feud,plain,,
+frown,prep_object,upon,The practice was frowned upon.
+gaze,prep_object,at,The painting was gazed at.
+glance,prep_object,at,The report was glanced at.
+hesitate,plain,,
+intervene,plain,,
+kneel,prep_object,on,The cushion was knelt on.
+limp,plain,,
+loom,prep_object,over,The seated woman was loomed over by three men.
+malfunction,plain,,
+meditate,prep_object,on,The verse was meditated on.
+peek,prep_object,at,The answers were peeked at.
+peer,prep_object,at,The tiny print was peered at.
+perish,plain,,
+persist,plain,,
+preside,prep_object,over,The meeting was presided over by the chair.
+prevail,prep_object,upon,The mayor was prevailed upon to resign.
+quarrel,prep_object,over,The inheritance was quarreled over.
+rebel,prep_object,against,The regime was rebelled against.
+recur,plain,,
+reign,plain,,
+relapse,plain,,
+reside,plain,,
+resort,prep_object,to,The tactic was resorted to.
+sneeze,prep_object,on,The food was sneezed on.
+sprint,plain,,
+strive,prep_object,for,The goal was striven for by the whole team.
+succumb,plain,,
+tamper,prep_object,with,The car was tampered with.
+tower,prep_object,over,The child was towered over by the guard.
+tremble,plain,,
+triumph,plain,,
+yearn,prep_object,for,The freedom was yearned for by generations.
+abound,plain,,
+accede,prep_object,to,The request was acceded to.
+acquiesce,prep_object,in,The decision was acquiesced in.
+elope,plain,,
+encroach,prep_object,upon,The rights were encroached upon.
+flinch,plain,,
+overreact,prep_object,to,The incident was overreacted to by the press.
+relent,plain,,
+waver,plain,,
+assent,prep_object,to,The proposal was assented to.
+bicker,prep_object,over,The details were bickered over for hours.
+cavort,plain,,
+convalesce,plain,,
+dally,plain,,
+equivocate,plain,,
+frolic,plain,,
+grovel,plain,,
+hobnob,plain,,
+intercede,plain,,
+inveigh,prep_object,against,The policy was inveighed against.
+loiter,plain,,
+luxuriate,plain,,
+menstruate,plain,,
+mosey,plain,,
+pontificate,prep_object,about,The issue was pontificated about for hours.
+prevaricate,plain,,
+pulsate,plain,,
+reoccur,plain,,
+skulk,plain,,
+sojourn,plain,,
+tarry,plain,,
+throb,plain,,
+tiptoe,prep_object,around,The sensitive issue was tiptoed around.
+waddle,plain,,
+cohabit,plain,,
+fraternize,plain,,
+impinge,prep_object,upon,The rights were impinged upon.
+reemerge,plain,,
+saunter,plain,,
+abstain,plain,,
+adhere,prep_object,to,The schedule was adhered to.
+apologize,prep_object,for,The mistake was apologized for.
+appear,plain,,
+arrive,prep_object,at,The conclusion was arrived at.
+banter,plain,,
+bargain,transitive_use,,She bargained the price down.
+bask,plain,,
+belong,plain,,
+bloom,transitive_use,,She bloomed the spices in hot oil.
+blossom,plain,,
+blush,plain,,
+brag,prep_object,about,The achievement was bragged about.
+burgeon,plain,,
+bustle,transitive_use,,The nurse bustled the visitors out of the room.
+chuckle,prep_object,at,The joke was chuckled at.
+clash,plain,,
+coexist,plain,,
+collude,plain,,
+commiserate,prep_object,with,The defeated candidate was commiserated with.
+compete,prep_object,for,The trophy was competed for by sixteen teams.
+complain,prep_object,about,The noise was complained about.
+concur,prep_object,in,The amendment was concurred in by the Senate.
+conspire,prep_object,against,The king was conspired against.
+cooperate,plain,,
+correspond,plain,,
+crackle,plain,,
+creep,plain,,
+dawn,plain,,
+decamp,plain,,
+defecate,transitive_use,,The patient defecated a hard stool.
+desist,plain,,
+die,plain,,
+diverge,plain,,
+drool,transitive_use,,The baby drooled saliva onto her bib.
+dwindle,plain,,
+eavesdrop,prep_object,on,The conversation was eavesdropped on.
+emerge,plain,,
+emigrate,plain,,
+eventuate,plain,,
+exist,plain,,
+exult,plain,,
+fawn,prep_object,over,The actor was fawned over.
+fizz,plain,,
+flirt,prep_object,with,The bartender was flirted with.
+fluctuate,plain,,
+function,plain,,
+gape,prep_object,at,The stranger was gaped at.
+glare,prep_object,at,The noisy spectator was glared at.
+gloat,prep_object,over,The victory was gloated over.
+glow,plain,,
+goggle,prep_object,at,The celebrity was goggled at.
+grin,prep_object,at,The baby was grinned at.
+grouse,prep_object,about,The new rules were groused about.
+happen,plain,,
+hibernate,transitive_use,,She hibernated her laptop.
+hitchhike,transitive_use,,She hitchhiked a ride to town.
+inquire,transitive_use,,He inquired her name.
+interact,plain,,
+jut,plain,,
+languish,plain,,
+laugh,prep_object,at,The suggestion was laughed at.
+leer,prep_object,at,The waitress was leered at.
+lie,prep_object,to,The customer was lied to.
+linger,prep_object,over,The meal was lingered over.
+listen,prep_object,to,The song was listened to.
+loll,plain,,
+lumber,transitive_use,,They lumbered me with the bill.
+lurk,plain,,
+matter,plain,,
+muse,prep_object,over,The question was mused over.
+object,prep_object,to,The proposal was objected to.
+occur,plain,,
+opt,prep_object,for,The cheaper option was opted for.
+pant,transitive_use,,She panted an apology.
+participate,prep_object,in,The activity was participated in by all students.
+pee,transitive_use,,The toddler peed his pants.
+persevere,plain,,
+proceed,prep_object,with,The plan was proceeded with.
+putter,plain,,
+quack,plain,,
+quiver,plain,,
+rave,prep_object,about,The film was raved about.
+reappear,plain,,
+recede,plain,,
+reel,transitive_use,,She reeled the line onto the spool.
+remain,plain,,
+remonstrate,prep_object,with,The noisy guest was remonstrated with.
+reply,prep_object,to,The letter was replied to.
+resound,plain,,
+respond,prep_object,to,The request was responded to.
+result,plain,,
+retaliate,prep_object,against,The whistleblower was retaliated against.
+salivate,prep_object,over,The feast was salivated over.
+scram,plain,,
+seep,plain,,
+seethe,plain,,
+shimmer,plain,,
+shudder,plain,,
+sidle,plain,,
+sin,prep_object,against,The victim was sinned against.
+slog,transitive_use,,The batter slogged the ball over the boundary.
+slouch,plain,,
+slump,plain,,
+smolder,plain,,
+stagnate,plain,,
+struggle,prep_object,with,The problem was struggled with for hours.
+subside,plain,,
+sulk,plain,,
+sympathize,prep_object,with,The victim was sympathized with.
+teem,plain,,
+testify,prep_object,to,The document's authenticity was testified to.
+thrive,plain,,
+tingle,plain,,
+toddle,plain,,
+toil,prep_object,over,The manuscript was toiled over for years.
+totter,plain,,
+transpire,plain,,
+vacillate,plain,,
+vanish,plain,,
+vegetate,plain,,
+vie,prep_object,for,The prize was vied for by many contestants.
+wallow,plain,,
+wane,plain,,
+whiz,transitive_use,,She whizzed the ingredients in a blender.
+writhe,plain,,

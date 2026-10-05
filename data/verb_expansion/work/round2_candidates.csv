@@ -1,0 +1,88 @@
+list,class,lemma,past,participle,justification,round
+intransitive,intrans,behave,behaved,behaved,Ordinary behavior use rejects a patient; flag the restricted reflexive behave oneself; head and single token.,2
+intransitive,intrans,stumble,stumbled,stumbled,Ordinary loss-of-footing use takes no patient and rejects a bare passive; head and single token.,2
+intransitive,intrans,stare,stared,stared,Flag prepositional-object stare at and marginal resultative stare someone down; bare stared rejects a patient; head and single token.,2
+intransitive,intrans,wonder,wondered,wondered,Flag prepositional-object wonder about or at and interrogative-clause complements; ordinary noun patients are unavailable; head and single token.,2
+intransitive,intrans,disappear,disappeared,disappeared,Ordinary vanishing use is intransitive; flag transitive disappear a dissident or magically disappear an object; head and single token.,2
+intransitive,intrans,react,reacted,reacted,Human-response use is intransitive; flag prepositional-object react to and technical causative react a chemical; head and single token.,2
+intransitive,intrans,last,lasted,lasted,Duration use is intransitive; flag supply construction last someone a week and specialized transitive last a shoe; head and single token.,2
+head_multi,trans,cheat,cheated,cheated,A customer can be cheated by a merchant without a particle or causative alternation; head and two tokens.,2
+head_multi,trans,nail,nailed,nailed,A suspect can be nailed by a detective in the apprehension sense without a particle; head and two tokens.,2
+head_multi,trans,charter,chartered,chartered,A bus can be chartered by a tourist in an eventive rental passive; head and two tokens.,2
+head_multi,trans,hype,hyped,hyped,A film can be hyped by a publicist without up in the publicity sense; head and two tokens.,2
+head_multi,trans,sight,sighted,sighted,A ship can be sighted by a lookout in an eventive spotting passive; head and two tokens.,2
+head_multi,trans,skin,skinned,skinned,A rabbit can be skinned by a hunter without a particle; head and two tokens.,2
+head_multi,trans,ride,rode,ridden,A horse can be ridden by a child without a causative alternation; head and two tokens.,2
+tail_single,intrans,peer,peered,peered,Visual peer takes no ordinary patient; flag optional prepositional-object peer at or into; tail and single token.,2
+tail_single,trans,copyright,copyrighted,copyrighted,A photograph can be copyrighted by a photographer in an eventive passive; tail and single token.,2
+tail_single,trans,computerize,computerized,computerized,A catalogue can be computerized by a librarian in an eventive conversion passive; tail and single token.,2
+tail_single,trans,conserve,conserved,conserved,A painting can be conserved by a specialist without a particle; tail and single token.,2
+tail_single,trans,elaborate,elaborated,elaborated,A plan can be elaborated by an architect without a particle; tail and single token.,2
+tail_single,trans,exemplify,exemplified,exemplified,A principle can be exemplified by a teacher through a deliberate demonstration; tail and single token.,2
+tail_single,trans,evoke,evoked,evoked,A memory can be evoked by a storyteller without a particle; tail and single token.,2
+tail_single,trans,grate,grated,grated,A carrot can be grated by a cook without an ordinary spontaneous alternation; tail and single token.,2
+tail_single,trans,duplicate,duplicated,duplicated,A key can be duplicated by a locksmith without a particle; tail and single token.,2
+tail_single,trans,inhale,inhaled,inhaled,Smoke can be inhaled by a smoker without a causative alternation; tail and single token.,2
+tail_single,trans,clone,cloned,cloned,A lamb can be cloned by a scientist in an eventive passive; tail and single token.,2
+tail_single,trans,transplant,transplanted,transplanted,A shrub can be transplanted by a gardener without an obligatory destination phrase; tail and single token.,2
+tail_single,trans,individualize,individualized,individualized,A lesson can be individualized by a teacher through deliberate revision; tail and single token.,2
+tail_single,trans,minimize,minimized,minimized,A risk can be minimized by a planner without a particle; tail and single token.,2
+tail_single,trans,truncate,truncated,truncated,A quotation can be truncated by an editor without a particle; tail and single token.,2
+tail_single,trans,accord,accorded,accorded,Respect can be accorded by a teacher without an obligatory recipient phrase; tail and single token.,2
+tail_single,trans,disseminate,disseminated,disseminated,A rumor can be disseminated by a neighbor without a particle; tail and single token.,2
+tail_single,trans,superimpose,superimposed,superimposed,An image can be superimposed by an artist with the underlying surface understood; tail and single token.,2
+tail_single,trans,deprecate,deprecated,deprecated,A proposal can be deprecated by a critic in the verbal-disapproval sense; tail and single token.,2
+tail_single,trans,cache,cached,cached,Supplies can be cached by a hiker without an obligatory location phrase; tail and single token.,2
+tail_single,trans,serialize,serialized,serialized,A novel can be serialized by a publisher without a particle; tail and single token.,2
+tail_single,trans,mutter,muttered,muttered,An apology can be muttered by a child in the transitive speech sense; tail and single token.,2
+tail_single,trans,murmur,murmured,murmured,A warning can be murmured by a guide in the transitive speech sense; tail and single token.,2
+transitive,trans,admonish,admonished,admonished,A pupil can be admonished by a teacher without an obligatory topic phrase; tail and multiple tokens.,2
+transitive,trans,adulterate,adulterated,adulterated,Milk can be adulterated by a vendor without an obligatory with phrase; tail and multiple tokens.,2
+transitive,trans,appraise,appraised,appraised,A necklace can be appraised by a jeweler without a particle; tail and multiple tokens.,2
+transitive,trans,apportion,apportioned,apportioned,Food can be apportioned by a cook without an obligatory recipient phrase; tail and multiple tokens.,2
+transitive,trans,arraign,arraigned,arraigned,A defendant can be arraigned by a prosecutor without an obligatory charge phrase; tail and multiple tokens.,2
+transitive,trans,assail,assailed,assailed,A traveler can be assailed by a robber without a particle; tail and multiple tokens.,2
+transitive,trans,berate,berated,berated,A clerk can be berated by a customer without an obligatory topic phrase; tail and multiple tokens.,2
+transitive,trans,besmirch,besmirched,besmirched,A reputation can be besmirched by a rival without a particle; xtail and multiple tokens.,2
+transitive,trans,bludgeon,bludgeoned,bludgeoned,A victim can be bludgeoned by an attacker without an obligatory instrument phrase; tail and multiple tokens.,2
+transitive,trans,browbeat,browbeat,browbeaten,A witness can be browbeaten by a lawyer without an obligatory into phrase; xtail and multiple tokens.,2
+transitive,trans,cajole,cajoled,cajoled,A child can be cajoled by a parent with the requested action understood; xtail and multiple tokens.,2
+transitive,trans,commandeer,commandeered,commandeered,A truck can be commandeered by a soldier without a particle; tail and multiple tokens.,2
+transitive,trans,counterfeit,counterfeited,counterfeited,A banknote can be counterfeited by a forger without a particle; xtail and multiple tokens.,2
+transitive,trans,deface,defaced,defaced,A poster can be defaced by a vandal without a particle; tail and multiple tokens.,2
+transitive,trans,defraud,defrauded,defrauded,A customer can be defrauded by a merchant without an obligatory of phrase; tail and multiple tokens.,2
+transitive,trans,desecrate,desecrated,desecrated,A grave can be desecrated by a vandal without a particle; tail and multiple tokens.,2
+transitive,trans,despoil,despoiled,despoiled,A village can be despoiled by an invader without an obligatory of phrase; xtail and multiple tokens.,2
+transitive,trans,disavow,disavowed,disavowed,A statement can be disavowed by its author in an eventive public denial; tail and multiple tokens.,2
+transitive,trans,discredit,discredited,discredited,A witness can be discredited by a lawyer through deliberate argument; tail and multiple tokens.,2
+transitive,trans,disparage,disparaged,disparaged,A painting can be disparaged by a critic without a particle; tail and multiple tokens.,2
+transitive,trans,embezzle,embezzled,embezzled,Money can be embezzled by a treasurer without a particle; tail and multiple tokens.,2
+transitive,trans,entomb,entombed,entombed,A body can be entombed by an undertaker in an eventive burial passive; tail and multiple tokens.,2
+transitive,trans,eulogize,eulogized,eulogized,A poet can be eulogized by a friend in an eventive speech passive; xtail and multiple tokens.,2
+transitive,trans,exonerate,exonerated,exonerated,A suspect can be exonerated by a judge without an obligatory of phrase; tail and multiple tokens.,2
+transitive,trans,extradite,extradited,extradited,A fugitive can be extradited by an official without an obligatory destination phrase; tail and multiple tokens.,2
+transitive,trans,falsify,falsified,falsified,A record can be falsified by a clerk without a particle; tail and multiple tokens.,2
+transitive,trans,impound,impounded,impounded,A car can be impounded by an officer without a particle; tail and multiple tokens.,2
+transitive,trans,interrogate,interrogated,interrogated,A suspect can be interrogated by a detective without an obligatory topic phrase; tail and multiple tokens.,2
+transitive,trans,maul,mauled,mauled,A visitor can be mauled by a dog without a particle; tail and multiple tokens.,2
+transitive,trans,misquote,misquoted,misquoted,A speaker can be misquoted by a reporter without a particle; tail and multiple tokens.,2
+transitive,trans,misrepresent,misrepresented,misrepresented,A position can be misrepresented by a debater without a particle; tail and multiple tokens.,2
+transitive,trans,notarize,notarized,notarized,A document can be notarized by a solicitor without a particle; tail and multiple tokens.,2
+transitive,trans,pilfer,pilfered,pilfered,A wallet can be pilfered by a thief without a particle; xtail and multiple tokens.,2
+transitive,trans,pillage,pillaged,pillaged,A village can be pillaged by an invader without a particle; tail and multiple tokens.,2
+transitive,trans,plagiarize,plagiarized,plagiarized,An essay can be plagiarized by a student without a particle; tail and multiple tokens.,2
+transitive,trans,raze,razed,razed,A building can be razed by a developer without an obligatory to phrase; tail and multiple tokens.,2
+transitive,trans,reprimand,reprimanded,reprimanded,A worker can be reprimanded by a supervisor without an obligatory topic phrase; tail and multiple tokens.,2
+transitive,trans,repudiate,repudiated,repudiated,An agreement can be repudiated by a tenant without a particle; tail and multiple tokens.,2
+transitive,trans,revile,reviled,reviled,A politician can be reviled by a heckler through deliberate verbal abuse; tail and multiple tokens.,2
+transitive,trans,ransack,ransacked,ransacked,A house can be ransacked by a burglar without a particle; tail and multiple tokens.,2
+transitive,trans,requisition,requisitioned,requisitioned,A vehicle can be requisitioned by an officer without a particle; tail and multiple tokens.,2
+transitive,trans,ridicule,ridiculed,ridiculed,A speaker can be ridiculed by a heckler without a particle; tail and multiple tokens.,2
+transitive,trans,sabotage,sabotaged,sabotaged,A machine can be sabotaged by a rival without a particle; tail and multiple tokens.,2
+transitive,trans,scold,scolded,scolded,A child can be scolded by a parent without an obligatory topic phrase; tail and multiple tokens.,2
+transitive,trans,solicit,solicited,solicited,A donation can be solicited by a volunteer without an obligatory source phrase; tail and multiple tokens.,2
+transitive,trans,usurp,usurped,usurped,A throne can be usurped by a rival without a particle; tail and multiple tokens.,2
+transitive,trans,vandalize,vandalized,vandalized,A car can be vandalized by a teenager without a particle; tail and multiple tokens.,2
+transitive,trans,waylay,waylaid,waylaid,A traveler can be waylaid by a robber without a particle; xtail and multiple tokens.,2
+transitive,trans,bequeath,bequeathed,bequeathed,A necklace can be bequeathed by a grandmother with the recipient understood; tail and multiple tokens.,2
+transitive,trans,sheathe,sheathed,sheathed,A sword can be sheathed by a soldier without an ordinary spontaneous alternation; tail and multiple tokens.,2

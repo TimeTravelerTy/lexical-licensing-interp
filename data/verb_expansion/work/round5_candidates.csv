@@ -1,0 +1,121 @@
+list,class,lemma,past,participle,justification,round
+near_head,intrans,malfunction,malfunctioned,malfunctioned,Machine failure takes no ordinary object or bare passive; participle Zipf 2.57; lemma-sum 3.58; BPE 2.,5
+near_head,intrans,relapse,relapsed,relapsed,Recurrent illness takes no direct object or bare passive; participle Zipf 2.71; lemma-sum 3.52; BPE 2. [Dictionary](https://www.dictionary.com/browse/relapse),5
+near_head,intrans,faint,fainted,fainted,Losing consciousness takes no ordinary object or bare passive; participle Zipf 3.12; lemma-sum 3.94; BPE 2.,5
+near_head,intrans,fart,farted,farted,Bodily emission takes no ordinary patient object or bare passive; participle Zipf 2.78; lemma-sum 3.84; BPE 2.,5
+near_head,intrans,limp,limped,limped,Impaired locomotion takes no ordinary object or bare passive; participle Zipf 2.60; lemma-sum 3.62; BPE 2. [Dictionary](https://www.dictionary.com/browse/limp),5
+near_head,intrans,loom,loomed,loomed,Coming into view takes no ordinary object or bare passive; participle Zipf 2.80; lemma-sum 3.81; BPE 2.,5
+near_head,intrans,moonlight,moonlighted,moonlighted,Working a second job takes no ordinary object or bare passive; participle Zipf 1.60 qualifies through lemma-sum 3.66; BPE 2.,5
+near_head,intrans,vacation,vacationed,vacationed,Taking a holiday takes no ordinary object or bare passive; participle Zipf 2.11 qualifies through lemma-sum 4.47; BPE 2.,5
+near_head,intrans,recur,recurred,recurred,Repeated occurrence takes no ordinary object or bare passive; participle Zipf 2.33 qualifies through lemma-sum 3.78; BPE 2. [Dictionary](https://www.dictionary.com/browse/recur),5
+near_head,intrans,party,partied,partied,Celebrating takes no ordinary object or bare passive; participle Zipf 2.80; lemma-sum 5.59; BPE 2. [Dictionary](https://www.dictionary.com/browse/party),5
+near_head,intrans,ensue,ensued,ensued,Ordinary occurrence is intransitive; MARGINAL: obsolete transitive ensue meaning pursue; participle Zipf 3.34; lemma-sum 3.88; BPE 1. [Dictionary](https://www.dictionary.com/browse/ensue),5
+near_head,intrans,perish,perished,perished,Ordinary dying is intransitive; MARGINAL: perish the thought and British transitive cause suffering; participle Zipf 3.30; lemma-sum 3.65; BPE 2. [Dictionary](https://www.dictionary.com/browse/perish),5
+near_head,intrans,reside,resided,resided,No ordinary direct object; MARGINAL: prepositional reside in or at and figurative powers reside in; participle Zipf 3.33; lemma-sum 4.15; BPE 1. [Dictionary](https://www.dictionary.com/browse/reside),5
+near_head,intrans,sneeze,sneezed,sneezed,Ordinary reflex emission is intransitive; MARGINAL: caused-motion sneeze a napkin off the table; participle Zipf 2.68; lemma-sum 3.56; BPE 3. [Cambridge](https://dictionary.cambridge.org/dictionary/english/transitively),5
+near_head,intrans,coincide,coincided,coincided,No ordinary direct object; MARGINAL: prepositional coincide with an event; participle Zipf 3.35; lemma-sum 3.88; BPE 2.,5
+near_head,intrans,intervene,intervened,intervened,No ordinary direct object; MARGINAL: prepositional intervene in a dispute or between parties; participle Zipf 3.35; lemma-sum 3.97; BPE 2.,5
+near_head,intrans,differ,differed,differed,No ordinary direct object; MARGINAL: prepositional differ from or with someone and over an issue; participle Zipf 3.28; lemma-sum 4.33; BPE 1.,5
+near_head,intrans,rebel,rebelled,rebelled,No ordinary direct object; MARGINAL: prepositional rebel against authority; participle Zipf 2.95; lemma-sum 4.40; BPE 2.,5
+near_head,intrans,reign,reigned,reigned,Ordinary ruling is intransitive; MARGINAL: prepositional reign over a kingdom; participle Zipf 3.15; lemma-sum 4.28; BPE 2.,5
+near_head,intrans,collaborate,collaborated,collaborated,No ordinary direct object; MARGINAL: prepositional collaborate with colleagues or on a project; participle Zipf 3.37; lemma-sum 3.94; BPE 1.,5
+near_head,intrans,prevail,prevailed,prevailed,No ordinary direct object; MARGINAL: prepositional prevail over opponents or on someone to act; participle Zipf 3.41; lemma-sum 4.04; BPE 1. [Cambridge](https://dictionary.cambridge.org/us/dictionary/english/prevail),5
+near_head,intrans,disagree,disagreed,disagreed,No ordinary direct object; MARGINAL: prepositional disagree with someone or about an issue; participle Zipf 3.49; lemma-sum 4.25; BPE 1.,5
+near_head,intrans,depend,depended,depended,No ordinary direct object; MARGINAL: prepositional depend on or upon a resource; participle Zipf 3.44; lemma-sum 4.95; BPE 1.,5
+near_head,intrans,preside,presided,presided,No ordinary direct object; MARGINAL: prepositional preside over a meeting; participle Zipf 3.41; lemma-sum 3.84; BPE 2.,5
+near_head,intrans,resort,resorted,resorted,No ordinary direct object; MARGINAL: prepositional resort to a tactic; participle Zipf 3.23; lemma-sum 4.51; BPE 2.,5
+near_head,intrans,comply,complied,complied,No ordinary direct object; MARGINAL: prepositional comply with a request; participle Zipf 3.25; lemma-sum 4.19; BPE 1.,5
+near_head,intrans,succumb,succumbed,succumbed,No ordinary direct object; MARGINAL: prepositional succumb to illness or pressure; participle Zipf 3.16; lemma-sum 3.54; BPE 3.,5
+near_head,intrans,allude,alluded,alluded,No ordinary direct object; MARGINAL: prepositional allude to an incident; participle Zipf 3.11; lemma-sum 3.55; BPE 2.,5
+near_head,intrans,long,longed,longed,No ordinary noun object; MARGINAL: prepositional long for something and infinitival long to leave; participle Zipf 3.07; lemma-sum 5.81; BPE 2.,5
+near_head,intrans,strive,strove,striven,No ordinary noun object; MARGINAL: strive for a goal or against obstacles and infinitival complements; participle Zipf 2.12 qualifies through lemma-sum 4.03; BPE 3.,5
+near_head,intrans,converse,conversed,conversed,No ordinary direct object; MARGINAL: prepositional converse with someone about something; participle Zipf 2.28 qualifies through lemma-sum 3.62; BPE 2.,5
+near_head,intrans,persist,persisted,persisted,Ordinary continuation is intransitive; MARGINAL: computing persist data and prepositional persist in a course; participle Zipf 3.34; lemma-sum 3.91; BPE 1. [Dictionary](https://en.wiktionary.org/wiki/persist),5
+near_head,intrans,erupt,erupted,erupted,Ordinary bursting forth is intransitive; MARGINAL: transitive erupt lava or angry words; participle Zipf 3.39; lemma-sum 3.68; BPE 1. [Dictionary](https://www.dictionary.com/browse/erupt),5
+near_head,intrans,flourish,flourished,flourished,Ordinary thriving is intransitive; MARGINAL: distinct transitive flourish a sword meaning brandish; participle Zipf 3.32; lemma-sum 3.91; BPE 2. [Cambridge](https://dictionary.cambridge.org/dictionary/english/flourish),5
+near_head,intrans,wander,wandered,wandered,Ordinary wandering is intransitive; MARGINAL: literary location-object wander the streets; participle Zipf 3.46; lemma-sum 4.18; BPE 1.,5
+near_head,intrans,speculate,speculated,speculated,No ordinary patient object; MARGINAL: speculate about or on something and that-clauses permitting impersonal passives; participle Zipf 3.37; lemma-sum 3.84; BPE 1. [Dictionary](https://www.dictionary.com/browse/speculate),5
+near_head,intrans,deliberate,deliberated,deliberated,Ordinary jury deliberation is intransitive; MARGINAL: formal transitive deliberate a question and deliberate on an issue; participle Zipf 2.49; lemma-sum 3.86; BPE 2. [Dictionary](https://www.dictionary.com/browse/deliberate),5
+near_head,intrans,meditate,meditated,meditated,Ordinary meditation is intransitive; MARGINAL: literary meditate revenge meaning contemplate and meditate on a topic; participle Zipf 2.55; lemma-sum 3.53; BPE 2. [Dictionary](https://www.dictionary.com/browse/meditate),5
+near_head,intrans,sprint,sprinted,sprinted,Ordinary fast locomotion is intransitive; MARGINAL: distance-object sprint a half mile; participle Zipf 2.69; lemma-sum 4.07; BPE 2. [Dictionary](https://www.dictionary.com/browse/sprint),5
+near_head,intrans,stroll,strolled,strolled,Ordinary leisurely locomotion is intransitive; MARGINAL: location-object stroll the countryside; participle Zipf 2.85; lemma-sum 3.76; BPE 2. [Dictionary](https://www.dictionary.com/browse/stroll),5
+near_head,intrans,crawl,crawled,crawled,Ordinary locomotion is intransitive; MARGINAL: computing crawl a website and venue-object crawl the pubs; participle Zipf 3.28; lemma-sum 4.10; BPE 1. [Dictionary](https://www.dictionary.com/browse/crawl),5
+near_head,intrans,roam,roamed,roamed,Ordinary roaming is intransitive; MARGINAL: location-object roam the countryside; participle Zipf 2.91; lemma-sum 3.86; BPE 2.,5
+near_head,intrans,chat,chatted,chatted,Ordinary conversation takes no direct object; MARGINAL: prepositional chat with someone about something; participle Zipf 3.17; lemma-sum 4.67; BPE 2. [Dictionary](https://www.dictionary.com/browse/chat),5
+near_head,intrans,giggle,giggled,giggled,Ordinary laughter is intransitive; MARGINAL: literary utterance-object giggle a reply and cognate giggle a giggle; participle Zipf 2.89; lemma-sum 3.85; BPE 2.,5
+near_head,intrans,sob,sobbed,sobbed,Ordinary crying is intransitive; MARGINAL: utterance-object sob a reply and cognate sob a sob; participle Zipf 2.80; lemma-sum 3.84; BPE 2.,5
+near_head,intrans,whine,whined,whined,Ordinary vocalizing is intransitive; MARGINAL: utterance-object whine a complaint and whine about something; participle Zipf 2.58; lemma-sum 3.81; BPE 2.,5
+near_head,intrans,frown,frowned,frowned,Ordinary facial expression is intransitive; MARGINAL: frown displeasure or frown someone into silence plus frown upon; participle Zipf 3.24; lemma-sum 3.66; BPE 1. [Dictionary](https://www.dictionary.com/browse/frown),5
+near_head,intrans,hint,hinted,hinted,Ordinary hinting uses at; MARGINAL: bare content-object hint a possible outcome and that-clauses; participle Zipf 3.40; lemma-sum 4.35; BPE 1. [Dictionary](https://www.dictionary.com/browse/hint),5
+near_head,intrans,major,majored,majored,No ordinary direct object; MARGINAL: prepositional major in a subject or on a topic; participle Zipf 2.79; lemma-sum 5.32; BPE 2. [Dictionary](https://www.dictionary.com/browse/major),5
+near_head,intrans,howl,howled,howled,Ordinary sound emission is intransitive; MARGINAL: utterance-object howl a protest and cognate howl a howl; participle Zipf 2.48; lemma-sum 3.63; BPE 2.,5
+near_head,intrans,rant,ranted,ranted,Ordinary vehement speaking is intransitive; MARGINAL: utterance-object rant threats and prepositional rant about something; participle Zipf 2.46; lemma-sum 3.88; BPE 2.,5
+near_head,intrans,excel,excelled,excelled,Ordinary achievement is intransitive; MARGINAL: transitive excel other poets meaning surpass and excel at something; participle Zipf 3.19; lemma-sum 3.91; BPE 2. [Dictionary](https://www.dictionary.com/browse/excel),5
+near_head,intrans,peek,peeked,peeked,Ordinary furtive looking takes no direct object; MARGINAL: prepositional peek at something; participle Zipf 2.64; lemma-sum 3.83; BPE 2. [Dictionary](https://www.dictionary.com/browse/peek),5
+near_head,intrans,defect,defected,defected,Changing allegiance takes no ordinary object; MARGINAL: prepositional defect from or to a group; participle Zipf 3.03; lemma-sum 4.08; BPE 2.,5
+near_head,intrans,quarrel,quarrelled,quarrelled,Ordinary arguing takes no direct object; MARGINAL: prepositional quarrel with someone or over something; participle Zipf 2.23 qualifies through lemma-sum 3.54; BPE 3. [Dictionary](https://www.dictionary.com/browse/quarrel),5
+near_head,intrans,feud,feuded,feuded,Sustained hostility takes no ordinary object; MARGINAL: prepositional feud with someone; participle Zipf 2.01 qualifies through lemma-sum 3.75; BPE 2. [Dictionary](https://www.dictionary.com/browse/feud),5
+near_head,intrans,dwell,dwelt,dwelt,Ordinary residence is intransitive; MARGINAL: prepositional dwell on a problem meaning discuss persistently; participle Zipf 2.65; lemma-sum 4.03; BPE 2. [Dictionary](https://www.dictionary.com/browse/dwell),5
+near_head,intrans,triumph,triumphed,triumphed,Ordinary victory is intransitive; MARGINAL: triumph over opponents and transitive triumph meaning conquer; participle Zipf 2.91; lemma-sum 4.07; BPE 3. [Dictionary](https://www.dictionary.com/browse/triumph),5
+near_head,intrans,tower,towered,towered,No ordinary direct object; MARGINAL: prepositional tower over or above something; participle Zipf 2.42; lemma-sum 4.64; BPE 2. [Dictionary](https://www.dictionary.com/browse/tower),5
+near_head,intrans,trespass,trespassed,trespassed,Ordinary intrusion is intransitive; MARGINAL: trespass on land and regional transitive trespass someone meaning prohibit entry; participle Zipf 2.24 qualifies through lemma-sum 3.50; BPE 2. [Dictionary](https://en.wiktionary.org/wiki/trespass),5
+near_head,trans,author,authored,authored,A manuscript was authored by a novelist without a particle or causative alternation; participle Zipf 3.49; lemma-sum 5.09; BPE 1.,5
+near_head,trans,summarize,summarized,summarized,A report was summarized by an editor without a particle or causative alternation; participle Zipf 3.35; lemma-sum 3.78; BPE 1.,5
+near_head,trans,escort,escorted,escorted,A visitor was escorted by a guard without an obligatory destination or causative alternation; participle Zipf 3.49; lemma-sum 4.22; BPE 1.,5
+near_head,trans,regain,regained,regained,A title was regained by a champion without a particle or causative alternation; participle Zipf 3.49; lemma-sum 4.01; BPE 1.,5
+near_head,trans,simulate,simulated,simulated,An accident was simulated by an investigator without a particle or causative alternation; participle Zipf 3.49; lemma-sum 3.87; BPE 1.,5
+near_head,trans,confiscate,confiscated,confiscated,A weapon was confiscated by an officer without a particle or causative alternation; participle Zipf 3.48; lemma-sum 3.63; BPE 2.,5
+near_head,trans,facilitate,facilitated,facilitated,A meeting was facilitated by a moderator without a particle or causative alternation; participle Zipf 3.48; lemma-sum 4.24; BPE 1.,5
+near_head,trans,institute,instituted,instituted,A policy was instituted by a director without a particle or causative alternation; participle Zipf 3.48; lemma-sum 4.86; BPE 1.,5
+near_head,trans,snatch,snatched,snatched,A bag was snatched by a thief without a particle or causative alternation; participle Zipf 3.48; lemma-sum 3.90; BPE 1.,5
+near_head,trans,waive,waived,waived,A fee was waived by a clerk without a particle or causative alternation; participle Zipf 3.48; lemma-sum 3.74; BPE 1.,5
+near_head,trans,denounce,denounced,denounced,A policy was denounced by a speaker without a particle or causative alternation; participle Zipf 3.47; lemma-sum 3.81; BPE 1.,5
+near_head,trans,raid,raided,raided,A warehouse was raided by an officer without a particle or causative alternation; participle Zipf 3.47; lemma-sum 4.45; BPE 2.,5
+near_head,trans,relegate,relegated,relegated,A team was relegated by a league without an obligatory destination or causative alternation; participle Zipf 3.47; lemma-sum 3.55; BPE 1.,5
+near_head,trans,baptize,baptized,baptized,A child was baptized by a priest in an eventive passive without a particle; participle Zipf 3.46; lemma-sum 3.56; BPE 2.,5
+near_head,trans,loot,looted,looted,A shop was looted by a robber without a particle or causative alternation; participle Zipf 3.21; lemma-sum 3.89; BPE 2.,5
+near_head,trans,grade,graded,graded,An essay was graded by a teacher in an eventive passive without a particle; participle Zipf 3.45; lemma-sum 4.94; BPE 1.,5
+near_head,trans,evict,evicted,evicted,A tenant was evicted by a landlord without an obligatory source phrase or causative alternation; participle Zipf 3.35; lemma-sum 3.54; BPE 2.,5
+near_head,trans,acquit,acquitted,acquitted,A defendant was acquitted by a jury without an obligatory charge phrase or causative alternation; participle Zipf 3.44; lemma-sum 3.52; BPE 2.,5
+near_head,trans,curate,curated,curated,An exhibition was curated by a historian in an eventive passive without a particle; participle Zipf 3.44; lemma-sum 3.65; BPE 2.,5
+near_head,trans,disqualify,disqualified,disqualified,A contestant was disqualified by a referee without an obligatory competition phrase or causative alternation; participle Zipf 3.44; lemma-sum 3.62; BPE 2.,5
+near_head,trans,congratulate,congratulated,congratulated,A winner was congratulated by a spectator without an obligatory on phrase or causative alternation; participle Zipf 3.21; lemma-sum 3.85; BPE 2.,5
+near_head,trans,chair,chaired,chaired,A meeting was chaired by a professor without a particle or causative alternation; participle Zipf 3.43; lemma-sum 4.80; BPE 2.,5
+near_head,trans,haul,hauled,hauled,A crate was hauled by a worker without an obligatory destination or causative alternation; participle Zipf 3.43; lemma-sum 4.12; BPE 1.,5
+near_head,trans,hug,hugged,hugged,A child was hugged by a parent without a particle or causative alternation; participle Zipf 3.43; lemma-sum 4.36; BPE 1.,5
+near_head,trans,mock,mocked,mocked,A speaker was mocked by a heckler without a particle or causative alternation; participle Zipf 3.43; lemma-sum 4.16; BPE 2.,5
+near_head,trans,encrypt,encrypted,encrypted,A message was encrypted by a programmer in an eventive passive without a particle; participle Zipf 3.42; lemma-sum 3.55; BPE 1.,5
+near_head,trans,persecute,persecuted,persecuted,A dissident was persecuted by a ruler without a particle or causative alternation; participle Zipf 3.42; lemma-sum 3.57; BPE 2.,5
+near_head,trans,trick,tricked,tricked,A customer was tricked by a salesman without an obligatory into phrase or causative alternation; participle Zipf 3.42; lemma-sum 4.68; BPE 2.,5
+near_head,trans,mine,mined,mined,An ore deposit was mined by a prospector without a particle or spontaneous alternation; participle Zipf 3.41; lemma-sum 5.21; BPE 2.,5
+near_head,trans,ratify,ratified,ratified,A treaty was ratified by a council without a particle or causative alternation; participle Zipf 3.41; lemma-sum 3.58; BPE 2.,5
+near_head,trans,sample,sampled,sampled,A wine was sampled by a critic without a particle or causative alternation; participle Zipf 3.41; lemma-sum 4.81; BPE 1.,5
+near_head,trans,archive,archived,archived,A letter was archived by a librarian in an eventive passive without a particle; participle Zipf 3.40; lemma-sum 4.40; BPE 2.,5
+near_head,trans,convey,conveyed,conveyed,A message was conveyed by a messenger without an obligatory recipient or causative alternation; participle Zipf 3.40; lemma-sum 4.09; BPE 1.,5
+near_head,trans,repeal,repealed,repealed,A statute was repealed by a legislature without a particle or causative alternation; participle Zipf 3.36; lemma-sum 4.05; BPE 2.,5
+near_head,trans,compute,computed,computed,A total was computed by an accountant without a particle or causative alternation; participle Zipf 3.31; lemma-sum 4.22; BPE 1.,5
+near_head,trans,assassinate,assassinated,assassinated,A ruler was assassinated by a conspirator without a particle or causative alternation; participle Zipf 3.39; lemma-sum 3.64; BPE 2.,5
+near_head,trans,banish,banished,banished,A courtier was banished by a monarch without an obligatory destination or causative alternation; participle Zipf 3.39; lemma-sum 3.61; BPE 2.,5
+near_head,trans,coin,coined,coined,A phrase was coined by a writer without a particle or causative alternation; participle Zipf 3.39; lemma-sum 4.56; BPE 1.,5
+near_head,trans,deceive,deceived,deceived,A customer was deceived by a vendor without a particle or causative alternation; participle Zipf 3.39; lemma-sum 3.82; BPE 2.,5
+near_head,trans,dictate,dictated,dictated,A letter was dictated by a manager without an obligatory recipient or causative alternation; participle Zipf 3.39; lemma-sum 3.96; BPE 1.,5
+near_head,trans,refurbish,refurbished,refurbished,A cabinet was refurbished by a carpenter in an eventive passive without a particle; participle Zipf 3.39; lemma-sum 3.51; BPE 3.,5
+near_head,trans,underestimate,underestimated,underestimated,A rival was underestimated by a contestant without a particle or causative alternation; participle Zipf 3.39; lemma-sum 3.93; BPE 1.,5
+near_head,trans,censor,censored,censored,A letter was censored by an official in an eventive passive without a particle; participle Zipf 3.38; lemma-sum 3.82; BPE 2.,5
+near_head,trans,inscribe,inscribed,inscribed,A motto was inscribed by an artisan without an obligatory surface phrase or causative alternation; participle Zipf 3.38; lemma-sum 3.43; BPE 2.,5
+near_head,trans,pen,penned,penned,A poem was penned by an author without a particle or causative alternation; participle Zipf 3.38; lemma-sum 4.51; BPE 2.,5
+near_head,trans,tow,towed,towed,A vehicle was towed by a mechanic without an obligatory destination or causative alternation; participle Zipf 3.38; lemma-sum 4.00; BPE 2.,5
+near_head,trans,validate,validated,validated,A ticket was validated by a clerk in an eventive passive without a particle; participle Zipf 3.38; lemma-sum 3.80; BPE 1.,5
+near_head,trans,envision,envisioned,envisioned,A future was envisioned by a planner without a particle or causative alternation; participle Zipf 3.37; lemma-sum 3.67; BPE 1.,5
+near_head,trans,forfeit,forfeited,forfeited,A deposit was forfeited by a renter without a particle or causative alternation; participle Zipf 3.07; lemma-sum 3.57; BPE 2.,5
+near_head,trans,contradict,contradicted,contradicted,A witness was contradicted by a lawyer without a particle or causative alternation; participle Zipf 3.14; lemma-sum 3.78; BPE 2.,5
+near_head,trans,hoard,hoarded,hoarded,A supply was hoarded by a collector without a particle or causative alternation; participle Zipf 2.50; lemma-sum 3.57; BPE 2.,5
+near_head,trans,lynch,lynched,lynched,A prisoner was lynched by a mob without a particle or causative alternation; participle Zipf 2.83; lemma-sum 4.02; BPE 2.,5
+near_head,trans,obey,obeyed,obeyed,An order was obeyed by a soldier without a particle or causative alternation; participle Zipf 3.02; lemma-sum 3.97; BPE 2.,5
+near_head,trans,pardon,pardoned,pardoned,A prisoner was pardoned by a governor without an obligatory offense phrase or causative alternation; participle Zipf 3.11; lemma-sum 3.95; BPE 3.,5
+near_head,trans,renounce,renounced,renounced,A claim was renounced by an heir without a particle or causative alternation; participle Zipf 3.00; lemma-sum 3.50; BPE 2.,5
+near_head,trans,shun,shunned,shunned,A visitor was deliberately shunned by a host without a particle or causative alternation; participle Zipf 3.11; lemma-sum 3.56; BPE 2.,5
+near_head,trans,taunt,taunted,taunted,A player was taunted by a spectator without a particle or causative alternation; participle Zipf 2.74; lemma-sum 3.53; BPE 2.,5
+near_head,trans,thwart,thwarted,thwarted,A plan was thwarted by a rival without a particle or causative alternation; participle Zipf 3.15; lemma-sum 3.51; BPE 2.,5
+near_head,trans,withhold,withheld,withheld,A document was withheld by an official without an obligatory from phrase or causative alternation; participle Zipf 3.36; lemma-sum 3.82; BPE 1.,5
+near_head,trans,worship,worshipped,worshipped,An idol was worshipped by a devotee without a particle or causative alternation; participle Zipf 3.28; lemma-sum 4.39; BPE 2.,5

@@ -1,0 +1,169 @@
+list,class,lemma,past,participle,justification,round,participle_zipf,past_zipf,lemma_zipf,band,lemma_sum_zipf,tag,participle_ntok,participle_tokens,past_ntok,past_tokens,reasons,decision
+transitive,trans,accept,accepted,accepted,A request can be accepted by a committee without a particle; head.,1,4.67,4.67,4.85,head,5.15,head,1,Ġaccepted,1,Ġaccepted,,accept
+transitive,trans,accuse,accused,accused,A suspect can be accused by a witness without an obligatory of phrase; head.,1,4.46,4.46,3.71,head,4.62,head,1,Ġaccused,1,Ġaccused,,accept
+transitive,trans,acquire,acquired,acquired,A painting can be acquired by a collector in an eventive passive; head.,1,4.4,4.4,4.13,head,4.67,head,1,Ġacquired,1,Ġacquired,,accept
+transitive,trans,address,addressed,addressed,A problem can be addressed by a manager without a particle; head.,1,4.26,4.26,4.91,head,5.1,head,1,Ġaddressed,1,Ġaddressed,,accept
+transitive,trans,adopt,adopted,adopted,A policy can be adopted by a council in an eventive passive; head.,1,4.51,4.51,4.19,head,4.75,head,1,Ġadopted,1,Ġadopted,,accept
+transitive,trans,advise,advised,advised,A client can be advised by a lawyer without an obligatory complement; head.,1,4.18,4.18,4.09,head,4.53,head,1,Ġadvised,1,Ġadvised,,accept
+transitive,trans,allow,allowed,allowed,An extension can be allowed by a director without a particle; head.,1,5.03,5.03,5.01,head,5.47,head,1,Ġallowed,1,Ġallowed,,accept
+transitive,trans,analyze,analyzed,analyzed,A sample can be analyzed by a researcher without a particle; head.,1,3.9,3.9,3.84,head,4.33,head,1,Ġanalyzed,1,Ġanalyzed,,accept
+transitive,trans,announce,announced,announced,A decision can be announced by a spokesperson without a particle; head.,1,4.96,4.96,4.26,head,5.1,head,1,Ġannounced,1,Ġannounced,,accept
+transitive,trans,appoint,appointed,appointed,A chairperson can be appointed by a board without an obligatory as phrase; head.,1,4.59,4.59,3.7,head,4.68,head,1,Ġappointed,1,Ġappointed,,accept
+transitive,trans,arrest,arrested,arrested,A suspect can be arrested by an officer in an eventive passive; head.,1,4.64,4.64,4.55,head,4.94,head,1,Ġarrested,1,Ġarrested,,accept
+transitive,trans,assess,assessed,assessed,A proposal can be assessed by a reviewer without a particle; head.,1,3.9,3.9,4.07,head,4.41,head,1,Ġassessed,1,Ġassessed,,accept
+transitive,trans,assist,assisted,assisted,A visitor can be assisted by an attendant without an obligatory with phrase; head.,1,4.1,4.1,4.42,head,4.75,head,1,Ġassisted,1,Ġassisted,,accept
+transitive,trans,attack,attacked,attacked,A fortress can be attacked by an army without a particle; head.,1,4.52,4.52,5.09,head,5.35,head,1,Ġattacked,1,Ġattacked,,accept
+transitive,trans,ban,banned,banned,A product can be banned by a regulator in an eventive passive; head.,1,4.41,4.41,4.55,head,4.86,head,1,Ġbanned,1,Ġbanned,,accept
+transitive,trans,bury,buried,buried,A treasure can be buried by a pirate without an obligatory location phrase; head.,1,4.4,4.4,3.89,head,4.55,head,1,Ġburied,1,Ġburied,,accept
+transitive,trans,capture,captured,captured,A fugitive can be captured by an officer in an eventive passive; head.,1,4.44,4.44,4.42,head,4.81,head,1,Ġcaptured,1,Ġcaptured,,accept
+transitive,trans,chase,chased,chased,A thief can be chased by a guard without a particle; head.,1,3.74,3.74,4.44,head,4.68,head,1,Ġchased,1,Ġchased,,accept
+transitive,trans,cite,cited,cited,A paper can be cited by an author without a particle; head.,1,4.29,4.29,3.67,head,4.57,head,1,Ġcited,1,Ġcited,,accept
+transitive,trans,command,commanded,commanded,A withdrawal can be commanded by a general without a particle; head.,1,3.77,3.77,4.7,head,4.86,head,1,Ġcommanded,1,Ġcommanded,,accept
+transitive,trans,condemn,condemned,condemned,An atrocity can be condemned by a minister without a particle; head.,1,3.97,3.97,3.72,head,4.27,head,1,Ġcondemned,1,Ġcondemned,,accept
+transitive,trans,conduct,conducted,conducted,An experiment can be conducted by a researcher in an eventive passive; head.,1,4.58,4.58,4.52,head,4.93,head,1,Ġconducted,1,Ġconducted,,accept
+transitive,trans,confirm,confirmed,confirmed,A booking can be confirmed by a clerk in an eventive passive; head.,1,4.67,4.67,4.4,head,4.92,head,1,Ġconfirmed,1,Ġconfirmed,,accept
+transitive,trans,contact,contacted,contacted,A customer can be contacted by a representative without a particle; head.,1,4.0,4.0,4.99,head,5.1,head,1,Ġcontacted,1,Ġcontacted,,accept
+transitive,trans,convict,convicted,convicted,A defendant can be convicted by a jury without an obligatory of phrase; head.,1,4.2,4.2,3.56,head,4.33,head,1,Ġconvicted,1,Ġconvicted,,accept
+transitive,trans,criticize,criticized,criticized,A proposal can be criticized by a reviewer without a particle; head.,1,4.0,4.0,3.63,head,4.29,head,1,Ġcriticized,1,Ġcriticized,,accept
+transitive,trans,deliver,delivered,delivered,A package can be delivered by a courier without an obligatory destination phrase; head.,1,4.62,4.62,4.55,head,4.99,head,1,Ġdelivered,1,Ġdelivered,,accept
+transitive,trans,demolish,demolished,demolished,A building can be demolished by a contractor without an inchoative alternation; head.,1,3.52,3.52,3.18,head,3.75,head,1,Ġdemolished,1,Ġdemolished,,accept
+transitive,trans,deny,denied,denied,A request can be denied by a dean without a particle; head.,1,4.43,4.43,4.34,head,4.8,head,1,Ġdenied,1,Ġdenied,,accept
+transitive,trans,depict,depicted,depicted,A scene can be depicted by an artist without a particle; head.,1,3.77,3.77,3.41,head,4.19,head,1,Ġdepicted,1,Ġdepicted,,accept
+transitive,trans,describe,described,described,A scene can be described by a witness without a particle; head.,1,5.0,5.0,4.56,head,5.25,head,1,Ġdescribed,1,Ġdescribed,,accept
+transitive,trans,design,designed,designed,A bridge can be designed by an engineer in an eventive passive; head.,1,4.96,4.96,5.17,head,5.43,head,1,Ġdesigned,1,Ġdesigned,,accept
+transitive,trans,destroy,destroyed,destroyed,A monument can be destroyed by an invader without an ordinary inchoative alternation; head.,1,4.61,4.61,4.52,head,4.96,head,1,Ġdestroyed,1,Ġdestroyed,,accept
+transitive,trans,detect,detected,detected,An error can be detected by a technician without a particle; head.,1,4.06,4.06,4.05,head,4.44,head,1,Ġdetected,1,Ġdetected,,accept
+transitive,trans,diagnose,diagnosed,diagnosed,A disease can be diagnosed by a physician without an obligatory complement; head.,1,4.05,4.05,3.41,head,4.22,head,1,Ġdiagnosed,1,Ġdiagnosed,,accept
+transitive,trans,dismiss,dismissed,dismissed,An appeal can be dismissed by a judge without a particle; head.,1,4.2,4.2,3.85,head,4.42,head,1,Ġdismissed,1,Ġdismissed,,accept
+transitive,trans,donate,donated,donated,A painting can be donated by a collector without an obligatory recipient phrase; head.,1,4.06,4.06,4.04,head,4.44,head,1,Ġdonated,1,Ġdonated,,accept
+transitive,trans,elect,elected,elected,A chairperson can be elected by the members in an eventive passive; head.,1,4.63,4.63,4.03,head,4.75,head,1,Ġelected,1,Ġelected,,accept
+transitive,trans,enact,enacted,enacted,A law can be enacted by legislators without a particle; head.,1,3.75,3.75,3.43,head,4.0,head,1,Ġenacted,1,Ġenacted,,accept
+transitive,trans,enforce,enforced,enforced,A rule can be enforced by an official without a particle; head.,1,3.79,3.79,3.96,head,4.3,head,1,Ġenforced,1,Ġenforced,,accept
+transitive,trans,evaluate,evaluated,evaluated,A proposal can be evaluated by an assessor without a particle; head.,1,3.83,3.83,4.01,head,4.36,head,1,Ġevaluated,1,Ġevaluated,,accept
+transitive,trans,examine,examined,examined,A patient can be examined by a doctor without a particle; head.,1,4.1,4.1,4.18,head,4.59,head,1,Ġexamined,1,Ġexamined,,accept
+transitive,trans,execute,executed,executed,An order can be executed by an officer in an eventive passive; head.,1,4.27,4.27,3.95,head,4.51,head,1,Ġexecuted,1,Ġexecuted,,accept
+transitive,trans,fabricate,fabricated,fabricated,A document can be fabricated by a forger without a particle; head.,1,3.51,3.51,2.89,head,3.68,head,1,Ġfabricated,1,Ġfabricated,,accept
+transitive,trans,finance,financed,financed,A campaign can be financed by a donor without a particle; head.,1,3.69,3.69,4.65,head,4.85,head,1,Ġfinanced,1,Ġfinanced,,accept
+transitive,trans,fine,fined,fined,A driver can be fined by an officer without an obligatory amount phrase; head.,1,3.7,3.7,5.23,head,5.26,head,1,Ġfined,1,Ġfined,,accept
+transitive,trans,greet,greeted,greeted,A visitor can be greeted by a host without a particle; head.,1,3.66,3.66,3.73,head,4.21,head,1,Ġgreeted,1,Ġgreeted,,accept
+transitive,trans,identify,identified,identified,A suspect can be identified by a witness without an obligatory as phrase; head.,1,4.63,4.63,4.56,head,4.98,head,1,Ġidentified,1,Ġidentified,,accept
+transitive,trans,manufacture,manufactured,manufactured,An instrument can be manufactured by a craftsman in an eventive passive; head.,1,4.13,4.13,3.98,head,4.79,head,1,Ġmanufactured,1,Ġmanufactured,,accept
+transitive,trans,publish,published,published,A novel can be published by a publisher without a particle; head.,1,5.07,5.07,4.1,head,5.19,head,1,Ġpublished,1,Ġpublished,,accept
+intransitive,intrans,insist,insisted,insisted,Noun targets require on or upon and bare noun passives fail; head.,1,4.06,4.06,4.03,head,4.49,head,1,Ġinsisted,1,Ġinsisted,,accept
+intransitive,intrans,rely,relied,relied,Targets require on or upon and bare passives fail; head.,1,3.82,3.82,4.29,head,4.59,head,1,Ġrelied,1,Ġrelied,,accept
+intransitive,intrans,abound,abounded,abounded,Plentiful existence takes no direct object and forbids a bare passive; tail.,1,2.41,2.41,3.27,tail,3.47,tail,2,Ġab|ounded,2,Ġab|ounded,,accept
+intransitive,intrans,ache,ached,ached,Pain takes no ordinary direct object and forbids a bare passive; tail.,1,2.41,2.41,3.43,tail,3.83,near_head,2,Ġac|hed,2,Ġac|hed,,accept
+intransitive,intrans,accede,acceded,acceded,Requests or offices require to and bare passives fail; tail.,1,2.58,2.58,2.5,tail,2.92,tail,2,Ġacc|eded,2,Ġacc|eded,,accept
+intransitive,intrans,acquiesce,acquiesced,acquiesced,Targets require in or to and bare passives fail; tail.,1,2.42,2.42,2.48,tail,2.84,tail,3,Ġacqu|ies|ced,3,Ġacqu|ies|ced,,accept
+intransitive,intrans,assent,assented,assented,Proposals require to and bare passives fail; xtail.,1,2.11,2.11,3.03,xtail,3.1,xtail,2,Ġass|ented,2,Ġass|ented,,accept
+intransitive,intrans,bicker,bickered,bickered,Topics require about or over and bare passives fail; xtail.,1,1.74,1.74,2.56,xtail,3.17,xtail,2,Ġbic|kered,2,Ġbic|kered,,accept
+intransitive,intrans,cavort,cavorted,cavorted,Lively movement takes no ordinary direct object or bare passive; xtail.,1,1.36,1.36,1.72,xtail,1.88,xtail,2,Ġcav|orted,2,Ġcav|orted,,accept
+intransitive,intrans,cohabit,cohabited,cohabited,Partners require with and bare passives fail; xtail.,1,1.63,1.63,1.98,xtail,2.55,xtail,3,Ġcoh|ab|ited,3,Ġcoh|ab|ited,,accept
+intransitive,intrans,convalesce,convalesced,convalesced,Recovery from illness takes no direct object or bare passive; xtail.,1,1.35,1.35,1.71,xtail,2.34,xtail,4,Ġcon|val|es|ced,4,Ġcon|val|es|ced,,accept
+intransitive,intrans,dally,dallied,dallied,Playful lingering takes no ordinary direct object or bare passive; xtail.,1,1.71,1.71,2.78,xtail,2.88,xtail,3,Ġd|all|ied,3,Ġd|all|ied,,accept
+intransitive,intrans,dissent,dissented,dissented,Decisions require from and bare passives fail; tail.,1,2.56,2.56,3.56,tail,3.76,near_head,2,Ġdiss|ented,2,Ġdiss|ented,,accept
+intransitive,intrans,elope,eloped,eloped,Running away to marry takes no direct object or bare passive; tail.,1,2.52,2.52,2.5,tail,2.91,tail,2,Ġel|oped,2,Ġel|oped,,accept
+intransitive,intrans,encroach,encroached,encroached,Affected domains require on or upon and bare passives fail; tail.,1,2.43,2.43,2.49,tail,3.12,tail,3,Ġenc|ro|ached,3,Ġenc|ro|ached,,accept
+intransitive,intrans,equivocate,equivocated,equivocated,Evasive speech takes no ordinary noun object or bare passive; xtail.,1,1.43,1.43,1.72,xtail,2.12,xtail,2,Ġequiv|ocated,2,Ġequiv|ocated,,accept
+intransitive,intrans,flinch,flinched,flinched,Startled recoiling takes no direct object or bare passive; tail.,1,2.52,2.52,2.92,tail,3.19,tail,2,Ġfl|inched,2,Ġfl|inched,,accept
+intransitive,intrans,fraternize,fraternized,fraternized,Associates require with and bare passives fail; xtail.,1,1.51,1.51,1.77,xtail,2.19,xtail,3,Ġfr|atern|ized,3,Ġfr|atern|ized,,accept
+intransitive,intrans,frolic,frolicked,frolicked,Playful activity takes no ordinary direct object or bare passive; xtail.,1,1.69,1.69,2.68,xtail,2.99,xtail,3,Ġfro|lick|ed,3,Ġfro|lick|ed,,accept
+intransitive,intrans,grovel,groveled,groveled,Subservient behavior takes no ordinary direct object or bare passive; xtail.,1,1.23,1.23,2.28,xtail,2.73,xtail,3,Ġgro|vel|ed,3,Ġgro|vel|ed,,accept
+intransitive,intrans,hobnob,hobnobbed,hobnobbed,Companions require with and bare passives fail; xtail.,1,1.28,1.28,1.82,xtail,1.93,xtail,3,Ġhob|nob|bed,3,Ġhob|nob|bed,,accept
+intransitive,intrans,impinge,impinged,impinged,Affected targets require on or upon and bare passives fail; xtail.,1,1.85,1.85,2.31,xtail,2.69,xtail,3,Ġimp|ing|ed,3,Ġimp|ing|ed,,accept
+intransitive,intrans,intercede,interceded,interceded,Other participants require prepositions and bare passives fail; xtail.,1,2.08,2.08,2.56,xtail,2.79,xtail,3,Ġinter|ced|ed,3,Ġinter|ced|ed,,accept
+intransitive,intrans,inveigh,inveighed,inveighed,Targets require against and bare passives fail; xtail.,1,1.43,1.43,1.38,xtail,1.91,xtail,3,Ġin|ve|ighed,3,Ġin|ve|ighed,,accept
+intransitive,intrans,loiter,loitered,loitered,Idle lingering takes no ordinary direct object or bare passive; xtail.,1,1.72,1.72,2.38,xtail,2.93,xtail,3,Ġlo|ite|red,3,Ġlo|ite|red,,accept
+intransitive,intrans,luxuriate,luxuriated,luxuriated,Enjoyment targets require in and bare passives fail; xtail.,1,1.36,1.36,2.09,xtail,2.31,xtail,3,Ġlux|ur|iated,3,Ġlux|ur|iated,,accept
+intransitive,intrans,menstruate,menstruated,menstruated,Menstrual cycling takes no ordinary direct object or bare passive; xtail.,1,1.44,1.44,1.87,xtail,2.54,xtail,2,Ġmenstru|ated,2,Ġmenstru|ated,,accept
+intransitive,intrans,mosey,moseyed,moseyed,Leisurely movement takes no ordinary direct object or bare passive; xtail.,1,1.28,1.28,2.18,xtail,2.23,xtail,4,Ġm|ose|y|ed,4,Ġm|ose|y|ed,,accept
+intransitive,intrans,overreact,overreacted,overreacted,Reaction targets require to and bare passives fail; tail.,1,2.69,2.69,2.82,tail,3.39,tail,3,Ġover|react|ed,3,Ġover|react|ed,,accept
+intransitive,intrans,pontificate,pontificated,pontificated,Topics require about or on and bare passives fail; xtail.,1,1.32,1.32,2.51,xtail,2.71,xtail,3,Ġpont|ific|ated,3,Ġpont|ific|ated,,accept
+intransitive,intrans,prevaricate,prevaricated,prevaricated,Evasive speaking takes no ordinary direct object or bare passive; xtail.,1,1.45,1.45,1.58,xtail,1.97,xtail,3,Ġprev|ar|icated,3,Ġprev|ar|icated,,accept
+intransitive,intrans,pulsate,pulsated,pulsated,Rhythmic throbbing lacks an ordinary causative counterpart and bare passive; xtail.,1,1.38,1.38,1.81,xtail,2.98,xtail,2,Ġpuls|ated,2,Ġpuls|ated,,accept
+intransitive,intrans,reemerge,reemerged,reemerged,Reappearing takes no direct object and forbids a bare passive; xtail.,1,2.02,2.02,1.89,xtail,2.4,xtail,3,Ġre|emerg|ed,3,Ġre|emerg|ed,,accept
+intransitive,intrans,reoccur,reoccurred,reoccurred,Happening again takes no direct object and forbids a bare passive; xtail.,1,1.28,1.28,1.88,xtail,2.62,xtail,3,Ġre|occur|red,3,Ġre|occur|red,,accept
+intransitive,intrans,relent,relented,relented,Giving in takes no ordinary direct object or bare passive; tail.,1,2.71,2.71,2.52,tail,3.01,tail,2,Ġrel|ented,2,Ġrel|ented,,accept
+intransitive,intrans,saunter,sauntered,sauntered,Leisurely walking takes no ordinary direct object or bare passive; xtail.,1,2.2,2.2,2.23,xtail,2.68,xtail,3,Ġsa|un|tered,3,Ġsa|un|tered,,accept
+intransitive,intrans,skulk,skulked,skulked,Furtive movement takes no ordinary direct object or bare passive; xtail.,1,1.42,1.42,1.89,xtail,2.48,xtail,3,Ġsk|ul|ked,3,Ġsk|ul|ked,,accept
+intransitive,intrans,sojourn,sojourned,sojourned,Temporary residence takes no direct object or bare passive; xtail.,1,1.57,1.57,2.77,xtail,2.87,xtail,3,Ġso|jour|ned,3,Ġso|jour|ned,,accept
+intransitive,intrans,tamper,tampered,tampered,Affected objects require with and bare passives fail; tail.,1,2.95,2.95,2.89,tail,3.51,near_head,2,Ġtam|pered,2,Ġtam|pered,,accept
+intransitive,intrans,tarry,tarried,tarried,Lingering takes no direct object and tarried has no ordinary adjectival reading; xtail.,1,1.55,1.55,2.43,xtail,2.53,xtail,2,Ġtar|ried,2,Ġtar|ried,,accept
+intransitive,intrans,throb,throbbed,throbbed,Rhythmic beating lacks an ordinary causative counterpart and bare passive; xtail.,1,1.91,1.91,2.68,xtail,3.3,xtail,3,Ġthro|b|bed,3,Ġthro|b|bed,,accept
+intransitive,intrans,tremble,trembled,trembled,Involuntary shaking lacks an ordinary causative counterpart and bare passive; tail.,1,2.55,2.55,3.04,tail,3.56,near_head,3,Ġtre|mb|led,3,Ġtre|mb|led,,accept
+intransitive,intrans,waddle,waddled,waddled,Swaying locomotion takes no ordinary direct object or bare passive; xtail.,1,2.1,2.1,2.58,xtail,2.89,xtail,3,Ġw|add|led,3,Ġw|add|led,,accept
+intransitive,intrans,waver,wavered,wavered,Indecision or unsteady movement takes no direct object or bare passive; tail.,1,2.67,2.67,2.75,tail,3.26,tail,2,Ġwave|red,2,Ġwave|red,,accept
+intransitive,intrans,yearn,yearned,yearned,Desired objects require for and bare passives fail; tail.,1,2.58,2.58,2.97,tail,3.54,near_head,2,Ġyear|ned,2,Ġyear|ned,,accept
+intransitive,intrans,tiptoe,tiptoed,tiptoed,Cautious movement takes no ordinary direct object or bare passive; xtail.,1,2.03,2.03,2.64,xtail,2.95,xtail,4,Ġt|ipt|o|ed,4,Ġt|ipt|o|ed,,accept
+intransitive,intrans,cringe,cringed,cringed,Recoiling takes no ordinary direct object and cringed lacks the adjective reading of cringe; tail.,1,2.57,2.57,3.54,tail,3.65,near_head,3,Ġc|ring|ed,3,Ġc|ring|ed,,accept
+head_multi,trans,abduct,abducted,abducted,A child can be abducted by a kidnapper without a particle; head and 3 tokens.,1,3.56,3.56,2.74,head,3.67,head,3,Ġab|duct|ed,3,Ġab|duct|ed,,accept
+head_multi,trans,annex,annexed,annexed,A territory can be annexed by an invader without a particle; head and 2 tokens.,1,3.5,3.5,3.5,head,3.85,head,2,Ġannex|ed,2,Ġannex|ed,,accept
+head_multi,trans,authorise,authorised,authorised,A payment can be authorised by a director without a particle; head and 2 tokens.,1,3.61,3.61,2.79,head,3.71,head,2,Ġauthor|ised,2,Ġauthor|ised,,accept
+head_multi,trans,bomb,bombed,bombed,A bridge can be bombed by pilots without a particle; head and 2 tokens.,1,3.62,3.62,4.6,head,4.85,head,2,Ġbom|bed,2,Ġbom|bed,,accept
+head_multi,trans,bully,bullied,bullied,A pupil can be bullied by a classmate without a particle; head and 2 tokens.,1,3.69,3.69,3.87,head,4.39,head,2,Ġbull|ied,2,Ġbull|ied,,accept
+head_multi,trans,engrave,engraved,engraved,A plaque can be engraved by a craftsman without an obligatory with phrase; head and 2 tokens.,1,3.52,3.52,2.37,head,3.75,head,2,Ġengra|ved,2,Ġengra|ved,,accept
+head_multi,trans,fool,fooled,fooled,A customer can be fooled by a swindler without a particle; head and 2 tokens.,1,3.6,3.6,4.29,head,4.52,head,2,Ġfool|ed,2,Ġfool|ed,,accept
+head_multi,trans,harass,harassed,harassed,A witness can be harassed by an investigator without a particle; head and 2 tokens.,1,3.55,3.55,3.28,head,3.92,head,2,Ġharass|ed,2,Ġharass|ed,,accept
+head_multi,trans,honour,honoured,honoured,A veteran can be honoured by a mayor in a ceremonial event; head and 2 tokens.,1,3.7,3.7,4.37,head,4.53,head,2,Ġhon|oured,2,Ġhon|oured,,accept
+head_multi,trans,insult,insulted,insulted,A visitor can be insulted by a host without a particle; head and 2 tokens.,1,3.52,3.52,3.99,head,4.34,head,2,Ġinsult|ed,2,Ġinsult|ed,,accept
+head_multi,trans,jail,jailed,jailed,A defendant can be jailed by a judge without a particle; head and 2 tokens.,1,3.59,3.59,4.62,head,4.68,head,2,Ġj|ailed,2,Ġj|ailed,,accept
+head_multi,trans,master,mastered,mastered,A technique can be mastered by a student without a particle; head and 2 tokens.,1,3.57,3.57,4.93,head,5.06,head,2,Ġmas|tered,2,Ġmas|tered,,accept
+head_multi,trans,pressure,pressured,pressured,A witness can be pressured by a prosecutor without an obligatory into phrase; head and 2 tokens.,1,3.5,3.5,5.01,head,5.06,head,2,Ġpress|ured,2,Ġpress|ured,,accept
+head_multi,trans,renovate,renovated,renovated,A house can be renovated by builders without an ordinary inchoative alternation; head and 2 tokens.,1,3.56,3.56,3.05,head,3.76,head,2,Ġrenov|ated,2,Ġrenov|ated,,accept
+head_multi,trans,rig,rigged,rigged,An election can be rigged by officials without a particle; head and 2 tokens.,1,3.63,3.63,3.86,head,4.2,head,2,Ġrig|ged,2,Ġrig|ged,,accept
+head_multi,trans,sack,sacked,sacked,A manager can be sacked by an owner without a particle; head and 2 tokens.,1,3.73,3.73,3.91,head,4.27,head,2,Ġs|acked,2,Ġs|acked,,accept
+head_multi,trans,scrap,scrapped,scrapped,A proposal can be scrapped by a committee without a particle; head and 2 tokens.,1,3.51,3.51,3.9,head,4.17,head,2,Ġsc|rapped,2,Ġsc|rapped,,accept
+head_multi,trans,shave,shaved,shaved,A beard can be shaved by a barber without an obligatory off particle; head and 2 tokens.,1,3.66,3.66,3.83,head,4.21,head,2,Ġsh|aved,2,Ġsh|aved,,accept
+head_multi,trans,slaughter,slaughtered,slaughtered,An animal can be slaughtered by a butcher without a particle; head and 3 tokens.,1,3.53,3.53,3.84,head,4.06,head,3,Ġsl|aught|ered,3,Ġsl|aught|ered,,accept
+head_multi,trans,tape,taped,taped,An interview can be taped by a reporter without a particle; head and 2 tokens.,1,3.5,3.5,4.44,head,4.59,head,2,Ġt|aped,2,Ġt|aped,,accept
+head_multi,trans,televise,televised,televised,A match can be televised by a broadcaster without a particle; head and 2 tokens.,1,3.53,3.53,2.22,head,3.57,head,2,Ġtele|vised,2,Ġtele|vised,,accept
+tail_single,trans,abbreviate,abbreviated,abbreviated,A title can be abbreviated by an editor without a particle; tail and 1 token.,1,3.19,3.19,2.23,tail,3.26,tail,1,Ġabbreviated,1,Ġabbreviated,,accept
+tail_single,trans,calibrate,calibrated,calibrated,A thermometer can be calibrated by a technician without a particle; tail and 1 token.,1,3.17,3.17,2.79,tail,3.38,tail,1,Ġcalibrated,1,Ġcalibrated,,accept
+tail_single,trans,transcribe,transcribed,transcribed,A recording can be transcribed by a secretary without a particle; tail and 1 token.,1,3.16,3.16,2.69,tail,3.38,tail,1,Ġtranscribed,1,Ġtranscribed,,accept
+tail_single,trans,recite,recited,recited,A poem can be recited by a pupil without a particle; tail and 1 token.,1,3.14,3.14,3.28,tail,3.7,near_head,1,Ġrecited,1,Ġrecited,,accept
+tail_single,trans,infer,inferred,inferred,A conclusion can be inferred by a researcher without an obligatory from phrase; tail and 1 token.,1,3.12,3.12,3.16,tail,3.52,near_head,1,Ġinferred,1,Ġinferred,,accept
+tail_single,trans,overrule,overruled,overruled,An objection can be overruled by a judge without a particle; tail and 1 token.,1,3.12,3.12,2.73,tail,3.33,tail,1,Ġoverruled,1,Ġoverruled,,accept
+tail_single,trans,signal,signaled,signaled,A retreat can be signaled by a commander without a particle; tail and 1 token.,1,3.1,3.1,4.62,tail,4.84,near_head,1,Ġsignaled,1,Ġsignaled,,accept
+tail_single,trans,hypothesize,hypothesized,hypothesized,A mechanism can be hypothesized by a scientist without a particle; tail and 1 token.,1,3.02,3.02,2.5,tail,3.18,tail,1,Ġhypothesized,1,Ġhypothesized,,accept
+tail_single,trans,format,formatted,formatted,A manuscript can be formatted by an editor without a particle; tail and 1 token.,1,3.01,3.01,4.47,tail,4.58,near_head,1,Ġformatted,1,Ġformatted,,accept
+tail_single,trans,expend,expended,expended,A budget can be expended by an administrator without an obligatory on phrase; tail and 1 token.,1,2.97,2.97,2.9,tail,3.33,tail,1,Ġexpended,1,Ġexpended,,accept
+tail_single,trans,quantify,quantified,quantified,A loss can be quantified by an accountant without a particle; tail and 1 token.,1,2.97,2.97,3.24,tail,3.52,near_head,1,Ġquantified,1,Ġquantified,,accept
+tail_single,trans,secrete,secreted,secreted,A document can be secreted by a courier in the concealment sense without a particle; tail and 1 token.,1,2.95,2.95,2.72,tail,3.27,tail,1,Ġsecreted,1,Ġsecreted,,accept
+tail_single,trans,deduce,deduced,deduced,A conclusion can be deduced by a detective without an obligatory from phrase; tail and 1 token.,1,2.94,2.94,2.97,tail,3.31,tail,1,Ġdeduced,1,Ġdeduced,,accept
+tail_single,trans,irradiate,irradiated,irradiated,A sample can be irradiated by a technician without a particle; tail and 1 token.,1,2.93,2.93,1.94,tail,3.02,tail,1,Ġirradiated,1,Ġirradiated,,accept
+tail_single,trans,corroborate,corroborated,corroborated,An account can be corroborated by a witness without a particle; tail and 1 token.,1,2.92,2.92,2.92,tail,3.36,tail,1,Ġcorroborated,1,Ġcorroborated,,accept
+tail_single,trans,dissect,dissected,dissected,A specimen can be dissected by a researcher without a particle; tail and 1 token.,1,2.91,2.91,2.9,tail,3.36,tail,1,Ġdissected,1,Ġdissected,,accept
+tail_single,trans,elicit,elicited,elicited,A response can be elicited by an interviewer without an obligatory from phrase; tail and 1 token.,1,2.91,2.91,3.1,tail,3.45,tail,1,Ġelicited,1,Ġelicited,,accept
+tail_single,trans,encapsulate,encapsulated,encapsulated,A specimen can be encapsulated by a technician without an obligatory in phrase; tail and 1 token.,1,2.91,2.91,2.51,tail,3.25,tail,1,Ġencapsulated,1,Ġencapsulated,,accept
+tail_single,trans,probe,probed,probed,A wound can be probed by a surgeon without a particle; tail and 1 token.,1,2.88,2.88,3.99,tail,4.17,near_head,1,Ġprobed,1,Ġprobed,,accept
+tail_single,trans,sequence,sequenced,sequenced,A genome can be sequenced by a researcher without a particle; tail and 1 token.,1,2.87,2.87,4.35,tail,4.51,near_head,1,Ġsequenced,1,Ġsequenced,,accept
+tail_single,trans,append,appended,appended,A note can be appended by an editor without an obligatory to phrase; tail and 1 token.,1,2.84,2.84,2.64,tail,3.12,tail,1,Ġappended,1,Ġappended,,accept
+tail_single,trans,enumerate,enumerated,enumerated,The options can be enumerated by a clerk without a particle; tail and 1 token.,1,2.8,2.8,2.4,tail,3.05,tail,1,Ġenumerated,1,Ġenumerated,,accept
+tail_single,trans,postulate,postulated,postulated,A mechanism can be postulated by a scientist without a particle; tail and 1 token.,1,2.8,2.8,2.6,tail,3.17,tail,1,Ġpostulated,1,Ġpostulated,,accept
+tail_single,trans,visualize,visualized,visualized,A landscape can be visualized by an artist without a particle; tail and 1 token.,1,2.8,2.8,3.27,tail,3.5,near_head,1,Ġvisualized,1,Ġvisualized,,accept
+tail_single,trans,ascertain,ascertained,ascertained,A cause can be ascertained by an investigator without a particle; tail and 1 token.,1,2.79,2.79,3.29,tail,3.45,tail,1,Ġascertained,1,Ġascertained,,accept
+tail_single,trans,decode,decoded,decoded,A message can be decoded by an analyst without a particle; tail and 1 token.,1,2.78,2.78,3.02,tail,3.46,tail,1,Ġdecoded,1,Ġdecoded,,accept
+tail_single,trans,rinse,rinsed,rinsed,A plate can be rinsed by a dishwasher without an obligatory out particle; tail and 1 token.,1,2.77,2.77,3.48,tail,3.63,near_head,1,Ġrinsed,1,Ġrinsed,,accept
+tail_single,trans,subtract,subtracted,subtracted,A fee can be subtracted by a clerk without an obligatory from phrase; tail and 1 token.,1,2.71,2.71,3.1,tail,3.41,tail,1,Ġsubtracted,1,Ġsubtracted,,accept
+tail_single,trans,image,imaged,imaged,An organ can be imaged by a radiologist without a particle; tail and 1 token.,1,2.67,2.67,4.94,tail,5.18,near_head,1,Ġimaged,1,Ġimaged,,accept
+tail_single,trans,immobilize,immobilized,immobilized,A limb can be immobilized by a clinician without a particle; tail and 1 token.,1,2.67,2.67,2.35,tail,2.91,tail,1,Ġimmobilized,1,Ġimmobilized,,accept
+tail_single,trans,excise,excised,excised,A tumor can be excised by a surgeon without an obligatory from phrase; tail and 1 token.,1,2.58,2.58,3.26,tail,3.37,tail,1,Ġexcised,1,Ġexcised,,accept
+tail_single,trans,randomise,randomised,randomised,An item order can be randomised by a researcher without a particle; tail and 1 token.,1,2.58,2.58,1.11,tail,2.59,tail,1,Ġrandomised,1,Ġrandomised,,accept
+tail_single,trans,inoculate,inoculated,inoculated,A patient can be inoculated by a nurse without an obligatory against phrase; tail and 1 token.,1,2.57,2.57,2.26,tail,2.81,tail,1,Ġinoculated,1,Ġinoculated,,accept
+tail_single,trans,elucidate,elucidated,elucidated,A mechanism can be elucidated by a researcher without a particle; tail and 1 token.,1,2.5,2.5,2.7,tail,3.04,tail,1,Ġelucidated,1,Ġelucidated,,accept
+tail_single,trans,immunize,immunized,immunized,A child can be immunized by a physician without an obligatory against phrase; tail and 1 token.,1,2.48,2.48,2.06,tail,2.7,tail,1,Ġimmunized,1,Ġimmunized,,accept
+tail_single,trans,proffer,proffered,proffered,A document can be proffered by a lawyer without an obligatory to phrase; tail and 1 token.,1,2.42,2.42,2.3,tail,2.77,tail,1,Ġproffered,1,Ġproffered,,accept
+tail_single,trans,rewrite,rewrote,rewritten,A manuscript can be rewritten by an author without a particle; tail and 1 token.,1,3.19,2.75,3.47,tail,5.37,near_head,1,Ġrewritten,2,Ġre|wrote,not_tail_xtail_single_token,reject
+tail_single,trans,centrifuge,centrifuged,centrifuged,A sample can be centrifuged by a technician without a particle; xtail and 1 token.,1,2.08,2.08,2.81,xtail,3.02,xtail,1,Ġcentrifuged,1,Ġcentrifuged,,accept
+tail_single,trans,transfect,transfected,transfected,A cell can be transfected by a researcher without an obligatory with phrase; xtail and 1 token.,1,2.16,2.16,0.0,xtail,2.16,xtail,1,Ġtransfected,1,Ġtransfected,,accept
+tail_single,trans,pretreat,pretreated,pretreated,A sample can be pretreated by a technician without an obligatory with phrase; xtail and 1 token.,1,1.97,1.97,1.16,xtail,2.03,xtail,1,Ġpretreated,1,Ġpretreated,,accept
+tail_single,intrans,arise,arose,arisen,Coming into existence takes no direct object and arisen permits no bare passive; tail and 1 token.,1,3.2,3.73,3.93,tail,4.39,near_head,1,Ġarisen,1,Ġarose,,accept
+tail_single,intrans,consent,consented,consented,Proposals require to and bare passives fail; tail and 1 token.,1,3.12,3.12,4.36,tail,4.41,near_head,1,Ġconsented,1,Ġconsented,,accept
+tail_single,intrans,elapse,elapsed,elapsed,Passing time takes no direct object and elapsed permits no bare passive; tail and 1 token.,1,2.95,2.95,2.03,tail,3.03,tail,1,Ġelapsed,1,Ġelapsed,,accept
+tail_single,intrans,err,erred,erred,Making a mistake takes no direct object or bare passive; tail and 1 token.,1,2.81,2.81,3.39,tail,3.53,near_head,1,Ġerred,1,Ġerred,,accept
+tail_single,intrans,gaze,gazed,gazed,Viewed targets require at and bare passives fail; tail and 1 token.,1,2.83,2.83,3.7,tail,3.89,near_head,1,Ġgazed,1,Ġgazed,,accept
+tail_single,intrans,hesitate,hesitated,hesitated,Indecision takes no ordinary noun object or bare passive; tail and 1 token.,1,3.08,3.08,3.79,tail,3.92,near_head,1,Ġhesitated,1,Ġhesitated,,accept
+tail_single,intrans,kneel,knelt,knelt,Kneeling takes no ordinary direct object and knelt permits no standard bare passive; tail and 1 token.,1,2.8,2.8,3.24,tail,3.7,near_head,1,Ġknelt,1,Ġknelt,,accept
+tail_single,trans,grip,gripped,gripped,A handle can be gripped by a climber without a particle; tail and 1 token.,1,3.14,3.14,4.11,tail,4.29,near_head,1,Ġgripped,1,Ġgripped,,accept
+tail_single,trans,grasp,grasped,grasped,A rope can be grasped by a sailor without a particle; tail and 1 token.,1,3.02,3.02,3.97,tail,4.09,near_head,1,Ġgrasped,1,Ġgrasped,,accept
+tail_single,trans,mince,minced,minced,Meat can be minced by a cook without a particle or causative alternation; tail and 1 token.,1,3.0,3.0,3.02,tail,3.36,tail,1,Ġminced,1,Ġminced,,accept

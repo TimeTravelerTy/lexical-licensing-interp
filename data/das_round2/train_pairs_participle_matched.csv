@@ -1,0 +1,16 @@
+tok,trans,intrans,trans_part_zipf,intrans_part_zipf,trans_sum_zipf,intrans_sum_zipf
+multi,pardon,faint,3.11,3.12,3.95,3.94
+multi,taunt,relapse,2.74,2.71,3.53,3.52
+multi,hoard,tremble,2.5,2.55,3.57,3.56
+multi,assassinate,perish,3.39,3.3,3.64,3.65
+multi,obey,defect,3.02,3.03,3.97,4.08
+multi,sabotage,loom,2.92,2.8,3.78,3.81
+multi,lynch,sprint,2.83,2.69,4.02,4.07
+multi,worship,reign,3.28,3.15,4.39,4.28
+multi,solicit,sneeze,2.93,2.68,3.53,3.56
+single,visualize,err,2.8,2.81,3.5,3.53
+single,underestimate,persist,3.39,3.34,3.93,3.91
+single,withhold,ensue,3.36,3.34,3.82,3.88
+single,compute,reside,3.31,3.33,4.22,4.15
+single,copyright,arise,3.19,3.2,4.3,4.39
+single,rinse,kneel,2.77,2.8,3.63,3.7

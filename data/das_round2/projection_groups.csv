@@ -1,0 +1,226 @@
+lemma,source,class,prep_subtype,prep,decided_by,rule_class,inventory_obligatory_p,inventory_p_heuristic,inventory_frames,codex_label,codex_example,note,M_she,bad_side_high
+care,new,prep_object,pseudo_passive_ok,for,round-2 classification,prep_object,False,prep_object,intr trans intr_pp:about intr_pp:for,prep_object,The child was cared for.,,-3.9140514934380537,False
+react,new,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,prep_object,intr intr_pp:to intr_pp:with intr_pp:in intr_pp:by intr_pp:against intr_pp:after intr_pp:on,prep_object,The announcement was reacted to angrily.,,-3.7431860269959216,False
+rely,new,prep_object,pseudo_passive_ok,on,round-2 classification,prep_object,True,prep_object,intr_pp:on,prep_object,The guide was relied on.,,-5.240052803064727,False
+stare,new,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,prep_object,intr intr_pp:at intr_pp:into intr_pp:in intr_pp:through intr_pp:for intr_pp:after intr_pp:with intr_pp:across intr_pp:from,prep_object,The stranger was stared at.,,-2.8713458673047474,False
+step,new,prep_object,pseudo_passive_ok,on,round-2 classification,prep_object,False,prep_object,intr trans intr_pp:to intr_pp:into intr_pp:on intr_pp:in intr_pp:onto intr_pp:off intr_pp:by intr_pp:over intr_pp:through intr_pp:from intr_pp:toward intr_pp:around intr_pp:across intr_pp:behind intr_particle trans_particle,prep_object,The flower was stepped on.,,-3.6283524064302295,False
+stumble,new,prep_object,pseudo_passive_ok,upon,round-2 classification,prep_object,False,prep_object,intr intr_pp:to intr_pp:into intr_pp:across intr_pp:on intr_pp:onto intr_pp:through intr_pp:over intr_pp:in intr_pp:toward,prep_object,The solution was stumbled upon by accident.,,-3.2712771299331354,False
+subscribe,new,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,not_in_inventory,,transitive_use,She subscribed me to the newsletter.,codex flags a transitive use: She subscribed me to the newsletter.,-2.3893240291070565,False
+ache,new,plain,,,round-2 classification,plain,False,prep_object,intr_pp:for intr intr_pp:from intr_pp:with intr_pp:in,plain,,,-3.393179004538858,False
+allude,new,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The scandal was alluded to.,,-3.7502272019327867,False
+arise,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:from intr_pp:in intr_pp:at intr_pp:for intr_pp:about intr_pp:on intr_pp:after intr_pp:under intr_pp:over,plain,,,-3.1530852774036484,False
+chat,new,prep_object,pseudo_passive_ok,with,argument-PP rule,prep_object,False,prep_object,intr intr_pp:with intr_pp:about intr_pp:for intr_pp:on intr_pp:in intr_pp:to,prep_object,The wedding was chatted about over lunch.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-2.7006615812783004,False
+coincide,new,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,prep_object,intr_pp:with intr,plain,,,-1.7892440112037327,False
+collaborate,new,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,prep_object,intr intr_pp:with intr_pp:on,prep_object,The project was collaborated on by three labs.,,-4.347289542541653,False
+comply,new,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The rules were complied with.,,-4.681302850327308,False
+converse,new,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,prep_object,intr intr_pp:with intr_pp:about intr_pp:in,plain,,,-4.204633558553303,False
+cringe,new,plain,,,round-2 classification,plain,False,plain,intr intr_pp:at,plain,,,-2.1381058944349967,False
+defect,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-3.6590381084485486,False
+depend,new,prep_object,pseudo_passive_ok,on,round-2 classification,prep_object,True,prep_object,intr_pp:on,prep_object,The nurse was depended on.,,-5.175452903180613,False
+differ,new,prep_object,pseudo_passive_bad,from,argument-PP rule,prep_object,False,prep_object,intr intr_pp:about intr_pp:from intr_pp:on intr_pp:in intr_pp:with intr_pp:by intr_pp:for intr_pp:across,plain,,,-3.5208197935131023,False
+disagree,new,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,prep_object,intr intr_pp:about intr_pp:on intr_pp:with intr_pp:in,prep_object,The conclusion was disagreed with by both reviewers.,,-4.810880399336633,False
+dissent,new,prep_object,pseudo_passive_ok,from,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The decision was dissented from by two judges.,,-3.9270767599843874,False
+dwell,new,prep_object,pseudo_passive_ok,on,round-2 classification,prep_object,False,prep_object,intr intr_pp:on intr_pp:at intr_pp:in intr_pp:with,prep_object,The mistake was dwelt on.,,-3.1922795690380257,False
+ensue,new,plain,,,round-2 classification,plain,False,plain,intr,plain,,,0.015424214401816738,False
+err,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-3.822632016963993,False
+excel,new,prep_object,pseudo_passive_ok,at,argument-PP rule,prep_object,False,plain,intr intr_pp:in intr_pp:at,plain,,codex: pseudo-passive only marginal; adopted,-1.2311584118512666,False
+faint,new,plain,,,round-2 classification,plain,False,plain,intr intr_pp:from intr_pp:in,plain,,,-2.7646780251342022,False
+fart,new,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in,prep_object,The roommate was farted on as a prank.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-1.7388286584168322,False
+feud,new,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,prep_object,intr_pp:with intr,plain,,,-4.819278072818455,False
+frown,new,prep_object,pseudo_passive_ok,upon,round-2 classification,prep_object,False,plain,intr intr_pp:at intr_pp:on,prep_object,The practice was frowned upon.,,-2.581945106381041,False
+gaze,new,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,plain,intr intr_pp:at intr_pp:into intr_pp:across intr_pp:in intr_pp:through,prep_object,The painting was gazed at.,,-4.109820588878827,False
+glance,new,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,True,prep_object,intr_pp:at intr_pp:around intr_pp:toward intr_pp:in intr_pp:to intr_pp:through intr_pp:into intr_pp:from intr_pp:across intr_pp:over intr_pp:behind,prep_object,The report was glanced at.,,-3.1349235142387086,False
+hesitate,new,prep_object,pseudo_passive_bad,at/before/for/in/over,inventory: no bare intr frame (obligatory P),plain,True,prep_object,intr_pp:over intr_pp:for intr_pp:before intr_pp:in intr_pp:at,plain,,,-3.086367368466788,False
+intervene,new,prep_object,pseudo_passive_ok,in,argument-PP rule,prep_object,False,not_in_inventory,,plain,,codex: pseudo-passive only marginal; adopted,-3.713694530095853,False
+kneel,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to intr_pp:in intr_pp:on intr_pp:before intr_pp:at intr_pp:by,prep_object,The cushion was knelt on.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-3.8047164650055167,False
+limp,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to intr_pp:into,plain,,,-1.832973227447832,False
+loom,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:over intr_pp:in intr_pp:on intr_pp:for,prep_object,The seated woman was loomed over by three men.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-4.261563358052671,False
+malfunction,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-1.7145809004262003,False
+meditate,new,prep_object,pseudo_passive_ok,on,round-2 classification,prep_object,False,plain,intr_pp:on intr,prep_object,The verse was meditated on.,,-2.708249989936014,False
+peek,new,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,plain,intr intr_pp:at intr_pp:through intr_pp:into intr_pp:over intr_pp:in intr_pp:from intr_pp:around,prep_object,The answers were peeked at.,,-1.6951082845277936,False
+peer,new,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,plain,intr intr_pp:into intr_pp:at intr_pp:through intr_pp:over intr_pp:around intr_pp:from intr_pp:in,prep_object,The tiny print was peered at.,,-4.3920310576934325,False
+perish,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:of intr_pp:from intr_pp:in,plain,,,-3.9119831317010094,False
+persist,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:for intr_pp:with intr_pp:through intr_pp:into intr_pp:to,plain,,,-4.5038757578234945,False
+preside,new,prep_object,pseudo_passive_ok,over,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The meeting was presided over by the chair.,,-5.5882697175207445,False
+prevail,new,prep_object,pseudo_passive_ok,upon,round-2 classification,prep_object,False,prep_object,intr intr_pp:in intr_pp:over intr_pp:on intr_pp:at intr_pp:against,prep_object,The mayor was prevailed upon to resign.,,-4.362602819694157,False
+quarrel,new,prep_object,pseudo_passive_ok,with,argument-PP rule,prep_object,False,prep_object,intr_pp:with intr intr_pp:about,prep_object,The inheritance was quarreled over.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-4.9577284277226505,False
+rebel,new,prep_object,pseudo_passive_ok,against,round-2 classification,prep_object,False,prep_object,intr intr_pp:against,prep_object,The regime was rebelled against.,,-4.214840249536763,False
+recur,new,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in,plain,,,-2.344236450193952,False
+reign,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,codex: pseudo-passive only marginal; adopted,-3.46056441011866,False
+relapse,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-1.5210674876911476,False
+reside,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:at intr_pp:in intr_pp:on intr_pp:with,plain,,,-5.698966366613226,False
+resort,new,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,prep_object,intr_pp:to intr,prep_object,The tactic was resorted to.,,-5.069693351870346,False
+sneeze,new,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in intr_pp:at,prep_object,The food was sneezed on.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-1.043517920789096,False
+sprint,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to intr_pp:for intr_pp:across intr_pp:toward intr_pp:through,plain,,,-2.0982311879313995,False
+strive,new,prep_object,pseudo_passive_ok,for,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The goal was striven for by the whole team.,,-3.876565450982242,False
+succumb,new,prep_object,pseudo_passive_bad,to,argument-PP rule,prep_object,True,prep_object,intr_pp:to,plain,,,-5.3139870996120875,False
+tamper,new,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The car was tampered with.,,-3.9598257508749484,False
+tower,new,prep_object,pseudo_passive_ok,over,round-2 classification,prep_object,False,plain,intr intr_pp:over,prep_object,The child was towered over by the guard.,,-4.380334066827514,False
+tremble,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:from intr_pp:with intr_pp:in intr_pp:at intr_pp:on,plain,,,-2.9711790420738695,False
+triumph,new,prep_object,pseudo_passive_ok,over,argument-PP rule,prep_object,False,plain,intr trans intr_pp:over intr_pp:in,plain,,codex: pseudo-passive only marginal; adopted,-3.660116774139993,False
+yearn,new,prep_object,pseudo_passive_ok,for,round-2 classification,prep_object,True,prep_object,intr_pp:for,prep_object,The freedom was yearned for by generations.,,-4.1551717534078,False
+abound,new,prep_object,pseudo_passive_bad,in/with,inventory: no bare intr frame (obligatory P),plain,True,prep_object,intr_pp:with intr_pp:in,plain,,,-4.7842710457802795,False
+accede,new,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,True,prep_object,intr_pp:to,prep_object,The request was acceded to.,,-5.1276427019356765,False
+acquiesce,new,prep_object,pseudo_passive_ok,in,round-2 classification,prep_object,True,prep_object,intr_pp:to intr_pp:in,prep_object,The decision was acquiesced in.,,-4.854712904071086,False
+elope,new,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,not_in_inventory,,plain,,,-4.269358913989523,False
+encroach,new,prep_object,pseudo_passive_ok,upon,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The rights were encroached upon.,,-3.316993041222063,False
+flinch,new,plain,,,round-2 classification,plain,False,plain,intr intr_pp:at intr_pp:from,plain,,,-1.9746909105995936,False
+overreact,new,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The incident was overreacted to by the press.,,-3.77531870154242,False
+relent,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-2.7773872349080064,False
+waver,new,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in intr_pp:from intr_pp:on,plain,,,-2.658349617419133,False
+assent,new,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The proposal was assented to.,,-2.918354917135857,False
+bicker,new,prep_object,pseudo_passive_ok,with,argument-PP rule,prep_object,False,prep_object,intr_pp:with intr intr_pp:about,prep_object,The details were bickered over for hours.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-3.4463026250861235,False
+cavort,new,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-3.762432212459764,False
+convalesce,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-3.1311974720439877,False
+dally,new,prep_object,pseudo_passive_ok,with,inventory: no bare intr frame (obligatory P),plain,True,prep_object,intr_pp:with,plain,,codex: pseudo-passive only marginal; adopted,-3.7906843454168904,False
+equivocate,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-2.7172907495156653,False
+frolic,new,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-3.2002592975812734,False
+grovel,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-2.9717688095616226,False
+hobnob,new,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,not_in_inventory,,plain,,,-5.091436823380294,False
+intercede,new,prep_object,pseudo_passive_bad,for,argument-PP rule,prep_object,False,not_in_inventory,,plain,,,-4.284125975583408,False
+inveigh,new,prep_object,pseudo_passive_ok,against,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The policy was inveighed against.,,-4.329482253904157,False
+loiter,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-3.97313407990201,False
+luxuriate,new,prep_object,pseudo_passive_bad,in,argument-PP rule,prep_object,False,plain,intr intr_pp:in,plain,,,-4.155789453564386,False
+menstruate,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-2.1096961812231974,False
+mosey,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to,plain,,,-2.397458642382659,False
+pontificate,new,prep_object,pseudo_passive_ok,about,round-2 classification,prep_object,False,prep_object,intr_pp:about intr intr_pp:on,prep_object,The issue was pontificated about for hours.,,-2.9123321585267434,False
+prevaricate,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-2.0506335896177044,False
+pulsate,new,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-1.6179071963004144,False
+reoccur,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-1.3659692196691715,False
+skulk,new,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-2.4849689243683843,False
+sojourn,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-2.7174620033193566,False
+tarry,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-2.571863196334864,False
+throb,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:from intr_pp:with intr_pp:in,plain,,,-1.6605862247438066,False
+tiptoe,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to intr_pp:around,prep_object,The sensitive issue was tiptoed around.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-2.1880668983924383,False
+waddle,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to,plain,,,-1.812620034370768,False
+cohabit,new,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,not_in_inventory,,plain,,,-4.221269089517572,False
+fraternize,new,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,not_in_inventory,,plain,,,-3.6823598004900355,False
+impinge,new,prep_object,pseudo_passive_ok,upon,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The rights were impinged upon.,,-2.1045412572898394,False
+reemerge,new,plain,,,round-2 classification,plain,False,not_in_inventory,,plain,,,-3.700744292568755,False
+saunter,new,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to,plain,,,-3.4262900935530767,False
+abstain,original,prep_object,pseudo_passive_ok,from,argument-PP rule,prep_object,False,plain,intr intr_pp:from,plain,,codex: pseudo-passive only marginal; adopted,-4.605257928541073,False
+adhere,original,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,prep_object,intr_pp:to intr,prep_object,The schedule was adhered to.,,-3.0730678367057758,False
+apologize,original,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The mistake was apologized for.,,-3.9955451143682046,False
+appear,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:on intr_pp:at intr_pp:to intr_pp:before intr_pp:with intr_pp:from intr_pp:for intr_pp:after intr_pp:behind intr_pp:by intr_pp:under intr_pp:over intr_pp:around intr_pp:through intr_pp:near,plain,,,-5.144998161299492,False
+arrive,original,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,prep_object,intr intr_pp:at intr_pp:in intr_pp:on intr_pp:with intr_pp:from intr_pp:for intr_pp:by intr_pp:to intr_pp:after intr_pp:before,prep_object,The conclusion was arrived at.,,-4.718354914985899,False
+banter,original,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,prep_object,intr intr_pp:about,plain,,,-1.5248434685158907,False
+bargain,original,prep_object,pseudo_passive_ok,for,round-2 classification,prep_object,False,prep_object,intr_pp:with intr intr_pp:on intr_pp:for,transitive_use,She bargained the price down.,codex flags a transitive use: She bargained the price down.,-1.751590740373967,False
+bask,original,prep_object,pseudo_passive_bad,in,argument-PP rule,prep_object,False,plain,intr intr_pp:in,plain,,,-3.593023699642176,False
+belong,original,prep_object,pseudo_passive_bad,to,argument-PP rule,prep_object,True,prep_object,intr_pp:to intr_pp:in intr_pp:on intr_pp:with intr_pp:at,plain,,,-5.234213352189469,False
+bloom,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:with intr_pp:in intr_pp:on,transitive_use,She bloomed the spices in hot oil.,codex flags a transitive use: She bloomed the spices in hot oil.,-3.527301548215892,False
+blossom,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:with intr_pp:into intr_pp:in,plain,,,-4.173134202927783,False
+blush,original,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-1.6315939591505382,False
+brag,original,prep_object,pseudo_passive_ok,about,round-2 classification,prep_object,False,prep_object,intr intr_pp:to intr_pp:about intr_pp:on,prep_object,The achievement was bragged about.,,-3.160153519632574,False
+burgeon,original,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-2.9791149734069897,True
+bustle,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to intr_pp:with,transitive_use,The nurse bustled the visitors out of the room.,codex flags a transitive use: The nurse bustled the visitors out of the room.,-1.7363551015208272,False
+chuckle,original,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,prep_object,intr intr_pp:about intr_pp:at,prep_object,The joke was chuckled at.,,-2.4299313791967254,False
+clash,original,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,prep_object,intr_pp:with intr intr_pp:in,plain,,,-3.869130960957451,False
+coexist,original,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,prep_object,intr intr_pp:with,plain,,,-5.198282680671911,False
+collude,original,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,prep_object,intr intr_pp:with,plain,,,-4.328776547008488,False
+commiserate,original,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,prep_object,intr intr_pp:about intr_pp:with,prep_object,The defeated candidate was commiserated with.,codex: selected preposition; adopted,-3.247025334908505,False
+compete,original,prep_object,pseudo_passive_ok,with,argument-PP rule,prep_object,False,prep_object,intr_pp:with intr intr_pp:in intr_pp:for intr_pp:against intr_pp:on intr_pp:at,prep_object,The trophy was competed for by sixteen teams.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-3.992506069467592,False
+complain,original,prep_object,pseudo_passive_ok,about,round-2 classification,prep_object,False,prep_object,intr intr_pp:to intr_pp:about intr_pp:of intr_pp:in intr_pp:for intr_pp:on,prep_object,The noise was complained about.,,-3.2786681151414667,False
+concur,original,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,prep_object,intr intr_pp:on intr_pp:with intr_pp:in,prep_object,The amendment was concurred in by the Senate.,codex: selected preposition; adopted,-4.365256323525656,False
+conspire,original,prep_object,pseudo_passive_ok,against,round-2 classification,prep_object,False,prep_object,intr intr_pp:with intr_pp:against,prep_object,The king was conspired against.,,-4.610973249653574,False
+cooperate,original,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,prep_object,intr_pp:on intr_pp:in intr_pp:at intr intr_pp:with,plain,,,-5.183685301150174,True
+correspond,original,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,prep_object,intr ditrans_pp:with intr_pp:to intr_pp:with,plain,,,-5.809025149874986,False
+crackle,original,contaminated_bad,,,ordinary transitive use,contaminated_bad,False,prep_object,intr intr_pp:with,plain,,,-1.244463781408114,False
+creep,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to intr_pp:with intr_pp:into intr_pp:through intr_pp:across intr_pp:toward intr_pp:up intr_pp:over intr_pp:in,plain,,,-3.422847343549405,False
+dawn,original,plain,,,round-2 classification,plain,False,plain,intr intr_pp:on,plain,,,0.559389438539137,False
+decamp,original,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-3.903519888898027,False
+defecate,original,prep_object,pseudo_passive_ok,on,round-2 classification,prep_object,False,plain,intr intr_pp:on,transitive_use,The patient defecated a hard stool.,codex flags a transitive use: The patient defecated a hard stool.,-1.7041867617162598,False
+desist,original,prep_object,pseudo_passive_bad,from,argument-PP rule,prep_object,False,plain,intr intr_pp:from,plain,,,-4.274344631287048,False
+die,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:of intr_pp:from intr_pp:for intr_pp:after intr_pp:on intr_pp:at intr_pp:with intr_pp:by intr_pp:before intr_pp:to intr_pp:under intr_pp:along intr_pp:over,plain,,,-3.0312844640798478,False
+diverge,original,prep_object,pseudo_passive_bad,from,argument-PP rule,prep_object,False,plain,intr_pp:from intr,plain,,,-2.964746197650833,False
+drool,original,prep_object,pseudo_passive_ok,over,round-2 classification,prep_object,False,plain,intr intr_pp:on intr_pp:from intr_pp:over,transitive_use,The baby drooled saliva onto her bib.,codex flags a transitive use: The baby drooled saliva onto her bib.,-2.275098665484969,False
+dwindle,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:to,plain,,,-1.1725519822476411,False
+eavesdrop,original,prep_object,pseudo_passive_ok,on,round-2 classification,prep_object,False,plain,intr intr_pp:on,prep_object,The conversation was eavesdropped on.,,-2.702046787376252,False
+emerge,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:from intr_pp:in intr_pp:with intr_pp:on intr_pp:at intr_pp:into intr_pp:for intr_pp:about intr_pp:after intr_pp:through intr_pp:over intr_pp:onto,plain,,,-3.4850500663080197,False
+emigrate,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to intr_pp:from,plain,,,-4.612493438967697,False
+eventuate,original,prep_object,pseudo_passive_bad,in,argument-PP rule,prep_object,False,plain,intr,plain,,,-0.5537009207129023,True
+exist,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:on intr_pp:in intr_pp:for intr_pp:at intr_pp:before intr_pp:with intr_pp:to intr_pp:from intr_pp:by intr_pp:under intr_pp:of intr_pp:about intr_pp:after intr_pp:across,plain,,,-3.6391549313636555,False
+exult,original,prep_object,pseudo_passive_bad,in,argument-PP rule,prep_object,False,plain,intr intr_pp:in,plain,,,-2.674914447618456,True
+fawn,original,prep_object,pseudo_passive_ok,over,round-2 classification,prep_object,False,plain,intr intr_pp:over,prep_object,The actor was fawned over.,,-4.365356880586946,False
+fizz,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:with,plain,,,-0.40268099601942453,False
+flirt,original,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,prep_object,intr intr_pp:with,prep_object,The bartender was flirted with.,,-3.6203926222898546,False
+fluctuate,original,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in,plain,,,-1.5209138302940977,True
+function,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:at intr_pp:on intr_pp:with intr_pp:for,plain,,,-4.256911918207591,True
+gape,original,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,plain,intr intr_pp:in intr_pp:at,prep_object,The stranger was gaped at.,,-3.0636121260286435,False
+glare,original,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,plain,intr intr_pp:in intr_pp:at,prep_object,The noisy spectator was glared at.,,-4.022712687577166,False
+gloat,original,prep_object,pseudo_passive_ok,over,round-2 classification,prep_object,False,plain,intr,prep_object,The victory was gloated over.,,-3.1801084397028596,False
+glow,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:with intr_pp:in intr_pp:at intr_pp:from intr_pp:on,plain,,,-2.3894986098788444,False
+goggle,original,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,plain,intr,prep_object,The celebrity was goggled at.,,-0.6535470442520546,False
+grin,original,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,prep_object,intr intr_pp:in intr_pp:at intr_pp:with intr_pp:from,prep_object,The baby was grinned at.,,-3.0892396598482508,False
+grouse,original,prep_object,pseudo_passive_ok,about,round-2 classification,prep_object,False,prep_object,intr intr_pp:about,prep_object,The new rules were groused about.,codex: selected preposition; adopted,-2.4395884720832197,False
+happen,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to intr_pp:in intr_pp:on intr_pp:at intr_pp:for intr_pp:after intr_pp:before intr_pp:by intr_pp:over intr_pp:around intr_pp:from intr_pp:under intr_pp:behind intr_pp:across intr_pp:through intr_pp:about trans_particle,plain,,,-3.6777974129012487,False
+hibernate,original,contaminated_bad,,,ordinary transitive use,contaminated_bad,False,plain,intr,transitive_use,She hibernated her laptop.,codex flags a transitive use: She hibernated her laptop.,-1.8937397716003719,False
+hitchhike,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to,transitive_use,She hitchhiked a ride to town.,codex flags a transitive use: She hitchhiked a ride to town.,-1.5645159863652796,False
+inquire,original,prep_object,pseudo_passive_ok,into,round-2 classification,prep_object,False,prep_object,intr intr_pp:about intr_pp:into intr_pp:of,transitive_use,He inquired her name.,codex flags a transitive use: He inquired her name.,-3.132335779951382,False
+interact,original,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,prep_object,intr intr_pp:with intr_pp:on intr_pp:in,plain,,,-5.062502013221398,False
+jut,original,contaminated_bad,,,ordinary transitive use,contaminated_bad,False,plain,intr intr_pp:from intr_pp:into,plain,,,1.7970803795698962,False
+languish,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:for,plain,,,-3.84475250117498,False
+laugh,original,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,prep_object,intr intr_pp:in intr_pp:at intr_pp:about intr_pp:with intr_pp:for intr_pp:through,prep_object,The suggestion was laughed at.,,-2.0533948034991347,False
+leer,original,prep_object,pseudo_passive_ok,at,round-2 classification,prep_object,False,plain,intr intr_pp:at,prep_object,The waitress was leered at.,,-3.483898800104599,False
+lie,original,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,prep_object,intr intr_pp:in intr_pp:to intr_pp:on intr_pp:about intr_pp:with intr_pp:at intr_pp:for intr_pp:under intr_pp:behind intr_pp:through intr_pp:by intr_pp:before intr_pp:across intr_pp:near intr_pp:around intr_pp:against intr_particle,prep_object,The customer was lied to.,,-3.1920937689993334,False
+linger,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:over intr_pp:in intr_pp:on intr_pp:for intr_pp:at,prep_object,The meal was lingered over.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-3.2924613107839207,False
+listen,original,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,True,prep_object,intr_pp:to intr_pp:for,prep_object,The song was listened to.,,-4.5553719330453335,False
+loll,original,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-2.285494483893579,False
+lumber,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to,transitive_use,They lumbered me with the bill.,codex flags a transitive use: They lumbered me with the bill.,0.01343742308187934,False
+lurk,original,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in intr_pp:behind intr_pp:on intr_pp:at,plain,,,-2.9309944422613077,False
+matter,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to intr_pp:in intr_pp:for intr_pp:at,plain,,,-2.153439189319062,False
+muse,original,prep_object,pseudo_passive_ok,about,round-2 classification,prep_object,False,prep_object,intr_pp:on intr intr_pp:about,prep_object,The question was mused over.,,-2.7523365241182955,False
+object,original,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,prep_object,intr intr_pp:to,prep_object,The proposal was objected to.,,-4.416066906327299,False
+occur,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:to intr_pp:at intr_pp:on intr_pp:with intr_pp:after intr_pp:for intr_pp:before intr_pp:from intr_pp:through intr_pp:over intr_pp:by intr_pp:under intr_pp:across intr_pp:around intr_pp:near,plain,,,-2.136419248233514,False
+opt,original,prep_object,pseudo_passive_ok,for,round-2 classification,prep_object,False,not_in_inventory,,prep_object,The cheaper option was opted for.,,-6.058894943898255,False
+pant,original,plain,,,round-2 classification,plain,False,plain,intr,transitive_use,She panted an apology.,codex flags a transitive use: She panted an apology.,-1.7497523802796815,False
+participate,original,prep_object,pseudo_passive_ok,in,round-2 classification,prep_object,True,prep_object,intr_pp:in,prep_object,The activity was participated in by all students.,,-5.650328705650995,False
+pee,original,contaminated_bad,,,ordinary transitive use,contaminated_bad,False,plain,intr intr_pp:on intr_pp:in,transitive_use,The toddler peed his pants.,codex flags a transitive use: The toddler peed his pants.,-1.2674108558501296,False
+persevere,original,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in intr_pp:through,plain,,,-4.7869579561958515,False
+proceed,original,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,prep_object,intr intr_pp:with intr_pp:to intr_pp:in intr_pp:from intr_pp:on intr_pp:through intr_pp:at intr_pp:by,prep_object,The plan was proceeded with.,,-4.755204233522147,True
+putter,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:with,plain,,,-2.474762402675738,False
+quack,original,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-1.159739131390451,False
+quiver,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:with intr_pp:in,plain,,,-2.006400642425241,False
+rave,original,prep_object,pseudo_passive_ok,about,round-2 classification,prep_object,False,prep_object,intr_pp:about intr intr_pp:on,prep_object,The film was raved about.,,-3.9328153652752285,False
+reappear,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:on intr_pp:with,plain,,,-3.290239275246646,False
+recede,original,plain,,,round-2 classification,plain,False,plain,intr intr_pp:into intr_pp:from,plain,,,-3.099455147169102,False
+reel,original,contaminated_bad,,,ordinary transitive use,contaminated_bad,False,plain,intr intr_pp:from intr_pp:in,transitive_use,She reeled the line onto the spool.,codex flags a transitive use: She reeled the line onto the spool.,-1.5932849857637534,False
+remain,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:on intr_pp:at intr_pp:of intr_pp:with intr_pp:for intr_pp:under intr_pp:to intr_pp:from intr_pp:about intr_pp:after intr_pp:behind intr_pp:before intr_pp:near,plain,,,-0.393180949532397,False
+remonstrate,original,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,prep_object,intr_pp:with intr,prep_object,The noisy guest was remonstrated with.,codex: selected preposition; adopted,-3.0086020043433774,False
+reply,original,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,prep_object,intr intr_pp:to intr_pp:with intr_pp:in intr_pp:by,prep_object,The letter was replied to.,,-3.3733016160606146,False
+resound,original,contaminated_bad,,,ordinary transitive use,contaminated_bad,False,prep_object,intr intr_pp:with,plain,,,-0.2643483502618441,False
+respond,original,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,prep_object,intr intr_pp:to intr_pp:with intr_pp:by intr_pp:in intr_pp:on intr_pp:at intr_pp:for,prep_object,The request was responded to.,,-4.799803292401032,False
+result,original,prep_object,pseudo_passive_bad,in,argument-PP rule,prep_object,False,plain,intr intr_pp:in intr_pp:from,plain,,,-5.218336156779688,False
+retaliate,original,prep_object,pseudo_passive_ok,against,round-2 classification,prep_object,False,prep_object,intr intr_pp:with intr_pp:against intr_pp:to intr_pp:for,prep_object,The whistleblower was retaliated against.,,-4.523741766592646,False
+salivate,original,prep_object,pseudo_passive_ok,over,round-2 classification,prep_object,False,plain,intr,prep_object,The feast was salivated over.,,-0.9729902236121832,True
+scram,original,contaminated_bad,,,ordinary transitive use,contaminated_bad,False,plain,intr,plain,,,-0.11617152022358224,False
+seep,original,plain,,,round-2 classification,plain,False,plain,intr intr_pp:from intr_pp:into intr_pp:through,plain,,,-2.253377684774809,False
+seethe,original,plain,,,round-2 classification,plain,False,prep_object,intr_pp:with intr,plain,,,-3.596892701037322,False
+shimmer,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:with intr_pp:in,plain,,,-2.0852522554656305,False
+shudder,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:from intr_pp:at intr_pp:with,plain,,,-2.6745073985901158,True
+sidle,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to,plain,,,-1.7615647037051219,False
+sin,original,prep_object,pseudo_passive_ok,against,round-2 classification,prep_object,False,prep_object,intr intr_pp:with intr_pp:against,prep_object,The victim was sinned against.,,-3.915392019442982,False
+slog,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to intr_pp:through intr_particle,transitive_use,The batter slogged the ball over the boundary.,codex flags a transitive use: The batter slogged the ball over the boundary.,-0.5630134025805759,False
+slouch,original,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in,plain,,,-2.8737418272742556,False
+slump,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:to intr_pp:against intr_pp:on intr_pp:into intr_pp:over,plain,,,-2.5229841231773524,False
+smolder,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:with,plain,,,-1.8607030184722329,False
+stagnate,original,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-1.4990473633106915,False
+struggle,original,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,prep_object,intr_pp:with intr ditrans_pp:with intr_pp:for intr_pp:in intr_pp:against intr_pp:through intr_pp:at intr_pp:on intr_pp:under intr_pp:into,prep_object,The problem was struggled with for hours.,,-3.4020945582153006,False
+subside,original,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-2.343390846392603,False
+sulk,original,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-2.6062984273165917,False
+sympathize,original,prep_object,pseudo_passive_ok,with,round-2 classification,prep_object,False,prep_object,intr intr_pp:with,prep_object,The victim was sympathized with.,,-4.609223475848201,False
+teem,original,prep_object,pseudo_passive_bad,with,argument-PP rule,prep_object,False,prep_object,intr_pp:with intr,plain,,,0.22972915731780474,False
+testify,original,prep_object,pseudo_passive_ok,to,round-2 classification,prep_object,False,prep_object,intr_pp:about intr intr_pp:to intr_pp:on intr_pp:before intr_pp:in intr_pp:against intr_pp:at intr_pp:for intr_pp:under,prep_object,The document's authenticity was testified to.,,-3.332838741431477,False
+thrive,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:on intr_pp:in intr_pp:under intr_pp:at intr_pp:with,plain,,,-4.858048025920094,False
+tingle,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:from intr_pp:with,plain,,,-0.6361481734617938,True
+toddle,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to,plain,,,-2.3424012428781005,False
+toil,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:in intr_pp:for,prep_object,The manuscript was toiled over for years.,"codex prep_object rejected: productive locative/topic pseudo-passive, not a selected preposition",-3.1406159558799334,False
+totter,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:to,plain,,,-2.344659351494691,False
+transpire,original,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in,plain,,,-1.4949091296504955,False
+vacillate,original,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-2.8094308998256547,False
+vanish,original,plain,,,round-2 classification,plain,False,prep_object,intr intr_pp:from intr_pp:into intr_pp:in intr_pp:with,plain,,,-3.9378171653399674,False
+vegetate,original,plain,,,round-2 classification,plain,False,plain,intr,plain,,,-2.3889638418845576,False
+vie,original,prep_object,pseudo_passive_ok,for,round-2 classification,prep_object,False,prep_object,intr_pp:with intr intr_pp:for,prep_object,The prize was vied for by many contestants.,codex: selected preposition; adopted,-3.54439500912841,False
+wallow,original,prep_object,pseudo_passive_bad,in,argument-PP rule,prep_object,False,plain,intr intr_pp:in,plain,,,-3.794875804376507,False
+wane,original,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in,plain,,,-1.7446506027026802,True
+whiz,original,plain,,,round-2 classification,plain,False,plain,intr,transitive_use,She whizzed the ingredients in a blender.,codex flags a transitive use: She whizzed the ingredients in a blender.,-0.8354073562224822,False
+writhe,original,plain,,,round-2 classification,plain,False,plain,intr intr_pp:in intr_pp:on,plain,,,-2.823393217822931,False
