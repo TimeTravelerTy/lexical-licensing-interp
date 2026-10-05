@@ -1,0 +1,24 @@
+{
+  "pairs": 29,
+  "dropped_pairs": [],
+  "items": 406,
+  "mode": "sweep",
+  "args": {
+    "mode": "sweep",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "results/das_round2/frozen_config.json",
+    "out_dir": "../results/das_round2/sweep_strict",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01
+  }
+}
