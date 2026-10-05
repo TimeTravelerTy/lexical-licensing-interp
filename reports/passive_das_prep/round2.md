@@ -29,10 +29,13 @@ The original 126-pair set and the existing result files are unchanged.
   herself", up to 0.19).
 - The 6 new Head eval pairs, whose bad verbs are all prep_object, form a
   **separate eval group**.
-- **Primary DAS run:** the strict set (28 pairs), 5-fold CV over pairs,
-  repeated with 3 fold splits, CIs over verb pairs.
-- **Secondary run:** the 38-pair set (only chat, quarrel, bicker and compete
-  moved, excel dropped). It uses the same layer, rank and epochs, all chosen
+- **Primary DAS run:** the strict set, 5-fold CV over pairs, repeated with 3
+  fold splits, CIs over verb pairs. It has 28 pairs by the readout filter
+  and **29 in training**: under the final target (which adds " you", `."`,
+  `,"`), *ensue* passes 4 of 7 items, at the boundary.
+- **Secondary run:** the named-only set, 38 pairs by the readout filter and
+  39 in training (only chat, quarrel, bicker and compete moved, excel
+  dropped). It uses the same layer, rank and epochs, all chosen
   on actives in the primary run before any passive is looked at. Report the
   cosine between the two runs' directions, and whether transfer agrees.
 - **Object-start set** adds " you", " herself", " himself", " themselves".
@@ -289,3 +292,69 @@ All in `data/das_round2/`:
 | `train_pairs_participle_matched.csv` | 15-pair familiarity robustness set |
 | `behavior_filter_items.csv`, `behavior_filter_verbs.csv` | filter results, rejects kept |
 | `projection_groups.csv` | projection groups |
+
+## Training results (2026-10-05; actives only, no passive evaluated)
+
+Full report: `das_round2_results.md` (`scripts/analyze_das_round2_results.py`).
+
+**Runs**
+- Sweep: job 8901679.
+- Final: job 8901812, commit `f0ba8b8`.
+- Outputs in `results/das_round2/`; `heldout_swaps.csv.gz` is not committed.
+
+**Frozen configuration** (`results/das_round2/frozen_config_final.json`)
+- **Site 17** (output of layer 16 of 24).
+  - Held-out IIA rises smoothly with depth: 0.29 at site 3, 0.80 at site 8,
+    0.92 at site 12, and 0.99 from site 17 on.
+  - The earliest-site rule picks 17.
+  - Full curve: `results/das_round2/sweep_by_site.csv`.
+- **1 epoch.**
+- **Rank 1.** Mean held-out positive-control fraction is 1.07 / 1.09 / 1.10
+  for ranks 1 / 2 / 4, so the rank rule keeps rank 1.
+
+**Held-out actives, primary run** (29 pairs; held-out pairs, 3 splits; CI
+over pairs)
+
+| | Intransitive base ← transitive source | Transitive base ← intransitive source |
+|---|---|---|
+| IIA | 0.97 [0.94, 0.99] | 0.98 [0.96, 0.99] |
+| Fraction of the natural gap in M | 1.06 [1.01, 1.11] | 0.93 [0.87, 0.99] |
+| Δ log P(O) | +2.86 [2.52, 3.19] | −2.18 [−2.39, −1.96] |
+| Δ log P(determiners / pronouns / reflexives) | +2.66 / +4.30 / +3.66 | −2.14 / −2.94 / −2.63 |
+| Δ log P(I) | −2.24 [−2.47, −2.01] | +2.16 [1.96, 2.39] |
+
+- **Positive control: passed.** Patching held-out intransitive actives
+  closes the full natural class gap (≈1.06×). The rise is largest for
+  pronoun objects.
+- **Same-class swaps leave M on its side:** 0.99.
+- **The held-out subject (David)** reaches IIA 0.96.
+- **Controls (per fold, 15 fold × split runs):**
+  - Random rank-1 subspaces: IIA 0.02, gap fraction 0.00. Norm-matched:
+    IIA 0.02, gap fraction 0.01. DAS beats the 95th percentile of
+    norm-matched random subspaces in 15 of 15 runs.
+  - Shuffled-label DAS: IIA 0.34, gap fraction 0.42 (range 0.05–0.66).
+    Permuting class labels across verbs leaves about half the verbs
+    correctly labelled, so a weaker version of the same direction is still
+    found. The true-label direction is far stronger.
+- **Exploratory, by source and token count:** gap fractions are
+  - expansion multi-token (15 pairs): 1.09;
+  - expansion single-token (6 pairs): 1.02;
+  - orig_head (8 pairs): 1.04.
+
+  The CIs overlap; the single-token cells are small.
+
+**Sensitivity run (39 pairs), same configuration**
+- Held-out IIA 0.97 / 0.98 and gap fraction 1.08 / 0.91, essentially the
+  same as the primary run.
+- **Directions agree:**
+  - cosine of the mean primary and sensitivity directions: 0.98;
+  - all primary × sensitivity fold bases: median 0.92 (min 0.89);
+  - within-run stability: median 0.92 (primary) and 0.95 (sensitivity).
+- **Held-out transfer agrees** on the 26 shared intransitive-base pairs:
+  mean gap fraction 1.07 vs 1.11, Pearson r = 0.77.
+
+**Passive test settings, fixed now**
+- TOST bound δ = 0.2 × 2.86 = **0.57 nats** on the passive contrast D in
+  Δ log P(O).
+- "No rise" if the 90% CI of D lies within ±0.57. The point estimate is
+  reported alongside.
