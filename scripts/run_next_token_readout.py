@@ -29,8 +29,9 @@ def run(args):
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
+    extra = json.loads(Path(args.extra_tokens).read_text()) if args.extra_tokens else []
     tracked = {}
-    for tok in TRACKED:
+    for tok in list(TRACKED) + [t for t in extra if t not in TRACKED]:
         ids = tokenizer.encode(tok, add_special_tokens=False)
         if len(ids) == 1:
             tracked[tok] = ids[0]
@@ -78,6 +79,7 @@ if __name__ == "__main__":
     ap.add_argument("--dtype", default="bfloat16", choices=("float16", "bfloat16", "float32"))
     ap.add_argument("--batch-size", type=int, default=128)
     ap.add_argument("--top-k", type=int, default=10)
+    ap.add_argument("--extra-tokens", default="", help="JSON list of tokens tracked on top of TRACKED")
     ap.add_argument("--allow-download", action="store_true")
     ap.add_argument("--out", default="results/passive_das_prep/pythia14b_readout.csv")
     run(ap.parse_args())
