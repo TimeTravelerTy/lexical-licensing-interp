@@ -254,3 +254,29 @@ Intransitive base ← transitive source, held-out pairs, CI over pairs:
 - Within-site direction stability: median cosine 0.964 (site 8) and 0.966
   (site 12).
 - The bounds are written into `frozen_config_site{8,12}.json` (`tost`).
+
+## Addendum: passive-side controls at site 8 (2026-10-06, post hoc)
+
+Added after the site-8 result (`passive_test_results.md`), so these are
+post-hoc checks, not part of the declared test. The criteria below are
+written before the controls are run. Script: `scripts/run_passive_controls.py`.
+All checks use primary bad passive bases, T and I donors, and the same plan
+rows as the main test.
+
+- **Shuffled-label DAS.**
+  - The 15 site-8 shuffled-label bases are retrained exactly as the
+    `run_das_round2.py final` control (same permutation and training seeds).
+  - They are run on all three splits and analysed with the declared
+    bootstrap and rules (δ = 0.4914).
+  - The site-8 call survives if the shuffled-label bases do *not* also give
+    " by" RISE with O NO RISE.
+  - It is a stronger result if the shuffled-label D(" by") is below the DAS
+    D(" by") (difference reported with its CI).
+- **Random directions.**
+  - 100 draws, each with one random rank-1 direction per split-0 fold
+    basis, raw and norm-matched (each patch's displacement rescaled to the
+    DAS displacement norm).
+  - Split-0 rows only. DAS is recomputed on the same rows for comparison.
+  - The site-8 " by" effect is specific if DAS D(" by") exceeds the 95th
+    percentile of norm-matched random D(" by") on the same rows.
+  - The number of random draws with D(" by") ≥ δ is reported too.
