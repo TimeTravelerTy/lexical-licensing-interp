@@ -119,26 +119,31 @@ def run(args):
             "plan_sha256": hashlib.sha256(pd.util.hash_pandas_object(plan, index=False).values.tobytes()).hexdigest(),
             "bases_sha256": {}, "checks": {}}
 
-    # 1. unpatched pass
+    # 1. unpatched pass (hidden_states[s] is site s: 0 = embeddings, i = output of layer i-1)
     t0 = time.time()
     states = torch.empty(len(P), len(sites), runner.model.config.hidden_size, device=runner.device)
     nat = {k: np.empty(len(P), np.float32) for k in ("M",) + READ}
-    for i in range(0, len(P), args.chunk):
-        m, parts, reps = runner.natural(prompts[i:i + args.chunk], batch=args.batch)
-        states[i:i + len(m)] = reps[:, sites]
-        nat["M"][i:i + len(m)] = m.cpu().numpy()
-        for k in READ:
-            nat[k][i:i + len(m)] = parts[k].cpu().numpy()
+    with torch.no_grad():
+        for i in range(0, len(P), args.batch):
+            enc, anchors = runner.encode(prompts[i:i + args.batch])
+            o = runner.model(**enc, output_hidden_states=True, use_cache=False)
+            m, parts = runner.readout(o.logits, anchors, full=True)
+            rows = torch.arange(len(anchors), device=runner.device)
+            states[i:i + len(m)] = torch.stack([o.hidden_states[s][rows, anchors].float() for s in sites], 1)
+            nat["M"][i:i + len(m)] = m.cpu().numpy()
+            for k in READ:
+                nat[k][i:i + len(m)] = parts[k].cpu().numpy()
     pd.DataFrame({"pid": P.pid, **nat}).to_parquet(out / "natural.parquet", index=False)
     print(f"natural pass: {len(P)} prompts in {time.time() - t0:.0f}s", flush=True)
 
     groups = {k: g for k, g in plan.groupby(["split", "fold"])}
     for si, site in enumerate(sites):
         bases, sha = site_bases(args, site)
+        bases = {k: v.to(runner.device) for k, v in bases.items()}
         meta["bases_sha256"][str(site)] = sha
         meta["checks"][str(site)] = checks(runner, args, P, states, si, site, bases, nat)
         # 2. projections
-        cols = {f"s{k[0]}_f{k[1]}": (states[:, si] @ b.to(runner.device)[:, 0]).cpu().numpy()
+        cols = {f"s{k[0]}_f{k[1]}": (states[:, si] @ b[:, 0]).cpu().numpy()
                 for k, b in sorted(bases.items())}
         pd.DataFrame({"pid": P.pid, **cols}).to_parquet(out / f"projections_site{site}.parquet", index=False)
         # 3. patches
@@ -146,7 +151,7 @@ def run(args):
         res = {k: np.full(len(plan), np.nan, np.float32) for k in ("M",) + READ}
         with torch.no_grad():
             for key, g in groups.items():
-                basis = bases[key].to(runner.device)
+                basis = bases[key]
                 rows, base, donor = g.row.to_numpy(), g.base.to_numpy(), g.donor.to_numpy()
                 for i in range(0, len(g), args.batch):
                     sl = slice(i, i + args.batch)
@@ -177,5 +182,4 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--dtype", default="bfloat16")
     ap.add_argument("--batch", type=int, default=1024)
-    ap.add_argument("--chunk", type=int, default=4096)
     run(ap.parse_args())
