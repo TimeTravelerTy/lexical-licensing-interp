@@ -236,3 +236,21 @@ interpretable once the reading of d is known.
 3. Run the passive projection and transfer at sites 8, 12 and 17.
 4. Analyse with the rules above. Report site 17 as primary and sites 8/12
    as declared secondary analyses.
+
+## Secondary sites: training results (2026-10-06, before any passive evaluation)
+
+Jobs 8916730 (site 8) and 8916732 (site 12), commit `64a0bb0`.
+Reports: `das_round2_results_site8.md` and `das_round2_results_site12.md`.
+Intransitive base ← transitive source, held-out pairs, CI over pairs:
+
+| Site | IIA | Gap fraction (M) | Δ log P(O) | δ_s = 0.2 × Δ log P(O) | Random (norm-matched) IIA | Shuffled-label IIA |
+|---:|---|---|---|---:|---:|---:|
+| 8 | 0.76 [0.65, 0.85] | 0.75 [0.68, 0.82] | 2.46 [2.12, 2.79] | **0.4914** | 0.02 | 0.20 |
+| 12 | 0.87 [0.80, 0.94] | 0.86 [0.80, 0.92] | 2.64 [2.30, 2.97] | **0.5281** | 0.02 | 0.24 |
+| 17 | 0.97 [0.94, 0.99] | 1.06 [1.01, 1.11] | 2.86 [2.52, 3.19] | **0.5716** | 0.02 | 0.34 |
+
+- At both secondary sites DAS beats the 95th percentile of norm-matched
+  random subspaces in 15 of 15 fold × split runs.
+- Within-site direction stability: median cosine 0.964 (site 8) and 0.966
+  (site 12).
+- The bounds are written into `frozen_config_site{8,12}.json` (`tost`).
