@@ -1,0 +1,48 @@
+commit 822e12382503d340f1d6480c4f738b3b01217190
+4632fc440347d5c6a9fb42253ed5e7760d6f4e10770bfdad3f9132e10094f15e  data/matched_passives/pairs.jsonl
+Scored 16/608
+Scored 32/608
+Scored 48/608
+Scored 64/608
+Scored 80/608
+Scored 96/608
+Scored 112/608
+Scored 128/608
+Scored 144/608
+Scored 160/608
+Scored 176/608
+Scored 192/608
+Scored 208/608
+Scored 224/608
+Scored 240/608
+Scored 256/608
+Scored 272/608
+Scored 288/608
+Scored 304/608
+Scored 320/608
+Scored 336/608
+Scored 352/608
+Scored 368/608
+Scored 384/608
+Scored 400/608
+Scored 416/608
+Scored 432/608
+Scored 448/608
+Scored 464/608
+Scored 480/608
+Scored 496/608
+Scored 512/608
+Scored 528/608
+Scored 544/608
+Scored 560/608
+Scored 576/608
+Scored 592/608
+Scored 608/608
+Wrote results/matched_passives/pythia14b_scores.csv
+Wrote summaries and report to reports/matched_passives
+passive_1 head: n=11, accuracy=0.841, margin=3.795
+passive_1 tail: n=15, accuracy=0.992, margin=5.970
+passive_1 xtail: n=12, accuracy=0.875, margin=4.640
+passive_2 head: n=11, accuracy=0.989, margin=3.443
+passive_2 tail: n=15, accuracy=0.867, margin=4.148
+passive_2 xtail: n=12, accuracy=0.865, margin=4.269
