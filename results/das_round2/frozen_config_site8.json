@@ -1,0 +1,13 @@
+{
+  "site": 8,
+  "layer_output": 7,
+  "epochs": 3,
+  "rank": 1,
+  "role": "declared secondary site",
+  "declared": "2026-10-06, before any passive evaluation",
+  "epoch_rule": "the frozen rule applied to this site's sweep curve: smallest epoch whose mean held-out cross-class IIA is within 0.01 of the site's best (sweep_strict/sweep.csv)",
+  "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+  "primary_config": "results/das_round2/frozen_config_final.json",
+  "tost_rule": "delta_s = 0.2 x held-out Delta log P(O) (intransitive base <- transitive source, mean over held-out pairs) from this site's final run, fixed before passive evaluation",
+  "sweep_sha256": "3fdec90711941233f0193234b7f8b6f3df914996be11ad35587bfc079fb2f9e8"
+}

@@ -358,3 +358,21 @@ over pairs)
   Δ log P(O).
 - "No rise" if the 90% CI of D lies within ±0.57. The point estimate is
   reported alongside.
+
+## Passive test: declaration (2026-10-06, before any passive evaluation)
+
+Full spec: `passive_test_plan.md`.
+
+- **Site 17 stays primary.** Sites 8 and 12 are added as declared
+  secondary analyses: rank 1, the same recipe, epochs by the frozen epoch
+  rule (3 and 2).
+  - Configs: `results/das_round2/frozen_config_site{8,12}.json`.
+- **Step 1:** project natural good and bad passive participles onto d (no
+  patching).
+- **Step 2:** passive transfer at all three sites:
+  - contrast D;
+  - TOST on object-start mass, with δ_s = 20% of each site's active effect
+    (0.57 at site 17);
+  - log P(" by") and log P(".");
+  - good→good, voice-change and passive-swap controls;
+  - the separate groups listed above.
