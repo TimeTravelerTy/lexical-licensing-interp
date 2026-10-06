@@ -120,7 +120,8 @@ h ← h + ((h_src − h)·d) d.
   item's own pair.
 - Each such pair contributes its transitive and its intransitive verb once.
 - The donor prompt is "<Subj> has/have <participle>", with the subject drawn
-  at random from the 7 (seed 17).
+  at random from the 7 (seed 17). The transitive and intransitive verb of a
+  donor pair share the drawn subject.
 - Donor verbs are therefore never in the training set of the basis they are
   used with, and transitive and intransitive donors come in matched pairs.
 
@@ -215,6 +216,17 @@ classification):
 **Not done here** (step 3, later): projections of the prep_object subtypes,
 *ensue*, contaminated_bad and bad-side-high onto d. They are only
 interpretable once the reading of d is known.
+
+## Implementation
+
+- `scripts/build_passive_test.py`: items, prompts and the full patch plan
+  (`data/das_round2/passive_test/`). The plan is regenerated
+  deterministically; its content hash is in `plan_meta.json`.
+- `scripts/run_passive_test.py`: unpatched pass, projections and patches
+  (GPU). It checks that a self-patch reproduces the unpatched readout and
+  that it recomputes a sample of each site's held-out active swaps.
+- `scripts/analyze_passive_test.py`: `delta` (δ_s for sites 8 and 12) and
+  `passive` (steps 1 and 2).
 
 ## Order
 

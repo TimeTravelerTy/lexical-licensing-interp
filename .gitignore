@@ -16,3 +16,5 @@ data/passive_das_prep/prompts.jsonl
 # Per-swap / per-patch detail dumps
 results/das_round2/**/heldout_swaps.csv.gz
 results/das_round2/**/*_detail.csv.gz
+data/das_round2/passive_test/plan.csv.gz
+results/das_round2/passive_test/patches_site*.parquet
