@@ -1,0 +1,20 @@
+{
+  "actives": 11340,
+  "head_dev_pairs": [
+    "head/celebrate/reply",
+    "head/confront/testify",
+    "head/include/happen",
+    "head/lease/apologize",
+    "head/lend/opt",
+    "head/rate/result"
+  ],
+  "passives_by_split": {
+    "reliable": 11962,
+    "negative_by": 3371,
+    "ns_pos": 375
+  },
+  "passives_dropped_same_prefix_as_own": 42,
+  "readout_attached": true,
+  "seed": 17,
+  "model_tokenizer": "EleutherAI/pythia-1.4b"
+}
