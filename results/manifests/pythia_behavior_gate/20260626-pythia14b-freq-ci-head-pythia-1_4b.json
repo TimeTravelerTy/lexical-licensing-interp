@@ -1,0 +1,9 @@
+{
+  "run_timestamp": "20260626-pythia14b-freq-ci-head",
+  "outputs": [
+    "/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp/results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-head_pythia-1_4b_causative_freq_lp_readout_acceptability.jsonl",
+    "/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp/results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-head_pythia-1_4b_causative_freq_in_template_lp_acceptability.jsonl",
+    "/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp/results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-head_pythia-1_4b_inchoative_freq_lp_readout_acceptability.jsonl",
+    "/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp/results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-head_pythia-1_4b_inchoative_freq_in_template_lp_acceptability.jsonl"
+  ]
+}

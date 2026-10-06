@@ -1,0 +1,64 @@
+{
+  "model": "EleutherAI/pythia-1.4b",
+  "site": "resid_post_layer_23",
+  "rank": 1,
+  "control": "none",
+  "load_subspace": "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l23-none-s17.subspace.pt",
+  "subtasks": [
+    "causative",
+    "inchoative"
+  ],
+  "regimes": [
+    "head",
+    "low"
+  ],
+  "train_regimes": [
+    "head"
+  ],
+  "eval_regimes": [
+    "head",
+    "low"
+  ],
+  "directions": [
+    "bad_to_good",
+    "good_to_bad"
+  ],
+  "pairing": "balanced_pool",
+  "rows_loaded": 3560,
+  "directed_pairs": 2640,
+  "train_pairs": 1208,
+  "eval_pairs": 1432,
+  "target_ids": {
+    " the": 253,
+    ".": 15
+  },
+  "skip_counts": {},
+  "split_by": "lemma_pair",
+  "eval_frac": 0.25,
+  "epochs": 0,
+  "train_anchor": "verb_final_subtoken",
+  "eval_source_anchor": "verb_final_subtoken",
+  "eval_anchor": "subject_final_subtoken",
+  "train_eval_anchor_skip_counts": {},
+  "eval_anchor_skip_counts": {},
+  "lr": 0.05,
+  "train_metrics": {
+    "n": 1208,
+    "mean_corrupt_metric": -2.3553911378446792,
+    "mean_patched_metric": -2.3553911378446792,
+    "mean_clean_metric": 2.3553911378446792,
+    "mean_effect": 0.0,
+    "patched_success_rate": 0.2764900662251656,
+    "mean_normalized_effect": 0.0
+  },
+  "eval_metrics": {
+    "n": 1432,
+    "mean_corrupt_metric": -2.115201640894959,
+    "mean_patched_metric": -2.115201640894959,
+    "mean_clean_metric": 2.115201640894959,
+    "mean_effect": 0.0,
+    "patched_success_rate": 0.2779329608938548,
+    "mean_normalized_effect": 0.0
+  },
+  "note": "V1 infrastructure DAS on fixed-subject scaffold; do not treat as final semantic causal evidence. shuffled_label retrains on permuted labels; dummy_verb tests template solvability without verb signal; random_direction evaluates an untrained random subspace of the same rank; red_blue keeps real prompts/activation sources but replaces all readout targets with clean=' red' and corrupt=' blue'. eval_source_anchor selects where the clean-corrupt projected delta is read; eval_anchor selects where that delta is injected, leaving DAS training at the verb-final anchor."
+}

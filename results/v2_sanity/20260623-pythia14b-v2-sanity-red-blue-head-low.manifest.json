@@ -1,0 +1,43 @@
+{
+  "model": "EleutherAI/pythia-1.4b",
+  "data": "/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp/data/aligned_templates_v2/lexical_licensing_v2_aligned.jsonl",
+  "subtasks": [
+    "causative",
+    "inchoative"
+  ],
+  "regimes": [
+    "head",
+    "low"
+  ],
+  "target_mode": "fixed_pair",
+  "target_ids": {
+    " blue": 4797,
+    " red": 2502
+  },
+  "fixed_expected_target": " red",
+  "fixed_contrast_target": " blue",
+  "rows_loaded": 3560,
+  "detail_csv": "results/v2_sanity/20260623-pythia14b-v2-sanity-red-blue-head-low.detail.csv",
+  "summary_csv": "results/v2_sanity/20260623-pythia14b-v2-sanity-red-blue-head-low.summary.csv",
+  "subject_summary_csv": "results/v2_sanity/20260623-pythia14b-v2-sanity-red-blue-head-low.subject_summary.csv",
+  "source_summary_csv": "results/v2_sanity/20260623-pythia14b-v2-sanity-red-blue-head-low.source_summary.csv",
+  "overall": [
+    {
+      "regime": "head",
+      "n": 2000,
+      "mean_expected_logodds": 0.7219033155441285,
+      "success_rate": 0.754,
+      "min_expected_logodds": -3.03125,
+      "max_expected_logodds": 4.046875
+    },
+    {
+      "regime": "low",
+      "n": 1560,
+      "mean_expected_logodds": 0.8179424557930384,
+      "success_rate": 0.8435897435897436,
+      "min_expected_logodds": -1.8125,
+      "max_expected_logodds": 3.34375
+    }
+  ],
+  "note": "Baseline diagnostic only. Low scores identify cells/items to inspect; they are not automatically excluded. For target_mode=fixed_pair, prompts are unchanged and original expected/contrast targets are ignored."
+}

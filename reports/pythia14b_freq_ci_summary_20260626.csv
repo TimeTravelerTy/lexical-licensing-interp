@@ -1,0 +1,13 @@
+regime,subtask,method,n,accuracy,mean_margin,median_margin,min_margin,max_margin,positive_margin,negative_margin,zero_margin,file
+head,causative,lp_readout,1000,0.802,3.484625,3.5,-8.75,17.25,802,182,16,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-head_pythia-1_4b_causative_freq_lp_readout_acceptability.jsonl
+tail,causative,lp_readout,1000,0.817,3.747,4.0,-11.5,21.75,817,164,19,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-tail_pythia-1_4b_causative_freq_lp_readout_acceptability.jsonl
+xtail,causative,lp_readout,1000,0.728,2.333,2.5,-14.0,16.75,728,236,36,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-xtail_pythia-1_4b_causative_freq_lp_readout_acceptability.jsonl
+head,inchoative,lp_readout,1000,0.875,4.054125,4.0,-9.75,16.75,875,120,5,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-head_pythia-1_4b_inchoative_freq_lp_readout_acceptability.jsonl
+tail,inchoative,lp_readout,1000,0.867,4.459125,4.5,-10.25,17.0,867,115,18,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-tail_pythia-1_4b_inchoative_freq_lp_readout_acceptability.jsonl
+xtail,inchoative,lp_readout,1000,0.738,2.4445,2.75,-10.25,17.25,738,238,24,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-xtail_pythia-1_4b_inchoative_freq_lp_readout_acceptability.jsonl
+head,causative,in_template_lp,1000,0.782,3.09975,3.0,-10.5,19.5,782,181,37,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-head_pythia-1_4b_causative_freq_in_template_lp_acceptability.jsonl
+tail,causative,in_template_lp,1000,0.828,3.8025,4.0,-10.5,17.5,828,152,20,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-tail_pythia-1_4b_causative_freq_in_template_lp_acceptability.jsonl
+xtail,causative,in_template_lp,1000,0.733,2.4365,2.5,-11.5,15.0,733,219,48,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-xtail_pythia-1_4b_causative_freq_in_template_lp_acceptability.jsonl
+head,inchoative,in_template_lp,1000,0.852,3.87,3.75,-6.5,15.75,852,121,27,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-head_pythia-1_4b_inchoative_freq_in_template_lp_acceptability.jsonl
+tail,inchoative,in_template_lp,1000,0.892,4.7425,4.75,-11.0,17.25,892,92,16,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-tail_pythia-1_4b_inchoative_freq_in_template_lp_acceptability.jsonl
+xtail,inchoative,in_template_lp,1000,0.792,3.04625,3.0,-11.0,15.0,792,157,51,results/acceptability_pair_scores_pythia/20260626-pythia14b-freq-ci-xtail_pythia-1_4b_inchoative_freq_in_template_lp_acceptability.jsonl

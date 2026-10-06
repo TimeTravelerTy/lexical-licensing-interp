@@ -1,0 +1,3 @@
+split,regime,cell,n_causative_good,n_causative_bad,n_inchoative_good,n_inchoative_bad,causative_good_minus_bad,inchoative_good_minus_bad,calibrated_inchoative_good_minus_bad,licensing_axis_pass,object_expected_minus_no_object_expected,calibrated_object_expected_minus_no_object_expected,inchoative_auc_good_gt_bad,inchoative_orientation_free_auc
+eval,head,causative_calibrated_inchoative_good_vs_bad,98,98,58,58,-14.064562235559736,17.343614405599133,-17.343614405599133,0,-15.28369701672823,15.28369701672823,0.9997027348394768,0.9997027348394768
+eval,low,causative_calibrated_inchoative_good_vs_bad,280,280,280,280,-17.862127108233317,15.202652046084406,-15.202652046084406,0,-16.53238957715886,16.53238957715886,0.9792474489795918,0.9792474489795918

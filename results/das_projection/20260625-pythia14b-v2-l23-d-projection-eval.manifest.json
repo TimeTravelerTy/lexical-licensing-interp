@@ -1,0 +1,36 @@
+{
+  "model": "EleutherAI/pythia-1.4b",
+  "data": "data/aligned_templates_v2/lexical_licensing_v2_aligned.jsonl",
+  "subspace": "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l23-none-s17.subspace.pt",
+  "site": "resid_post_layer_23",
+  "rank": 1,
+  "subtasks": [
+    "causative",
+    "inchoative"
+  ],
+  "train_regimes": [
+    "head"
+  ],
+  "eval_regimes": [
+    "head",
+    "low"
+  ],
+  "project_split": "eval",
+  "directions": [
+    "bad_to_good",
+    "good_to_bad"
+  ],
+  "pairing": "balanced_pool",
+  "rows_loaded": 3560,
+  "directed_pairs_after_retokenize": 2640,
+  "train_pairs": 1208,
+  "eval_pairs": 1432,
+  "projected_unique_prompt_contexts": 1432,
+  "skip_counts": {},
+  "detail_csv": "results/das_projection/20260625-pythia14b-v2-l23-d-projection-eval.projection_detail.csv",
+  "validation_summary_csv": "results/das_projection/20260625-pythia14b-v2-l23-d-projection-eval.validation_cell_summary.csv",
+  "label_summary_csv": "results/das_projection/20260625-pythia14b-v2-l23-d-projection-eval.label_separation_summary.csv",
+  "pair_detail_csv": "results/das_projection/20260625-pythia14b-v2-l23-d-projection-eval.pair_delta_detail.csv",
+  "pair_summary_csv": "results/das_projection/20260625-pythia14b-v2-l23-d-projection-eval.pair_delta_summary.csv",
+  "note": "D-validation only: real-verb separation does not distinguish lookup from computation. The primary instrument check is validation_summary_csv, where the sign is calibrated by causative good-minus-bad and then applied to inchoative good-minus-bad. Rank-1 coordinate sign is arbitrary for DAS; use orientation_free_auc for uncalibrated summaries."
+}
