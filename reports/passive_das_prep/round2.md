@@ -430,3 +430,12 @@ the primary claim, and there d is surface.
   O +1.01, "." +0.72).
 - No random-direction or shuffled-label control was run on passives. That
   is the obvious next check for the site-8 " by" effect.
+
+**Site-8 passive controls** (post hoc, criteria written first;
+`passive_controls_site8.md`):
+- **Random rank-1 directions** (raw and norm-matched, 100 draws) give
+  D(" by") ≈ 0, with a 95th percentile of +0.03 vs +0.74 for DAS.
+- **Shuffled-label DAS** gives " by" +0.44, "unresolved", not the abstract
+  pattern. DAS − shuffled = 0.27 [0.22, 0.33].
+- The shuffled-label direction is a partial copy of d (|cos| 0.69), and its
+  passive effect has the same shape at about 0.6×.

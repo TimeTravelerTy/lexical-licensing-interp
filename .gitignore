@@ -18,3 +18,4 @@ results/das_round2/**/heldout_swaps.csv.gz
 results/das_round2/**/*_detail.csv.gz
 data/das_round2/passive_test/plan.csv.gz
 results/das_round2/passive_test/patches_site*.parquet
+results/das_round2/passive_test/controls_*_site*.parquet
