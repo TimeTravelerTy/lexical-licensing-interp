@@ -333,6 +333,25 @@ def transfer(args, site, items, plan, nat, bt, pr, pops, delta):
     return rows
 
 
+def abs_probs(args, items, plan, nat):
+    """Mean probabilities (not logs) on primary bases: unpatched, and after T / I donors at each site."""
+    prim = set(items[items.bad_class == "plain"].item_id)
+    rd = ["O", "det", "pron", "refl", "the", "him", "by", "dot", "I"]
+    n = nat.set_index("pid")
+    rows = []
+    for side in ("bad", "good"):
+        sel = plan.item_id.isin(prim).to_numpy() & (plan.side == side).to_numpy()
+        rows.append({"site": "", "side": side, "condition": "unpatched",
+                     **np.exp(n.loc[plan[sel].base.unique(), rd]).mean().to_dict()})
+        for site in (8, 12, 17):
+            pat = pd.read_parquet(Path(args.out_dir) / f"patches_site{site}.parquet", columns=["row"] + rd)
+            for c in ("T", "I"):
+                r = plan[sel & (plan.cond == c).to_numpy()].row.to_numpy()
+                rows.append({"site": site, "side": side, "condition": f"{c} donor",
+                             **np.exp(pat.loc[r, rd]).mean().to_dict()})
+    pd.DataFrame(rows).to_csv(Path(args.out_dir) / "abs_probs.csv", index=False)
+
+
 def run_passive(args):
     root = Path(args.root)
     items = pd.read_csv(args.items)
@@ -352,6 +371,7 @@ def run_passive(args):
         proj_rows += projection(args, site, items, P, pairs_folds, das_items, bt, pr, pops)
         tr_rows += transfer(args, site, items, plan, nat, bt, pr, pops, deltas[site])
         print(f"site {site} done", flush=True)
+    abs_probs(args, items, plan, nat)
     proj = pd.json_normalize(proj_rows)
     tr = pd.DataFrame(tr_rows)
     proj.to_csv(Path(args.out_dir) / "projection_summary.csv", index=False)
@@ -359,9 +379,135 @@ def run_passive(args):
     (Path(args.out_dir) / "deltas.json").write_text(json.dumps(deltas, indent=2) + "\n")
 
 
+# ---------------------------------------------------------------- report
+def fmt(r, k=2):
+    return f"{r['est']:.{k}f} [{r['lo95']:.{k}f}, {r['hi95']:.{k}f}]"
+
+
+def write_report(args):
+    out = Path(args.out_dir)
+    tr = pd.read_csv(out / "transfer_summary.csv")
+    pj = pd.read_csv(out / "projection_summary.csv")
+    ab = pd.read_csv(out / "abs_probs.csv")
+    deltas = {int(k): v for k, v in json.loads((out / "deltas.json").read_text()).items()}
+    meta = json.loads((out / "run_meta.json").read_text())
+    sites = (17, 12, 8)
+    role = {17: "primary", 12: "secondary", 8: "secondary"}
+
+    def get(pop, band, cond, rd, site):
+        x = tr[(tr.population == pop) & (tr.band == band) & (tr.condition == cond) & (tr.readout == rd)
+               & (tr.site == site)]
+        return x.iloc[0]
+
+    P = "primary (plain)"
+    L = ["# Passive test of the round-2 direction: results", "",
+         "Spec, declared and committed before any passive evaluation: `passive_test_plan.md`. "
+         "Run: `run_passive_test.py` (TSUBAME job 8916904, commit `f769ec9`); analysis: "
+         "`analyze_passive_test.py` (2,000 draws, seed 17; three-way cluster bootstrap over base verb pairs "
+         "within band, contexts and donor verb pairs). Tables: `results/das_round2/passive_test/*_summary.csv`.",
+         "", "Fidelity checks (per site): a self-patch reproduces the unpatched readout exactly "
+         "(max |dM| = 0); recomputing 512 held-out active swaps of each site's own run gives median |dM| "
+         + ", ".join(f"{meta['checks'][str(s)]['heldout_recompute_median_abs_dM']:.3f}" for s in sites)
+         + " and max " + ", ".join(f"{meta['checks'][str(s)]['heldout_recompute_max_abs_dM']:.2f}" for s in sites)
+         + " (sites 17, 12, 8; bf16 batch effects, M is on a scale of about +-5).", ""]
+
+    # verdict
+    L += ["## Verdict (primary population: 64 pairs with a plain bad verb, all bands pooled)", "",
+          "D = mean change after a transitive active donor minus after an intransitive active donor, on bad "
+          "passive bases (\"The house was emerged\"), in nats.", "",
+          "| Site | Role | δ_s | D log P(O) | class | D log P(\" by\") | class | D log P(\".\") | class | Outcome |",
+          "|---:|---|---:|---|---|---|---|---|---|---|"]
+    for st in sites:
+        o, b, d = (get(P, "all", "D_bad", r, st) for r in ("O", "by", "dot"))
+        L.append(f"| {st} | {role[st]} | {deltas[st]:.2f} | {fmt(o)} | {o['class']} | {fmt(b)} | {b['class']} | "
+                 f"{fmt(d)} | {d['class']} | **{outcome(o['class'], b['class'])}** |")
+    L += ["", "Rules (declared): RISE = 95% CI above 0 and estimate >= δ_s; NO RISE = 90% CI within ±δ_s; "
+          "outcome from the O and \" by\" classes.", ""]
+
+    # absolute probabilities
+    L += ["### In probabilities", "",
+          "Mean probability over primary bad passive bases (and, for reference, good passives unpatched).", "",
+          "| Condition | P(O) | P(pronouns) | P(\" the\") | P(\" by\") | P(\".\") | P(I) |",
+          "|---|---:|---:|---:|---:|---:|---:|"]
+    for r in ab.itertuples():
+        if r.side == "good" and r.condition != "unpatched":
+            continue
+        name = f"{r.side} passive, unpatched" if r.condition == "unpatched" else f"site {int(float(r.site))}, {r.condition}"
+        L.append(f"| {name} | {r.O:.3f} | {r.pron:.4f} | {r.the:.3f} | {r.by:.3f} | {r.dot:.3f} | {r.I:.3f} |")
+    L.append("")
+
+    # components
+    L += ["### Where the change goes (D on bad bases, primary)", "",
+          "| Readout | " + " | ".join(f"site {s}" for s in sites) + " |", "|---|" + "---|" * len(sites)]
+    for rd in ("O", "det", "pron", "refl", "the", "him", "by", "dot", "I", "M"):
+        L.append(f"| {LABEL[rd]} | " + " | ".join(fmt(get(P, "all", "D_bad", rd, s)) for s in sites) + " |")
+    L += ["", "D(\" by\") as a fraction of the natural good − bad gap in log P(\" by\") on the same items "
+          f"({get(P, 'all', 'nat_gap', 'by', 17)['est']:.2f} nats): "
+          + ", ".join(f"site {s} {get(P, 'all', 'D_bad', 'by', s)['frac_natgap_est']:.2f}" for s in sites)
+          + ". D(O) as a fraction of the site's active effect: "
+          + ", ".join(f"site {s} {get(P, 'all', 'D_bad', 'O', s)['est'] / (5 * deltas[s]):.2f}" for s in sites)
+          + ".", ""]
+
+    # controls
+    L += ["## Controls (primary, Δ from unpatched)", "",
+          "| Condition | " + " | ".join(f"site {s}: O / by / ." for s in sites) + " |", "|---|" + "---|" * 3]
+    names = [("T_bad", "T donor → bad passive"), ("I_bad", "I donor → bad passive (voice-change baseline)"),
+             ("same_bad", "own active → bad passive (same verb)"), ("swap_bad", "good passive → bad passive"),
+             ("T_good", "T donor → good passive (good → good)"), ("I_good", "I donor → good passive"),
+             ("same_good", "own active → good passive (same verb)"), ("swap_good", "bad passive → good passive"),
+             ("D_good", "D on good bases"), ("Dm_bad", "D, participle-matched donors"),
+             ("nat_gap", "natural good − bad (unpatched)")]
+    for c, n in names:
+        L.append(f"| {n} | " + " | ".join(" / ".join(f"{get(P, 'all', c, r, s)['est']:+.2f}" for r in ("O", "by", "dot"))
+                                       for s in sites) + " |")
+    L.append("")
+
+    # step 1
+    L += ["## Step 1: projection of natural participles onto d", "",
+          "z: 0 = mean of held-out intransitive actives, 1 = held-out transitive actives (per basis, "
+          "cross-fitted). Gap = good − bad (two-way bootstrap over pairs and contexts / subjects).", "",
+          "| Site | Frame | Band | Pairs | Gap in z | good z | bad z | AUC items | AUC verbs | Win rate |",
+          "|---:|---|---|---:|---|---:|---:|---:|---:|---:|"]
+    for st in sites:
+        for fr in ("passive", "active"):
+            for band in ("all", "head", "tail", "xtail"):
+                x = pj[(pj.site == st) & (pj.frame == fr) & (pj.band == band) & (pj.population == P)]
+                if len(x) == 0:
+                    continue
+                r = x.iloc[0]
+                L.append(f"| {st} | {fr} | {band} | {r.n_pairs} | {r['diff_z.est']:.2f} [{r['diff_z.lo95']:.2f}, "
+                         f"{r['diff_z.hi95']:.2f}] | {r.good_z:.2f} | {r.bad_z:.2f} | {r.auc_items:.3f} | "
+                         f"{r.auc_verbs:.3f} | {r.win_rate:.3f} |")
+    L.append("")
+
+    # bands and groups
+    L += ["## By band (primary) and separate groups (descriptive)", "",
+          "D on bad bases, O / \" by\" / \".\" (point estimates; CIs in `transfer_summary.csv`).", "",
+          "| Population | Band | Pairs | " + " | ".join(f"site {s}" for s in sites) + " |", "|---|---|---:|" + "---|" * 3]
+    pops = [P] * 4 + list(dict.fromkeys(tr.population))
+    seen = set()
+    for pop in pops:
+        bands = ("head", "tail", "xtail") if pop == P and (pop, "head") not in seen else ("all",)
+        for band in bands:
+            if (pop, band) in seen or pop == P and band == "all":
+                continue
+            seen.add((pop, band))
+            if len(tr[(tr.population == pop) & (tr.band == band)]) == 0:
+                continue
+            n = get(pop, band, "D_bad", "O", 17).n_pairs
+            cells_ = []
+            for s in sites:
+                cells_.append(" / ".join(f"{get(pop, band, 'D_bad', r, s)['est']:+.2f}" for r in ("O", "by", "dot")))
+            L.append(f"| {pop} | {band} | {n} | " + " | ".join(cells_) + " |")
+    L.append("")
+    Path(args.report).write_text("\n".join(L) + "\n", encoding="utf-8")
+    print("\n".join(L))
+
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("mode", choices=("delta", "passive"))
+    ap.add_argument("mode", choices=("delta", "passive", "report"))
     ap.add_argument("--root", default="results/das_round2")
     ap.add_argument("--items", default="data/das_round2/passive_test/items.csv")
     ap.add_argument("--prompts", default="data/das_round2/passive_test/prompts.csv")
@@ -369,5 +515,12 @@ if __name__ == "__main__":
     ap.add_argument("--out-dir", default="results/das_round2/passive_test")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
+    ap.add_argument("--report", default="reports/passive_das_prep/passive_test_results.md")
     args = ap.parse_args()
-    run_delta(args) if args.mode == "delta" else run_passive(args)
+    if args.mode == "delta":
+        run_delta(args)
+    elif args.mode == "passive":
+        run_passive(args)
+        write_report(args)
+    else:
+        write_report(args)

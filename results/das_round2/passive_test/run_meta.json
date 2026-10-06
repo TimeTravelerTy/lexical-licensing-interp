@@ -1,0 +1,43 @@
+{
+  "args": {
+    "prompts": "../data/das_round2/passive_test/prompts.csv",
+    "plan": "../data/das_round2/passive_test/plan.csv.gz",
+    "folds": "../results/das_round2/final_strict/pairs_folds.csv",
+    "sites": "8,12,17",
+    "site_dirs": {
+      "8": "../results/das_round2/final_strict_site8",
+      "12": "../results/das_round2/final_strict_site12",
+      "17": "../results/das_round2/final_strict"
+    },
+    "out_dir": "../results/das_round2/passive_test",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 33773,
+  "plan_rows": 2355945,
+  "plan_sha256": "6e07aa9d058f0e35284266c4932f2c8a13c8b3e0500195453f773164005f176d",
+  "bases_sha256": {
+    "8": "4425f0b09a59361dcf6effa4ad8798c8e6282035267104de97ce4ac410f78d70",
+    "12": "5b2a7744415a956db330fc8bb38e3d3277fdd05dc740be2c3e4c3d67422ec8ad",
+    "17": "cd888872d2a3ee81cb7b9897b8977fc2b93098a2b4f1a56cc8e8ddbb5613e080"
+  },
+  "checks": {
+    "8": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.2882232666015625,
+      "heldout_recompute_median_abs_dM": 4.440892098500626e-16
+    },
+    "12": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.36195945739746094,
+      "heldout_recompute_median_abs_dM": 0.0005016326904296875
+    },
+    "17": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.4295167922973633,
+      "heldout_recompute_median_abs_dM": 0.00437307357788097
+    }
+  }
+}

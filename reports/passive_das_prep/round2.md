@@ -376,3 +376,57 @@ Full spec: `passive_test_plan.md`.
   - log P(" by") and log P(".");
   - good→good, voice-change and passive-swap controls;
   - the separate groups listed above.
+
+## Passive test: results (2026-10-06)
+
+Full tables: `passive_test_results.md` (written by
+`scripts/analyze_passive_test.py`). Declared rules from
+`passive_test_plan.md`; primary population of 64 plain-bad-verb pairs.
+
+| Site | Role | D log P(O) | D log P(" by") | Outcome |
+|---:|---|---|---|---|
+| 17 | primary | +3.58 [3.36, 3.79], RISE | −0.93 [−1.10, −0.77], FALL | **surface** |
+| 12 | secondary | +1.17 [1.01, 1.33], RISE | +0.81 [0.72, 0.89], RISE | **mixed** |
+| 8 | secondary | +0.36 [0.30, 0.44], NO RISE (δ 0.49) | +0.72 [0.63, 0.82], RISE | **abstract** |
+
+This is the depth pattern the plan called the most interesting one:
+"takes an object" early, "object next" near the output. Site 17 carries
+the primary claim, and there d is surface.
+
+**Site 17 (primary).**
+- A transitive value turns "The house was emerged" into an
+  object-expecting context: P(O) goes from 0.016 to 0.47, and P(" by")
+  from 0.069 to 0.034.
+- The verb's own active value does the same to its good passive (+3.2 nats
+  O). So at layer 16, d is a voice-specific "object next" value.
+
+**Site 8 (secondary).**
+- The transitive value moves P(" by") on bad passives from 0.065 to 0.117.
+  The good passives sit at 0.158, so this is 1.01× the natural log gap.
+- P(O) moves only from 0.016 to 0.023, and log P(".") does not move.
+
+**Checks that hold at every site.**
+- The voice-change baselines are about 0 on bad bases (intransitive donor,
+  and the verb's own active). D comes from the transitive value, not from
+  inserting an active state.
+- The result holds across bands, original-only pairs, without bet/appear,
+  for the cross-fitted orig_head pairs, and with participle-matched donors.
+
+**Step 1.**
+- Good and bad passives separate along d at all three sites (paired win
+  rate 0.94-1.00), but compressed: 0.36 / 0.34 / 0.18 of the same verbs'
+  active gap at sites 8 / 12 / 17.
+- At site 17 good passives sit near the intransitive level (z = 0.20).
+- The passive good → bad swap raises " by" at sites 8 and 12 (+0.36,
+  +0.34) but not at 17 (+0.05).
+
+**Caveats on the site-8 "abstract" call.**
+- The O class rests on TOST. The rise is reliably above 0 (90% CI
+  [0.31, 0.42]).
+- Pronoun, reflexive and " him" mass still rise by 0.9-1.4 nats. In
+  probability that is small: pronouns go from 0.0004 to 0.0012.
+- Site 8 controls actives less well (IIA 0.76, 0.75 of the gap).
+- prep_object bad verbs are less selective at site 8 (pseudo_passive_ok:
+  O +1.01, "." +0.72).
+- No random-direction or shuffled-label control was run on passives. That
+  is the obvious next check for the site-8 " by" effect.
