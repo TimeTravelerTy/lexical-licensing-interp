@@ -37,7 +37,7 @@ SUBJ = ["She", "He", "They", "We", "I", "Maria", "David"]
 
 # ---------------------------------------------------------------- delta mode
 def run_delta(args):
-    for site in (8, 12):
+    for site in [int(x) for x in args.delta_sites.split(",")]:
         d = Path(args.root) / f"final_strict_site{site}"
         det = pd.read_csv(d / "heldout_swaps.csv.gz")
         pp, _ = per_pair(det, 1)
@@ -188,8 +188,9 @@ def populations(items):
 
 
 # ---------------------------------------------------------------- step 1
-def projection(args, site, items, P, pairs_folds, das_items, bt, pr, pops):
-    proj = pd.read_parquet(Path(args.out_dir) / f"projections_site{site}.parquet").set_index("pid")
+def frame_z(proj_path, items, P, pairs_folds, das_items, pr):
+    """Cross-fitted, sign-aligned z per prompt -> passive items (zg, zb, diff) and active pairs x subjects."""
+    proj = pd.read_parquet(proj_path).set_index("pid")
     das = das_items.assign(pid=das_items.prompt.map(dict(zip(P.prompt, P.pid))))
     verb_pair = dict(zip(das.verb, das.pair_id))
     z = np.zeros((len(P), 15))
@@ -232,6 +233,11 @@ def projection(args, site, items, P, pairs_folds, das_items, bt, pr, pops):
     at = pd.DataFrame(arows)
     at["diff"], at["rdiff"] = at.zg - at.zb, at.rg - at.rb
 
+    return it, at
+
+
+def projection(args, site, items, P, pairs_folds, das_items, bt, pr, pops):
+    it, at = frame_z(Path(args.out_dir) / f"projections_site{site}.parquet", items, P, pairs_folds, das_items, pr)
     pair_ix = {p: i for i, p in enumerate(pr.index)}
     rows = []
     for frame, df, cl in (("passive", it, sorted(items.context_id.unique())), ("active", at, SUBJ)):
@@ -651,6 +657,7 @@ if __name__ == "__main__":
     ap.add_argument("--report", default="reports/passive_das_prep/passive_test_results.md")
     ap.add_argument("--controls-report", default="reports/passive_das_prep/passive_controls_site{site}.md")
     ap.add_argument("--site", type=int, default=8)
+    ap.add_argument("--delta-sites", default="8,12")
     args = ap.parse_args()
     if args.mode == "delta":
         run_delta(args)

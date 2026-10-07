@@ -9,5 +9,17 @@
   "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
   "primary_config": "results/das_round2/frozen_config_final.json",
   "tost_rule": "delta_s = 0.2 x held-out Delta log P(O) (intransitive base <- transitive source, mean over held-out pairs) from this site's final run, fixed before passive evaluation",
-  "sweep_sha256": "3fdec90711941233f0193234b7f8b6f3df914996be11ad35587bfc079fb2f9e8"
+  "sweep_sha256": "3fdec90711941233f0193234b7f8b6f3df914996be11ad35587bfc079fb2f9e8",
+  "tost": {
+    "quantity": "passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching",
+    "active_effect_delta_logP_O": 2.5046,
+    "active_effect_ci95": [
+      2.1709,
+      2.8333
+    ],
+    "n_pairs": 29,
+    "fraction": 0.2,
+    "delta": 0.5009,
+    "rule": "equivalence ('no rise') if the 90% CI of D lies within +/- delta"
+  }
 }

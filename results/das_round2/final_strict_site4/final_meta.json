@@ -1,0 +1,46 @@
+{
+  "site": 4,
+  "epochs": 3,
+  "ranks_trained": [
+    1
+  ],
+  "chosen_rank": 1,
+  "rank_rule": "rank 1 unless a larger rank raises mean held-out median pc_frac by > 0.1",
+  "pc_frac_by_rank": {
+    "1": 0.6207744405197116
+  },
+  "pairs": 29,
+  "dropped_pairs": [],
+  "items": 406,
+  "config": {
+    "site": 4,
+    "layer_output": 3,
+    "epochs": 3,
+    "rank": 1,
+    "role": "layer fill-in site (followup_plan.md, step 3)",
+    "declared": "2026-10-07, before training and any passive evaluation at this site",
+    "epoch_rule": "the frozen rule applied to this site's sweep curve: smallest epoch whose mean held-out cross-class IIA is within 0.01 of the site's best (sweep_strict/sweep.csv)",
+    "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+    "primary_config": "results/das_round2/frozen_config_final.json",
+    "tost_rule": "delta_s = 0.2 x held-out Delta log P(O) (intransitive base <- transitive source, mean over held-out pairs) from this site's final run, fixed before passive evaluation",
+    "sweep_sha256": "3fdec90711941233f0193234b7f8b6f3df914996be11ad35587bfc079fb2f9e8"
+  },
+  "args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/das_round2/frozen_config_site4.json",
+    "out_dir": "../results/das_round2/final_strict_site4",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01
+  }
+}

@@ -249,3 +249,22 @@ No prediction is declared. This step replaces a comparison, not a test.
 - **6. In-context nonce passives**, read at site 8 or wherever step 3
   places the conversion. The main measure is the natural projection (no
   injection).
+
+## Fill-in sites: training results (2026-10-07, before any passive evaluation there)
+
+Jobs 8926432–8926436, commit `7ebdc4e`. Reports:
+`das_round2_results_site{4,6,10,14,16}.md`. Intransitive base ← transitive
+source, held-out pairs:
+
+| Site | IIA | Gap fraction (M) | Δ log P(O) | δ_s |
+|---:|---|---|---|---:|
+| 4 | 0.54 [0.40, 0.66] | 0.60 [0.52, 0.69] | 2.09 [1.75, 2.42] | 0.4177 |
+| 6 | 0.66 [0.54, 0.77] | 0.70 [0.62, 0.77] | 2.33 [1.99, 2.65] | 0.4654 |
+| 10 | 0.79 [0.68, 0.88] | 0.77 [0.71, 0.84] | 2.50 [2.17, 2.83] | 0.5009 |
+| 14 | 0.94 [0.89, 0.98] | 0.95 [0.90, 1.00] | 2.76 [2.41, 3.09] | 0.5510 |
+| 16 | 0.96 [0.93, 0.99] | 1.03 [0.98, 1.08] | 2.83 [2.49, 3.16] | 0.5656 |
+
+- Every site beats norm-matched random subspaces on the active
+  positive-control fraction in 15 of 15 fold × split runs.
+- Within-site direction stability: median cosine 0.95–0.97.
+- `bases_rank1.npz` now holds all eight sites.
