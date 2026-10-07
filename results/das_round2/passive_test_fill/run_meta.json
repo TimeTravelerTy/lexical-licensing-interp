@@ -1,0 +1,57 @@
+{
+  "args": {
+    "prompts": "../data/das_round2/passive_test/prompts.csv",
+    "plan": "../data/das_round2/passive_test/plan.csv.gz",
+    "folds": "../results/das_round2/final_strict/pairs_folds.csv",
+    "sites": "4,6,10,14,16",
+    "site_dirs": {
+      "4": "../results/das_round2/final_strict_site4",
+      "6": "../results/das_round2/final_strict_site6",
+      "10": "../results/das_round2/final_strict_site10",
+      "14": "../results/das_round2/final_strict_site14",
+      "16": "../results/das_round2/final_strict_site16"
+    },
+    "out_dir": "../results/das_round2/passive_test_fill",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 33773,
+  "plan_rows": 2355945,
+  "plan_sha256": "6e07aa9d058f0e35284266c4932f2c8a13c8b3e0500195453f773164005f176d",
+  "bases_sha256": {
+    "4": "d4beabce8ff099fdbe65020b2b0309928486613df34fa483446c6ffd8270f5e1",
+    "6": "8f89f054354cb1d2afcf4b83291f65573b7c7efaffd01e51a93fed1694439d36",
+    "10": "4835d18e26861c45abf941f9c44f38a92435384bd21309e4084e0c981f3faa72",
+    "14": "39e5dd79e73a9c587971e79dda64f94a16832f6aef4b4310625c0aa4c5e74dd1",
+    "16": "2b2d6d5d9003d64f505034c43534f679df23b9b8939504d24dfbebe0a82ed8eb"
+  },
+  "checks": {
+    "4": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.4285869598388672,
+      "heldout_recompute_median_abs_dM": 4.440892098500626e-16
+    },
+    "6": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.37956428527832076,
+      "heldout_recompute_median_abs_dM": 6.661338147750939e-16
+    },
+    "10": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.2658653259277344,
+      "heldout_recompute_median_abs_dM": 4.440892098500626e-16
+    },
+    "14": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.3544750213623047,
+      "heldout_recompute_median_abs_dM": 0.002002716064453236
+    },
+    "16": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.41481781005859375,
+      "heldout_recompute_median_abs_dM": 0.003460407257080078
+    }
+  }
+}

@@ -349,7 +349,7 @@ def abs_probs(args, items, plan, nat):
         sel = plan.item_id.isin(prim).to_numpy() & (plan.side == side).to_numpy()
         rows.append({"site": "", "side": side, "condition": "unpatched",
                      **np.exp(n.loc[plan[sel].base.unique(), rd]).mean().to_dict()})
-        for site in (8, 12, 17):
+        for site in sorted(int(x) for x in args.sites.split(",")):
             pat = pd.read_parquet(Path(args.out_dir) / f"patches_site{site}.parquet", columns=["row"] + rd)
             for c in ("T", "I"):
                 r = plan[sel & (plan.cond == c).to_numpy()].row.to_numpy()
@@ -368,11 +368,10 @@ def run_passive(args):
     pairs_folds = pd.read_csv(root / "final_strict" / "pairs_folds.csv")
     das_items = pd.read_csv(root / "final_strict" / "items.csv")
     pr, pops = populations(items)
-    deltas = {17: json.loads((root / "frozen_config_final.json").read_text())["tost"]["delta"]}
-    for s in (8, 12):
-        deltas[s] = json.loads((root / f"frozen_config_site{s}.json").read_text())["tost"]["delta"]
+    sites = [int(x) for x in args.sites.split(",")]
+    deltas = {s: site_delta(root, s) for s in sites}
     proj_rows, tr_rows = [], []
-    for site in (17, 12, 8):
+    for site in sites:
         bt = Boot(items.context_id.nunique(), args.n_boot, args.seed)
         proj_rows += projection(args, site, items, P, pairs_folds, das_items, bt, pr, pops)
         tr_rows += transfer(args, site, items, plan, nat, bt, pr, pops, deltas[site])
@@ -397,8 +396,8 @@ def write_report(args):
     ab = pd.read_csv(out / "abs_probs.csv")
     deltas = {int(k): v for k, v in json.loads((out / "deltas.json").read_text()).items()}
     meta = json.loads((out / "run_meta.json").read_text())
-    sites = (17, 12, 8)
-    role = {17: "primary", 12: "secondary", 8: "secondary"}
+    sites = [int(x) for x in args.sites.split(",")]
+    role = {s: ("primary" if s == 17 else "secondary" if s in (8, 12) else "fill-in") for s in sites}
 
     def get(pop, band, cond, rd, site):
         x = tr[(tr.population == pop) & (tr.band == band) & (tr.condition == cond) & (tr.readout == rd)
@@ -408,14 +407,14 @@ def write_report(args):
     P = "primary (plain)"
     L = ["# Passive test of the round-2 direction: results", "",
          "Spec, declared and committed before any passive evaluation: `passive_test_plan.md`. "
-         "Run: `run_passive_test.py` (TSUBAME job 8916904, commit `f769ec9`); analysis: "
+         f"Run: `run_passive_test.py` ({args.run_label}); analysis: "
          "`analyze_passive_test.py` (2,000 draws, seed 17; three-way cluster bootstrap over base verb pairs "
          "within band, contexts and donor verb pairs). Tables: `results/das_round2/passive_test/*_summary.csv`.",
          "", "Fidelity checks (per site): a self-patch reproduces the unpatched readout exactly "
          "(max |dM| = 0); recomputing 512 held-out active swaps of each site's own run gives median |dM| "
          + ", ".join(f"{meta['checks'][str(s)]['heldout_recompute_median_abs_dM']:.3f}" for s in sites)
          + " and max " + ", ".join(f"{meta['checks'][str(s)]['heldout_recompute_max_abs_dM']:.2f}" for s in sites)
-         + " (sites 17, 12, 8; bf16 batch effects, M is on a scale of about +-5).", ""]
+         + f" (sites {', '.join(map(str, sites))}; bf16 batch effects, M is on a scale of about +-5).", ""]
 
     # verdict
     L += ["## Verdict (primary population: 64 pairs with a plain bad verb, all bands pooled)", "",
@@ -448,7 +447,7 @@ def write_report(args):
     for rd in ("O", "det", "pron", "refl", "the", "him", "by", "dot", "I", "M"):
         L.append(f"| {LABEL[rd]} | " + " | ".join(fmt(get(P, "all", "D_bad", rd, s)) for s in sites) + " |")
     L += ["", "D(\" by\") as a fraction of the natural good − bad gap in log P(\" by\") on the same items "
-          f"({get(P, 'all', 'nat_gap', 'by', 17)['est']:.2f} nats): "
+          f"({get(P, 'all', 'nat_gap', 'by', sites[0])['est']:.2f} nats): "
           + ", ".join(f"site {s} {get(P, 'all', 'D_bad', 'by', s)['frac_natgap_est']:.2f}" for s in sites)
           + ". D(O) as a fraction of the site's active effect: "
           + ", ".join(f"site {s} {get(P, 'all', 'D_bad', 'O', s)['est'] / (5 * deltas[s]):.2f}" for s in sites)
@@ -500,7 +499,7 @@ def write_report(args):
             seen.add((pop, band))
             if len(tr[(tr.population == pop) & (tr.band == band)]) == 0:
                 continue
-            n = get(pop, band, "D_bad", "O", 17).n_pairs
+            n = get(pop, band, "D_bad", "O", sites[0]).n_pairs
             cells_ = []
             for s in sites:
                 cells_.append(" / ".join(f"{get(pop, band, 'D_bad', r, s)['est']:+.2f}" for r in ("O", "by", "dot")))
@@ -644,9 +643,76 @@ def run_controls(args):
     print("\n".join(L))
 
 
+# ---------------------------------------------------------------- depth table (followup_plan.md, step 3)
+def run_depth(args):
+    dirs = [Path(d) for d in args.depth_dirs.split(",")]
+    find = lambda name: next((d / name for d in dirs if (d / name).exists()), None)
+    tr = pd.concat([pd.read_csv(d / "transfer_summary.csv") for d in dirs if (d / "transfer_summary.csv").exists()])
+    pj = pd.concat([pd.read_csv(d / "projection_summary.csv") for d in dirs if (d / "projection_summary.csv").exists()])
+    sites = sorted(tr.site.unique())
+    P = "primary (plain)"
+    get = lambda st, c, r: tr[(tr.site == st) & (tr.population == P) & (tr.band == "all") & (tr.condition == c)
+                              & (tr.readout == r)].iloc[0]
+    L = ["# Layer fill-in: the passive test at every DAS site", "",
+         "Spec and predictions: `followup_plan.md`, step 3. Rules as in `passive_test_plan.md`. Primary population "
+         "(64 pairs), D on bad passive bases (T − I donors), all bands pooled; 95% CIs. Sites 8, 12, 17: "
+         "`passive_test_results.md`; sites 4, 6, 10, 14, 16: `passive_test_results_fill.md`.", "",
+         "| Site | Active IIA | δ_s | D log P(O) | class | D log P(\" by\") | class | D log P(\".\") | Outcome | "
+         "Passive z gap | Passive/active gap | Random null (norm-matched) |",
+         "|---:|---:|---:|---|---|---|---|---|---|---|---:|---|"]
+    rows = []
+    for st in sites:
+        o, b, d = get(st, "D_bad", "O"), get(st, "D_bad", "by"), get(st, "D_bad", "dot")
+        delta = site_delta(args.root, st)
+        summ = pd.read_csv(site_dir(args.root, st) / "summary.csv")
+        iia = summ[summ.control == "das"].iia_cross.mean()
+        pp = pj[(pj.site == st) & (pj.population == P) & (pj.band == "all")].set_index("frame")
+        ratio = pp.loc["passive", "diff_z.est"] / pp.loc["active", "diff_z.est"]
+        f = find(f"controls_random_summary_site{st}.csv")
+        null = "not run"
+        if f is not None:
+            nd = pd.read_csv(f)
+            nd = nd[nd.control == "random_normmatched"].set_index("readout")
+            ok = []
+            for rd, cls in (("O", o["class"]), ("by", b["class"]), ("dot", d["class"])):
+                if cls == "RISE":
+                    ok.append(nd.das_split0[rd] > nd.null_p95[rd])
+                elif cls == "FALL":
+                    ok.append(nd.das_split0[rd] < nd.null_p5[rd])
+            mx = nd.null_max_abs[["O", "by", "dot"]].max()
+            null = (("beats null" if all(ok) else "FAILS") if ok else "no RISE/FALL") + f" (null max |D| {mx:.2f})"
+        oc = outcome(o["class"], b["class"])
+        rows.append({"site": st, "iia": iia, "delta": delta, "D_O": o["est"], "D_by": b["est"], "D_dot": d["est"],
+                     "class_O": o["class"], "class_by": b["class"], "class_dot": d["class"], "outcome": oc,
+                     "passive_gap": pp.loc["passive", "diff_z.est"], "gap_ratio": ratio, "random": null})
+        L.append(f"| {st} | {iia:.2f} | {delta:.2f} | {fmt(o)} | {o['class']} | {fmt(b)} | {b['class']} | {fmt(d)} | "
+                 f"**{oc}** | {pp.loc['passive', 'diff_z.est']:.2f} [{pp.loc['passive', 'diff_z.lo95']:.2f}, "
+                 f"{pp.loc['passive', 'diff_z.hi95']:.2f}] | {ratio:.2f} | {null} |")
+    R = pd.DataFrame(rows)
+    R.to_csv(Path(args.depth_out), index=False)
+    mono = bool(np.all(np.diff(R.D_O.to_numpy()) > 0))
+    pred = {4: "abstract or unresolved/nothing moves", 6: "abstract or unresolved/nothing moves",
+            10: "abstract or mixed", 14: "mixed", 16: "surface"}
+    first_rise = R[R.class_O == "RISE"].site.min()
+    neg_by = R[R.D_by < 0].site.min()
+    L += ["", "## Predictions (declared) vs observed", "",
+          f"- D(O) increases monotonically with depth: **{'yes' if mono else 'no'}** "
+          f"({', '.join(f'{r.site}: {r.D_O:+.2f}' for r in R.itertuples())}).",
+          f"- D(\" by\") positive up to about 12, negative between 14 and 17: first site with D(\" by\") < 0 is "
+          f"**{neg_by}** ({', '.join(f'{r.site}: {r.D_by:+.2f}' for r in R.itertuples())}).",
+          f"- First site where O is RISE (predicted 10 or 12): **{first_rise}**."]
+    for st, pr_ in pred.items():
+        if st in set(R.site):
+            L.append(f"- Site {st}: predicted {pr_}; observed **{R.set_index('site').outcome[st]}**.")
+    L.append("")
+    Path(args.depth_report).write_text("\n".join(L) + "\n", encoding="utf-8")
+    print("\n".join(L))
+
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("mode", choices=("delta", "passive", "report", "controls"))
+    ap.add_argument("mode", choices=("delta", "passive", "report", "controls", "depth"))
     ap.add_argument("--root", default="results/das_round2")
     ap.add_argument("--items", default="data/das_round2/passive_test/items.csv")
     ap.add_argument("--prompts", default="data/das_round2/passive_test/prompts.csv")
@@ -658,6 +724,11 @@ if __name__ == "__main__":
     ap.add_argument("--controls-report", default="reports/passive_das_prep/passive_controls_site{site}.md")
     ap.add_argument("--site", type=int, default=8)
     ap.add_argument("--delta-sites", default="8,12")
+    ap.add_argument("--sites", default="17,12,8")
+    ap.add_argument("--depth-dirs", default="results/das_round2/passive_test,results/das_round2/passive_test_fill")
+    ap.add_argument("--depth-out", default="results/das_round2/passive_test_fill/depth_summary.csv")
+    ap.add_argument("--depth-report", default="reports/passive_das_prep/layer_fillin_results.md")
+    ap.add_argument("--run-label", default="TSUBAME job 8916904, commit `f769ec9`")
     args = ap.parse_args()
     if args.mode == "delta":
         run_delta(args)
@@ -666,5 +737,7 @@ if __name__ == "__main__":
         write_report(args)
     elif args.mode == "controls":
         run_controls(args)
+    elif args.mode == "depth":
+        run_depth(args)
     else:
         write_report(args)
