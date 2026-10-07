@@ -1,0 +1,32 @@
+{
+  "site": 6,
+  "epochs": 2,
+  "plan_rows": 272142,
+  "random_rows_per_draw": 90740,
+  "n_random": 100,
+  "seed": 11,
+  "shuffled_heldout_active": [],
+  "das_bases_sha256": "8f89f054354cb1d2afcf4b83291f65573b7c7efaffd01e51a93fed1694439d36",
+  "args": {
+    "config": "../results/das_round2/frozen_config_site6.json",
+    "das_dir": "../results/das_round2/final_strict_site6",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "items": "../data/das_round2/passive_test/items.csv",
+    "prompts": "../data/das_round2/passive_test/prompts.csv",
+    "plan": "../data/das_round2/passive_test/plan.csv.gz",
+    "out_dir": "../results/das_round2/passive_test_fill",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01,
+    "batch": 1024,
+    "seed": 11,
+    "controls": "random_normmatched"
+  }
+}

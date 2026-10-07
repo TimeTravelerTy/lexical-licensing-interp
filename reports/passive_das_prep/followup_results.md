@@ -135,12 +135,11 @@ Against the predictions:
   - 14: predicted mixed, observed **surface** (missed: " by" is +0.46, not
     a RISE);
   - 16: predicted surface, observed **surface**.
-- The norm-matched random control:
-  - sites 12 and 17: DAS beats the null on every RISE and FALL (null
-    max |D| ≤ 0.13);
-  - site 8: done earlier;
-  - sites 4, 6, 10, 14 and 16: rerunning. The first submission collided
-    with the plan regeneration in the fill-in job.
+- The norm-matched random control (100 draws, split 0, per site): **DAS
+  beats the null at all eight sites** on every readout classified RISE or
+  FALL. The null's max |D| is 0.04–0.13, against DAS effects of 0.10–3.6
+  nats (`passive_controls_site{N}.md`; the first fill-in submission collided
+  with the plan regeneration and was rerun as jobs 8927007–8927011).
 
 The passive/active gap ratio falls steadily with depth. Early on, passive
 participles are separated along d almost as much as active ones (0.86 at
