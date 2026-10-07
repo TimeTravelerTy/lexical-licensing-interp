@@ -505,21 +505,39 @@ def write_report(args):
 
 
 
-# ---------------------------------------------------------------- site-8 controls (post hoc)
-def run_controls(args, site=8):
+# ---------------------------------------------------------------- passive-side controls (post hoc)
+def site_delta(root, site):
+    f = Path(root) / ("frozen_config_final.json" if site == 17 else f"frozen_config_site{site}.json")
+    return json.loads(f.read_text())["tost"]["delta"]
+
+
+def site_dir(root, site):
+    return Path(root) / ("final_strict" if site == 17 else f"final_strict_site{site}")
+
+
+def shuffled_cosines(root, site):
+    """|cos| between each fold's DAS basis and its shuffled-label basis (from bases_rank1.npz)."""
+    z = np.load(Path(root) / "bases_rank1.npz")
+    return np.array([abs(float(z[f"das_site{site}_s{k}_f{f}"] @ z[f"shuffled_site{site}_s{k}_f{f}"]))
+                     for k in range(3) for f in range(5) if f"shuffled_site{site}_s{k}_f{f}" in z.files])
+
+
+def run_controls(args):
+    site = args.site
     out = Path(args.out_dir)
     items = pd.read_csv(args.items)
     plan = pd.read_csv(args.plan)
     nat = pd.read_parquet(out / "natural.parquet").set_index("pid")
-    delta = json.loads((Path(args.root) / f"frozen_config_site{site}.json").read_text())["tost"]["delta"]
+    delta = site_delta(args.root, site)
     meta = json.loads((out / f"controls_meta_site{site}.json").read_text())
     pr, pops = populations(items)
-    prim = pops["primary (plain)"]
-    pix = np.flatnonzero(prim.to_numpy())
+    pix = np.flatnonzero(pops["primary (plain)"].to_numpy())
     pair_ix = {p: i for i, p in enumerate(pr.index)}
     ctx_ix = {c: i for i, c in enumerate(sorted(items.context_id.unique()))}
     item_pair = items.set_index("item_id")[["pair_id", "context_id"]]
     das_pat = pd.read_parquet(out / f"patches_site{site}.parquet")
+    prim_rows = plan.item_id.isin(set(items[items.bad_class == "plain"].item_id)) & (plan.side == "bad") \
+        & plan.cond.isin(["T", "I"])
 
     def deltas_for(pat):
         if "M" not in pat:
@@ -537,20 +555,54 @@ def run_controls(args, site=8):
         vI, mI = cells(dd[dd.cond == "I"], pair_ix, ctx_ix, qix, len(q), READ)
         assert (mT == mI).all()
         A = pair_values(vT - vI, mT, bt.wc, bt.donor_weights("das", len(q)))
-        wp = bt.pair_weights(pr.band.to_numpy()[pix])
-        return summarize(A, wp, pix)
+        return summarize(A, bt.pair_weights(pr.band.to_numpy()[pix]), pix)
 
-    sh_pat = pd.read_parquet(out / f"controls_shuffled_site{site}.parquet")
-    sh = deltas_for(sh_pat)
-    das = deltas_for(das_pat[das_pat.row.isin(set(sh_pat.row))].reset_index(drop=True))  # same plan rows
-    S_sh, S_das = d_boot(sh), d_boot(das)
-    res = []
-    for r, rd in enumerate(READ):
-        a, b = ci(S_sh[:, r]), ci(S_das[:, r])
-        diff = ci(S_das[:, r] - S_sh[:, r])  # same weights per draw (same seed), so the difference is paired
-        res.append({"readout": rd, "das": b, "shuffled": a, "das_minus_shuffled": diff,
-                    "class_shuffled": classify(a, delta) if rd in ("O", "by", "dot") else "",
-                    "class_das": classify(b, delta) if rd in ("O", "by", "dot") else ""})
+    das = deltas_for(das_pat[das_pat.row.isin(set(plan.row[prim_rows]))].reset_index(drop=True))
+    L = [f"# Site-{site} passive-side controls (post hoc)", "",
+         "Criteria written before running: `passive_test_plan.md` (addendum) and `followup_plan.md`. Script "
+         "`run_passive_controls.py`; analysis `analyze_passive_test.py controls`. Primary population (64 pairs), "
+         f"bad passive bases, T vs I donors; δ = {delta:.4f}.", ""]
+
+    # shuffled-label DAS: a weaker copy of d, not a null
+    sh_file = out / f"controls_shuffled_site{site}.parquet"
+    if sh_file.exists():
+        sh_pat = pd.read_parquet(sh_file)
+        sh = deltas_for(sh_pat)
+        das_sh = das[das.set_index(["item_id", "split", "cond", "donor_pair"]).index.isin(
+            sh.set_index(["item_id", "split", "cond", "donor_pair"]).index)]
+        S_sh, S_das = d_boot(sh), d_boot(das_sh)
+        res = []
+        for r, rd in enumerate(READ):
+            a, b = ci(S_sh[:, r]), ci(S_das[:, r])
+            diff = ci(S_das[:, r] - S_sh[:, r])  # same weights per draw (same seed), so the difference is paired
+            res.append({"readout": rd, "das": b, "shuffled": a, "das_minus_shuffled": diff,
+                        "class_shuffled": classify(a, delta) if rd in ("O", "by", "dot") else "",
+                        "class_das": classify(b, delta) if rd in ("O", "by", "dot") else ""})
+        pd.json_normalize(res).to_csv(out / f"controls_shuffled_summary_site{site}.csv", index=False)
+        orig = pd.read_csv(site_dir(args.root, site) / "summary.csv")
+        orig = orig[orig.control == "shuffled_labels"].set_index(["split", "fold"])
+        act = pd.DataFrame(meta["shuffled_heldout_active"]).set_index(["split", "fold"])
+        das_act = pd.read_csv(site_dir(args.root, site) / "summary.csv")
+        das_act = das_act[das_act.control == "das"]
+        cos = shuffled_cosines(args.root, site)
+        o = {r["readout"]: r for r in res}
+        ratio = o["by"]["shuffled"]["est"] / o["by"]["das"]["est"]
+        L += ["## Shuffled-label DAS: a weaker copy of d", "",
+              "Shuffled-label DAS is not a null here. Permuting class labels across training verbs leaves about "
+              "half of them correctly labelled, so training still recovers a partial version of d.", "",
+              f"- Retrained shuffled-label bases: held-out active IIA {act.iia_cross.mean():.3f} (the original "
+              f"run's control: {orig.iia_cross.mean():.3f}, per-fold max |difference| "
+              f"{(act.iia_cross - orig.iia_cross.reindex(act.index)).abs().max():.3f}); positive-control fraction "
+              f"{act.pc_frac_median.mean():.2f} vs {das_act.pc_frac_median.mean():.2f} for DAS.",
+              f"- |cosine| with the DAS basis of the same fold: mean {cos.mean():.2f} (per fold {cos.min():.2f}–"
+              f"{cos.max():.2f}; `bases_rank1.npz`). Random rank-1 directions in 2048 dimensions give about 0.02.",
+              f"- Its passive effect has the same profile as DAS at about {ratio:.1f}× on \" by\".", "",
+              "| Readout | DAS D | class | Shuffled-label D | class | DAS − shuffled |", "|---|---|---|---|---|---|"]
+        for r in res:
+            L.append(f"| {LABEL[r['readout']]} | {fmt(r['das'])} | {r['class_das']} | {fmt(r['shuffled'])} | "
+                     f"{r['class_shuffled']} | {fmt(r['das_minus_shuffled'])} |")
+        L += ["", f"Shuffled-label outcome by the declared rule: "
+              f"{outcome(o['O']['class_shuffled'], o['by']['class_shuffled'])}.", ""]
 
     # random null (split 0), D per item -> pair mean -> mean over primary pairs
     rnd = pd.read_parquet(out / f"controls_random_site{site}.parquet")
@@ -558,54 +610,32 @@ def run_controls(args, site=8):
     rnd = rnd.join(item_pair, on="item_id")
     rnd = rnd[rnd.pair_id.isin(pr.index[pix])]
     null = rnd.groupby(["control", "draw", "pair_id"])[list(READ)].mean().groupby(["control", "draw"]).mean()
-    d0 = das[das.split == 0]
-    g = d0.groupby(["item_id", "cond"])[list(READ)].mean().unstack("cond")
+    g = das[das.split == 0].groupby(["item_id", "cond"])[list(READ)].mean().unstack("cond")
     D0 = pd.DataFrame({k: g[(k, "T")] - g[(k, "I")] for k in READ}).join(item_pair)
     das0 = D0[D0.pair_id.isin(pr.index[pix])].groupby("pair_id")[list(READ)].mean().mean()
     nrows = []
     for c, x in null.groupby(level="control"):
         for rd in ("O", "by", "dot", "pron", "the", "M"):
             v = x[rd].to_numpy()
-            nrows.append({"control": c, "readout": rd, "das_split0": float(das0[rd]), "null_mean": float(v.mean()),
-                          "null_p95": float(np.percentile(v, 95)), "null_p5": float(np.percentile(v, 5)),
-                          "null_max_abs": float(np.abs(v).max()), "n_draws": len(v),
-                          "frac_ge_das": float((v >= das0[rd]).mean()),
-                          "n_ge_delta": int((v >= delta).sum())})
+            nrows.append({"site": site, "control": c, "readout": rd, "das_split0": float(das0[rd]),
+                          "null_mean": float(v.mean()), "null_p95": float(np.percentile(v, 95)),
+                          "null_p5": float(np.percentile(v, 5)), "null_max_abs": float(np.abs(v).max()),
+                          "n_draws": len(v), "frac_ge_das": float((v >= das0[rd]).mean()),
+                          "frac_le_das": float((v <= das0[rd]).mean()), "n_abs_ge_delta": int((np.abs(v) >= delta).sum())})
     nd = pd.DataFrame(nrows)
     nd.to_csv(out / f"controls_random_summary_site{site}.csv", index=False)
-    pd.json_normalize(res).to_csv(out / f"controls_shuffled_summary_site{site}.csv", index=False)
-
-    # active metrics of the retrained shuffled bases vs the original run
-    orig = pd.read_csv(Path(args.root) / f"final_strict_site{site}" / "summary.csv")
-    orig = orig[orig.control == "shuffled_labels"].set_index(["split", "fold"])
-    act = pd.DataFrame(meta["shuffled_heldout_active"]).set_index(["split", "fold"])
-
-    L = [f"# Site-{site} passive-side controls (post hoc)", "",
-         "Criteria written before running: `passive_test_plan.md`, addendum. Script "
-         "`run_passive_controls.py`; analysis `analyze_passive_test.py controls`. Primary population (64 pairs), "
-         f"bad passive bases, T vs I donors; δ = {delta:.4f}.", "",
-         "## Shuffled-label DAS (all splits, declared bootstrap)", "",
-         f"Retrained shuffled-label bases, held-out active IIA {act.iia_cross.mean():.3f} (original run's control: "
-         f"{orig.iia_cross.mean():.3f}; per-fold max |difference| "
-         f"{(act.iia_cross - orig.iia_cross.reindex(act.index)).abs().max():.3f}).", "",
-         "| Readout | DAS D | class | Shuffled-label D | class | DAS − shuffled |", "|---|---|---|---|---|---|"]
-    for r in res:
-        L.append(f"| {LABEL[r['readout']]} | {fmt(r['das'])} | {r['class_das']} | {fmt(r['shuffled'])} | "
-                 f"{r['class_shuffled']} | {fmt(r['das_minus_shuffled'])} |")
-    o = {r["readout"]: r for r in res}
-    L += ["", f"Shuffled-label outcome: **{outcome(o['O']['class_shuffled'], o['by']['class_shuffled'])}**.", "",
-          "## Random rank-1 directions (split 0, 100 draws)", "",
+    L += [f"## Random rank-1 directions (split 0, {int(nd.n_draws.max())} draws)", "",
           "D per draw = mean over primary pairs (point estimate). DAS recomputed on the same split-0 rows.", "",
-          "| Control | Readout | DAS (split 0) | Null mean | Null 5th–95th pct | Max abs | Draws ≥ DAS | Draws ≥ δ |",
-          "|---|---|---:|---:|---|---:|---:|---:|"]
+          "| Control | Readout | DAS (split 0) | Null mean | Null 5th–95th pct | Max abs | Draws ≥ DAS | Draws ≤ DAS "
+          "| Draws with abs ≥ δ |", "|---|---|---:|---:|---|---:|---:|---:|---:|"]
     for r in nd.itertuples():
         L.append(f"| {r.control} | {LABEL[r.readout]} | {r.das_split0:+.3f} | {r.null_mean:+.3f} | "
                  f"[{r.null_p5:+.3f}, {r.null_p95:+.3f}] | {r.null_max_abs:.3f} | {r.frac_ge_das:.2f} | "
-                 f"{r.n_ge_delta} |")
+                 f"{r.frac_le_das:.2f} | {r.n_abs_ge_delta} |")
     L.append("")
-    Path(args.controls_report).write_text("\n".join(L) + "\n", encoding="utf-8")
+    report = Path(args.controls_report.format(site=site))
+    report.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))
-
 
 
 if __name__ == "__main__":
@@ -619,7 +649,8 @@ if __name__ == "__main__":
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
     ap.add_argument("--report", default="reports/passive_das_prep/passive_test_results.md")
-    ap.add_argument("--controls-report", default="reports/passive_das_prep/passive_controls_site8.md")
+    ap.add_argument("--controls-report", default="reports/passive_das_prep/passive_controls_site{site}.md")
+    ap.add_argument("--site", type=int, default=8)
     args = ap.parse_args()
     if args.mode == "delta":
         run_delta(args)

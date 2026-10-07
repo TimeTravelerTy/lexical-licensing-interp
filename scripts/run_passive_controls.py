@@ -7,7 +7,7 @@ bad verb), bad passive bases, conditions T and I.
 - shuffled_labels: the 15 shuffled-label DAS bases of the site, retrained
   exactly as the control in `run_das_round2.py final` (same label
   permutation seeds and training seeds); bases are saved. All 3 splits.
-- random / random_normmatched: per draw, one random rank-1 direction per
+- random / random_normmatched (`--controls` picks which): per draw, one random rank-1 direction per
   fold basis; raw, and with each patch's displacement rescaled to the norm
   the DAS basis would produce. Split-0 rows only.
 
@@ -50,6 +50,7 @@ def run(args):
     site, epochs = cfg["site"], cfg["epochs"]
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
+    controls = set(args.controls.split(","))
     runner, pairs, items, reps, nat_items, _ = r2.setup(args)
     runner = upgrade(runner)
     labels = items.cls.to_numpy()
@@ -57,7 +58,7 @@ def run(args):
     # ---- shuffled-label bases, exactly as in run_final
     t0 = time.time()
     shuffled, summ = {}, []
-    for split in range(args.n_splits):
+    for split in range(args.n_splits if "shuffled" in controls else 0):
         assign = r2.folds(pairs, args.n_folds, split)
         for f in range(args.n_folds):
             tr, te = r2.fold_indices(items, assign, f)
@@ -69,8 +70,10 @@ def run(args):
             shuffled[(split, f)] = sb
             df = r2.evaluate(runner, items, reps, nat_items, te, site, sb)
             summ.append({"split": split, "fold": f, **r2.summarize(df, items)})
-    torch.save({f"r1_s{k[0]}_f{k[1]}": v.cpu() for k, v in shuffled.items()}, out / f"shuffled_bases_site{site}.pt")
-    print(f"shuffled bases trained in {time.time() - t0:.0f}s", flush=True)
+    if shuffled:
+        torch.save({f"r1_s{k[0]}_f{k[1]}": v.cpu() for k, v in shuffled.items()},
+                   out / f"shuffled_bases_site{site}.pt")
+        print(f"shuffled bases trained in {time.time() - t0:.0f}s", flush=True)
 
     das = {(int(k.split("_s")[1].split("_")[0]), int(k.split("_f")[1])): v.float().to(runner.device)
            for k, v in torch.load(Path(args.das_dir) / "bases.pt").items() if k.startswith("r1_")}
@@ -113,10 +116,11 @@ def run(args):
         return res
 
     # ---- shuffled-label transfer (all splits)
-    t0 = time.time()
-    res = patch_rows(plan, shuffled)
-    pd.DataFrame({"row": plan.row, **res}).to_parquet(out / f"controls_shuffled_site{site}.parquet", index=False)
-    print(f"shuffled transfer: {len(plan)} patches in {time.time() - t0:.0f}s", flush=True)
+    if shuffled:
+        t0 = time.time()
+        res = patch_rows(plan, shuffled)
+        pd.DataFrame({"row": plan.row, **res}).to_parquet(out / f"controls_shuffled_site{site}.parquet", index=False)
+        print(f"shuffled transfer: {len(plan)} patches in {time.time() - t0:.0f}s", flush=True)
 
     # ---- random directions (split 0)
     sub = plan[plan.split == 0].reset_index(drop=True)
@@ -126,7 +130,7 @@ def run(args):
     t0 = time.time()
     for draw in range(args.n_random):
         rnd = {k: torch.linalg.qr(torch.randn(das[k].shape, generator=gen))[0].to(runner.device) for k in keys}
-        for name, mn in (("random", None), ("random_normmatched", das)):
+        for name, mn in [(n, m) for n, m in (("random", None), ("random_normmatched", das)) if n in controls]:
             res = patch_rows(sub, rnd, mn)
             d = pd.DataFrame({"item_id": sub.item_id, "cond": sub.cond})
             for k in READ:
@@ -167,4 +171,6 @@ if __name__ == "__main__":
     ap.add_argument("--lr", type=float, default=1e-2)
     ap.add_argument("--batch", type=int, default=1024)
     ap.add_argument("--seed", type=int, default=11)
+    ap.add_argument("--controls", default="shuffled,random,random_normmatched",
+                    help="comma list from shuffled, random, random_normmatched")
     run(ap.parse_args())
