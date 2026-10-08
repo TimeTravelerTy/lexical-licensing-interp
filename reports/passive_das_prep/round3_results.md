@@ -254,6 +254,42 @@ at 0.29), with the value test strongly in its favour.
 Caveat: was → has also changes tense/aspect and the subject's role, so
 this is an auxiliary/frame switch, not an isolated voice manipulation.
 
+## B6. Get-passive transfer
+
+The passive test rerun with "got" for "was" on identical plan rows (all
+eight sites); full tables: `round3_get_passive.md`.
+
+| Site | D(O): was / got | D(" by"): was / got | got − was: O [90% CI] | got − was: by | Outcome was / got |
+|---:|---|---|---|---|---|
+| 4 | +0.10 / +0.17 | +0.58 / +0.71 | +0.06 [+0.03, +0.09] | +0.13 | abstract / abstract |
+| 6 | +0.23 / +0.33 | +0.69 / +0.79 | +0.10 [+0.07, +0.14] | +0.10 | abstract / abstract |
+| 8 | +0.36 / +0.51 | +0.72 / +0.83 | +0.15 [+0.10, +0.19] | +0.11 | abstract / mixed |
+| 10 | +0.69 / +0.94 | +0.77 / +0.87 | +0.25 [+0.19, +0.30] | +0.11 | mixed / mixed |
+| 12 | +1.17 / +1.29 | +0.81 / +0.79 | +0.12 [+0.05, +0.19] | −0.01 | mixed / mixed |
+| 14 | +2.40 / +2.14 | +0.46 / +0.30 | −0.26 [−0.34, −0.18] | −0.16 | surface / surface |
+| 17 | +3.58 / +2.97 | −0.93 / −0.99 | −0.61 [−0.68, −0.54] | −0.06 | surface / surface |
+
+- Natural good − bad *by* gap: 0.93 [0.66, 1.18] after "got", 0.71 after
+  "was".
+- Natural projection along d (no patching): the got and was good − bad gaps
+  are nearly identical at every site (site 8: 0.35 vs 0.36; ratio to the
+  active gap 0.40 vs 0.42).
+
+**Declared decision (site 8): generalizes to got.** D(O) got − was is
++0.15, 90% CI [+0.10, +0.19], inside ±δ_8 = 0.49. " by" transfer is
+preserved (+0.83 vs +0.72). The 48-pair eventive subset gives the same.
+
+**Against the predictions.** Smaller natural *by* gap after "got":
+**missed** (larger, 0.93). Site 8 generalizes: **held.** Same depth
+pattern: **held up to one step.** got-passives read "mixed" at site 8,
+because D(O) = 0.51 crosses δ = 0.49 by 0.02; the paired rule was added for
+exactly this case.
+
+**Reading.** The early value is converted into " by" after "got" as after
+"was". The frame switch reads a passive participle context, not the
+literal token "was". Object leakage at 8–10 is slightly larger with "got"
+(+0.15 to +0.25), consistent with "got" also licensing other parses.
+
 # Part C: extensions
 
 Plan: `round3_plan.md`, Part C (committed `1a8cefb`; the declared

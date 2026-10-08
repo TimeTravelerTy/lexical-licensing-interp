@@ -21,7 +21,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from analyze_passive_test import Boot, cells, ci, classify, pair_values, populations, site_delta, summarize
+from analyze_passive_test import Boot, cells, ci, classify, frame_z, pair_values, populations, site_delta, summarize
 
 READ = ("M", "O", "I", "det", "pron", "refl", "by", "dot", "the", "him")
 EXCLUDE_EVENTIVE = ("earned", "bet", "exerted", "awed", "forested", "uttered", "blurted", "eschewed", "precluded",
@@ -96,7 +96,23 @@ def run(args):
     res = pd.DataFrame(rows)
     out = Path(args.out_dir)
     res.to_csv(out / "got_vs_was_summary.csv", index=False)
-    write_report(args, res)
+    # natural projection: good - bad z gap per frame vs the same verbs' active gap (mean over primary pairs)
+    pf = pd.read_csv(root / "final_strict" / "pairs_folds.csv")
+    das = pd.read_csv(root / "final_strict" / "items.csv")
+    prim_ids = list(pr.index[prim.to_numpy()])
+    pj = []
+    for site in [int(s) for s in args.sites.split(",")]:
+        was_dir = next(d for d in args.was_dirs.split(",") if (Path(d) / f"projections_site{site}.parquet").exists())
+        row = {"site": site}
+        for fr, d, items, P in (("was", was_dir, items_w, Pw), ("got", args.got_dir, items_g, Pg)):
+            it, at = frame_z(Path(d) / f"projections_site{site}.parquet", items, P, pf, das, pr)
+            gp = it[it.pair_id.isin(prim_ids)].groupby("pair_id")["diff"].mean().mean()
+            ga = at[at.pair_id.isin(prim_ids)].groupby("pair_id")["diff"].mean().mean()
+            row.update({f"{fr}_gap": gp, f"{fr}_ratio": gp / ga, "active_gap": ga})
+        pj.append(row)
+    pj = pd.DataFrame(pj)
+    pj.to_csv(out / "got_vs_was_projection.csv", index=False)
+    write_report(args, res, pj)
 
 
 def outcome(o, b):
@@ -107,7 +123,7 @@ def outcome(o, b):
     return "unresolved"
 
 
-def write_report(args, res):
+def write_report(args, res, pj):
     get = lambda pop, site, q, rd: res[(res.population == pop) & (res.site == site) & (res.quantity == q)
                                        & (res.readout == rd)].iloc[0]
     f3 = lambda r: f"{r.est:+.2f} [{r.lo95:+.2f}, {r.hi95:+.2f}]"
@@ -148,6 +164,12 @@ def write_report(args, res):
               f"(δ = {delta:.2f}; within ±δ: {'yes' if equiv else 'no'}); D(by) got {f3(d8)} vs was {bw8.est:+.2f} "
               f"(preserved at ≥ half with CI > 0: {'yes' if by_ok else 'no'}); natural got *by* gap {ng8.est:.2f}. "
               f"**Outcome: {verdict}.**", ""]
+    L += ["## Natural projection (no patching), primary pairs", "",
+          "| Site | was: good − bad z | got: good − bad z | active gap | was / active | got / active |",
+          "|---:|---:|---:|---:|---:|---:|"]
+    for r in pj.itertuples():
+        L.append(f"| {r.site} | {r.was_gap:.2f} | {r.got_gap:.2f} | {r.active_gap:.2f} | {r.was_ratio:.2f} | "
+                 f"{r.got_ratio:.2f} |")
     Path(args.report).write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))
 
