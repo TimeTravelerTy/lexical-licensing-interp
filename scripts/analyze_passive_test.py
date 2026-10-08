@@ -188,9 +188,14 @@ def populations(items):
 
 
 # ---------------------------------------------------------------- step 1
-def frame_z(proj_path, items, P, pairs_folds, das_items, pr):
-    """Cross-fitted, sign-aligned z per prompt -> passive items (zg, zb, diff) and active pairs x subjects."""
-    proj = pd.read_parquet(proj_path).set_index("pid")
+def frame_z(proj_path, items, P, pairs_folds, das_items, pr, splits=(0, 1, 2), signs=None):
+    """Cross-fitted, sign-aligned z per prompt -> passive items (zg, zb, diff) and active pairs x subjects.
+
+    proj_path: a projections parquet (columns s{split}_f{fold}) or the same table as a DataFrame with `pid`.
+    splits: only bases of these split seeds are averaged. signs: optional {column: +-1} overriding the
+    per-basis sign alignment (e.g. to keep a site-8 sign at later sites).
+    """
+    proj = (proj_path if isinstance(proj_path, pd.DataFrame) else pd.read_parquet(proj_path)).set_index("pid")
     das = das_items.assign(pid=das_items.prompt.map(dict(zip(P.prompt, P.pid))))
     verb_pair = dict(zip(das.verb, das.pair_id))
     z = np.zeros((len(P), 15))
@@ -205,6 +210,8 @@ def frame_z(proj_path, items, P, pairs_folds, das_items, pr):
         tr = (fo != f).to_numpy() & (das.subject != "David").to_numpy()
         te = (fo == f).to_numpy()
         sign = np.sign(xd[tr & (das.cls == 1).to_numpy()].mean() - xd[tr & (das.cls == 0).to_numpy()].mean())
+        if signs is not None:
+            sign = signs[col]
         x, xd = x * sign, xd * sign
         mt, mi = xd[te & (das.cls == 1).to_numpy()].mean(), xd[te & (das.cls == 0).to_numpy()].mean()
         z[:, j], raw[:, j] = (x - mi) / (mt - mi), x
@@ -215,6 +222,7 @@ def frame_z(proj_path, items, P, pairs_folds, das_items, pr):
             pid_ = verb_pair[lemma]
             fo = pairs_folds.set_index("pair_id").loc[pid_]
             elig[i] = [fo[f"fold_split{k}"] == f for k, f in keys]
+    elig &= np.array([k in splits for k, _ in keys])[None]
     Z = (z * elig).sum(1) / elig.sum(1)
     RAW = (raw * elig).sum(1) / elig.sum(1)
     pidx = dict(zip(P.prompt, P.pid))

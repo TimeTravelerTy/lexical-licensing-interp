@@ -22,3 +22,6 @@ results/das_round2/passive_test/controls_*_site*.parquet
 results/das_round2/mechanism/*.parquet
 results/das_round2/passive_test_fill/patches_site*.parquet
 results/das_round2/passive_test_fill/controls_*_site*.parquet
+
+# Round 3 raw projection dumps
+results/das_round2/round3/late_projection.npz

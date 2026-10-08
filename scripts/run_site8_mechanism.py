@@ -129,6 +129,8 @@ class Mech:
         z = out.logits[rows, anchors].float()
         zc = z - z.mean(-1, keepdim=True)
         cap["zc"] = torch.stack([zc[:, self.read_ids[k]].mean(-1) for k in RNAMES], -1)
+        # log P(O) = LSE over the object set - LSE over the vocabulary (centered logits)
+        cap["lse"] = torch.stack([torch.logsumexp(zc[:, self.read_ids["Obar"]], -1), torch.logsumexp(zc, -1)], -1)
         m, parts = r.readout(out.logits, anchors, full=True)
         cap["lp"] = torch.stack([m] + [parts[k] for k in READ], -1)  # M + READ
         return cap
