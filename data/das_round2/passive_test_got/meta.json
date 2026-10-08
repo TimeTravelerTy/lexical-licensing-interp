@@ -1,0 +1,17 @@
+{
+  "source_prompts": "../data/das_round2/passive_test/prompts.csv",
+  "source_items": "../data/das_round2/passive_test/items.csv",
+  "swap": [
+    " was ",
+    " got "
+  ],
+  "n_passive_prompts": 31358,
+  "n_items": 18102,
+  "prompts_sha256": "9712bc1c355c8a584b2255302fb17e42e2f18dbd15c91a346836e02406a33ed2",
+  "plan": "reuse data/das_round2/passive_test/plan.csv.gz (same prompt ids)",
+  "example": [
+    "The house got confronted",
+    "The house got imposed",
+    "The house got lent"
+  ]
+}

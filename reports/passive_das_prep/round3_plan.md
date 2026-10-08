@@ -248,3 +248,248 @@ pair's token count, at all eight sites, from the existing
 2. A1 (CPU, local).
 3. A2, A3, A4 on TSUBAME (one job each).
 4. Report in `round3_results.md`.
+
+# Part B: generalization and mechanism (declared 2026-10-08)
+
+Written after Part A ran (results: `round3_results.md`) and before any Part
+B run; revised after an outside review (Codex) of the first draft, also
+before any run.
+
+## B5. Reverse DAS: train on passives, test on actives
+
+**Question.** Does a direction learned from the passive *by* preference
+line up with the active-trained d_s and raise objects in actives (early
+layers)? Or does it find a passive-only "agent / *by* next" variable that
+does not (late layers)?
+
+**Training data.**
+- The same 29 strict pairs and the same fold ids (`pairs_folds.csv`), so
+  each fold's passive and active directions are trained on (mostly) the
+  same verbs.
+- Frame "The N was <participle>", curated `passive_2` contexts. 15 contexts
+  drawn once (seed 17), 5 per context band: 12 training contexts (4 per
+  band) and 3 held-out contexts (1 per band). 58 verbs × 15 = 870 items.
+- **Read-out, declared: *by* vs rest,** M_p = z_by − logsumexp(z without
+  " by") (= log-odds of " by"). The by-vs-"." ratio is not used: task 3
+  found that "." adds noise and does not differ between good and bad
+  passives.
+- Each fold has a threshold τ = the midpoint of the mean M_p of its
+  retained training good and bad items (training contexts), fixed before
+  training.
+- **Behaviour filter:** a pair is kept if its good passive has the higher
+  M_p in ≥ 8 of the 12 training contexts. Dropped pairs are excluded from
+  training, held-out metrics and donors, and listed. Each fold should keep
+  ≥ 3 held-out pairs as donors; folds with fewer are reported.
+
+**Training.** As `run_das_round2.py`, with only the read-out changed: rank
+1, interchange at the participle's last token, h ← h + ((h_src − h)·d) d,
+BCE on σ(M_p − τ) with the source's **class** as the label (class-forcing,
+as in the active run; natural good and bad passives overlap at the item
+level, so this pushes the patched value toward the class side rather than
+toward the donor's own value). Base and source share the context; 4
+cross-class swaps per base and 2 same-class swaps; batch 64, lr 1e-2, the
+same seeds.
+- **Sites:** 4, 6, 8, 10, 12, 14, 16, 17.
+- **Epochs:** a sweep on split 0 (8 epochs, held-out passive IIA per
+  epoch); the frozen epoch rule (smallest epoch within 0.01 of the site's
+  best mean held-out cross-class IIA). Written to
+  `results/das_round2/reverse/frozen_config_site{s}.json` and committed
+  before any active evaluation.
+- **Final:** 3 splits × 5 folds at the frozen epochs. Passive-side controls
+  per run: 100 random rank-1 directions (raw and norm-matched) and
+  shuffled-label DAS.
+
+**Held-out passive metrics** (held-out pairs; all contexts and the 3
+untouched contexts separately).
+- **Primary, continuous:** Δ M_p for bad base ← good source; and its
+  fraction of the pair's natural gap, only for pairs whose natural gap is
+  ≥ 0.2.
+- Both swap directions and same-class preservation; IIA ((M_p,patched − τ
+  > 0) == source class) with natural threshold accuracy as its reference.
+- **Robustness gate per site:** held-out Δ M_p (bad ← good) beats the
+  norm-matched random 95th percentile in ≥ 12 of 15 runs (the 15 runs are
+  not independent; this is a robustness criterion, not a test).
+
+**Active test (mirror of the passive test).**
+- **Bases:** "<Subj> has <participle>" for the bad verbs of the 64 primary
+  pairs (7 subjects; "She has emerged"); good verbs as a secondary base.
+  Cross-fitting as before: the 8 orig_head pairs use only the fold where
+  they are held out; other items one random fold per (item, split), seed 17.
+- **Donors:** for item × split, the kept held-out pairs of the assigned
+  fold (excluding the item's own pair). Each contributes its good passive
+  (**G**) and bad passive (**B**) once, in one shared context drawn from
+  the 111 curated contexts not used in passive training (seed 17); and, for
+  the dose control, its transitive (**T**) and intransitive (**I**) active
+  once, with one shared random subject.
+- **Three arms on the same rows:**
+  1. **d_p with passive donors** (G vs B): the primary test.
+  2. **d_a with the same passive donors:** the active-trained basis of the
+     same site, split and fold. Same donors, so arm 1 vs arm 2 compares the
+     two directions directly.
+  3. **d_p with active donors** (T vs I): a dose control. Passive donors
+     are compressed along d (0.2–0.4 of the active separation), so a small
+     arm-1 effect may only mean a small passive donor dose.
+- Also the base verb's own passive (voice change only) and the active swap.
+- **Contrast:** D = mean Δ after G (or T) donors − after B (or I) donors, on
+  bad active bases, averaged within pair, then over pairs. Three-way
+  bootstrap over base pairs (within band), subjects and donor pairs; 2,000
+  draws, seed 17.
+- **Readouts:** log P(O) (primary), log P(" by"), log P("."), log P(I),
+  determiners / pronouns / reflexives, " the", " him", M.
+- **Classification:** δ_s = the active-DAS bound of the same site (0.2 ×
+  the active held-out Δ log P(O); 0.42–0.57), used as a practical effect
+  size. RISE / FALL: 95% CI beyond 0 and |estimate| ≥ δ_s; NO RISE: 90% CI
+  within ±δ_s; otherwise unresolved.
+- **Null:** norm-matched random rank-1 directions (100 draws) on the
+  split-0 G/B rows of bad bases, compared with DAS D on the same rows; a
+  RISE / FALL counts only if DAS lies beyond the null's 95th (5th)
+  percentile.
+
+**Directions.** Per site: |cos(d_p, d_a)| for the same split and fold (15
+values; median and range); the cosine of the sign-aligned mean directions;
+within-run stability of d_p; the random baseline (~0.02). Natural
+projection onto d_p: AUC of held-out DAS actives (transitive vs
+intransitive) and of the primary pairs' actives (good vs bad verbs).
+
+**Decision rule, per site.**
+
+| Result | Reading |
+|---|---|
+| median \|cos\| ≥ 0.5, arm-1 D(O) RISE, active AUC along d_p ≥ 0.8 | **aligned, with cross-frame causal transfer** |
+| median \|cos\| < 0.3, arm-1 and arm-3 D(O) both NO RISE | **passive-specific**: an "agent / *by* next" variable |
+| arm-1 NO RISE but arm-3 RISE | **small transfer at the passive donor dose** (not passive-specific) |
+| anything else | mixed / unresolved, reported with CIs |
+
+Neither reading establishes that the two directions carry the same
+variable; cos ≥ 0.5 is ≥ 25% shared variance.
+
+**Prediction.**
+- Aligned with transfer at 4–10; passive-specific at 14–17; 12 in between.
+- Arm 1 is smaller than arm 2 at the early sites (d_a uses the passive
+  donors' compressed values too, but is the better object writer).
+- D(" by") on actives is ≤ 0 at 4–8 and positive at 14–17 (a "by next"
+  value leaks into actives).
+- Passive-side training is weaker than active training (the *by* signal
+  is ~0.7 nats against ~5 for M) but passes the robustness gate at every
+  site.
+
+## B6. Get-passive transfer of the existing directions
+
+**Question.** Does the voice switch generalize from "was" to "got"? A
+failure would mean it does not generalize to get-passives, not that it
+recognizes the literal token "was".
+
+**Items.** The passive test unchanged except that every passive prompt has
+"was" replaced by "got" ("The house got destroyed" / "The house got
+emerged"). " was" and " got" are single tokens, and every passive prompt
+keeps its length and differs by exactly one token, so prompt ids, plan
+rows, bases, donors and cross-fitting are identical. Every patch is paired
+with its was-passive counterpart.
+
+**Eventive subset (declared now).** Get-passives favour dynamic events with
+an affected patient. Excluded from the subset (good participle reads oddly
+or statively after "got"): earned, bet, exerted, awed, forested, uttered,
+blurted, eschewed, precluded, wadded, larded, tithed, blabbed, blasphemed,
+disabused, edified. That leaves 48 of the 64 primary pairs. Results are
+reported for all 64 (primary) and for the subset.
+
+**Run.** `run_passive_test.py` (natural pass, projections, patches) at all
+eight sites with the got prompts; analysis `analyze_passive_test.py
+passive` with the same rules and δ_s.
+
+**Paired difference.** D_got − D_was per readout and site, on the same plan
+rows, with the same bootstrap. Also the natural projection gap ratio for
+got-passives at each site.
+
+**Behaviour gate.** The natural good − bad gap in log P(" by") on
+got-passives. If it is < 0.2 nats, the *by* dimension is unresolved and no
+ratio to it is reported.
+
+**Decision rule, at site 8** (the abstract site for was-passives), from
+the paired difference:
+- **Generalizes to got:** the 90% CI of D(O)_got − D(O)_was lies within
+  ±δ_8, and the *by* transfer is preserved: D(" by")_got 95% CI > 0 and
+  its estimate ≥ 0.5 × D(" by")_was.
+- **Does not generalize:** D(O)_got − D(O)_was has its 95% CI above 0 and
+  estimate ≥ δ_8 (object leakage grows), or D(" by")_got's CI includes 0
+  while the natural got gap is ≥ 0.2.
+- Otherwise unresolved. The full depth pattern and the per-site
+  classifications are reported alongside.
+
+**Prediction.** The natural *by* gap is smaller after "got" (≈ 0.3–0.5
+nats). At site 8 the switch generalizes (D(O) within ±δ_8 of the was
+value; " by" preserved at ≥ half). The depth pattern (abstract → mixed →
+surface) is the same.
+
+## B7. Path patching: what switches the flagged MLPs between frames?
+
+**Auxiliary/frame pair.** "The N was V" (passive) vs "The N has V" (same
+tokens except the auxiliary). This is a minimal token contrast, not an
+isolated voice counterfactual: tense/aspect, the subject's role and
+plausibility change with it. Sensitivity frame: "The N had V"
+(tense-matched), used for the gate and S_l only. Items: the primary bad
+passives, 32 contexts per pair (seed 17), split-0 basis, all T donors of
+the passive-test plan. The site-8 T-donor interchange is applied in every
+frame with the same donor and basis. fp32.
+
+**Quantity.** F_l(x) = MLP_l(LN_l(x)) on the pre-LN residual x at layer l
+(Pythia's parallel block: MLP_l reads the residual before layer l). For
+each flagged MLP l and its readout r (Ō for 15, 18, 21, 22; " by" for 11,
+13, 14, 16, 17): Δ_l^f = r · (F_l(x^{f,patched}) − F_l(x^{f,unpatched})) /
+σ_ref in frame f; σ_ref is the final-LN scale of the was-frame patched
+run, the only frozen scale. The **switch** is S_l = Δ_l^has − Δ_l^was.
+
+**Gate.** Δ_l^has has the sign of the step-1 active mean (held-out DAS
+actives, a different population) for ≥ 7 of the 9 flagged MLPs. Otherwise
+was → has does not capture the switch, and the path analysis is
+descriptive only. S_l^had is reported next to S_l^has. Ratio tests below
+use only MLPs with |S_l| ≥ 0.05 ("eligible").
+
+**Path patching.** Upstream components of MLP_l: the site-8 **carry** (the
+interchange displacement, patched minus unpatched site-8 state; zero in
+unpatched runs), every attention head (l', h) and every MLP l' with l' <
+l. Components below layer 8 are identical between patched and unpatched
+runs within a frame but differ across frames. Replacing a component means:
+in both the patched and the unpatched was-runs, add (its has-run output −
+its was-run output) to MLP_l's pre-LN input only; LN_l and the MLP are
+recomputed; everything else stays at the was-run.
+- PE_l(C) = Δ_l(C replaced) − Δ_l^was, for single components and for
+  joint groups: all heads, all MLPs, the carry.
+- Replacing every component gives x^has exactly, so it must reproduce S_l
+  (per-row check, tolerance 1e-3).
+- Reported per MLP: S_l; Σ of single-component PE next to S_l; group PEs;
+  the interaction residual S_l − (PE_heads + PE_MLPs + PE_carry); top
+  components.
+
+**Hypothesis (declared): attention reading "was".** Contexts are split in
+two halves by context (seed 17); half A selects, half B tests.
+- **H1, heads carry the switch:** sign(S_l) · PE_l(all heads, joint) ≥
+  0.5 |S_l| for at least half of the eligible MLPs.
+- **Alternative:** the same with all MLPs jointly (the switch arrives
+  through earlier MLPs at the participle).
+- **H2, few heads:** on half A, heads are ranked by Σ_l sign(S_l) PE_l(h) /
+  |S_l| over eligible MLPs; on half B, the top 5 replaced jointly give
+  sign(S_l) · PE_l(top 5) ≥ 0.5 × sign(S_l) · PE_l(all heads) for at least
+  half of the eligible MLPs.
+- **H3, they read the auxiliary:** on half B, each top-5 head's mean
+  was-run attention from the participle's last token to the auxiliary is
+  ≥ 0.3, and the **auxiliary-value-only** replacement of the top 5, W_O
+  α_aux^{was,c} (V_aux^{has,c} − V_aux^{was,c}) per condition c, gives
+  ≥ 50% of their joint PE for at least half of the eligible MLPs. Also
+  reported: all-position value-only and pattern-only (Σ_t (α_t^has −
+  α_t^was) V_t^was) replacements. A value-only failure leaves H3
+  unresolved; it is not evidence against auxiliary mediation (fixed
+  attention ignores routing through queries and keys).
+
+**Prediction.** The gate passes. H1 holds for the mid-layer " by" MLPs
+(11–17) and fails for the late object MLPs (18, 21, 22), where earlier MLPs
+carry much of the switch. H2 and H3 hold: a handful of heads in layers
+4–10 that attend to "was" carry the frame signal.
+
+## Order (Part B)
+
+1. Commit this part.
+2. B6 and B7 (GPU, one job each).
+3. B5: sweep and final passive training (GPU); commit the frozen configs
+   and passive-side results; then the active test.
+4. Report in `round3_results.md`.
