@@ -1,0 +1,16 @@
+context_id,context_band,prefix,role
+curated/passive_2/head/confront,head,The suspect was ,train
+curated/passive_2/head/earn,head,The prize was ,train
+curated/passive_2/head/measure,head,The distance was ,train
+curated/passive_2/head/score,head,The goal was ,train
+curated/passive_2/head/crown,head,The king was ,heldout
+curated/passive_2/tail/tame,tail,The horse was ,train
+curated/passive_2/tail/stockpile,tail,The medicine was ,train
+curated/passive_2/tail/duck,tail,The question was ,train
+curated/passive_2/tail/slander,tail,The politician was ,train
+curated/passive_2/tail/rouse,tail,The sleeper was ,heldout
+curated/passive_2/xtail/crate,xtail,The vase was ,train
+curated/passive_2/xtail/gull,xtail,The tourist was ,train
+curated/passive_2/xtail/resupply,xtail,The platoon was ,train
+curated/passive_2/xtail/extirpate,xtail,The weed was ,train
+curated/passive_2/xtail/mulch,xtail,The garden was ,heldout
