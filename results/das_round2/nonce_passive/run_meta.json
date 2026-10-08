@@ -1,0 +1,14 @@
+{
+  "args": {
+    "data_dir": "../data/nonce_passive",
+    "bases": "../results/das_round2/bases_rank1.npz",
+    "out_dir": "../results/das_round2/nonce_passive",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 256
+  },
+  "prompts": 7190,
+  "token_suffix_check": "passed",
+  "bases_sha256": "2630024a7e71bc1e5c6249f37fef3091ec87e9f656dc3d871599f2f53dbd6cdf"
+}

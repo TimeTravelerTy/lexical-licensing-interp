@@ -1,0 +1,120 @@
+{
+  "args": {
+    "data_dir": "../data/constructions",
+    "bases": "../results/das_round2/bases_rank1.npz",
+    "out_dir": "../results/das_round2/constructions",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 7590,
+  "plan_rows": 227812,
+  "union_tokens": [
+    "!",
+    ",",
+    ".",
+    ";",
+    "?",
+    " a",
+    " the",
+    " an",
+    " of",
+    " in",
+    " to",
+    " and",
+    " is",
+    " for",
+    " on",
+    " with",
+    " as",
+    " it",
+    " you",
+    " was",
+    " at",
+    " by",
+    " from",
+    " this",
+    " us",
+    " can",
+    " me",
+    " his",
+    " but",
+    " has",
+    " had",
+    " will",
+    " so",
+    " if",
+    " their",
+    " her",
+    " my",
+    " your",
+    " would",
+    " about",
+    " when",
+    " over",
+    " some",
+    " its",
+    " into",
+    " them",
+    " under",
+    " our",
+    " him",
+    " could",
+    " these",
+    " after",
+    " did",
+    " should",
+    " through",
+    " because",
+    " each",
+    " every",
+    " does",
+    " those",
+    " without",
+    " during",
+    " must",
+    " against",
+    " around",
+    " might",
+    " several",
+    " upon",
+    " across",
+    " toward",
+    " near",
+    " himself",
+    " itself",
+    " behind",
+    " themselves",
+    " onto",
+    " herself"
+  ],
+  "checks": {
+    "4": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "6": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "8": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "10": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "12": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "14": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "16": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "17": {
+      "self_patch_max_abs_dM": 0.0
+    }
+  },
+  "bases_sha256": "2630024a7e71bc1e5c6249f37fef3091ec87e9f656dc3d871599f2f53dbd6cdf",
+  "plan_sha256": "3599fb920d94a8ac8f3a90a7892db3a54aca2d3db71e4a500a5ca4894d662fe5"
+}

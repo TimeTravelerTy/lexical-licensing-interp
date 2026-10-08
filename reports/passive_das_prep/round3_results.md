@@ -193,3 +193,165 @@ limit (rank 4 recovers only a small part) nor a visible detokenization
 effect. With 6 single-token expansion pairs, the token comparison can
 exclude only large differences. The early sites simply carry a weaker,
 less complete version of the class variable.
+
+# Part B: generalization and mechanism
+
+Plan: `round3_plan.md`, Part B (committed `8eb1a25`; code-review fixes
+`96bf2b4`, before any affected output). Jobs: 8938508 (B6), 8938509 (B7),
+8938510 (B5 sweep), 8938540–8938547 (B5 final). Reports:
+`round3_get_passive.md`, `round3_path_patch.md`, `round3_reverse.md`.
+
+## B7. What switches the flagged MLPs between frames?
+
+"The N was V" vs "The N has V" under the same site-8 T-donor patch (11,657
+patched rows, 64 pairs, fp32). Replacing every upstream component
+reproduces the switch to ≤ 5e-6 (exactness check). Full tables:
+`round3_path_patch.md`.
+
+| MLP | readout | Δ was | Δ has | S = has − was | heads (joint) | earlier MLPs (joint) | carry |
+|---:|---|---:|---:|---:|---:|---:|---:|
+| 11 | " by" | +0.18 | −0.24 | −0.41 | −0.37 | +0.09 | +0.03 |
+| 13 | " by" | +0.16 | −0.11 | −0.27 | −0.31 | +0.10 | +0.02 |
+| 14 | " by" | +0.30 | −0.31 | −0.62 | −0.45 | +0.03 | +0.02 |
+| 16 | " by" | +0.15 | −0.32 | −0.47 | −0.32 | +0.01 | −0.00 |
+| 17 | " by" | +0.15 | −0.29 | −0.44 | −0.32 | +0.01 | −0.00 |
+| 15 | Ō | −0.02 | +0.24 | +0.26 | −0.02 | +0.33 | +0.01 |
+| 18 | Ō | +0.06 | +0.34 | +0.28 | +0.01 | +0.24 | +0.01 |
+| 21 | Ō | −0.03 | +0.16 | +0.19 | −0.01 | +0.24 | +0.00 |
+| 22 | Ō | −0.02 | +0.14 | +0.16 | −0.04 | +0.23 | +0.00 |
+
+**Declared decisions.**
+- **Gate: passes.** In the has frame all 9 MLPs take the sign of the step-1
+  active profile, so the was/has contrast captures the switch. The
+  tense-matched "had" frame gives the same switch (Δ had ≈ Δ has).
+- **H1, heads carry the switch: holds** (5 of 9, exactly the five " by"
+  MLPs; joint head replacement gives 67–115% of S).
+- **Alternative, earlier MLPs: fails overall** (4 of 9), but it holds for
+  all four object MLPs, where heads contribute ≈ 0.
+- **H2, few heads: fails.** The top 5 heads chosen on half A (L9H7, L10H2,
+  L3H3, L1H6, L8H4) give 34–43% of the head effect on half B (78% for
+  MLP11). The head signal is spread over more heads.
+- **H3, they read the auxiliary: fails by the declared rule.** L10H2's
+  attention to "was" is 0.29, under the 0.3 bar; the other four are
+  0.35–0.75. Replacing only the auxiliary's value vector reproduces 71–132%
+  of the top-5 effect for all five " by" MLPs; pattern-only replacement
+  gives 38–68%.
+
+**Against the predictions.** Gate passes: **held.** H1 holds for the " by"
+MLPs and fails for the late object MLPs, which are switched through earlier
+MLPs: **held exactly.** H2: **missed.** H3: **missed narrowly** (one head
+at 0.29), with the value test strongly in its favour.
+
+**Reading.** The frame switch is two-stage.
+1. Attention heads at the participle read the auxiliary's value
+   (L9H7 is the largest single path everywhere, then L10H2, L3H3, L8H4,
+   L1H6, L3H2, L15H5). They switch the mid-layer MLPs 11–17, which write
+   " by" in passives and suppress it in actives.
+2. The late object MLPs 15, 18, 21, 22 are not switched by attention
+   directly. They read the mid-layer MLPs (12, 16, 13, 17, 11, 14): their
+   frame-dependence is inherited.
+
+Caveat: was → has also changes tense/aspect and the subject's role, so
+this is an auxiliary/frame switch, not an isolated voice manipulation.
+
+# Part C: extensions
+
+Plan: `round3_plan.md`, Part C (committed `1a8cefb`; the declared
+PREP-without-by readout added to the runner in `6dae83e` before any
+output). Jobs: 8938558 (C8), 8938556 (C9). Reports: `round3_nonce.md`,
+`round3_constructions.md`.
+
+## C8. Nonce verbs
+
+80 nonce lemmas × 4 slots; per-lemma means; lemma bootstrap. Passive
+probe "The house was dakked", z on each site's d (fixed ruler). The probe
+was a token suffix of every prompt (checked).
+
+| Site | matched T − I | balanced AB − BA | mismatched (1 / 2) | real good − bad, same long context | active probe: matched |
+|---:|---|---|---|---|---|
+| 6 | +0.13 [+0.12, +0.13] | +0.12 [+0.12, +0.13] | +0.03 / +0.03 | +0.48 | +0.18 |
+| 8 | +0.15 [+0.14, +0.16] | +0.11 [+0.10, +0.11] | +0.05 / +0.05 | +0.37 | +0.24 |
+| 12 | +0.27 | +0.21 | +0.10 / +0.10 | +0.36 | +0.49 |
+| 17 | +0.24 | +0.18 | +0.08 / +0.08 | +0.18 | +0.60 |
+
+Log-probabilities at the passive probe (balanced AB − BA): " by" +0.56
+[+0.49, +0.62]; other prepositions +0.18; O +1.34; "." −0.71. Matched T − I:
+" by" +1.44, other prepositions +0.88, O +2.14.
+
+**Declared decisions (sites 6 and 8).** Context-sensitive separation along
+d: **yes** at both. Verb-specific (balanced): **yes** at both. Raises
+" by" verb-specifically, more than other prepositions: **yes**.
+
+**Causal check.** Moving the T-context probe's coordinate along d_s into
+the I-context probe raises " by" by only +0.03 (site 6) and +0.05 (site 8)
+nats. The coordinate difference is small (≈ 0.13–0.15 z), so d carries
+only a small part of the context's effect on " by".
+
+**Against the predictions.** Δ_matched ≈ 0.1–0.2 z: **held** (0.13,
+0.15). Verb-specific and smaller than matched: **held.** " by" raised more
+than other prepositions: **held.** Active-probe Δ ≥ 2× passive: **missed**
+(1.4–1.6×).
+
+**Reading.** When a novel verb has been used transitively a few sentences
+earlier, its passive participle sits further toward the transitive side
+of d at sites 6–8 (a third to two-fifths of the real-verb passive gap),
+and the model expects " by" more. Both effects are tied to the verb, not to
+the objects in the context. Two caveats. The large rise in object starts
+after the passive probe is most likely in-context copying ("dakked the" in
+the context). And the d coordinate itself explains little of the " by"
+change, so most of the context effect on " by" runs outside d.
+
+## C9. Object relatives and tough constructions
+
+64 primary pairs × 24 contexts per construction; full tables and the
+tokens driving each effect: `round3_constructions.md`.
+
+**Gates.** Both natural gates pass: good − bad L_OR = +2.26 [+1.95,
++2.58], L_TC = +1.48 [+1.18, +1.78]. The TC base-form gate passes at every
+site (AUC 0.99–1.00). Pythia itself expects objects more after a
+transitive verb in both constructions (natural O gap +1.49 in OR, +0.56 in
+TC), unlike in passives (−0.22).
+
+**Declared readings** (D on the bad item, T − I donors):
+
+| Site | OR: D(O) | OR: D(L) | OR reading | TC: D(O) | TC: D(L) | TC reading |
+|---:|---:|---:|---|---:|---:|---|
+| 4 | +1.05 | +1.91 | mixed | +0.30 | +1.41 | **licensing** |
+| 6 | +1.16 | +2.13 | mixed | +0.37 | +1.58 | unresolved |
+| 8 | +1.41 | +2.10 | mixed | +0.92 | +1.54 | mixed |
+| 12 | +2.66 | +1.17 | mixed | +2.05 | +0.99 | mixed |
+| 17 | +3.59 | +1.28 | mixed | +4.06 | +0.40 | mixed |
+
+From site 14 on, L rises only because PREP falls; the numerator (MAIN or
+END) falls. By the declared table that is "mixed", but in substance it is
+"object next" displacing every other continuation.
+
+**Within-construction swap** (good item's verb state into the bad item):
+L rises by +1.6 to +1.9 (OR) and +0.9 to +1.2 (TC) at sites 4–10, and
+decays with depth (+0.35 and +0.04 at 17).
+
+**Against the predictions.** Both gates pass: **held.** OR licensing at
+4–8: **missed** (mixed: objects rise too). TC licensing at 4–8: held at 4
+only. Surface at 14–17: **missed by the declared table** (mixed, because
+PREP falls), though substantively object-next. The swap raises L at 4–12:
+**held.**
+
+**Post hoc: the early value reproduces each construction's own transitive
+profile.** Comparing D (T − I donors) with the natural good − bad gap of
+the same construction, readout by readout:
+
+| | site 8: D / natural gap | site 17: D / natural gap |
+|---|---|---|
+| passive | by +0.72 / +0.71; "." −0.01 / −0.02; O +0.36 / −0.22 | by −0.93; "." −1.99; O +3.58 |
+| OR | MAIN +1.47 / +1.46; PREP −0.63 / −0.80; O +1.41 / +1.49 | MAIN −1.13; PREP −2.41; O +3.59 |
+| TC | END +0.75 / +0.57; PREP −0.80 / −0.91; O +0.92 / +0.56 | END −1.33; PREP −1.73; O +4.06 |
+
+At site 8, patching a transitive value into an intransitive verb produces
+roughly what swapping in a transitive verb would produce *in that
+construction*. That is a passive *by*, a closed object relative, or a closed
+tough clause, plus some excess object mass (+0.4–0.6 nats) in passives and
+tough constructions. At site 17 the same patch produces "object next"
+whatever the construction. This was not a declared analysis. It suggests
+that the passive "abstract" result is one case of a construction-general
+early verb-class value; the object relative only looks "mixed" because
+Pythia's own object-relative behaviour includes object expectation.
