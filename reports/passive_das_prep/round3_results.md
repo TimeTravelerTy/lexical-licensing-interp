@@ -21,7 +21,7 @@ TSUBAME jobs (commit `a163716`): 8938121 (A2), 8938122 (A3), 8938123–8938124
 - **A2.** Along d_8, the transitive/intransitive separation is **present at
   every site through 23 in both voices**. Removing the d_17 component shows
   the voices diverge: the passive separation largely stays (0.79× at site
-  17), the active one is **consumed** (0.34× at 17, ≈ 0 by 22). The declared
+  17), the active one **declines** (0.34× at 17, ≈ 0 by 22). The declared
   rule reads "unresolved" at 14–17, because the ratio rises instead of
   staying flat.
 - **A3.** The object acceleration above the passive range is real in the
@@ -29,9 +29,10 @@ TSUBAME jobs (commit `a163716`): 8938121 (A2), 8938122 (A3), 8938123–8938124
   MLPs (15, 18, 21, 22) do write more objects there, but MLPs 11 and 13
   write fewer by about as much: a **handover**, not a net gain. " by"
   flattens because MLPs 8–17 stop raising it.
-- **A4.** Low early IIA is mostly **not a rank limit** (rank 4: +0.07 IIA at
-  site 4, +0.04 at site 6; the rule keeps rank 1) and **not a token-count
-  effect** (within expansion pairs, multi-token verbs are not worse).
+- **A4.** Higher rank gives **limited improvement** at this training budget
+  (rank 4: +0.07 IIA at site 4, +0.04 at site 6; the rule keeps rank 1).
+  **No token-count deficit is detected** within expansion pairs, but the CIs
+  still allow deficits of ≥ 0.1. Why early IIA is low remains open.
 
 ## A1. Split-half reliability
 
@@ -61,9 +62,10 @@ TSUBAME jobs (commit `a163716`): 8938121 (A2), 8938122 (A3), 8938123–8938124
 - Most tests land in "no detectable link": **held** (16 of 24). Site 4
   significant: **held** (LP margin only).
 
-**Reading.** The null is reportable as "no link of moderate size" for the
-LP margin, and as "at most a weak link (r ≲ 0.4)" for the *by* measures.
-It is not a "couldn't measure" result. Two limits remain: context-split
+**Reading.** Moderate links to the LP margin are excluded at sites 8–17;
+site 4 is significantly positive and site 6 is inconclusive. Most *by*
+tests do not exclude a moderate link (upper bounds 0.30–0.42). In no case is
+the null a "couldn't measure" result. Two limits remain: context-split
 reliability shows stability, not validity; and the single-prompt " by"
 preference shares contexts with the gap, so their errors may correlate.
 
@@ -105,20 +107,18 @@ Figure: `scripts/plot_late_projection.py`; each voice's gap is indexed to its ow
 - The d_8⊥17 ratio stays near its site-8 value: **held at 12, missed at
   14–17.**
 
-**Reading.** In actives, the part of the early separation that is not
-shared with d_17 is consumed between sites 12 and 20. It is either
-rotated into the late "object next" direction or erased. In passives the
-same component stays largely in place. This fits the site-8 mechanism
-result: the early verb-class value is converted in actives and mostly left
-unconverted in passives. The caveat is that this is retained *linear*
-separation along one fixed read-out; it is not shown to be the same
-functional variable.
+**Reading.** Along d_8⊥17, the active separation declines between sites
+12 and 22 while the passive separation largely persists. This is consistent
+with the site-8 mechanism result (the early value feeds object writers in
+actives, and much less in passives), but it does not establish rotation,
+erasure, or persistence of the same functional variable: it is retained
+*linear* separation along one fixed read-out, without patching.
 
 ## A3. Decomposing the gradual push
 
 Bad passives, coordinate-setting patches at site 8, per z unit (full
 tables: `round3_dose_decomp.md`). Both LN versions (per-interval and fixed
-σ) agree to two decimals.
+σ) give closely similar estimates (within 0.01) and identical decisions.
 
 | Interval | Ō actual | carry | downstream net (P / N) | LN-scale term | Δ log P(O) | Δ log P(" by") |
 |---|---:|---:|---|---:|---:|---:|
@@ -163,7 +163,9 @@ net +0.03 [−0.03, +0.09] and **LN-scale term +0.23 [+0.19, +0.27]**.
   **misleading**. They are offset by MLPs 11 and 13, and the net
   acceleration is the LN term.
 - " by" flattens because MLPs 11–17 stop growing (**held**) and MLP23 keeps
-  lowering it (**missed**: MLP23's rate falls).
+  lowering it (**held**: still −0.42 per z above the range). But MLP23's
+  suppression weakens (−0.64 → −0.42), so its rate change opposes the
+  flattening rather than causing it.
 
 ## A4. Robustness of low early IIA
 
@@ -192,11 +194,11 @@ The multi − single differences are −0.03 to +0.10, with CIs spanning about
 - Multi-token IIA ≥ 0.1 below single-token at 4 and 6: **missed.** The
   difference has the opposite sign or is near zero.
 
-**Reading.** At the rank-1 training budget, low early IIA is neither a rank
-limit (rank 4 recovers only a small part) nor a visible detokenization
-effect. With 6 single-token expansion pairs, the token comparison can
-exclude only large differences. The early sites simply carry a weaker,
-less complete version of the class variable.
+**Reading.** Higher rank gives limited improvement at the tested training
+budget (rank 4 recovers only a small part). No token-count deficit is
+detected, but with 6 single-token expansion pairs the CIs remain compatible
+with deficits of ≥ 0.1. These checks do not establish why early IIA is
+low.
 
 # Part B: generalization and mechanism
 
@@ -246,14 +248,15 @@ MLPs and fails for the late object MLPs, which are switched through earlier
 MLPs: **held exactly.** H2: **missed.** H3: **missed narrowly** (one head
 at 0.29), with the value test strongly in its favour.
 
-**Reading.** The frame switch is two-stage.
-1. Attention heads at the participle read the auxiliary's value
-   (L9H7 is the largest single path everywhere, then L10H2, L3H3, L8H4,
-   L1H6, L3H2, L15H5). They switch the mid-layer MLPs 11–17, which write
-   " by" in passives and suppress it in actives.
-2. The late object MLPs 15, 18, 21, 22 are not switched by attention
-   directly. They read the mid-layer MLPs (12, 16, 13, 17, 11, 14): their
-   frame-dependence is inherited.
+**Reading.** Joint head replacement reproduces most of the switch in the
+five " by" MLPs (11–17), and joint earlier-MLP replacement reproduces most
+of it in the four object MLPs (15, 18, 21, 22), where heads contribute
+≈ 0. This supports a possible two-stage account: heads at the participle
+reading the auxiliary's value (L9H7 is the largest single path everywhere,
+then L10H2, L3H3, L8H4, L1H6, L3H2, L15H5) switch the mid-layer MLPs, and
+the late object MLPs depend on mid-layer MLPs (12, 16, 13, 17, 11, 14).
+These are local path effects into each target MLP, with sizeable group
+interactions; they do not establish the full serial pathway.
 
 Caveat: was → has also changes tense/aspect and the subject's role, so
 this is an auxiliary/frame switch, not an isolated voice manipulation.
@@ -289,10 +292,11 @@ pattern: **held up to one step.** got-passives read "mixed" at site 8,
 because D(O) = 0.51 crosses δ = 0.49 by 0.02; the paired rule was added for
 exactly this case.
 
-**Reading.** The early value is converted into " by" after "got" as after
-"was". The frame switch reads a passive participle context, not the
-literal token "was". Object leakage at 8–10 is slightly larger with "got"
-(+0.15 to +0.25), consistent with "got" also licensing other parses.
+**Reading.** Transfer generalizes to "got": the early value raises " by"
+after "got" as after "was", so the literal token "was" is not required.
+What feature the switch reads remains unidentified. Object leakage at 8–10
+is slightly larger with "got" (+0.15 to +0.25), consistent with "got" also
+allowing other parses.
 
 # Part C: extensions
 
@@ -334,12 +338,14 @@ than other prepositions: **held.** Active-probe Δ ≥ 2× passive: **missed**
 
 **Reading.** When a novel verb has been used transitively a few sentences
 earlier, its passive participle sits further toward the transitive side
-of d at sites 6–8 (a third to two-fifths of the real-verb passive gap),
+of d at sites 6–8 (27%–41% of the real-verb passive gap),
 and the model expects " by" more. Both effects are tied to the verb, not to
 the objects in the context. Two caveats. The large rise in object starts
 after the passive probe is most likely in-context copying ("dakked the" in
-the context). And the d coordinate itself explains little of the " by"
-change, so most of the context effect on " by" runs outside d.
+the context). And moving the d coordinate alone raises " by" only
+slightly (+0.03 to +0.05), while the reverse transfer does not reliably
+lower it; these interventions do not quantify how much of the context
+effect is mediated by d.
 
 ## C9. Object relatives and tough constructions
 
@@ -356,7 +362,7 @@ TC), unlike in passives (−0.22).
 
 | Site | OR: D(O) | OR: D(L) | OR reading | TC: D(O) | TC: D(L) | TC reading |
 |---:|---:|---:|---|---:|---:|---|
-| 4 | +1.05 | +1.91 | mixed | +0.30 | +1.41 | **licensing** |
+| 4 | +1.05 | +1.91 | mixed | +0.30 | +1.41 | **consistent with direct-gap licensing** |
 | 6 | +1.16 | +2.13 | mixed | +0.37 | +1.58 | unresolved |
 | 8 | +1.41 | +2.10 | mixed | +0.92 | +1.54 | mixed |
 | 12 | +2.66 | +1.17 | mixed | +2.05 | +0.99 | mixed |
@@ -388,8 +394,9 @@ the same construction, readout by readout:
 
 At site 8, patching a transitive value into an intransitive verb produces
 roughly what swapping in a transitive verb would produce *in that
-construction*. That is a passive *by*, a closed object relative, or a closed
-tough clause, plus some excess object mass (+0.4–0.6 nats) in passives and
+construction*: more " by" in passives, more main-clause and closure tokens
+(and fewer prepositions) in the two gap constructions, plus some excess
+object mass (+0.4–0.6 nats) in passives and
 tough constructions. At site 17 the same patch produces "object next"
 whatever the construction. This was not a declared analysis. It suggests
 that the passive "abstract" result is one case of a construction-general
