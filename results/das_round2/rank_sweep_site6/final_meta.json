@@ -1,0 +1,47 @@
+{
+  "site": 6,
+  "epochs": 2,
+  "ranks_trained": [
+    1,
+    2,
+    4
+  ],
+  "chosen_rank": 1,
+  "rank_rule": "rank 1 unless a larger rank raises mean held-out median pc_frac by > 0.1",
+  "pc_frac_by_rank": {
+    "1": 0.7202597644937754,
+    "2": 0.7420089649313354,
+    "4": 0.7721755286191306
+  },
+  "pairs": 29,
+  "dropped_pairs": [],
+  "items": 406,
+  "config": {
+    "site": 6,
+    "layer_output": 5,
+    "epochs": 2,
+    "rank": null,
+    "role": "A4 rank sweep (round3_plan.md): ranks 1, 2, 4 at the frozen epochs; does not replace the rank-1 bases",
+    "declared": "2026-10-08, before training",
+    "rank_rule": "run_das_round2.py final: a larger rank only if it raises the mean held-out median pc_frac by > 0.1",
+    "source_config": "results/das_round2/frozen_config_site6.json"
+  },
+  "args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/das_round2/rank_sweep_config_site6.json",
+    "out_dir": "../results/das_round2/rank_sweep_site6",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01
+  }
+}

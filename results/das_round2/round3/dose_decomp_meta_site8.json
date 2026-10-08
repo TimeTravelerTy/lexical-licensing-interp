@@ -1,0 +1,62 @@
+{
+  "args": {
+    "prompts": "../data/das_round2/passive_test/prompts.csv",
+    "items": "../data/das_round2/passive_test/items.csv",
+    "plan": "/tmp/plan_check_8938122/plan.csv.gz",
+    "site_dirs": {
+      "8": "../results/das_round2/final_strict_site8"
+    },
+    "out_dir": "../results/das_round2/round3",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 256,
+    "dtype": "float32"
+  },
+  "grid": [
+    0.1,
+    0.275,
+    0.45,
+    0.675,
+    0.9,
+    1.2,
+    1.5
+  ],
+  "scaling_split0": {
+    "0": [
+      1.0,
+      -2.659245491027832,
+      7.501772403717041
+    ],
+    "1": [
+      1.0,
+      -2.0046164989471436,
+      7.472397804260254
+    ],
+    "2": [
+      1.0,
+      -2.8864662647247314,
+      7.6896281242370605
+    ],
+    "3": [
+      1.0,
+      -2.5128748416900635,
+      7.6973958015441895
+    ],
+    "4": [
+      1.0,
+      -3.005840539932251,
+      7.788260459899902
+    ]
+  },
+  "bases_sha256": "4425f0b09a59361dcf6effa4ad8798c8e6282035267104de97ce4ac410f78d70",
+  "n_bases": {
+    "bad_passive": 7983,
+    "intrans_active": 203
+  },
+  "dtype": "float32",
+  "ln_scale": "frozen at the upper (z_b) run of each interval",
+  "down_sites_unused": [
+    12,
+    17
+  ]
+}

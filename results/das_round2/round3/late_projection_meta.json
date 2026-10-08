@@ -1,0 +1,66 @@
+{
+  "args": {
+    "prompts": "../data/das_round2/passive_test/prompts.csv",
+    "bases": "../results/das_round2/bases_rank1.npz",
+    "check": "../results/das_round2/passive_test/projections_site8.parquet",
+    "out_dir": "../results/das_round2/round3",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 33773,
+  "sites": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "own_sites": [
+    4,
+    6,
+    10,
+    12,
+    14,
+    16
+  ],
+  "cos_d8_d17": [
+    -0.588615894317627,
+    0.587641716003418,
+    0.5915166139602661,
+    -0.5856152772903442,
+    -0.5943275690078735,
+    -0.5969948768615723,
+    -0.5937583446502686,
+    -0.5767249464988708,
+    -0.5976510643959045,
+    0.5981582403182983,
+    -0.5901536345481873,
+    -0.5824446678161621,
+    -0.5932435989379883,
+    -0.5883234739303589,
+    -0.5881173014640808
+  ],
+  "check": {
+    "site8_vs_passive_test_max_abs": 9.5367431640625e-06,
+    "median_abs": 5.364418029785156e-07,
+    "scale_median_abs_proj": 1.8097565174102783
+  },
+  "bases_sha256": "2630024a7e71bc1e5c6249f37fef3091ec87e9f656dc3d871599f2f53dbd6cdf"
+}
