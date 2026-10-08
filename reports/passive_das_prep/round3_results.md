@@ -327,9 +327,10 @@ Every RISE lies far beyond the random null (95th percentile of D(O) ≈
 - D(" by") on actives ≤ 0 at 4–8: **missed.** d_p raises " by" in actives
   at every site (+0.8 at site 4, +1.7 at site 8, +3.3 at site 17). Positive
   at 14–17: held.
-- Passive training weaker than active training: **missed.** The effect and
-  IIA are comparable to the active run; only the 4 earliest-site IIA values
-  are lower.
+- Passive training weaker than active training: **missed.** Held-out IIA is
+  comparable to the active run at every site and higher at sites 4–8 (0.62 /
+  0.73 / 0.80 vs 0.45 / 0.66 / 0.78), against a natural threshold accuracy
+  of 0.81.
 
 **Reading.** A direction learned from the passive *by* preference always
 carries a "*by* next" component: patched into actives, it raises " by" at
