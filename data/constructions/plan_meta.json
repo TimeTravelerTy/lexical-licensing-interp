@@ -1,0 +1,76 @@
+{
+  "items": 3072,
+  "items_by_construction": {
+    "OR": 1536,
+    "TC": 1536
+  },
+  "nouns": [
+    [
+      "house",
+      "head"
+    ],
+    [
+      "letter",
+      "head"
+    ],
+    [
+      "suspect",
+      "head"
+    ],
+    [
+      "king",
+      "head"
+    ],
+    [
+      "child",
+      "tail"
+    ],
+    [
+      "horse",
+      "tail"
+    ],
+    [
+      "statue",
+      "tail"
+    ],
+    [
+      "thief",
+      "tail"
+    ],
+    [
+      "baby",
+      "xtail"
+    ],
+    [
+      "ship",
+      "xtail"
+    ],
+    [
+      "suitcase",
+      "xtail"
+    ],
+    [
+      "wallet",
+      "xtail"
+    ]
+  ],
+  "prompts": 7590,
+  "plan_rows": 227812,
+  "plan_rows_by_cond": {
+    "T": 104690,
+    "I": 104690,
+    "cswap": 18432
+  },
+  "seed": 17,
+  "plan_sha256": "66dd1af2f05bd7868d488371e6762883f8bbc76e2bd68ea4f43ce714fec880e2",
+  "examples": [
+    [
+      "The house that John imposed",
+      "The house that John emerged"
+    ],
+    [
+      "The house is easy to impose",
+      "The house is easy to emerge"
+    ]
+  ]
+}

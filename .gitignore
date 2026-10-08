@@ -32,3 +32,7 @@ data/das_round2/reverse_test/plan.csv.gz
 results/das_round2/passive_test_got/patches_site*.parquet
 results/das_round2/reverse_test/patches*_site*.parquet
 results/das_round2/round3/path_patch_rows_b7.parquet
+# Round 3 part C: regenerable plan and raw patch dumps
+data/constructions/plan.csv.gz
+results/das_round2/constructions/patches_site*.parquet
+results/das_round2/constructions/patch_tokens_site*.npz

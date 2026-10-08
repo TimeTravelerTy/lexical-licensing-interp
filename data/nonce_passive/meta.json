@@ -1,0 +1,34 @@
+{
+  "lemmas": 80,
+  "slots": 4,
+  "prompts": 7190,
+  "by_kind": {
+    "nonce": 5760,
+    "real": 1024,
+    "das": 406
+  },
+  "by_cond": {
+    "matched_T": 640,
+    "matched_I": 640,
+    "none": 640,
+    "mismatched1_T": 640,
+    "mismatched1_I": 640,
+    "mismatched2_T": 640,
+    "mismatched2_I": 640,
+    "balanced_AB": 640,
+    "balanced_BA": 640
+  },
+  "seed": 17,
+  "partners_sha256": "6220cd7203f09542e439c6afeba0b88ae07d3117a026de6529421889ad1c8445",
+  "example": [
+    "In the lab, the artist pleeshoped the plate. During the check, the worker pleeshoped the cup. After the visit, the teacher pleeshoped the towel. The house was pleeshoped",
+    "In the lab, the artist pleeshoped. During the check, the worker pleeshoped. After the visit, the teacher pleeshoped. The house was pleeshoped",
+    "The house was pleeshoped",
+    "In the lab, the artist bipumed the plate. During the check, the worker bipumed the cup. After the visit, the teacher bipumed the towel. The house was pleeshoped",
+    "In the lab, the artist bipumed. During the check, the worker bipumed. After the visit, the teacher bipumed. The house was pleeshoped",
+    "In the lab, the artist fifuped the plate. During the check, the worker fifuped the cup. After the visit, the teacher fifuped the towel. The house was pleeshoped",
+    "In the lab, the artist fifuped. During the check, the worker fifuped. After the visit, the teacher fifuped. The house was pleeshoped",
+    "In the lab, the artist pleeshoped the plate. During the check, the worker bipumed. After the visit, the teacher pleeshoped the cup. Before the meeting, the singer bipumed. The house was pleeshoped",
+    "In the lab, the artist pleeshoped. During the check, the worker bipumed the plate. After the visit, the teacher pleeshoped. Before the meeting, the singer bipumed the cup. The house was pleeshoped"
+  ]
+}

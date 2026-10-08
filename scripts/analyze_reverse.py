@@ -48,10 +48,8 @@ def passive_side(rdir, site):
 
 
 def directions(rdir, site, act):
-    import torch
-
-    b = torch.load(rdir / f"final_site{site}" / "bases.pt")
-    dp = {k: b[f"r1_s{k[0]}_f{k[1]}"][:, 0].float().numpy() for k in KEYS}
+    b = np.load(rdir / f"final_site{site}" / "bases_np.npz")  # torch-free export written by the final job
+    dp = {k: b[f"r1_s{k[0]}_f{k[1]}"] for k in KEYS}
     da = {k: act[f"das_site{site}_s{k[0]}_f{k[1]}"].reshape(-1) for k in KEYS}
     cos = np.array([abs(dp[k] @ da[k]) / np.linalg.norm(dp[k]) / np.linalg.norm(da[k]) for k in KEYS])
 
@@ -124,8 +122,6 @@ def arms(tdir, site, items, plan, nat, bt, pr):
 
 
 def run(args):
-    import torch  # noqa: F401  (bases are torch files)
-
     rdir, tdir, ddir = Path(args.reverse_dir), Path(args.test_dir), Path(args.data_dir)
     items = pd.read_csv(ddir / "items.csv")
     P = pd.read_csv(ddir / "prompts.csv")

@@ -493,3 +493,155 @@ carry much of the switch. H2 and H3 hold: a handful of heads in layers
 3. B5: sweep and final passive training (GPU); commit the frozen configs
    and passive-side results; then the active test.
 4. Report in `round3_results.md`.
+
+# Part C: extensions (declared 2026-10-08)
+
+Written while Part B was running and before any Part C run; revised after an
+outside review (Codex), also before any run. Directions are the existing
+active-trained d_s (sites 4–17).
+
+**Nouns (both experiments), chosen by hand from the curated contexts:**
+concrete or animate, broadly plausible patients, no temporal or event heads
+(which would allow adjunct relatives such as "the day that John emerged").
+Four come from contexts curated for each verb band: house, letter, suspect,
+king (Head-verb contexts); child, horse, statue, thief (Tail-verb
+contexts); baby, ship, suitcase, wallet (XTail-verb contexts). The band is
+the verb band a context was written for, not the noun's frequency: these
+are common nouns (patient Zipf 3.55–5.71; baby 5.26, ship 4.93), and noun
+frequency is not a variable here. Where the analysis resamples contexts
+"within band", it is this context-source band.
+
+## C8. Nonce verbs: context-sensitive separation along d in passives
+
+**Lemmas.** The 80 nonce lemmas selected in July (`nonce_passive/
+lemmas.csv`), with their regular past forms ("dakked"). The July screen
+checked the base form, so the past forms are re-checked here: the probe must
+be a token-level suffix of every prompt it appears in.
+
+**Context sentences.** The July lead schemas ("In the lab, the AGENT
+PAST …") with the same three animate agents in every condition.
+
+**Conditions** (probe = the test sentence, always with lemma A):
+
+| Condition | Context | Purpose |
+|---|---|---|
+| matched T / matched I | 3 sentences, A with / without objects | main contrast |
+| mismatched T / I | 3 sentences with partner B (two fixed derangements, seed 17) | generic priming |
+| **balanced AB / BA** | 4 sentences, A and B alternating (A, B, A, B); in AB, A has objects and B none; in BA the roles swap | the same tokens and objects in both conditions; only which verb takes objects changes |
+| none | probe alone | baseline |
+
+**Probes.** Passive "The N was A-ed" (main), and active "SUBJ has A-ed"
+(reference), 4 slots per lemma. Nouns are counterbalanced (slot j of lemma
+i uses noun (i + 3j) mod 12); subjects likewise over the 7 DAS subjects.
+**Real-verb reference:** the good and bad passives of the 64 primary pairs
+after the "none" context and after a fixed neutral context (a mismatched-I
+context), 4 slots each, as the scale for long prompts.
+
+**Measures at the probe's last token.** Natural projection onto d_s at
+sites 4–17 (declared: 6 and 8), raw and in z units (a fixed ruler: the
+held-out DAS active scale; all 15 bases averaged); log P(" by"); log P(O),
+log P("."), and log P(PREP without " by") so that *by* can be compared
+with other PP starts.
+
+**Contrasts per lemma** (mean over slots; lemma bootstrap, 2,000 draws,
+seed 17):
+- Δ_matched = matched T − matched I; Δ_mismatched likewise (each mapping);
+- **Δ_balanced = probe A after AB − after BA** (verb-specific, context
+  held constant);
+- for z and log P(" by"), and log P(PREP\by) for comparison.
+
+**Causal check (secondary).** At sites 6 and 8, patch the matched-T
+probe's coordinate along d_s (split-0 bases, the passive-test interchange)
+into the matched-I probe, and the reverse; report Δ log P(" by").
+
+**Decision rules (passive probe, sites 6 and 8).** Minimum effects: 0.05 z
+and 0.1 nats.
+- **Context-sensitive separation along d:** Δ_matched z has its 95% CI
+  above 0 and its estimate ≥ 0.05.
+- **Verb-specific:** Δ_balanced z has its 95% CI above 0 and estimate
+  ≥ 0.05.
+- **Raises *by*, verb-specifically:** Δ_balanced log P(" by") has its 95%
+  CI above 0, estimate ≥ 0.1, and exceeds Δ_balanced log P(PREP\by).
+- Scale: Δ as a fraction of the real-verb passive gap in the same long
+  contexts, and of the active-probe Δ.
+
+**Prediction.** At sites 6–8 there is context-sensitive separation along d
+in passives (Δ_matched ≈ 0.1–0.2 z), it is verb-specific (Δ_balanced > 0,
+smaller than Δ_matched), and the balanced contrast raises " by" more than
+other prepositions. The active-probe Δ is larger (≥ 2× the passive one).
+
+## C9. Object relatives and tough constructions
+
+**Items.** The 64 primary pairs × 24 contexts per construction:
+- **Object relative (OR):** "The N that NAME V-past" ("The house that John
+  destroyed" / "*The house that John emerged"); the 12 nouns × {John,
+  Mary}. Past forms from `verb_forms.csv`.
+- **Tough (TC):** "The N is ADJ to V" ("The book is easy to read" / "*The
+  book is easy to sleep"); the 12 nouns × {easy, hard}. Base forms.
+- **Base-form reference:** "NAME can V" for the same verbs (John, Mary),
+  for the projection gate below.
+
+**Readout sets, declared** (single tokens, checked at build time):
+- **O:** the 27 object-start tokens.
+- **PREP (its own set):** " to", " in", " with", " on", " at", " for",
+  " from", " into", " over", " about", " of", " upon", " against",
+  " through", " after", " under", " around", " across", " toward",
+  " without", " during", " behind", " near", " onto", " by", " as".
+- **MAIN (OR), agreement-compatible main-clause continuation:** " was",
+  " is", " has", " had", " will", " would", " could", " can", " must",
+  " should", " might", " did", " does".
+- **END (TC), clause end:** primary ".", ",", "!", "?", ";"; broad END
+  adds " and", " but", " because", " if", " when", " so" (secondary).
+- **Licensing readout:** L_OR = log P(MAIN) − log P(PREP); L_TC =
+  log P(END) − log P(PREP). It contrasts clause closure (a direct-object
+  gap is complete) with a PP continuation (which could host a gap, as in
+  "that John emerged from"). L_c can rise just because PREP falls, so the
+  numerator and PREP are always reported separately.
+
+**Natural gate.** The natural good − bad difference in L_c must be > 0
+(95% CI over pairs); otherwise L_c is not used for that construction. The
+tokens driving each natural and patched effect are listed (top 5 by
+probability change).
+
+**TC base-form gate.** At each site, the base-form references ("John can
+read" vs "John can sleep") must separate along d_s (AUC over verb means ≥
+0.8). Where they do not, TC results at that site are inconclusive.
+
+**Patches.** As the passive test, at all eight sites, on the bad item
+(primary) and the good item (secondary):
+- **T vs I active donors** from the held-out DAS pairs of the cross-fitted
+  fold (one shared random subject per donor pair), at the verb's last
+  token: D = mean Δ after T − after I.
+- **Within-construction swap:** the good item's verb state, same context,
+  into the bad item (and the reverse).
+- Three-way bootstrap over base pairs (within band), contexts and donor
+  pairs; 2,000 draws, seed 17.
+- Natural projection of good vs bad items onto d_s (z gap; its ratio to
+  the active gap of the same verbs), as step 1 of the passive test.
+
+**Classification per site and construction.** O: RISE / FALL / NO RISE
+with δ_s (as the passive test). L_c: RISE / FALL / NO RISE with δ_L = 0.2 ×
+the construction's natural good − bad L_c gap (a readout-specific bound).
+
+| O | L_c | Reading |
+|---|---|---|
+| NO RISE | RISE, with the numerator's D 95% CI above 0 | **consistent with direct-gap licensing** |
+| RISE | NO RISE or FALL | **surface**: "object next" |
+| RISE | RISE | mixed |
+| NO RISE | NO RISE | nothing moves |
+| FALL, or any other combination, or a failed gate | | unresolved |
+
+**Prediction.**
+- Both natural gates pass.
+- OR: consistent with direct-gap licensing at 4–8, surface at 14–17.
+- TC: the base-form gate passes at most sites; licensing at 4–8 is less
+  certain than for OR (the verb is a bare infinitive; d was trained on
+  participles); surface at 14–17.
+- The within-construction swap raises L_c at sites 4–12 in both.
+
+## Order (Part C)
+
+1. Commit this part.
+2. C8 and C9 builders and runners (tokenization checks on TSUBAME), GPU
+   jobs.
+3. Report in `round3_results.md`.
