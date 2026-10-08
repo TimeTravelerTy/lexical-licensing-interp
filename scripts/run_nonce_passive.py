@@ -2,7 +2,8 @@
 """Nonce-verb passives, natural pass (round3_plan.md, C8). No patching.
 
 For every prompt of `build_nonce_passive.py`: readouts at the last token
-(M, O, I, det, pron, refl, " by", ".", " the", " him"; log-probs) and the
+(M, O, I, det, pron, refl, " by", ".", " the", " him", and the declared PREP
+set without " by"; log-probs) and the
 last-token residual at each DAS site projected onto that site's 15 fold bases
 (`bases_rank1.npz`). Tokenization check: the probe's tokens are identical
 with and without the context (the probe is a token-level suffix of the full
@@ -26,7 +27,28 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from run_passive_test import READ, PassiveRunner
+from run_construction_test import SETS
+from run_passive_test import READ as PREAD, PassiveRunner
+
+READ = tuple(PREAD) + ("prep_noby",)  # prep_noby: the declared PREP set without " by"
+
+
+class NonceRunner(PassiveRunner):
+    def __init__(self, args):
+        super().__init__(args)
+        ids = [self.tok.encode(t, add_special_tokens=False) for t in SETS["PREP"] if t != " by"]
+        assert all(len(i) == 1 for i in ids)
+        self.ids["prep_noby"] = self.torch.tensor([i[0] for i in ids], device=self.device)
+
+    def readout(self, logits, anchors, full=False):
+        torch = self.torch
+        rows = torch.arange(logits.shape[0], device=logits.device)
+        z = logits[rows, anchors].float()
+        m = torch.logsumexp(z[:, self.ids["O"]], -1) - torch.logsumexp(z[:, self.ids["I"]], -1)
+        if not full:
+            return m, None
+        lp = torch.log_softmax(z, -1)
+        return m, {k: torch.logsumexp(lp[:, self.ids[k]], -1) for k in READ}
 
 SITES = (4, 6, 8, 10, 12, 14, 16, 17)
 CAUSAL = (6, 8)
@@ -38,7 +60,7 @@ def run(args):
 
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    runner = PassiveRunner(args)
+    runner = NonceRunner(args)
     P = pd.read_csv(Path(args.data_dir) / "prompts.csv")
     tok = runner.tok
     bad = []
