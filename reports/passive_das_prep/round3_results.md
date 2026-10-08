@@ -72,6 +72,10 @@ preference shares contexts with the gap, so their errors may correlate.
 Raw projection units, 64 primary pairs (full tables:
 `round3_late_projection.md`).
 
+![Retained separation along d_8 and d_8⊥17, by site](figures/round3_late_projection.png)
+
+Figure: `scripts/plot_late_projection.py`; each voice's gap is indexed to its own site-8 value.
+
 | Site | d_8: passive gap | d_8: active gap | d_8 ratio | d_8⊥17: passive gap | d_8⊥17: active gap | d_8⊥17 ratio | own-site ratio |
 |---:|---:|---:|---:|---:|---:|---:|---:|
 | 8 | 3.67 | 8.76 | 0.42 | 3.31 | 6.85 | 0.48 | 0.42 |

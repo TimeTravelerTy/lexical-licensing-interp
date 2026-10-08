@@ -80,11 +80,13 @@ def projection_auc(tdir, ddir, site, items, P, pf):
         sign = np.sign(x[t].mean() - x[~t].mean())
         vals[(k, f)] = (sign, fo)
     out = {}
+    pid_of = dict(zip(P.prompt, P.pid))
     for side in ("good", "bad"):
         v = []
         for it in items.itertuples():
-            pid = int(P.set_index("prompt").pid[getattr(it, f"{side}_prompt")])
-            ks = [(k, f) for k, f in KEYS if not it.das_pair or vals[(k, f)][1].get(it.das_pair) == f]
+            pid = int(pid_of[getattr(it, f"{side}_prompt")])
+            dp_ = it.das_pair if isinstance(it.das_pair, str) and it.das_pair else None  # "" is read back as NaN
+            ks = [(k, f) for k, f in KEYS if dp_ is None or vals[(k, f)][1].get(dp_) == f]
             v.append(np.mean([vals[kf][0] * proj.loc[pid, f"s{kf[0]}_f{kf[1]}"] for kf in ks]))
         out[side] = np.array(v)
     items = items.assign(pg=out["good"], pb=out["bad"])
