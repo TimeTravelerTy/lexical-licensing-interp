@@ -131,16 +131,18 @@ def set_tau(runner, items, tr):
 
 def metrics(df, items):
     """Held-out swap metrics. Primary: Delta M_p = M_patched - M_base for bad base <- good source (pc)."""
+    gap = items.pair_gap.values[df.base]  # the base pair's natural good - bad gap
     df = df.assign(dM=df.M_patched - df.M_base, held=items.ctx_role.values[df.base] == "heldout",
-                   gap_ok=items.pair_gap.values[df.base] >= 0.2)
+                   gap_ok=gap >= 0.2, fpair=(df.M_patched - df.M_base) / gap)
     cross = df[df.cross]
     pc, rev = cross[cross.base_cls == 0], cross[cross.base_cls == 1]
     same = df[~df.cross]
     return {"pc_dM": float(pc.dM.mean()), "pc_dM_heldout_ctx": float(pc[pc.held].dM.mean()),
             "rev_dM": float(rev.dM.mean()), "same_abs_dM": float(same.dM.abs().mean()),
-            "pc_frac_median": float(pc[pc.gap_ok].frac.median()),
-            "pc_frac_mean": float(pc[pc.gap_ok].frac.clip(-2, 3).mean()),
-            "rev_frac_median": float(rev[rev.gap_ok].frac.median()),
+            "pc_frac_median": float(pc[pc.gap_ok].fpair.median()),  # Delta M_p / base pair's gap (declared)
+            "pc_frac_mean": float(pc[pc.gap_ok].fpair.mean()),
+            "rev_frac_median": float(-rev[rev.gap_ok].fpair.median()),
+            "pc_swapfrac_median": float(pc.frac.median()),  # run_das_round2's (patched - base) / (source - base)
             "iia_cross": float(cross.iia.mean()), "iia_same": float(same.iia.mean()),
             "iia_cross_heldout_ctx": float(cross[cross.held].iia.mean()), "n_swaps": int(len(df))}
 

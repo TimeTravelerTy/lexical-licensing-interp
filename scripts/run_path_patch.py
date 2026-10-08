@@ -199,11 +199,13 @@ def run(args):
     t0 = time.time()
     for half in (0, 1):
         if half == 1:  # select the top heads on half A
-            S = {l: (acc[f"dhas_{l}"][0].sum() - acc[f"dwas_{l}"][0].sum()) / acc["n"][0].sum() for l in FLAGGED}
+            ok = acc["n"][0] > 0  # pair means first, then the mean over pairs (as in the analysis)
+            pm = lambda k: (acc[k][0][ok] / acc["n"][0][ok].view((-1,) + (1,) * (acc[k][0].dim() - 1))).mean(0)
+            S = {l: pm(f"dhas_{l}") - pm(f"dwas_{l}") for l in FLAGGED}
             score = torch.zeros(L * H, dtype=torch.float64, device=runner.device)
             elig = [l for l in FLAGGED if abs(float(S[l])) >= 0.05]
             for l in elig:
-                pe = acc[f"pe_{l}"][0].sum(0) / acc["n"][0].sum()  # [N_C]
+                pe = pm(f"pe_{l}")  # [N_C]
                 score[: l * H] += torch.sign(S[l]) * pe[1:1 + l * H] / abs(S[l])
             top5 = [int(i) for i in torch.argsort(score, descending=True)[:TOPK].cpu()]
             print(f"half A: S = { {l: round(float(v), 3) for l, v in S.items()} }; eligible {elig}; "
