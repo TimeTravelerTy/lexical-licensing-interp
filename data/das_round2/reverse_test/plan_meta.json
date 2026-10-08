@@ -1,0 +1,18 @@
+{
+  "items": 448,
+  "pairs": 64,
+  "prompts": 7924,
+  "plan_rows": 60528,
+  "plan_rows_by_cond": {
+    "G": 13788,
+    "B": 13788,
+    "T": 13788,
+    "I": 13788,
+    "same_verb": 2688,
+    "active_swap": 2688
+  },
+  "kept_das_pairs": 26,
+  "donor_contexts": 111,
+  "seed": 17,
+  "plan_sha256": "8c57a8b7ba0d3ad0297f978f37318264e71158854b2d6e31846a18377ee3d02d"
+}

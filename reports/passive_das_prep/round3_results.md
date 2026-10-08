@@ -34,6 +34,31 @@ TSUBAME jobs (commit `a163716`): 8938121 (A2), 8938122 (A3), 8938123–8938124
   **No token-count deficit is detected** within expansion pairs, but the CIs
   still allow deficits of ≥ 0.1. Why early IIA is low remains open.
 
+## Summary of Parts B and C
+
+- **B5, reverse DAS.** The passive-trained direction is aligned with the
+  active one early (|cos| 0.57 at site 4) and transfers to actives, raising
+  objects (sites 4–6). It rotates away with depth (0.22 at 17) and becomes
+  passive-specific (16–17: no object rise, even with active donors). At
+  every site it also raises " by" in actives.
+- **B6, get-passives.** The site-8 switch generalizes from "was" to "got"
+  (D(O) got − was +0.15, inside ±δ; " by" transfer preserved). The natural
+  *by* gap is larger after "got" (0.93 vs 0.71).
+- **B7, path patching.** The was/has frame switch reaches the " by" MLPs
+  11–17 mainly through attention heads (joint heads 67–115% of the switch),
+  and the object MLPs 15–22 mainly through earlier MLPs. The aux-value test
+  favours heads reading the auxiliary, but H2 (five heads suffice) and H3
+  (declared attention bar) fail.
+- **C8, nonce verbs.** A nonce verb used transitively in context lands
+  further toward the transitive side of d in a later passive (+0.13 to
+  +0.15 z at sites 6–8). It also raises " by" more than other prepositions.
+  Both effects are verb-specific in the balanced design.
+- **C9, gap constructions.** Both natural gates pass. Declared readings are
+  mostly "mixed", because objects rise too. Post hoc: at site 8 the
+  transitive value reproduces each construction's own natural
+  transitive-vs-intransitive profile; at site 17 it gives "object next"
+  everywhere.
+
 ## A1. Split-half reliability
 
 | Measure | Units per pair | R (Pearson, median over 1,000 splits) |
@@ -260,6 +285,68 @@ interactions; they do not establish the full serial pathway.
 
 Caveat: was → has also changes tense/aspect and the subject's role, so
 this is an auxiliary/frame switch, not an isolated voice manipulation.
+
+## B5. Reverse DAS: trained on passives, tested on actives
+
+Rank-1 directions d_p trained on passives (29 strict pairs, 26 kept by the
+behaviour filter; same fold ids as the active run; read-out *by* log-odds;
+epoch 1 at every site by the frozen rule), then patched into actives. Full
+tables: `round3_reverse.md`. Order as declared: frozen configs committed
+(`c84d287`), passive-side results committed (`7d59792`), then the active
+test (job 8938751).
+
+**Passive side.** The robustness gate passes at every site (15 of 15 runs
+beat the norm-matched random null). Held-out Δ M_p for bad ← good is +1.5
+(site 4) to +3.0 (site 17) against a random 95th percentile of ≈ 0.1. That
+is 0.83× to 1.69× the base pair's natural gap, so the class-forcing
+objective pushes past the natural difference at mid and late sites.
+Shuffled-label DAS again finds a weaker copy (+0.5 to +1.0).
+
+**Active test** (bad active bases "She has emerged", 64 primary pairs):
+
+| Site | \|cos(d_p, d_a)\| | Arm 1: d_p + passive donors, O / by | Arm 2: d_a + same donors, O / by | Arm 3: d_p + active donors, O / by | Active AUC along d_p | Reading |
+|---:|---:|---|---|---|---:|---|
+| 4 | 0.57 | **+0.80 RISE** / +0.82 | +1.39 / −0.06 | +0.68 RISE / +0.59 | 0.96 | **aligned, with cross-frame causal transfer** |
+| 6 | 0.51 | **+0.75 RISE** / +1.28 | +1.25 / −0.06 | +0.62 RISE / +0.94 | 0.96 | **aligned, with cross-frame causal transfer** |
+| 8 | 0.46 | +0.77 RISE / +1.73 | +1.14 / −0.06 | +0.51 RISE / +1.00 | 0.95 | mixed (cos below 0.5) |
+| 10 | 0.41 | +0.48 unresolved / +2.31 | +1.10 / −0.08 | +0.31 NO RISE / +1.26 | 0.96 | mixed |
+| 12 | 0.39 | +0.37 NO RISE / +2.87 | +1.16 / −0.23 | +0.30 NO RISE / +1.76 | 0.97 | mixed |
+| 14 | 0.33 | +0.02 NO RISE / +3.11 | +1.12 / −0.21 | +0.10 NO RISE / +1.91 | 0.97 | mixed (cos above 0.3) |
+| 16 | 0.26 | −0.25 NO RISE / +3.25 | +0.92 / −0.14 | −0.02 NO RISE / +2.13 | 0.96 | **passive-specific** |
+| 17 | 0.22 | −0.33 NO RISE / +3.34 | +0.76 / −0.11 | −0.04 NO RISE / +2.28 | 0.96 | **passive-specific** |
+
+Every RISE lies far beyond the random null (95th percentile of D(O) ≈
+0.03–0.05). Within-run stability of d_p is 0.93–0.95 at every site.
+
+**Against the predictions.**
+- Aligned with transfer at 4–10: **held at 4–6**, missed at 8 (cos 0.46,
+  just under the 0.5 bar, although O rises) and 10.
+- Passive-specific at 14–17: **held at 16–17**; 14 is mixed (cos 0.33).
+- 12 in between: **held.**
+- Arm 1 smaller than arm 2 early: **held** (0.80 vs 1.39 at site 4).
+- D(" by") on actives ≤ 0 at 4–8: **missed.** d_p raises " by" in actives
+  at every site (+0.8 at site 4, +1.7 at site 8, +3.3 at site 17). Positive
+  at 14–17: held.
+- Passive training weaker than active training: **missed.** The effect and
+  IIA are comparable to the active run; only the 4 earliest-site IIA values
+  are lower.
+
+**Reading.** A direction learned from the passive *by* preference always
+carries a "*by* next" component: patched into actives, it raises " by" at
+every site. Early on (4–6) it also shares about half its direction with
+the active verb-class direction (cos 0.51–0.57) and raises objects in
+actives. With depth it rotates away (cos 0.22 at 17); its object effect
+first vanishes and then turns slightly negative, while its " by" effect
+triples. The dose control rules out a weak-donor explanation: active donors
+along d_p do not raise objects from site 10 on either. Meanwhile the
+active-trained direction, fed the same passive donors, raises objects at
+every site, and d_p separates transitive from intransitive actives at
+every site (AUC ≈ 0.96). So the verb-class contrast is present along both
+directions, but only d_a turns it into objects. This mirrors the original
+passive test from the other side: early, the two voices share a verb-class
+variable; late, each voice has its own "next" variable. As declared, cos ≥
+0.5 means only ≥ 25% shared variance; this does not show the two
+directions carry the same variable.
 
 ## B6. Get-passive transfer
 
