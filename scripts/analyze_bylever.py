@@ -73,7 +73,9 @@ def run(args):
                 assert (mP == mN).all()
                 S[(n, arm)] = summarize(pair_values(vP - vN, mP, bt.wc, bt.donor_weights(arm, len(qs))), wp, pix)
                 norms[(n, arm)] = float(pat.disp_norm[df.cond.isin([pos, neg]).to_numpy()].mean())
-        nulls = {n: np.load(odir / f"null_{n}_site{site}.npz") for n in ("shuf", "perp")}
+        nulls = {(n, arm): np.load(odir / f"null_{n}_{arm}_site{site}.npz")
+                 for n, arms in (("shuf", ("arm1",)), ("perp", ("arm1", "arm3")), ("dpminus", ("arm1", "arm3")))
+                 for arm in arms}
         for (n, arm), s in S.items():
             for j, rd in enumerate(READ):
                 row = {"site": site, "intervention": n, "arm": arm, "readout": rd, "delta": delta,
@@ -82,10 +84,11 @@ def run(args):
                     row["class"] = classify(row, delta)
                 if n != "dp":
                     row.update({f"diff_dp_{k}": v for k, v in ci(S[("dp", arm)][:, j] - s[:, j]).items()})
-                if arm == "arm1" and n in nulls and rd in ("O", "by"):
-                    jj = list(nulls[n]["readouts"]).index(rd)
-                    row["null_p95"] = float(np.percentile(nulls[n]["draws"][:, jj], 95))
-                    row["split0_point"] = float(nulls[n]["das"][jj])
+                if (n, arm) in nulls and rd in ("O", "by"):
+                    z = nulls[(n, arm)]
+                    jj = list(z["readouts"]).index(rd)
+                    row["null_p95"] = float(np.percentile(z["draws"][:, jj], 95))
+                    row["split0_point"] = float(z["das"][jj])
                 rows.append(row)
         res_s = pd.DataFrame([r for r in rows if r["site"] == site])
         dec_rows.append({"site": site, **cosines(args.reverse_dir, act, site), **decide(res_s, delta)})
@@ -106,22 +109,16 @@ def decide(res, delta):
             out[f"{n}_reading"] = "not read (shuffled direction does not raise by)"
             continue
         by_red = g(n, "arm1", "by").est <= 0.5 * g("dp", "arm1", "by").est
-        retained, lost, checked = True, False, []
-        for arm in ("arm1", "arm3"):
-            if g("dp", arm, "O")["class"] != "RISE":
-                continue
-            checked.append(arm)
-            x = g(n, arm, "O")
-            ok = x["class"] == "RISE"
-            if arm == "arm1" and n == "perp":
-                ok &= bool(x.split0_point > x.null_p95)
-            retained &= bool(ok)
-            lost |= bool(x.diff_dp_lo95 > 0 and x.diff_dp_est >= delta)
-        if not checked:
-            reading = "mixed (no O RISE under d_p to preserve)"
-        elif by_red and retained:
-            reading = "by lever separable"
-        elif lost and by_red:
+        checked = [arm for arm in ("arm1", "arm3") if g("dp", arm, "O")["class"] == "RISE"]
+        # retained: still a RISE and beyond its own null, in every arm where d_p's O effect was a RISE
+        retained = all(g(n, arm, "O")["class"] == "RISE" and g(n, arm, "O").split0_point > g(n, arm, "O").null_p95
+                       for arm in checked)
+        # lost: a paired reduction (CI above 0, >= delta) in every arm where d_p's O effect was a RISE
+        lost = bool(checked) and all(g(n, arm, "O").diff_dp_lo95 > 0 and g(n, arm, "O").diff_dp_est >= delta
+                                     for arm in checked)
+        if by_red and retained:
+            reading = "by lever separable" + ("" if checked else " (no O RISE under d_p to preserve)")
+        elif by_red and lost:
             reading = "the by lever carries the transfer"
         else:
             reading = "mixed"
@@ -159,10 +156,13 @@ def write_report(args, res, dec):
                               f"{b.diff_dp_est:+.2f} [{b.diff_dp_lo95:+.2f}, {b.diff_dp_hi95:+.2f}]")
         nn = " / ".join(f"{g(s, n, 'arm1', 'O').disp_norm:.2f}" for n in NAMES)
         L.append(f"| {s} | " + " | ".join(cells_) + f" | {nn} |")
-    L += ["", "Nulls (split-0 G − B rows, point estimates vs the 95th percentile of 100 norm-matched random directions):", "",
-          "| Site | shuf: by (point / p95) | shuf: O | perp: by | perp: O |", "|---:|---|---|---|---|"]
+    L += ["", "Nulls (split-0 rows, point estimate / 95th percentile of 100 random directions norm-matched to the "
+              "intervention's displacement):", "",
+          "| Site | shuf arm 1: by | shuf arm 1: O | perp arm 1: by | perp arm 1: O | perp arm 3: O | dpminus arm 1: O | "
+          "dpminus arm 3: O |", "|---:|---|---|---|---|---|---|---|"]
     for s in sorted(res.site.unique()):
-        c = [g(s, n, "arm1", rd) for n in ("shuf", "perp") for rd in ("by", "O")]
+        c = [g(s, "shuf", "arm1", "by"), g(s, "shuf", "arm1", "O"), g(s, "perp", "arm1", "by"), g(s, "perp", "arm1", "O"),
+             g(s, "perp", "arm3", "O"), g(s, "dpminus", "arm1", "O"), g(s, "dpminus", "arm3", "O")]
         L.append(f"| {s} | " + " | ".join(f"{r.split0_point:+.2f} / {r.null_p95:+.2f}" for r in c) + " |")
     L += ["", "## Declared decisions", ""]
     for r in dec.itertuples():

@@ -87,8 +87,10 @@ def analyse_frame(args, name, z, meta, act_mean, b7, rng):
     need = int(np.ceil(len(elig) / 2))
     h1 = [l for l in elig if np.sign(S[l]) * a.PE_heads[l] >= 0.5 * abs(S[l])]
     qual = [l for l in BY if l in elig and a.B_heads[l] >= 0.05]
-    out.update({"gate_n": gate_n, "gate": gate_n >= 7, "eligible": elig, "h1_mlps": h1, "h1": len(h1) >= need,
-                "qualifying_by": qual})
+    qual_all = [l for l in elig if a.B_heads[l] >= 0.05]  # signed half-B all-heads PE >= 0.05
+    out.update({"gate_n": gate_n, "gate": gate_n >= 7, "eligible": elig, "h1_mlps": h1,
+                "h1": ("holds" if len(h1) >= need else "fails") if elig else "unresolved (no eligible MLP)",
+                "qualifying_by": qual, "qualifying_all": qual_all})
     if len(qual) < 3:
         out["retain"] = "unresolved (fewer than 3 qualifying by MLPs)"
     else:
@@ -110,12 +112,14 @@ def analyse_frame(args, name, z, meta, act_mean, b7, rng):
     if "att_adv_base" in z.files:
         out["att_adv"] = {n: float(pm(z, "att_adv_base").mean(0)[hix(n) // H, hix(n) % H]) for n in B7_TOP}
         att_ok = sum(v >= 0.3 for v in out["att_aux"].values()) >= 3
-        cand = [l for l in elig if a.B_fixed[l] >= 0.05]
-        auxv = [l for l in cand if a.B_fixed_aux[l] >= 0.5 * a.B_fixed[l]]
-        ok = att_ok and len(cand) >= 3 and len(auxv) >= int(np.ceil(len(cand) / 2))
-        out.update({"aux_value_mlps": auxv, "aux_value_candidates": cand,
-                    "read_aux": "holds" if ok else ("unresolved (fewer than 3 MLPs with fixed joint PE >= 0.05)"
-                                                    if len(cand) < 3 else "fails")})
+        # qualifying MLPs (declared): eligible with signed all-heads PE >= 0.05; >= 3 qualifying by-MLPs needed.
+        # An MLP counts if the fixed-five joint PE is >= 0.05 (as B7) and the aux value gives >= 50% of it.
+        auxv = [l for l in qual_all if a.B_fixed[l] >= 0.05 and a.B_fixed_aux[l] >= 0.5 * a.B_fixed[l]]
+        if len(qual) < 3:
+            ra = "unresolved (fewer than 3 qualifying by MLPs)"
+        else:
+            ra = "holds" if att_ok and len(auxv) >= int(np.ceil(len(qual_all) / 2)) else "fails"
+        out.update({"aux_value_mlps": auxv, "aux_value_candidates": qual_all, "read_aux": ra})
     return out, res
 
 
@@ -191,7 +195,7 @@ def write_report(args, outs, tab, pt, b7, check):
                      f"{f(r.B_fixed, r.B_fixed_lo, r.B_fixed_hi)} | {r.B_fixed_aux:+.3f} | {r.B_fixed_adv:+.3f} | "
                      f"{r.B_fixed_pat:+.3f} |")
         L += ["", f"- **Gate:** {o['gate_n']} of 9 → **{'passes' if o['gate'] else 'fails'}**. Eligible: {o['eligible']}.",
-              f"- **H1:** {o['h1_mlps']} → **{'holds' if o['h1'] else 'fails'}**."]
+              f"- **H1:** {o['h1_mlps']} → **{o['h1']}**."]
         if "retain_i" in o:
             fr = ", ".join(f"MLP{l} {o['fraction'][l]:.2f} (B7 {o['b7_fraction'][l]:.2f})" for l in o["fraction"])
             L += [f"- **B7 heads retain their role:** (i) H1 on qualifying by-MLPs {o['retain_i']}; (ii) fixed-top-5 "

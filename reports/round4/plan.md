@@ -279,6 +279,26 @@ retain their role, and they read the auxiliary across the adverb (L8H4,
 L9H7, L10H2 keep ≥ 0.3 attention to it); an early head may shift its
 attention to the adverb.
 
+## Pre-run clarifications (Part A, from a code review, before any GPU run)
+
+- A4: "beyond its own null" is applied in every arm it is used for, so nulls
+  are generated for arm 1 and arm 3 of d_p⊥s and of the dose-preserving
+  control (each norm-matched to its own displacement), not only for arm 1 of
+  d_p⊥s. "Carries the transfer" needs the paired O reduction in every arm
+  where d_p's O effect was a RISE. Where d_p has no O RISE in either arm, the
+  O condition of "separable" is vacuous and the reading rests on the " by"
+  reduction (reported as such).
+- A5: "qualifying" MLPs are the eligible MLPs with signed half-B all-heads PE
+  ≥ 0.05; the read-the-auxiliary rule counts an MLP where the fixed-five joint
+  PE is ≥ 0.05 and the auxiliary value gives ≥ 50% of it, out of the
+  qualifying MLPs, and is unresolved with fewer than 3 qualifying " by"
+  MLPs. H1 with no eligible MLP is unresolved.
+- Plans in use are checked against the committed ones by rebuilding them
+  (`verify_plan.py`): the builders hash the in-memory plan, which a CSV read
+  does not reproduce exactly.
+- A1 and A3 ran on committed outputs right after the plan commit
+  (`a1_a3_dose.md`).
+
 ## Order (Part A)
 
 1. Commit this part.

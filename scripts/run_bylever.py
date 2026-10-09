@@ -8,12 +8,12 @@ donors; all splits), four interventions per site, split and fold (all unit norm)
 - perp:   interchange along e = (d_p - (d_p.s) s) / |.|;
 - dpminus: d_p's own displacement with its s component removed,
           delta = ((h_src - h).d_p) (d_p - (d_p.s) s)   (dose-preserving control).
-Per-row displacement norms are saved. Nulls on the split-0 G / B rows of bad bases: 100 random
-rank-1 directions norm-matched row by row to the shuf displacement, and 100 to the perp displacement
-(point-estimate D per draw, as `run_reverse_test.py`).
+Per-row displacement norms are saved. Nulls on split-0 rows of bad bases: 100 random rank-1
+directions norm-matched row by row to each intervention's displacement (shuf: arm 1; perp and
+dpminus: arms 1 and 3); point-estimate D per draw, as `run_reverse_test.py`.
 
 Outputs (`--out-dir`): `patches_{name}_site{s}.parquet` (row, readouts, disp_norm),
-`null_{name}_site{s}.npz`, `run_meta.json`.
+`null_{name}_{arm}_site{s}.npz`, `run_meta.json`.
 """
 
 from __future__ import annotations
@@ -37,8 +37,8 @@ NAMES = ("dp", "shuf", "perp", "dpminus")
 
 class LeverRunner(PassiveRunner):
     def patched_rw(self, prompts, src_h, site, read, write, match_norm=None):
-        """delta = ((src - h).read) write at the last token; optional norm-matching to the displacement of
-        an interchange along `match_norm` (unit vector). Returns readouts and per-row |delta|."""
+        """delta = ((src - h).read) write at the last token; optional norm-matching, row by row, to the
+        displacement ((src - h).r) w of `match_norm` = (r, w). Returns readouts and per-row |delta|."""
         torch = self.torch
         enc, anchors = self.encode(prompts)
         rows = torch.arange(len(anchors), device=self.device)
@@ -49,7 +49,7 @@ class LeverRunner(PassiveRunner):
             base = h[rows, anchors]
             delta = ((src_h - base) @ read)[:, None] * write[None]
             if match_norm is not None:
-                ref = ((src_h - base) @ match_norm)[:, None] * match_norm[None]
+                ref = ((src_h - base) @ match_norm[0])[:, None] * match_norm[1][None]
                 delta = delta * (ref.norm(dim=-1, keepdim=True) / delta.norm(dim=-1, keepdim=True).clamp_min(1e-6))
             norms["d"] = delta.norm(dim=-1)
             h = h.clone()
@@ -80,16 +80,17 @@ def run(args):
     P = pd.read_csv(ddir / "prompts.csv")
     items = pd.read_csv(ddir / "items.csv")
     plan = pd.read_csv(ddir / "plan.csv.gz")
-    want = json.loads((ddir / "plan_meta.json").read_text())["plan_sha256"]
+    # the job checks the plan against the committed one with verify_plan.py; record its content hash
     got = hashlib.sha256(pd.util.hash_pandas_object(plan, index=False).values.tobytes()).hexdigest()
-    assert got == want, ("plan hash differs from plan_meta.json", got, want)
     prompts = P.prompt.tolist()
     sites = [int(s) for s in args.sites.split(",")]
     rows_all = plan[(plan.side == "bad") & plan.cond.isin(["G", "B", "T", "I"])].reset_index(drop=True)
-    sel0 = np.flatnonzero(((rows_all.split == 0) & rows_all.cond.isin(["G", "B"])).to_numpy())
-    r0 = rows_all.iloc[sel0].reset_index(drop=True)
+    sel0 = {arm: np.flatnonzero(((rows_all.split == 0) & rows_all.cond.isin(conds)).to_numpy())
+            for arm, conds in (("arm1", ["G", "B"]), ("arm3", ["T", "I"]))}
+    r0s = {arm: rows_all.iloc[ix].reset_index(drop=True) for arm, ix in sel0.items()}
     pair_of = dict(zip(items.item_id, items.pair_id))
-    meta = {"args": vars(args), "plan_sha256": got, "rows": len(rows_all), "null_rows": len(r0), "cosines": {},
+    meta = {"args": vars(args), "plan_content_sha256": got, "rows": len(rows_all),
+            "null_rows": {a: len(r) for a, r in r0s.items()}, "cosines": {},
             "bases_sha256": {}}
     need = np.unique(np.r_[rows_all.base.to_numpy(), rows_all.donor.to_numpy()])
     states = torch.zeros(len(P), len(sites), runner.model.config.hidden_size, device=runner.device)
@@ -107,13 +108,13 @@ def run(args):
             for k in READ[1:]:
                 nat[k][ids] = parts[k].cpu().numpy()
     pd.DataFrame({"pid": P.pid, **nat}).to_parquet(out / "natural.parquet", index=False)
-    natb = pd.DataFrame(nat).loc[r0.base.to_numpy()].to_numpy()
-
-    def point_d(vals):
-        d = pd.DataFrame(vals - natb, columns=READ)
+    def point_d(vals, arm):
+        r0 = r0s[arm]
+        pos, neg = ("G", "B") if arm == "arm1" else ("T", "I")
+        d = pd.DataFrame(vals - pd.DataFrame(nat).loc[r0.base.to_numpy()].to_numpy(), columns=READ)
         d["item"], d["cond"] = r0.item_id.to_numpy(), r0.cond.to_numpy()
         m = d.groupby(["item", "cond"])[list(READ)].mean()
-        dd = m.xs("G", level="cond") - m.xs("B", level="cond")
+        dd = m.xs(pos, level="cond") - m.xs(neg, level="cond")
         dd["pair"] = dd.index.map(pair_of)
         return dd.groupby("pair")[list(READ)].mean().mean().to_numpy()
 
@@ -151,29 +152,31 @@ def run(args):
             assert not np.isnan(res[n]["M"]).any()
             pd.DataFrame({"row": rows_all.row.to_numpy(), **res[n]}).to_parquet(out / f"patches_{n}_site{site}.parquet",
                                                                                 index=False)
-        # nulls: random rank-1 directions norm-matched to the shuf / perp displacement, split-0 G / B rows
+        # nulls: random rank-1 directions norm-matched row by row to each intervention's displacement,
+        # split-0 rows of both arms (shuf: arm 1 only, where its by effect is tested)
         gen = torch.Generator(device="cpu").manual_seed(7)
-        for n in ("shuf", "perp"):
-            das_vals = np.stack([res[n][key][sel0] for key in READ], 1)
-            draws = []
-            with torch.no_grad():
-                for _ in range(args.n_random):
-                    vals = np.empty((len(r0), len(READ)), np.float32)
-                    for f, g in r0.assign(pos=np.arange(len(r0))).groupby("fold"):
-                        rnd = torch.linalg.qr(torch.randn(runner.model.config.hidden_size, 1, generator=gen))[0][:, 0]
-                        rnd = rnd.to(runner.device)
-                        ref = V[(0, f)][n][0]
-                        for i in range(0, len(g), args.batch):
-                            gg = g.iloc[i:i + args.batch]
-                            src = states[torch.as_tensor(gg.donor.to_numpy(), device=runner.device), si]
-                            m, parts, _ = runner.patched_rw([prompts[j] for j in gg.base], src, site, rnd, rnd,
-                                                            match_norm=ref)
-                            vals[gg.pos.to_numpy()] = np.stack([m.cpu().numpy()] + [parts[key].cpu().numpy()
-                                                                                    for key in READ[1:]], 1)
-                    draws.append(point_d(vals))
-            np.savez_compressed(out / f"null_{n}_site{site}.npz", readouts=np.array(READ), das=point_d(das_vals),
-                                draws=np.array(draws))
-        print(f"site {site}: {len(rows_all)} rows x {len(NAMES)} + 2 x {args.n_random} null draws in "
+        for n, arms in (("shuf", ("arm1",)), ("perp", ("arm1", "arm3")), ("dpminus", ("arm1", "arm3"))):
+            for arm in arms:
+                r0 = r0s[arm]
+                das_vals = np.stack([res[n][key][sel0[arm]] for key in READ], 1)
+                draws = []
+                with torch.no_grad():
+                    for _ in range(args.n_random):
+                        vals = np.empty((len(r0), len(READ)), np.float32)
+                        for f, g in r0.assign(pos=np.arange(len(r0))).groupby("fold"):
+                            rnd = torch.linalg.qr(torch.randn(runner.model.config.hidden_size, 1, generator=gen))[0][:, 0]
+                            rnd = rnd.to(runner.device)
+                            for i in range(0, len(g), args.batch):
+                                gg = g.iloc[i:i + args.batch]
+                                src = states[torch.as_tensor(gg.donor.to_numpy(), device=runner.device), si]
+                                m, parts, _ = runner.patched_rw([prompts[j] for j in gg.base], src, site, rnd, rnd,
+                                                                match_norm=V[(0, f)][n])
+                                vals[gg.pos.to_numpy()] = np.stack([m.cpu().numpy()] + [parts[key].cpu().numpy()
+                                                                                        for key in READ[1:]], 1)
+                        draws.append(point_d(vals, arm))
+                np.savez_compressed(out / f"null_{n}_{arm}_site{site}.npz", readouts=np.array(READ),
+                                    das=point_d(das_vals, arm), draws=np.array(draws))
+        print(f"site {site}: {len(rows_all)} rows x {len(NAMES)} + 5 x {args.n_random} null draws in "
               f"{time.time() - t0:.0f}s", flush=True)
     (out / "run_meta.json").write_text(json.dumps(meta, indent=2, default=str) + "\n")
 
