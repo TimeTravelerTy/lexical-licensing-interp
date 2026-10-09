@@ -5,6 +5,8 @@ Frame sets (base / counterfactual / sensitivity), built from the B7 rows (primar
 32 contexts per pair, seed 17, split-0 basis, all T donors):
 - adverb: "The N was quickly V" / "The N has quickly V" / "The N had quickly V";
 - got:    "The N got V"         / "The N has V"         / "The N had V";
+- been:   "The N has been V"    / "The N has V"         / "The N was V" (round 4 D10; the frames differ
+          in length, so only joint head-set replacements are computed);
 - (plain: "The N was V" / "has" / "had", the B7 frames, for checking the code against B7.)
 In every frame the passive test's site-8 T-donor interchange is applied (same donor and basis).
 Quantities as `run_path_patch.py` (B7): Delta_l per frame, S_l = Delta_l^cf - Delta_l^base, path
@@ -41,8 +43,13 @@ FLAGGED = {11: "by", 13: "by", 14: "by", 16: "by", 17: "by", 15: "Obar", 18: "Ob
 RIX = {"by": 0, "Obar": 4}
 TOPK = 5
 B7_TOP = ("L9H7", "L10H2", "L3H3", "L1H6", "L8H4")
-FRAME_SETS = {"adverb": (("was", "has", "had"), " quickly"), "got": (("got", "has", "had"), None),
-              "plain": (("was", "has", "had"), None)}
+# frame set -> [(frame name, tokens between the subject and the participle)]; the first frame is the base,
+# the second the counterfactual, the third the sensitivity frame. "aux" = the first of those tokens and
+# "adv" = the second (the adverb, or "been") in the base frame.
+FRAME_SETS = {"adverb": [("was", (" was", " quickly")), ("has", (" has", " quickly")), ("had", (" had", " quickly"))],
+              "got": [("got", (" got",)), ("has", (" has",)), ("had", (" had",))],
+              "plain": [("was", (" was",)), ("has", (" has",)), ("had", (" had",))],
+              "been": [("hasbeen", (" has", " been")), ("has", (" has",)), ("was", (" was",))]}
 
 
 def head_index(name, H):
@@ -117,29 +124,30 @@ class Capture:
         return cap
 
 
-def build_frames(rows, it, tok, frames, adverb):
-    """Token ids per frame for each row, with auxiliary / adverb / previous-token positions and the
-    participle token count. All checks on ids."""
-    aux_id = {fr: tok.encode(f" {fr}", add_special_tokens=False) for fr in frames}
-    assert all(len(v) == 1 for v in aux_id.values())
-    adv_id = tok.encode(adverb, add_special_tokens=False) if adverb else []
-    assert len(adv_id) <= 1
-    out = {fr: [] for fr in frames}
+def build_frames(rows, it, tok, spec):
+    """Token ids per frame for each row, with auxiliary / second-token / previous-token positions (base frame)
+    and the participle token count. All checks on ids."""
+    toks = {fr: [tok.encode(t, add_special_tokens=False) for t in ts] for fr, ts in spec}
+    assert all(len(x) == 1 for v in toks.values() for x in v)
+    toks = {fr: [x[0] for x in v] for fr, v in toks.items()}
+    was = tok.encode(" was", add_special_tokens=False)[0]
+    base = spec[0][0]
+    out = {fr: [] for fr, _ in spec}
     meta = []
     for r in rows.itertuples():
         pre = it.prefix[r.item_id].rstrip()  # "The N was"
         assert pre.endswith(" was")
         ctx = tok.encode(pre[: -len(" was")], add_special_tokens=False)  # "The N"
         full = tok.encode(r.was_plain, add_special_tokens=False)  # "The N was V"
-        assert full[:len(ctx)] == ctx and full[len(ctx)] == aux_id.get("was", tok.encode(" was"))[0]
+        assert full[:len(ctx)] == ctx and full[len(ctx)] == was
         verb = full[len(ctx) + 1:]
-        for fr in frames:
-            ids = ctx + aux_id[fr] + adv_id + verb
-            text = tok.decode(ids)
-            assert tok.encode(text, add_special_tokens=False) == ids, (text, ids)  # round trip
+        for fr, _ in spec:
+            ids = ctx + toks[fr] + verb
+            assert tok.encode(tok.decode(ids), add_special_tokens=False) == ids  # round trip
             out[fr].append(ids)
-        meta.append({"aux": len(ctx), "adv": len(ctx) + 1 if adv_id else -1, "ntok": len(verb),
-                     "len": len(ctx) + 1 + len(adv_id) + len(verb)})
+        nb = len(toks[base])
+        meta.append({"aux": len(ctx), "adv": len(ctx) + 1 if nb > 1 else -1, "ntok": len(verb),
+                     "len": len(ctx) + nb + len(verb)})
     return out, pd.DataFrame(meta, index=rows.index)
 
 
@@ -149,7 +157,11 @@ def run(args):
     args.dtype = "float32"
     t0 = time.time()
     Path(args.out_dir).mkdir(parents=True, exist_ok=True)
-    frames, adverb = FRAME_SETS[args.frames]
+    sfx = "" if args.donor_cond == "T" else "_I"
+    spec = FRAME_SETS[args.frames]
+    frames = tuple(fr for fr, _ in spec)
+    adverb = len(spec[0][1]) > 1  # a second token between the subject and the participle in the base frame
+    aligned = len({len(ts) for _, ts in spec}) == 1  # all frames the same length: head-internal replacements
     runner = PassiveRunner(args)
     mech = Mech(runner, args)
     cap = Capture(runner, mech)
@@ -172,17 +184,21 @@ def run(args):
         keep += list(rng.choice(ids, min(args.contexts, len(ids)), replace=False))
     ctxs = sorted(prim.context_id.unique())
     half_of = dict(zip(ctxs, rng.permutation(len(ctxs)) % 2))  # 0 = A, 1 = B
-    rows = plan[(plan.split == 0) & (plan.side == "bad") & (plan.cond == "T") & plan.item_id.isin(set(keep))].copy()
+    rows = plan[(plan.split == 0) & (plan.side == "bad") & (plan.cond == args.donor_cond)
+                & plan.item_id.isin(set(keep))].copy()
     it = prim.set_index("item_id")
     rows["pair"] = rows.item_id.map(it.pair_id)
     rows["half"] = rows.item_id.map(it.context_id).map(half_of)
     rows["was_plain"] = [prompts[b] for b in rows.base]
-    ids_by_frame, fm = build_frames(rows, it, tok, frames, adverb)
+    ids_by_frame, fm = build_frames(rows, it, tok, spec)
     rows = rows.join(fm)
     rows["grp"] = (rows.ntok > 1).astype(int)  # 0 = single-token participle, 1 = multi-token
-    for fr in frames[1:]:  # counterfactual frames differ from the base only at the auxiliary
-        for a, b, x in zip(ids_by_frame[frames[0]], ids_by_frame[fr], rows.aux):
-            assert len(a) == len(b) and all((u == v) or j == x for j, (u, v) in enumerate(zip(a, b)))
+    for fr in frames[1:]:  # same-length frames differ from the base only at the auxiliary
+        for a, b, x, nt in zip(ids_by_frame[frames[0]], ids_by_frame[fr], rows.aux, rows.ntok):
+            if len(a) == len(b):
+                assert all((u == v) or j == x for j, (u, v) in enumerate(zip(a, b)))
+            else:
+                assert not aligned and a[-nt:] == b[-nt:] and a[:x] == b[:x]  # same context and participle tokens
     pairs = sorted(rows.pair.unique())
     rows["pix"] = rows.pair.map({p: i for i, p in enumerate(pairs)})
     rows["rid"] = np.arange(len(rows))
@@ -229,7 +245,7 @@ def run(args):
                 pe = pm(f"pe_{l}")
                 score[: l * H] += torch.sign(S[l]) * pe[1:1 + l * H] / abs(S[l])
             head_sets["new"] = [int(i) for i in torch.argsort(score, descending=True)[:TOPK].cpu()]
-            np.save(Path(args.out_dir) / f"head_scores_halfA_{args.frames}.npy", score.cpu().numpy())
+            np.save(Path(args.out_dir) / f"head_scores_halfA_{args.frames}{sfx}.npy", score.cpu().numpy())
             print(f"half A: S = { {l: round(float(v), 3) for l, v in S.items()} }; eligible {elig}; new top "
                   f"{[f'L{i // H}H{i % H}' for i in head_sets['new']]}", flush=True)
         for f, g in rows[rows.half == half].groupby("fold"):
@@ -286,6 +302,11 @@ def run(args):
                                             for nm in ("", "_aux", "_adv", "_val", "_pat"):
                                                 comp[c][f"{sname}{nm}"] = zero
                                             continue
+                                        if not aligned:  # joint replacement only; positions differ across frames
+                                            comp[c][sname] = heads[torch.as_tensor(sel, device=runner.device)].sum(0)
+                                            for nm in ("_aux", "_adv", "_val", "_pat"):
+                                                comp[c][f"{sname}{nm}"] = zero
+                                            continue
                                         lh = torch.as_tensor([j // H for j in sel], device=runner.device)
                                         hh = torch.as_tensor([j % H for j in sel], device=runner.device)
                                         comp[c][sname] = heads[torch.as_tensor(sel, device=runner.device)].sum(0)
@@ -330,12 +351,13 @@ def run(args):
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     pr = pd.concat(per_row, ignore_index=True)
-    pr.to_parquet(out / f"path_patch_rows_{args.frames}.parquet", index=False)
-    np.savez_compressed(out / f"path_patch_{args.frames}.npz", pairs=np.array(pairs), flagged=np.array(list(FLAGGED)),
+    pr.to_parquet(out / f"path_patch_rows_{args.frames}{sfx}.parquet", index=False)
+    np.savez_compressed(out / f"path_patch_{args.frames}{sfx}.npz", pairs=np.array(pairs), flagged=np.array(list(FLAGGED)),
                         readouts=np.array(list(FLAGGED.values())), frames=np.array(frames),
                         fixed=np.array(head_sets["fixed"]), new=np.array(head_sets["new"]),
                         **{k: v.cpu().numpy() for k, v in acc.items()})
-    meta = {"args": vars(args), "frames": frames, "adverb": adverb, "rows": len(rows),
+    meta = {"args": vars(args), "frames": frames, "spec": spec, "aligned": aligned, "donor_cond": args.donor_cond,
+            "rows": len(rows),
             "items": int(rows.item_id.nunique()), "pairs": len(pairs), "flagged": FLAGGED,
             "fixed_heads": list(B7_TOP), "new_heads": [f"L{i // H}H{i % H}" for i in head_sets["new"]],
             "token_groups": rows.grp.value_counts().to_dict(),
@@ -343,7 +365,7 @@ def run(args):
             "max_exactness_error": {l: float(pr[f"exact_err_{l}"].max()) for l in FLAGGED},
             "max_mlp_check": {l: float(pr[f"mlp_check_{l}"].max()) for l in FLAGGED},
             "bases_sha256": hashlib.sha256((Path(args.site_dir) / "bases.pt").read_bytes()).hexdigest()}
-    (out / f"path_patch_meta_{args.frames}.json").write_text(json.dumps(meta, indent=2, default=str) + "\n")
+    (out / f"path_patch_meta_{args.frames}{sfx}.json").write_text(json.dumps(meta, indent=2, default=str) + "\n")
     print(json.dumps({k: meta[k] for k in ("new_heads", "max_exactness_error", "max_mlp_check")}), flush=True)
 
 
@@ -361,4 +383,6 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--batch", type=int, default=32)
     ap.add_argument("--comp-chunk", type=int, default=64)
+    ap.add_argument("--donor-cond", choices=("T", "I"), default="T",
+                    help="donor class of the site-8 interchange (B7: T); outputs get an _I suffix for I")
     run(ap.parse_args())

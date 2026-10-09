@@ -561,3 +561,200 @@ adjacency. The duration-PP control limits but does not remove this.
 1. Commit this part.
 2. Builder (no model), token checks and natural pass on TSUBAME (one job).
 3. Report in `results.md`.
+
+# Part D: translation stage, mid MLPs (declared 2026-10-09)
+
+Written after Parts A–C ran and before any Part D run; revised after an
+outside review (Codex) of the draft and its code, also before any run. "Translation
+stage" = the mid-layer MLPs that turn the early verb-class value into
+frame-specific output (round 3 B7/A3: MLPs 11–17 raise " by" in passives;
+MLPs 15, 18, 21, 22 write objects in actives).
+
+## D10. Clean voice contrast
+
+**Frames.** "The N has been V" (passive perfect; base) vs "The N has V"
+(active perfect; counterfactual); only "been" differs (an insertion, so
+the two prompts differ in length by one token). Sensitivity: "The N was V"
+(a second passive) in place of the counterfactual, S_sens = Δ_was −
+Δ_has-been. Same items, rows, basis, donors, site-8 T-donor interchange
+and quantities as B7 / A5 (fp32; path effects at the participle's last
+position, which exist in every frame). Head-internal value / pattern
+replacements need aligned positions and are not computed here; the fixed
+B7 top 5 and the newly selected top 5 are replaced jointly as in A5.
+Base-run attention to "has" and "been" is reported. The run is repeated
+with the I donors of the same rows: Δ − Δ for T vs I donors sets the
+coordinate to the same two values in both frames, so S_D = S_T − S_I
+compares the frames' responses to the same coordinate change (S_T, the
+B7-comparable quantity, also depends on where each frame's natural
+coordinate starts).
+
+**Decision rules.**
+- **Gate** (as B7): Δ_has has the step-1 active sign for ≥ 7 of 9 MLPs.
+- **Voice switch:** S = Δ_has − Δ_has-been (T donors) has B7's sign and
+  ≥ 50% of B7's |S| for ≥ 7 of 9 MLPs, and S_D has the same sign for those
+  MLPs. (The final-LN reference scale differs between this run and B7.)
+- **Not an auxiliary-token effect:** |S_sens| < 0.5 |S| for ≥ 7 of 9
+  MLPs (passive vs passive moves the MLPs little).
+- **Two-stage routing replicates** if, among eligible MLPs (|S| ≥ 0.05),
+  H1 (joint heads ≥ 0.5 |S|) holds for ≥ 3 of the 5 " by" MLPs and the
+  earlier-MLP alternative (joint MLPs ≥ 0.5 |S|) for ≥ 3 of the 4 object
+  MLPs.
+- **B7 heads retain their role:** the A5 criteria (i)–(iii).
+
+**Prediction.** All five hold: the switch is a voice switch, routed as in
+B7 (heads into the " by" MLPs, earlier MLPs into the object MLPs), with
+the B7 heads.
+
+## D11. Conjunction neurons in MLPs 11 and 14
+
+**Question.** Do single neurons in MLPs 11 and 14 respond to the verb-class
+value only in the passive frame ("transitive AND passive")?
+
+**Run.** The B7 items and rows (32 contexts per pair, split-0 basis), now
+with both T and I donors, in the was and has frames; site-8 interchange.
+For every neuron of MLPs 11 and 14 (2 × 8,192), the post-activation at the
+participle's last token; direct effects on " by" = activation × the
+neuron's output weight on the centered " by" readout, through one reference
+final-LN scale per pair (the mean scale of its was-frame patched runs).
+
+**Per neuron.** Interaction I_n = (a[was, T] − a[was, I]) − (a[has, T] −
+a[has, I]), per pair (mean over its rows and contexts). The 64 pairs are
+split once into halves within band (seed 17): **half A selects, half B
+tests**, so the test is on pairs not used for selection.
+
+**Categories** (half A, sign-aligned to I_n): **passive-conjunction** if
+the was effect (T − I) is in the direction of I_n and |has effect| < 0.5 ×
+|was effect|; active-conjunction (the reverse); graded (same sign in both
+frames); opposite signs.
+
+**Decision rules.**
+- **Selection (half A):** one-sample t-test of I_n across pairs; BH-FDR
+  q < 0.05 over the 16,384 neurons.
+- **Conjunction neurons exist** if ≥ 10 selected neurons are
+  passive-conjunction and, on half B, ≥ 80% of them keep the sign of I_n,
+  their sign-aligned mean I_n and was effect have 95% CIs (pair bootstrap)
+  above 0, and |mean has effect| < 0.5 × the was effect.
+- **They carry the " by" switch** if, on half B, their share of the MLPs'
+  switch (the direct effect of I_n on " by", MLPs 11 and 14 together) is ≥
+  25%, CI above 0. Their share of the passive T − I effect is reported too.
+- **Generalization** (descriptive): the passive-conjunction set's
+  sign-aligned activation difference (i) natural good − bad passives by
+  frequency band (Head, Tail, XTail; all primary items, no patching), with
+  the XTail / Head ratio; (ii) the round-3 C8 nonce probes, matched T − I
+  and balanced AB − BA (lemma bootstrap).
+
+**Prediction.** Conjunction neurons exist (tens of them, mostly in MLP14);
+they carry ≥ 25% of the " by" switch; they respond to natural good − bad
+passives in every band, weaker for XTail (ratio 0.5–0.8), and to nonce
+probes in the matched contrast.
+
+## D12. Translation gain per pair
+
+**Measures** (natural pass, no patching, fp32; all primary passive-test
+items):
+- **TG** = the direct effect of MLPs 11–17 on " by" (centered readout
+  through the final-LN scale), good − bad, mean over the pair's contexts;
+  also per MLP.
+- **gain** = TG / (the pair's site-8 z gap), for pairs whose z gap is ≥
+  0.1; and **TG_res** = TG − β · z gap (β from OLS across pairs;
+  descriptive, reliability conditional on β).
+- Participle Zipf (pair mean, as `analyze_frequency.py`).
+
+**Analyses** (as A1): split-half reliability of TG, gain and TG_res
+(contexts, stratified by band; 1,000 splits); slopes on participle Zipf
+(pair bootstrap); correlations with the three behaviours (single-prompt
+" by" preference, released *by* margin, curated LP margin), with the A1
+disattenuation and verdict rule.
+
+TG is natural good − bad, so it reflects every way the two verbs differ,
+not only d; D12 is observational and does not locate a weakness causally.
+
+**Decision rules.**
+- **TG tracks frequency** if its Zipf slope has a 95% CI above 0.
+- **Frequency dependence beyond the d gap** if the Zipf coefficient in TG
+  ~ z gap + Zipf (refit in every pair-bootstrap draw) has a 95% CI above 0.
+- **TG predicts behaviour beyond the d gap** if, for a behaviour, both the
+  paired difference r(TG) − r(z gap) and the partial correlation r(TG,
+  behaviour | z gap) have 95% CIs above 0. The single-prompt " by"
+  preference contains TG as a component (part–whole), so only the released
+  *by* margin and the LP margin count for this rule.
+- Reading: "rare verbs translate less per unit of d gap" if the second
+  rule holds; otherwise "no evidence of a frequency dependence of
+  translation beyond the d gap" (not evidence that there is none).
+
+**Prediction.** TG tracks frequency (because the d gap does); TG_res shows
+no frequency slope (CI includes 0); TG correlates with the single-prompt
+" by" preference (r ≈ 0.3–0.5) but weakly with the LP margin.
+
+## Order (Part D)
+
+1. Commit this part with Part E.
+2. D10, D11, D12 on TSUBAME (one job).
+3. Report in `results.md`.
+
+# Part E: restoration (declared 2026-10-09)
+
+Revised after the same outside review, before any run.
+
+**What a patch at d can reach.** On the primary pairs, most of the
+head − XTail whole-sentence LP deficit sits in the participle's own
+tokens (curated `passive_2` verb margin 3.29 vs 1.39), which are predicted
+before the participle's last token and so cannot change under a patch
+there. What a patch at d can change is the continuation: on curated
+`passive_1` ("The N was V by the X."), the " by" margin is 0.95 (Head) vs
+0.42 (XTail). The **by margin** is therefore the primary target; the
+whole-sentence and suffix margins are reported, with the deficit-share of
+the whole margin as a secondary quantity.
+
+## E13. Oracle at d
+
+**Items.** Curated `passive_1` and `passive_2` sentences of the primary
+pairs (the band-cross contexts, as `pythia14b_scores.csv`).
+
+**Patch.** At sites 6 and 8 (one at a time), on the participle's last
+token, with the item's cross-fitted fold basis for each split: the
+coordinate of an XTail pair's **good** sentence is set to the mean raw
+projection, under that same basis, of the **Head-band good** participles in
+the same context, and of its **bad** sentence to the Head-band bad mean
+(true class, passive range). The Head-band pool is all 26 curated Head
+pairs, excluding the item's own pair and any pair that is a DAS training
+pair of the basis (≥ 2 pairs required; the minimum is reported). The rest of the sentence is scored as
+`score_matched_passives.py` (whole, verb, suffix and " by" log-probs).
+- **Specificity control:** the same patch on Head pairs (each verb set to
+  the Head mean of its class, excluding its own pair).
+- **Reverse control** (secondary): Head pairs set to the XTail means.
+
+**Quantities.** Δ by margin, Δ suffix margin, Δ whole margin (= Δ suffix,
+checked), per band; **share closed** = Δ(XTail by margin) / (Head by
+margin − XTail by margin), natural values from the same run; the same for
+the whole margin. Bootstrap: pairs within band × contexts, the context
+draws shared by all bands; inference conditional on the targets.
+
+**Decision rule.** E13 **closes a real share** at site 6 or 8 if the
+by-margin deficit has a 95% CI above 0, the share is ≥ 0.25 with a 95% CI
+above 0, and the Head control's Δ by margin has a 95% CI within ±0.1 nats.
+The Head control is weak specificity evidence (with leave-one-out class
+means its mean change is near zero under any common linear response); the
+reverse control is reported alongside.
+
+**Prediction** (from the site-8 band levels and the dose-curve slopes):
+the by-margin share is ≈ 0.2–0.3; the whole-margin share ≤ 0.1; the Head
+control moves < 0.1; the reverse control lowers the Head by margin.
+
+## E14. Label-free scaling (only if E13 closes a real share)
+
+Outline only. If E13's rule is met, each verb's own coordinate is scaled
+about a label-free centre (z' = c + α (z − c), α ∈ {1.5, 2, 3}, capped to
+the active range), and the XTail by-margin deficit closed, the effect on
+Head verbs, the LP accuracy of other FreqBLiMP paradigms and held-out LM
+loss are measured. The centre c and the patch positions outside passive
+contexts (other paradigms, generic text) are not yet defined; they are
+fixed in a separate commit before any E14 run. If E13 closes little, E13 is
+repeated at the translation stage (MLPs 11–17 outputs set to the Head mean
+of the true class), using D's results, also declared first.
+
+## Order (Part E)
+
+1. Commit with Part D.
+2. E13 on TSUBAME; E14 only if E13's rule is met.
+3. Report in `results.md`.
