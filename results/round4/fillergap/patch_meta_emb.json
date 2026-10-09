@@ -1,0 +1,51 @@
+{
+  "args": {
+    "mode": "patch",
+    "exp": "emb",
+    "data_dir": "../data/round4/fillergap",
+    "out_dir": "../results/round4/fillergap",
+    "bases": "../results/das_round2/bases_rank1.npz",
+    "folds": "../results/das_round2/final_strict/pairs_folds.csv",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "plan_rows": 73080,
+  "bases_sha256": "2630024a7e71bc1e5c6249f37fef3091ec87e9f656dc3d871599f2f53dbd6cdf",
+  "checks": {
+    "4": {
+      "self_set_max_abs_dM": 0.0,
+      "min_eligible_target_verbs": 27
+    },
+    "6": {
+      "self_set_max_abs_dM": 0.0,
+      "min_eligible_target_verbs": 27
+    },
+    "8": {
+      "self_set_max_abs_dM": 0.0,
+      "min_eligible_target_verbs": 27
+    },
+    "10": {
+      "self_set_max_abs_dM": 0.0,
+      "min_eligible_target_verbs": 27
+    },
+    "12": {
+      "self_set_max_abs_dM": 0.0,
+      "min_eligible_target_verbs": 27
+    },
+    "14": {
+      "self_set_max_abs_dM": 0.0,
+      "min_eligible_target_verbs": 27
+    },
+    "16": {
+      "self_set_max_abs_dM": 0.0,
+      "min_eligible_target_verbs": 27
+    },
+    "17": {
+      "self_set_max_abs_dM": 0.0,
+      "min_eligible_target_verbs": 27
+    }
+  },
+  "plan_content_sha256": "a4f33e2776c273e9d6afe8b922c8e8c08b1df1da230b476049e932eb119fe7c0"
+}

@@ -1,0 +1,38 @@
+{
+  "args": {
+    "data_dir": "../data/round4/nonce_cues",
+    "bases": "../results/das_round2/bases_rank1.npz",
+    "out_dir": "../results/round4/nonce_cues",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 256
+  },
+  "prompts": 7446,
+  "token_suffix_check": "passed",
+  "final_token_in_context": {
+    "adj_I": 80,
+    "ed_AB": 80,
+    "ed_BA": 80,
+    "ed_I": 80,
+    "ed_T": 80,
+    "ing_AB": 0,
+    "ing_BA": 0,
+    "ing_I": 0,
+    "ing_T": 0,
+    "ing_mI": 0,
+    "ing_mT": 0,
+    "pp_I": 80,
+    "q_I": 0,
+    "q_T": 0,
+    "rel_I": 80,
+    "rel_T": 80,
+    "s_AB": 0,
+    "s_BA": 0,
+    "s_I": 0,
+    "s_T": 0,
+    "s_mI": 0,
+    "s_mT": 0
+  },
+  "bases_sha256": "2630024a7e71bc1e5c6249f37fef3091ec87e9f656dc3d871599f2f53dbd6cdf"
+}

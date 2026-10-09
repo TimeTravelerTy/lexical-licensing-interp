@@ -139,6 +139,70 @@
     "bytes": 1950483,
     "sha256": "6c3f532afe4fef99ed28cafd9960762a72b8ab58c7ac6b8513b3e0260ad381c1"
   },
+  "results/round4/fillergap/patches_emb_site10.parquet": {
+    "bytes": 3501018,
+    "sha256": "e1dca4fbcd1a88fd866a9dce3541d04555e0666c149ec69e000de327360dda91"
+  },
+  "results/round4/fillergap/patches_emb_site12.parquet": {
+    "bytes": 3501214,
+    "sha256": "02bfedb68b78556b69f74e7c9a75b8320cbc869c4e2fd441dd07ec485ad6f8c4"
+  },
+  "results/round4/fillergap/patches_emb_site14.parquet": {
+    "bytes": 3501654,
+    "sha256": "edfda36c8a26ddba867153a7b0241a8cd295ee889cbf1be06fb2e3dd1556c468"
+  },
+  "results/round4/fillergap/patches_emb_site16.parquet": {
+    "bytes": 3502226,
+    "sha256": "2c13a2efd6045949d69d20e97b9d2e12152e1b15a513aede3b88b767de58ed96"
+  },
+  "results/round4/fillergap/patches_emb_site17.parquet": {
+    "bytes": 3502238,
+    "sha256": "5c2b802ef98c6d0171541cf2e891b551278e146ecf0541cc6b53974f0152fb9e"
+  },
+  "results/round4/fillergap/patches_emb_site4.parquet": {
+    "bytes": 3501178,
+    "sha256": "17fdcf493d7772f6c2fb590b6874c585fdcfc5db886c7075e6957313a49ccd7e"
+  },
+  "results/round4/fillergap/patches_emb_site6.parquet": {
+    "bytes": 3501262,
+    "sha256": "259f1c5e40120e0be0af6614f7b8bdb9611fd9e25936ecf3c39b0f7d90abe324"
+  },
+  "results/round4/fillergap/patches_emb_site8.parquet": {
+    "bytes": 3501070,
+    "sha256": "92451bfe915e57a5b3fc37b8e4d8327b5aebaf69fc1b527430a100db3839198b"
+  },
+  "results/round4/fillergap/patches_mat_site10.parquet": {
+    "bytes": 4084103,
+    "sha256": "9c0f1133892df0ae10724542a7d597e1f952c7ffd67c673d69cf263258355fec"
+  },
+  "results/round4/fillergap/patches_mat_site12.parquet": {
+    "bytes": 4084531,
+    "sha256": "97c9e1269b462341f4b902fb1b71d194ef50069875dc460e2119ca5dfa26e97f"
+  },
+  "results/round4/fillergap/patches_mat_site14.parquet": {
+    "bytes": 4084631,
+    "sha256": "138a09abc87af07e3e179419504b762f99bc58111f71624205c52326e16c9b0f"
+  },
+  "results/round4/fillergap/patches_mat_site16.parquet": {
+    "bytes": 4085559,
+    "sha256": "17a60597a6b19779c38a41f9fe8590c2957de173c3534ba40b8c836e5afc9066"
+  },
+  "results/round4/fillergap/patches_mat_site17.parquet": {
+    "bytes": 4085199,
+    "sha256": "d8db3e3cc470141fe3cfd0e3d95a3cbfd960fc94634823b742e40928dba9e46e"
+  },
+  "results/round4/fillergap/patches_mat_site4.parquet": {
+    "bytes": 4084399,
+    "sha256": "3d644e5959aec3ffba83759d4a8165f19db9015885e49ba8692027924b9bbd4c"
+  },
+  "results/round4/fillergap/patches_mat_site6.parquet": {
+    "bytes": 4084463,
+    "sha256": "febf978369e61c255fd332a050cb96a2a30287c3c12d0a48aba038b65bbb234b"
+  },
+  "results/round4/fillergap/patches_mat_site8.parquet": {
+    "bytes": 4084467,
+    "sha256": "4de079c3f42a974d416aab40292e66bef4f481349ba7e305065b0b0d2054e09a"
+  },
   "results/round4/fillergap/projections.npz": {
     "bytes": 6860179,
     "sha256": "6bc4449ba7ea9e76a20a1067f70d40be312cc6d84459e6e02cda5e58496b9d57"
@@ -182,5 +246,9 @@
   "results/round4/inrange/rows.parquet": {
     "bytes": 4925447,
     "sha256": "87e40b437310f6b46dfc54ab0537885d143af720e46773991dde6b9a0d3449ce"
+  },
+  "results/round4/nonce_cues/projections.npz": {
+    "bytes": 3319371,
+    "sha256": "4143e31294a2520a329c8c6e0b85b9ccaa634820b701953289143bd75ef7b5b4"
   }
 }
