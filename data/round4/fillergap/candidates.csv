@@ -1,0 +1,406 @@
+lemma,pool,past,participle,participle_zipf,source,past_eq_part,rater_claude,rater_codex,codex_note
+abduct,T,abducted,abducted,3.56,inventory,True,0,0,Typically animate object
+accept,T,accepted,accepted,4.67,inventory,True,0,0,Common object omission
+accuse,T,accused,accused,4.46,inventory,True,0,0,Typically human object
+acquire,T,acquired,acquired,4.4,inventory,True,1,1,Requires an inanimate object
+acquit,T,acquitted,acquitted,3.44,das_trans,True,0,0,Typically human object
+address,T,addressed,addressed,4.26,inventory,True,1,0,Commonly addresses people
+admonish,T,admonished,admonished,2.66,inventory,True,0,0,Typically human object
+adopt,T,adopted,adopted,4.51,inventory,True,0,0,Commonly takes human objects
+adulterate,T,adulterated,adulterated,2.41,inventory,True,1,1,Requires an inanimate object
+advise,T,advised,advised,4.18,inventory,True,0,0,Human or clausal complement
+allow,T,allowed,allowed,5.03,inventory,True,0,0,Common infinitival complement
+analyze,T,analyzed,analyzed,3.9,inventory,True,1,1,Requires an inanimate object
+annex,T,annexed,annexed,3.5,das_trans,True,1,1,Requires an inanimate object
+announce,T,announced,announced,4.96,inventory,True,0,0,Common clausal complement
+append,T,appended,appended,2.84,inventory,True,1,1,Requires an inanimate object
+appoint,T,appointed,appointed,4.59,inventory,True,0,0,Typically human object
+apportion,T,apportioned,apportioned,2.46,inventory,True,1,1,Requires an inanimate object
+appraise,T,appraised,appraised,2.78,inventory,True,1,1,Typically assesses inanimate objects
+archive,T,archived,archived,3.4,inventory,True,1,1,Requires an inanimate object
+arraign,T,arraigned,arraigned,2.73,inventory,True,0,0,Typically human object
+arrest,T,arrested,arrested,4.64,inventory,True,0,0,Typically human object
+ascertain,T,ascertained,ascertained,2.79,inventory,True,0,0,Common clausal complement
+assail,T,assailed,assailed,2.52,inventory,True,0,0,Commonly takes human objects
+assassinate,T,assassinated,assassinated,3.39,das_trans,True,0,0,Typically human object
+assess,T,assessed,assessed,3.9,das_trans,True,1,1,Typically assesses inanimate objects
+attack,T,attacked,attacked,4.52,inventory,True,0,0,Common intransitive and animate uses
+author,T,authored,authored,3.49,inventory,True,1,1,Requires a written work
+authorise,T,authorised,authorised,3.61,inventory,True,1,0,Common human or infinitival complement
+awe,T,awed,awed,,primary_good,True,0,0,Typically human object
+ban,T,banned,banned,4.41,inventory,True,1,1,Typically prohibits inanimate things
+banish,T,banished,banished,3.39,inventory,True,0,0,Typically human object
+baptize,T,baptized,baptized,3.46,das_trans,True,0,0,Typically human object
+bequeath,T,bequeathed,bequeathed,3.02,inventory,True,1,1,Requires an inanimate object
+berate,T,berated,berated,2.67,inventory,True,0,0,Typically human object
+besmirch,T,besmirched,besmirched,1.91,primary_good,True,1,1,Typically takes reputation as object
+bet,T,bet,bet,,primary_good,True,0,0,Common intransitive use
+blab,T,blabbed,blabbed,,primary_good,True,0,0,Common intransitive use
+blaspheme,T,blasphemed,blasphemed,,primary_good,True,0,0,Common intransitive use
+bludgeon,T,bludgeoned,bludgeoned,2.42,inventory,True,0,0,Typically animate object
+blurt,T,blurted,blurted,,primary_good,True,0,0,Usually requires out
+bomb,T,bombed,bombed,3.62,inventory,True,0,0,Common intransitive failure sense
+browbeat,T,browbeat,browbeaten,1.65,inventory,False,0,0,Typically human object
+bully,T,bullied,bullied,3.69,inventory,True,0,0,Typically human object
+bury,T,buried,buried,4.4,inventory,True,1,0,Commonly takes deceased people
+cache,T,cached,cached,2.6,inventory,True,1,1,Requires an inanimate object
+cajole,T,cajoled,cajoled,2.19,primary_good,True,0,0,Typically human object
+calibrate,T,calibrated,calibrated,3.17,inventory,True,1,0,Mainly technical
+capture,T,captured,captured,4.44,inventory,True,1,0,Commonly takes animate objects
+censor,T,censored,censored,3.38,das_trans,True,1,1,Typically takes content as object
+centrifuge,T,centrifuged,centrifuged,2.08,inventory,True,0,0,Mainly technical
+chair,T,chaired,chaired,3.43,inventory,True,1,1,Typically takes meetings as objects
+chase,T,chased,chased,3.74,inventory,True,0,0,Commonly takes animate objects
+christen,T,christened,christened,,primary_good,True,0,0,Commonly takes human objects
+cite,T,cited,cited,4.29,inventory,True,1,1,Typically takes sources as objects
+coerce,T,coerced,coerced,,primary_good,True,0,0,Typically human object
+coin,T,coined,coined,3.39,inventory,True,1,1,Typically takes expressions as objects
+command,T,commanded,commanded,3.77,inventory,True,0,0,Human or clausal complement
+commandeer,T,commandeered,commandeered,2.61,inventory,True,1,1,Typically takes vehicles or resources
+compute,T,computed,computed,3.31,inventory,True,1,0,Common intransitive use
+condemn,T,condemned,condemned,3.97,inventory,True,1,0,Commonly takes human objects
+conduct,T,conducted,conducted,4.58,inventory,True,0,0,Common object omission in musical use
+confirm,T,confirmed,confirmed,4.67,inventory,True,0,0,Common clausal complement
+confiscate,T,confiscated,confiscated,3.48,inventory,True,1,1,Requires an inanimate object
+congratulate,T,congratulated,congratulated,3.21,inventory,True,0,0,Typically human object
+conserve,T,conserved,conserved,3.15,inventory,True,1,1,Requires an inanimate object
+contact,T,contacted,contacted,4.0,inventory,True,0,0,Typically human object
+contradict,T,contradicted,contradicted,3.14,das_trans,True,1,0,Commonly takes human objects
+convey,T,conveyed,conveyed,3.4,inventory,True,1,1,Typically takes information or goods
+convict,T,convicted,convicted,4.2,inventory,True,0,0,Typically human object
+copyright,T,copyrighted,copyrighted,3.19,inventory,True,1,1,Requires an inanimate work
+corroborate,T,corroborated,corroborated,2.92,inventory,True,1,1,Typically takes evidence or accounts
+counterfeit,T,counterfeited,counterfeited,1.96,inventory,True,1,1,Requires an inanimate object
+crate,T,crated,crated,,primary_good,True,1,1,Requires an inanimate object
+criticize,T,criticized,criticized,4.0,inventory,True,1,0,Commonly takes human objects
+curate,T,curated,curated,3.44,das_trans,True,1,1,Typically takes collections or content
+debug,T,debugged,debugged,,primary_good,True,1,0,Mainly technical
+deceive,T,deceived,deceived,3.39,das_trans,True,0,0,Typically human object
+decode,T,decoded,decoded,2.78,inventory,True,1,1,Typically takes messages as objects
+deduce,T,deduced,deduced,2.94,inventory,True,0,0,Common clausal complement
+deface,T,defaced,defaced,2.74,inventory,True,1,1,Requires an inanimate object
+defraud,T,defrauded,defrauded,2.67,inventory,True,0,0,Typically human object
+deliver,T,delivered,delivered,4.62,inventory,True,0,0,Common object omission
+demolish,T,demolished,demolished,3.52,inventory,True,1,1,Requires an inanimate object
+denounce,T,denounced,denounced,3.47,inventory,True,1,0,Commonly takes human objects
+deny,T,denied,denied,4.43,inventory,True,0,0,Common clausal complement
+depict,T,depicted,depicted,3.77,inventory,True,1,1,Typically takes scenes or events
+describe,T,described,described,5.0,inventory,True,1,1,Typically takes things or situations
+desecrate,T,desecrated,desecrated,2.64,inventory,True,1,1,Requires an inanimate object
+design,T,designed,designed,4.96,inventory,True,0,0,Common occupational object omission
+despoil,T,despoiled,despoiled,1.82,inventory,True,1,1,Typically takes places or resources
+destroy,T,destroyed,destroyed,4.61,inventory,True,1,1,Typically takes inanimate objects
+detect,T,detected,detected,4.06,inventory,True,1,1,Typically takes phenomena as objects
+diagnose,T,diagnosed,diagnosed,4.05,inventory,True,1,0,Mainly medical use
+dictate,T,dictated,dictated,3.39,inventory,True,0,0,Common intransitive or clausal use
+disabuse,T,disabused,disabused,,primary_good,True,0,0,Typically human object
+disavow,T,disavowed,disavowed,2.56,inventory,True,1,1,Typically takes beliefs or affiliations
+discredit,T,discredited,discredited,3.15,inventory,True,1,0,Commonly takes human objects
+dismiss,T,dismissed,dismissed,4.2,inventory,True,1,0,Commonly takes human objects
+disparage,T,disparaged,disparaged,2.41,inventory,True,1,0,Commonly takes human objects
+disqualify,T,disqualified,disqualified,3.44,das_trans,True,0,0,Typically human object
+dissect,T,dissected,dissected,2.91,inventory,True,1,0,Mainly anatomical or technical use
+donate,T,donated,donated,4.06,inventory,True,0,0,Common intransitive use
+duck,T,ducked,ducked,,primary_good,True,0,0,Common intransitive use
+earn,T,earned,earned,4.55,primary_good,True,0,0,Common object omission
+edify,T,edified,edified,,primary_good,True,0,0,Typically human object
+elect,T,elected,elected,4.63,inventory,True,0,0,Typically human object
+elicit,T,elicited,elicited,2.91,inventory,True,1,1,Typically takes responses as objects
+elucidate,T,elucidated,elucidated,2.5,inventory,True,1,1,Typically takes concepts as objects
+embezzle,T,embezzled,embezzled,2.56,inventory,True,1,0,Common object omission
+enact,T,enacted,enacted,3.75,inventory,True,1,1,Typically takes laws as objects
+encapsulate,T,encapsulated,encapsulated,2.91,inventory,True,1,1,Typically takes ideas as objects
+encrypt,T,encrypted,encrypted,3.42,inventory,True,1,0,Mainly technical
+enforce,T,enforced,enforced,3.79,inventory,True,1,1,Typically takes rules as objects
+engrave,T,engraved,engraved,3.52,inventory,True,1,1,Requires an inanimate object
+entomb,T,entombed,entombed,2.44,inventory,True,1,0,Typically takes deceased people
+enumerate,T,enumerated,enumerated,2.8,inventory,True,1,1,Requires an inanimate object
+envision,T,envisioned,envisioned,3.37,inventory,True,0,1,Typically takes situations as objects
+eschew,T,eschewed,eschewed,,primary_good,True,1,1,Typically takes practices or things
+escort,T,escorted,escorted,3.49,inventory,True,0,0,Typically animate object
+eulogize,T,eulogized,eulogized,2.04,inventory,True,0,0,Typically human object
+evaluate,T,evaluated,evaluated,3.83,inventory,True,1,1,Typically takes work or options
+evict,T,evicted,evicted,3.35,inventory,True,0,0,Typically human object
+evoke,T,evoked,evoked,3.12,inventory,True,1,1,Typically takes feelings or memories
+examine,T,examined,examined,4.1,inventory,True,1,1,Typically takes evidence or things
+excise,T,excised,excised,2.58,inventory,True,1,1,Requires an inanimate object
+execute,T,executed,executed,4.27,inventory,True,1,0,Commonly takes human objects
+exert,T,exerted,exerted,,primary_good,True,1,1,Typically takes force or effort
+exonerate,T,exonerated,exonerated,2.92,inventory,True,0,0,Typically human object
+expend,T,expended,expended,2.97,inventory,True,1,1,Requires an inanimate object
+extirpate,T,extirpated,extirpated,,primary_good,True,1,0,Mainly technical or specialized
+extradite,T,extradited,extradited,2.8,inventory,True,0,0,Typically human object
+fabricate,T,fabricated,fabricated,3.51,inventory,True,1,1,Typically takes objects or evidence
+facilitate,T,facilitated,facilitated,3.48,inventory,True,1,0,Common facilitator object omission
+falsify,T,falsified,falsified,2.92,inventory,True,1,1,Requires an inanimate object
+filch,T,filched,filched,,primary_good,True,1,1,Requires an inanimate object
+finance,T,financed,financed,3.69,inventory,True,1,1,Typically takes projects as objects
+fine,T,fined,fined,3.7,inventory,True,0,0,Typically human object
+fool,T,fooled,fooled,3.6,inventory,True,0,0,Typically human object
+forest,T,forested,forested,,primary_good,True,0,0,Mainly specialized use
+gag,T,gagged,gagged,,primary_good,True,0,0,Common intransitive use
+galvanize,T,galvanized,galvanized,,primary_good,True,0,0,Typically human object
+garnish,T,garnished,garnished,,primary_good,True,1,1,Typically takes food as object
+grade,T,graded,graded,3.45,inventory,True,1,1,Typically takes work as object
+grasp,T,grasped,grasped,3.02,inventory,True,1,1,Typically takes things or concepts
+greet,T,greeted,greeted,3.66,inventory,True,0,0,Typically human object
+grip,T,gripped,gripped,3.14,inventory,True,1,1,Typically takes inanimate objects
+harass,T,harassed,harassed,3.55,inventory,True,0,0,Typically human object
+haul,T,hauled,hauled,3.43,inventory,True,1,1,Typically takes loads as objects
+hoard,T,hoarded,hoarded,2.5,inventory,True,1,0,Common intransitive use
+honour,T,honoured,honoured,3.7,inventory,True,1,0,Commonly takes human objects
+host,T,hosted,hosted,4.25,primary_good,True,0,0,Common object omission
+hug,T,hugged,hugged,3.43,inventory,True,0,0,Typically animate object
+hypothesize,T,hypothesized,hypothesized,3.02,inventory,True,0,0,Common clausal complement
+identify,T,identified,identified,4.63,inventory,True,1,0,Common intransitive identify with use
+image,T,imaged,imaged,2.67,inventory,True,0,0,Mainly technical
+imitate,T,imitated,imitated,,primary_good,True,1,0,Commonly takes animate objects
+immobilize,T,immobilized,immobilized,2.67,inventory,True,1,0,Commonly takes animate objects
+immolate,T,immolated,immolated,,primary_good,True,0,0,Typically animate object
+immunize,T,immunized,immunized,2.48,inventory,True,0,0,Typically animate object
+impose,T,imposed,imposed,4.16,primary_good,True,1,0,Common intransitive use
+impound,T,impounded,impounded,2.84,inventory,True,1,1,Typically takes vehicles or property
+include,T,included,included,5.03,primary_good,True,1,1,Typically takes items as objects
+incriminate,T,incriminated,incriminated,,primary_good,True,0,0,Typically human object
+infer,T,inferred,inferred,3.12,das_trans,True,0,0,Common clausal complement
+inoculate,T,inoculated,inoculated,2.57,inventory,True,0,0,Typically animate object
+inscribe,T,inscribed,inscribed,3.38,inventory,True,1,1,Requires an inanimate object
+institute,T,instituted,instituted,3.48,inventory,True,1,1,Typically takes practices or systems
+insult,T,insulted,insulted,3.52,inventory,True,0,0,Typically human object
+insure,T,insured,insured,3.69,primary_good,True,1,1,Typically takes property as object
+interrogate,T,interrogated,interrogated,3.18,inventory,True,0,0,Typically human object
+irradiate,T,irradiated,irradiated,2.93,inventory,True,1,0,Mainly technical
+jail,T,jailed,jailed,3.59,inventory,True,0,0,Typically human object
+lard,T,larded,larded,,primary_good,True,1,1,Typically takes food or prose
+lather,T,lathered,lathered,,primary_good,True,0,0,Common intransitive and particle uses
+loot,T,looted,looted,3.21,inventory,True,0,0,Common intransitive use
+lynch,T,lynched,lynched,2.83,inventory,True,0,0,Typically human object
+manufacture,T,manufactured,manufactured,4.13,inventory,True,1,0,Common occupational object omission
+master,T,mastered,mastered,3.57,inventory,True,1,1,Typically takes skills or material
+maul,T,mauled,mauled,2.83,inventory,True,0,0,Typically animate object
+mince,T,minced,minced,3.0,inventory,True,1,0,Common intransitive walking sense
+mine,T,mined,mined,3.41,inventory,True,0,0,Common intransitive use
+misquote,T,misquoted,misquoted,2.43,inventory,True,1,0,Commonly takes human objects
+misrepresent,T,misrepresented,misrepresented,2.96,inventory,True,1,1,Typically takes facts or situations
+mock,T,mocked,mocked,3.43,inventory,True,0,0,Typically human object
+mulch,T,mulched,mulched,,primary_good,True,1,0,Common gardening object omission
+notarize,T,notarized,notarized,2.47,inventory,True,1,1,Requires a document
+obey,T,obeyed,obeyed,3.02,inventory,True,0,0,Common object omission
+outdo,T,outdid,outdone,,primary_good,False,0,0,Typically human object
+overrule,T,overruled,overruled,3.12,inventory,True,1,1,Typically takes decisions as objects
+pardon,T,pardoned,pardoned,3.11,das_trans,True,0,0,Typically human object
+pen,T,penned,penned,3.38,inventory,True,1,1,Typically takes written material
+persecute,T,persecuted,persecuted,3.42,inventory,True,0,0,Typically human object
+pigeonhole,T,pigeonholed,pigeonholed,,primary_good,True,0,0,Typically human object
+pilfer,T,pilfered,pilfered,2.12,inventory,True,1,0,Common intransitive use
+pillage,T,pillaged,pillaged,2.53,primary_good,True,0,0,Common intransitive use
+plagiarize,T,plagiarized,plagiarized,2.68,inventory,True,1,0,Common intransitive use
+postulate,T,postulated,postulated,2.8,inventory,True,0,0,Common clausal complement
+preclude,T,precluded,precluded,,primary_good,True,1,1,Typically takes possibilities as objects
+pressure,T,pressured,pressured,3.5,inventory,True,0,0,Typically human object
+pretreat,T,pretreated,pretreated,1.97,inventory,True,0,0,Mainly technical
+probe,T,probed,probed,2.88,das_trans,True,0,0,Common investigative object omission
+proffer,T,proffered,proffered,2.42,inventory,True,1,1,Typically takes offers or things
+quantify,T,quantified,quantified,2.97,inventory,True,1,1,Typically takes amounts or effects
+raid,T,raided,raided,3.47,inventory,True,1,1,Typically takes places as objects
+randomise,T,randomised,randomised,2.58,inventory,True,0,0,Mainly technical
+ransack,T,ransacked,ransacked,2.75,inventory,True,1,1,Typically takes places as objects
+ratify,T,ratified,ratified,3.41,das_trans,True,1,1,Typically takes agreements as objects
+raze,T,razed,razed,2.79,primary_good,True,1,1,Typically takes buildings as objects
+rearm,T,rearmed,rearmed,,primary_good,True,0,0,Common intransitive use
+recast,T,recast,recast,,primary_good,True,1,1,Typically takes material or roles
+recite,T,recited,recited,3.14,das_trans,True,1,0,Common object omission
+redress,T,redressed,redressed,,primary_good,True,1,1,Typically takes wrongs as objects
+regain,T,regained,regained,3.49,inventory,True,1,1,Requires an inanimate object
+regale,T,regaled,regaled,,primary_good,True,0,0,Typically human object
+reinstall,T,reinstalled,reinstalled,,primary_good,True,1,1,Typically takes equipment or software
+relegate,T,relegated,relegated,3.47,inventory,True,1,0,Commonly takes human objects
+renounce,T,renounced,renounced,3.0,inventory,True,1,1,Typically takes claims or affiliations
+renovate,T,renovated,renovated,3.56,inventory,True,1,1,Typically takes buildings as objects
+repeal,T,repealed,repealed,3.36,das_trans,True,1,1,Typically takes laws as objects
+reprimand,T,reprimanded,reprimanded,2.93,inventory,True,0,0,Typically human object
+reproach,T,reproached,reproached,,primary_good,True,0,0,Typically human object
+repudiate,T,repudiated,repudiated,2.62,inventory,True,1,1,Typically takes claims or agreements
+requisition,T,requisitioned,requisitioned,2.52,primary_good,True,1,1,Typically takes supplies as objects
+resupply,T,resupplied,resupplied,,primary_good,True,0,0,Commonly takes people or units
+revile,T,reviled,reviled,2.65,inventory,True,0,0,Typically human object
+ridicule,T,ridiculed,ridiculed,3.19,inventory,True,0,0,Commonly takes human objects
+rig,T,rigged,rigged,3.63,inventory,True,1,1,Requires an inanimate object
+rinse,T,rinsed,rinsed,2.77,inventory,True,0,0,Common object omission
+rouse,T,roused,roused,,primary_good,True,0,0,Typically animate object
+sabotage,T,sabotaged,sabotaged,2.92,inventory,True,1,1,Typically takes equipment or plans
+sack,T,sacked,sacked,3.73,das_trans,True,0,0,Commonly takes human objects
+safeguard,T,safeguarded,safeguarded,,primary_good,True,1,1,Typically takes interests or resources
+sample,T,sampled,sampled,3.41,inventory,True,1,1,Typically takes substances or products
+scold,T,scolded,scolded,2.96,inventory,True,0,0,Human object or intransitive use
+score,T,scored,scored,4.63,primary_good,True,0,0,Common intransitive use
+scrap,T,scrapped,scrapped,3.51,inventory,True,1,0,Common intransitive fighting sense
+scrub,T,scrubbed,scrubbed,,primary_good,True,0,0,Common object omission
+send,T,sent,sent,5.16,primary_good,True,1,0,Common intransitive send for use
+sequence,T,sequenced,sequenced,2.87,inventory,True,1,0,Mainly technical
+sheathe,T,sheathed,sheathed,2.52,inventory,True,1,1,Typically takes weapons as objects
+shoo,T,shooed,shooed,,primary_good,True,0,0,Typically animate object
+shun,T,shunned,shunned,3.11,das_trans,True,1,0,Commonly takes human objects
+signal,T,signaled,signaled,3.1,inventory,True,0,0,Common intransitive use
+skin,T,skinned,skinned,3.54,inventory,True,0,1,Typically takes surfaces or food
+slaughter,T,slaughtered,slaughtered,3.53,das_trans,True,0,0,Typically animate object
+smother,T,smothered,smothered,,primary_good,True,1,0,Commonly takes animate objects
+snatch,T,snatched,snatched,3.48,das_trans,True,1,1,Typically takes inanimate objects
+solicit,T,solicited,solicited,2.93,inventory,True,1,0,Common intransitive use
+stockpile,T,stockpiled,stockpiled,,primary_good,True,1,0,Common object omission
+stopper,T,stoppered,stoppered,,primary_good,True,1,1,Typically takes containers as objects
+subtract,T,subtracted,subtracted,2.71,inventory,True,0,0,Common arithmetic object omission
+subvert,T,subverted,subverted,,primary_good,True,1,1,Typically takes systems as objects
+summarize,T,summarized,summarized,3.35,inventory,True,1,0,Common object omission
+swaddle,T,swaddled,swaddled,,primary_good,True,0,0,Typically human object
+tape,T,taped,taped,3.5,inventory,True,1,1,Typically takes inanimate objects
+taunt,T,taunted,taunted,2.74,inventory,True,0,0,Typically human object
+televise,T,televised,televised,3.53,inventory,True,1,1,Typically takes events as objects
+thank,T,thanked,thanked,3.64,primary_good,True,0,0,Typically human object
+thwart,T,thwarted,thwarted,3.15,inventory,True,1,0,Commonly takes human objects
+tithe,T,tithed,tithed,,primary_good,True,0,0,Common intransitive use
+tow,T,towed,towed,3.38,inventory,True,1,0,Common intransitive towing use
+trademark,T,trademarked,trademarked,,primary_good,True,1,1,Typically takes names or designs
+transcribe,T,transcribed,transcribed,3.16,inventory,True,1,1,Typically takes speech or text
+transfect,T,transfected,transfected,2.16,inventory,True,0,0,Mainly technical
+transplant,T,transplanted,transplanted,3.06,das_trans,True,1,0,Mainly medical or horticultural use
+trick,T,tricked,tricked,3.42,inventory,True,0,0,Typically animate object
+underestimate,T,underestimated,underestimated,3.39,inventory,True,1,0,Common object omission
+unlatch,T,unlatched,unlatched,,primary_good,True,1,1,Requires an inanimate object
+usurp,T,usurped,usurped,2.78,inventory,True,1,1,Typically takes power or positions
+utter,T,uttered,uttered,,primary_good,True,1,1,Typically takes words or sounds
+validate,T,validated,validated,3.38,inventory,True,1,1,Typically takes claims or documents
+vandalize,T,vandalized,vandalized,2.87,inventory,True,1,0,Common object omission
+visualize,T,visualized,visualized,2.8,inventory,True,0,0,Common intransitive mental exercise use
+wad,T,wadded,wadded,,primary_good,True,0,0,Usually requires up
+waive,T,waived,waived,3.48,inventory,True,1,1,Typically takes rights or fees
+waylay,T,waylaid,waylaid,2.18,inventory,True,0,0,Typically human object
+whitewash,T,whitewashed,whitewashed,,primary_good,True,1,1,Typically takes surfaces or wrongdoing
+withhold,T,withheld,withheld,3.36,inventory,True,1,1,Typically takes information or resources
+worship,T,worshipped,worshipped,3.28,inventory,True,0,0,Common intransitive use
+ache,I,ached,ached,2.41,das_intrans,True,0,1,Natural with from exertion
+appear,I,appeared,appeared,,primary_bad,True,1,1,Natural with in a doorway
+arise,I,arose,arisen,3.2,das_intrans,False,0,1,Natural with from a chair
+bloom,I,bloomed,bloomed,,primary_bad,True,0,0,Human subject use is marginal
+blossom,I,blossomed,blossomed,,primary_bad,True,0,1,Natural with in a supportive environment
+blush,I,blushed,blushed,,primary_bad,True,1,1,Natural with in a situation
+burgeon,I,burgeoned,burgeoned,,primary_bad,True,0,0,Human subject use is marginal
+bustle,I,bustled,bustled,,primary_bad,True,0,1,Natural with around a kitchen
+cavort,I,cavorted,cavorted,1.36,plain_class,True,0,1,Natural with in a field
+convalesce,I,convalesced,convalesced,1.35,plain_class,True,0,1,Natural with in a hospital
+creep,I,crept,crept,,primary_bad,True,1,1,Natural with through a tunnel
+cringe,I,cringed,cringed,2.57,das_intrans,True,1,1,Natural with in a corner
+dawn,I,dawned,dawned,,primary_bad,True,0,0,Unnatural with human subject
+decamp,I,decamped,decamped,,primary_bad,True,1,1,Natural with from a campsite
+defect,I,defected,defected,3.03,das_intrans,True,1,1,Natural with from an organization
+die,I,died,died,5.2,primary_bad,True,1,1,Natural with from a disease
+dwindle,I,dwindled,dwindled,,primary_bad,True,0,0,Unnatural with individual human subject
+emerge,I,emerged,emerged,4.16,primary_bad,True,1,1,Natural with from a building
+emigrate,I,emigrated,emigrated,,primary_bad,True,1,1,Natural with from a country
+ensue,I,ensued,ensued,3.34,das_intrans,True,0,0,Unnatural with human subject
+equivocate,I,equivocated,equivocated,1.43,plain_class,True,0,0,Topic preposition is lexically selected
+err,I,erred,erred,2.81,das_intrans,True,0,0,No natural common adjunct what PP
+exist,I,existed,existed,4.29,primary_bad,True,0,0,No natural common adjunct what PP
+faint,I,fainted,fainted,3.12,das_intrans,True,1,1,Natural with from the heat
+fart,I,farted,farted,2.78,das_intrans,True,0,1,Natural with in an elevator
+fizz,I,fizzed,fizzed,,primary_bad,True,0,0,Unnatural with human subject
+flinch,I,flinched,flinched,2.52,primary_bad,True,1,0,Stimulus preposition is lexically selected
+fluctuate,I,fluctuated,fluctuated,,primary_bad,True,0,0,Unnatural with individual human subject
+frolic,I,frolicked,frolicked,1.69,plain_class,True,1,1,Natural with in a meadow
+function,I,functioned,functioned,,primary_bad,True,0,1,Natural with in an environment
+glow,I,glowed,glowed,,primary_bad,True,0,0,No natural common adjunct what PP
+grovel,I,groveled,groveled,1.23,plain_class,True,0,0,Common prepositions are lexically selected
+happen,I,happened,happened,5.2,primary_bad,True,0,0,Unnatural with human subject
+hitchhike,I,hitchhiked,hitchhiked,,primary_bad,True,1,1,Natural with through a country
+kneel,I,knelt,knelt,2.8,das_intrans,True,1,1,Natural with on a mat
+languish,I,languished,languished,,primary_bad,True,1,1,Natural with in a prison
+limp,I,limped,limped,2.6,das_intrans,True,1,1,Natural with through a doorway
+linger,I,lingered,lingered,,primary_bad,True,1,1,Natural with in a hallway
+loiter,I,loitered,loitered,1.72,plain_class,True,1,1,Natural with outside a shop
+loll,I,lolled,lolled,,primary_bad,True,0,1,Natural with on a sofa
+loom,I,loomed,loomed,2.8,das_intrans,True,0,1,Natural with in a doorway
+lumber,I,lumbered,lumbered,,primary_bad,True,1,1,Natural with through a forest
+lurk,I,lurked,lurked,,primary_bad,True,1,1,Natural with behind a building
+malfunction,I,malfunctioned,malfunctioned,2.57,das_intrans,True,0,0,Human subject use is marginal
+matter,I,mattered,mattered,3.53,primary_bad,True,0,0,To complement is lexically selected
+menstruate,I,menstruated,menstruated,1.44,plain_class,True,0,0,No natural common adjunct what PP
+mosey,I,moseyed,moseyed,1.28,plain_class,True,1,1,Natural with through a town
+occur,I,occurred,occurred,4.57,primary_bad,True,0,0,Unnatural with human subject
+pant,I,panted,panted,,primary_bad,True,0,1,Natural with after a race
+perish,I,perished,perished,3.3,das_intrans,True,1,1,Natural with in a fire
+persevere,I,persevered,persevered,,primary_bad,True,1,0,Common prepositions are lexically selected
+persist,I,persisted,persisted,3.34,das_intrans,True,1,0,Common prepositions are lexically selected
+prevaricate,I,prevaricated,prevaricated,1.45,plain_class,True,0,0,Topic preposition is lexically selected
+pulsate,I,pulsated,pulsated,1.38,plain_class,True,0,0,Human subject use is marginal
+putter,I,puttered,puttered,,primary_bad,True,0,1,Natural with around a house
+quack,I,quacked,quacked,,primary_bad,True,0,0,Ordinary subject is an animal
+quiver,I,quivered,quivered,,primary_bad,True,0,1,Natural with from the cold
+reappear,I,reappeared,reappeared,,primary_bad,True,1,1,Natural with in a doorway
+recede,I,receded,receded,,primary_bad,True,0,1,Natural with into the shadows
+recur,I,recurred,recurred,2.33,das_intrans,True,0,0,Unnatural with human subject
+reemerge,I,reemerged,reemerged,2.02,primary_bad,True,1,1,Natural with from a building
+reign,I,reigned,reigned,3.15,das_intrans,True,0,0,Over complement is lexically selected
+relapse,I,relapsed,relapsed,2.71,das_intrans,True,0,0,Into complement is lexically selected
+relent,I,relented,relented,2.71,primary_bad,True,0,0,No natural common adjunct what PP
+remain,I,remained,remained,4.62,primary_bad,True,1,1,Natural with in a building
+reoccur,I,reoccurred,reoccurred,1.28,plain_class,True,0,0,Unnatural with human subject
+reside,I,resided,resided,3.33,das_intrans,True,0,0,Location preposition is lexically selected
+saunter,I,sauntered,sauntered,2.2,primary_bad,True,1,1,Natural with through a park
+seep,I,seeped,seeped,,primary_bad,True,0,0,Unnatural with human subject
+seethe,I,seethed,seethed,,primary_bad,True,0,0,Common with complement is lexically selected
+shimmer,I,shimmered,shimmered,,primary_bad,True,0,0,Human subject use is marginal
+shudder,I,shuddered,shuddered,,primary_bad,True,1,1,Natural with from the cold
+sidle,I,sidled,sidled,,primary_bad,True,0,1,Natural with through a doorway
+skulk,I,skulked,skulked,1.42,plain_class,True,1,1,Natural with behind a building
+slog,I,slogged,slogged,,primary_bad,True,1,1,Natural with through the mud
+slouch,I,slouched,slouched,,primary_bad,True,1,1,Natural with in a chair
+slump,I,slumped,slumped,,primary_bad,True,1,1,Natural with in a chair
+smolder,I,smoldered,smoldered,,primary_bad,True,0,0,No natural common adjunct what PP
+sneeze,I,sneezed,sneezed,2.68,das_intrans,True,1,1,Natural with into a tissue
+sojourn,I,sojourned,sojourned,1.57,plain_class,True,1,0,Location preposition is lexically selected
+sprint,I,sprinted,sprinted,2.69,das_intrans,True,1,0,Common transitive distance use
+stagnate,I,stagnated,stagnated,,primary_bad,True,0,1,Natural with in a job
+subside,I,subsided,subsided,,primary_bad,True,0,0,Human subject use is marginal
+sulk,I,sulked,sulked,,primary_bad,True,1,1,Natural with in a bedroom
+tarry,I,tarried,tarried,1.55,plain_class,True,1,1,Natural with at an inn
+thrive,I,thrived,thrived,,primary_bad,True,1,1,Natural with in an environment
+throb,I,throbbed,throbbed,1.91,plain_class,True,0,0,Unnatural with whole human subject
+tingle,I,tingled,tingled,,primary_bad,True,0,0,No natural common adjunct what PP
+tiptoe,I,tiptoed,tiptoed,2.03,plain_class,True,1,1,Natural with through a hallway
+toddle,I,toddled,toddled,,primary_bad,True,1,1,Natural with across a room
+toil,I,toiled,toiled,,primary_bad,True,1,1,Natural with in a mine
+totter,I,tottered,tottered,,primary_bad,True,1,1,Natural with down a staircase
+transpire,I,transpired,transpired,,primary_bad,True,0,0,Unnatural with human subject
+tremble,I,trembled,trembled,2.55,das_intrans,True,1,1,Natural with from the cold
+vacillate,I,vacillated,vacillated,,primary_bad,True,0,0,Between complement is lexically selected
+vanish,I,vanished,vanished,3.72,primary_bad,True,1,1,Natural with from a room
+vegetate,I,vegetated,vegetated,,primary_bad,True,0,1,Natural with on a couch
+waddle,I,waddled,waddled,2.1,plain_class,True,1,1,Natural with through the mud
+wane,I,waned,waned,,primary_bad,True,0,0,Human subject use is marginal
+waver,I,wavered,wavered,2.67,primary_bad,True,0,0,No natural common adjunct what PP
+whiz,I,whizzed,whizzed,,primary_bad,True,1,1,Natural with through a doorway
+writhe,I,writhed,writhed,,primary_bad,True,1,1,Natural with on the floor
+arrive,I,arrived,arrived,,hand_added,True,1,1,Natural with at a station
+sleep,I,slept,slept,,hand_added,True,1,1,Natural with in a bed
+sit,I,sat,sat,,hand_added,True,1,0,Common transitive examination use
+stay,I,stayed,stayed,,hand_added,True,1,0,Common transitive postponement use
+wander,I,wandered,wandered,,hand_added,True,1,0,Common transitive streets use
+travel,I,traveled,traveled,,hand_added,True,0,0,Common transitive world use
+crawl,I,crawled,crawled,,hand_added,True,1,1,Natural with through a tunnel
+hurry,I,hurried,hurried,,hand_added,True,1,0,Common transitive use
+float,I,floated,floated,,hand_added,True,1,0,Common transitive use
+dine,I,dined,dined,,hand_added,True,1,1,Natural with at a restaurant
+camp,I,camped,camped,,hand_added,True,1,1,Natural with in a field
+hike,I,hiked,hiked,,hand_added,True,0,0,Common transitive trail use
+jog,I,jogged,jogged,,hand_added,True,1,0,Common transitive memory use
+stroll,I,strolled,strolled,,hand_added,True,1,0,Common transitive streets use
+shop,I,shopped,shopped,,hand_added,True,1,0,Common transitive store or sale use
+retire,I,retired,retired,,hand_added,True,1,0,Common transitive use
+relax,I,relaxed,relaxed,,hand_added,True,1,0,Common transitive use
+nap,I,napped,napped,,hand_added,True,1,1,Natural with on a couch
+perch,I,perched,perched,,hand_added,True,1,0,Common transitive positioning use
+lounge,I,lounged,lounged,,hand_added,True,1,1,Natural with on a sofa
+live,I,lived,lived,,hand_added,True,1,0,Common transitive life use
+rest,I,rested,rested,,hand_added,True,0,0,Common transitive use
+swim,I,swam,swum,,hand_added,False,0,0,Common transitive distance or channel use
+hide,I,hid,hidden,,hand_added,False,0,0,Common transitive use

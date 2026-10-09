@@ -305,3 +305,153 @@ attention to the adverb.
 2. A1 and A3 locally on committed outputs.
 3. A2, A4, A5 on TSUBAME (one job each).
 4. Report in `results.md`.
+
+# Part B: filler-gap test (declared 2026-10-09)
+
+Written after Part A's A1–A3 and A5 results and before any Part B run;
+revised after an outside review (Codex) of the first draft and its code,
+also before any run. From now on this is the main gap-construction test. Directions: the active-trained
+d_s, sites 4–17 (decisions at 6 and 8; later sites for the depth profile).
+
+## Verbs (both experiments)
+
+Candidate pools (`data/round4/fillergap/candidates.csv`): T = the
+inventory's transitive verbs, the primary good verbs and the DAS
+transitives; I = the round-2 `plain` intransitives plus a hand-added set of
+frequent intransitives (arrive, sleep, sit, stay, wander, …). Two raters
+(Claude; Codex blind to the other's labels) judged each verb against
+written criteria (in the file header of `verbs.csv`):
+- **T:** obligatorily transitive ("John V-ed." alone is incomplete; no
+  common object drop); typical object inanimate, so "what John V-ed" is
+  natural; no particle and not mainly clause-taking; not jargon.
+- **I:** intransitive with no common transitive use; natural with a human
+  subject; a common adjunct-like PP that strands naturally ("what John
+  emerged from", "slept in", "arrived at"); not a prepositional verb with a
+  selected preposition ("rely on", "look at", "reside in") and not
+  particle + P.
+A verb is used only if **both raters accept it** and its simple past equals
+its participle (d was trained on participles). The final lists are in
+`data/round4/fillergap/verbs.csv`. DAS training verbs are cross-fitted as
+before (their pair's held-out fold only).
+
+## B6. Embedded wh, one-word toggle
+
+**Items.** "I know that NAME V-ed" (**that**) vs "I know what NAME V-ed"
+(**what**); the two differ in one token (" that" / " what"), and the verb's
+tokens are checked to be identical. 24 contexts: matrix verb {know,
+remember, forgot, heard} × NAME {John, Mary, Tom, Sarah, Peter, Anna}
+("I forgot what John destroyed"). Every T and I verb in every context and
+both frames.
+
+**Readouts** (log-probs at the verb's last token): "." ; PREP (the 26-token
+C9 set); O (the 27 object-start tokens). **L = log P(".") − log P(PREP)**
+(main). Secondary: END (".", ",", "!", "?", ";") in place of ".".
+
+**Context halves.** The 24 contexts are split once (seed 17) into half A
+and half B, 3 names per matrix verb in each. Half A selects I verbs; half B
+carries the natural gate and the primary patch analysis, so neither is
+computed on the data that selected the verbs. All 24 contexts are
+reported as secondary.
+
+**Stage 1 (natural pass, no patching).**
+- **I-verb gate (half A).** An I verb is kept only if the filler raises
+  PREP after it: per verb, log P(PREP | what) − log P(PREP | that), mean
+  over the 12 half-A contexts, > 0 with a context-bootstrap 95% CI
+  excluding 0.
+- **Natural gate (half B; kept I verbs, all T verbs):** filler × class
+  interaction, on L: [L_T − L_I]_what − [L_T − L_I]_that > 0, and on O:
+  [O_T − O_I]_that − [O_T − O_I]_what > 0; both with 95% CIs above 0.
+  Bootstrap: T verbs and I verbs resampled independently, contexts jointly
+  (2,000 draws, seed 17). Also reported on all contexts and on all I verbs.
+  **If the natural gate fails, stop: no patching.**
+- Descriptive: the interaction per matrix verb; the prepositions the filler
+  raises most after I verbs (top tokens by probability change).
+- The gates are computed and committed before stage 2 is run.
+
+**Stage 2 (patches, kept I verbs as bases, both frames, all eight sites).**
+- **T − I donors**, as C9: per verb × context × split the cross-fitted
+  fold, shared by the two frames; donors = that fold's held-out DAS pairs
+  (excluding the verb's own), each contributing its transitive and
+  intransitive active ("She has destroyed" / "She has emerged") with one
+  shared random subject, also shared by the two frames; interchange at the
+  verb's last token. D = after T − after I.
+- **In-range** (A2 rule): coordinate set to t_T = the mean projection of
+  the T verbs in the same frame and context, and to t_I = the mean over the
+  kept I verbs other than the base verb (both excluding the basis's DAS
+  training verbs). D_in = R(t_T) − R(t_I).
+- Bootstrap: base verbs × contexts × donor pairs (donors only for T − I);
+  2,000 draws, seed 17. Primary on half-B contexts; all contexts secondary.
+- Fail-fast: stage 2 refuses to run if the natural gate did not pass, if
+  the bases differ from stage 1's, or if fewer than 5 eligible verbs enter
+  any in-range target; a self-set patch (coordinate set to the item's own
+  value) must reproduce the natural readout.
+
+**Bounds.** O: δ_s (the active-DAS bound, 0.42–0.57). ".", PREP and L:
+δ_R = 0.2 × |the natural T − I gap of that readout in that frame|, used
+only if that natural gap is ≥ 0.2 nats in magnitude (otherwise the
+readout is unresolved there). Classification as before (RISE / FALL with
+the 95% CI and the bound; NO RISE by the 90% CI within ±bound; otherwise
+unresolved). The bounds condition on the natural gaps (not resampled).
+Also reported: the patch × frame interaction D_what − D_that per readout.
+
+**O against the natural T level (what frame).** Δ_T = O of the patched I
+base (after a T donor, or at t_T) − the mean natural O of T verbs in the
+same frame and context; the T verbs are resampled too (same context
+draws). **Not above** if the 90% CI upper bound of Δ_T is < δ_s; **above**
+if its 95% CI is above 0 and the estimate ≥ δ_s; otherwise unresolved.
+This is a calibration reference: the patched state keeps the I verb's
+other coordinates, so it can fall short of or exceed T for reasons other
+than licensing.
+
+**Reading, per site and patch type.**
+
+| that frame | what frame | Reading |
+|---|---|---|
+| "." FALL and O RISE | L RISE, with D(".") 95% CI above 0 (closure rises, not only PREP falling) and D(PREP) FALL, and O **not above** the T level | **licensing-like crossover** |
+| O RISE | O RISE and O **above** the T level | **surface** ("object next") |
+| anything else | | mixed / unresolved, with CIs |
+
+The crossover shows that the patched value controls continuations in a
+filler-sensitive way. It is what licensing predicts, but a lexical-class
+signal feeding a learned continuation policy ("transitive + what → close;
+transitive + that → object") would produce the same pattern; the reading
+does not separate the two.
+
+**Sensitivities** (sites 6 and 8, both patch types): non-DAS verbs only;
+multi-token verbs only (tokenization differs between pools: 52 of 106 T
+and 10 of 50 I past forms are single tokens); each matrix verb.
+
+**Prediction.**
+- The natural gate passes; the I gate keeps most I verbs (≥ 70%).
+- In-range, sites 6–8: **licensing-like crossover**.
+- T − I donors, sites 6–8: the that-frame and what-frame L/PREP parts as
+  licensing, but O may land above the T level in the what frame because the
+  donors overshoot the natural range (A1/A2): licensing-like or mixed.
+- Sites 14–17, both patch types: **surface**.
+
+## B7. Matrix wh
+
+**Items.** "AUX NAME V" vs "What AUX NAME V" with base forms, AUX ∈ {Did,
+Will, Can, Would} (sentence-initial; "did" etc. after "What") × the same 6
+names = 24 contexts. Same verbs.
+
+**Readouts.** "?" ; PREP; O. **L = log P("?") − log P(PREP).**
+
+**Base-form gate** (as the TC gate): "NAME can V" references for every B7
+verb; at each site, T vs I verbs must separate along d_s (AUC over verb
+means ≥ 0.8). Where they do not, B7 results at that site are inconclusive.
+
+**Stages, halves, patches, bounds, reading:** as B6, with "?" in place of
+".". The I gate and the natural gate are computed separately for B7. The
+base-form gate checks that d separates the base forms; it does not show
+that the intervention acts the same way in questions.
+
+**Prediction.** As B6. The base-form gate passes at every site (as for TC).
+
+## Order (Part B)
+
+1. Commit this part with `verbs.csv`.
+2. Stage 1 (natural pass, B6 and B7 together, GPU); gates analysed and
+   committed.
+3. Stage 2 only where the natural gate passes (GPU).
+4. Report in `results.md`.
