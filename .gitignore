@@ -45,3 +45,5 @@ results/round4/fillergap/patches_*_site*.parquet
 results/round4/fillergap/projections.npz
 results/round4/nonce_cues/projections.npz
 results/round4/*/path_patch_rows_*.parquet
+results/round4/translation/conjunction.npz
+results/round4/oracle/oracle_scores.parquet

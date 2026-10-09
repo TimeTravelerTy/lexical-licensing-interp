@@ -1,0 +1,13 @@
+{
+  "args": {
+    "items": "../data/das_round2/passive_test/items.csv",
+    "out_dir": "../results/round4/translation",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 256,
+    "dtype": "float32"
+  },
+  "prompts": 13834,
+  "seconds": 23.7,
+  "readout": "centered ' by' logit through the final LN (Mech.R[0]); contributions / sigma of the run"
+}

@@ -250,5 +250,21 @@
   "results/round4/nonce_cues/projections.npz": {
     "bytes": 3319371,
     "sha256": "4143e31294a2520a329c8c6e0b85b9ccaa634820b701953289143bd75ef7b5b4"
+  },
+  "results/round4/oracle/oracle_scores.parquet": {
+    "bytes": 6594455,
+    "sha256": "a8af209cb2214e34a8e50851bc38d7b797cb4e78b000eeb9ff9c4688707357dc"
+  },
+  "results/round4/translation/conjunction.npz": {
+    "bytes": 56656958,
+    "sha256": "66c57702ae008f2be8cd67eb0c5e91a6c156634101fb5966d847b142a07e9668"
+  },
+  "results/round4/translation/path_patch_rows_been.parquet": {
+    "bytes": 888218,
+    "sha256": "526abd2b5c731b68508d0dc47dc042e61547423c9e02c095d58e1eb8a1dfbc36"
+  },
+  "results/round4/translation/path_patch_rows_been_I.parquet": {
+    "bytes": 989376,
+    "sha256": "8119132ded38e31f68b30bb9cef062b149d4685924bf0e5b27be09eeec82a7b2"
   }
 }

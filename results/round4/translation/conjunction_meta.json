@@ -1,0 +1,21 @@
+{
+  "args": {
+    "prompts": "../data/das_round2/passive_test/prompts.csv",
+    "items": "../data/das_round2/passive_test/items.csv",
+    "plan": "../data/das_round2/passive_test/plan.csv.gz",
+    "site_dir": "../results/das_round2/final_strict_site8",
+    "nonce_prompts": "../data/nonce_passive/prompts.csv",
+    "out_dir": "../results/round4/translation",
+    "contexts": 32,
+    "seed": 17,
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 64,
+    "dtype": "float32"
+  },
+  "rows": 23314,
+  "pairs": 64,
+  "nonce_lemmas": 80,
+  "bases_sha256": "4425f0b09a59361dcf6effa4ad8798c8e6282035267104de97ce4ac410f78d70",
+  "seconds": 58.6
+}

@@ -107,7 +107,7 @@ def bci(v, B, rng):
 
 def run(args):
     d = Path(args.dir)
-    z = np.load(d / "conjunction.npz")
+    z = np.load(d / "conjunction.npz", allow_pickle=True)  # band / lemma labels are object arrays
     layers = [int(l) for l in z["layers"]]
     rng = np.random.default_rng(args.seed)
     A = np.concatenate([cell_means(z, f"a_{l}") for l in layers], -1)  # [P, 2, 2, 2D]
@@ -180,11 +180,56 @@ def run(args):
                              ("nonce balanced AB - BA", ("balanced_AB", "balanced_BA"))):
             gen[nm] = bci(((non[:, conds.index(c1)] - non[:, conds.index(c2)])[:, pc] * sgn[pc]).mean(1), args.n_boot, rng)
         out["generalization"] = gen
+        out["exploratory"] = exploratory(args, d, A, was, I, DEI, wby, nat, bands, A_, B_, pc, names)
     else:
         out["exist"], out["carry_by"] = False, False
     pd.DataFrame(rows).to_csv(d / "conjunction_top.csv", index=False)
     (d / "conjunction_decisions.json").write_text(json.dumps(out, indent=2) + "\n")
     write_report(args, out, pd.DataFrame(rows))
+
+
+def exploratory(args, d, A, was, I, DEI, wby, nat, bands, A_, B_, pc, names):
+    """Not declared (results.md, D11, exploratory): concentration of the switch in the passive-conjunction
+    neurons ranked by their half-A direct effect; the top-k sets' natural good - bad activation difference
+    weighted by the " by" output weight (unscaled) per band, against their patched was T - I response; mean
+    activation levels per frame (GELU operating point). Writes the ranked set to
+    `conjunction_switch_neurons.csv` (the E13-T neuron oracle uses its top 50)."""
+    rng = np.random.default_rng(args.seed)
+    deA, deB = DEI[A_].mean(0), DEI[B_].mean(0)
+    tot = deB.sum()
+    idx = np.flatnonzero(pc)
+    order = idx[np.argsort(-deA[idx])]
+    x = {"switch_DE_halfB_all": float(tot),
+         "concentration_halfB": {str(k): float(deB[order[:k]].sum() / tot) for k in (10, 50, 100, len(order))},
+         "layer_share_halfB": {"MLP11": float(deB[:len(deB) // 2].sum() / tot), "MLP14": float(deB[len(deB) // 2:].sum() / tot)}}
+    gbw = (nat[:, 0] - nat[:, 1]) * wby
+    x["natural_all_by_band"] = {b: float(gbw[bands == b].sum(1).mean()) for b in ("head", "tail", "xtail")}
+    x["top_sets"] = {}
+    for k in (10, 50, 100):
+        s = order[:k]
+        gb, pw = gbw[:, s].sum(1), (was[:, s] * wby[s]).sum(1)
+        e = {}
+        for b in ("head", "tail", "xtail"):
+            v = gb[bands == b]
+            bs = [v[rng.integers(0, len(v), len(v))].mean() for _ in range(args.n_boot)]
+            e[b] = {"est": float(v.mean()), "lo95": float(np.percentile(bs, 2.5)), "hi95": float(np.percentile(bs, 97.5))}
+        vh, vx = gb[bands == "head"], gb[bands == "xtail"]
+        r = [vx[rng.integers(0, len(vx), len(vx))].mean() / vh[rng.integers(0, len(vh), len(vh))].mean()
+             for _ in range(args.n_boot)]
+        e["xtail_over_head"] = {"est": float(vx.mean() / vh.mean()), "lo95": float(np.percentile(r, 2.5)),
+                                "hi95": float(np.percentile(r, 97.5))}
+        e["patched_was_by_band"] = {b: float(pw[bands == b].mean()) for b in ("head", "tail", "xtail")}
+        x["top_sets"][str(k)] = e
+    lw, lh = A[:, 0].mean((0, 1)), A[:, 1].mean((0, 1))
+    x["negative_level"] = {nm: {"has": float((lh[m] < 0).mean()), "was": float((lw[m] < 0).mean())}
+                           for nm, m in (("passive-conjunction", pc), ("all", np.ones_like(pc)))}
+    pd.DataFrame({"rank": np.arange(1, len(order) + 1), "neuron": names[order],
+                  "layer": [int(n.split(".")[0][3:]) for n in names[order]],
+                  "index": [int(n.split(".n")[1]) for n in names[order]],
+                  "de_switch_A": deA[order], "de_switch_B": deB[order], "share_B": deB[order] / tot,
+                  "I_A": I[A_][:, order].mean(0), "I_B": I[B_][:, order].mean(0), "w_by": wby[order]}
+                 ).to_csv(d / "conjunction_switch_neurons.csv", index=False)
+    return x
 
 
 def write_report(args, o, top):
@@ -216,6 +261,29 @@ def write_report(args, o, top):
         for r in top.itertuples():
             L.append(f"| {r.neuron} | {r.t_A:+.1f} | {r.I_A:+.3f} | {r.I_B:+.3f} | {r.was_T_minus_I:+.3f} | "
                      f"{r.has_T_minus_I:+.3f} | {r.w_by:+.4f} |")
+        x = o["exploratory"]
+        sw = pd.read_csv(Path(args.dir) / "conjunction_switch_neurons.csv").head(5)
+        L += ["", "## Exploratory (not declared)", "",
+              "Passive-conjunction neurons ranked by their half-A direct effect on the switch; shares on half B "
+              f"(of the whole MLP 11 + 14 switch, {x['switch_DE_halfB_all']:+.3f}): " +
+              ", ".join(f"top {k} {v:.2f}" for k, v in x["concentration_halfB"].items()) +
+              f". MLP11 / MLP14 share of the switch: {x['layer_share_halfB']['MLP11']:.2f} / "
+              f"{x['layer_share_halfB']['MLP14']:.2f}. Largest: " +
+              ", ".join(f"{r.neuron} ({r.share_B:.2f})" for r in sw.itertuples()) + ".", "",
+              "Natural good − bad activation difference × \" by\" output weight (unscaled), summed over the set, per "
+              "band (pair bootstrap); patched was T − I in the same units:", "",
+              "| set | Head | Tail | XTail | XTail / Head | patched was T − I (Head / Tail / XTail) |",
+              "|---|---|---|---|---|---|"]
+        for k, e in x["top_sets"].items():
+            pw = e["patched_was_by_band"]
+            L.append(f"| top {k} | {f(e['head'])} | {f(e['tail'])} | {f(e['xtail'])} | {f(e['xtail_over_head'])} | "
+                     f"{pw['head']:+.2f} / {pw['tail']:+.2f} / {pw['xtail']:+.2f} |")
+        na = x["natural_all_by_band"]
+        nl = x["negative_level"]
+        L += ["", f"All MLP 11 + 14 neurons, same quantity: Head {na['head']:+.2f}, Tail {na['tail']:+.2f}, XTail "
+              f"{na['xtail']:+.2f}. Share of neurons with negative mean post-activation (has / was frame): "
+              f"passive-conjunction {nl['passive-conjunction']['has']:.2f} / {nl['passive-conjunction']['was']:.2f}, "
+              f"all {nl['all']['has']:.2f} / {nl['all']['was']:.2f}."]
     L.append("")
     Path(args.report).write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))

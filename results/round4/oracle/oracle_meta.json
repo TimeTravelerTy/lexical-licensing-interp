@@ -1,0 +1,29 @@
+{
+  "args": {
+    "pairs": "../data/passive_band_cross/pairs.jsonl",
+    "passive_items": "../data/das_round2/passive_test/items.csv",
+    "folds": "../results/das_round2/final_strict/pairs_folds.csv",
+    "das_items": "../results/das_round2/final_strict/items.csv",
+    "bases": "../results/das_round2/bases_rank1.npz",
+    "sites": "6,8",
+    "out_dir": "../results/round4/oracle",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 512,
+    "seed": 17
+  },
+  "sentences": 14868,
+  "min_target_pairs": {
+    "6": {
+      "head": 18,
+      "xtail": 50
+    },
+    "8": {
+      "head": 18,
+      "xtail": 50
+    }
+  },
+  "bases_sha256": "2630024a7e71bc1e5c6249f37fef3091ec87e9f656dc3d871599f2f53dbd6cdf",
+  "seconds": 59.3
+}

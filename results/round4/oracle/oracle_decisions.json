@@ -1,0 +1,67 @@
+{
+  "sites": {
+    "6": {
+      "by_share": {
+        "site": 6,
+        "paradigm": "passive_1",
+        "group": "share closed",
+        "quantity": "first",
+        "est": 0.10928872113607419,
+        "lo95": -0.9452322064547845,
+        "hi95": 0.9333872625831146,
+        "deficit": 0.5309788274102739
+      },
+      "head_control_d_by": {
+        "site": 6,
+        "paradigm": "passive_1",
+        "group": "head@head",
+        "quantity": "d_first",
+        "est": -0.10440955100075146,
+        "lo95": -0.183090125733228,
+        "hi95": -0.039880452546637794
+      },
+      "by_deficit": {
+        "site": 6,
+        "paradigm": "passive_1",
+        "group": "deficit",
+        "quantity": "first",
+        "est": 0.5309788274102739,
+        "lo95": -0.9558024565586968,
+        "hi95": 1.83610473810018
+      },
+      "real_share": false
+    },
+    "8": {
+      "by_share": {
+        "site": 8,
+        "paradigm": "passive_1",
+        "group": "share closed",
+        "quantity": "first",
+        "est": 0.08450929605206313,
+        "lo95": -0.6322161741217434,
+        "hi95": 0.6595917487844164,
+        "deficit": 0.5309788274102739
+      },
+      "head_control_d_by": {
+        "site": 8,
+        "paradigm": "passive_1",
+        "group": "head@head",
+        "quantity": "d_first",
+        "est": -0.174994941064203,
+        "lo95": -0.2859372199738169,
+        "hi95": -0.08858476492559787
+      },
+      "by_deficit": {
+        "site": 8,
+        "paradigm": "passive_1",
+        "group": "deficit",
+        "quantity": "first",
+        "est": 0.5309788274102739,
+        "lo95": -0.9633567126241419,
+        "hi95": 1.8415394752345429
+      },
+      "real_share": false
+    }
+  },
+  "closes_real_share": false
+}
