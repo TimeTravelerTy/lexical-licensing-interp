@@ -455,3 +455,109 @@ that the intervention acts the same way in questions.
    committed.
 3. Stage 2 only where the natural gate passes (GPU).
 4. Report in `results.md`.
+
+# Part C: nonce cue tests (declared 2026-10-09)
+
+Written before any Part C run; revised after an outside review (Codex),
+also before any run. Same 80 nonce lemmas, 4 slots, nouns,
+agents and passive probe as round-3 C8 ("The N was A-ed", z on each site's
+d_s as a fixed ruler; 0 = active intransitive, 1 = transitive level; the
+probe is a token suffix of every prompt, checked). Declared sites: 6 and 8.
+Per-lemma means over slots; lemma bootstrap (2,000 draws, seed 17).
+Minimum effects as C8: 0.05 z, 0.1 nats. Measures at the probe's last
+token: z (sites 4–17), log P(" by"), log P(O), log P(PREP without " by"),
+log P(".").
+
+## C8. Inflection mismatch
+
+**Question.** In C8 a transitive context moved the later passive participle
+toward the transitive side of d and raised " by" and objects; the object
+rise was probably in-context copying ("dakked the" in the context). If the
+context uses a different form of the verb, so that the probe's final token
+never occurs in it, which effects survive?
+
+**Contexts** (three sentences, the C8 lead schemas and agents; objects as
+C8):
+- **ed** (reference, the C8 matched contexts): "In the lab, the artist
+  dakked the plate." / "… dakked."
+- **ing**: "In the lab, the artist is dakking the plate." / "… is dakking."
+- **s**: "In the lab, the artist daks the plate." / "… daks."
+- balanced AB / BA in every form (four sentences, A and B alternating; in
+  AB only A has objects; ed = the C8 balanced contexts);
+- mismatched-lemma T / I in the ing and s forms (the C8 partner B in place
+  of A), for the generic effect of a transitive context in that form.
+Forms: -ing drops a final "e"; -s adds "s" (no lemma ends in a sibilant);
+the past form is C8's. The ing and s forms also change aspect / tense and
+add "is", so a smaller object rise there is consistent with, not proof of,
+exact-token copying; shared stem tokens remain.
+
+**Token check.** For ing and s, the probe's final token id must not occur
+anywhere in the context. A lemma failing it is dropped from that form's
+analysis (listed).
+
+**Contrasts per form.** Δ_matched = T − I; Δ_balanced = AB − BA;
+mismatched-lemma T − I. Paired differences ed − ing and ed − s, and the ed
+reference itself, on each form's retained lemmas.
+
+**Decision rules** (sites 6 and 8, per form).
+- **d shift survives:** Δ_matched z 95% CI above 0 and estimate ≥ 0.05.
+- **" by" survives:** Δ_matched log P(" by") 95% CI above 0 and ≥ 0.1.
+- **The object rise mostly disappears:** Δ_matched log P(O) ≤ 0.5 × the ed
+  value on the same lemmas, with the paired ed − form difference's 95% CI
+  above 0.
+- Verb-specificity in the mismatched forms: Δ_balanced z and " by" with the
+  C8 rules (for " by": CI above 0, ≥ 0.1, and above Δ_balanced of PREP
+  without " by").
+- A form with no retained lemma is unresolved.
+
+**Prediction** (not exact-token copying): the d shift and " by" survive in
+both forms (at 50–100% of the ed values); the object rise mostly
+disappears.
+
+## C9. Cue 2 × 2: transitivity × adjacent NP
+
+**Question.** Which cue in the context drives the shift: that the verb is
+used transitively, or that a noun phrase follows it?
+
+**Contexts** (three sentences each, lemma A, past form unless stated):
+
+| | adjacent NP | no adjacent NP |
+|---|---|---|
+| **transitive** | "the artist dakked the plate." (= C8 matched T) | relative: "the plate that the artist dakked fell."; question: "what did the artist dak?" (base form) |
+| **intransitive** | NP adjunct: "the artist dakked the whole night." | bare: "the artist dakked." (= C8 matched I) |
+
+Structure-matched controls, so each cue is tested with the other held
+fixed:
+- **intransitive relative** "the plate near which the artist dakked
+  fell." (same relative structure and second verb, PP gap);
+- **intransitive question** "did the artist dak?";
+- **duration PP** "the artist dakked throughout the whole night." (same
+  duration content as the NP adjunct, but no adjacent NP).
+Adjunct NPs: "the whole night / morning / afternoon / evening" (all start
+with " the", like the objects). Relative-clause objects as C8; second
+verbs "fell", "broke", "stayed there".
+
+**Contrasts** (per lemma):
+- **transitivity without an adjacent NP:** relative T − I (primary),
+  question T − I (secondary);
+- **adjacent NP without transitivity:** NP adjunct − duration PP
+  (primary), NP adjunct − bare (secondary);
+- descriptive: T+NP − bare, relative T − bare, and the 2 × 2 main effects.
+
+**Decision rule** (sites 6 and 8 for z; " by" and O): a cue **drives** a
+measure if its primary contrast has a 95% CI above 0 and an estimate ≥ the
+minimum effect. Reading: transitivity-driven, NP-driven, both, or neither;
+the same with the secondary contrasts.
+
+**Prediction.** The d shift and " by" are transitivity-driven (T−NP ≈
+T+NP > I+NP ≈ bare); the object rise is NP-driven (copying "dakked the").
+Caveat declared: an unknown verb followed by "the whole night" may be read
+as transitive; then the NP adjunct moves toward T+NP on every measure, and
+an "NP-driven" result can reflect inferred transitivity rather than
+adjacency. The duration-PP control limits but does not remove this.
+
+## Order (Part C)
+
+1. Commit this part.
+2. Builder (no model), token checks and natural pass on TSUBAME (one job).
+3. Report in `results.md`.
