@@ -2,17 +2,17 @@
 
 Plan, predictions and decision rules: `plan.md`, each part committed before
 its runs (A: `47cdf9c`, fixes `260de13`; B: `801296a`; C: `74b2e41`; D and
-E: `d27bf7c`).
+E: `d27bf7c`; E13-T: `af45a79`).
 Generated reports, one per experiment:
 - A: `a1_a3_dose.md`, `a2_inrange.md`, `a4_bylever.md`, `a5_aux_heads.md`;
 - B: `b_fillergap_gates.md`, `b_fillergap.md`;
 - C: `c_nonce_cues.md`;
 - D: `d10_voice.md`, `d11_conjunction.md`, `d12_translation_gain.md`;
-- E: `e13_oracle.md`, `e13_deficit.md` (descriptive).
+- E: `e13_oracle.md`, `e13_deficit.md` (descriptive), `e13t_oracle_translation.md`.
 
 TSUBAME jobs: 8947213 (A2), 8947214 (A4), 8947215 (A5), 8947396 (B stage
-1), 8947442 (B stage 2), 8947454 (C), 8947738 (D10–D12, E13). A1 and A3
-ran locally on committed round-3 outputs.
+1), 8947442 (B stage 2), 8947454 (C), 8947738 (D10–D12, E13), 8948127
+(E13-T). A1 and A3 ran locally on committed round-3 outputs.
 
 ## Summary
 
@@ -51,6 +51,14 @@ ran locally on committed round-3 outputs.
   same operation lowers frequent verbs' margins, so E13 does not close a real
   share and E14 is not run. The natural Head − XTail " by" deficit is itself
   not reliable, even on all 126 curated pairs.
+- **E13-T, translation stage.** Setting D11's top-50 switch neurons to the
+  frequent-verb class mean raises rare verbs' " by" margin by +0.17 nats.
+  That is about 3.7 times E13's rise at d, and far above random or
+  " by"-weight-matched neurons. It replicates on the 67 pairs D11 never
+  used. The reverse move lowers frequent verbs by 0.32. The declared rule is
+  still not met, because the frequent-verb control's CI reaches −0.21,
+  beyond the ±0.1 bound. Replacing whole MLP 11–17 outputs does nothing
+  specific.
 
 # Part A: confirm current claims
 
@@ -480,3 +488,86 @@ the rest of its representation interacts with it) matters. With D12 (the
 d gap predicts no behaviour) and D11 (rare verbs drive the switch neurons
 less, exploratory), the evidence points away from a weak early class value
 as the reason rare verbs underperform.
+
+## E13-T. Oracle at the translation stage
+
+Declared after E13 (`plan.md`, E13-T). All 126 curated band-cross pairs,
+fp32. At the participle's last token, values are set to the Head mean of
+the true class (same context, own pair excluded, 25 pairs):
+- `mlp`: the MLP 11–17 output vectors;
+- `neurons`: D11's top 50 switch neurons;
+- `random`: the mean over five layer-matched random sets of 50 neurons;
+- `wmatched`: 50 neurons D11 did not select, matched on |w_by|.
+
+Every check passed: self-patch exact, replacement exact, verb and prefix
+log-probs unchanged. The rebuilt neuron sets are identical to the
+committed file.
+
+Δ " by" margin (`passive_1`):
+
+| Group | natural | mlp | neurons | random | wmatched |
+|---|---|---|---|---|---|
+| XTail → Head mean | +0.49 | +0.03 [−0.25, +0.33] | **+0.165 [+0.103, +0.229]** | −0.004 | −0.025 |
+| Tail → Head mean | +0.97 | −0.10 [−0.38, +0.17] | +0.054 [−0.011, +0.114] | −0.002 | −0.008 |
+| Head → Head mean (control) | +0.95 | −0.07 [−0.69, +0.54] | −0.094 [−0.208, +0.019] | +0.001 | −0.002 |
+| Head → XTail mean (reverse) | +0.95 | −0.30 [−0.90, +0.29] | −0.323 [−0.469, −0.181] | +0.004 | +0.020 |
+
+The `neurons` effect for XTail, paired against the controls:
+- **Against `random`:** +0.169 [+0.107, +0.234].
+- **Against `wmatched`:** +0.190 [+0.124, +0.258].
+- **On the 67 pairs outside D11:** +0.147 [+0.049, +0.248]; against
+  `random` +0.151 [+0.052, +0.253].
+- **Against E13 site 8, on the primary pairs** (same sentences): `neurons`
+  +0.183 vs E13 +0.045, difference +0.138 [+0.059, +0.215]; `mlp` −
+  E13 is +0.011 [−0.38, +0.41].
+
+The patched Head − XTail gap is +0.29 (natural +0.46). The share closed
+(0.36) has an uninformative CI, because the natural deficit's CI crosses 0.
+`mlp` changes the "." margin of `passive_2` in every group (XTail −0.29,
+Tail −0.59). `neurons` moves it by ≤ 0.12.
+
+**Declared decisions** (all pairs, `passive_1`):
+- **`mlp`:** raises rare verbs' by margin, **no**; closes a real share,
+  **no**.
+- **`neurons`:** raises rare verbs' by margin, **no**. The rise (+0.165 ≥
+  the 0.115 threshold, CI above 0) and the gain over `random` qualify, but
+  the Head control's CI (−0.21 to +0.02) leaves ±0.1. It closes a real
+  share: **no**, as expected, since the deficit CI includes 0.
+- **Controls:** `random` and `wmatched` do neither.
+
+E14 stays unrun.
+
+**Against the predictions.**
+- **`mlp`:** Δ by in [−0.10, +0.15], **held** (+0.03); rule not met,
+  **held**. Head control moves > 0.1, **missed** at the point estimate
+  (−0.07), with a CI of ±0.6.
+- **`neurons`:**
+  - Δ by +0.10 to +0.35 with CI above 0 and above `random`, **held**.
+  - Head control within ±0.1, **missed**: the point estimate is −0.094,
+    but the CI reaches −0.21.
+  - Rule met, **missed** for that reason alone.
+  - The gain over `wmatched` was predicted to be smaller than over
+    `random`, **missed**: it is larger, because `wmatched` slightly lowers
+    XTail.
+- **`random`:** |Δ| < 0.05, **held**.
+
+**Reading.** Fifty neurons in MLPs 11 and 14, out of 16,384, change rare
+verbs' " by" margin in both directions. Setting them to the frequent-verb
+level raises XTail by 0.17 nats. Setting frequent verbs to the rare-verb
+level lowers them by 0.32. Random neurons, and non-switch neurons writing
+as strongly onto " by", do neither. On the same sentences the d coordinate
+(E13) moved XTail by 0.05. This holds on pairs D11 never saw.
+
+D11 (exploratory) showed that natural rare-verb pairs drive these neurons
+less. Together, these locate part of the rare-verb " by" weakness at the
+translation stage, in how strongly the verb drives the switch neurons,
+rather than in the early class value.
+
+Two limits keep this from passing the declared rule:
+- The leave-one-out Head control is not flat (−0.09), so part of the
+  effect is a generic response to class-mean replacement (as at d).
+- The targets are label-conditioned class means, an oracle; a
+  label-free version is untested.
+
+The full-output `mlp` oracle is uninformative: it is noisy and disrupts
+other predictions.

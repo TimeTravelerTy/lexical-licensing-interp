@@ -1,0 +1,246 @@
+{
+  "mlp": {
+    "xtail_d_by": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "mlp",
+      "group": "xtail@head",
+      "quantity": "d_first",
+      "est": 0.03418447908901035,
+      "lo95": -0.2446334349181917,
+      "hi95": 0.3252654165053179
+    },
+    "head_control_d_by": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "mlp",
+      "group": "head@head",
+      "quantity": "d_first",
+      "est": -0.06632648593995158,
+      "lo95": -0.6907937913928386,
+      "hi95": 0.5396738017612434
+    },
+    "by_share": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "mlp",
+      "group": "share closed",
+      "quantity": "first",
+      "est": 0.0744295557323942,
+      "lo95": -2.6321682672806634,
+      "hi95": 2.4798085260458933,
+      "deficit": 0.4592863514047839
+    },
+    "by_deficit": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "mlp",
+      "group": "deficit",
+      "quantity": "first",
+      "est": 0.4592863514047839,
+      "lo95": -0.35000067234929017,
+      "hi95": 1.2565200774618697
+    },
+    "threshold": 0.11482158785119598,
+    "patched_gap": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "mlp",
+      "group": "patched gap",
+      "quantity": "first",
+      "est": 0.42510187231577357,
+      "lo95": -0.33902198422278956,
+      "hi95": 1.1632329425693126
+    },
+    "real_share": false,
+    "raises": false
+  },
+  "neurons": {
+    "xtail_d_by": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "neurons",
+      "group": "xtail@head",
+      "quantity": "d_first",
+      "est": 0.16499305987168875,
+      "lo95": 0.10277046930387848,
+      "hi95": 0.22877624116057432
+    },
+    "head_control_d_by": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "neurons",
+      "group": "head@head",
+      "quantity": "d_first",
+      "est": -0.09403743292858897,
+      "lo95": -0.20830914296064257,
+      "hi95": 0.018624392963982158
+    },
+    "by_share": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "neurons",
+      "group": "share closed",
+      "quantity": "first",
+      "est": 0.35923789018993735,
+      "lo95": -3.2263452106012247,
+      "hi95": 3.553839222689605,
+      "deficit": 0.4592863514047839
+    },
+    "by_deficit": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "neurons",
+      "group": "deficit",
+      "quantity": "first",
+      "est": 0.4592863514047839,
+      "lo95": -0.35000067234929017,
+      "hi95": 1.2565200774618697
+    },
+    "threshold": 0.11482158785119598,
+    "patched_gap": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "neurons",
+      "group": "patched gap",
+      "quantity": "first",
+      "est": 0.29429329153309514,
+      "lo95": -0.49651943663059195,
+      "hi95": 1.0969680496588876
+    },
+    "real_share": false,
+    "minus_random": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "neurons \u2212 random",
+      "group": "xtail@head",
+      "quantity": "d_first",
+      "est": 0.16902647033570306,
+      "lo95": 0.10652925595380959,
+      "hi95": 0.23352008236618274
+    },
+    "minus_wmatched": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "neurons \u2212 wmatched",
+      "group": "xtail@head",
+      "quantity": "d_first",
+      "est": 0.19031513376841472,
+      "lo95": 0.12434264078381516,
+      "hi95": 0.2579768487198485
+    },
+    "raises": false
+  },
+  "random": {
+    "xtail_d_by": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "random",
+      "group": "xtail@head",
+      "quantity": "d_first",
+      "est": -0.004033410464014326,
+      "lo95": -0.006472450768994906,
+      "hi95": -0.0017171632280898485
+    },
+    "head_control_d_by": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "random",
+      "group": "head@head",
+      "quantity": "d_first",
+      "est": 0.0007562377968841712,
+      "lo95": -0.003119752526974648,
+      "hi95": 0.005182219360692379
+    },
+    "by_share": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "random",
+      "group": "share closed",
+      "quantity": "first",
+      "est": -0.008781907957154925,
+      "lo95": -0.08270306729830464,
+      "hi95": 0.0941503276898321,
+      "deficit": 0.4592863514047841
+    },
+    "by_deficit": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "random",
+      "group": "deficit",
+      "quantity": "first",
+      "est": 0.4592863514047841,
+      "lo95": -0.35000067234929017,
+      "hi95": 1.2565200774618697
+    },
+    "threshold": 0.11482158785119602,
+    "patched_gap": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "random",
+      "group": "patched gap",
+      "quantity": "first",
+      "est": 0.4633197618687984,
+      "lo95": -0.34660668399802647,
+      "hi95": 1.259727941066845
+    },
+    "real_share": false,
+    "raises": false
+  },
+  "wmatched": {
+    "xtail_d_by": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "wmatched",
+      "group": "xtail@head",
+      "quantity": "d_first",
+      "est": -0.025322073896725982,
+      "lo95": -0.03626460409164429,
+      "hi95": -0.015870307437957285
+    },
+    "head_control_d_by": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "wmatched",
+      "group": "head@head",
+      "quantity": "d_first",
+      "est": -0.0016603953817970736,
+      "lo95": -0.013098338688013028,
+      "hi95": 0.009530000245114455
+    },
+    "by_share": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "wmatched",
+      "group": "share closed",
+      "quantity": "first",
+      "est": -0.055133521427918115,
+      "lo95": -0.5539653588172643,
+      "hi95": 0.6042468425995304,
+      "deficit": 0.4592863514047839
+    },
+    "by_deficit": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "wmatched",
+      "group": "deficit",
+      "quantity": "first",
+      "est": 0.4592863514047839,
+      "lo95": -0.35000067234929017,
+      "hi95": 1.2565200774618697
+    },
+    "threshold": 0.11482158785119598,
+    "patched_gap": {
+      "subset": "all",
+      "paradigm": "passive_1",
+      "cond": "wmatched",
+      "group": "patched gap",
+      "quantity": "first",
+      "est": 0.4846084253015099,
+      "lo95": -0.32651987519352654,
+      "hi95": 1.2786035720406683
+    },
+    "real_share": false,
+    "raises": false
+  }
+}

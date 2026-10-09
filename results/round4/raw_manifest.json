@@ -255,6 +255,10 @@
     "bytes": 6594455,
     "sha256": "a8af209cb2214e34a8e50851bc38d7b797cb4e78b000eeb9ff9c4688707357dc"
   },
+  "results/round4/oracle_translation/oracle_t_scores.parquet": {
+    "bytes": 15917702,
+    "sha256": "d4102c7b81b88c031949b8c2bad891b6f8300036202fab1aceb790a5489e1cb5"
+  },
   "results/round4/translation/conjunction.npz": {
     "bytes": 56656958,
     "sha256": "66c57702ae008f2be8cd67eb0c5e91a6c156634101fb5966d847b142a07e9668"

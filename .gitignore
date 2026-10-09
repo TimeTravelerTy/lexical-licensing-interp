@@ -47,3 +47,4 @@ results/round4/nonce_cues/projections.npz
 results/round4/*/path_patch_rows_*.parquet
 results/round4/translation/conjunction.npz
 results/round4/oracle/oracle_scores.parquet
+results/round4/oracle_translation/oracle_t_scores.parquet

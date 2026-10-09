@@ -1,0 +1,154 @@
+{
+  "args": {
+    "pairs": "../data/passive_band_cross/pairs.jsonl",
+    "neurons": "../data/round4/oracle_translation/neurons.csv",
+    "out_dir": "../results/round4/oracle_translation",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 256,
+    "seed": 17,
+    "dtype": "float32"
+  },
+  "sentences": 63504,
+  "pairs": 126,
+  "bands": {
+    "tail": 50,
+    "xtail": 50,
+    "head": 26
+  },
+  "conds": [
+    "mlp",
+    "neurons",
+    "random1",
+    "random2",
+    "random3",
+    "random4",
+    "random5",
+    "wmatched"
+  ],
+  "target_pairs": {
+    "head_leave_one_out": 25,
+    "head": 26,
+    "xtail": 50
+  },
+  "neurons_sha256": "850fb586d4ba7817e3684dd4425c0afce71b0fabc6bbff8c97fa7ae967070e73",
+  "self_patch_max_abs": {
+    "mlp": 0.0,
+    "neurons": 0.0,
+    "random1": 0.0,
+    "random2": 0.0,
+    "random3": 0.0,
+    "random4": 0.0,
+    "random5": 0.0,
+    "wmatched": 0.0
+  },
+  "replacement_check": {
+    "mlp": {
+      "target": 0.0,
+      "outside": 0.0,
+      "score_change": 4.57872200012207
+    },
+    "neurons": {
+      "target": 0.0,
+      "outside": 0.0,
+      "score_change": 1.4727554321289062
+    },
+    "random1": {
+      "target": 0.0,
+      "outside": 0.0,
+      "score_change": 0.164154052734375
+    },
+    "random2": {
+      "target": 0.0,
+      "outside": 0.0,
+      "score_change": 0.19007301330566406
+    },
+    "random3": {
+      "target": 0.0,
+      "outside": 0.0,
+      "score_change": 0.14765691757202148
+    },
+    "random4": {
+      "target": 0.0,
+      "outside": 0.0,
+      "score_change": 0.1983795166015625
+    },
+    "random5": {
+      "target": 0.0,
+      "outside": 0.0,
+      "score_change": 0.1632370948791504
+    },
+    "wmatched": {
+      "target": 0.0,
+      "outside": 0.0,
+      "score_change": 0.2661566734313965
+    }
+  },
+  "unchanged_check": {
+    "mlp@head": {
+      "verb": 0.0,
+      "whole_minus_suffix": 9.5367431640625e-06
+    },
+    "mlp@xtail": {
+      "verb": 0.0,
+      "whole_minus_suffix": 7.62939453125e-06
+    },
+    "neurons@head": {
+      "verb": 0.0,
+      "whole_minus_suffix": 1.1444091796875e-05
+    },
+    "neurons@xtail": {
+      "verb": 0.0,
+      "whole_minus_suffix": 9.5367431640625e-06
+    },
+    "random1@head": {
+      "verb": 0.0,
+      "whole_minus_suffix": 1.1444091796875e-05
+    },
+    "random1@xtail": {
+      "verb": 0.0,
+      "whole_minus_suffix": 9.5367431640625e-06
+    },
+    "random2@head": {
+      "verb": 0.0,
+      "whole_minus_suffix": 1.1444091796875e-05
+    },
+    "random2@xtail": {
+      "verb": 0.0,
+      "whole_minus_suffix": 9.5367431640625e-06
+    },
+    "random3@head": {
+      "verb": 0.0,
+      "whole_minus_suffix": 9.5367431640625e-06
+    },
+    "random3@xtail": {
+      "verb": 0.0,
+      "whole_minus_suffix": 9.5367431640625e-06
+    },
+    "random4@head": {
+      "verb": 0.0,
+      "whole_minus_suffix": 1.1444091796875e-05
+    },
+    "random4@xtail": {
+      "verb": 0.0,
+      "whole_minus_suffix": 7.62939453125e-06
+    },
+    "random5@head": {
+      "verb": 0.0,
+      "whole_minus_suffix": 9.5367431640625e-06
+    },
+    "random5@xtail": {
+      "verb": 0.0,
+      "whole_minus_suffix": 7.62939453125e-06
+    },
+    "wmatched@head": {
+      "verb": 0.0,
+      "whole_minus_suffix": 1.1444091796875e-05
+    },
+    "wmatched@xtail": {
+      "verb": 0.0,
+      "whole_minus_suffix": 7.62939453125e-06
+    }
+  },
+  "seconds": 397.3
+}
