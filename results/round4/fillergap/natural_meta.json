@@ -1,0 +1,19 @@
+{
+  "args": {
+    "mode": "natural",
+    "exp": null,
+    "data_dir": "../data/round4/fillergap",
+    "out_dir": "../results/round4/fillergap",
+    "bases": "../results/das_round2/bases_rank1.npz",
+    "folds": "results/das_round2/final_strict/pairs_folds.csv",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 15694,
+  "items": 14976,
+  "token_checks": "passed",
+  "bases_sha256": "2630024a7e71bc1e5c6249f37fef3091ec87e9f656dc3d871599f2f53dbd6cdf",
+  "seconds": 2.1
+}

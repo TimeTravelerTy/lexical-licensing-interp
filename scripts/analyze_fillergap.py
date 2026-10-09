@@ -40,7 +40,7 @@ MINGAP = 0.2
 
 def readouts(items, nat):
     x = items.join(nat, on="pid")
-    x["num"] = np.where(x.exp == "emb", x.dot, x.q)
+    x["num"] = np.where(x.exp == "emb", x["dot"], x["q"])
     x["L"] = x.num - x.PREP
     x["matrix"] = x.context_id.str.split("/").str[1]
     return x
@@ -258,7 +258,7 @@ def run_patch(args):
         for site in SITES:
             pat = pd.read_parquet(rdir / f"patches_{exp}_site{site}.parquet")
             assert (pat.row.to_numpy() == plan.row.to_numpy()).all()
-            v = pat.assign(num=pat.dot if exp == "emb" else pat.q)
+            v = pat.assign(num=pat["dot"] if exp == "emb" else pat["q"])
             v["L"] = v.num - v.PREP
             d = df.copy()
             d[list(RD)] = v[list(RD)].to_numpy() - base[list(RD)].to_numpy()
