@@ -758,3 +758,103 @@ of the true class), using D's results, also declared first.
 1. Commit with Part D.
 2. E13 on TSUBAME; E14 only if E13's rule is met.
 3. Report in `results.md`.
+
+## E13-T. Oracle at the translation stage (declared 2026-10-09, after E13)
+
+Written after E13 and D10–D12 ran (`results.md`) and before any E13-T run;
+revised after an outside review (Codex) of the draft and its code, also
+before any run. E13 did not close a real share, so per E14's outline E13 is
+repeated at the translation stage, using D's results.
+
+**What is already known.** On all 126 curated band-cross pairs, the
+natural Head − XTail " by" margin deficit is +0.45 [−0.33, +1.27]
+(`e13_deficit.md`). Natural scores are the same under every intervention,
+so E13's "closes a real share" rule (which needs that deficit's CI above 0)
+cannot be met here. It is applied for continuity and cannot trigger E14.
+The operative rule below is about raising rare verbs' " by" margin.
+
+**Items.** Curated `passive_1` and `passive_2` sentences of all 126
+band-cross pairs (26 Head, 50 Tail, 50 XTail). No DAS basis is involved, so
+nothing restricts the pairs. The primary pairs (as E13) are reported as a
+subset for comparison with E13. fp32.
+
+**Interventions** (at the participle's last token, one at a time).
+Targets are the mean over the Head-band pairs of the same paradigm,
+context and true class (good → Head good mean, bad → Head bad mean), own
+pair excluded (25 pairs; the minimum is reported). The means come from the
+natural run.
+- **`mlp`:** the output vectors of MLPs 11–17, all seven set jointly to
+  their Head means. Each later MLP gets the natural Head-mean value, not its
+  response to the earlier replacements.
+- **`neurons`:** the post-activations of D11's top 50 switch neurons are
+  set to their Head means; everything else is unchanged. These are ranks
+  1–50 of `conjunction_switch_neurons.csv`: 16 in MLP11, 34 in MLP14,
+  carrying 0.86 of the switch on half B. They were selected on the
+  passive-test pairs' patched interaction, not on curated scores.
+- **`random`** (control for `neurons`): five sets of 50 other neurons with
+  the same layer split (16 in MLP11, 34 in MLP14), drawn uniformly with
+  seed 17 from neurons outside the top 50, each set to their Head means.
+  `random` is the mean over the five sets (per bootstrap draw).
+- **`wmatched`** (secondary control): 50 neurons that D11 did not select,
+  each matched one-to-one (same layer, in rank order) to a top-50 neuron on
+  |w_by|, the " by" output weight. It tests whether a switch neuron does
+  more than a non-switch neuron that writes as strongly onto " by". The
+  strongest switch neurons have no equally strong unselected partner (mean
+  |w_by| 0.18 vs 0.23). The sets are in
+  `data/round4/oracle_translation/neurons.csv` (`build_oracle_neurons.py`).
+
+**Checks** (in the run, fail-fast): own natural values as targets
+reproduce the natural scores. With distinct targets, the patched entries
+equal the targets, nothing else in the hooked tensors changes, and the
+scores change. After each intervention, the verb's log-prob and whole −
+suffix are unchanged.
+
+Groups as E13: XTail and Tail items at the Head target; Head items at the
+Head target (specificity control; with leave-one-out means its mean change
+is near zero under a common linear response); Head items at the XTail mean
+(reverse control).
+
+**Quantities.** As E13: Δ by margin (the " by" token of `passive_1`),
+Δ suffix and Δ whole margins, the share of the natural Head − XTail by
+deficit closed (unstable where the deficit's draws cross 0), and the
+patched Head − XTail gap. Bootstrap: pairs within band × contexts, with
+the same draws for every intervention, so differences between
+interventions are paired. Subsets: all 126 pairs (decisions), the primary
+pairs (as E13), and the 67 pairs outside D11 (not primary passive-test
+pairs; D11 selected and explored on the primary pairs, so these are the
+independent ones).
+
+**Decision rules** (per intervention, all 126 pairs).
+- **Closes a real share:** E13's rule, unchanged (expected not met; see
+  above).
+- **Raises rare verbs' by margin** if:
+  - XTail Δ by margin has a 95% CI above 0 and is ≥ 0.25 × the natural
+    Head − XTail by gap (point estimate);
+  - the Head control's Δ by margin has a 95% CI within ±0.1 nats;
+  - for `neurons` only: XTail Δ by exceeds `random`'s (paired difference
+    with the five-set mean, CI above 0). The difference from `wmatched` is
+    reported.
+- **Comparison with d** (descriptive): on the primary pairs, XTail Δ by
+  under `mlp` and `neurons` minus E13's site-8 Δ by (mean over splits),
+  paired by sentence (the E13 scores are required).
+- **Scope.** A positive `mlp` result shows that this broad, label-conditioned
+  replacement helps. A negative one does not rule out a weakness at the
+  translation stage, since averaging seven MLP outputs may remove useful
+  content. `neurons` > `random` supports this selected set over random
+  sets, not conjunction specificity in general.
+
+**Predictions.**
+- **`mlp`:** by D12, MLPs 11–17 write about the same good − bad " by" for
+  XTail as for Head (TG +1.03 vs +1.04), so the full-output oracle moves
+  XTail little: Δ by in [−0.10, +0.15]. Replacing seven MLP outputs with a
+  mean also removes verb-specific content, so the Head control moves by
+  more than 0.1. Rule: **not met**.
+- **`neurons`:** by D11 (exploratory), natural XTail pairs drive the top
+  50 less (+0.85 vs Head +1.95 in w_by units, about 0.3 logits after the
+  final-LN scale of 3.2). So XTail Δ by is +0.10 to +0.35, CI above 0, and
+  above `random`; the Head control stays within ±0.1. Rule: **met**. Above
+  `wmatched` too, but by less than above `random`.
+- **`random`:** |XTail Δ by| < 0.05.
+
+**Order (E13-T).** Commit; one TSUBAME job (`run_oracle_translation.py`);
+analysis (`analyze_oracle_translation.py`); report in `results.md`.
