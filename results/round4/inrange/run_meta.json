@@ -1,0 +1,46 @@
+{
+  "args": {
+    "passive_dir": "../data/das_round2/passive_test",
+    "cons_dir": "../data/constructions",
+    "folds": "../results/das_round2/final_strict/pairs_folds.csv",
+    "bases": "../results/das_round2/bases_rank1.npz",
+    "out_dir": "../results/round4/inrange",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 19978,
+  "items": {
+    "passive": 7983,
+    "OR": 1536,
+    "TC": 1536
+  },
+  "bases_sha256": "2630024a7e71bc1e5c6249f37fef3091ec87e9f656dc3d871599f2f53dbd6cdf",
+  "checks": {
+    "4": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "6": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "8": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "10": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "12": {
+      "self_set_max_abs_dM": 0.01941204071044922
+    },
+    "14": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "16": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "17": {
+      "self_set_max_abs_dM": 0.0
+    }
+  }
+}

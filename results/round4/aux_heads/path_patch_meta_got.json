@@ -1,0 +1,79 @@
+{
+  "args": {
+    "frames": "got",
+    "prompts": "../data/das_round2/passive_test/prompts.csv",
+    "items": "../data/das_round2/passive_test/items.csv",
+    "plan": "../data/das_round2/passive_test/plan.csv.gz",
+    "site_dir": "../results/das_round2/final_strict_site8",
+    "out_dir": "../results/round4/aux_heads",
+    "contexts": 32,
+    "seed": 17,
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 32,
+    "comp_chunk": 64,
+    "dtype": "float32"
+  },
+  "frames": [
+    "got",
+    "has",
+    "had"
+  ],
+  "adverb": null,
+  "rows": 11657,
+  "items": 2048,
+  "pairs": 64,
+  "flagged": {
+    "11": "by",
+    "13": "by",
+    "14": "by",
+    "16": "by",
+    "17": "by",
+    "15": "Obar",
+    "18": "Obar",
+    "21": "Obar",
+    "22": "Obar"
+  },
+  "fixed_heads": [
+    "L9H7",
+    "L10H2",
+    "L3H3",
+    "L1H6",
+    "L8H4"
+  ],
+  "new_heads": [
+    "L9H7",
+    "L1H6",
+    "L3H2",
+    "L15H5",
+    "L3H3"
+  ],
+  "token_groups": {
+    "1": 10030,
+    "0": 1627
+  },
+  "component_order": "carry, then heads (layer-major, 16 per layer) for layers < l, then MLPs for layers < l",
+  "max_exactness_error": {
+    "11": 2.205371856689453e-06,
+    "13": 2.86102294921875e-06,
+    "14": 2.8312206268310547e-06,
+    "16": 2.86102294921875e-06,
+    "17": 4.082918167114258e-06,
+    "15": 1.7583370208740234e-06,
+    "18": 1.817941665649414e-06,
+    "21": 1.475214958190918e-06,
+    "22": 2.0116567611694336e-06
+  },
+  "max_mlp_check": {
+    "11": 4.172325134277344e-06,
+    "13": 4.291534423828125e-06,
+    "14": 6.67572021484375e-06,
+    "16": 4.76837158203125e-06,
+    "17": 6.198883056640625e-06,
+    "15": 1.9371509552001953e-06,
+    "18": 2.86102294921875e-06,
+    "21": 2.384185791015625e-06,
+    "22": 4.76837158203125e-06
+  },
+  "bases_sha256": "4425f0b09a59361dcf6effa4ad8798c8e6282035267104de97ce4ac410f78d70"
+}

@@ -36,3 +36,12 @@ results/das_round2/round3/path_patch_rows_b7.parquet
 data/constructions/plan.csv.gz
 results/das_round2/constructions/patches_site*.parquet
 results/das_round2/constructions/patch_tokens_site*.npz
+# Round 4: raw per-row patch dumps and large projections (SHA-256 in results/round4/raw_manifest.json)
+results/round4/inrange/patches_site*.parquet
+results/round4/inrange/rows.parquet
+results/round4/inrange/projections.npz
+results/round4/bylever/patches_*_site*.parquet
+results/round4/fillergap/patches_*_site*.parquet
+results/round4/fillergap/projections.npz
+results/round4/nonce_cues/projections.npz
+results/round4/*/path_patch_rows_*.parquet
