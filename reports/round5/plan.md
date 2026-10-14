@@ -1025,6 +1025,27 @@ A1's runner on Pythia 160M, 410M, 1B, 2.8B, 6.9B and 12B (1.4B as run).
 The L deficit appears at every size ≥ 410M and stays on the intransitive
 side. Its size is within ±50% of 1.4B's.
 
+**Pre-run clarification (D10b, 2026-10-14, after job 9008725 stopped at a
+check, before any suite output existed).** The job stopped on its first
+model, 160M:
+- the first-subtoken reconstruction error was 1.41e-3, above A1's 1e-3
+  tolerance (1.4B: 2.7e-5);
+- h deviation was 0.
+
+The check compares the model's own fp32 log-probabilities with
+h · u − LSE, recomputed from the captured final-LN output. The two are the
+same numbers multiplied in two different fp32 matrix products, and the
+rounding grows with the logit scale. The check exists to catch hook,
+position or tokenization errors, which give errors of 0.1 nats or more.
+
+For the suite models:
+- the reconstruction and A2-identity checks use a tolerance of 1e-2
+  (`--tol`; A1's 1.4B run keeps 1e-3);
+- the realized errors and the largest |logit| at the slot are recorded per
+  model;
+- in the job, the Yes/No runs go first, and each model runs independently,
+  so one failed check no longer stops the others.
+
 ## D10c. FreqBLiMP passive_1 Yes/No on 6.9B and 12B
 
 Task 4's prompt (`YES_NO_BASE_PROMPT`).

@@ -63,7 +63,7 @@ def main(args):
     cur_idx = np.flatnonzero(V.curated.to_numpy() == 1)
     all_idx = np.arange(len(V))
     rows, H, LSE, keys = [], [], [], []
-    max_h_dev = max_first_err = 0.0
+    max_h_dev = max_first_err = max_logit = 0.0
     t0 = time.time()
     with torch.inference_mode():
         for _, pr in pre.iterrows():
@@ -88,6 +88,7 @@ def main(args):
                     h = cap["h"][:, n - 1].float()
                     hs.append(h)
                     ls.append(torch.logsumexp(logits[:, n - 1], -1))
+                    max_logit = max(max_logit, float(logits[:, n - 1].abs().max()))
                     for r, j in enumerate(b):
                         t = torch.tensor(vids[j], device=dev)
                         sub = lp[r, n - 1:n - 1 + len(vids[j])].gather(-1, t[:, None]).squeeze(-1).double().cpu().numpy()
@@ -105,9 +106,9 @@ def main(args):
                 LSE.append(float(lse[0]))
                 keys.append((pr["set"], pr["context_id"], frame))
         print(f"forward passes done in {time.time() - t0:.0f}s; max h deviation {max_h_dev:.2e}; "
-              f"max first-subtoken reconstruction error {max_first_err:.2e}", flush=True)
+              f"max first-subtoken reconstruction error {max_first_err:.2e}; max |logit| at the slot {max_logit:.1f}", flush=True)
         assert max_h_dev <= 1e-4, max_h_dev
-        assert max_first_err <= 1e-3, max_first_err
+        assert max_first_err <= args.tol, max_first_err
 
         S = pd.DataFrame(rows, columns=["set", "context_id", "frame", "verb", "lp", "lp1", "n_tok", "lp_sub"])
         H = np.stack(H).astype(np.float32)
@@ -127,7 +128,7 @@ def main(args):
                 pred = float(dh.astype(np.float64) @ (U[urow[first[t]]].astype(np.float64) - U[urow[first[i]]].astype(np.float64)))
                 max_id_err = max(max_id_err, abs(L1 - pred))
         print(f"max A2 identity error {max_id_err:.2e}", flush=True)
-        assert max_id_err <= 1e-3, max_id_err
+        assert max_id_err <= args.tol, max_id_err
 
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -137,7 +138,7 @@ def main(args):
     meta = {"model": args.model, "dtype": "float32", "tf32": False, "n_rows": len(S),
             "inputs": {f: sha(data / f) for f in ("prefixes.csv", "verbs.csv", "pairs.csv")},
             "checks": {"max_h_deviation": max_h_dev, "max_first_subtoken_error": max_first_err,
-                       "max_identity_error": max_id_err},
+                       "max_identity_error": max_id_err, "max_abs_logit": max_logit, "tol": args.tol},
             "outputs": {f: sha(out / f) for f in ("frame_scores.parquet", "frame_h.npz")}}
     (out / "frame_meta.json").write_text(json.dumps(meta, indent=1))
     print(json.dumps(meta, indent=1))
@@ -150,4 +151,6 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--batch", type=int, default=384)
     ap.add_argument("--out-dir", default="results/round5/frame")
+    ap.add_argument("--tol", type=float, default=1e-3,
+                    help="tolerance of the reconstruction and identity checks (1e-3 for 1.4B; 1e-2 for the D10b suite)")
     main(ap.parse_args())
