@@ -59,6 +59,14 @@ self-patch check, see below), 9007282 (B6), 9007314 (C8 natural pass),
     switch for MLPs 21 and 22, but only 0.46 and 0.29 for 15 and 18. With
     relays among the mid MLPs it carries 0.66–0.70 there.
   - The top-50 switch neurons carry 42–49% of what MLPs 11 and 14 pass on.
+- **C8, filler-gap without DAS verbs.** The licensing-like crossover
+  survives in matrix questions (sites 4, 8, 10) but not in embedded ones,
+  where objects overshoot the non-DAS transitive level. Round 4's embedded
+  result needed the DAS-verb bases.
+- **C9, shared readers.** D11's switch neurons separate transitive from
+  intransitive verbs in wh questions, and only when the filler is present.
+  They read the verb class whenever the object position is empty (passive
+  or wh gap); they are not passive-specific.
 
 # Part A1–A2
 
