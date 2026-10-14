@@ -42,22 +42,24 @@ Each cell: share of the top 100 [95% CI]. Docs / words = unique documents / uniq
 | 9 | MLP11.n5408 | 84 | 83 | 0.24 [0.15, 0.34] | 0.34 [0.25, 0.44] | 0.22 [0.15, 0.30] | 0.00 [0.00, 0.02] | work (9), made (2), deal (2), out (2), them (2), working (2) |
 | 10 | MLP14.n503 | 84 | 61 | 0.16 [0.09, 0.23] | 0.28 [0.19, 0.40] | 0.16 [0.08, 0.23] | 0.01 [0.00, 0.03] | to (10), be (4), you (4), are (3), is (3), in (3) |
 
-**Sensitivities.** Signed ranking s_n · a (identical to raw where s_n = +1; for ranks 9–10 it is the *lowest*-activation contexts) and one context per document (each document's maximum, top 100):
+**Sensitivities.** Signed ranking s_n · a (identical to raw where s_n = +1; for ranks 9–10 it is the *lowest*-activation contexts) and one context per document (each document's maximum, top 100; for ranks 9–10 also under the signed ranking):
 
-| rank | version | docs | (a) participle | (b) be/get in 3 | (c) wh/rel in 8 | (d) " by" next | most frequent words |
-|---:|---|---:|---:|---:|---:|---:|---|
-| 1 | one per document | 100 | 0.26 | 0.09 | 0.17 | 0.09 | use (6), used (4), see (3), to (3), had (2) |
-| 2 | one per document | 100 | 0.74 | 0.45 | 0.07 | 0.47 | used (10), provided (6), told (4), instructed (3), accused (2) |
-| 3 | one per document | 100 | 0.90 | 0.51 | 0.02 | 0.78 | affected (13), followed (13), accompanied (6), inspired (5), dominated (4) |
-| 4 | one per document | 100 | 0.03 | 0.18 | 0.22 | 0.01 | on (10), in (9), with (6), to (3), about (3) |
-| 5 | one per document | 100 | 0.81 | 0.81 | 0.05 | 0.13 | reviewed (7), read (4), investigated (4), executed (4), evaluated (3) |
-| 6 | one per document | 100 | 0.47 | 0.24 | 0.05 | 0.47 | the (14), or (8), created (4), generated (4), written (3) |
-| 7 | one per document | 100 | 0.50 | 0.24 | 0.18 | 0.21 | ended (5), led (4), application (3), run (3), applied (3) |
-| 8 | one per document | 100 | 0.37 | 0.31 | 0.11 | 0.02 | asked (8), charged (6), them (5), me (3), provided (2) |
-| 9 | signed (lowest activation) | 97 | 0.10 | 0.13 | 0.04 | 0.00 | «» (6), «.» (4), the (4), «-» (3), a (2) |
-| 9 | one per document | 100 | 0.22 | 0.32 | 0.22 | 0.01 | work (10), out (2), them (2), working (2), made (2) |
-| 10 | signed (lowest activation) | 99 | 0.03 | 0.04 | 0.05 | 0.00 | the (9), «,» (5), a (4), «.» (3), to (3) |
-| 10 | one per document | 100 | 0.17 | 0.28 | 0.14 | 0.01 | to (10), be (5), as (3), you (3), in (3) |
+| rank | version | docs | words | (a) participle | (b) be/get in 3 | (c) wh/rel in 8 | (d) " by" next | most frequent words |
+|---:|---|---:|---:|---:|---:|---:|---:|---|
+| 1 | one per document | 100 | 79 | 0.26 | 0.09 | 0.17 | 0.09 | use (6), used (4), see (3), to (3), had (2) |
+| 2 | one per document | 100 | 74 | 0.74 | 0.45 | 0.07 | 0.47 | used (10), provided (6), told (4), instructed (3), accused (2) |
+| 3 | one per document | 100 | 45 | 0.90 | 0.51 | 0.02 | 0.78 | affected (13), followed (13), accompanied (6), inspired (5), dominated (4) |
+| 4 | one per document | 100 | 67 | 0.03 | 0.18 | 0.22 | 0.01 | on (10), in (9), with (6), to (3), about (3) |
+| 5 | one per document | 100 | 75 | 0.81 | 0.81 | 0.05 | 0.13 | reviewed (7), read (4), investigated (4), executed (4), evaluated (3) |
+| 6 | one per document | 100 | 64 | 0.47 | 0.24 | 0.05 | 0.47 | the (14), or (8), created (4), generated (4), written (3) |
+| 7 | one per document | 100 | 78 | 0.50 | 0.24 | 0.18 | 0.21 | ended (5), led (4), application (3), run (3), applied (3) |
+| 8 | one per document | 100 | 74 | 0.37 | 0.31 | 0.11 | 0.02 | asked (8), charged (6), them (5), me (3), provided (2) |
+| 9 | signed (lowest activation) | 97 | 62 | 0.10 | 0.13 | 0.04 | 0.00 | «» (6), «.» (4), the (4), «-» (3), a (2) |
+| 9 | one per document | 100 | 85 | 0.22 | 0.32 | 0.22 | 0.01 | work (10), out (2), them (2), working (2), made (2) |
+| 9 | signed, one per document | 100 | 61 | 0.09 | 0.12 | 0.04 | 0.00 | «» (6), the (4), «.» (4), «-» (3), a (2) |
+| 10 | signed (lowest activation) | 99 | 51 | 0.03 | 0.04 | 0.05 | 0.00 | the (9), «,» (5), a (4), «.» (3), to (3) |
+| 10 | one per document | 100 | 60 | 0.17 | 0.28 | 0.14 | 0.01 | to (10), be (5), as (3), you (3), in (3) |
+| 10 | signed, one per document | 100 | 52 | 0.03 | 0.04 | 0.05 | 0.00 | the (9), «,» (5), a (4), «.» (3), to (3) |
 
 ## Example contexts (top 8 by raw activation, ranks 1–3)
 
@@ -96,3 +98,30 @@ Each cell: share of the top 100 [95% CI]. Docs / words = unique documents / uniq
 
 Annotation items: 120 (top 40 raw contexts of ranks 1–3, pooled and shuffled; the word holding the token is marked [[…]]; `b7_annotation_items.csv`).
 
+## Construction annotation (top 40 per top-3 neuron; Claude and Codex, independent)
+
+120 items. Raw agreement 1.00; Cohen's κ = 1.00 (6 categories).
+
+| rank | neuron | annotator | verbal passive participle | adjectival / copular participle | active perfect or simple past | object gap after the verb | other | uncertain |
+|---:|---|---|---:|---:|---:|---:|---:|---:|
+| 1 | MLP11.n3462 | claude | 0.23 | 0.00 | 0.00 | 0.78 | 0.00 | 0.00 |
+| 1 | MLP11.n3462 | codex | 0.23 | 0.00 | 0.00 | 0.78 | 0.00 | 0.00 |
+| 2 | MLP14.n2114 | claude | 0.85 | 0.00 | 0.00 | 0.00 | 0.15 | 0.00 |
+| 2 | MLP14.n2114 | codex | 0.85 | 0.00 | 0.00 | 0.00 | 0.15 | 0.00 |
+| 3 | MLP14.n5407 | claude | 0.97 | 0.03 | 0.00 | 0.00 | 0.00 | 0.00 |
+| 3 | MLP14.n5407 | codex | 0.97 | 0.03 | 0.00 | 0.00 | 0.00 | 0.00 |
+
+| rank | neuron | verbal passive (Claude / Codex) | passive + gap | reading |
+|---:|---|---|---|---|
+| 1 | MLP11.n3462 | 0.23 / 0.23 | 1.00 / 1.00 | **gap-sensitive participle reader** |
+| 2 | MLP14.n2114 | 0.85 / 0.85 | 0.85 / 0.85 | **passive-participle detector** |
+| 3 | MLP14.n5407 | 0.97 / 0.97 | 0.97 / 0.97 | **passive-participle detector** |
+
+Confusion (rows Claude, columns Codex):
+
+| Claude \ Codex | adjectival / copular participle | object gap after the verb | other | verbal passive participle |
+|---|---:|---:|---:|---:|
+| adjectival / copular participle | 1 | 0 | 0 | 0 |
+| object gap after the verb | 0 | 31 | 0 | 0 |
+| other | 0 | 0 | 6 | 0 |
+| verbal passive participle | 0 | 0 | 0 | 82 |

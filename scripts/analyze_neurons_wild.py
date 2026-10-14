@@ -59,7 +59,7 @@ class Contexts:
         # mark the whole word the token belongs to (pieces of the same word are glued to the token on the left)
         m = re.search(r"[A-Za-z'’]*$", left) if re.match(r"[A-Za-z]", text[len(left):mid_end]) else None
         a = m.start() if m else len(left)
-        return (text[:a] + "[[" + text[a:mid_end] + "]]" + text[mid_end:]).replace("\n", " ⏎ ")
+        return (text[:a] + "[[" + text[a:mid_end] + "]]" + text[mid_end:]).replace("\r\n", "\n").replace("\r", "\n").replace("\n", " ⏎ ")
 
 
 def top_order(sc, D, k=100):
@@ -129,17 +129,18 @@ def describe(args):
     for k, n in enumerate(neurons):
         a = D[f"a{k}"].to_numpy()
         s_n = int(np.sign(n["I_A"]))
-        for mode in ("raw", "signed", "dedup"):
-            if mode == "dedup":
-                best = pd.Series(a).groupby(D.doc.to_numpy()).idxmax().to_numpy()
-                order = best[np.lexsort((D.pos.to_numpy()[best], D.doc.to_numpy()[best], -a[best]))][:100]
+        for mode in ("raw", "signed", "dedup", "dedup_signed"):
+            sc = s_n * a if mode.endswith("signed") else a
+            if mode.startswith("dedup"):
+                best = pd.Series(sc).groupby(D.doc.to_numpy()).idxmax().to_numpy()
+                order = best[np.lexsort((D.pos.to_numpy()[best], D.doc.to_numpy()[best], -sc[best]))][:100]
             else:
-                order = top_order(a if mode == "raw" else s_n * a, D)
+                order = top_order(sc, D)
             T, pr = D.iloc[order], Px.iloc[order]
             for i in range(len(order)):
                 r = T.iloc[i]
                 tops.append({"rank": n["rank"], "neuron": n["neuron"], "mode": mode, "k": i + 1, "doc": int(r.doc),
-                             "pos": int(r.pos), "act": float(r[f"a{k}"]), "tok": r.tok, "word": r.word,
+                             "pos": int(r.pos), "act": float(r[f"a{k}"]), "tok": r.tok.replace("\r", "␍").replace("\n", "⏎"), "word": r.word,
                              "context": ctx(r.doc, r.pos), **pr.iloc[i].to_dict()})
             if mode == "raw":
                 bs = boot_top(a, doc_codes, len(docs), P, rng, args.n_boot)
@@ -159,15 +160,18 @@ def describe(args):
     pd.DataFrame(rows).to_csv(res / "b7_summary.csv", index=False)
 
     lines += ["", "**Sensitivities.** Signed ranking s_n · a (identical to raw where s_n = +1; for ranks 9–10 it is the "
-                  "*lowest*-activation contexts) and one context per document (each document's maximum, top 100):", "",
-              "| rank | version | docs | " + " | ".join(PROX_NAME[c] for c in PROX) + " | most frequent words |",
-              "|---:|---|---:|" + "---:|" * len(PROX) + "---|"]
+                  "*lowest*-activation contexts) and one context per document (each document's maximum, top 100; for ranks 9–10 "
+                  "also under the signed ranking):", "",
+              "| rank | version | docs | words | " + " | ".join(PROX_NAME[c] for c in PROX) + " | most frequent words |",
+              "|---:|---|---:|---:|" + "---:|" * len(PROX) + "---|"]
     for n, mode, s_n, T, pr in sens:
-        if mode == "signed" and s_n > 0:
+        if mode.endswith("signed") and s_n > 0:
             continue
-        label = "signed (lowest activation)" if mode == "signed" else "one per document"
+        label = {"signed": "signed (lowest activation)", "dedup": "one per document",
+                 "dedup_signed": "signed, one per document"}[mode]
         tw = T.word.str.lower().where(T.word.ne(""), "«" + T.tok.str.strip() + "»").value_counts().head(5)
-        lines.append(f"| {n['rank']} | {label} | {T.doc.nunique()} | " + " | ".join(f"{pr[c].mean():.2f}" for c in PROX)
+        lines.append(f"| {n['rank']} | {label} | {T.doc.nunique()} | {T.word.str.lower().nunique()} | "
+                     + " | ".join(f"{pr[c].mean():.2f}" for c in PROX)
                      + " | " + ", ".join(f"{w} ({c})" for w, c in tw.items()) + " |")
 
     # Examples (top 8 raw contexts per top-3 neuron)
@@ -226,9 +230,11 @@ def decide(args):
         lines.append(f"| {d['rank']} | {nrn} | {d['vp']['claude']:.2f} / {d['vp']['codex']:.2f} | "
                      f"{d['vp']['claude'] + d['gap']['claude']:.2f} / {d['vp']['codex'] + d['gap']['codex']:.2f} | "
                      f"**{d['reading']}** |")
-    lines += ["", "Confusion (rows Claude, columns Codex):", "", conf.to_markdown(), ""]
-    with open(args.report, "a") as fh:
-        fh.write("\n".join(lines) + "\n")
+    lines += ["", "Confusion (rows Claude, columns Codex):", "", "| Claude \\ Codex | " + " | ".join(conf.columns) + " |",
+              "|---|" + "---:|" * len(conf.columns)]
+    lines += [f"| {i} | " + " | ".join(str(v) for v in r) + " |" for i, r in zip(conf.index, conf.to_numpy())]
+    rep = Path(args.report).read_text().split("## Construction annotation")[0].rstrip("\n")
+    Path(args.report).write_text(rep + "\n\n" + "\n".join(lines) + "\n")
     (res / "b7_decisions.json").write_text(json.dumps(dec, indent=1))
     print("\n".join(lines))
 

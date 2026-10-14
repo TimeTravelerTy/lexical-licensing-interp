@@ -1,0 +1,42 @@
+{
+ "kappa": 1.0,
+ "agreement": 1.0,
+ "neurons": {
+  "MLP11.n3462": {
+   "rank": 1,
+   "reading": "gap-sensitive participle reader",
+   "vp": {
+    "claude": 0.225,
+    "codex": 0.225
+   },
+   "gap": {
+    "claude": 0.775,
+    "codex": 0.775
+   }
+  },
+  "MLP14.n2114": {
+   "rank": 2,
+   "reading": "passive-participle detector",
+   "vp": {
+    "claude": 0.85,
+    "codex": 0.85
+   },
+   "gap": {
+    "claude": 0.0,
+    "codex": 0.0
+   }
+  },
+  "MLP14.n5407": {
+   "rank": 3,
+   "reading": "passive-participle detector",
+   "vp": {
+    "claude": 0.975,
+    "codex": 0.975
+   },
+   "gap": {
+    "claude": 0.0,
+    "codex": 0.0
+   }
+  }
+ }
+}

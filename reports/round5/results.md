@@ -512,3 +512,116 @@ on d drives them in both constructions.
 This holds for recruitment, not mediation: no neuron was intervened on in
 the filler-gap frames. Which MLP layers write the filler-gap preference
 stays open, because the declared linear readout did not track L there.
+
+# Part B7
+
+## B7. Switch neurons in the wild
+
+D11's top switch neurons on 2,000 Pile-10k documents (722,625 tokens, fp32
+post-activations). Full tables, examples and the annotation: `b7_wild.md`.
+TSUBAME job: 9008705. Proxies are surface patterns; the labels come from
+the blind annotation of each top-3 neuron's 40 strongest contexts.
+
+**Top 100 by raw activation** (share [95% CI], document resampling with the
+top list recomputed per draw). Participle-candidate baseline: be/get-form
+0.26, " by" next 0.05.
+
+| rank | neuron | (a) participle | (b) be/get in 3 | (c) wh/rel in 8 | (d) " by" next | frequent words |
+|---:|---|---|---|---|---|---|
+| 1 | MLP11.n3462 | 0.24 [0.15, 0.32] | 0.10 [0.04, 0.16] | 0.18 [0.10, 0.26] | 0.09 [0.03, 0.14] | use, used, to, see, want |
+| 2 | MLP14.n2114 | 0.76 [0.68, 0.85] | 0.45 [0.34, 0.55] | 0.07 [0.02, 0.12] | 0.53 [0.42, 0.62] | used, provided, told, instructed |
+| 3 | MLP14.n5407 | 0.89 [0.82, 0.95] | 0.53 [0.43, 0.62] | 0.01 [0.00, 0.04] | 0.78 [0.68, 0.86] | affected, followed, inspired, accompanied |
+
+The top lists are spread over 88–95 documents. The one-per-document
+versions agree to within 0.06 on every proxy (ranks 1–3).
+
+**Annotation** (top 40 each; Claude and Codex, independent; 120 items, κ =
+1.00):
+
+| rank | neuron | verbal passive | object gap | other / adjectival | reading |
+|---:|---|---:|---:|---:|---|
+| 1 | MLP11.n3462 | 0.23 | 0.78 | 0 | **gap-sensitive participle reader** |
+| 2 | MLP14.n2114 | 0.85 | 0 | 0.15 | **passive-participle detector** |
+| 3 | MLP14.n5407 | 0.97 | 0 | 0.03 | **passive-participle detector** |
+
+- **Rank 1** fires on a transitive verb whose object is missing after it.
+  Most cases are relative clauses ("the only patient she sees", "the
+  advice you've heard", "the work India does") and infinitival relatives ("no law
+  to respect", "the module to use", "stuff to sell"). The other 0.23 are
+  reduced passive relatives ("the taxes paid", "the rate achieved via ...").
+  Every one of its 40 contexts is either a passive participle or an object
+  gap.
+- **Ranks 2–3** fire on passive participles with a by-agent coming:
+  be-passives ("is dominated by", "has been approved by"), reduced
+  relatives ("blood vessels surrounded by", "a startup headed by") and
+  participial clauses ("Inspired by ...", "..., followed by"). Their
+  other tokens sit inside a passive just after the participle ("adopted as
+  such by", "trod upon by", "given a green light").
+- **Ranks 4–10** (proxies and descriptions only):
+  - 4, MLP11.n4925: stranded prepositions in relatives and questions ("the
+    city you'd like to see the weather in", "did not take part in");
+  - 5, MLP14.n4241: passive participles after modal or perfect "be"
+    ("will be characterized", "can be resolved"), mostly academic text;
+    be/get 0.82;
+  - 6, MLP14.n496: the word before an agentive " by", participle or noun
+    ("manufactured by", "photograph by", "designs by"); " by" next 0.52;
+  - 7, MLP11.n1686: a mix of passive participles ("moderated by", "is run
+    by") and infinitival gaps ("weeks to complete", "too long to cast");
+  - 8, MLP14.n3517: participles with "with" / "to" complements
+    ("entrusted to", "endowed with", "charged with") and object pronouns,
+    plus German nouns and names (about 28 of the 100, from 6 documents);
+  - 9, MLP11.n5408 (s_n −): raw top = verbs and participles before a
+    stranded preposition ("the company I work for", "what it is made of");
+    its switch-direction (lowest) contexts are punctuation and articles;
+  - 10, MLP14.n503 (s_n −): weak (max 2.5), no clear pattern.
+
+**Against the predictions.**
+- Top-3 neurons are passive-participle detectors: **held for ranks 2 and
+  3, missed for rank 1**. For 2 and 3, proxy (b) is also above the
+  participle-candidate baseline (0.45 and 0.53 vs 0.26; CIs exclude it).
+  For rank 1 it is below (0.10).
+- Gap-sensitive reading possible for one of the three: **held** (rank 1,
+  object gap 0.78, passive + gap 1.00).
+- " by" follows in ≥ 20% of the top 100: **held for ranks 2 and 3** (0.53,
+  0.78), **missed for rank 1** (0.09).
+
+**Reading.** The largest switch neuron, MLP11.n3462, is not a passive
+detector. On natural text it responds to a transitive verb whose object
+position is empty: object relatives, infinitival relatives, and reduced
+passives. This is the C9 result seen from the other side: in C9 the
+neurons separated the verb classes only when a wh filler was present.
+
+The two MLP14 neurons are passive-participle detectors and predict a
+following " by". One hypothesis is a gap-sensitive reader at MLP11
+feeding passive-specific units at MLP14. That would fit B6, where the late
+object MLPs depend on MLPs 11–17. But neither B6 nor B7 tested this
+neuron-to-neuron route. B7 describes what the neurons respond to; it is
+not a causal test.
+
+## Deviations and checks (B7)
+
+- **Annotation guide.** The guide (`results/round5/wild/b7_annotation_guide.md`)
+  added one precedence rule before labelling: when "active perfect or
+  simple past" and "object gap" both apply ("the advice you've heard"),
+  label object gap. It decides 3 of the 120 items ("money he used", "the
+  take-away I've got", "the advice you've heard").
+- **Blinding.** Codex saw only the guide and the shuffled contexts, in an
+  empty directory. Claude also labelled the shuffled contexts without
+  neuron identity, but knew the hypothesis (it wrote the plan) and had seen
+  24 of the 120 contexts with their neuron in the describe output before
+  labelling. Claude's labels were committed (`07df118`) before Codex
+  labelled. Hashes: `results/round5/wild/b7_annotation_frozen.txt`.
+- **κ = 1.00.** The two annotators agreed on all 120 items, edge cases
+  included (a Spanish infinitival relative, a stranded preposition in a
+  prepositional passive, one adjectival "overrun with"). Codex's notes are
+  its own wording. The top contexts are unambiguous, but both annotators
+  are language models with the same guide. κ is not a human-agreement
+  measure.
+- **Proxies.** (a)–(c) are defined only at word-final tokens: the run saved
+  the preceding words there. Other tokens count as failing them, which
+  lowers the all-token baseline. The participle-candidate baseline is
+  unaffected. Proxy (b) misses reduced passives (no be-form), so it
+  understates the passive share of ranks 2–3.
+- **Token text.** 462 tokens contain a carriage return. They are written
+  as "␍" in `b7_top_contexts.csv` so the CSV parses. The annotation items
+  contain none, and their hash is unchanged.
