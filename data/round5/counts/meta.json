@@ -1,0 +1,21 @@
+{
+ "index": "v4_piletrain_llama",
+ "api": "https://api.infini-gram.io/",
+ "queries": 6574,
+ "failed": 0,
+ "date": "2026-10-14",
+ "be_forms": [
+  "was",
+  "were",
+  "been",
+  "is",
+  "are",
+  "be"
+ ],
+ "perfect_forms": [
+  "has",
+  "have",
+  "had"
+ ],
+ "delay_s": 0.8
+}
