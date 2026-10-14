@@ -542,8 +542,9 @@ Report: `a3_counts.md`.
   any slot.
 - **What "was V" counts** (hand audit, 10 verbs, up to 10 contexts each):
   - for transitives, 47 of 47 contexts are verbal passives;
-  - for intransitives it is mostly prepositional passives ("was
-    apologized to", "was glared at", "was flirted with"; 27 of 40);
+  - for intransitives, 27 of 40 are passives, 24 of them prepositional
+    ("was apologized to", "was glared at", "was flirted with") and 3 of a
+    rare transitive sense ("the water was flirted away");
   - the rest are clause boundaries or nonstandard use ("whatever it was
     happened"; 10 of 10 for "happened");
   - "was hitchhiked" never occurs.
