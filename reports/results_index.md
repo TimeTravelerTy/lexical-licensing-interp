@@ -107,8 +107,8 @@ summarizes that part's predictions.
 | ID | Question | Key number [95% CI] | Declared | Report | Figure | Tag |
 |---|---|---|---|---|---|---|
 | R5-A1 | Where is the participle deficit? (was vs has frame contrast L, 126 pairs) | L Head 3.84 / Tail 2.82 / XTail 1.72; ΔL +2.12 [+1.26, +2.94]; intransitive side +2.60, transitive −0.48 | mixed (deficit held; size, sides, ΔM_has missed) | `round5/a1_frame.md` | — | **main** |
-| R5-A2 | Exact decomposition L = Δh · (u_T − u_I) | identity error 4e-5; I-row affinity Zipf slope −1.58; first subtoken carries XTail 0.03 / Tail 0.34 of L; singleton D_L +2.09 [+1.00, +3.23] | mostly held (subtoken share missed) | `round5/a2_decomposition.md` | — | **main** |
-| R5-A3 | Do Pile passive-slot counts predict Δ_pass beyond overall frequency? | curated: unresolved (T +0.045 [−0.09, +0.20], I +0.043 [−0.21, +0.32] CV MSE); pool T: slot adds +0.41 [+0.25, +0.61]; I-verb "was V" = prepositional passives | missed (unresolved) | `round5/a3_counts.md` | — | app |
+| R5-A2 | Exact decomposition of the first-subtoken contrast, L₁ = Δh · (u_T1 − u_I1) (L = L₁ + later subtokens) | identity error 4e-5; I-row affinity Zipf slope −1.58; first subtoken carries XTail 0.03 / Tail 0.34 of L; singleton D_L +2.09 [+1.00, +3.23] | mostly held (subtoken share missed) | `round5/a2_decomposition.md` | — | **main** |
+| R5-A3 | Do Pile passive-slot counts predict Δ_pass beyond overall frequency? | curated: unresolved (T +0.045 [−0.09, +0.20], I +0.043 [−0.21, +0.32] CV MSE); pool T: slot adds +0.41 [+0.25, +0.61]; audit: I-verb "was V" mostly prepositional passives (24 of 40) | missed (unresolved) | `round5/a3_counts.md` | — | app |
 | R5-A4 | Output-side restoration of rare (Tail) single-token participles along the was − has direction | oracle +0.53 [+0.24, +0.83] nats on affected passives (I-only +0.33, T-only +0.20); Head and unaffected items unchanged; label-free −0.02 [−0.22, +0.19] vs half the oracle | held | `round5/a4_restore.md` | — | **main** |
 | R5-A5 | Does a grammaticality probe (Wang et al. 2026) show the rarity decline? | probe Head 88.2 → XTail 71.9%, D +16.3 [+12.9, +19.8]; LP D +9.7; D_LP − D_probe −6.6 [−11.0, −2.0] | missed (larger, not smaller, decline) | `round5/a5_probe.md` | — | **main** |
 | R5-B5 | Is d (or the switch neurons) necessary for good passives? | d → I mean removes 0.15 of " by"; top-50 neurons 0.09; both 0.19; class info beyond d (0.59 of the gap remains) | mostly missed (necessity) | `round5/b5_necessity.md` | — | **main** (negative) |
@@ -147,8 +147,9 @@ summarizes that part's predictions.
    this is a compressed contrast along one was − has direction (R5-A2),
    and editing rare rows to the Head level recovers about half a nat
    (R5-A4). The deficit is the same at every Pythia size from 160M to 12B
-   (R5-D10b). A grammaticality probe on the final state shows an even
-   larger rarity drop (R5-A5), so the deficit is not only output-side.
+   (R5-D10b). A linear grammaticality probe on the sentence-final layer-13
+   state shows an even larger rarity drop (R5-A5), so the deficit is not
+   only output-side (a familiarity confound is possible).
    Pile slot counts do not reliably explain it for the curated verbs
    (R5-A3).
 6. **Round 5: the mechanism is not passive-specific.** The early d value is

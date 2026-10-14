@@ -80,14 +80,18 @@ stopped at a check, see D10b).
 - **A4, editing the output rows.** Setting the 32 rare Tail single-token
   participles' affinity to the Head class mean recovers +0.53 nats [+0.24,
   +0.83] of passive margin on their pairs. Most of it comes from the
-  intransitives. The edit is specific and leaves ordinary text unchanged.
-  A label-free target from z gets less than half of it.
-- **A5, a probe instead of LP.** A grammaticality probe on the final state
-  (dev AUC 0.93) beats LP on Head passives (88 vs 79%). It loses *more*
+  intransitives. The edit passes the specificity rule, and its cost on
+  ordinary text is tiny (Pile validation +0.0001 nats/token). A label-free
+  target from z does not reach half the oracle under the declared rule
+  (point estimate +0.25 vs +0.53; the contrast's CI includes 0).
+- **A5, a probe instead of LP.** A linear grammaticality probe on the
+  sentence-final token at layer 13 (dev AUC 0.93) beats LP on Head passives (88 vs 79%). It loses *more*
   accuracy with rarity: Head − XTail +16.3 pp vs +9.7. So the deficit is
-  not only in the participle's output probability.
+  not only in the participle's output probability. Familiarity may also
+  play a part in the probe's drop.
 - **B7, the switch neurons in natural text.** The top three neurons'
-  strongest Pile contexts, labelled blind by Claude and Codex (κ = 1.00):
+  strongest Pile contexts, labelled independently by Claude and Codex
+  (κ = 1.00; Codex blind, Claude partly unblinded, see Deviations):
   - MLP11.n3462 (rank 1) fires on transitive verbs with a missing object:
     object relatives and infinitival relatives (0.78), reduced passives
     (0.23);
@@ -559,8 +563,9 @@ Exact infini-gram counts in the Pile training set (`v4_piletrain_llama`;
 Report: `a3_counts.md`.
 
 - **Audit.** Every slot query's tokens end with the overall query's
-  tokens; no verb was dropped. No curated or pool verb has a zero count in
-  any slot.
+  tokens; no verb was dropped. The summed slot counts c_be and c_perf are
+  nonzero for every verb. Single-auxiliary queries can be zero ("was
+  hitchhiked").
 - **What "was V" counts** (hand audit, 10 verbs, up to 10 contexts each):
   - for transitives, 47 of 47 contexts are verbal passives;
   - for intransitives, 27 of 40 are passives, 24 of them prepositional
@@ -570,8 +575,10 @@ Report: `a3_counts.md`.
     happened"; 10 of 10 for "happened");
   - "was hitchhiked" never occurs.
 
-  So c_be is a passive count for T verbs and mainly a prepositional-
-  passive count for I verbs.
+  In this audit, "was V" picks out verbal passives for T verbs and mostly
+  prepositional passives for I verbs. The audit covers 10 verbs and one
+  auxiliary. As the plan says, c_be stays a proxy that also includes other
+  uses.
 - **Curated verbs** (primary; CV MSE, 10 folds grouped by pair):
 
 | class | r(Zipf) | r(log c) | r(log c_be) | partial r(ρ_be \| log c) | CV ~log c | ~log c_be | ~log c + log c_be | difference [95% CI] | ~Zipf | decision |
@@ -602,7 +609,10 @@ Report: `a3_counts.md`.
 - T: slot frequency adds: **missed on the curated verbs** (unresolved).
   **Held in the secondary pool** (627 verbs).
 - L: overall frequency suffices: **missed** (unresolved).
-- Descriptive: Pile log c does not beat wordfreq Zipf.
+- Descriptive: Pile log c versus wordfreq Zipf (CV MSE):
+  - T: they tie (curated 2.070 vs 2.077, pool 2.049 vs 2.053);
+  - I: Zipf is better on the curated verbs (2.353 vs 2.649) and ties in
+    the pool (2.450).
 
 **Reading.** With 126 verbs per class, the curated test cannot separate
 "slot counts add" from "overall frequency suffices". The larger pool shows
@@ -688,9 +698,10 @@ unembedding-side gap that a minimum-norm edit can fill. It is a
 Tail-singleton result; XTail participles are all multi-token, and no
 transfer was tested.
 
-The label-free version, which predicts the target from the early
-verb-class coordinate z, gets less than half the gain. It cannot recover
-how far intransitive rows should move. A5 shows that the deficit also has
+The label-free version predicts the target from the early verb-class
+coordinate z. Its gain (+0.25) does not reach half the oracle under the
+declared rule, though the contrast's CI includes 0. Its calibration
+underpredicts how far intransitive rows should move. A5 shows that the deficit also has
 a component the output rows cannot reach.
 
 ## A5. Non-LP readout: a grammaticality probe
@@ -740,9 +751,11 @@ sentences (Gutenberg, WikiText-103) from perturbed copies. TSUBAME job
 output probability. A probe on the sentence-final state separates good
 from bad passives better than LP on frequent verbs, and it loses more of
 that advantage for rare verbs. It already drops at Tail, where LP does not.
-So the representation at the end of the sentence carries less of the
-good/bad distinction for rare verbs. That argues against a purely
-output-side account of the deficit, which was the prediction's rationale.
+So a linear readout of the layer-13 state at the end of the sentence
+separates good from bad less well for rare verbs. That argues against a
+purely output-side account of the deficit, which was the prediction's
+rationale. It does not show that grammatical information is lost: a
+different readout might recover more.
 
 One caveat: the probe was trained to detect perturbed text, and rare
 words look unusual in both members of an XTail pair. That may compress its
@@ -894,10 +907,17 @@ H100; TSUBAME job 9008724). Table and derivation: `d10_scaleup.md`.
   - 6.9B: 5, 8, 11, 13, 16, 19, 21, 23;
   - 12B: 6, 9, 12, 15, 18, 21, 24, 26.
 
-**Reading.** A 6.9B replication of the round-2 DAS pipeline (sweep and
-final) plus two path-patching frame sets costs about 3 GPU-hours. The same
-on 12B costs about 5. Both are feasible on gpu_1 nodes without code
-changes.
+**Reading.** By extrapolation from these timings, a 6.9B replication of
+the round-2 DAS pipeline (sweep and final) plus two path-patching frame
+sets costs about 3 GPU-hours. The same on 12B costs about 5. Both look
+feasible on gpu_1 nodes without code changes.
+
+**Deviations (D10).**
+- Evaluation batches and forward throughput were timed with 3 repetitions;
+  the plan says 5. DAS training steps used 5.
+- The path-patching timing kept 1.4B's flagged layers (11–22) and 8
+  batches. Matched-depth component costs are an estimate (the upper end
+  of the range), not a measurement.
 
 ## D10b. A1/A2 across the Pythia suite
 
@@ -931,7 +951,8 @@ stays on the intransitive side, and is within ±50% of 1.4B's (1.06–3.18):
 **Reading.** Scale does not remove the rare-verb deficit at the passive
 slot. Across a 75-fold range of parameters it stays about 2 nats, and its
 source stays the same: frequent intransitive participles are rejected
-after "was", rare ones are not. The models were all trained on the same
+strongly after "was", rare ones much less, though still rejected (XTail
+intransitive Δ_pass −0.7 to −1.3 nats at every size). The models were all trained on the same
 data, so this fits a deficit that tracks training exposure more than
 model capacity.
 
@@ -953,7 +974,7 @@ fp32. TSUBAME job 9009081. Full table: `d10c_yesno.md`.
 |---|---|---|---|
 | Head | 0.499 [0.468, 0.530] **at chance** | 0.450 [0.420, 0.481] **below** | 0.398 [0.368, 0.428] **below** |
 | Tail | 0.512 [0.480, 0.544] **at chance** | 0.460 [0.428, 0.490] **below** | 0.474 [0.443, 0.505] unresolved |
-| XTail | 0.546 [0.516, 0.576] **above** | 0.537 [0.506, 0.568] **above** | 0.485 [0.454, 0.515] **at chance** |
+| XTail | 0.546 [0.516, 0.576] **above** | 0.537 [0.505, 0.568] **above** | 0.485 [0.454, 0.516] **at chance** |
 
 - **The readout says "Yes" to almost everything.** Yes > No for 97–100%
   of sentences in every model and band, good and bad alike. The mean
