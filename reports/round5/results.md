@@ -675,3 +675,40 @@ H100; TSUBAME job 9008724). Table and derivation: `d10_scaleup.md`.
 final) plus two path-patching frame sets costs about 3 GPU-hours. The same
 on 12B costs about 5. Both are feasible on gpu_1 nodes without code
 changes.
+
+## D10c. FreqBLiMP passive_1 Yes/No on 1.4B, 6.9B and 12B
+
+Task 4's Yes/No prompt on the released `passive_1` items (1,000 per band),
+fp32. TSUBAME job 9009081. Full table: `d10c_yesno.md`.
+
+| band | 1.4B | 6.9B | 12B |
+|---|---|---|---|
+| Head | 0.499 [0.468, 0.530] **at chance** | 0.450 [0.420, 0.481] **below** | 0.398 [0.368, 0.428] **below** |
+| Tail | 0.512 [0.480, 0.544] **at chance** | 0.460 [0.428, 0.490] **below** | 0.474 [0.443, 0.505] unresolved |
+| XTail | 0.546 [0.516, 0.576] **above** | 0.537 [0.506, 0.568] **above** | 0.485 [0.454, 0.515] **at chance** |
+
+- **The readout says "Yes" to almost everything.** Yes > No for 97–100%
+  of sentences in every model and band, good and bad alike. The mean
+  good − bad margin is at most 0.05 nats.
+- **Verb-specific shifts.** Per bad verb, accuracy ranges from 0.05 to
+  0.88, and the ranking changes between models. With the 20 Head bad
+  verbs resampled (descriptive, not declared), 12B's Head CI stays below
+  0.5 ([0.32, 0.47]). 1.4B's and 6.9B's Head CIs include 0.5.
+- **Model comparisons.** 12B is below 1.4B on Head (−0.10 [−0.14, −0.06])
+  and XTail (−0.06). 6.9B is below 1.4B on Head and Tail (−0.05).
+
+**Against the predictions.**
+- 1.4B Head about 55%: **missed** (practically at chance, 0.50).
+- 1.4B Tail and XTail at chance: **held for Tail, missed for XTail**
+  (0.55, above chance).
+- 6.9B and 12B above chance on Head (60–70%): **missed**. Both are below
+  chance.
+- Weaker on XTail: **missed**. XTail is the best band for 6.9B and 12B.
+
+**Reading.** Read this way, the base models do not judge these sentences:
+the prompt elicits "Yes" regardless. What separates good from bad items is
+a small verb-specific shift that larger models do not improve. So the
+Yes/No readout is not a usable second measure of the rare-verb deficit at
+any of these sizes. The LP contrast (A1) and the probe (A5) remain the
+measures. Task 4's 60.8% on curated Head contexts did not carry over to
+the released items.

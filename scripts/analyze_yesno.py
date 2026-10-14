@@ -53,6 +53,7 @@ def main(args):
     Mg = pd.DataFrame({m: D[m].yn_good - D[m].yn_bad for m in MODELS})
     band = base.band.to_numpy()
     verb = np.array([participle(g, b) for g, b in zip(base.sentence_good, base.sentence_bad)])
+    bverb = np.array([participle(b, g) for g, b in zip(base.sentence_good, base.sentence_bad)])
     rng = np.random.default_rng(args.seed)
     rows, draws = [], {}
     for b in BANDS:
@@ -64,9 +65,13 @@ def main(args):
         for _ in range(args.n_boot):
             pick = rng.choice(vs, len(vs))
             cl.append(np.concatenate([members[v] for v in pick]))
+        bvs = np.unique(bverb[idx])
+        bmembers = {v: idx[bverb[idx] == v] for v in bvs}
+        bcl = [np.concatenate([bmembers[v] for v in rng.choice(bvs, len(bvs))]) for _ in range(args.n_boot)]
         for m in MODELS:
             c = C[m].to_numpy()
             bi = c[idx][item].mean(1)
+            bb = np.array([c[x].mean() for x in bcl])
             bc = np.array([c[x].mean() for x in cl])
             draws[(m, b)] = bi
             lo95, hi95 = np.percentile(bi, [2.5, 97.5])
@@ -81,7 +86,10 @@ def main(args):
                          "margin": mg.mean(), "margin_lo": np.percentile(mg[item].mean(1), 2.5),
                          "margin_hi": np.percentile(mg[item].mean(1), 97.5),
                          "mass_good_median": float(np.median(D[m].mass_good.to_numpy()[idx])),
-                         "ties": int((c[idx] == 0.5).sum())})
+                         "ties": int((c[idx] == 0.5).sum()), "n_bad_verbs": len(bvs),
+                         "bcl_lo95": np.percentile(bb, 2.5), "bcl_hi95": np.percentile(bb, 97.5),
+                         "yes_good": float((D[m].yn_good.to_numpy()[idx] > 0).mean()),
+                         "yes_bad": float((D[m].yn_bad.to_numpy()[idx] > 0).mean())})
     S = pd.DataFrame(rows)
     S.to_csv(Path(args.res_dir) / "yesno_summary.csv", index=False)
     L = ["# Round 5, D10c: FreqBLiMP passive_1 Yes/No readout", "",
@@ -104,6 +112,12 @@ def main(args):
             est = S[(S.model == a) & (S.band == b)].acc.item() - S[(S.model == c) & (S.band == b)].acc.item()
             cells.append(f"{est:+.3f} [{np.percentile(dd, 2.5):+.3f}, {np.percentile(dd, 97.5):+.3f}]")
         L.append(f"| {b} | " + " | ".join(cells) + " |")
+    L += ["", "**Descriptive (not declared).** Share of sentences scored Yes > No, and the accuracy CI with the *bad* "
+          "participle's clusters resampled (Head has only 20 bad verbs):", "",
+          "| model | band | Yes > No: good / bad | bad verbs | bad-verb clusters, 95% CI |", "|---|---|---|---:|---|"]
+    for r in S.itertuples():
+        L.append(f"| {r.model} | {r.band} | {r.yes_good:.2f} / {r.yes_bad:.2f} | {r.n_bad_verbs} | "
+                 f"[{r.bcl_lo95:.3f}, {r.bcl_hi95:.3f}] |")
     L.append("")
     Path(args.report).write_text("\n".join(L) + "\n")
     print("\n".join(L))
