@@ -461,3 +461,161 @@ eligible, unresolved).
 1. Commit this part.
 2. One TSUBAME job each (fp32); B6 extends `run_path_patch_frames.py`.
 3. Analysis; report in `results.md`.
+
+
+# Part C8–C9: generalization robustness (declared 2026-10-14)
+
+Revised after an outside review (Codex) of the first draft, before any run.
+
+Builds on round-4 Part B (`../round4/plan.md`, B6 / B7; results
+`../round4/b_fillergap.md`): frames "I know that / what NAME V-ed"
+(embedded, B6) and "AUX NAME V" / "What AUX NAME V" (matrix, B7); 24
+contexts per experiment, halves A / B as round 4; the active-trained d_s at
+sites 4–17 with each verb's cross-fitted fold; readouts O, PREP, "." (B6) /
+"?" (B7), L = log P("." or "?") − log P(PREP) (PREP = summed probability
+of the 26-token set).
+
+## C8. Filler-gap with non-DAS verbs as the primary set
+
+**Why.** In round 4 the licensing-like crossover at site 8 weakened to
+"mixed" in the embedded experiment when only non-DAS verbs were bases; the
+matrix experiment kept it at 8 and was mixed at 6. That sensitivity changed
+only the bases: the in-range targets, the natural gaps behind the bounds and
+the "O against the T level" reference still pooled DAS verbs.
+
+**Verbs.** The round-4 lists (`data/round4/fillergap/verbs.csv`). DAS verbs
+= those in any DAS training pair. Counts (fixed inputs): non-DAS 97 T, kept
+I 28 (B6) / 34 (B7); DAS 9 T, kept I 11 / 11. The kept I lists stay round
+4's (half-A, per-verb gate; removing DAS verbs does not require
+re-selection); whether an fp32 I gate would keep the same verbs is reported.
+
+**Primary (non-DAS):** bases = kept non-DAS I verbs; natural gate (half B),
+in-range targets (t_T = mean projection of the non-DAS T verbs, t_I = mean
+of the kept non-DAS I verbs other than the base; same experiment, frame and
+context), the natural T − I gaps behind the bounds and the "O against the T
+level" reference all use non-DAS verbs only.
+
+**Secondary:**
+- *DAS-base sensitivity with pooled targets* (historical comparison with
+  round 4): DAS bases, targets / natural gaps / T reference from all verbs
+  outside the basis's DAS training pairs, as round 4. (A DAS-only target
+  pool would have only 1–3 eligible T verbs per fold, below round 4's
+  minimum of 5.)
+- *DAS bases with the non-DAS targets* (isolates the base population).
+- Round 4's other sensitivities: all I verbs, multi-token verbs only.
+
+**Frame strata**, reported separately at every site, readings at 6 and 8:
+matrix verb (B6: know, remember, forgot, heard) and auxiliary (B7: Did,
+Will, Can, Would). Primary within a stratum: its half-B contexts (3);
+secondary: all 6. Bounds and the T reference come from the stratum and the
+declared population.
+
+**Same as round 4:** frames, contexts, halves, readouts, donors, bounds,
+the RISE / FALL / NO RISE classes, the reading table, B7's per-site
+base-form gate, and the declared sites (6 and 8; others descriptive).
+
+**Runs** (fp32; round 4 ran in bf16, at a few seconds per site): (1) the
+natural pass (projections, readouts; gates analysed locally and committed);
+(2) only if a natural gate passes, both patch types for every kept I base at
+all eight sites, in-range with the non-DAS and the pooled targets.
+
+**Decision rules.** As round-4 B6 / B7. A failed natural gate → no patch
+reading for that experiment.
+
+**Predictions.**
+- Natural gates pass in both experiments.
+- In range: B7 **licensing-like** at 8; at 6 round 4's non-DAS-base run was
+  mixed, and the non-DAS targets make it licensing-like (new, low
+  confidence). B6 **mixed** at 6 and 8.
+- T − I donors: as round 4 (B6 surface, B7 mixed at 6–8).
+- Strata: heterogeneous as in round 4 ("Can" surface; "know" / "heard"
+  not licensing-like).
+
+## C9. Shared readers
+
+**Question.** In passives, D11's switch neurons in MLPs 11 and 14 respond to
+the verb class only after a passive auxiliary, and MLPs 11, 13, 14, 16, 17
+write the " by" switch. Do the same neurons or MLP locations read the verb
+class in the filler-gap frames? Two separate questions:
+- **class-reader recruitment:** do the neurons separate T from I in the
+  "what" frame?
+- **filler-conditioned recruitment** (the analogue of D11's was − has
+  interaction): do they separate them more with the filler than without?
+
+**Items.** C8's primary verbs and contexts (both experiments, both frames);
+half B primary, all 24 contexts secondary. Passive reference: the B7
+passive items (64 primary pairs, "The N was V"). Readouts at the verb's last
+token, fp32; inference conditions on the in-range targets.
+
+**(a) Switch neurons** (top 50 primary, top 10 secondary; fixed ranks of
+`conjunction_switch_neurons.csv`; sign s_n = sign(I_A)):
+- A = mean over neurons of s_n × (T − I activation difference), averaged
+  over verbs and contexts first. Natural: T − I verbs in each filler-gap
+  frame; good − bad in passives.
+- In-range: D_in(A) = A at t_T − A at t_I on the I bases (site 8; C8's
+  non-DAS targets in filler-gap; round-4 A2 targets on the bad passives).
+- Ratios: ρ_nat = A_fg,what(natural) / A_pass(natural), ρ_in =
+  D_in(A)_fg,what / D_in(A)_pass (like with like); numerator and
+  denominator re-drawn in every bootstrap draw. Denominator gate: the
+  passive A has a 95% CI above 0 (else unresolved).
+- Also: the coordinate steps (t_T − t_I, in z units) in both constructions;
+  per-neuron sign agreement (the share of the 50 whose filler-gap what-frame
+  difference has the sign of their passive difference); the cosine between
+  the 50-dimensional passive and filler-gap difference vectors.
+- Filler conditioning: the natural interaction A_what − A_that and the
+  patched interaction D_in(A)_what − D_in(A)_that.
+
+**(b) Writer locations.** For a construction, readout vector r and the
+in-range patch (t_I = reference, t_T = patched): DE_m = r·(m_T − m_I) / σ_T
+for every MLP and attention layer in 8–23, the site-8 carry, and the
+LN-scale term r·x_I (1/σ_T − 1/σ_I), with the residual reported. Readouts:
+passive, the centered " by" logit; filler-gap, the linear L̃ = z_q −
+mean_PREP z_p. L̃ is not L (L uses logsumexp over PREP): the agreement of
+D_in(L̃) with D_in(L) and the correction D[lse(z_PREP) − mean(z_PREP)] are
+reported, and the writer comparison is made only if |correction| < 0.25 ×
+|D_in(L̃)|.
+- Profiles: p_m = max(DE_m, 0) / Σ_m max(DE_m, 0) over the MLPs 8–23 (positive
+  contributions toward the construction's change); the cancelling negative
+  total is reported. Overlap O = Σ_m min(p_m^pass, p_m^fg) ∈ [0, 1].
+- Magnitude gate: in each construction, Σ_m max(DE_m, 0) ≥ 0.2 logits with
+  a 95% CI above 0.
+
+**Decision rules** (half B; per experiment, then combined).
+- **(a) Class-reader recruitment:** **shared** if ρ_nat and ρ_in are both
+  ≥ 0.5 with 95% CIs above 0 in both experiments; **small relative to
+  passives** if both have 90% CIs within ±0.25; **reversed** if either has a
+  95% CI below 0; otherwise **intermediate / imprecise** (reported with
+  which ratio and experiment). Top 10 is a sensitivity; a conflict with top
+  50 is reported, not combined.
+- **Filler-conditioned recruitment:** the patched interaction D_in(A)_what −
+  D_in(A)_that has a 95% CI above 0 in both experiments. A null
+  interaction does not negate class-reader recruitment.
+- **(b) Writer locations:** **shared dominant locations** if O ≥ 0.5 with
+  a 95% CI lower bound ≥ 0.35 in both experiments; **different dominant
+  locations** if O's 95% CI upper bound ≤ 0.35 in both; otherwise
+  unresolved. Top-5 MLP overlap with bootstrap selection frequencies is
+  descriptive. This is about MLP layers, not about the same neurons.
+- These test recruitment and location, not mediation (no neuron
+  intervention in filler-gap frames).
+
+**Predictions.**
+- Switch neurons: they separate T from I in the filler-gap frames, but less
+  than in passives (ρ_nat and ρ_in ≈ 0.25–0.5): **intermediate**. Filler
+  conditioning: **no** (D11's neurons are conditioned on the passive
+  auxiliary; the filler-gap frames are active).
+- Writers: passive writers are mid MLPs (11–17); filler-gap writers
+  include late MLPs (18–23): O ≈ 0.3, **unresolved** or **different**.
+- If so, the reading is an early shared value (d) read by largely
+  construction-specific translation; the plan does not claim more than
+  recruitment and location.
+
+The optional DAS on the filler-gap contrast (tested on passives) is not
+part of this declaration; if it is run, it is declared separately first.
+
+## Order (C8–C9)
+
+1. Commit this part.
+2. C8 natural pass (fp32); gates analysed and committed.
+3. C8 patches and C9 captures (fp32), only for experiments whose natural
+   gate passes.
+4. Analysis; report in `results.md`.
