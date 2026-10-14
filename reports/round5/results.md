@@ -7,12 +7,14 @@ after code review `32feb71`, bf16 clarification `21671df`; B5–B6:
 - 0: `../results_index.md`;
 - A1–A2: `a1_frame.md`, `a2_decomposition.md`;
 - B5–B6: `b5_necessity.md`, `b6_serial.md`;
-- C8–C9: `c8_fillergap_gates.md`, `c8_fillergap.md`, `c9_shared_readers.md`.
+- C8–C9: `c8_fillergap_gates.md`, `c8_fillergap.md`, `c9_shared_readers.md`;
+- B7: `b7_wild.md`;
+- D: `d10_scaleup.md`.
 
 TSUBAME jobs: 9007119 (A1–A2), 9007211 (curated `passive_1` rescored in
 fp32), 9007340 (B5; earlier attempts 9007281 and 9007322 stopped at the
 self-patch check, see below), 9007282 (B6), 9007314 (C8 natural pass),
-9007336 (C8 patches), 9008384 (C9).
+9007336 (C8 patches), 9008384 (C9), 9008705 (B7), 9008724 (D10).
 
 ## Summary
 
@@ -67,6 +69,17 @@ self-patch check, see below), 9007282 (B6), 9007314 (C8 natural pass),
   intransitive verbs in wh questions, and only when the filler is present.
   They read the verb class whenever the object position is empty (passive
   or wh gap); they are not passive-specific.
+- **B7, the switch neurons in natural text.** The top three neurons'
+  strongest Pile contexts, labelled blind by Claude and Codex (κ = 1.00):
+  - MLP11.n3462 (rank 1) fires on transitive verbs with a missing object:
+    object relatives and infinitival relatives (0.78), reduced passives
+    (0.23);
+  - MLP14.n2114 and MLP14.n5407 fire on passive participles (0.85, 0.97),
+    mostly followed by " by" (0.53, 0.78 of the top 100).
+  The rank-1 neuron's gap reading matches C9.
+- **D10, scale-up.** 6.9B and 12B fit on one H100 in fp32 at round-2 batch
+  sizes. A round-2-style DAS replication plus path patching costs about 3
+  GPU-hours on 6.9B and 5 on 12B.
 
 # Part A1–A2
 
@@ -625,3 +638,40 @@ not a causal test.
 - **Token text.** 462 tokens contain a carriage return. They are written
   as "␍" in `b7_top_contexts.csv` so the CSV parses. The annotation items
   contain none, and their hash is unchanged.
+
+# Part D
+
+## D10. Scale-up feasibility (6.9B, 12B)
+
+Timing only, with random bases and discarded updates (fp32, TF32 off, one
+H100; TSUBAME job 9008724). Table and derivation: `d10_scaleup.md`.
+
+| model | weights | DAS step / eval batch | DAS peak | path-patch batch (short / long) | path-patch peak |
+|---|---:|---|---:|---|---:|
+| 1.4B | 5.3 GiB | 0.057 / 0.19 s | 6.4 GiB | 0.41 / 0.46 s | 7.6 GiB |
+| 6.9B | 25.5 GiB | 0.225 / 0.76 s | 27.5 GiB | 2.30 / 2.42 s | 37.0 GiB |
+| 12B | 44.1 GiB | 0.360 / 1.33 s | 46.9 GiB | 4.39 / 4.63 s | 62.3 GiB |
+
+- Everything fits on one GPU in fp32 at the round-2 batch sizes (64 for
+  training, 512 for evaluation). No out-of-memory fallback was needed.
+- **Per run** (round-2 settings: 31 steps and 2 evaluation batches per fit,
+  15 fits):
+  - one DAS run takes 2.1 min on 6.9B and 3.5 min on 12B;
+  - a full round-2 final stage (3 ranks, 100 random bases × 2, shuffled
+    labels) takes 1.4 h and 2.5 h;
+  - an 8-site sweep takes 45 min and 1.2 h.
+- **Path patching** (round 4's 11,657 rows, three frames): 14–19 min on
+  6.9B and 28–42 min on 12B. The upper end scales for the deeper flagged
+  layers at matched depth.
+- **Calibration** on 1.4B:
+  - the path-patching estimate (159 s) matches round 4's actual runs
+    (164–180 s);
+  - the DAS model gives 42 min for round 2's final job, which took 38 min.
+- **Site plan** (matched relative depth):
+  - 6.9B: 5, 8, 11, 13, 16, 19, 21, 23;
+  - 12B: 6, 9, 12, 15, 18, 21, 24, 26.
+
+**Reading.** A 6.9B replication of the round-2 DAS pipeline (sweep and
+final) plus two path-patching frame sets costs about 3 GPU-hours. The same
+on 12B costs about 5. Both are feasible on gpu_1 nodes without code
+changes.
