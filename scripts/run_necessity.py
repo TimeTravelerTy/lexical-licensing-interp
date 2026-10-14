@@ -12,8 +12,9 @@ Frames (token ids, as run_path_patch_frames.py): "The N has been V" (hasbeen, pr
 3. On the B7 items' good prompts (32 contexts per pair, seed 17), one at a time: d_I, d_T (site-8 coordinate set),
    n10_I, n50_I, n50_T, r10_k, r50_k (k = 1..5), w50 (neurons set), c10, c50 (both); and the equalized coordinate
    (good and bad prompts with the coordinate set to (t_T + t_I) / 2), capturing the top-50 activations.
-Checks: own natural values as targets reproduce the natural readouts; patched entries equal their targets and
-nothing else in the hooked tensor changes at that hook.
+Checks: own natural values as targets reproduce the unpatched readouts of the same batch (the natural pass runs in
+other batches, so it differs by fp32 batch noise, reported); patched entries equal their targets and nothing else in
+the hooked tensor changes at that hook. Each intervention's baseline is the same batch's unpatched run (nat_*).
 
 Outputs (--out-dir): necessity_natural.parquet, necessity_rows.parquet, necessity_neurons.csv, necessity_meta.json.
 """
@@ -298,6 +299,12 @@ def run(args):
             dB = D[torch.as_tensor(prim.fold.to_numpy()[b], device=dev)]
             seqs_g = [ids["good"][f][j] for j in b]
             rec = {"item_id": prim.item_id.to_numpy()[b], "frame": f}
+            # unpatched readouts of this very batch: the baseline for every intervention (same padding / batch)
+            rd0, _, _ = P.run(seqs_g)
+            for k in READ:
+                rec[f"nat_{k}"] = rd0[k].double().cpu().numpy()
+            noise = max(float(np.abs(rec[f"nat_{k}"] - nat[(f, "good")][k][b]).max()) for k in READ)
+            meta["checks"]["batch_noise_vs_natural_pass"] = max(meta["checks"].get("batch_noise_vs_natural_pass", 0.0), noise)
             for cname, tc, ns, ak in conds:
                 ver = {}
                 tcoord = torch.as_tensor(T[tc][b], dtype=torch.float32, device=dev) if tc else None
@@ -311,7 +318,7 @@ def run(args):
             own = torch.as_tensor(proj[(f, "good")][b, prim.fold.to_numpy()[b]], dtype=torch.float32, device=dev)
             owna = torch.as_tensor(acts[(f, "good")][b], dtype=torch.float32, device=dev)
             rd, _, _ = P.run(seqs_g, d=dB, tcoord=own, nset="top50", ntgt=owna)
-            err = max(float(np.abs(rd[k].double().cpu().numpy() - nat[(f, "good")][k][b]).max()) for k in READ)
+            err = max(float(np.abs(rd[k].double().cpu().numpy() - rec[f"nat_{k}"]).max()) for k in READ)
             meta["checks"]["self_patch_max_abs"] = max(meta["checks"].get("self_patch_max_abs", 0.0), err)
             # equalized coordinate: good and bad both at (tT + tI) / 2; capture top-50 activations
             tmid = torch.as_tensor((T["tT"][b] + T["tI"][b]) / 2, dtype=torch.float32, device=dev)

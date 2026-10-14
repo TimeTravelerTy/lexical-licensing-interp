@@ -96,7 +96,7 @@ def main(args):
                       "| Condition | Δ by (nats) | share removed | Δ O | Δ \".\" | Δ PREP\\by |", "|---|---|---|---|---|---|"]
             share, dby = {}, {}
             for c in CONDS:
-                delta = {k: mean(r[f"{c}_{k}"].to_numpy() - good[k].to_numpy()) for k in READ}
+                delta = {k: mean(r[f"{c}_{k}"].to_numpy() - r[f"nat_{k}"].to_numpy()) for k in READ}
                 dby[c] = delta["by"]
                 share[c] = -delta["by"] / gap["by"]
                 lines.append(f"| {c} | {fmt(delta['by'])} | {fmt(share[c])} | {fmt(delta['O'])} | {fmt(delta['dot'])} | "
