@@ -12,6 +12,10 @@ before its runs. Read the plan, then its results file.
 | DAS round 2 | Rank-1 "object next" direction on actives; passive test (sites 8, 12, 17); controls; site-8 mechanism | `passive_das_prep/round2.md`, `passive_das_prep/passive_test_plan.md`, `passive_das_prep/followup_plan.md` | `passive_das_prep/das_round2_results*.md`, `passive_test_results*.md`, `site8_mechanism_results.md`, `followup_results.md`, `frequency_results.md` |
 | Round 3 | Reliability, late projection, dose decomposition; reverse DAS, get-passives, path patching; nonce verbs, gap constructions | `passive_das_prep/round3_plan.md` | `passive_das_prep/round3_results.md` (generated: `round3_*.md`) |
 | Round 4 | Confirm current claims; filler-gap test; nonce cues; translation stage; restoration | `round4/plan.md` | `round4/results.md` (generated: `round4/*.md`) |
+| Round 5 | Locate the rare-verb deficit (prediction side); finish mechanism tests; generalization; scale-up prep | `round5/plan.md` | `round5/results.md` (generated: `round5/*.md`) |
+
+`results_index.md` lists every experiment of rounds 1–4 with its key number, declared
+outcome, report and figure, tagged main / appendix / drop (suggestions for the paper).
 
 Outputs live under `../results/` (round 2–3: `das_round2/`; round 4:
 `round4/`); regenerable inputs under `../data/`. Large raw dumps are
