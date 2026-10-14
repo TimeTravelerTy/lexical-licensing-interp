@@ -1,0 +1,32 @@
+{
+ "inputs": {
+  "gutenberg-dpo.parquet": "baea3410e4c132fc8abb58d6228081612ca2799c24f49839c53c78fc2fb362ed",
+  "test-00000-of-00001.parquet": "5f1bea067869d04849c0f975a2b29c4ff47d867f484f5010ea5e861eab246d91",
+  "validation-00000-of-00001.parquet": "204929b7ff9d6184953f867dedb860e40aa69c078fc1e54b3baaa8fb28511c4c"
+ },
+ "n_pairs": 49633,
+ "by_source": {
+  "gutenberg": 34615,
+  "wikitext": 15018
+ },
+ "by_ptype": {
+  "insertion": 16583,
+  "shuffle": 16582,
+  "deletion": 16468
+ },
+ "dev_share": {
+  "split0": 0.2143130578445792,
+  "split1": 0.22807406362702234,
+  "split2": 0.22074023331251386
+ },
+ "n_docs": {
+  "gutenberg": 16,
+  "wikitext": 121
+ },
+ "vocab": 45593,
+ "candidates": {
+  "gutenberg": 57131,
+  "wikitext": 15069
+ },
+ "pairs_sha256": "307ce7e9550b32b873fe5691ac41bb14a939f2f776f039cb1e3b165ebffdcd7e"
+}
