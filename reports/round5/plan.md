@@ -698,6 +698,19 @@ Zipf) = −0.58; the new question is what slot counts add.)
 If the counts cannot be obtained (API failure), A3 is reported as not run,
 with what it would need.
 
+**Pre-analysis clarification (A3, 2026-10-14, while the counts were being
+collected, before any analysis).** The infini-gram API throttles a client
+after a few hundred requests. The full query set (16 queries per verb for
+962 verbs) was therefore cut, with no count looked at:
+- the 252 curated verbs (primary) keep exact single-sequence counts for
+  every auxiliary;
+- the capitalized-auxiliary sensitivity uses one OR query per curated verb;
+- pool verbs (secondary) use one OR query per slot.
+The API flags OR (CNF) counts as approximate; in a test, "was insured OR
+were insured" gave 52,084 against an exact sum of 52,085. OR counts are not
+audited for token boundaries, and the per-auxiliary (was + been)
+sensitivity is curated-only.
+
 ## A4. Output-side restoration on single-token rare participles
 
 A2's gate was met. Every rare single-token participle is Tail, and no XTail

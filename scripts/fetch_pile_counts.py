@@ -26,20 +26,21 @@ BE = ("was", "were", "been", "is", "are", "be")
 PERF = ("has", "have", "had")
 
 
-def count(index, query, tries=8):
+def count(index, query, tries=40):
     body = json.dumps({"index": index, "query_type": "count", "query": query}).encode()
     for t in range(tries):
         try:
             req = urllib.request.Request(API, data=body, headers={"Content-Type": "application/json"})
             with urllib.request.urlopen(req, timeout=60) as r:
                 d = json.loads(r.read())
-            if "error" in d:
-                raise RuntimeError(d["error"])
+            if "error" in d or "message" in d:
+                raise RuntimeError(d.get("error") or d.get("message"))
+            flat = lambda x: x if isinstance(x, str) else " ".join(map(str, x)) if not any(isinstance(y, list) for y in x) else json.dumps(x)
             return {"query": query, "count": int(d["count"]), "approx": bool(d.get("approx", False)),
-                    "token_ids": " ".join(map(str, d.get("token_ids", []))), "tokens": "|".join(d.get("tokens", []))}
+                    "token_ids": flat(d.get("token_ids", [])), "tokens": json.dumps(d.get("tokens", []))}
         except Exception as e:  # noqa: BLE001
             err = str(e)
-            time.sleep(min(2 ** t, 120))
+            time.sleep(300 if "Forbidden" in err else min(2 ** t, 60))  # throttled: wait it out
     return {"query": query, "count": None, "approx": None, "token_ids": "", "tokens": "", "error": err}
 
 
@@ -48,11 +49,14 @@ def main(args):
     queries = []
     for v, cur in zip(V.verb, V.curated):
         queries.append((v, "overall", v))
-        queries += [(v, f"be_{x}", f"{x} {v}") for x in BE]
-        queries += [(v, f"perf_{x}", f"{x} {v}") for x in PERF]
-        if cur == 1:  # sensitivity (curated verbs only): capitalized auxiliaries
-            queries += [(v, f"capbe_{x}", f"{x.capitalize()} {v}") for x in BE]
-            queries += [(v, f"capperf_{x}", f"{x.capitalize()} {v}") for x in PERF]
+        if cur == 1:  # curated (primary): exact single-sequence counts per auxiliary
+            queries += [(v, f"be_{x}", f"{x} {v}") for x in BE]
+            queries += [(v, f"perf_{x}", f"{x} {v}") for x in PERF]
+            # capitalized auxiliaries (sensitivity): one OR query (infini-gram flags CNF counts as approximate)
+            queries.append((v, "capbe_or", " OR ".join(f"{x.capitalize()} {v}" for x in BE)))
+        else:  # pool (secondary): slot sums as OR queries (approximate)
+            queries.append((v, "be_or", " OR ".join(f"{x} {v}" for x in BE)))
+            queries.append((v, "perf_or", " OR ".join(f"{x} {v}" for x in PERF)))
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     part = out / "pile_counts.partial.jsonl"

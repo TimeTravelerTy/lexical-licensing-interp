@@ -76,17 +76,22 @@ def main(args):
     pre = pd.read_csv(args.data_dir / "prefixes.csv", keep_default_na=False)
     S = pd.read_parquet(args.frame)
     assert C["count"].notna().all(), f"{C['count'].isna().sum()} failed queries"
-    # audit: every slot query's token ids end with the overall query's ids
+    # audit: every exact slot query's token ids end with the overall query's ids (OR queries are not audited)
     ov = C[C.slot == "overall"].set_index("verb").token_ids
-    C["suffix_ok"] = [str(t).split()[-len(str(ov[v]).split()):] == str(ov[v]).split() for v, t in zip(C.verb, C.token_ids)]
+    simple = ~C.slot.str.endswith("_or")
+    C["suffix_ok"] = True
+    C.loc[simple, "suffix_ok"] = [str(t).split()[-len(str(ov[v]).split()):] == str(ov[v]).split()
+                                  for v, t in zip(C.verb[simple], C.token_ids[simple])]
     bad = sorted(set(C[~C.suffix_ok].verb))
     W = C.pivot_table(index="verb", columns="slot", values="count", aggfunc="first")
     W["c"] = W["overall"]
-    W["c_be"] = W[[f"be_{x}" for x in BE]].sum(1)
-    W["c_perf"] = W[[f"perf_{x}" for x in PERF]].sum(1)
-    W["c_be_cap"] = W["c_be"] + W[[f"capbe_{x}" for x in BE]].sum(1, min_count=len(BE))  # curated verbs only
-    W["c_be_wasbeen"] = W["be_was"] + W["be_been"]
-    V = V.join(W[["c", "c_be", "c_perf", "c_be_cap", "c_be_wasbeen"] + [f"be_{x}" for x in BE]], on="verb")
+    exact_be = W[[f"be_{x}" for x in BE]].sum(1, min_count=len(BE))
+    exact_perf = W[[f"perf_{x}" for x in PERF]].sum(1, min_count=len(PERF))
+    W["c_be"] = exact_be.fillna(W["be_or"])  # curated: exact sum; pool: OR count (approximate)
+    W["c_perf"] = exact_perf.fillna(W["perf_or"])
+    W["c_be_cap"] = W["c_be"] + W["capbe_or"]  # curated verbs only (NaN for pool)
+    W["c_be_wasbeen"] = W["be_was"] + W["be_been"]  # curated verbs only
+    V = V.join(W[["c", "c_be", "c_perf", "c_be_cap", "c_be_wasbeen"]], on="verb")
     V = V[~V.verb.isin(bad)].reset_index(drop=True)
     V["bandkey"] = V.band.str.split("|").str[0]
     # outcome: Delta_pass per verb x freq context
@@ -139,7 +144,8 @@ def main(args):
                     if sm == 0.5:
                         res["cap"][b] = (cv_mse(design(df, ["logc", "logcbe_cap"]), y[b], w, groups, args.folds)
                                          if pop == "curated" else np.nan)
-                        res["wb"][b] = cv_mse(design(df, ["logc", "logcbe_wb"]), y[b], w, groups, args.folds)
+                        res["wb"][b] = (cv_mse(design(df, ["logc", "logcbe_wb"]), y[b], w, groups, args.folds)
+                                        if pop == "curated" else np.nan)
                         for k, col in (("Zipf", "zipf"), ("logc", "logc"), ("logcbe", "logcbe"), ("rho", "rho")):
                             x = df[col].to_numpy(float)
                             rs[k][b] = np.corrcoef(np.repeat(x, w.astype(int)), np.repeat(y[b], w.astype(int)))[0, 1]
