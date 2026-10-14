@@ -79,6 +79,24 @@ def main(args):
     ppa = pd.read_parquet(rdir / "sr_patch_pass.parquet")
     acols = [f"a{j}" for j in range(len(rank))]
     rng = np.random.default_rng(args.seed)
+    gates = json.loads((Path(args.fg_results) / "gates_r5.json").read_text())
+    assert all(gates[e]["passes"] for e in ("emb", "mat")), "C9 needs both C8 natural gates to pass"
+    # z scale of the split-0 site-8 bases (as analyze_nonce_passive.z_table), from the C8 fp32 projections
+    fp = pd.read_csv(Path(args.fg_data) / "prompts.csv")
+    pz = np.load(Path(args.fg_results) / "projections.npz")
+    das = pd.read_csv(Path(args.root) / "final_strict" / "items.csv")
+    pfo = pd.read_csv(Path(args.root) / "final_strict" / "pairs_folds.csv")
+    das = das.assign(pid=das.prompt.map(dict(zip(fp.prompt, fp.pid))))
+    assert das.pid.notna().all()
+    si = list(pz["sites"]).index(8)
+    zsc = {}
+    for f_ in range(5):
+        j = [str(k) for k in pz["keys"]].index(f"s0_f{f_}")
+        xd = pz["proj"][das.pid.astype(int).to_numpy(), si, j]
+        fo = das.pair_id.map(dict(zip(pfo.pair_id, pfo.fold_split0))).to_numpy()
+        tr, te, c = (fo != f_) & (das.subject != "David").to_numpy(), fo == f_, das.cls.to_numpy()
+        sgn_ = np.sign(xd[tr & (c == 1)].mean() - xd[tr & (c == 0)].mean())
+        zsc[f_] = (sgn_, (sgn_ * xd[te & (c == 1)]).mean() - (sgn_ * xd[te & (c == 0)]).mean())
     lines = ["# Round 5, C9: shared readers", "",
              "Spec: `plan.md`, C9. Run: `run_shared_readers.py`; analysis: `analyze_shared_readers.py`. A = mean over the "
              "switch neurons of sign(I_A) × activation difference (T − I in filler-gap; good − bad in passives); D_in = at "
@@ -132,9 +150,10 @@ def main(args):
                     aT = (ef[ef.lemma.isin(Tset)][acols].to_numpy()[:, sm] * sgn[sm]).mean(1)
                     aI = (ef[ef.lemma.isin(Iset)][acols].to_numpy()[:, sm] * sgn[sm]).mean(1)
                     nat[(frame, sname)] = VT.mean(aT) - VI.mean(aI)
-                vT = ef[ef.lemma.isin(Tset)][acols].to_numpy().mean(0) if frame == "fill" else None
                 if frame == "fill":
-                    vI = ef[ef.lemma.isin(Iset)][acols].to_numpy().mean(0)
+                    ec = ef[ef.context_id.isin(ctxs)]
+                    vT = ec[ec.lemma.isin(Tset)][acols].to_numpy().mean(0)
+                    vI = ec[ec.lemma.isin(Iset)][acols].to_numpy().mean(0)
                     fvec = (vT - vI) * sgn
             pf = pfg[(pfg.exp == exp) & pfg.lemma.isin(Iset) & pfg.context_id.isin(ctxs)]
             din = {}
@@ -168,11 +187,11 @@ def main(args):
                                  "lo": ci(v)[0], "hi": ci(v)[1]})
             agree = float(np.mean(np.sign(fvec) == np.sign(pvec_nat)))
             cos = float(fvec @ pvec_nat / (np.linalg.norm(fvec) * np.linalg.norm(pvec_nat)))
-            step_fg = float((pf.tT - pf.tI).abs().mean())
-            step_p = float((ppa.tT - ppa.tI).abs().mean())
+            step_fg = float(np.mean([zsc[int(f_)][0] * (a_ - b_) / zsc[int(f_)][1] for f_, a_, b_ in zip(pf.fold, pf.tT, pf.tI)]))
+            step_p = float(np.mean([zsc[int(f_)][0] * (a_ - b_) / zsc[int(f_)][1] for f_, a_, b_ in zip(ppa.fold, ppa.tT, ppa.tI)]))
             lines += ["", f"Per-neuron sign agreement (what-frame natural T − I vs passive good − bad, top 50): {agree:.2f}; "
-                          f"cosine of the 50-dim difference vectors {cos:+.2f}. Coordinate steps |t_T − t_I| (raw): filler-gap "
-                          f"{step_fg:.2f}, passive {step_p:.2f}.", ""]
+                          f"cosine of the 50-dim difference vectors {cos:+.2f}. Coordinate steps t_T − t_I: filler-gap "
+                          f"{step_fg:.2f}, passive {step_p:.2f} (signed z units: 0 = active intransitive, 1 = transitive level).", ""]
             # (b) writers: what frame, in-range decomposition
             q = qfill
             Vd = Vfill
@@ -191,25 +210,44 @@ def main(args):
             gate_f = posf.sum(1)[0] >= 0.2 and ci(posf.sum(1))[0] > 0
             gate_p = posp.sum(1)[0] >= 0.2 and ci(posp.sum(1))[0] > 0
             topf = np.argsort(-DEf[1:], 1)[:, :5]
+            topp = np.argsort(-DEp[1:], 1)[:, :5]
             freq = {LAYERS[j]: float(np.mean((topf == j).any(1))) for j in range(len(LAYERS))}
+            freqp = {LAYERS[j]: float(np.mean((topp == j).any(1))) for j in range(len(LAYERS))}
+            t5f = set(np.argsort(-DEf[0])[:5]); t5p = set(np.argsort(-DEp[0])[:5])
+            ov5 = np.array([len(set(a_) & set(b_)) for a_, b_ in zip(topf, topp)])
             lines += [f"Writers (what frame, in-range): D_in(L) {fmt(dL)}; D_in(L̃) {fmt(dLt)}; PREP lse − mean correction "
                       f"{fmt(corr)} → writer comparison {'made' if comp_ok else 'NOT made (correction ≥ 0.25 |D_in(L̃)|)'}. "
                       f"Carry {fmt(Vd.mean(q.carry.to_numpy()))}; LN term {fmt(Vd.mean(q.ln.to_numpy()))}; residual max "
                       f"{float(np.abs(q.resid).max()):.1e}.", "",
-                      "| layer | MLP DE: filler-gap L̃ | MLP DE: passive by | attn DE: filler-gap | attn DE: passive | top-5 frequency (fg) |",
+                      "| layer | MLP DE: filler-gap L̃ | MLP DE: passive by | attn DE: filler-gap | attn DE: passive | top-5 frequency (fg / passive) |",
                       "|---:|---|---|---|---|---:|"]
             for j, l in enumerate(LAYERS):
-                lines.append(f"| {l} | {fmt(DEf[:, j])} | {fmt(DEp[:, j])} | {fmt(ATf[:, j])} | {fmt(ATp[:, j])} | {freq[l]:.2f} |")
+                lines.append(f"| {l} | {fmt(DEf[:, j])} | {fmt(DEp[:, j])} | {fmt(ATf[:, j])} | {fmt(ATp[:, j])} | {freq[l]:.2f} / {freqp[l]:.2f} |")
             lines += ["", f"Positive MLP totals: filler-gap {fmt(posf.sum(1))} (negative {fmt(np.clip(DEf, None, 0).sum(1))}); "
                           f"passive {fmt(posp.sum(1))} (negative {fmt(np.clip(DEp, None, 0).sum(1))}). Magnitude gate: filler-gap "
-                          f"{'passes' if gate_f else 'fails'}, passive {'passes' if gate_p else 'fails'}. Profile overlap O {fmt(O)}.", ""]
+                          f"{'passes' if gate_f else 'fails'}, passive {'passes' if gate_p else 'fails'}. Profile overlap O {fmt(O)}. Top-5 MLPs (point): filler-gap {sorted(LAYERS[j] for j in t5f)}, passive {sorted(LAYERS[j] for j in t5p)}; overlap {len(t5f & t5p)} of 5 (bootstrap mean {ov5.mean():.1f}).", ""]
             out["writers"] = {"O": O, "comp_ok": bool(comp_ok), "gates": bool(gate_f and gate_p)}
             rows.append({"exp": exp, "contexts": cxl, "set": "-", "quantity": "overlap_O", "est": O[0], "lo": ci(O)[0], "hi": ci(O)[1]})
             dec[key] = out
     # decisions (half B, both experiments)
     D = {}
+
+    def cls1(r):
+        if not r["ref_ok"]:
+            return "unresolved (passive reference not above 0)"
+        if all(r[k][0] >= 0.5 and ci(r[k])[0] > 0 for k in ("rho_nat", "rho_in")):
+            return "shared"
+        if all(-0.25 < ci(r[k], 5, 95)[0] and ci(r[k], 5, 95)[1] < 0.25 for k in ("rho_nat", "rho_in")):
+            return "small relative to passives"
+        if any(ci(r[k])[1] < 0 for k in ("rho_nat", "rho_in")):
+            return "reversed"
+        return "intermediate / imprecise (" + ", ".join(f"{k} {r[k][0]:+.2f} [{ci(r[k])[0]:+.2f}, {ci(r[k])[1]:+.2f}]"
+                                                          for k in ("rho_nat", "rho_in")) + ")"
+
     for sname in ("top50", "top10"):
         rr = [dec[f"{e} | half B"][sname] for e in ("emb", "mat")]
+        D[f"{sname}_filler_conditioned"] = all(ci(r["patched_inter"])[0] > 0 for r in rr)
+        D[f"{sname}_per_experiment"] = {e: cls1(r) for e, r in zip(("emb", "mat"), rr)}
         if not all(r["ref_ok"] for r in rr):
             D[sname] = "unresolved (passive reference not above 0)"
             continue
@@ -217,8 +255,9 @@ def main(args):
         small = all(-0.25 < ci(r[k], 5, 95)[0] and ci(r[k], 5, 95)[1] < 0.25 for r in rr for k in ("rho_nat", "rho_in"))
         rev = any(ci(r[k])[1] < 0 for r in rr for k in ("rho_nat", "rho_in"))
         D[sname] = "shared" if shared else "small relative to passives" if small else "reversed" if rev else "intermediate / imprecise"
-        D[f"{sname}_filler_conditioned"] = all(ci(r["patched_inter"])[0] > 0 for r in rr)
     ww = [dec[f"{e} | half B"]["writers"] for e in ("emb", "mat")]
+    D["writers_per_experiment"] = {e: f"O {w['O'][0]:.2f} [{ci(w['O'])[0]:.2f}, {ci(w['O'])[1]:.2f}]; correction ok {w['comp_ok']}; gates {w['gates']}"
+                                   for e, w in zip(("emb", "mat"), ww)}
     if not all(w["comp_ok"] and w["gates"] for w in ww):
         D["writers"] = "unresolved (correction or magnitude gate)"
     elif all(w["O"][0] >= 0.5 and ci(w["O"])[0] >= 0.35 for w in ww):
@@ -228,10 +267,11 @@ def main(args):
     else:
         D["writers"] = "unresolved"
     lines += ["## Declared decisions (half B, both experiments)", "",
-              f"- Class-reader recruitment (top 50): **{D['top50']}**; top 10 (sensitivity): {D['top10']}.",
+              f"- Class-reader recruitment (top 50): **{D['top50']}** (per experiment: {D['top50_per_experiment']}); "
+              f"top 10 (sensitivity): {D['top10']} ({D['top10_per_experiment']}).",
               f"- Filler-conditioned recruitment (patched what − that, CI above 0 in both): top 50 "
               f"**{D.get('top50_filler_conditioned')}**; top 10 {D.get('top10_filler_conditioned')}.",
-              f"- Writer locations: **{D['writers']}**.", ""]
+              f"- Writer locations: **{D['writers']}** ({D['writers_per_experiment']}).", ""]
     Path(args.report_dir).mkdir(parents=True, exist_ok=True)
     (Path(args.report_dir) / "c9_shared_readers.md").write_text("\n".join(lines) + "\n")
     pd.DataFrame(rows).to_csv(rdir / "c9_summary.csv", index=False)
@@ -243,6 +283,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--res-dir", default="results/round5/shared")
     ap.add_argument("--fg-data", default="data/round4/fillergap")
+    ap.add_argument("--fg-results", default="results/round5/fillergap")
+    ap.add_argument("--root", default="results/das_round2")
     ap.add_argument("--report-dir", default="reports/round5")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)

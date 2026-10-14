@@ -235,9 +235,10 @@ def run(args):
             outs.append(pd.DataFrame(rec))
         return pd.concat(outs, ignore_index=True)
 
-    # filler-gap: split-0 in-range rows of the C8 plans, non-DAS targets
+    # filler-gap: split-0 in-range rows of the C8 plans, non-DAS targets (only experiments whose C8 gate passed)
+    gates = json.loads((Path(args.fg_results) / "gates_r5.json").read_text())
     fg_out = []
-    for exp in ("emb", "mat"):
+    for exp in [e for e in ("emb", "mat") if gates[e]["passes"]]:
         plan = pd.read_csv(fdir / f"plan_{exp}.csv.gz")
         tg = pd.read_parquet(Path(args.fg_results) / f"targets_{exp}_nondas.parquet")
         assert (tg.row.to_numpy() == plan.row.to_numpy()).all()

@@ -38,6 +38,7 @@ def populations(e, kept):
         "DAS bases, pooled": (T, kept & das),
         "DAS bases, non-DAS T": (T - das, kept & das),
         "round-4 population (all T, kept I)": (T, kept),
+        "non-DAS T, all non-DAS I (sensitivity)": (T - das, set(e[e.cls == "I"].lemma) - das),
     }
 
 
@@ -202,6 +203,10 @@ def run_patch(args):
     write_patch(args, res, bg)
 
 
+def gated(exp, site, rd, bg):
+    return "inconclusive (base-form gate)" if exp == "mat" and not bool(bg.get(site, True)) else rd
+
+
 def write_patch(args, res, bg):
     f = lambda r: f"{r.est:+.2f} [{r.lo95:+.2f}, {r.hi95:+.2f}]"
     L = ["# Round 5, C8: filler-gap patches with non-DAS verbs as the primary set (fp32)", "",
@@ -238,7 +243,7 @@ def write_patch(args, res, bg):
                 sub = res[(res.exp == exp) & (res.site == s_) & (res.population == pop)]
                 g = lambda fr, q, r: sub[(sub.frame == fr) & (sub.quantity == q) & (sub.readout == r)].iloc[0]
                 L.append(f"| {pop} | {int(sub.n_verbs.iloc[0])} | {int(sub.n_ctx.iloc[0])} | {s_} | "
-                         f"{reading(g, 'D', 'T_only')[0]} | {reading(g, 'D_in', 'inT_only')[0]} |")
+                         f"{gated(exp, s_, reading(g, 'D', 'T_only')[0], bg)} | {gated(exp, s_, reading(g, 'D_in', 'inT_only')[0], bg)} |")
         L += ["", "### Frame strata (primary population; in range / T − I donors per site)", "",
               "| Stratum | contexts | " + " | ".join(f"site {s_}" for s_ in SITES) + " |", "|---|---|" + "---|" * len(SITES)]
         for pop in sorted(p for p in res[res.exp == exp].population.unique() if p.startswith("stratum")):
@@ -246,9 +251,11 @@ def write_patch(args, res, bg):
             for s_ in SITES:
                 sub = res[(res.exp == exp) & (res.site == s_) & (res.population == pop)]
                 g = lambda fr, q, r: sub[(sub.frame == fr) & (sub.quantity == q) & (sub.readout == r)].iloc[0]
-                short = {"licensing-like crossover": "LIC", "surface (object next)": "surf", "mixed / unresolved": "mix"}
-                cells.append(f"{short[reading(g, 'D_in', 'inT_only')[0]]} / {short[reading(g, 'D', 'T_only')[0]]}")
-                dec[f"{exp}|{pop}|{s_}"] = reading(g, "D_in", "inT_only")[0]
+                short = {"licensing-like crossover": "LIC", "surface (object next)": "surf", "mixed / unresolved": "mix",
+                         "inconclusive (base-form gate)": "n/a"}
+                ri, rd_ = gated(exp, s_, reading(g, "D_in", "inT_only")[0], bg), gated(exp, s_, reading(g, "D", "T_only")[0], bg)
+                cells.append(f"{short[ri]} / {short[rd_]}")
+                dec[f"{exp}|{pop}|{s_}"] = ri
             name, cx = pop.replace("stratum ", "").split(", ")
             L.append(f"| {name} | {cx} | " + " | ".join(cells) + " |")
         L += ["", "LIC = licensing-like crossover, surf = surface (object next), mix = mixed / unresolved.", ""]

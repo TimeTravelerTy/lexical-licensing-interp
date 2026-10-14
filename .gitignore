@@ -48,3 +48,6 @@ results/round4/*/path_patch_rows_*.parquet
 results/round4/translation/conjunction.npz
 results/round4/oracle/oracle_scores.parquet
 results/round4/oracle_translation/oracle_t_scores.parquet
+
+# Round 5 raw patch dumps (SHA-256 in results/round5/fillergap/patch_hashes.txt)
+results/round5/fillergap/patches_*_site*_*.parquet
