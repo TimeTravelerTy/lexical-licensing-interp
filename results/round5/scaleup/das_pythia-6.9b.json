@@ -1,0 +1,57 @@
+{
+ "model": "EleutherAI/pythia-6.9b",
+ "load_s": 119.0,
+ "load_alloc_GiB": 25.545443534851074,
+ "layers": 32,
+ "hidden": 4096,
+ "forward_passive": {
+  "prompts_per_s": 1005.5453605668463,
+  "batch": 512,
+  "peak_alloc_GiB": 30.79258632659912,
+  "peak_reserved_GiB": 32.189453125
+ },
+ "sites": {
+  "5": {
+   "train": {
+    "step_s": 0.22463655471801758,
+    "batch": 64,
+    "peak_alloc_GiB": 27.40345001220703,
+    "peak_reserved_GiB": 27.505859375
+   },
+   "eval": {
+    "eval_s": 0.7619831562042236,
+    "batch": 512,
+    "peak_alloc_GiB": 26.398612022399902,
+    "peak_reserved_GiB": 27.169921875
+   }
+  },
+  "11": {
+   "train": {
+    "step_s": 0.20560598373413086,
+    "batch": 64,
+    "peak_alloc_GiB": 27.079627990722656,
+    "peak_reserved_GiB": 27.19140625
+   },
+   "eval": {
+    "eval_s": 0.7607808113098145,
+    "batch": 512,
+    "peak_alloc_GiB": 26.398612022399902,
+    "peak_reserved_GiB": 27.169921875
+   }
+  },
+  "23": {
+   "train": {
+    "step_s": 0.16228461265563965,
+    "batch": 64,
+    "peak_alloc_GiB": 26.431983947753906,
+    "peak_reserved_GiB": 26.544921875
+   },
+   "eval": {
+    "eval_s": 0.7608284950256348,
+    "batch": 512,
+    "peak_alloc_GiB": 26.398612022399902,
+    "peak_reserved_GiB": 27.169921875
+   }
+  }
+ }
+}
