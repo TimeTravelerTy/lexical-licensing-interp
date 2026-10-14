@@ -10,6 +10,7 @@ s = 0.5 (sensitivity 0.1, 1). Per class (T, I); curated verbs primary, pool verb
 predictors entered separately.
 Decision: 10-fold CV (folds grouped by verb pair; pool: by verb) error of ~ log c + log c_be vs ~ log c, in every
 draw of a verbs-within-band x contexts bootstrap (2,000 draws, seed 17).
+Requires the finished hand audit (audit_labels.csv for every row of audit_contexts.csv).
 Outputs: reports/round5/a3_counts.md, results/round5/counts/a3_summary.csv, a3_decisions.json, a3_verbs.csv.
 """
 
@@ -69,6 +70,34 @@ def design(df, cols):
     return np.column_stack([np.ones(len(df))] + [df[c].to_numpy(float) for c in cols])
 
 
+def decide(base, alt):
+    """base = CV error of ~log c (per draw), alt = with the slot predictor. 'adds': paired difference 95% CI above 0;
+    'suffices': 90% CI of the relative difference within +-2%; both can hold (then 'adds, within 2%')."""
+    diff = base - alt
+    lo90, hi90 = ci(diff / base, 5, 95)
+    adds, eq = ci(diff)[0] > 0, -0.02 < lo90 and hi90 < 0.02
+    return ("slot frequency adds (within 2%)" if adds and eq else "slot frequency adds" if adds else
+            "overall frequency suffices" if eq else "unresolved"), diff
+
+
+def r2(X, y):
+    b = np.linalg.lstsq(X, y, rcond=None)[0]
+    return 1 - ((y - X @ b) ** 2).sum() / ((y - y.mean()) ** 2).sum()
+
+
+def wcorr(x, y, w):
+    m = w > 0
+    return np.corrcoef(np.repeat(x[m], w[m].astype(int)), np.repeat(y[m], w[m].astype(int)))[0, 1]
+
+
+def wpartial(x, y, z, w):
+    """weighted partial correlation of x and y given z (with intercept)."""
+    Z = np.column_stack([np.ones(len(z)), z])
+    rx = x - Z @ wls(Z, x, w)
+    ry = y - Z @ wls(Z, y, w)
+    return wcorr(rx, ry, w)
+
+
 def main(args):
     C = pd.read_csv(args.counts)
     V = pd.read_csv(args.data_dir / "verbs.csv", keep_default_na=False)
@@ -76,6 +105,10 @@ def main(args):
     pre = pd.read_csv(args.data_dir / "prefixes.csv", keep_default_na=False)
     S = pd.read_parquet(args.frame)
     assert C["count"].notna().all(), f"{C['count'].isna().sum()} failed queries"
+    # declared order: the hand audit of "was V" contexts is finished before any outcome analysis
+    AU = pd.read_csv(args.audit_labels, keep_default_na=False)
+    AC = pd.read_csv(args.audit_contexts, keep_default_na=False)
+    assert len(AU) == len(AC) and set(AU.label) <= {"eventive passive", "adjectival", "other"}, "hand audit incomplete"
     # audit: every slot query's token ids end with the overall query's ids
     C = C[~C.slot.str.endswith("_or")]  # OR queries from an abandoned fetch configuration are not used
     ov = C[C.slot == "overall"].set_index("verb").token_ids
@@ -111,6 +144,16 @@ def main(args):
              "`analyze_pile_counts.py`. Outcome: Δ_pass(V) (A1, freq frames). Decision: 10-fold CV error (folds grouped by "
              "pair) of ~ log c + log c_be vs ~ log c; verbs within band × contexts bootstrap.", "",
              f"Audit: {len(bad)} verbs fail the token-suffix check and are dropped: {bad or 'none'}.", ""]
+    au = AC.merge(AU[["verb", "k", "label"]], on=["verb", "k"])
+    tab = au.groupby(["role", "band", "verb", "count"]).label.value_counts().unstack(fill_value=0)
+    lines += ["**Hand audit of \"was V\" contexts** (up to 10 per verb, evenly spaced occurrences; labels by hand):", "",
+              "| class | band | verb | \"was V\" count | " + " | ".join(tab.columns) + " |",
+              "|---|---|---|---:|" + "---:|" * len(tab.columns)]
+    lines += [f"| {r} | {b} | {v} | {c:,} | " + " | ".join(str(x) for x in row) + " |"
+              for (r, b, v, c), row in zip(tab.index, tab.to_numpy())]
+    tot = au.groupby("role").label.value_counts(normalize=True).unstack(fill_value=0)
+    lines += ["", "Shares: " + "; ".join(f"{r}: " + ", ".join(f"{c} {tot.loc[r, c]:.2f}" for c in tot.columns)
+                                         for r in tot.index), ""]
     rows, dec = [], {}
 
     def add_preds(df, sm):
@@ -126,8 +169,9 @@ def main(args):
     for pop in ("curated", "pool"):
         base = V[(V.curated == 1)] if pop == "curated" else V[(V.curated == 0)]
         lines += [f"## {pop} verbs", "",
-                  "| class | n | zero c_be | r(Zipf) | r(log c) | r(log c_be) | r(ρ_be) | CV MSE ~log c | ~log c + log c_be | "
-                  "difference (CI) | ~Zipf | decision |", "|---|---:|---:|---|---|---|---|---|---|---|---|---|"]
+                  "| class | n | r(Zipf) | r(log c) | r(log c_be) | partial r(ρ_be \\| log c) | in-sample R²: log c / log c_be / both / Zipf | "
+                  "CV MSE: ~log c | ~log c_be | ~log c + log c_be | difference (CI) | ~Zipf | decision |",
+                  "|---|---:|---|---|---|---|---|---|---|---|---|---|---|"]
         for role in ("T", "I"):
             for sm in (0.5, 0.1, 1.0):
                 df = add_preds(base[base.role == role], sm)
@@ -136,81 +180,79 @@ def main(args):
                 wv = weights(np.random.default_rng(args.seed + (0 if role == "T" else 7)), df.bandkey.to_numpy(), args.n_boot)
                 groups = pd.factorize(df.verb.map(cur_pair) if pop == "curated" else df.verb)[0]
                 groups = np.random.default_rng(args.seed).permutation(groups.max() + 1)[groups]  # shuffled fold labels
-                res = {k: np.empty(len(y)) for k in ("c", "cbe", "z", "cap", "wb")}
-                rs = {k: np.empty(len(y)) for k in ("Zipf", "logc", "logcbe", "rho")}
+                models = {"c": ["logc"], "cbe": ["logcbe"], "both": ["logc", "logcbe"], "z": ["zipf"]}
+                if sm == 0.5 and pop == "curated":
+                    models |= {"cap": ["logc", "logcbe_cap"], "wb": ["logc", "logcbe_wb"]}
+                res = {k: np.empty(len(y)) for k in models}
+                rs = {k: np.empty(len(y)) for k in ("Zipf", "logc", "logcbe", "rho_partial")}
                 for b in range(len(y)):
                     w = wv[b]
-                    res["c"][b] = cv_mse(design(df, ["logc"]), y[b], w, groups, args.folds)
-                    res["cbe"][b] = cv_mse(design(df, ["logc", "logcbe"]), y[b], w, groups, args.folds)
-                    res["z"][b] = cv_mse(design(df, ["zipf"]), y[b], w, groups, args.folds)
+                    for k, cols in models.items():
+                        res[k][b] = cv_mse(design(df, cols), y[b], w, groups, args.folds)
                     if sm == 0.5:
-                        res["cap"][b] = (cv_mse(design(df, ["logc", "logcbe_cap"]), y[b], w, groups, args.folds)
-                                         if pop == "curated" else np.nan)
-                        res["wb"][b] = (cv_mse(design(df, ["logc", "logcbe_wb"]), y[b], w, groups, args.folds)
-                                        if pop == "curated" else np.nan)
-                        for k, col in (("Zipf", "zipf"), ("logc", "logc"), ("logcbe", "logcbe"), ("rho", "rho")):
-                            x = df[col].to_numpy(float)
-                            rs[k][b] = np.corrcoef(np.repeat(x, w.astype(int)), np.repeat(y[b], w.astype(int)))[0, 1]
-                diff = res["c"] - res["cbe"]
-                rel = diff / res["c"]
-                lo90, hi90 = ci(rel, 5, 95)
-                d = ("slot frequency adds" if ci(diff)[0] > 0 else
-                     "overall frequency suffices" if -0.02 < lo90 and hi90 < 0.02 else "unresolved")
+                        for k, col in (("Zipf", "zipf"), ("logc", "logc"), ("logcbe", "logcbe")):
+                            rs[k][b] = wcorr(df[col].to_numpy(float), y[b], w)
+                        rs["rho_partial"][b] = wpartial(df.rho.to_numpy(float), y[b], df.logc.to_numpy(float), w)
+                d, diff = decide(res["c"], res["both"])
                 key = f"{pop}|{role}|s={sm}"
                 dec[key] = d
-                rows.append({"pop": pop, "role": role, "smooth": sm, "cv_logc": res["c"][0], "cv_logc_cbe": res["cbe"][0],
-                             "cv_zipf": res["z"][0], "diff": diff[0], "diff_lo": ci(diff)[0], "diff_hi": ci(diff)[1],
-                             "decision": d})
+                rows.append({"pop": pop, "role": role, "smooth": sm, "cv_logc": res["c"][0], "cv_logcbe": res["cbe"][0],
+                             "cv_logc_cbe": res["both"][0], "cv_zipf": res["z"][0], "diff": diff[0],
+                             "diff_lo": ci(diff)[0], "diff_hi": ci(diff)[1], "decision": d})
                 if sm == 0.5:
-                    zero = float((df.c_be == 0).mean())
-                    lines.append(f"| {role} | {len(df)} | {zero:.2f} | {fmt(rs['Zipf'], 2)} | {fmt(rs['logc'], 2)} | "
-                                 f"{fmt(rs['logcbe'], 2)} | {fmt(rs['rho'], 2)} | {res['c'][0]:.3f} | {res['cbe'][0]:.3f} | "
-                                 f"{fmt(diff)} | {res['z'][0]:.3f} | **{d}** |")
-                    extra = {"cap": res["cap"], "wb": res["wb"]}
-                    for nm, v in extra.items():
-                        if np.isnan(v).all():
+                    R2 = "/".join(f"{r2(design(df, cols), y[0]):.2f}" for cols in (["logc"], ["logcbe"], ["logc", "logcbe"], ["zipf"]))
+                    lines.append(f"| {role} | {len(df)} | {fmt(rs['Zipf'], 2)} | {fmt(rs['logc'], 2)} | {fmt(rs['logcbe'], 2)} | "
+                                 f"{fmt(rs['rho_partial'], 2)} | {R2} | {res['c'][0]:.3f} | {res['cbe'][0]:.3f} | "
+                                 f"{res['both'][0]:.3f} | {fmt(diff)} | {res['z'][0]:.3f} | **{d}** |")
+                    for nm in ("cap", "wb"):
+                        if nm not in res:
                             dec[f"{pop}|{role}|{nm}"] = "not computed"
                             continue
-                        dd = res["c"] - v
-                        dec[f"{pop}|{role}|{nm}"] = ("slot frequency adds" if ci(dd)[0] > 0 else "no added value")
+                        dd_dec, dd = decide(res["c"], res[nm])
+                        dec[f"{pop}|{role}|{nm}"] = dd_dec
                         rows.append({"pop": pop, "role": role, "smooth": sm, "variant": nm, "diff": dd[0],
-                                     "diff_lo": ci(dd)[0], "diff_hi": ci(dd)[1]})
+                                     "diff_lo": ci(dd)[0], "diff_hi": ci(dd)[1], "decision": dd_dec})
             lines.append(f"| {role} | sensitivity | smoothing 0.1 / 1: {dec[f'{pop}|{role}|s=0.1']} / {dec[f'{pop}|{role}|s=1.0']}; "
                          f"capitalized auxiliaries: {dec[f'{pop}|{role}|cap']}; was + been only: {dec[f'{pop}|{role}|wb']} |"
-                         + " |" * 10)
+                         + " |" * 11)
         lines.append("")
-        # zero shares by band
-        zb = base.assign(z=base.c_be == 0).groupby(["role", "bandkey"]).z.mean().unstack()
-        lines += ["Share of verbs with c_be = 0, by class and band: " + "; ".join(
-            f"{r} " + ", ".join(f"{b} {zb.loc[r, b]:.2f}" for b in zb.columns if not np.isnan(zb.loc[r, b])) for r in zb.index), ""]
-    # pair level: L ~ T and I predictors
-    P = pairs.copy()
-    Vi = add_preds(V, 0.5).set_index("verb")
-    keep = P.t_verb.isin(Vi.index) & P.i_verb.isin(Vi.index)
-    P = P[keep].reset_index(drop=True)
-    for r in ("t", "i"):
-        for col in ("logc", "logcbe", "zipf"):
-            P[f"{col}_{r}"] = Vi.loc[P[f"{r}_verb"], col].to_numpy()
-    ti = Vi.index.get_indexer(P.t_verb)
-    ii = Vi.index.get_indexer(P.i_verb)
-    vix = {v: j for j, v in enumerate(V.verb)}
-    YL = Y[:, [vix[v] for v in P.t_verb]] - Y[:, [vix[v] for v in P.i_verb]]
-    wv = weights(np.random.default_rng(args.seed + 3), P.band.to_numpy(), args.n_boot)
-    groups = np.random.default_rng(args.seed).permutation(len(P))
-    mc, mcb, mz = (np.empty(len(YL)) for _ in range(3))
-    for b in range(len(YL)):
-        mc[b] = cv_mse(design(P, ["logc_t", "logc_i"]), YL[b], wv[b], groups, args.folds)
-        mcb[b] = cv_mse(design(P, ["logc_t", "logc_i", "logcbe_t", "logcbe_i"]), YL[b], wv[b], groups, args.folds)
-        mz[b] = cv_mse(design(P, ["zipf_t", "zipf_i"]), YL[b], wv[b], groups, args.folds)
-    diff = mc - mcb
-    lo90, hi90 = ci(diff / mc, 5, 95)
-    dL = "slot frequency adds" if ci(diff)[0] > 0 else "overall frequency suffices" if -0.02 < lo90 and hi90 < 0.02 else "unresolved"
-    dec["pairs|L"] = dL
+        # zero shares by class and band
+        for col, nm in (("c", "c"), ("c_be", "c_be"), ("c_perf", "c_perf")):
+            zb = base.assign(z=base[col] == 0).groupby(["role", "bandkey"]).z.mean().unstack()
+            lines.append(f"Share with {nm} = 0: " + "; ".join(
+                f"{r} " + ", ".join(f"{b} {zb.loc[r, b]:.2f}" for b in zb.columns if not np.isnan(zb.loc[r, b])) for r in zb.index))
+        lines.append("")
+    # pair level: L ~ T and I predictors (curated pairs)
     lines += ["## Pairs: L ~ T and I predictors (curated)", "",
-              f"CV MSE: ~ log c_T + log c_I {mc[0]:.3f}; + log c_be,T + log c_be,I {mcb[0]:.3f}; difference {fmt(diff)}; "
-              f"~ Zipf_T + Zipf_I {mz[0]:.3f}. **Decision: {dL}.**", ""]
-    rows.append({"pop": "pairs", "role": "L", "smooth": 0.5, "cv_logc": mc[0], "cv_logc_cbe": mcb[0], "cv_zipf": mz[0],
-                 "diff": diff[0], "diff_lo": ci(diff)[0], "diff_hi": ci(diff)[1], "decision": dL})
+              "| smoothing / variant | CV MSE ~log c_T + log c_I | ~log c_be,T + log c_be,I | ~both | difference (CI) | "
+              "~Zipf_T + Zipf_I | decision |", "|---|---|---|---|---|---|---|"]
+    vix = {v: j for j, v in enumerate(V.verb)}
+    for sm, var in ((0.5, "logcbe"), (0.1, "logcbe"), (1.0, "logcbe"), (0.5, "logcbe_cap"), (0.5, "logcbe_wb")):
+        P = pairs.copy()
+        Vi = add_preds(V, sm).set_index("verb")
+        P = P[P.t_verb.isin(Vi.index) & P.i_verb.isin(Vi.index)].reset_index(drop=True)
+        for r in ("t", "i"):
+            for col in ("logc", var, "zipf"):
+                P[f"{col}_{r}"] = Vi.loc[P[f"{r}_verb"], col].to_numpy()
+        YL = Y[:, [vix[v] for v in P.t_verb]] - Y[:, [vix[v] for v in P.i_verb]]
+        wv = weights(np.random.default_rng(args.seed + 3), P.band.to_numpy(), args.n_boot)
+        groups = np.random.default_rng(args.seed).permutation(len(P))
+        M = {k: np.empty(len(YL)) for k in ("c", "cbe", "both", "z")}
+        cols = {"c": ["logc_t", "logc_i"], "cbe": [f"{var}_t", f"{var}_i"],
+                "both": ["logc_t", "logc_i", f"{var}_t", f"{var}_i"], "z": ["zipf_t", "zipf_i"]}
+        for b in range(len(YL)):
+            for k in M:
+                M[k][b] = cv_mse(design(P, cols[k]), YL[b], wv[b], groups, args.folds)
+        dL, diff = decide(M["c"], M["both"])
+        tag = f"s={sm}" if var == "logcbe" else {"logcbe_cap": "capitalized", "logcbe_wb": "was + been"}[var]
+        dec[f"pairs|L|{tag}"] = dL
+        lines.append(f"| {tag} | {M['c'][0]:.3f} | {M['cbe'][0]:.3f} | {M['both'][0]:.3f} | {fmt(diff)} | {M['z'][0]:.3f} | "
+                     f"{'**' + dL + '**' if tag == 's=0.5' else dL} |")
+        rows.append({"pop": "pairs", "role": "L", "smooth": sm, "variant": tag, "cv_logc": M["c"][0],
+                     "cv_logcbe": M["cbe"][0], "cv_logc_cbe": M["both"][0], "cv_zipf": M["z"][0], "diff": diff[0],
+                     "diff_lo": ci(diff)[0], "diff_hi": ci(diff)[1], "decision": dL})
+    dec["pairs|L"] = dec["pairs|L|s=0.5"]
+    lines.append("")
     # descriptive: Pile log c vs Zipf
     lines += ["Descriptive: CV MSE with wordfreq Zipf vs Pile log c is in the class tables (columns ~Zipf, ~log c).", ""]
     out = Path(args.res_dir)
@@ -229,6 +271,8 @@ if __name__ == "__main__":
     ap.add_argument("--frame", default="results/round5/frame/frame_scores.parquet")
     ap.add_argument("--res-dir", default="results/round5/counts")
     ap.add_argument("--report", default="reports/round5/a3_counts.md")
+    ap.add_argument("--audit-contexts", default="data/round5/counts/audit_contexts.csv")
+    ap.add_argument("--audit-labels", default="data/round5/counts/audit_labels.csv")
     ap.add_argument("--folds", type=int, default=10)
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)

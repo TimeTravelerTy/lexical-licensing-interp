@@ -1,0 +1,88 @@
+verb,k,label,note
+sent,0,eventive passive,verbal passive
+sent,4,eventive passive,verbal passive
+sent,5,eventive passive,verbal passive
+sent,6,eventive passive,verbal passive
+sent,7,eventive passive,verbal passive
+sent,8,eventive passive,verbal passive
+sent,9,eventive passive,verbal passive
+rated,0,eventive passive,verbal passive
+rated,1,eventive passive,verbal passive
+rated,2,eventive passive,verbal passive
+rated,3,eventive passive,verbal passive
+rated,4,eventive passive,verbal passive
+rated,5,eventive passive,verbal passive
+rated,6,eventive passive,verbal passive
+rated,7,eventive passive,verbal passive
+rated,8,eventive passive,verbal passive
+rated,9,eventive passive,verbal passive
+commemorated,0,eventive passive,verbal passive
+commemorated,1,eventive passive,verbal passive
+commemorated,2,eventive passive,verbal passive
+commemorated,3,eventive passive,verbal passive
+commemorated,4,eventive passive,verbal passive
+commemorated,5,eventive passive,verbal passive
+commemorated,6,eventive passive,verbal passive
+commemorated,7,eventive passive,verbal passive
+commemorated,8,eventive passive,verbal passive
+commemorated,9,eventive passive,verbal passive
+ingested,0,eventive passive,verbal passive
+ingested,1,eventive passive,verbal passive
+ingested,2,eventive passive,verbal passive
+ingested,3,eventive passive,verbal passive
+ingested,4,eventive passive,verbal passive
+ingested,5,eventive passive,verbal passive
+ingested,6,eventive passive,verbal passive
+ingested,7,eventive passive,verbal passive
+ingested,8,eventive passive,verbal passive
+ingested,9,eventive passive,verbal passive
+resupplied,0,eventive passive,verbal passive
+resupplied,1,eventive passive,verbal passive
+resupplied,2,eventive passive,verbal passive
+resupplied,3,eventive passive,verbal passive
+resupplied,4,eventive passive,verbal passive
+resupplied,5,eventive passive,verbal passive
+resupplied,6,eventive passive,verbal passive
+resupplied,7,eventive passive,verbal passive
+resupplied,8,eventive passive,verbal passive (nonstandard 'we was')
+resupplied,9,eventive passive,verbal passive
+apologized,0,other,"garbled transcript, no passive"
+apologized,1,eventive passive,prepositional passive (apologized to / for)
+apologized,2,eventive passive,prepositional passive (apologized to / for)
+apologized,3,eventive passive,prepositional passive (apologized to / for)
+apologized,4,eventive passive,prepositional passive (apologized to / for)
+apologized,5,eventive passive,prepositional passive (apologized to / for)
+apologized,6,eventive passive,prepositional passive (apologized to / for)
+apologized,7,eventive passive,prepositional passive (apologized to / for)
+apologized,8,eventive passive,prepositional passive (apologized to / for)
+apologized,9,other,nonstandard use with 'by'
+happened,0,other,clause boundary: whatever it was | happened
+happened,1,other,nonstandard 'was happened' (non-passive meaning)
+happened,2,other,nonstandard 'was happened' (non-passive meaning)
+happened,3,other,clause boundary: what he was | happened
+happened,4,other,nonstandard 'was happened' (non-passive meaning)
+happened,5,other,nonstandard 'was happened' (non-passive meaning)
+happened,6,other,nonstandard 'was happened' (non-passive meaning)
+happened,7,other,clause boundary: whatever it was | happened
+happened,8,other,nonstandard 'was happened' (non-passive meaning)
+happened,9,other,nonstandard 'was happened' (non-passive meaning)
+glared,0,eventive passive,prepositional passive (glared at / off)
+glared,1,other,clause boundary: whose work it was | glared
+glared,2,eventive passive,prepositional passive (glared at / off)
+glared,3,eventive passive,prepositional passive (glared at / off)
+glared,4,eventive passive,prepositional passive (glared at / off)
+glared,5,eventive passive,prepositional passive (glared at / off)
+glared,6,eventive passive,prepositional passive (glared at / off)
+glared,7,eventive passive,prepositional passive (glared at / off)
+glared,8,eventive passive,prepositional passive (glared at / off)
+glared,9,eventive passive,transitive glare (lit by)
+flirted,0,eventive passive,archaic transitive flirt (flick away)
+flirted,1,eventive passive,archaic transitive flirt (flick away)
+flirted,2,eventive passive,prepositional passive (flirted with)
+flirted,3,eventive passive,prepositional passive (flirted with)
+flirted,4,eventive passive,prepositional passive (flirted with)
+flirted,5,eventive passive,prepositional passive (flirted with)
+flirted,6,eventive passive,prepositional passive (flirted with)
+flirted,7,eventive passive,prepositional passive (flirted with)
+flirted,8,eventive passive,prepositional passive (flirted with)
+flirted,9,eventive passive,prepositional passive (flirted with)
