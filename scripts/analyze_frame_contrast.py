@@ -77,6 +77,12 @@ class Boot:
         self.wv = weights(rng, self.strata, n_boot)
         self.wc = weights(rng, ctx_strata, n_boot) if len(ctx_strata) > 1 else np.ones((n_boot + 1, 1))
 
+    def subset(self, ctx_mask):
+        """The same draws restricted to a subset of contexts (whole strata, so still a valid resample)."""
+        b = object.__new__(Boot)
+        b.strata, b.wv, b.wc = self.strata, self.wv, self.wc[:, ctx_mask]
+        return b
+
     def unit_means(self, X):
         return (self.wc @ X.T) / self.wc.sum(1, keepdims=True)  # [draw, unit]
 
@@ -178,7 +184,7 @@ def a1(args, pairs, pre, tabs, lines, rows, dec, rng):
             for an in ("animate", "inanimate"):
                 cm = np.array([a == an for a in strata])
                 qa = {k: v[:, cm] for k, v in q.items()}
-                Ba = Boot(pairs.band, [an] * int(cm.sum()), args.n_boot, rng)
+                Ba = B.subset(cm)  # the set's own pair and context draws, animate / inanimate strata only
                 lines += [f"{st}, {an} nouns only ({int(cm.sum())}):", ""]
                 band_table(Ba, qa, ("L", "Mhas", "Mwas"), zp, zfor, lines, rows, st, f"_{an}")
                 ha, xa = Ba.strata == "head", Ba.strata == "xtail"
@@ -189,7 +195,8 @@ def a1(args, pairs, pre, tabs, lines, rows, dec, rng):
     q, ctx = tabs["cur"]
     cix = {c: j for j, c in enumerate(ctx)}
     own = np.array([cix[c] for c in pairs.own_context_id])
-    Bo = Boot(pairs.band, ["all"], args.n_boot, rng)
+    Bo = boots["cur"].subset(np.zeros(len(ctx), bool))
+    Bo.wc = np.ones((boots["cur"].wv.shape[0], 1))  # one (own) context per pair; pair draws shared with cur
     lines += ["### own: each pair's own curated context (descriptive, paired)", "",
               "| Quantity | Head | Tail | XTail | Head − XTail |", "|---|---|---|---|---|"]
     for k in ("L", "dT", "dI", "Mwas", "Mhas"):
@@ -200,38 +207,54 @@ def a1(args, pairs, pre, tabs, lines, rows, dec, rng):
     return boots
 
 
+def spearman(x, y):
+    rx, ry = pd.Series(x).rank().to_numpy(), pd.Series(y).rank().to_numpy()
+    return float(np.corrcoef(rx, ry)[0, 1])
+
+
 def token_cells(pairs, tabs, V, boots, lines, rows):
-    q, ctx = tabs["freq"]
-    B = boots["freq"]
     nt = V.set_index("verb").n_tok
-    cap = lambda n: str(n) if n < 3 else "3+"
-    cell = np.array([f"{cap(nt[t])}×{cap(nt[i])}" for t, i in zip(pairs.t_verb, pairs.i_verb)])
+    cell = np.array([f"{nt[t]}×{nt[i]}" for t, i in zip(pairs.t_verb, pairs.i_verb)])  # exact (T, I) token counts
     band = pairs.band.to_numpy()
-    lines += ["### By token-count cell (freq; T tokens × I tokens)", "",
-              "| Cell | Band | pairs | L | L₁ | L_rest |", "|---|---|---:|---|---|---|"]
-    for c in sorted(set(cell)):
-        for b in BANDS:
-            m = (cell == c) & (band == b)
-            if m.sum() == 0:
-                continue
-            vals = [fmt(B.mean(q[k], m)) if m.sum() >= 5 else f"{B.mean(q[k], m)[0]:+.2f}" for k in ("L", "L1", "Lrest")]
-            lines.append(f"| {c} | {NAME[b]} | {int(m.sum())} | " + " | ".join(vals) + " |")
-    lines += ["", "Equal-count Tail − XTail comparisons (cells with ≥ 5 pairs in both bands):", ""]
-    found = False
-    for c in sorted(set(cell)):
-        mt, mx = (cell == c) & (band == "tail"), (cell == c) & (band == "xtail")
-        if mt.sum() >= 5 and mx.sum() >= 5:
-            found = True
-            parts = []
-            for k in ("L", "L1", "Lrest"):
-                d = B.mean(q[k], mt) - B.mean(q[k], mx)
-                parts.append(f"{LABELS[k].split(' ')[0]} {fmt(d)}")
-                rows.append({"set": "freq", "quantity": k, "stat": f"tail-xtail_cell_{c}", "est": d[0],
-                             "lo": ci(d)[0], "hi": ci(d)[1]})
-            lines.append(f"- {c} ({int(mt.sum())} Tail, {int(mx.sum())} XTail): " + "; ".join(parts) + ".")
-    if not found:
-        lines.append("- none")
-    lines.append("")
+    lines += ["### By token-count cell (exact T tokens × I tokens)", ""]
+    for st in SETS:
+        q, ctx = tabs[st]
+        B = boots[st]
+        lines += [f"**{st}**", "", "| Cell | Band | pairs | L | L₁ | L_rest |", "|---|---|---:|---|---|---|"]
+        for c in sorted(set(cell)):
+            for b in BANDS:
+                m = (cell == c) & (band == b)
+                if m.sum() == 0:
+                    continue
+                vals = [fmt(B.mean(q[k], m)) if m.sum() >= 5 else f"{B.mean(q[k], m)[0]:+.2f}" for k in ("L", "L1", "Lrest")]
+                lines.append(f"| {c} | {NAME[b]} | {int(m.sum())} | " + " | ".join(vals) + " |")
+        lines += ["", "Equal-count Tail − XTail comparisons (cells with ≥ 5 pairs in both bands):", ""]
+        found = False
+        for c in sorted(set(cell)):
+            mt, mx = (cell == c) & (band == "tail"), (cell == c) & (band == "xtail")
+            if mt.sum() >= 5 and mx.sum() >= 5:
+                found = True
+                parts = []
+                for k in ("L", "L1", "Lrest"):
+                    d = B.mean(q[k], mt) - B.mean(q[k], mx)
+                    parts.append(f"{LABELS[k].split(' ')[0]} {fmt(d)}")
+                    rows.append({"set": st, "quantity": k, "stat": f"tail-xtail_cell_{c}", "est": d[0],
+                                 "lo": ci(d)[0], "hi": ci(d)[1]})
+                lines.append(f"- {c} ({int(mt.sum())} Tail, {int(mx.sum())} XTail): " + "; ".join(parts) + ".")
+        if not found:
+            lines.append("- none")
+        lines.append("")
+    q, _ = tabs["freq"]
+    gap = (pairs.t_zipf - pairs.i_zipf).to_numpy()
+    lgap = (pairs.t_lemma_zipf - pairs.i_lemma_zipf).to_numpy()
+    L = q["L"].mean(1)
+    lines += ["### Within-pair Zipf gaps (T − I) and L (freq)", "", "| Band | form gap: mean [min, max] | lemma gap: mean | "
+              "Spearman(L, form gap) |", "|---|---|---|---:|"]
+    for b in BANDS:
+        m = band == b
+        lines.append(f"| {NAME[b]} | {gap[m].mean():+.2f} [{gap[m].min():+.2f}, {gap[m].max():+.2f}] | {lgap[m].mean():+.2f} | "
+                     f"{spearman(L[m], gap[m]):+.2f} |")
+    lines += ["", f"All pairs: Spearman(L, form gap) = {spearman(L, gap):+.2f}.", ""]
 
 
 def accounting(args, pairs, tabs, boots, lines, rows, rng):
@@ -257,8 +280,10 @@ def accounting(args, pairs, tabs, boots, lines, rows, rng):
             r = d[num] / d[den]
             ws = wrong_sign(d[den])
             rat.append(fmt(r) if ws <= 0.025 else f"not interpreted ({ws:.1%} wrong-sign)")
-            rows.append({"set": "cur", "quantity": f"ratio_{num}_{den}", "stat": f"head-{b}", "est": r[0],
-                         "lo": ci(r)[0], "hi": ci(r)[1], "denominator_wrong_sign": ws})
+            ok = ws <= 0.025
+            rows.append({"set": "cur", "quantity": f"ratio_{num}_{den}", "stat": f"head-{b}",
+                         "est": r[0] if ok else np.nan, "lo": ci(r)[0] if ok else np.nan, "hi": ci(r)[1] if ok else np.nan,
+                         "denominator_wrong_sign": ws})
         lines.append(f"| Head − {NAME[b]} | {fmt(d['W'])} | {fmt(d['L'])} | {fmt(d['H'])} | {fmt(d['S'])} | {fmt(d['M'])} | "
                      + " | ".join(rat) + " |")
         for k in d:
@@ -280,7 +305,11 @@ def accounting(args, pairs, tabs, boots, lines, rows, rng):
     ctxs = cur.drop_duplicates("context_id").sort_values("context_id")
     vi = cur.verb_pair.map({v: i for i, v in enumerate(verbs.verb_pair)}).to_numpy()
     cx = cur.context_id.map({c: i for i, c in enumerate(ctxs.context_id)}).to_numpy()
-    wv, wc = weights(rng, verbs.verb_band.to_numpy(), args.n_boot), weights(rng, ctxs.context_band.to_numpy(), args.n_boot)
+    # the cur set's own pair and context draws, mapped into this table's order
+    pcol = {v: j for j, v in enumerate(pairs.verb_pair)}
+    ccol = {c: j for j, c in enumerate(ctx)}
+    wv = B.wv[:, [pcol[v] for v in verbs.verb_pair]]
+    wc = B.wc[:, [ccol[c] for c in ctxs.context_id]]
     X = np.column_stack([np.ones(len(cur)), cur.good_fit - 4, cur.bad_patient - 4,
                          (cur.verb_band == "tail").astype(float), (cur.verb_band == "xtail").astype(float)])
     beta = {k: wls_fit(cur, cur[k].to_numpy(float), X, vi, cx, wv, wc) for k in ("verb_margin", "L", "Mhas")}
@@ -294,15 +323,18 @@ def accounting(args, pairs, tabs, boots, lines, rows, rng):
         r = bl / bm
         lines.append(f"| {NAME[b]} | {fmt(bm)} | {fmt(bl)} | {fmt(bh)} | "
                      + (fmt(r) if ws <= 0.025 else f"not interpreted ({ws:.1%} wrong-sign)") + " |")
-        for nm, d in (("beta_Mwas", bm), ("beta_L", bl), ("beta_Mhas", bh), ("beta_ratio", r)):
+        for nm, d in (("beta_Mwas", bm), ("beta_L", bl), ("beta_Mhas", bh)):
             rows.append({"set": "cur", "quantity": nm, "stat": b, "est": d[0], "lo": ci(d)[0], "hi": ci(d)[1]})
+        ok = ws <= 0.025
+        rows.append({"set": "cur", "quantity": "beta_ratio", "stat": b, "est": r[0] if ok else np.nan,
+                     "lo": ci(r)[0] if ok else np.nan, "hi": ci(r)[1] if ok else np.nan, "denominator_wrong_sign": ws})
     qf, _ = tabs["freq"]
     Bf = boots["freq"]
     dLf = Bf.mean(qf["L"], Bf.strata == "head") - Bf.mean(qf["L"], Bf.strata == "xtail")
     lines += ["", f"Descriptive: ΔL (Head − XTail) on the freq contexts is {fmt(dLf)}, beside ΔL on cur above.", ""]
 
 
-def a2(args, pairs, pre, V, tabs, lines, rows, rng):
+def a2(args, pairs, pre, V, tabs, boots, lines, rows, rng):
     z = np.load(args.h)
     keys = list(z["keys"])
     H, U = z["H"].astype(np.float64), z["U"].astype(np.float64)
@@ -310,7 +342,8 @@ def a2(args, pairs, pre, V, tabs, lines, rows, rng):
     fctx = list(pre[pre.set == "freq"].context_id)
     an = list(pre.set_index("context_id").loc[fctx].animacy)
     dh = np.stack([H[keys.index(f"freq|{c}|pass")] - H[keys.index(f"freq|{c}|act")] for c in fctx])  # [24, d]
-    B = Boot(pairs.band, an, args.n_boot, rng)  # pair x context draws; the same context draws give Delta-h-bar
+    B = boots["freq"]  # A1's freq pair and context draws; the same context draws give Delta-h-bar
+    assert list(pre[pre.set == "freq"].context_id) == tabs["freq"][1]
     dbar = (B.wc @ dh) / B.wc.sum(1, keepdims=True)  # [draw, d]
     dev = np.mean(((dh - dbar[0]) ** 2).sum(1)) / np.mean((dh ** 2).sum(1))
     Uv = np.stack([U[urow[int(t)]] for t in V.first_id])  # [verb, d]
@@ -358,8 +391,21 @@ def a2(args, pairs, pre, V, tabs, lines, rows, rng):
         ws = wrong_sign(mL)
         sh = [fmt(m1 / mL), fmt(mr / mL)] if ws <= 0.025 else ["not interpreted"] * 2
         lines.append(f"| {NAME[b]} | {int(m.sum())} | {fmt(mL)} | {fmt(m1)} | {fmt(mr)} | " + " | ".join(sh) + " |")
-        rows.append({"set": "freq", "quantity": "L1_share_multi", "stat": b, "est": (m1 / mL)[0], "lo": ci(m1 / mL)[0],
-                     "hi": ci(m1 / mL)[1], "denominator_wrong_sign": ws})
+        ok = ws <= 0.025
+        rows.append({"set": "freq", "quantity": "L1_share_multi", "stat": b, "est": (m1 / mL)[0] if ok else np.nan,
+                     "lo": ci(m1 / mL)[0] if ok else np.nan, "hi": ci(m1 / mL)[1] if ok else np.nan,
+                     "denominator_wrong_sign": ws})
+    cell = np.array([f"{nt[t]}×{nt[i]}" for t, i in zip(pairs.t_verb, pairs.i_verb)])
+    lines += ["", "By exact token-count cell (multi-token pairs with ≥ 5 pairs in the cell and band):", "",
+              "| Cell | Band | pairs | mean L | mean L₁ | mean L_rest | L₁ / L |", "|---|---|---:|---|---|---|---|"]
+    for c in sorted(set(cell[multi])):
+        for b in ("tail", "xtail"):
+            m = multi & (band == b) & (cell == c)
+            if m.sum() < 5:
+                continue
+            mL, m1, mr = (B.mean(q[k], m) for k in ("L", "L1", "Lrest"))
+            sh = fmt(m1 / mL) if wrong_sign(mL) <= 0.025 else "not interpreted"
+            lines.append(f"| {c} | {NAME[b]} | {int(m.sum())} | {fmt(mL)} | {fmt(m1)} | {fmt(mr)} | {sh} |")
     Lh = B.mean(q["L"], band == "head")
     x1, xr = B.mean(q["L1"], multi & (band == "xtail")), B.mean(q["Lrest"], multi & (band == "xtail"))
     lines += ["", f"XTail shortfall: L̄_Head − L_XTail = (L̄_Head − L₁,XTail) − L_rest,XTail: {fmt(Lh - x1 - xr)} = "
@@ -391,8 +437,12 @@ def a2(args, pairs, pre, V, tabs, lines, rows, rng):
             zz = V.zipf.to_numpy()[idx]
             lines.append(f"| {nm} | {role} | {len(idx)} | {zz.min():.2f}–{zz.max():.2f} | " + " | ".join(slopes(idx, wverb)) + " |")
     for role in ("T", "I"):
+        # curated verbs inherit the pair draws; pool-only verbs are resampled within role x band cells
         idx = np.flatnonzero((V.n_tok == 1) & (V.role == role))
-        wverb = weights(rng, V.bandkey.to_numpy()[idx], args.n_boot)
+        cur_ = V.curated.to_numpy()[idx] == 1
+        wverb = np.empty((len(A), len(idx)))
+        wverb[:, cur_] = wp[:, [pair_of[v] for v in V.verb.to_numpy()[idx][cur_]]]
+        wverb[:, ~cur_] = weights(rng, V.bandkey.to_numpy()[idx][~cur_], args.n_boot)
         zz = V.zipf.to_numpy()[idx]
         lines.append(f"| single-token, curated + pool | {role} | {len(idx)} | {zz.min():.2f}–{zz.max():.2f} | "
                      + " | ".join(slopes(idx, wverb)) + " |")
@@ -446,7 +496,7 @@ def main(args):
     accounting(args, pairs, tabs, boots, l1, rows, rng)
     l2 = ["# Round 5, A2: exact decomposition", "", "Spec: `plan.md`, A2. Freq contexts unless stated; Δh̄ and "
           "affinities are recomputed in each context draw.", ""]
-    gate, a2info = a2(args, pairs, pre, V, tabs, l2, rows, rng)
+    gate, a2info = a2(args, pairs, pre, V, tabs, boots, l2, rows, rng)
     g = gate["curated + pool (gate)"]
     g1 = dec["freq"]["L_head_xtail"] == "deficit"
     g2 = g["D_L"][1] > 0
