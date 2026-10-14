@@ -66,7 +66,8 @@ def run(args):
                 nxt_starts_word = p + 1 < n and text[e.offset_mapping[p + 1][0]:e.offset_mapping[p + 1][1]][:1].isalpha() and \
                     e.offset_mapping[p + 1][0] == b
                 ends_word = wi is not None and not nxt_starts_word
-                rows.append({"doc": int(di), "pos": p, "tok": text[a:b], "ends_word": ends_word,
+                rows.append({"doc": int(di), "pos": p, "tok_id": int(e.input_ids[p]), "start": int(a), "end": int(b),
+                             "next_id": int(e.input_ids[p + 1]) if p + 1 < n else -1, "tok": text[a:b], "ends_word": ends_word,
                              "word": words[wi][2] if ends_word else "",
                              "prev_words": " ".join(w[2] for w in words[max(0, wi - 8):wi]) if ends_word else "",
                              "next_tok": text[e.offset_mapping[p + 1][0]:e.offset_mapping[p + 1][1]] if p + 1 < n else "",
@@ -78,7 +79,7 @@ def run(args):
     out.mkdir(parents=True, exist_ok=True)
     df = pd.DataFrame(rows)
     df.to_parquet(out / "wild_tokens.parquet", index=False)
-    meta = {"args": vars(args), "neurons": top[["rank", "neuron", "layer", "index", "I_A"]].to_dict("records"),
+    meta = {"args": vars(args), "pile10k_sha256": hashlib.sha256(Path(args.pile10k).read_bytes()).hexdigest(), "neurons": top[["rank", "neuron", "layer", "index", "I_A"]].to_dict("records"),
             "docs": [int(i) for i in pick], "tokens": len(df), "switch_sha256": hashlib.sha256(Path(args.switch).read_bytes()).hexdigest(),
             "seconds": round(time.time() - t0)}
     (out / "wild_meta.json").write_text(json.dumps(meta, indent=1))
