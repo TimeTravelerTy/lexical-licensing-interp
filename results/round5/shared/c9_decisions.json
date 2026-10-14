@@ -1,0 +1,19 @@
+{
+ "top50_filler_conditioned": true,
+ "top50_per_experiment": {
+  "emb": "shared",
+  "mat": "shared"
+ },
+ "top50": "shared",
+ "top10_filler_conditioned": true,
+ "top10_per_experiment": {
+  "emb": "shared",
+  "mat": "shared"
+ },
+ "top10": "shared",
+ "writers_per_experiment": {
+  "emb": "O 0.38 [0.33, 0.42]; correction ok False; gates True",
+  "mat": "O 0.54 [0.50, 0.59]; correction ok False; gates True"
+ },
+ "writers": "unresolved (correction or magnitude gate)"
+}

@@ -6,11 +6,13 @@ after code review `32feb71`, bf16 clarification `21671df`; B5–B6:
 `c6be4ba`). Generated reports, one per experiment:
 - 0: `../results_index.md`;
 - A1–A2: `a1_frame.md`, `a2_decomposition.md`;
-- B5–B6: `b5_necessity.md`, `b6_serial.md`.
+- B5–B6: `b5_necessity.md`, `b6_serial.md`;
+- C8–C9: `c8_fillergap_gates.md`, `c8_fillergap.md`, `c9_shared_readers.md`.
 
 TSUBAME jobs: 9007119 (A1–A2), 9007211 (curated `passive_1` rescored in
 fp32), 9007340 (B5; earlier attempts 9007281 and 9007322 stopped at the
-self-patch check, see below), 9007282 (B6).
+self-patch check, see below), 9007282 (B6), 9007314 (C8 natural pass),
+9007336 (C8 patches), 9008384 (C9).
 
 ## Summary
 
@@ -364,3 +366,141 @@ to the late MLPs. They are a large part of the relay, not all of it.
   quantities use the same-batch baselines.
 - **B6** ran unchanged. Its checks: exactness 1.9e-6; zero-source and
   self-freeze exact.
+
+# Part C8–C9
+
+## C8. Filler-gap with non-DAS verbs as the primary set
+
+fp32 rerun of round-4 B. Primary: kept non-DAS I bases (28 embedded, 34
+matrix), non-DAS targets, natural gaps and T reference (97 T verbs),
+half-B contexts. Commit `f2a7fff` holds the gates, written before any
+patch run.
+
+**Gates.** Both natural gates pass for the primary population:
+- embedded: L +1.42 [+1.01, +1.84], O +0.78 [+0.46, +1.12];
+- matrix: L +1.21 [+0.80, +1.64], O +0.97 [+0.67, +1.28].
+
+Every matrix-verb and auxiliary stratum passes. An fp32 half-A I gate
+keeps exactly round 4's I verbs. The base-form gate is 1.00 at every site.
+One secondary population fails: the embedded DAS bases fail on O
+(+0.33 [−0.17, +0.76]), so their patch readings are reported but not
+interpreted.
+
+**Readings, primary population (half B):**
+
+| | site 4 | 6 | 8 | 10 | 12–17 |
+|---|---|---|---|---|---|
+| embedded, in range | mixed | surface | mixed | mixed | surface |
+| embedded, T − I donors | surface | surface | surface | surface | surface |
+| matrix, in range | **licensing-like** | mixed | **licensing-like** | **licensing-like** | surface |
+| matrix, T − I donors | mixed | surface | surface | surface | surface |
+
+- **What fails in embedded questions.** In range at site 8, with the
+  filler, the closure and preposition parts behave as licensing predicts:
+  "." +0.95, PREP −0.55, L +1.51, all decisive. But objects rise past the
+  non-DAS transitive level: +0.37 [+0.01, +0.73] at 8 and +0.47 [+0.08,
+  +0.85] at 6 (bounds 0.49 and 0.47). This fails the "not above"
+  condition: "above" at 6, unresolved at 8.
+- **In the matrix experiment** the O level stays at the T level:
+  +0.14 [−0.19, +0.52] at 8.
+- **Other populations** (sites 6 and 8):
+  - round-4 population, fp32: embedded mixed / licensing-like; matrix
+    licensing-like at both. This reproduces round 4.
+  - DAS bases, either target pool: embedded licensing-like at 8 (its
+    natural gate fails); matrix licensing-like at both.
+  - multi-token non-DAS bases: embedded surface; matrix mixed.
+  - matrix, all contexts: licensing-like at 6 and 8.
+- **Strata** (in range, half B):
+  - embedded: "forgot" licensing-like at 8 and 10; "know" surface at every
+    site; "heard" and "remember" mixed or surface;
+  - matrix: "Will" and "Would" licensing-like at 4–10, "Did" at 8–10,
+    "Can" surface from site 6.
+
+**Against the predictions.**
+- Natural gates pass: **held**.
+- Matrix licensing-like at 8: **held**. Matrix at 6, newly predicted
+  licensing-like: **missed** (mixed on half B; licensing-like on all
+  contexts).
+- Embedded mixed at 6 and 8: **held at 8**; **missed at 6** (surface).
+- T − I donors as round 4: embedded surface **held**. Matrix mixed at 6–8
+  **missed**: it is surface, because the donors push O above the T level.
+- Strata heterogeneous, "Can" surface, "know" / "heard" not
+  licensing-like: **held**.
+
+**Reading.** With verbs that never entered DAS training, the in-range
+crossover survives in matrix questions at sites 4, 8 and 10. It does not
+survive in embedded questions. There, the closure-vs-preposition part
+holds, but the move pushes object expectation above the level natural
+non-DAS transitive verbs reach. Round 4's embedded site-8 result
+reappears only when the DAS-verb bases are included, and those bases fail
+the natural gate on their own.
+
+So the licensing-like reading of the early coordinate in filler-gap
+contexts is robust for matrix questions only. In embedded questions, the
+non-object (closure) side generalizes, but the object side overshoots. It
+also depends on the matrix verb and auxiliary ("Can" and "know" read
+surface).
+
+## C9. Shared readers
+
+D11's top-50 switch neurons (top 10 as sensitivity). A = mean over neurons
+of sign(I_A) × the activation difference (T − I in filler-gap; good − bad
+in passives). D_in = activation at t_T − at t_I under the site-8 in-range
+patch. C8 primary population; half B; filler-gap bases are the kept
+non-DAS I verbs.
+
+| top 50 | natural A, "that" | natural A, "what" | D_in(A), "that" | D_in(A), "what" | ρ_nat (what / passive) | ρ_in (what / passive) |
+|---|---|---|---|---|---|---|
+| passive reference | — | +0.105 [+0.083, +0.126] | — | +0.080 [+0.074, +0.087] | — | — |
+| embedded | −0.002 | +0.202 [+0.190, +0.213] | −0.003 | +0.125 [+0.116, +0.135] | 1.93 [1.58, 2.47] | 1.57 [1.41, 1.75] |
+| matrix | −0.006 | +0.192 [+0.173, +0.212] | −0.006 | +0.114 [+0.102, +0.127] | 1.83 [1.48, 2.37] | 1.43 [1.25, 1.65] |
+
+- **Top 10** gives the same pattern: ρ_nat 2.1–2.2, ρ_in 1.6.
+- **Per neuron.** The sign of a neuron's "what"-frame T − I difference
+  agrees with its passive difference for 0.62–0.68 of the 50 neurons. The
+  cosine between the 50-neuron difference vectors is 0.55–0.58.
+- **Dose.** The in-range step is larger in filler-gap than in passives
+  (0.84 / 0.81 vs 0.34 z). Per z unit of coordinate change, the "what"
+  response is 0.60–0.63 of the passive one (descriptive, not declared).
+- **Writers.** The comparison was **not made** under the declared rule.
+  The PREP logsumexp correction (−0.54, −0.48) exceeds a quarter of
+  D_in(L̃) (+0.97, +1.14), so the linear L̃ does not stand in for L.
+  Descriptive only:
+  - profile overlap O = 0.38 (embedded) and 0.54 (matrix);
+  - top-5 MLPs: filler-gap {8, 13, 15, 22, 23} / {11, 13, 14, 15, 19};
+    passive {8, 10, 13, 14, 16}.
+- **Checks.** The decomposition residual is ≤ 5.6e-5. The coordinates hit
+  their targets to 4e-6. The two basis files agree (cos 1.0000).
+
+**Declared decisions.**
+- Class-reader recruitment: **shared** in both experiments (top 50 and
+  top 10).
+- Filler-conditioned recruitment: **yes** (patched "what" − "that" +0.13
+  / +0.12, CI above 0 in both).
+- Writer locations: **unresolved** (correction gate).
+
+**Against the predictions.**
+- The neurons respond, but less than in passives (intermediate):
+  **missed**. They respond more, as raw ratios. Per unit of coordinate
+  change they respond somewhat less (0.6), and the plan did not use that
+  as the decision.
+- No filler conditioning: **missed**. The response is almost entirely
+  conditional on the filler.
+- Different writers: **not tested** (the rule's precondition failed).
+
+**Reading.** The switch neurons D11 found in passives also separate
+transitive from intransitive verbs in wh questions, in both embedded and
+matrix questions. They do so only when a wh filler is present ("what John
+destroyed" vs "that John destroyed"). In the plain declarative frame they
+do not separate the classes, just as they barely did in the active "has"
+frame in D11.
+
+So they are not passive-specific. They read the verb class when the
+verb's object position is empty: after a passive auxiliary, or with a
+fronted wh filler. That makes them a shared reader of a gap-sensitive
+verb-class value, downstream of the early d coordinate. The in-range move
+on d drives them in both constructions.
+
+This holds for recruitment, not mediation: no neuron was intervened on in
+the filler-gap frames. Which MLP layers write the filler-gap preference
+stays open, because the declared linear readout did not track L there.
