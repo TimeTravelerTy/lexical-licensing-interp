@@ -125,8 +125,9 @@ def run_natural(args):
     print(json.dumps(meta, default=str), flush=True)
 
 
-def targets(items, plan, proj, pf, kept, site_ix):
-    """Per plan row (inT / inI), the target raw projection under the row's basis."""
+def targets(items, plan, proj, pf, kept, site_ix, pool_mode="all"):
+    """Per plan row (inT / inI), the target raw projection under the row's basis. pool_mode "all" (round 4): verbs
+    outside the basis's DAS training pairs; "nondas" (round 5, C8): only verbs in no DAS training pair."""
     fo = pf.set_index("pair_id")
     it = items.set_index("item_id")
     out = np.full(len(plan), np.nan)
@@ -135,7 +136,7 @@ def targets(items, plan, proj, pf, kept, site_ix):
     for (k, f), g in sub.groupby(["split", "fold"]):
         j = KEYS.index((k, f))
         train = set(fo.index[fo[f"fold_split{k}"] != f])
-        pool = items[(~items.das_pair.fillna("").isin(train))]
+        pool = items[(~items.das_pair.fillna("").isin(train))] if pool_mode == "all" else items[items.das_pair.fillna("") == ""]
         pool = pool.assign(x=proj[pool.pid.to_numpy(), site_ix, j])
         T = pool[pool.cls == "T"].groupby(["exp", "frame", "context_id"]).x.agg(["mean", "count"])
         Ipool = pool[(pool.cls == "I") & pool.lemma.isin(kept)]
@@ -189,7 +190,7 @@ def run_patch(args):
             "plan_content_sha256": hashlib.sha256(pd.util.hash_pandas_object(plan, index=False).values.tobytes()).hexdigest()}
     for si, site in enumerate(SITES):
         t0 = time.time()
-        t, nmin = targets(items, plan, proj, pf, kept, si)
+        t, nmin = targets(items, plan, proj, pf, kept, si, args.target_pool)
         isin = plan.cond.isin(["inT", "inI"]).to_numpy()
         if np.nanmin(nmin[isin]) < 5:
             raise SystemExit(f"site {site}: an in-range target has fewer than 5 eligible verbs")
@@ -223,11 +224,11 @@ def run_patch(args):
                     for key in READ[1:]:
                         res[key][rows] = parts[key].cpu().numpy()
         assert not np.isnan(res["M"]).any()
-        pd.DataFrame({"row": plan.row, **res}).to_parquet(out / f"patches_{args.exp}_site{site}.parquet", index=False)
+        pd.DataFrame({"row": plan.row, **res}).to_parquet(out / f"patches_{args.exp}_site{site}{args.suffix}.parquet", index=False)
         print(f"{args.exp} site {site}: {len(plan)} rows in {time.time() - t0:.0f}s; {meta['checks'][str(site)]}",
               flush=True)
-    pd.DataFrame({"row": plan.row, **tg}).to_parquet(out / f"targets_{args.exp}.parquet", index=False)
-    (out / f"patch_meta_{args.exp}.json").write_text(json.dumps(meta, indent=2, default=str) + "\n")
+    pd.DataFrame({"row": plan.row, **tg}).to_parquet(out / f"targets_{args.exp}{args.suffix}.parquet", index=False)
+    (out / f"patch_meta_{args.exp}{args.suffix}.json").write_text(json.dumps(meta, indent=2, default=str) + "\n")
 
 
 if __name__ == "__main__":
@@ -242,5 +243,8 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--dtype", default="bfloat16")
     ap.add_argument("--batch", type=int, default=1024)
+    ap.add_argument("--target-pool", choices=("all", "nondas"), default="all",
+                    help="in-range target pool (round 5 C8: nondas = verbs in no DAS training pair)")
+    ap.add_argument("--suffix", default="", help="output file suffix (round 5: _nondas / _all)")
     a = ap.parse_args()
     run_natural(a) if a.mode == "natural" else run_patch(a)
