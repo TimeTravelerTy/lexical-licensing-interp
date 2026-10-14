@@ -72,6 +72,15 @@ stopped at a check, see D10b).
   intransitive verbs in wh questions, and only when the filler is present.
   They read the verb class whenever the object position is empty (passive
   or wh gap); they are not passive-specific.
+- **A3, training data.** Pile passive-slot counts do not reliably add to
+  overall frequency for the curated verbs (all decisions unresolved). In
+  the larger pool they do for transitives. For intransitives, wordfreq
+  Zipf predicts the rejection best, and their "was V" hits are mostly
+  prepositional passives.
+- **A5, a probe instead of LP.** A grammaticality probe on the final state
+  (dev AUC 0.93) beats LP on Head passives (88 vs 79%). It loses *more*
+  accuracy with rarity: Head − XTail +16.3 pp vs +9.7. So the deficit is
+  not only in the participle's output probability.
 - **B7, the switch neurons in natural text.** The top three neurons'
   strongest Pile contexts, labelled blind by Claude and Codex (κ = 1.00):
   - MLP11.n3462 (rank 1) fires on transitive verbs with a missing object:
@@ -83,6 +92,13 @@ stopped at a check, see D10b).
 - **D10, scale-up.** 6.9B and 12B fit on one H100 in fp32 at round-2 batch
   sizes. A round-2-style DAS replication plus path patching costs about 3
   GPU-hours on 6.9B and 5 on 12B.
+- **D10b, across Pythia sizes.** The A1 deficit is there at every size
+  from 160M to 12B: ΔL 1.6–2.4 nats, always on the intransitive side.
+- **D10c, Yes/No.** The base models answer "Yes" to almost everything.
+  Head accuracy is 50 / 45 / 40% for 1.4B / 6.9B / 12B: not a usable
+  readout.
+- **D11, verb list.** 281 matched T/I pairs (Head 47, Tail 132, XTail 102;
+  κ = 0.88 between raters), 62 held out from any DAS use.
 
 # Part A1–A2
 
