@@ -174,6 +174,11 @@ def run(args):
     items = pd.read_csv(args.items)
     plan = pd.read_csv(args.plan, usecols=["item_id", "split", "fold", "side", "cond", "base", "donor"])
     bases = load_bases(Path(args.site_dir) / "bases.pt", runner.device)
+    if args.feasibility:  # round 5 D10 timing only: random unit bases of this model's width, results discarded
+        gen = torch.Generator(device="cpu").manual_seed(0)
+        hdim = runner.model.config.hidden_size
+        bases = {k: (lambda v: (v / v.norm()).to(runner.device))(torch.randn(hdim, generator=gen)) for k in bases}
+        n_batches, t_batches = 0, []
 
     # the B7 rows (same seed and selection as run_path_patch.py)
     prim = items[items.bad_class == "plain"]
@@ -253,6 +258,11 @@ def run(args):
             g = g.sort_values("len")
             for _, gl in g.groupby("len"):  # equal lengths within a batch (no padding)
                 for i in range(0, len(gl), args.batch):
+                    if args.feasibility and n_batches >= args.feasibility:
+                        break
+                    if args.feasibility:
+                        torch.cuda.synchronize()
+                        tb = time.time()
                     gg = gl.iloc[i:i + args.batch]
                     n = len(gg)
                     src = torch.stack([dstate[int(j)] for j in gg.donor])
@@ -347,7 +357,23 @@ def run(args):
                     per_row.append(pd.DataFrame({"item_id": gg.item_id.to_numpy(), "pair": gg.pair.to_numpy(),
                                                  "half": half, "ntok": gg.ntok.to_numpy(), "donor": gg.donor.to_numpy(),
                                                  **rec}))
+                    if args.feasibility:
+                        torch.cuda.synchronize()
+                        t_batches.append((len(gg), int(gg.len.iloc[0]), time.time() - tb))
+                        n_batches += 1
             print(f"half {half} fold {f} done ({time.time() - t0:.0f}s)", flush=True)
+            if args.feasibility and n_batches >= args.feasibility:
+                break
+        if args.feasibility and n_batches >= args.feasibility:
+            break
+    if args.feasibility:
+        rep = {"model": args.model, "frames": args.frames, "rows_total": len(rows), "batch": args.batch,
+               "batches_timed": t_batches, "peak_alloc_GiB": torch.cuda.max_memory_allocated() / 2 ** 30,
+               "peak_reserved_GiB": torch.cuda.max_memory_reserved() / 2 ** 30}
+        Path(args.out_dir).mkdir(parents=True, exist_ok=True)
+        (Path(args.out_dir) / f"feasibility_{args.frames}_{args.model.split('/')[-1]}.json").write_text(json.dumps(rep, indent=1))
+        print(json.dumps(rep), flush=True)
+        return
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     pr = pd.concat(per_row, ignore_index=True)
@@ -383,6 +409,8 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--batch", type=int, default=32)
     ap.add_argument("--comp-chunk", type=int, default=64)
+    ap.add_argument("--feasibility", type=int, default=0,
+                    help="round 5 D10: time this many batches with random bases, write timing only, no results")
     ap.add_argument("--donor-cond", choices=("T", "I"), default="T",
                     help="donor class of the site-8 interchange (B7: T); outputs get an _I suffix for I")
     run(ap.parse_args())
