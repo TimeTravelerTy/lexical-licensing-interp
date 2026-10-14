@@ -619,3 +619,259 @@ part of this declaration; if it is run, it is declared separately first.
 3. C8 patches and C9 captures (fp32), only for experiments whose natural
    gate passes.
 4. Analysis; report in `results.md`.
+
+
+# Part A3–A5: training data, restoration, a non-LP readout (declared 2026-10-14)
+
+Written after A1–A2, B5–B6 and C8 ran (`results.md`); revised after an
+outside review (Codex) of the first draft, before any run.
+
+## A3. Training-data predictor
+
+**Question.** In A1–A2, the rare-verb deficit in L comes from intransitive
+participles. Pythia rejects them after "was" in proportion to their overall
+frequency, while transitive participles show no frequency trend. Does
+passive-slot frequency in the training data predict Δ_pass and L better
+than overall frequency?
+
+**Counts.** infini-gram API, index `v4_piletrain_llama`. This is the Pile
+training set; Pythia-1.4B saw just under one epoch of it, so the counts are
+exposure proxies. The API returns exact counts of the token sequence its
+Llama tokenizer assigns to the query, and every query, its token ids and
+decoded tokens are saved (`data/round5/counts/`).
+- overall c(V) = count("V") (lowercase, word-initial marker);
+- passive slot c_be(V) = Σ count("X V"), X ∈ {was, were, been, is, are,
+  be}, with per-auxiliary counts kept;
+- perfect slot c_perf(V) = Σ count("X V"), X ∈ {has, have, had}
+  (secondary: the corpus analogue of A1's was − has contrast).
+- Sensitivity: capitalized auxiliaries ("Was V", …) added to both slots.
+
+**Audit** (before analysis):
+- each slot query's token ids must end with the overall query's ids;
+  verbs failing this are dropped and listed;
+- for 10 verbs (5 T, 5 I, spread over bands), up to 10 contexts of "was V"
+  are retrieved (find + get_doc_by_rank) and classified by hand as
+  eventive passive / adjectival / other, to show what the proxy counts;
+- "be + participle" includes adjectival and other uses and misses passives
+  with intervening words. It is the requested proxy, not a count of
+  grammatical passives.
+
+**Variables.** Smoothing +0.5 on every count (sensitivity: +0.1 and +1); the
+share of zero counts is reported per class and band. Predictors:
+- Zipf (wordfreq, as A1);
+- log10(c + 0.5) (Pile overall);
+- **log10(c_be + 0.5)** (primary slot predictor);
+- ρ_be = log((c_be + 0.5) / (c + 0.5)) (secondary; with c_be ≈ 0 it reduces
+  to inverse overall exposure, so it is read only conditional on c).
+
+Outcome: Δ_pass(V) (A1, freq frames). For single-token verbs the affinity
+a_V equals Δ_pass(V) up to a verb-independent constant, so it adds nothing
+and is not analysed separately. Per pair, L, with T and I predictors
+entered separately.
+
+**Analyses** (curated verbs primary, pool verbs secondary; per class):
+- correlations and in-sample R² (descriptive);
+- **out-of-sample error:** 10-fold cross-validation with folds grouped by
+  verb pair (pool verbs: by verb), for outcome ~ Zipf, ~ log c, ~ log c_be,
+  ~ log c + log c_be;
+- uncertainty: verbs (pairs) within band × the 24 noun contexts, 2,000
+  draws, seed 17; in each draw the cross-validation is repeated on the
+  resampled outcome.
+
+**Decision rules** (per class, curated; L at pair level the same way):
+- **Slot frequency adds to overall frequency** if the CV error of
+  ~ log c + log c_be is lower than that of ~ log c, with the paired
+  difference's 95% CI above 0.
+- **Overall frequency suffices** if that difference's 90% CI lies within
+  ±2% of the ~ log c error.
+- Otherwise unresolved. Descriptive: whether Pile log c beats wordfreq Zipf.
+
+**Predictions.** Statistical preemption: a frequent intransitive is seen
+many times, almost never after a be-form, and its rejection grows with
+overall frequency, not with its slot count. (A1 already gives r(Δ_pass(I),
+Zipf) = −0.58; the new question is what slot counts add.)
+- I verbs: **overall frequency suffices**.
+- T verbs: Δ_pass(T) has no Zipf trend; slot counts add a little:
+  **slot frequency adds** (low confidence).
+- L: overall frequency suffices.
+
+If the counts cannot be obtained (API failure), A3 is reported as not run,
+with what it would need.
+
+## A4. Output-side restoration on single-token rare participles
+
+A2's gate was met. Every rare single-token participle is Tail, and no XTail
+participle is a single token. So A4 is a **Tail-singleton intervention**;
+its transfer to XTail is not tested.
+
+**Edit.** For an edited participle V with affinity a_V = u_V · Δh̄ (A2's Δh̄,
+freq contexts), the unembedding row moves along Δh̄ only:
+
+u_V ← u_V + (a* − a_V) Δh̄ / ‖Δh̄‖².
+
+This is the minimum-norm change that sets the projection on the *mean*
+direction to a*. It leaves the orthogonal part unchanged; projections on
+individual contexts' Δh are not equalized. Pythia's input and output
+embeddings are separate, so only V's output logits change, by
+δℓ_V(h) = (a* − a_V) h·Δh̄ / ‖Δh̄‖². Every normalized probability can still
+change through the normalizer.
+
+**Conditions** (all rare single-token participles: 23 T, 9 I, curated +
+pool; frozen manifest per paradigm in `data/round5/restore/`):
+- **oracle:** a* = the mean affinity of the Head single-token verbs of V's
+  class (282 T, 30 I);
+- **oracle, T only** and **oracle, I only:** to show which side produces a
+  gain;
+- **label-free:** a* = α + β z_V.
+  - z_V: V's site-8 coordinate on d at its (single) token, in "She has V",
+    "He has V", "They have V" (mean over the three subjects).
+  - Units: z per split-0 fold basis, each with its own sign and held-out
+    active levels (as `analyze_nonce_passive.z_table`), then the mean over
+    the five folds; DAS verbs use their held-out fold only.
+  - (α, β): OLS of a_V on z_V over the Head single-token verbs (both
+    classes, unweighted), applied unchanged to the rare verbs.
+  - Diagnostics: 10-fold CV R² within Head; residuals by class and Zipf;
+    comparison with an intercept-only predictor and with shuffled z.
+  - "Label-free" means no class label of the edited verbs is used. d itself
+    was trained with class labels.
+- Known before the run: the oracle equalizes the eligible population's
+  affinity gap by construction. Three verbs move the "wrong" way (diced,
+  doped down; corresponded up), and exerted moves by +4.48. The stored
+  hidden states imply a ≈ +0.53 nat mean first-token margin gain on the
+  affected curated pairs.
+
+**Measures** (unedited vs each condition; fp32):
+1. **Passive LP by band:**
+   - curated `passive_1` and `passive_2`, all pairs, with the affected
+     pairs (12 Tail pairs, edited T and/or I; tail/utter/creep has both)
+     reported separately;
+   - released FreqBLiMP `passive_1` / `passive_2`, with affected items
+     reported separately.
+   Reported: accuracy and whole-sentence margin, and the share of the
+   affected pairs' margin deficit relative to curated Head pairs that is
+   closed.
+2. **Specificity:**
+   - curated Head pairs (no edited token);
+   - all 67 FreqBLiMP paradigms × 3 bands under LP, split into items with
+     and without an edited token (accuracy change per cell; the affected
+     non-passive items are the direct collateral effects).
+3. **LM loss:**
+   - Pile *validation* documents containing each edited verb (infini-gram
+     `v4_pileval_llama`, find + get_doc_by_rank). Up to 20 occurrences per
+     verb at evenly spaced ranks; 512-token windows centred on the
+     occurrence, deduplicated.
+   - Reported: occurrences per verb; token-weighted and per-verb
+     macro-averaged NLL change, over all tokens and at the edited verb's
+     tokens; the latter split by the preceding word (be-form / perfect /
+     other).
+   - Also 500 random Pile-10k documents, truncated to 512 tokens: a
+     general diagnostic only, since these documents come from training
+     data.
+Bootstrap: pairs × contexts (curated), items (released), documents / verbs
+(LM loss); 2,000 draws, seed 17.
+
+**Decision rules.**
+- **Oracle improves rare passives:** on the affected curated `passive_1`
+  pairs, the mean margin change has a 95% CI above 0 and is ≥ 0.25 nats.
+  The share of the deficit closed is reported with it.
+- **Specific:**
+  - curated Head pairs' mean margin change has a 95% CI within ±0.05 nats;
+  - over all unaffected FreqBLiMP items pooled, the accuracy change has a
+    95% CI within ±0.5 pp (cells reported);
+  - the mean NLL change on Pile-10k text has a 95% CI below +0.002 nats per
+    token.
+  The bounds are set to about a tenth of the smallest effects reported so
+  far.
+- **Label-free achieves half the oracle:** given that the oracle improves,
+  the 95% CI of Δ_LF − 0.5 Δ_oracle (affected pairs, paired draws) lies
+  above 0.
+- Side-specific arms and NLL at the edited tokens: reported, not gated.
+
+**Predictions.**
+- Oracle: whole-sentence margins on affected curated `passive_1` pairs
+  rise by ≈ +0.5 nats (close to the first-token +0.53): **improves**. Most
+  of it comes from the I-only arm.
+- Specific: **yes**, with Head-pair changes < 0.02 nats.
+- NLL at the edited tokens changes by < 0.1 nats on average and rises for
+  some intransitive participles after be-forms.
+- Label-free: below half the oracle (Head CV R² of a_V on z_V is modest,
+  and rare-verb z values lie outside the Head range): **not achieved**
+  (low confidence).
+
+## A5. Non-LP readout: a grammaticality probe
+
+**Method.** Wang et al. 2026 (ACL), "Implicit Representations of
+Grammaticality in Language Models"; code at
+github.com/SusanWYS/grammaticality_probe, used as the reference for details.
+Declared adaptations: corpus, sentence splitting, tokenization and solver.
+- **Corpus.** Up to 25,000 sentences (6–40 words) from Project Gutenberg
+  (`jondurbin/gutenberg-dpo-v0.1`, "chosen") and up to 25,000 from
+  WikiText-103 raw (test + validation), seed 17; any shortfall is filled
+  from Gutenberg, and realized counts are reported. WikiText stands in for
+  their Penn Treebank half (LDC-licensed).
+  - Splitting is rule-based (PySBD and spaCy are not installed here or
+    locally): split on . ! ? followed by space and a capital, quotes kept
+    together, WikiText headings and markup dropped.
+  - A 200-sentence sample is audited for fragments.
+- **Tokens and perturbations.** Regex tokens (words, contractions and
+  punctuation marks are separate tokens, as spaCy would mostly give). One
+  perturbation per sentence, chosen uniformly:
+  - insertion of k ∈ {1..5} alphabetic tokens drawn from the corpus
+    vocabulary at random token boundaries;
+  - deletion of k ∈ {1..5} alphabetic tokens;
+  - a shuffle of a contiguous 5-token window.
+  Sentences that cannot take their perturbation are dropped. Pairs (and
+  everything) are frozen before any model run.
+- **Splits.** 80 / 20 train / dev **by document** (Gutenberg book,
+  WikiText article), keeping each original with its perturbation;
+  duplicates across splits are removed.
+- **Probe.** For each layer (residual outputs 1–24), on the last token's
+  hidden state (no BOS; right padding; the final-LN output is not used):
+  - features z-scored with training statistics;
+  - L2 logistic regression (scikit-learn lbfgs, 1,000 iterations; C from
+    2^−5 … 2^2, the inverse of their α grid up to loss normalization),
+    chosen by dev AUC;
+  - the layer with the best dev AUC is used.
+  Three probe seeds (different train/dev document splits) give a stability
+  range.
+- **Baselines** on dev: a logistic model on length and punctuation counts
+  only, and the LM's own sentence log-probability.
+- **Scoring.** A pair is correct if the probe *logit* is higher for the
+  good sentence; continuous logit margins are reported as well.
+  - Primary: released FreqBLiMP `passive_1`, by band.
+  - Secondary: `passive_2`, the curated band-cross `passive_1` pairs, and
+    all 67 paradigms × 3 bands (descriptive).
+  - LP accuracy on the same items is the comparison.
+
+**Probe quality.** The probe is informative if its dev AUC is ≥ 0.85,
+exceeds the length/punctuation baseline by ≥ 0.1, and its released Head
+`passive_1` accuracy has a 95% CI above 50%. Otherwise the results are
+still reported, labelled "uninformative probe".
+
+**Decision rules** (released `passive_1`). D_m = accuracy_Head −
+accuracy_XTail for m ∈ {probe, LP}, paired on the same items; items are
+resampled within band, with a good-verb-cluster resampling as a
+sensitivity. Tail is reported throughout.
+- **Detectable decline:** D_probe has a 95% CI above 0.
+- **Declines like LP** (keeps at least half of LP's drop): D_probe −
+  0.5 D_LP has a 95% CI above 0.
+- **Smaller decline than LP:** D_LP − D_probe has a 95% CI above 0.
+- **Practically no decline:** D_probe's 90% CI lies within ±4 pp.
+Several can hold at once; all are reported.
+
+**Predictions.**
+- The probe is informative. Its Head `passive_1` accuracy is below LP's.
+- Rarity: the probe's drop is smaller than LP's (≈ 0–4 pp vs ≈ 9 pp):
+  **smaller decline than LP: yes; declines like LP: no**; "practically no
+  decline" possible (low confidence). Rationale: the deficit sits in the
+  participle's output probability (A1), which a probe on the final state
+  need not inherit. A1–A2 do not decide this.
+
+## Order (A3–A5)
+
+1. Commit this part.
+2. A3: counts (API, locally), audit, analysis.
+3. A4: z coordinates and edits; Pile-validation documents fetched locally
+   via the API; one TSUBAME job.
+4. A5: corpus and pairs built locally and frozen; one TSUBAME job.
+5. Report in `results.md`.
