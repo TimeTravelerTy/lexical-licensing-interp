@@ -5,9 +5,13 @@ Adaptation of Wang et al. 2026 (ACL): Project Gutenberg text (jondurbin/gutenber
 book) and WikiText-103 raw test + validation (document = article; standing in for the Penn Treebank half).
 Rule-based sentence splitting; regex tokens (words with contractions, numbers, single punctuation marks); originals
 and perturbed sentences are rendered from tokens with one spacing rule, so no perturbation glues words together. Sentences of 6-40 words, ending in . ! ? (optionally followed by a closing quote).
-One perturbation per sentence, uniform over insertion (k in 1..5 alphabetic word types from the corpus vocabulary at
-random token boundaries before the final token), deletion (k in 1..5 alphabetic tokens) and a shuffle of a
-contiguous 5-token window (re-drawn until the order changes, up to 10 tries). Up to 25,000 sentences per source
+One perturbation per sentence, uniform over insertion (k in 1..5 lowercase common word types from the corpus at random
+token boundaries before the terminal punctuation), deletion (k in 1..5 alphabetic tokens) and a shuffle of a
+contiguous 5-token window before the terminal punctuation (re-drawn until the order changes, up to 10 tries).
+Shortcut controls: sentence-initial casing is restored after perturbation (the new first word capitalized, a moved-in
+common sentence-initial word lowercased); originals with unbalanced brackets or quotes, or not starting with a capital,
+are dropped; initials ("G.") do not end sentences; a perturbation is re-drawn (up to 10 times) until the perturbed
+sentence starts like an original. Up to 25,000 sentences per source
 (any WikiText shortfall filled from Gutenberg), seed 17; duplicates removed. Train / dev split 80 / 20 by document
 for three split seeds.
 
@@ -48,8 +52,9 @@ def split_sentences(text):
     for p in parts:
         buf = f"{buf} {p}".strip() if buf else p
         last = buf.split()[-1] if buf.split() else ""
-        if any(last.rstrip(".").rstrip("\"'”’").endswith(a) for a in ABBR) and last.endswith("."):
-            continue  # an abbreviation, not a sentence end
+        if (any(last.rstrip(".").rstrip("\"'”’").endswith(a) for a in ABBR) and last.endswith(".")) or \
+                re.fullmatch(r"\(?[A-Z]\.", last):
+            continue  # an abbreviation or an initial, not a sentence end
         if buf.count('"') % 2 == 1 or buf.count("“") > buf.count("”"):
             continue  # keep quotes together
         out.append(buf)
@@ -96,32 +101,57 @@ def join(tw):
     return render([t for t, _ in tw])
 
 
-def perturb(tw, kind, rng, vocab):
-    tw = [list(x) for x in tw]
+def body_len(tw):
+    """Number of tokens before the terminal punctuation group (e.g. '.', '!”')."""
     n = len(tw)
+    while n > 0 and not tw[n - 1][0][0].isalnum():
+        n -= 1
+    return n
+
+
+def fix_case(orig, tw, common):
+    """Sentence-initial casing as in the original: capitalize the new first word; lowercase a moved-in common
+    sentence-initial word."""
+    first_o = orig[0][0]
+    for i, (t, _) in enumerate(tw):
+        if t[0].isalpha():
+            if i == 0 or all(not x[0][0].isalnum() for x in tw[:i]):
+                tw[i][0] = t[0].upper() + t[1:]
+            break
+    for i, (t, _) in enumerate(tw):
+        if i > 0 and t == first_o and t[0].isupper() and t != "I" and t.lower() in common and any(x[0][0].isalnum() for x in tw[:i]):
+            tw[i][0] = t.lower()
+    return tw
+
+
+def perturb(tw, kind, rng, vocab, common):
+    orig = [list(x) for x in tw]
+    tw = [list(x) for x in tw]
+    nb = body_len(tw)
     if kind == "insertion":
         k = int(rng.integers(1, 6))
         for _ in range(k):
-            pos = int(rng.integers(0, len(tw)))  # boundaries before the final token
+            pos = int(rng.integers(0, nb + 1))  # boundaries before the terminal punctuation
             tw.insert(pos, [vocab[int(rng.integers(len(vocab)))], " "])
-        return join(tw), k
+            nb += 1
+        return join(fix_case(orig, tw, common)), k
     if kind == "deletion":
         k = int(rng.integers(1, 6))
         alpha = [i for i, (t, _) in enumerate(tw) if t.isalpha()]
         if len(alpha) < k + 3:
             return None, k
         drop = set(rng.choice(alpha, k, replace=False).tolist())
-        return join([x for i, x in enumerate(tw) if i not in drop]), k
-    if n < 5:
+        return join(fix_case(orig, [x for i, x in enumerate(tw) if i not in drop], common)), k
+    if nb < 5:
         return None, 5
-    st = int(rng.integers(0, n - 4))
+    st = int(rng.integers(0, nb - 4))  # the window stays before the terminal punctuation
     win = [tw[i][0] for i in range(st, st + 5)]
     for _ in range(10):
         perm = list(rng.permutation(5))
         if perm != list(range(5)) and [win[p] for p in perm] != win:
             for j, p in enumerate(perm):
                 tw[st + j][0] = win[p]
-            return join(tw), 5
+            return join(fix_case(orig, tw, common)), 5
     return None, 5
 
 
@@ -145,8 +175,18 @@ def main(args):
     df = pd.DataFrame(sents, columns=["source", "doc", "sentence"]).drop_duplicates("sentence")
     nw = df.sentence.str.split().str.len()
     df = df[(nw >= 6) & (nw <= 40) & df.sentence.str.contains(END) & ~df.sentence.str.contains(r"[=<>@|\[\]{}]")]
-    df = df[df.sentence.str[0].str.match(r"[A-Z\"“‘']")].reset_index(drop=True)
-    vocab = sorted({t for s in df.sentence for t, _ in tokens_ws(s) if t.isalpha()})
+    df = df[df.sentence.str.match(r"[\"“‘']?[A-Z]")]
+    bal = lambda x: (x.count("(") == x.count(")") and x.count("[") == x.count("]") and x.count('"') % 2 == 0
+                     and x.count("“") == x.count("”"))
+    df = df[df.sentence.map(bal)].reset_index(drop=True)
+    low, cap = {}, {}
+    for s_ in df.sentence:
+        for i, (t, _) in enumerate(tokens_ws(s_)):
+            if t.isalpha() and i > 0:
+                d_ = low if t.islower() else cap
+                d_[t.lower()] = d_.get(t.lower(), 0) + 1
+    common = {w for w, c in low.items() if c > cap.get(w, 0)}  # usually lowercase mid-sentence
+    vocab = sorted(common)  # inserted words: lowercase common word types
     wsel = df[df.source == "wikitext"].sample(frac=1, random_state=args.seed).head(args.per_source)
     gneed = args.per_source + (args.per_source - len(wsel))
     gsel = df[df.source == "gutenberg"].sample(frac=1, random_state=args.seed).head(gneed)
@@ -156,8 +196,11 @@ def main(args):
     for (src, doc, s), kind in zip(sel[["source", "doc", "sentence"]].itertuples(index=False), kinds):
         tw = tokens_ws(s)
         orig = join(tw)  # the original, rendered with the same spacing rules
-        p, k = perturb(tw, kind, rng, vocab)
-        if p is None or p == orig:
+        for _ in range(10):  # re-draw until the perturbed sentence starts like an original (no punctuation-initial cue)
+            p, k = perturb(tw, kind, rng, vocab, common)
+            if p is not None and p != orig and re.match(r"[\"“‘']?[A-Z0-9]", p):
+                break
+        else:
             continue
         rows.append({"source": src, "doc": doc, "original": orig, "perturbed": p, "ptype": kind, "k": k})
     P = pd.DataFrame(rows)

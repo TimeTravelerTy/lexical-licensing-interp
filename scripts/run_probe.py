@@ -7,7 +7,8 @@ final LayerNorm for l = 24; the final-LN output is not used); no BOS; right padd
 Probe (Wang et al. 2026): per layer, z-scored with training statistics, L2 logistic regression (scikit-learn lbfgs,
 1,000 iterations), C in 2^-5..2^2 chosen by dev AUC; the layer with the best dev AUC (split 0) is used. Splits 1 and
 2 (other document splits) re-select C at that layer (stability).
-Baselines on dev: logistic regression on length / punctuation counts; the LM's sentence log-prob (sum and per token).
+Baselines on dev: logistic regression on length, punctuation and casing counts; the LM's sentence log-prob (sum and
+per token).
 Scoring: every FreqBLiMP pair (67 paradigms x 3 bands) and the curated band-cross passive_1 / passive_2 pairs: probe
 logit of each sentence (three splits' probes) and the sentence log-prob (paper LP: all tokens but the first).
 
@@ -89,7 +90,7 @@ def fit_layer(X, y, tr, dv):
     for C in CGRID:
         clf.set_params(C=C)
         clf.fit(Z[tr], y[tr])
-        out.append((C, auc(y[dv], clf.decision_function(Z[dv]))))
+        out.append((C, auc(y[dv], clf.decision_function(Z[dv])), int(np.max(clf.n_iter_))))
         models[C] = (clf.coef_.copy(), clf.intercept_.copy())
     return out, models, (mu, sd)
 
@@ -111,9 +112,9 @@ def run(args):
     for j in range(S.shape[1]):
         X = S[:, j].astype(np.float32)
         res, models, norm = fit_layer(X, y, tr0, dv0)
-        for C, a in res:
-            rows.append({"split": 0, "layer": j + 1, "C": C, "dev_auc": a})
-        Cb, ab = max(res, key=lambda r: r[1])
+        for C, a, it in res:
+            rows.append({"split": 0, "layer": j + 1, "C": C, "dev_auc": a, "n_iter": it})
+        Cb, ab, _ = max(res, key=lambda r: r[1])
         if ab > best[0]:
             best = (ab, j, (Cb, models[Cb], norm))
         print(f"layer {j + 1}: best C {Cb}, dev AUC {ab:.4f} ({time.time() - t0:.0f}s)", flush=True)
@@ -122,16 +123,18 @@ def run(args):
     X = S[:, best[1]].astype(np.float32)
     for k in (1, 2):
         res, models, norm = fit_layer(X, y, split[k] == "train", split[k] == "dev")
-        for C, a in res:
-            rows.append({"split": k, "layer": layer, "C": C, "dev_auc": a})
-        Cb, _ = max(res, key=lambda r: r[1])
+        for C, a, it in res:
+            rows.append({"split": k, "layer": layer, "C": C, "dev_auc": a, "n_iter": it})
+        Cb, _, _ = max(res, key=lambda r: r[1])
         probes[k] = (Cb, models[Cb], norm)
     pd.DataFrame(rows).to_csv(out / "probe_train.csv", index=False)
     # baselines on split-0 dev
     from sklearn.linear_model import LogisticRegression
     punct = np.array([sum(ch in string.punctuation for ch in s) for s in sents])
     words = np.array([len(s.split()) for s in sents])
-    B = np.column_stack([nt, words, punct]).astype(float)
+    midcaps = np.array([sum(1 for i, w in enumerate(s.split()) if i > 0 and w[:1].isupper()) for s in sents])
+    commas = np.array([s.count(",") for s in sents])
+    B = np.column_stack([nt, words, punct, midcaps, commas]).astype(float)  # length, punctuation and casing only
     Bz = (B - B[tr0].mean(0)) / (B[tr0].std(0) + 1e-6)
     lb = LogisticRegression(max_iter=1000).fit(Bz[tr0], y[tr0])
     meta = {"args": vars(args), "pairs_sha256": sha(args.pairs), "n_sentences": len(sents), "layer": layer,

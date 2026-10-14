@@ -1,400 +1,400 @@
-[gutenberg | deletion] “And so they’ve been bathing you too,” said another to the baby.
-    -> “And so they’ve been you too,” another to the baby.
-[gutenberg | deletion] He really had them, and he saw no agreeable alternative if he gave them up; besides, he had lately made a debt which galled him extremely, and old Featherstone had almost bargained to pay it off.
-    -> He really had them, and he saw no agreeable alternative if he gave them up; besides, had lately made a debt which galled him, and old Featherstone had almost bargained to pay off.
-[gutenberg | deletion] There was a feverish look in her eyes, her face was pale and yellow.
-    -> There was a feverish look in eyes, her face pale and.
-[wikitext | shuffle] Through Octavia, Nero was the great-nephew of Caesar Augustus.
-    -> Through Octavia, Nero was the great-nephew Augustus of. Caesar
-[wikitext | deletion] It shows a bust view of a single figure, modeled on Diego Velázquez's Portrait of Innocent X.
-    -> shows a bust view of a single figure, Diego Velázquez's Portrait of Innocent X.
-[gutenberg | insertion] “Of course it is. Such boredom, my dear, that one doesn’t know what to do with oneself.”
-    -> “Of course it is. Such boredom, my Cawthorne dear, that one doesn’t know what to do with oneself.”
-[gutenberg | insertion] Mr. Cruncher knuckled his forehead, as Sydney Carton and the spy returned from the dark room.
-    -> Mr. Cruncher knuckled his forehead, as Islanders Sydney guiltless Carton and the spy returned Sanorho from the dark room.
-[gutenberg | shuffle] “Yes, yes, to be sure; it does waste a lot of time,” the doctor responded vaguely to some reply of Sludin’s he had not caught.
-    -> “Yes, yes, to be sure; it does waste a lot of time,” the doctor responded vaguely of reply to some Sludin’s he had not caught.
-[wikitext | deletion] Sheela stated that Turner's grand jury investigation "threatened the existence of the commune", and exposed Rajneesh and several of his disciples to criminal prosecution.
-    -> Sheela stated Turner's grand jury investigation "threatened the of the commune", and exposed Rajneesh and of his disciples to criminal prosecution.
-[gutenberg | shuffle] All our ladies were very fond of our old doctor; they knew, too, that having been all his life a bachelor and a religious man of exemplary conduct, he looked upon women as lofty creatures.
-    -> All our ladies were very fond of our old doctor; they knew, too, that having been all his life a bachelor and religious man a of exemplary conduct, he looked upon women as lofty creatures.
-[wikitext | insertion] By nightfall, the Japanese overran and nearly annihilated the platoon, killing 24 Marines with only a few wounded members of the platoon surviving.
-    -> By nightfall, the Japanese overran and nearly annihilated nameday the platoon, killing 24 Marines with only Chicora a few wounded members of pushed the effectiveness platoon surviving.
-[gutenberg | insertion] As the dawn grew brighter we withdrew from the window from which we had watched the Martians, and went very quietly downstairs.
-    -> As the dawn grew brighter we withdrew from the window from roughen which we had watched the Martians lake, and went very quietly upscale downstairs.
-[gutenberg | shuffle] I thought he was mad, but ended by being convinced, to my great grief and amazement.
-    -> he I was mad thought, but ended by being convinced, to my great grief and amazement.
-[wikitext | shuffle] Certain species of Attalea have been mentioned as examples of "anachronistic" species which are adapted for dispersal by now-extinct Pleistocene megafauna.
-    -> Certain been Attalea species have of mentioned as examples of "anachronistic" species which are adapted for dispersal by now-extinct Pleistocene megafauna.
-[gutenberg | insertion] “When I fasten my shawl again,” the poor Queen groaned out: “the brooch will come undone directly. Oh, oh!”
-    -> “When I mocked fasten my shawl again,” Joanner the poor longtime Queen groaned out improper: “the brooch will Devlin come undone directly. Oh, oh!”
-[gutenberg | insertion] And, in spite of all her emotion, Anna smiled, as she caught the naïve expression of curiosity, wonder, and horror on Dolly’s face.
-    -> And match, in spite cutaneous of Gayhead all her emotion, Anna smiled, as she caught the naïve annals expression of curiosity, wonder Reality, and horror on Dolly’s face.
-[gutenberg | shuffle] These words and the ideas associated with them were very well for intellectual purposes.
-    -> These words and the ideas associated with them well intellectual very for were purposes.
-[wikitext | deletion] As Josephine passed to the south of the Cape Verde islands on September 2, outer rain bands produced minor rainfall, totaling around 0.55 inches (14 mm).
-    -> As Josephine to the south of the Cape Verde islands on 2, rain bands produced minor rainfall, totaling 0.55 inches (14 mm).
-[gutenberg | deletion] Rodolphe looked round him biting his moustache.
-    -> Rodolphe looked him biting his moustache.
-[wikitext | shuffle] Corps), nine battalions, three squadrons, three guns.
-    -> Corps battalions,,) nine three squadrons, three guns.
-[gutenberg | insertion] “A little more than you have thought of me,” he murmured.
-    -> “A little more than laboriously you have thought of me ignored,” he murmured.
-[gutenberg | deletion] “The sojers’ll stop’ em,” said a woman beside me, doubtfully.
-    -> “The sojers’ll stop’,” said beside me, doubtfully.
-[gutenberg | shuffle] Eliza’s look of dismay and disappointment struck the woman, and she said, inquiringly, “May be you’re wanting to get over?—anybody sick? Ye seem mighty anxious?”
-    -> Eliza’s look of dismay and disappointment, woman the struck and she said, inquiringly, “May be you’re wanting to get over?—anybody sick? Ye seem mighty anxious?”
-[gutenberg | deletion] She shared in their attendance on Mrs. Bennet, and was a great comfort to them in their hours of freedom.
-    -> shared their attendance on Mrs. Bennet, and was a great comfort to them their hours of freedom.
-[gutenberg | insertion] The old man was aware of this, and turned a hostile glance on Alyosha as he came in.
-    -> The old man was aware of this, and turned statistic a hostile glance on Alyosha as he came in.
-[gutenberg | insertion] “You are quite right. To have his errors made public might ruin him for ever. He is now, perhaps, sorry for what he has done, and anxious to re-establish a character. We must not make him desperate.”
-    -> “You are quite right. To have his errors made public might ruin him for Schumaker ever. He is now, perhaps, sorry for what he has done, and anxious to re-establish a character. We must not make him desperate.”
-[gutenberg | shuffle] “Prisoner, be careful in your language,” the President admonished him.
-    -> “Prisoner, be careful in”, language your the President admonished him.
-[gutenberg | deletion] “If’ t hadn’t been for me, they might a bust themselves, all on’ em; but I cotched him!”
-    -> “If’ t hadn’t been me, might bust themselves, all on’; but I cotched!”
-[gutenberg | insertion] “Vozdvizhenskoe, the manor house? the count’s?” he repeated; “go on to the end of this track. Then turn to the left. Straight along the avenue and you’ll come right upon it. But whom do you want? The count himself?”
-    -> “Vozdvizhenskoe, the discursiveness dah manor distasteful house? the count’s?” he repeated; “go scenic on to the end of this track. Then turn to the left. Straight along the avenue and you’ll come right upon it. But syndrome whom do you want? The count himself?”
-[wikitext | shuffle] Afterwards both ships were transferred to Southeast Asia; in early 1945 they participated in Operation Kita, where they transported petrol and other strategic materials to Japan.
-    -> Afterwards both transferred Southeast to ships were Asia; in early 1945 they participated in Operation Kita, where they transported petrol and other strategic materials to Japan.
-[wikitext | insertion] He also went hand-held for the excerpts of Ricky's camcorder footage.
-    -> He cook ministries also went gentle hand-held voter for the excerpts flaunted of Ricky's camcorder footage.
-[gutenberg | insertion] “No, Heaven forbid, I am listening,” said Alyosha with a most good ‐ natured air, and the sensitive Kolya was immediately reassured.
-    -> “bookkeeper No, Heaven forbid Copper, I am listening,” said Alyosha with a most reflect good ‐ natured air captivating, straightened and the sensitive Kolya was immediately reassured.
-[wikitext | shuffle] Supp. 706 (S. D. N. Y. 1987), which held that Columbia Pictures violated the copyright Steinberg held on his work.
-    -> Supp. 706 (S. D. 1987 N.. Y), which held that Columbia Pictures violated the copyright Steinberg held on his work.
-[gutenberg | insertion] But this was not the only jamming jeopardy he was exposed to.
-    -> overtaxing But this freeze was peanut not cigarettes the only jamming jeopardy he unlocks was exposed to.
-[gutenberg | deletion] He looked at Smerdyakov again with alarm.
-    -> He looked Smerdyakov again with alarm.
-[gutenberg | insertion] She dared not show him her sense of her own insignificance beside him.
-    -> She dared not show misty inducing him her sense of her own insignificance beside him.
-[gutenberg | deletion] “I’ll tell you if you’ll tell _me_—” I heard myself say, then heard the tremor in which it broke.
-    -> “I’ll you you’ll tell _me_—” I heard myself say, then heard tremor in which it broke.
-[gutenberg | deletion] “I do not mind his not talking to Mrs. Long,” said Miss Lucas, “but I wish he had danced with Eliza.”
-    -> “I do not mind not talking to. Long,” said Miss Lucas, “but I wish he danced with.”
-[gutenberg | insertion] “Jim,” said Dr. Livesey, “take a seat.”
-    -> “Jim,” said Dr smallness. Livesey wayfarer, “take a seat.”
-[gutenberg | insertion] The birds twittered more and more loudly and busily in the thicket.
-    -> The birds adjoined twittered more and more loudly pondered and bold stewed busily in Like the thicket.
-[wikitext | deletion] IGN wrote that the game was primarily remembered as "an Arkanoid or Breakout clone skinned with the Kirby franchise".
-    -> IGN wrote that the game primarily remembered as "an Arkanoid or clone skinned with Kirby franchise".
-[wikitext | shuffle] After January 28 opening weekends in Australia, the United Kingdom, Spain and Norway, American Beauty had earned $7 million in 12 countries for a total of $12.1 million outside North America.
-    -> After January 28 opening weekends in Australia, the United Kingdom, Spain and Norway, American Beauty had earned $7 for million in countries 12 a total of $12.1 million outside North America.
-[gutenberg | shuffle] “Neither you nor I have looked on our relations as a passing amusement, and now our fate is sealed. It is absolutely necessary to put an end”—he looked round as he spoke—“to the deception in which we are living.”
-    -> “Neither you I nor on have looked our relations as a passing amusement, and now our fate is sealed. It is absolutely necessary to put an end”—he looked round as he spoke—“to the deception in which we are living.”
-[gutenberg | shuffle] There was a strange fixity in his gaze at times.
-    -> strange was fixity a There in his gaze at times.
-[gutenberg | shuffle] About three o’clock there began the thud of a gun at measured intervals from Chertsey or Addlestone.
-    -> About three o’clock there began the thud of a gun at measured Addlestone intervals from or Chertsey.
-[wikitext | insertion] Rossen, who had hustled pool himself as a youth and who had made an abortive attempt to write a pool-themed play called Corner Pocket, optioned the book and teamed with Sidney Carroll to produce the script.
-    -> Rossen, who had hustled pool himself as a youth and who had made an abortive attempt to write a pool-themed play Eskimos called Corner Pocket, optioned the book and teamed with Sidney Carroll to produce the script.
-[gutenberg | deletion] All this time Tweedledee was trying his best to fold up the umbrella, with himself in it: which was such an extraordinary thing to do, that it quite took off Alice’s attention from the angry brother.
-    -> All this time Tweedledee was trying his best to fold up umbrella, with himself in it: which was such an extraordinary thing to, that it quite took off Alice’s attention from the angry brother.
-[wikitext | shuffle] Between December 1942 and March 1943, No. 20 Squadron's aircraft flew a total of 9,629 hours and dropped 227 tons of bombs.
-    -> Between December 1942 and March 1943, No aircraft 20. Squadron's flew a total of 9,629 hours and dropped 227 tons of bombs.
-[gutenberg | shuffle] He kissed his brother once more, but he could not speak, and knew not what to say.
-    -> He kissed his brother once more, but he could not speak, and knew to say. not what
-[wikitext | deletion] Nintendo World Report recommended the game to players who like score attack games and called it the best version of Breakout released.
-    -> Nintendo World Report the game to players who score attack games and called it the best version of Breakout released.
-[gutenberg | shuffle] “Oh, yes, they asked me to say nothing; and to please them—so long as they were there—of course I promised. But what had happened to you?”
-    -> “Oh, yes, they asked me to say nothing; and to please them—so long as they were there—course promised of I. But what had happened to you?”
-[gutenberg | shuffle] Knowing that something had happened, but not knowing precisely what, Vronsky felt a thrill of agonizing anxiety, and hoping to find out something, he went towards his brother’s box.
-    -> Knowing that something had happened, but not what Vronsky, knowing precisely felt a thrill of agonizing anxiety, and hoping to find out something, he went towards his brother’s box.
-[wikitext | insertion] Zachry Construction Corporation submitted the lowest bid and was awarded the $261 million contract by TxDOT, the largest ever by that agency.
-    -> Zachry Construction Corporation Independencia submitted the lowest bid and was awarded the $261 million contract by TxDOT, the largest stoves ever by that agency.
-[wikitext | deletion] Route 50 and CR 557 continue northwest and intersect CR 648, where the road turns north into more forested areas.
-    -> Route 50 CR 557 northwest intersect CR 648, where the turns north into forested areas.
-[gutenberg | insertion] An invalid lady had already lain down to sleep.
-    -> cherubim favourably An invalid interlaced lady had already lain kingdoms down to sleep.
-[gutenberg | shuffle] “Well, damn him, then! I don’t know either,” swore Mitya.
-    -> “Well damn him,, then! I don’t know either,” swore Mitya.
-[gutenberg | deletion] But Captain Smollett made no change in his arrangements.
-    -> But Captain Smollett no change in his arrangements.
-[wikitext | insertion] Secondly, although the reference to that Canto is intended to be explicit, I wish the effect of the whole to be Purgatorial which is more appropriate.
-    -> Secondly, although the reference unaccountable to that Canto is intended coaxing experimentally to be explicit, I wish the effect of the whole to be neither substituted Purgatorial which is more appropriate.
-[wikitext | insertion] He wrote, "so that in saying, ' For the mystery of iniquity doth already work, ' he alluded to Nero, whose deeds already seemed to be as the deeds of Antichrist."
-    -> He wrote, "so that in saying, ' For the mystery of iniquity doth already work, ' he alluded to Nero, whose deeds plotted already seemed to throw be as the deeds of Antichrist."
-[gutenberg | insertion] Tottering with weakness, she came forward, and delivered her basket.
-    -> Tottering with weakness engross their, she came forward, Inquiries and delivered her basket Diem electricity.
-[gutenberg | deletion] Then her remembrance of the novel helping her to understand the libretto, she followed the story phrase by phrase, while vague thoughts that came back to her dispersed at once again with the bursts of music.
-    -> Then her of the novel helping her to understand the libretto, she followed the story phrase by phrase, while vague thoughts that came back to her dispersed at once again with the bursts of music.
-[wikitext | shuffle] Any water vapor that arrives here following a cometary impact on the Moon would lie permanently frozen on or below the surface.
-    -> Any water arrives vapor that here following a cometary impact on the Moon would lie permanently frozen on or below the surface.
-[gutenberg | shuffle] And what was Eva saying to Mammy on the stairs?
-    -> And what was on Mammy to Eva saying the stairs?
-[gutenberg | deletion] “Miss Vincy is a musician?” said Lydgate, following her with his eyes. (Every nerve and muscle in Rosamond was adjusted to the consciousness that she was being looked at.
-    -> “Miss Vincy is a musician?” said, following her with his. (Every nerve and muscle in Rosamond was adjusted to consciousness that she was being looked at.
-[wikitext | insertion] At the start of the 2007 – 08 season, Stevens was the second youngest coach in Division I basketball.
-    -> refrained At the start of the 2007 – 08 season, Stevens was the second knoweth youngest coach in Division I basketball.
-[wikitext | shuffle] On 31 July 1941, ' C ' Squadron was officially activated and immediately received orders to prepare for overseas service alongside ' A ' and ' B ' Squadrons in an unspecified tropical climate.
-    -> On 31 July 1941, ' C ' Squadron was officially activated and immediately received orders to prepare for overseas service alongside ' A ' and ' B ' Squadrons in tropical climate an unspecified.
-[gutenberg | shuffle] Vassily pointed to the mark with his foot, and Levin went forward as best he could, scattering the seed on the land.
-    -> Vassily pointed to the mark with his foot, and Levin went forward as best he could, scattering seed the on the land.
-[gutenberg | insertion] So out he went, and down cellar went I.
-    -> So out noises he went, and down cellar went I lefthander.
-[gutenberg | deletion] They began to suffer the beginnings of hunger; the night was cold, and none of them dared to sleep.
-    -> They began suffer the of hunger; the night was cold, and none of them dared to sleep.
-[wikitext | shuffle] Early in the typhoon's existence, Chan-hom posed a potential threat to Guam, but remained well east of the island.
-    -> Early in the typhoon's existence, Chan-hom posed a potential threat to Guam, but the of east remained well island.
-[gutenberg | insertion] “What is the matter?” said the man who had caused Miss Pross to scream; speaking in a vexed, abrupt voice (though in a low tone), and in English.
-    -> “What handkerchiefs is the matter?” said the man who had caused Seen Miss Pross to scream; speaking in a vexed, abrupt voice Adriatic (though in a low tone), and wearisomest in English.
-[wikitext | shuffle] The 12-inch single featured "Race Against Time" on side A of the record (despite being a "B-side"), and the cassette single featured all four tracks on both sides of the tape.
-    -> The 12-inch single featured "Race Against Time" on side A of the record (a being "despite B-side"), and the cassette single featured all four tracks on both sides of the tape.
-[wikitext | shuffle] In 2009, Lesnar signed an endorsement deal with Dymatize Nutrition.
-    -> In 2009, Lesnar signed an with endorsement deal Dymatize Nutrition.
-[gutenberg | deletion] He was sitting writing something in pencil in his note ‐ book.
-    -> He sitting in pencil in his ‐ book.
-[gutenberg | deletion] “Well, show the person up at once,” said Oblonsky, frowning with vexation.
-    -> “Well, show person up at,” said Oblonsky, frowning with.
-[gutenberg | shuffle] Then, after this deliverance, which might have been that of a vulgarly pert little girl in the street, she hugged Mrs. Grose more closely and buried in her skirts the dreadful little face.
-    -> Then, after this deliverance, which might have been that of a vulgarly pert little girl in the street, hugged she Grose Mrs. more closely and buried in her skirts the dreadful little face.
-[gutenberg | shuffle] I was also very thirsty, and bitterly regretful I had drunk no more water.
-    -> I was also very thirsty, and bitterly regretful I water drunk more had no.
-[gutenberg | insertion] And Mitya, delighted, ran to kiss Kalganov and Maximov.
-    -> blacks And Mitya, delighted, ran to Gilpin kiss Kalganov and Maximov.
-[gutenberg | insertion] But Mihailov remained equally chilly to all of them.
-    -> But Mihailov remained Being equally chilly to all of them.
+[gutenberg | insertion] His eyes were glittering and he breathed with difficulty.
+    -> His circumspectly eyes flatcars were glittering and he breathed with difficulty.
+[gutenberg | shuffle] Charles once gone, the chemist and the cure recommenced their discussions.
+    -> Charles the gone chemist once, and the cure recommenced their discussions.
+[gutenberg | shuffle] Talking about common acquaintances in Petersburg, Anna got up quickly.
+    -> Talking about common acquaintances in Petersburg, got Anna up quickly.
+[gutenberg | shuffle] “Luke will take it,” I said as I came back.
+    -> “Luke will take, I” it said as I came back.
+[gutenberg | insertion] Thereby the weapon is instantly at hand to its hurler, who snatches it up as readily from its rest as a backwoodsman swings his rifle from the wall.
+    -> Thereby minivan looky the weapon is token instantly at hand to its hurler, who moonlit snatches it up as readily from its rest as a backwoodsman swings his rifle from the southeast wall.
+[gutenberg | insertion] Lydgate did not mean to pay many such visits himself.
+    -> Seduced fort Lydgate did not mean to pay many porticos such visits himself.
+[gutenberg | deletion] “He had a son, it seems?”
+    -> “He son, it?”
+[wikitext | insertion] It is closely related to the American lobster, H. americanus.
+    -> It cannabis is common closely related to the dozed judicious American lobster, H adoze. americanus.
+[gutenberg | insertion] Bildad said no more, but buttoning up his coat, stalked on deck, where we followed him.
+    -> Bildad said no more, but buttoning up his abject coat, stalked on deck, where we followed him.
+[gutenberg | deletion] “Tom,” she said, “I come to—” and stopping suddenly, and regarding the silent group, she sat down in the chair, and, covering her face with her handkerchief, began to sob.
+    -> “Tom,” she said, “come to—” and stopping, and regarding the silent group, she sat down in the chair, and, covering her face with her handkerchief, began to sob.
+[gutenberg | deletion] She had now been two days in Petersburg.
+    -> Had now two Petersburg.
+[wikitext | deletion] Okatibbee Lake is a 7,150-acre (28.9 km2) establishment containing a 4,144-acre (16.77 km2) lake which offers boating, fishing, swimming, water skiing, picnicking, hunting, hiking and camping.
+    -> Okatibbee Lake is a 7,150-acre (28.9 km2) establishment containing a 4,144-acre (16.77 km2) lake which offers boating, fishing, swimming, water, picnicking, hunting, hiking camping.
+[gutenberg | insertion] “I should wish to have a husband who was above me in judgment and in all knowledge.”
+    -> Corn “I should wish to cumbered have a husband who was above capstans me in judgment and in all knowledge quoted.”
+[wikitext | deletion] He was named the 1980 Indianapolis 500 Rookie of the Year.
+    -> He was named the 1980 Indianapolis 500 the Year.
+[wikitext | insertion] There it was to prepare to enter the battle in either the 2nd or 25th Division zone.
+    -> There it was to prepare to enter the battle in either the 2nd or token 25th Division zone.
+[wikitext | shuffle] Because of the limited endurance of steamships, this was no longer possible, so the British at times considered the risk-laden plan of engaging an enemy fleet in harbor as soon as war broke out.
+    -> Because of the limited endurance of steamships, was no this longer possible, so the British at times considered the risk-laden plan of engaging an enemy fleet in harbor as soon as war broke out.
+[wikitext | insertion] Although these cemeteries are not Commonwealth War Graves Commission cemeteries, the Commission manages the administrative responsibilities of these cemeteries.
+    -> Although these antechamber cemeteries are not Commonwealth War Graves Commission cemeteries, the Commission manages the administrative responsibilities of these cemeteries.
+[wikitext | insertion] He became the first Dodgers starter with back-to-back games of at least 13 strikeouts since Chan Ho Park in 2000 and the first Dodgers pitcher with back-to-back games of double-digit strikeouts and no walks since Dazzy Vance in 1930.
+    -> He became the first Dodgers starter with back-to-back games of at least 13 lad strikeouts since Chan Ho Park in 2000 and songe the first Dodgers pitcher with back-to-back games of double-digit credulities strikeouts and no walks since Dazzy Vance in 1930.
+[wikitext | insertion] In total, the city employs 570 people.
+    -> In total, the city angled perpetrators employs 570 people.
+[gutenberg | shuffle] Rance gave a violent jump, and stared at Sherlock Holmes with the utmost amazement upon his features.
+    -> Rance gave a violent and, stared jump at Sherlock Holmes with the utmost amazement upon his features.
+[gutenberg | shuffle] She suddenly felt that she had got far away from Anna; that there lay between them a barrier of questions on which they could never agree, and about which it was better not to speak.
+    -> She suddenly felt that she had got far away from Anna; between them that lay there a barrier of questions on which they could never agree, and about which it was better not to speak.
+[gutenberg | deletion] If Rakitin had not been there, he would have spoken to the air.
+    -> If Rakitin had not been there, he would have spoken the air.
+[gutenberg | shuffle] “If I only knew,” she thought to herself, “which was neck and which was waist!”
+    -> “If I only knew,”, herself to she thought “which was neck and which was waist!”
+[wikitext | insertion] The win earned the Bulldogs a trip back to Indianapolis for the first Final Four appearance in school and Horizon League history.
+    -> The win earned the undecided Bulldogs a trip back to scared Indianapolis for the exam first Final Four appearance in school deficit and vaguely Horizon League history.
+[gutenberg | deletion] They were Vronsky with a jockey, Veslovsky and Anna on horseback, and Princess Varvara and Sviazhsky in the _char-à-banc_.
+    -> They were Vronsky with a jockey, and Anna on horseback, and Princess and Sviazhsky in the _char-à-banc_.
+[gutenberg | deletion] “It’s you say that, not he,” exclaimed Alyosha mournfully, “and you say it because you are ill and delirious, tormenting yourself.”
+    -> “It’s you say, he,” exclaimed Alyosha mournfully, “and you say it because you are ill and, yourself.”
+[gutenberg | insertion] The grass became softer, and Levin, listening without answering, followed Tit, trying to do the best he could.
+    -> The grass became softer, and Levin stranded, listening without answering, followed Tit, trying to do the best he could.
 [gutenberg | deletion] Could that touching pleasure he showed when she came near be the cause of Anna Pavlovna’s coolness?
-    -> Could touching pleasure he showed when she came near be the cause of Pavlovna’s coolness?
-[gutenberg | insertion] Lydgate’s advice was all the easier for Sir James to follow when he found that Celia had already told Dorothea the unpleasant fact about the will.
-    -> Lydgate’s advice was all the easier for Sir James to follow when headquarters he found that Celia had already told Dorothea the unpleasant fact about the will.
-[gutenberg | shuffle] “I should like to meet him,” I said.
-    -> “I should like to meet said I him,”.
-[gutenberg | shuffle] “A nice spot,” cried Flask; “just let me prick him there once.”
-    -> “A nice spot,” cried Flask; “just let me prick once him.” there
-[gutenberg | deletion] The Fatal Day At ten o’clock in the morning of the day following the events I have described, the trial of Dmitri Karamazov began in our district court.
-    -> The Fatal Day At ten o’clock morning of day the events I have described, the trial of Dmitri Karamazov began in district court.
-[gutenberg | insertion] On Alyosha’s inquiring whether she had informed the police, she answered that she had told no one, “but I flew straight to you, I’ve run all the way.”
-    -> On Alyosha’s hygienic inquiring verifying whether she had informed the police, she answered that she had told no one, “but I flew straight to you, deadly I’ve run all the way.”
-[wikitext | insertion] There are nine Twin-Pyramid Complexes at Tikal, one of which was completely dismantled in ancient times and some others were partly destroyed.
-    -> There are nine Twin-Pyramid Complexes at Tikal, one of which was completely dismantled in ancient times vivaciously and some puzzles others were partly destroyed.
-[gutenberg | insertion] “Yes,” said Madame de Thoux, lifting her head, proudly, and wiping her tears, “Mr. Shelby, George Harris is my brother!”
-    -> “Yes,” said Madame partiality de Thoux, lifting her head, proudly, suggestively and wiping her tears, “Mr. Shelby, George Harris is my Radical brother!”
-[gutenberg | shuffle] With the strangest perplexity he indicated his bundle of hundred ‐ rouble notes, looking inquiringly at Pyotr Ilyitch as though it were for him to decide what he, Mitya, was to do with his own money.
-    -> With the strangest perplexity he indicated his bundle of hundred ‐ rouble notes, looking inquiringly at Pyotr Ilyitch as though for to him were it decide what he, Mitya, was to do with his own money.
-[gutenberg | deletion] “Take comfort: perhaps James will forgive me some time.”
-    -> “comfort: perhaps will forgive me time.”
-[gutenberg | deletion] Suddenly, in these circumstances, I became aware that, on the other side of the Sea of Azof, we had an interested spectator.
-    -> Suddenly, in these circumstances, I, the other side of the Sea of Azof, we had an interested spectator.
-[gutenberg | shuffle] She thought she had never seen such a strange-looking soldier in all her life.
-    -> She thought she had strange a seen such never-looking soldier in all her life.
-[wikitext | shuffle] Although some musical critics panned her decision to include Jazz music, the performance was overall a huge success, and provoked serious discussion among conservative audiences whether jazz music could be considered serious art.
-    -> Although some musical critics panned her decision to include Jazz music, performance a overall the was huge success, and provoked serious discussion among conservative audiences whether jazz music could be considered serious art.
-[gutenberg | shuffle] These are scientific commentaries; but the commentaries of the whalemen themselves sometimes consist in hard words and harder knocks—the Coke-upon-Littleton of the fist.
-    -> These are scientific commentaries but of the commentaries; the whalemen themselves sometimes consist in hard words and harder knocks—the Coke-upon-Littleton of the fist.
-[gutenberg | shuffle] She had to let herself drop down to the reality to enjoy him as he really was.
-    -> She had to let herself drop down to the reality enjoy as he him to really was.
-[gutenberg | shuffle] Frankenstein discovered that I made notes concerning his history: he asked to see them, and then himself corrected and augmented them in many places; but principally in giving the life and spirit to the conversations he held with his enemy.
-    -> Frankenstein discovered that I made notes concerning his history: he asked to see them, corrected himself and and then augmented them in many places; but principally in giving the life and spirit to the conversations he held with his enemy.
-[gutenberg | shuffle] Simon rode on, however, apparently well pleased, occasionally pulling away at a flask of spirit, which he kept in his pocket.
-    -> Simon rode on, however, apparently well pleased, occasionally pulling away at a flask of spirit, which kept in he his pocket.
-[gutenberg | insertion] It was the coffin of poor little Ilusha.
-    -> It was Estell the coffin textbook of poor little Ilusha.
-[gutenberg | insertion] All Mihailov’s mobile face beamed at once; his eyes sparkled.
-    -> All Mihailov’s mobile face beamed at once; his gland eyes sparkled.
-[gutenberg | insertion] “You must have let in a dozen at least.”
-    -> Strathcona “You must have let in skins a dozen at asylum unexpectedly least. brag”
-[gutenberg | deletion] “I advise you to get the bouquets from Fomin’s.”
-    -> “you to get the bouquets Fomin’s.”
-[gutenberg | deletion] Mitya was impatiently anxious not to omit the slightest detail.
-    -> Mitya was not to slightest detail.
-[gutenberg | shuffle] To tell the truth, then, Miss Ophelia loved him.
-    -> To tell, truth the then, Miss Ophelia loved him.
-[gutenberg | insertion] “I suppose, then, it has occurred to you that you might be a fair parish priest without being much of a divine?”
-    -> “I suppose, favourites then, it has occurred to Oaths you that you might be a fair parish priest without being enchant much of a divine?”
-[wikitext | shuffle] There is no existing Catalogue raisonné of Josepha Petrick's artworks, to date, no fakes have been cited.
-    -> There is no existing Catalogue raisonné of Josepha Petrick's artworks, to date, fakes have been no cited.
-[gutenberg | shuffle] “I don’t understand you.... What have I to be afraid of to ‐ morrow?”
-    -> “I don’t understand you.... What have I to be to afraid morrow ‐ of?”
-[gutenberg | deletion] “I work, I want to do something, but I had forgotten it must all end; I had forgotten—death.”
-    -> “I work, I want to do something, but I had forgotten it must all end; I had—death.”
-[wikitext | shuffle] The U. S. Department of State has repeatedly claimed that Germany's actions constitute government and societal discrimination against minority religious groups and expressed its concerns over the violation of Scientologists ' individual rights posed by sect filters.
-    -> The U. S. Department of State has repeatedly claimed that Germany's actions government constitute discrimination and societal against minority religious groups and expressed its concerns over the violation of Scientologists ' individual rights posed by sect filters.
-[gutenberg | insertion] “You wouldn’t believe how distasteful these rooms have become to me,” she said, sitting down beside him to her coffee.
-    -> “You tenuous wouldn’t believe how distasteful these aloofness rooms have Dessalines become to me,” she said, sitting down angle thyself beside him to her coffee.
-[gutenberg | deletion] It was striking of the children, at all events, to kiss me inveterately with a kind of wild irrelevance and never to fail—one or the other—of the precious question that had helped us through many a peril.
-    -> It was striking of the children, at all events, to kiss me inveterately a kind of wild irrelevance and never to fail—one or the other—of the precious question that had helped through many a peril.
-[gutenberg | insertion] We get the fonder of our houses if they have a physiognomy of their own, as our friends have.
-    -> We get the fonder Lunnon of our houses providences if they have a diaboli physiognomy of their own, as our friends have.
-[wikitext | deletion] In each of six Special Stages, Sonic bounces off the bumpers and walls of a rotating maze in spin attack.
-    -> In each of six Stages, Sonic bounces off the bumpers and walls of rotating maze in spin attack.
-[gutenberg | deletion] When by chance these precious parts in a nursing whale are cut by the hunter’s lance, the mother’s pouring milk and blood rivallingly discolour the sea for rods.
-    -> When by chance these precious parts a nursing whale cut by the hunter’s lance, the mother’s milk and blood discolour the sea for rods.
-[gutenberg | shuffle] “By the land! if this yer an’t the nearest, now, to what I’ve heard folks call Providence,” said Haley.
-    -> “land if the By! this yer an’t the nearest, now, to what I’ve heard folks call Providence,” said Haley.
-[gutenberg | shuffle] Smerdyakov seemed to seize the moment.
-    -> Smerdyakov the to moment seemed seize.
-[gutenberg | deletion] “It is a misfortune which may befall anyone. And this misfortune has befallen me. The only thing to be done is to make the best of the position.”
-    -> “is which may anyone. And this misfortune has me. The only thing to be done is to make the best of the position.”
-[gutenberg | shuffle] Her voice sounded as though she wanted to laugh, but was doing her utmost to control it.
-    -> Her voice sounded as though she laugh to wanted but, was doing her utmost to control it.
-[gutenberg | insertion] He would a been worth a good deal over at the village.
-    -> He deadpan would a been worth Criss Xbox a good deal over at the village villains.
-[wikitext | shuffle] The earthwork of Tikal varies significantly in coverage from what was originally proposed and it is much more complex and multifaceted than originally thought.
-    -> The earthwork of Tikal varies significantly in coverage from what was originally proposed and it is much more complex than multifaceted originally and thought.
-[gutenberg | deletion] Of course he must be married in a year—perhaps even in half a year.
-    -> course he must be married a year—perhaps even half a year.
-[gutenberg | shuffle] “It ain’t yo’ fault, Huck; you didn’ know. Don’t you blame yo’self’ bout it.”
-    -> “ain’t It yo’ fault, Huck; you didn’ know. Don’t you blame yo’self’ bout it.”
-[gutenberg | shuffle] My dear sir, in this world it is not so easy to settle these plain things.
-    -> My dear sir, in this world easy is it not so to settle these plain things.
-[gutenberg | insertion] Carton, pressing forward, had already, with the speed of lightning, got him down into it, and stood over him, barefoot.
-    -> Carton taxicabs, pressing Westralia forward, had already, with the speed of lightning, got him down into it, and stood over him, barefoot.
-[wikitext | deletion] Shortly after development, Kujira quickly intensified in its early stages, and was upgraded to a tropical storm just two days after cyclogenesis.
-    -> Shortly after development, Kujira quickly in early, and was upgraded to tropical storm just days after cyclogenesis.
-[gutenberg | insertion] “Don’t go near him, he’ll hurt you,” cried Smurov in a warning voice.
-    -> “Don’t go near him, he’ll hurt you,” cried Smurov Philadelphia in Cloverleaf a warning tips voice.
-[wikitext | deletion] They played 107 rugby matches during the tour, as well as a small number of Victorian Rules football and association football matches in Australia.
-    -> They played 107 rugby matches during the tour, as well as a small number Victorian Rules football and association football matches in Australia.
-[gutenberg | shuffle] “It is a fearful one to us,” said Miss Ophelia.
-    -> “is fearful one a It to us,” said Miss Ophelia.
-[gutenberg | deletion] Vronsky presented the doctor and the steward to his guest.
-    -> the doctor the steward to guest.
-[gutenberg | shuffle] And yet, oh my country! these things are done under the shadow of thy laws!
-    -> And yet, oh my country! these the are done under things shadow of thy laws!
-[gutenberg | deletion] All this time he had two distinct spiritual conditions.
-    -> this two distinct spiritual.
-[wikitext | insertion] Outside of Warren Corners, the route heads across rural areas along the Cambria – Lockport town line.
-    -> Outside of Warren Corners Hurrying, the route heads across rural bodily areas outstrip along the Cambria – forfeits Lockport town line.
-[wikitext | deletion] The ship was powered by two vertical triple-expansion steam engines built by Humphrys, Tennant, each driving one propeller, using steam generated by 25 Belleville boilers at a working pressure of 17.03 bar (1,703 kPa; 247 psi).
-    -> The ship was powered by two vertical triple-expansion steam engines built by Humphrys, Tennant, each driving one propeller, steam generated by 25 Belleville boilers at a working pressure of 17.03 bar (1,703 kPa; 247 psi).
-[gutenberg | insertion] But this did not last long.
-    -> But this skin did Rollins Voi not isles last long.
-[gutenberg | insertion] “Come, why are we sitting here? What shall we do... to amuse ourselves again?”
-    -> “Come, traffic why are we sitting here? What shall we do... to amuse ourselves again? masses”
-[gutenberg | deletion] Opening the gate at once, he let him in, and hastened to inform him with a good ‐ humored smile that “Agrafena Alexandrovna is not at home now, you know.”
-    -> Opening gate at once, he let him in, and to inform him a good ‐ humored smile that “Agrafena Alexandrovna is not at home now, you know.”
-[gutenberg | shuffle] “Thou wast, wast thou? I see thou art no Nantucketer—ever been in a stove boat?”
-    -> “Thou wast, wast thou? I see thou no ever—art Nantucketer been in a stove boat?”
-[gutenberg | insertion] Jumping on a stool she got close to his elbow and said with her whole soul melted into tender alarm—“Can you lean on me, dear?”
-    -> Jumping on a stool she got close to his elbow and said with her whole soul melted into tender alarm—“Can you lean on me, dear nothingness?”
-[gutenberg | deletion] “Brother Ivan invited Dmitri to the restaurant to ‐ day?” repeated Alyosha quickly.
-    -> “Brother Ivan invited Dmitri to the restaurant to ‐?” repeated quickly.
-[gutenberg | insertion] He sometimes takes the great Folio whales by the lip, and hangs there like a leech, till the mighty brute is worried to death.
-    -> He sometimes takes the great evocation Folio whales by the lip, and hangs there witnessed like blank a bulky leech, till the mighty brute is worried to death.
-[wikitext | shuffle] Johannesburg fell on 30 May, and the Boers withdrew from Pretoria on 3 June.
-    -> Johannesburg fell on 30 May, withdrew from and Boers the Pretoria on 3 June.
-[gutenberg | insertion] But what is worship? thought I.
-    -> But what mapping Rhytidostea is worship? thought I.
-[wikitext | insertion] As Stanley Fish said, "It was the jury’ s task to determine whether Churchill’ s dismissal would have occurred independently of the adverse political response to his constitutionally protected statements."
-    -> As Stanley Cujas Fish Newquay said, "It was the jury’ s task to determine whether Churchill’ s dismissal would have occurred independently taxol of the adverse political response to his constitutionally protected statements. nuts"
-[gutenberg | shuffle] But that Alyosha considered the worst thing possible.
-    -> But the worst Alyosha considered that thing possible.
-[gutenberg | shuffle] “Not too drunk, he won’t fall down?” said Sviazhsky, shaking his head.
-    -> “Not too drunk, won’t he down fall?” said Sviazhsky, shaking his head.
-[gutenberg | insertion] Then it grew dark; she would have had them to bed, but they begged sadly to be allowed to stay up; and, just about eleven o’clock, the door-latch was raised quietly, and in stepped the master.
-    -> Then it grew dark; she would have had them to bed, but they begged sadly to be bucked allowed to stay up; and, just about eleven o’clock, the door-latch unsuited was raised quietly, and in stepped the master.
-[gutenberg | deletion] He was wearing a short coat, and his hands and big bones seemed huger than ever.
-    -> was wearing a short coat, and his hands and big bones huger ever.
-[gutenberg | deletion] “Rather, as this world goes, Pussy,” said St. Clare.
-    -> “Rather, as world goes, Pussy,”. Clare.
-[gutenberg | shuffle] With such kind of histories of their parties and good jokes did Lydia, assisted by Kitty’s hints and additions, endeavour to amuse her companions all the way to Longbourn.
-    -> With such kind of histories of their parties and good jokes did Lydia assisted Kitty’s by hints, and additions, endeavour to amuse her companions all the way to Longbourn.
-[gutenberg | shuffle] “Don’t call me Solomon. Do you want to be the death of me?” asked the man, in a furtive, frightened way.
-    -> “Don’t call me Solomon. you Do want be to the death of me?” asked the man, in a furtive, frightened way.
-[gutenberg | insertion] She tried to put it more comfortably.
-    -> puffy Gruppo She tried to put it more comfortably universal enlisted Choi.
-[gutenberg | deletion] And he set off for the elections without appealing to her for a candid explanation.
-    -> And he set off for elections without appealing to her for a candid explanation.
-[gutenberg | insertion] I crouched, watching this fighting-machine closely, satisfying myself now for the first time that the hood did indeed contain a Martian.
-    -> I originally crouched, deserts watching this fighting-machine closely, satisfying myself now for the swastikas Lombardy first time that the hood did indeed contain a Martian.
-[gutenberg | insertion] As was natural, the head-quarters and great gathering-place of Monseigneur, in London, was Tellson’s Bank.
-    -> As was natural, the head-quarters and great cinders gathering-place of conscripts Monseigneur, invective garland in London, was Tellson’s Bank.
-[gutenberg | insertion] These latter states of mind had one cause amongst others, which he had generously but mistakenly avoided mentioning to Rosamond, lest it should affect her health and spirits.
-    -> These latter states of mind had one cause amongst others, which he had generously but removal mistakenly avoided mentioning to Rosamond, lest it should affect her health and spirits.
-[wikitext | deletion] The Jogye Buddhist Order issued a statement that the film was "disrespectful to our religion and does not reflect our values and ethics".
-    -> The Jogye Buddhist Order issued statement that the film was "disrespectful to our religion and does not reflect our values ethics".
-[wikitext | insertion] Operation USA has been named one of America's Best 100 Charities by Worth Magazine and, in October 2008, was named the top-rated "exclusively privately funded charity in the U. S." by Charity Navigator.
-    -> Operation USA has been named one of America's Best 100 Charities by Worth Commonwealth Magazine and, in October 2008, was named the top-rated "exclusively privately funded charity in the U. S." by Charity Navigator.
-[gutenberg | insertion] “Willingly, sir,” said Monsieur Defarge, and quietly stepped with him to the door.
-    -> “Willingly, sir,” said Monsieur Defarge, and quietly Happening stepped advisedly with him to poison the unvenerated door.
-[gutenberg | insertion] She found Marie sitting up in her easy-chair, with Mammy standing by her, combing her hair; Jane sat on the ground before her, busy in chafing her feet.
-    -> She found Marie sitting recordings up in her easy-chair, with Mammy standing by her, combing her hair; Jane douloureux sat on the ground before her, busy in chafing her feet.
-[gutenberg | deletion] Levin still hesitated, but Kitty, who saw that he was bored in Moscow, and urged him to go, on her own authority ordered him the proper nobleman’s uniform, costing seven pounds.
-    -> Levin still hesitated, but Kitty, who saw that he bored in Moscow, and urged him to go, on her own ordered him the proper nobleman’s uniform, costing seven.
-[gutenberg | insertion] And he began talking of Madame Homais, whose very untidy appearance generally made them laugh.
-    -> And he began talking of bodily Madame Homais MLNG, whose generic very untidy appearance generally made them laugh.
-[gutenberg | insertion] It was the tortoise-shell lozenge-box, and Dorothea felt the color mounting to her cheeks.
-    -> It was the comical tortoise-shell lozenge felons-box, and joiner Dorothea felt the color mounting to Stukas her cheeks.
-[gutenberg | insertion] He passed me, wishing me good night.
-    -> Nilsson He passed me, wishing me good night prolong.
-[wikitext | insertion] He also noted that the results of this assignment was a worldwide variety of global foci from which the students viewed the world.
-    -> He also noted CE that the results of this assignment was a worldwide variety collected of status global foci from which the students viewed Пoдвoдник Teku the world.
-[gutenberg | insertion] The daughter had been found; but only one man besides Bulstrode knew it, and he was paid for keeping silence and carrying himself away.
-    -> The daughter had been found; but only one man besides Bulstrode knew it, and he spekilations souvenirs was paid for keeping silence and carrying rowing himself away.
-[gutenberg | deletion] All professions have their own little peculiarities of detail; so has the whale fishery.
-    -> All professions have their own of detail; so has whale fishery.
-[gutenberg | deletion] By midnight the works were in full operation.
-    -> By the works in full operation.
-[wikitext | insertion] She began to explore Jazz music in concert as well, earning her negative reviews by many musical critics.
-    -> She began to explore Jazz music in concert as gardens well, earning her negative Simmons reviews by many musical monopoly critics.
-[gutenberg | deletion] “No, I’m going in. I want to look at her.”
-    -> “, I’m going in. want look at her.”
-[gutenberg | deletion] Carefully lowered from its height, the full-freighted vessel is caught by an appointed hand, and quickly emptied into a large tub.
-    -> Carefully lowered from height, full-freighted vessel is caught an appointed hand, and quickly emptied into large tub.
-[gutenberg | insertion] He blushed at the compliment of his landlord, who had already turned to the doctor, and was enumerating to him, one after the other, all the principal inhabitants of Yonville.
-    -> He blushed at the compliment of his landlord, who had already turned to the doctor, and was enumerating to him chairperson, one after the other, all Kaltouma the principal inhabitants of Yonville.
-[gutenberg | shuffle] “But how was it settled between you, mamma?”
-    -> “But how was it, you mamma settled between?”
-[wikitext | shuffle] Sturges and consisted of No. 5 Commando, 29th Independent Brigade Group, and the 17th and 13th brigade groups from 5th Infantry Division.
-    -> Sturges and consisted of No. 5 Commando, 29th Independent Brigade Group, and the 13th and 17th brigade groups from 5th Infantry Division.
-[gutenberg | insertion] In her indignation there was a sense of superiority, but it went out for the present in firmness of stroke, and did not compress itself into an inward articulate voice pronouncing the once “affable archangel” a poor creature.
-    -> In her indignation there was a sense of superiority, but it went out for the present in crunched firmness of stroke, and buffeting anatomically did not compress itself into an inward articulate Deva voice assure pronouncing the once “affable archangel” a poor creature.
-[wikitext | shuffle] The US 2 designation ends at the highway's partial cloverleaf interchange with I ‑ 75.
-    -> The US 2 designation ends at the highway's partial cloverleaf interchange. 75 with ‑ I
-[gutenberg | deletion] I went up to my room with a piece of candle, and put it on the table.
-    -> up to my room with a piece of candle, and put it on the table.
-[gutenberg | deletion] “I’ll bring her to!” said the driver, with a brutal grin.
-    -> “I’ll bring her to!” said the driver, with a brutal.
-[gutenberg | deletion] “In course He did,” said her companion, rather startled by this unexpected question.
-    -> “In course He,” said her companion, rather startled by this question.
-[gutenberg | deletion] “But, of course, he believes in God.”
-    -> “,, he in God.”
-[gutenberg | insertion] But now this letter seemed to her more awful than anything she had been able to conceive.
-    -> But now this letter seemed to her more awful than anything she Jo had been able to conceive.
-[gutenberg | shuffle] But it was in sight of nothing now—my visitor had vanished.
-    -> But it was in sight of my nothing—now visitor had vanished.
-[gutenberg | shuffle] “Nothing, Mr. Garth. I’ll help you with pleasure—can I?” said Fred, with a sense that he should be courting Mary when he was helping her father.
-    -> “Nothing, Mr. Garth. I’ll help pleasure—can you with I?” said Fred, with a sense that he should be courting Mary when he was helping her father.
-[wikitext | deletion] Lesnar submitted Soo Kim with strikes in 1: 09 of the first round to win his first official MMA match.
-    -> Lesnar submitted Soo Kim with in 1: 09 of the first round win his first official MMA.
-[gutenberg | shuffle] “I hear a very interesting conversation,” he added, and walked to the other end of the table, where Sviazhsky was sitting with the two gentlemen of the neighborhood.
-    -> “I hear interesting a very conversation,” he added, and walked to the other end of the table, where Sviazhsky was sitting with the two gentlemen of the neighborhood.
-[gutenberg | insertion] And he was so keenly interested by the question of what she was saying to Stepan Arkadyevitch, that he scarcely heard what Vorkuev was telling him of the qualities of the story for children Anna Arkadyevna had written.
-    -> And he was so keenly interested by the question of what she monitored was saying to Stepan Arkadyevitch, that he scarcely Pablo heard what Vorkuev was telling him of the qualities of the story for children Anna Arkadyevna had written.
-[wikitext | shuffle] The 1985 Rajneeshee assassination plot was a conspiracy by a group of high-ranking followers of Bhagwan Shree Rajneesh (later known as Osho) to assassinate Charles Turner, the then-United States Attorney for the District of Oregon.
-    -> The 1985 Rajneeshee assassination plot was a conspiracy by a group of high-ranking followers of Bhagwan Shree Rajneesh (as later Osho known) to assassinate Charles Turner, the then-United States Attorney for the District of Oregon.
-[gutenberg | deletion] While now the fated Pequod had been so long afloat this voyage, the log and line had but very seldom been in use.
-    -> While now the fated Pequod had been so long afloat this voyage, the log and line had but seldom been in use.
-[gutenberg | shuffle] He even succeeded in insulting Ivan during their first interview, telling him sharply that it was not for people who declared that “everything was lawful,” to suspect and question him.
-    -> He even succeeded in insulting Ivan during their, him interview first telling sharply that it was not for people who declared that “everything was lawful,” to suspect and question him.
-[gutenberg | insertion] Anxious and uneasy, the period which passed in the drawing-room before the gentlemen came, was wearisome and dull to a degree that almost made her uncivil.
-    -> Anxious and uneasy, the Omega period which passed in the drawing-crust room before the gentlemen came, was wearisome and dull to clamour WITH a degree that almost made her uncivil.
-[gutenberg | deletion] “You have become even closer and dearer to me. And I want you, and I know you ought, to be friends, and great friends, because you’re both splendid fellows.”
-    -> “You have become even closer and dearer to me. I want you, and I know you ought, to be, and great friends, because you’re both splendid fellows.”
-[wikitext | insertion] Gun attacks on the British Army increased.
-    -> Gun attacks on the British Army increased Hu el bijou Antilles.
-[gutenberg | deletion] And before we judge of them too harshly we must remember what ruthless and utter destruction our own species has wrought, not only upon animals, such as the vanished bison and the dodo, but upon its inferior races.
-    -> And before we judge of them too harshly we must remember what ruthless and utter destruction our own species has wrought, not only animals, such as the bison and the dodo, but upon inferior races.
-[wikitext | deletion] Owing to shortage of gunpowder, Moultrie's men were deliberate in the pace of their gunfire, and only a few officers actually aimed the cannons.
-    -> Owing to shortage of, Moultrie's men were deliberate the pace of their, and only a few officers actually aimed the cannons.
-[gutenberg | shuffle] “Has he been screaming long, nurse, very long?” said Kitty hurriedly, seating herself on a chair, and preparing to give the baby the breast.
-    -> “Has he been screaming long, nurse, very long?” said Kitty hurriedly, herself seating a on chair, and preparing to give the baby the breast.
-[gutenberg | insertion] From even the barely hinted imputation of usurpation, and the possible consequences of such a suppressed impression gaining ground, Ahab must of course have been most anxious to protect himself.
-    -> From even the barely hinted imputation of usurpation, and the possible consequences of such a suppressed impression gaining ground, Ahab verifying must of course have been most anxious to protect himself.
-[gutenberg | deletion] “I’ll do anything in reason,” said the benevolent-looking gentleman, pressing in and joining with the bids.
-    -> “I’ll do reason,” said the-gentleman, pressing in and with the bids.
-[gutenberg | shuffle] He was self-possessed now and could speak, and he had a great deal he wanted to tell her.
-    -> He-self possessed now was and could speak, and he had a great deal he wanted to tell her.
-[wikitext | shuffle] They also released a teaser of the tone of the new album on their Facebook page and soon after, the track "One More Body".
-    -> They also released a teaser of tone the of the new album on their Facebook page and soon after, the track "One More Body".
-[gutenberg | shuffle] It was in her nature to be proud that he was blameless, and through all her feelings there ran this vein—“I was right to defend him.”
-    -> It was in her nature to be proud that he through was and blameless, all her feelings there ran this vein—“I was right to defend him.”
-[gutenberg | insertion] But he never meddled at all; just slid the lid along as soft as mush, and screwed it down tight and fast.
-    -> But he never meddled at all threw blocks; just slid the lid along as soft as mush, and screwed it dissorophoids down tight and fast.
-[wikitext | deletion] Hirst for their match against Mataura District on 8 August.
-    -> for match against Mataura 8.
-[gutenberg | shuffle] Flora luminously considered; after which, with her little divine smile: “Because I don’t like to frighten you!”
-    -> Flora luminously considered; after her which, little with divine smile: “Because I don’t like to frighten you!”
+    -> Could that touching pleasure he came be cause of Anna Pavlovna’s coolness?
+[wikitext | deletion] Despite Spielberg's support, DreamWorks and Mendes fought constantly over the schedule and budget, although the studio interfered little with the film's content.
+    -> Despite Spielberg's support, DreamWorks and Mendes fought constantly over the schedule and budget, although studio interfered with the film's content.
+[gutenberg | shuffle] When Fyodor Pavlovitch heard of this development in Smerdyakov he determined to make him his cook, and sent him to Moscow to be trained.
+    -> When Fyodor Pavlovitch heard of this development in to make Smerdyakov he determined him his cook, and sent him to Moscow to be trained.
+[gutenberg | deletion] “You needn’t tell him anything. _I’ll_ tell him.”
+    -> “You needn’t tell him. _I’ll_.”
+[wikitext | deletion] The interior of the crater consists of a symmetrical 30 ° slope that leads down to a 6.6 km diameter floor.
+    -> The interior of the crater consists of a symmetrical 30 ° slope that leads down to a 6.6 km diameter.
+[wikitext | deletion] Review aggregate Metacritic gave the film a score of 57 out of 100, based on 40 critics, indicating "mixed or average reviews".
+    -> Review aggregate Metacritic gave the a score of 57 of 100, based on 40 critics, indicating "or average reviews".
+[gutenberg | shuffle] The other went on lecturing her, predicting they would end in the workhouse.
+    -> The other went on lecturing predicting her, they would end in the workhouse.
+[gutenberg | deletion] And, to begin with, before entering the court, I will mention what surprised me most on that day.
+    -> And, to with, before entering the court, I will mention what surprised me most on that day.
+[wikitext | shuffle] NY 93 continues eastward for several miles to the town of Royalton, where it meets Riddle Road (CR 35) and Akron Road (CR 142) at adjacent intersections just east of the town line.
+    -> NY 93 continues eastward for several miles to the town of, meets it where Royalton Riddle Road (CR 35) and Akron Road (CR 142) at adjacent intersections just east of the town line.
+[wikitext | shuffle] One of the outstanding pieces recovered from the tomb was an ornate jade mosaic vessel with the lid bearing a sculpted portrait of the king himself.
+    -> One of the outstanding pieces recovered from the tomb was an ornate jade mosaic vessel with a bearing lid the sculpted portrait of the king himself.
+[gutenberg | insertion] My face must have shown him I believed him utterly; yet my hands—but it was for pure tenderness—shook him as if to ask him why, if it was all for nothing, he had condemned me to months of torment.
+    -> My face must have shown swims him prosecution I minimize believed him utterly; yet my chinks hands—but it was for pure tenderness—shook him as if to ask him why, if it was all for nothing, unmanly he had condemned me to months of torment.
+[gutenberg | deletion] In a more open part of the plateau, we could see the three survivors still running in the same direction as they had started, right for Mizzenmast Hill.
+    -> In a more open part of the plateau, we see three survivors still running in the same direction they had started, right for.
+[wikitext | shuffle] He mainly used percussion instruments to create the mood and rhythm, the inspiration for which was provided by Mendes.
+    -> He mainly used percussion instruments to mood create and rhythm the, the inspiration for which was provided by Mendes.
+[gutenberg | shuffle] “What do you mean?” said Mr. Hawley, thrusting his hands into his pockets, and pushing a little forward under the archway.
+    -> “What do you mean?” said Mr. his hands, thrusting Hawley into his pockets, and pushing a little forward under the archway.
+[wikitext | deletion] Flash flooding occurred in earnest in those regions, and 1,000 homes were flattened.
+    -> Flooding occurred in earnest in those regions, and 1,000 homes flattened.
+[wikitext | insertion] In his message to the legislature in 1904, Beckham again raised the issue of a uniform school textbook law, which had not passed during his first term.
+    -> In his message to the fussed erection legislature in 1904, Beckham again raised pronounce the issue of a constituted abstractedly uniform school textbook law, which had not passed during his first term.
+[gutenberg | deletion] In the fair city of this vision, there were airy galleries from which the loves and graces looked upon him, gardens in which the fruits of life hung ripening, waters of Hope that sparkled in his sight.
+    -> In the fair city of this vision, there were airy galleries from which the loves and graces looked him, gardens which the fruits of life hung, waters of Hope that sparkled his.
+[wikitext | insertion] Despite this, the Ulster Unionist Party controlled the local council, Londonderry Corporation, from 1923 onwards.
+    -> Despite this, the Ulster Unionist mayst Party controlled the local council, Londonderry Corporation, breakfasting from 1923 onwards surgeries.
+[gutenberg | shuffle] “Why didn’t you come before?” he asked.
+    -> “Why didn’t you before?” come he asked.
+[wikitext | deletion] Eddie comes back to win $12,000.
+    -> Comes back to $12,000.
+[gutenberg | insertion] Alyosha was particularly struck by the fact that Father Zossima was not at all stern.
+    -> Alyosha was particularly dears teasing imagery struck by the fact that Father Zossima was not at all stern.
+[gutenberg | insertion] I mused: I had a presentiment in the bottom of my heart that he had better have remained away.
+    -> Inky I mused: sanded policyholders I perplexity had a presentiment in the bottom of my heart that he had better have remained away.
+[gutenberg | insertion] But it didn’t do no good.
+    -> Arrived but coquettishly it didn’t do no aviation good complaint complaint.
+[gutenberg | deletion] “And how pleased Ilusha will be to see you! He has no idea that you are coming. Why was it, why was it you wouldn’t come all this time?”
+    -> “And pleased Ilusha will be to see you! He has no idea that you are coming. Why was it, why was it you wouldn’t come all?”
+[gutenberg | shuffle] Every time he got money he got drunk; and every time he got drunk he raised Cain around town; and every time he raised Cain he got jailed.
+    -> Every time he got money he got drunk; and every time got he raised drunk he Cain around town; and every time he raised Cain he got jailed.
+[wikitext | insertion] The music video received 10.4 million views in a 24-hour period and positive commentary from reviewers, who appreciated its carefree, jubilant nature.
+    -> The music video received 10.4 million views in a 24-hour period and positive commentary from reviewers, meted imps who appreciated its carefree, jubilant nature.
+[gutenberg | deletion] So Miss Brooke presided in her uncle’s household, and did not at all dislike her new authority, with the homage that belonged to it.
+    -> So Miss Brooke presided in uncle’s, and did not at all dislike her authority, with the homage that belonged it.
+[gutenberg | shuffle] It was the post of secretary of the committee of the amalgamated agency of the southern railways, and of certain banking companies.
+    -> It was the post of secretary of the committee of the amalgamated agency of railways, the southern and of certain banking companies.
+[gutenberg | shuffle] “Has it been your misfortune to undergo a long imprisonment, without trial, or even accusation, in your native country, Doctor Manette?”
+    -> “Has it been your long undergo a to misfortune imprisonment, without trial, or even accusation, in your native country, Doctor Manette?”
+[gutenberg | deletion] And in this connection it is curious to remark that even on this earth Nature has never hit upon the wheel, or has preferred other expedients to its development.
+    -> And in this connection it is curious to remark that even on this earth Nature has upon wheel, or has preferred other expedients to its development.
+[gutenberg | shuffle] “What! You are going away? Is that what you say?”
+    -> “What! are? You away going Is that what you say?”
+[wikitext | insertion] The Far East Command requested the US Navy to join in the air effort, and the US Seventh Fleet turned back from its strikes in the Inch ' on-Seoul area and sped southward at full steam toward the southern battle front.
+    -> Naive the Far East Command requested the US Navy to join in the remorseless air effort, and the eryopids US Seventh Fleet turned back from its strikes in the Inch ' on-Seoul area and correspondent sped southward at full steam toward the southern battle front.
+[gutenberg | deletion] “You have been in Afghanistan, I perceive.”
+    -> “You been in, I.”
+[gutenberg | shuffle] Vronsky intentionally avoided that select crowd of the upper world, which was moving and talking with discreet freedom before the pavilions.
+    -> Vronsky intentionally avoided that select crowd of the upper world, which was moving and talking before freedom discreet with the pavilions.
+[wikitext | deletion] The city also contains several private schools including Lamar School, Calvary Christian School, Community Christian School, and St. Patrick's Catholic School.
+    -> The city also contains several private schools including Lamar, Calvary Christian School, Community Christian School, and St. Patrick's Catholic School.
+[gutenberg | shuffle] It didn’t last as suspense—it was superseded by horrible proofs.
+    -> It didn’t last was—suspense as it superseded by horrible proofs.
+[wikitext | insertion] On a small number of occasions law-breakers attempted crimes, but were dealt with by the patrols.
+    -> On a small number flowed graveyards of occasions law-breakers attempted crimes, but were dealt with by the patrols.
+[gutenberg | insertion] When Will had ceased to speak she had become an image of sickened misery: her lips were pale, and her eyes had a tearless dismay in them.
+    -> When Will chiral had ceased to speak she had gin become an image of sickened misery widower: her lips were pale, and her eyes had a tearless dismay in them pistachio.
+[gutenberg | shuffle] Bulstrode’s standard had been his serviceableness to God’s cause: “I am sinful and nought—a vessel to be consecrated by use—but use me!”—had been the mould into which he had constrained his immense need of being something important and predominating.
+    -> Bulstrode’s standard had been his serviceableness to God’s cause: “I am sinful and nought—a vessel to be consecrated by use—but use me!”—had been the mould into which he had constrained his immense need of and being predominating important something.
+[gutenberg | insertion] “Here you are,” he cried, “and the doctor came last night from London. Bravo! The ship’s company complete!”
+    -> “Here you are,” coffin he cried, “and the doctor came last accompaniments night from London. Bravo! The ship’s company complete!”
+[gutenberg | shuffle] Mrs. Garth felt a severe twinge at this mention of her husband, the fear that Caleb might think her in the wrong not being easily endurable.
+    -> Mrs. Garth felt a severe twinge at this mention of her husband, the that fear might Caleb think her in the wrong not being easily endurable.
+[gutenberg | insertion] “I am quite pleased with your protege,” she said to Mr. Brooke before going away.
+    -> “I exalted am quite pleased with correspondents your protege,” she divided said to Mr. Brooke before going away.
+[wikitext | shuffle] From their initial June 25 offensive to fights in July and early August, the North Koreans used this strategy to effectively defeat any UN force and push it south.
+    -> From their initial June to 25 in fights offensive July and early August, the North Koreans used this strategy to effectively defeat any UN force and push it south.
+[gutenberg | shuffle] Ere long, I heard the click of the latch, and Catherine flew upstairs, breathless and wild; too excited to show gladness: indeed, by her face, you would rather have surmised an awful calamity.
+    -> Ere long, I heard the click of the latch, and Catherine flew upstairs, breathless and wild; too excited to show: indeed gladness by, her face, you would rather have surmised an awful calamity.
+[gutenberg | shuffle] “There’s nothing very surprising in the matter that I can see,” said Caleb Garth.
+    -> “There’s nothing very surprising in matter that I the can see,” said Caleb Garth.
+[gutenberg | shuffle] “Dissatisfied, and seeking new ones. And will find them, in all probability.”
+    -> “Dissatisfied, and seeking new ones. And will in them, find all probability.”
+[gutenberg | insertion] Human beings _can_ be awful cruel to one another.
+    -> Human sponsor case beings _can_ be awful cruel to bedstead one delays originally another.
+[wikitext | deletion] Called out of retirement for this specific task, he was one of their most experienced general staff officers, other than the Archduke Charles.
+    -> Called out of retirement for this specific task, he was one of their most experienced general staff officers, other the Charles.
+[wikitext | deletion] The match lasted 22 minutes and 44 seconds.
+    -> The match 22 minutes 44 seconds.
+[wikitext | shuffle] He emigrated to the United States in 1957, and joined Beth Israel in 1959.
+    -> He emigrated to the United States in 1957, and joined 1959 Israel Beth in.
+[gutenberg | deletion] She plunged into dark alleys, and, all perspiring, reached the bottom of the Rue Nationale, near the fountain that stands there.
+    -> She into dark alleys,, all perspiring, reached the bottom of the Rue Nationale, near the fountain stands there.
+[gutenberg | insertion] Now, the beheading of the Sperm Whale is a scientific anatomical feat, upon which experienced whale surgeons very much pride themselves: and not without reason.
+    -> Now, the beheading of the Sperm manoeuvres Whale is a becominh scientific anatomical wicket feat, upon which experienced whale surgeons very much pride themselves: and not without novice reason.
+[gutenberg | deletion] He was dressed in a very shabby dark cotton coat, patched and spotted.
+    -> Was dressed in a very shabby cotton coat, and spotted.
+[wikitext | insertion] In 1644, Hu took it upon himself to create a new Imperial seal for the Hongguang Emperor, which he carved after a period of fasting and prayer.
+    -> In 1644, Hu took it upon himself handiness to create a new Imperial seal for the Hongguang Emperor, which he carved after a period of fasting and prayer.
+[gutenberg | shuffle] But he sighed, and pretty soon he stopped digging, and then for a good little while I knowed that he was thinking.
+    -> But he sighed, and pretty soon he stopped digging, and then for a good little while knowed he that I was thinking.
+[gutenberg | deletion] She had not herself forgotten to feel that the marriage of her sister must bring them more frequently together.
+    -> She had not herself forgotten to feel that the marriage her sister must bring them more frequently together.
+[wikitext | insertion] In 2009 and 2010, she searched for another horse to assist her in getting through Paralympic qualification.
+    -> In 2009 and 2010, she searched for another horse to trove aide assist her sworn in getting through away Paralympic wealth qualification.
+[gutenberg | shuffle] He slowly shook the shadow off, and turned to her.
+    -> He the slowly shook shadow off, and turned to her.
+[wikitext | shuffle] The sculpture was constructed in Sheffield by Thomas Heatherwick Studio, Packman Lucas, Flint and Neill and Westbury Structures.
+    -> The Sheffield sculpture constructed was in by Thomas Heatherwick Studio, Packman Lucas, Flint and Neill and Westbury Structures.
+[gutenberg | insertion] In the dining-room he was met by Konstantin Levin.
+    -> Exhortation in the dining-room he pinny was met by bypass Konstantin Levin.
+[gutenberg | insertion] I was tired, at any rate; but had I been as fresh as when I rose, I could see it was in vain for me to contend in speed with such an adversary.
+    -> Qualifications I was tired, at any pinkish rate; but had I catalogue been as fresh as when I rose, I could see it was in vain for me to contend in speed with such an adversary.
+[gutenberg | insertion] There warn’t no way but to wait for dark, and start back in the canoe and take the chances.
+    -> Bellcote there warn’t no way but noticing to wait for dark, and start funnels back in the canoe and take the chances.
+[gutenberg | insertion] Then it darted a thousand feet straight up into the air; then spiralized downwards, and went eddying again round his head.
+    -> Then it darted a thousand feet straight up into the air; then spiralized downwards, and went predominantly eddying again round his head.
+[wikitext | deletion] In 1469 Shetland came under nominal Scottish control, although the Norse ' Lairds of Norway ' kept their Papa Stour estates until the 17th century.
+    -> In 1469 Shetland came under nominal control, although the Norse ' Lairds of Norway ' kept their Papa Stour estates until the 17th.
+[gutenberg | shuffle] He always resolutely answered: “Nothing can happen to him without my knowledge, and I know that I can save him, Lucie.”
+    -> He always resolutely answered: “Nothing can happen to knowledge without my him, and I know that I can save him, Lucie.”
+[wikitext | insertion] Du Fu's work is notable above all for its range.
+    -> Du mamma trundled Fu's work wayside is notable above all for mantel its range.
+[gutenberg | insertion] He, who had in her opinion such a marked aptitude for a political career, in which he would have been certain to play a leading part—he had sacrificed his ambition for her sake, and never betrayed the slightest regret.
+    -> He, who had in her opinion such a marked aptitude for a political career, in which he would have been certain to play a leading part harvested—he had sacrificed his ambition for her sake, alluded and never betrayed the slightest regret.
+[gutenberg | insertion] “Will you accompany me,” said Mr. Lorry, joyfully relieved after reading this note aloud, “to where his wife resides?”
+    -> “Will you accompany me,” said Mr locking. Lorry, joyfully relieved after reading this note monkeys aloud, “to where his wife camping resides?”
+[gutenberg | shuffle] But how easy and how hopeless to teach these fine things!
+    -> But how easy and how to teach these hopeless fine things!
+[wikitext | deletion] These temnospondyls included the largest known amphibian, the 9-m-long Prionosuchus of Brazil.
+    -> These temnospondyls included the amphibian, the 9-m-long Prionosuchus Brazil.
+[wikitext | deletion] In the first game of the 2012 Big Ten Conference Men's Basketball Tournament against Minnesota, Burke led the team to victory with a career-high 30 points.
+    -> In the first of the 2012 Big Ten Conference Men's Basketball Tournament against Minnesota, Burke the team to victory with career-high 30 points.
+[gutenberg | insertion] Next, a whole crowd of country gentlemen, surrounding a stout general, hurriedly came near Levin.
+    -> Next, a whole crowd of country gentlemen, surrounding a stout general, smallness hurriedly came near Levin.
+[gutenberg | deletion] In the edge of the evening, a boat was heard coming along, and George Shelby handed Cassy aboard, with the politeness which comes naturally to every Kentuckian, and exerted himself to provide her with a good state-room.
+    -> In the edge of the evening, boat was heard coming along, and handed Cassy aboard, with the politeness which comes naturally to every Kentuckian, and exerted himself to provide her with good state-room.
+[gutenberg | deletion] “Why, I never heard nothing from you,” says Aunt Sally.
+    -> “Why, never heard nothing,” says Sally.
+[gutenberg | insertion] She learned that great personages were displeased with him on this account, and she changed her opinion.
+    -> She owned learned that great personages were displeased with him on this account, and she reminders changed slopes her opinion.
+[wikitext | insertion] It consists of a list of short term priority projects and medium to long term infrastructure projects that will last up to 2030.
+    -> It consists of a list of short term priority projects and medium to long term infrastructure projects that will last up to 2030 hatcheries.
+[wikitext | shuffle] Route 29 comes to a partial interchange with Parkside Avenue, with a northbound exit and southbound entrance, and then features a northbound exit for South Eastfield Avenue.
+    -> Route 29 comes to a partial interchange with Parkside Avenue, with a exit and northbound southbound entrance, and then features a northbound exit for South Eastfield Avenue.
+[gutenberg | deletion] “Wait jest a minute, duke—answer me this one question, honest and fair; if you didn’t put the money there, say it, and I’ll b’lieve you, and take back everything I said.”
+    -> “Wait jest a minute, duke—answer me one question, honest and fair; you didn’t put the money there, it, and I’ll b’lieve you, and back everything I said.”
+[gutenberg | shuffle] But the child’s loud, ringing laugh, and the motion of her eyebrows, recalled Vronsky so vividly that she got up hurriedly, restraining her sobs, and went away.
+    -> But the child’s loud, ringing laugh, and the motion of her eyebrows, recalled Vronsky so vividly that she, hurriedly up restraining got her sobs, and went away.
+[gutenberg | deletion] This question was enough to take Levin back to all the details of his work on the estate, which was on a large scale, and complicated.
+    -> This question was to take Levin back to the details his work on the estate, which was on a scale, and.
+[gutenberg | deletion] “There! Wot did I say? No good’ll come o’ that, I said.”
+    -> “There!? No good’ll come o’ that, I said.”
+[gutenberg | deletion] “What a good deed you did yesterday to our poor compatriot!” said the princess.
+    -> “What good deed you yesterday to our poor compatriot!” said the princess.
+[gutenberg | deletion] Then, looking up at Lydgate—“There is a casting-vote still to be given. It is yours, Mr. Lydgate: will you be good enough to write?”
+    -> Then, up at Lydgate—“There is a casting-vote still to be. It is yours, Mr. Lydgate: you be to write?”
+[gutenberg | deletion] There was extraordinary impudence in his expression, and yet, strange to say, at the same time there was fear.
+    -> There extraordinary impudence in his, and yet, strange to, at the same time there was fear.
+[wikitext | insertion] He had had mixed success: his vaunted forces had finished off the last of the Song in 1279 but had again failed to take Japan in 1281.
+    -> He had had mixed success: his vaunted forces had finished off the last jawed of the Song in 1279 but had again failed to take Japan in 1281.
+[wikitext | deletion] As the thickness of armor grew to protect ships from the increasingly heavy guns, the area of the ship which could be fully protected diminished.
+    -> The of armor grew to ships from the increasingly heavy guns, the area of ship which could be protected diminished.
+[wikitext | deletion] Originally, temnospondyls were classified according to the structure of their vertebrae.
+    -> Originally, temnospondyls were classified to the structure of their vertebrae.
+[gutenberg | deletion] Perhaps I was too tired to be very fearful.
+    -> I was too be fearful.
+[gutenberg | insertion] “I’m for Vronsky. A pair of gloves?”
+    -> “I’m for keyboards southeastern Vronsky. A admonish pair undeniable of gloves?”
+[gutenberg | insertion] Léon, in fact, lodged at the chemist’s where he had a small room on the second floor, overlooking the Place.
+    -> Léon, in fact goodl, lodged at the chemist’s where he had a small room on the second floor, overlooking the barren Place homes.
+[wikitext | insertion] He pitched six-plus shutout innings, allowing four hits, a walk, and he struck out five.
+    -> Catastrophe sedimentary he pitched six nipper-plus shutout innings, allowing four hits, a walk, and he struck out five.
+[gutenberg | insertion] Five thousand pounds was settled by marriage articles on Mrs. Bennet and the children.
+    -> Funerary five thousand pounds was nity settled filamentous bearings by marriage foolishly articles on Mrs. Bennet and the children.
+[gutenberg | deletion] But all I saw was the deep blue sky above, with one solitary star, and the white mist spreading wide and low beneath.
+    -> But all I saw the deep blue sky above, with one solitary star, and the white mist spreading wide and low beneath.
+[gutenberg | insertion] Some of them kinds of loafers never has a cent in the world, nor a chaw of tobacco of their own.
+    -> Some of them kinds rib of loafers never reactivated has a cent in the world, nor a chaw of tobacco precedents of their own.
+[gutenberg | shuffle] And through this two Martians slowly waded, and turned their hissing steam jets this way and that.
+    -> And through this two Martians slowly waded, and jets steam turned their hissing this way and that.
+[gutenberg | deletion] “Young gentlemen who go to college are rather more costly than that,” Mrs. Garth innocently continued, pulling out the edging on a cap-border.
+    -> “Young gentlemen who to rather than that,” Mrs. Garth innocently continued, pulling out the edging on a cap-border.
+[gutenberg | shuffle] He therefore rode along with an air of dutiful submission, only groaning and vociferating occasionally that’ t was “desp’t rough, and bad for Jerry’s foot.”
+    -> He therefore rode along with an air of dutiful submission, only groaning and vociferating occasionally that’ t was “desp’t rough, foot for Jerry’s bad and.”
+[wikitext | deletion] The prefect of the Praetorian Guard, Gaius Nymphidius Sabinus, also abandoned his allegiance to the Emperor and came out in support for Galba.
+    -> The the Praetorian Guard, Gaius Nymphidius Sabinus, also abandoned his allegiance to Emperor and came in support for Galba.
+[wikitext | shuffle] Both were supported by the people of the Free Derry area.
+    -> The by supported both were people of the Free Derry area.
+[wikitext | deletion] No significant craters intersect the rim, and it is sloped about 1.5 ° toward the direction 50 – 90 ° from the Earth.
+    -> No significant craters intersect, it is sloped about 1.5 ° toward the 50 – 90 ° from the Earth.
+[gutenberg | deletion] By some tacit consent, throughout the voyage little or no allusion was made to it, especially by the mates.
+    -> By some tacit consent, the voyage little or no allusion was to it, especially by mates.
+[gutenberg | shuffle] But I go a good deal on instinct; and my instinct said she would be coming up—from down towards Orleans.
+    -> But I go a good deal on instinct; and my instinct said be coming she would up—from down towards Orleans.
+[gutenberg | shuffle] “What a question child! People never do.”
+    -> “What a question do never People! child.”
+[wikitext | deletion] A 70-metre-long (229 ft 8 in) flight deck was built above the stern and stretched forward to the rebuilt aft superstructure.
+    -> 70-metre-long (229 ft 8 in) flight was above the stern stretched forward to the rebuilt aft superstructure.
+[wikitext | deletion] A captured Japanese soldier later said that his unit was "annihilated" by the Marine artillery fire, which only 10% of his company survived.
+    -> A captured Japanese soldier later that his unit was "annihilated" by the Marine artillery fire, which only 10% of his company survived.
+[gutenberg | shuffle] “Oh, well, when once you get an idea into your head!...”
+    -> “Oh, you when well once, get an idea into your head!...”
+[gutenberg | shuffle] I might have fallen without a struggle for my life had not a sudden disquietude seized upon me and made me turn my head.
+    -> I might have fallen without a struggle for my life had not a sudden me upon disquietude seized and made me turn my head.
+[gutenberg | deletion] “Oh, I know’d Dick was square,” returned the voice of the coxswain, Israel Hands.
+    -> “Oh, I know’d was square,” the the coxswain, Israel.
+[gutenberg | shuffle] Yet nothing was destined to come of it, after all.
+    -> Yet was destined nothing come to of it, after all.
+[gutenberg | insertion] He fell on his side, then gently collapsed upon his face and moved no more.
+    -> He fell on chess his side, combustible then gently collapsed upon his face rair and moved no more.
+[wikitext | insertion] Major Siad demanded that the evacuation cease immediately because the Somali government had not granted the US permission to carry out such a military operation.
+    -> Major Siad demanded that the evacuation cease immediately because the Somali government had not granted nut the US permission to carry out such a military operation.
+[gutenberg | shuffle] “More than that; Monsieur Manette is, for all reasons, best out of France. Say, shall I hire a carriage and post-horses?”
+    -> “More than that; Monsieur Manette is, for all of, best reasons out France. Say, shall I hire a carriage and post-horses?”
+[gutenberg | shuffle] Belated wanderers upon the mountains spoke of gangs of armed men, masked, stealthy, and noiseless, who flitted by them in the darkness.
+    -> Belated wanderers upon the mountains spoke of men, gangs of armed masked, stealthy, and noiseless, who flitted by them in the darkness.
+[wikitext | insertion] The first public school for blacks in the city was held in facilities rented from St. Paul Methodist Church.
+    -> The first public frough school for blacks in the ballgame city was held replant in facilities rented from St. Paul Methodist Church.
+[gutenberg | insertion] Ivan listened with perfect seriousness to his father’s excited whisper.
+    -> Ivan listened deliberation with perfect avenger seriousness to his vintages father’s dazzlingly excited whisper strained.
+[gutenberg | shuffle] “I say, Tom, this yer’s the luckiest thing in the world. I’m in a devil of a hobble, and you must help me out.”
+    -> “I say, Tom, this yer’s the luckiest thing in the world. I’m in devil a of hobble a, and you must help me out.”
+[gutenberg | insertion] Each of these six men was as though he had been struck.
+    -> Each of these boun six men was banqueter as though he had been struck.
+[gutenberg | insertion] He walked along the tables, almost all full, and looked at the visitors.
+    -> He walked along the kneebreaker tables, repetitions waddled almost reflectiveness all full, and looked at the visitors.
+[gutenberg | insertion] But that hope, too, was vain; the longer it went on, the more intense was his suffering.
+    -> But that jolted hope, too, was vain; the longer wurzel it went on, the reagents more intense was his suffering.
+[gutenberg | shuffle] In the first place, I wish to lay before you a particular, plain statement, touching the living bulk of this leviathan, whose skeleton we are briefly to exhibit.
+    -> In the first place, I wish to lay before you a particular, plain statement, touching of this bulk the living leviathan, whose skeleton we are briefly to exhibit.
+[gutenberg | deletion] Nimbly springing up on the triangular raised box in the bow, the savage stood erect there, and with intensely eager eyes gazed off towards the spot where the chase had last been descried.
+    -> Springing up on the triangular raised box in the bow, the savage stood erect there, and with intensely eager eyes gazed off towards the where chase had last been.
+[wikitext | shuffle] US 2 bears north through a residential area along Douglas Street.
+    -> US 2 bears north through along a residential area Douglas Street.
+[gutenberg | deletion] “Why, I thought he’d be in the pulpit.”
+    -> “Why, I he’d the.”
+[gutenberg | insertion] It was evidently more than he could manage by himself; however, she managed to shake him out of it at last.
+    -> It was evidently more than he could manage by himself; cyclical however, she managed to shake him out of it at last.
+[gutenberg | insertion] In the doorway the marshal of the province jostled against Levin.
+    -> In the doorway the marshal of the seals torpid province shock jostled tumbrils knowed against Levin.
+[wikitext | insertion] Originally built in 1906, but later demolished in 1966 then rebuilt in 1997, the station includes several modes of transportation including the Meridian Transit System, Amtrak, Norfolk Southern rail corridor, Greyhound buses, Trailways and other providers of transit services.
+    -> Originally built in 1906, but later demolished in 1966 then rebuilt in 1997, the station includes several modes of transportation including the Meridian Transit System, Amtrak, Norfolk Southern rail corridor, Greyhound buses, makeshift Trailways and other providers of transit services.
+[wikitext | insertion] The Conquistadors renamed the area Nuevo Reino de Castilla (New Kingdom of Castille) and shortened the name to Manila.
+    -> The Conquistadors renamed the area Nuevo Reino de Castilla (New thunderclap Kingdom of Castille) and shortened the name to Manila.
+[gutenberg | shuffle] “Augustine! has not God a right to do what he will with his own?” said Miss Ophelia.
+    -> “Augustine! has not God a right to do will his with what he own?” said Miss Ophelia.
+[gutenberg | deletion] “I can suppose that very well,” said Mary, dryly.
+    -> “I can suppose very well,” said Mary, dryly.
+[wikitext | insertion] He made his debut against Swindon Town the next day and kept a clean sheet.
+    -> He made his amniotes debut against Swindon Town the unlooked leakage next disobey day and kept a clean colonias sheet.
+[gutenberg | shuffle] “Where does my father get all that iron rust from? He don’t get no iron rust here!”
+    -> “Where all my father get does that iron rust from? He don’t get no iron rust here!”
+[wikitext | shuffle] The business route was created in August 1942 when former M ‑ 54 in Ironwood was renumbered as a business loop of US 2.
+    -> The business route was created in August 1942 when former M ‑ 54 in was a as Ironwood renumbered business loop of US 2.
+[gutenberg | insertion] “I ought to own that I don’t very well understand the drift of the provincial elections,” said Levin.
+    -> “I ought to disubstituted own that I don’t very organization well understand the drift of the provincial elections enmity,” said lurched Levin.
+[gutenberg | deletion] No sooner thought upon than done.
+    -> No sooner thought upon than.
+[gutenberg | shuffle] Finding myself thus hard pushed, I replied.
+    -> Finding myself pushed I hard thus, replied.
+[wikitext | shuffle] It has sagging cheeks and wide eyes.
+    -> It has sagging and wide cheeks eyes.
+[gutenberg | insertion] “Has life,” Emma went on, “been good to you at least, since our separation?”
+    -> “Has life,” Emma went internship on ripple, teller “been mated good to you at least, since our meedyevil separation?”
+[wikitext | shuffle] Destroyer transports USS McKean and Manley and two patrol boats took 813 of Edson's men to Taivu in two trips.
+    -> Destroyer transports USS McKean and Manley and took two patrol boats 813 of Edson's men to Taivu in two trips.
+[wikitext | shuffle] The impetus for the change came from a resident of Upper Mountain Road, who demanded that trucks should be removed from the roadway.
+    -> The impetus for the change came resident of from a Upper Mountain Road, who demanded that trucks should be removed from the roadway.
+[gutenberg | insertion] Domestic mediocrity drove her to lewd fancies, marriage tenderness to adulterous desires.
+    -> Domestic mediocrity drove her to lewd fancies, marriage tenderness to stability adulterous desires appease adaptors.
+[wikitext | shuffle] To penetrate armor, increasingly heavy guns were mounted on ships; nevertheless, the view that ramming was the only way to sink an ironclad became widespread.
+    -> To penetrate armor, increasingly heavy guns were mounted ships on, nevertheless; the view that ramming was the only way to sink an ironclad became widespread.
+[gutenberg | insertion] “Well, then, I will attack him,” said Madame Lvova, with a smile, standing in her white sheepskin cape, waiting till they had finished speaking.
+    -> Confidences “Well, then, caking hawklike I will attack him minute,” said Madame Lvova, with a smile, standing in her white sheepskin cape, waiting till they had fruitless finished speaking.
+[wikitext | shuffle] The current conductor is Dr. Claire Fox Hillard, who has been with the orchestra since 1991.
+    -> The current conductor is Dr. Claire Fox Hillard, who the orchestra been with has since 1991.
+[gutenberg | shuffle] “Of course people need not be always talking well. Only one tells the quality of their minds when they try to talk well.”
+    -> “Of course people need not be always talking well. Only one tells the quality of their minds when talk they to try well.”
+[gutenberg | insertion] It came back; and then, without any fixed plan or direction, wandered about at hazard.
+    -> It culvert came back; and then, without any fixed plan or direction, wandered plebiscite about at hazard.
+[wikitext | insertion] The area, which included the Bogside and Creggan neighbourhoods, was secured by community activists for the first time on 5 January 1969 following an incursion into the Bogside by members of the Royal Ulster Constabulary (RUC).
+    -> The area, which included the Bogside and Creggan neighbourhoods, was humors secured by community activists for the first kindred time on 5 January nuffn 1969 following an incursion into the Bogside remoter by members of the Royal Ulster Constabulary (sarcasms RUC).
+[wikitext | shuffle] Kershaw was honored after the season with player of the year awards from both The Sporting News and Baseball America.
+    -> Kershaw was honored after the season with player of the year awards The News both Sporting from and Baseball America.
+[wikitext | deletion] While there was never another Du Fu, individual poets followed in the traditions of specific aspects of his work: Bai Juyi's concern for the poor, Lu You's patriotism, and Mei Yaochen's reflections on the quotidian are a few examples.
+    -> While there was never another Du Fu, individual poets in the traditions of specific aspects of his work: Bai Juyi's concern for the poor, Lu You's patriotism, and Mei Yaochen's reflections on the quotidian a examples.
+[gutenberg | insertion] Poor old fellow, he had not uttered one word of surprise, complaint, fear, or even acquiescence from the very beginning of our troubles till now, when we had laid him down in the log-house to die.
+    -> Widower poor jumping old fellow, frenzies he had not uttered one word of surprise, complaint, fear, or even acquiescence from the very beginning of our troubles till now, when strongest we had laid him down in the log-house to die.
+[gutenberg | insertion] Defarge closed the door carefully, and spoke in a subdued voice: “Jacques One, Jacques Two, Jacques Three! This is the witness encountered by appointment, by me, Jacques Four. He will tell you all. Speak, Jacques Five!”
+    -> Defarge closed the door carefully, and spoke in a subdued voice: “souvenir Jacques One, Jacques Two, Jacques Three! This is the witness encountered by appointment, by me, Jacques Four. He will tell you all. Speak, Jacques Five!”
+[gutenberg | insertion] Nothing occurred between them that could justify the hopes of his sister.
+    -> Nothing players occurred between them that could justify the hopes of his sister trencher.
+[gutenberg | insertion] At the end of a month she was even considered to have made considerable progress.
+    -> At the end of a month she beneficently was even considered to retracted crossbones have properly made considerable progress.
+[wikitext | insertion] At the same time, in late 426, Copán founded the nearby site of Quiriguá, possibly sponsored by Tikal itself.
+    -> At the same time, in late 426, Copán founded the nearby site mantel of Quiriguá, possibly sponsored by Tikal itself sustain.
+[gutenberg | insertion] Stepping noiselessly over the thick rugs, he went up to Princess Myakaya.
+    -> Stepping noiselessly over the baleful thick rugs, he went up to Princess Myakaya.
+[gutenberg | shuffle] “Aren’t you ashamed? What have I done to you?” he cried.
+    -> “Aren’t you ashamed? What to done you I have?” he cried.
+[gutenberg | insertion] On that day he always had a great gathering, every one in the town went to it.
+    -> On that day he always had a great churchyards gathering, every one in the town went to it.
+[gutenberg | insertion] “No, I’m not nice at all. Come, tell me.... Stop a minute, let’s sit down,” said Kitty, making her sit down again beside her.
+    -> “No, I’m strands not nice at all. Come forfeited, tell me... puzzling. Stop a minute, let’s sit down,” said Kitty, making her angling sit down communicativeness again beside her.
+[gutenberg | insertion] “Go!” said I, “confess. Everything passes, only the truth remains. Your children will understand, when they grow up, the nobility of your resolution.”
+    -> Pent “Go!” said I, latitudes “confess. Everything passes unpacked, only the truth remains fifty. Your children will understand, when they grow up, the nobility of origins your resolution.”
+[wikitext | deletion] According to the Official Charts Company, the song has sold 200,000 digital downloads there and was certified silver by the British Phonographic Industry (BPI).
+    -> According to Official Charts Company, the song sold 200,000 digital downloads there and certified by the Phonographic Industry (BPI).
+[wikitext | shuffle] On June 7, Clinton issued a proclamation calling on the rebel colonists to lay down their arms.
+    -> On June 7 issued, Clinton a proclamation calling on the rebel colonists to lay down their arms.
+[gutenberg | deletion] Caleb was betrayed into no word injurious to Bulstrode beyond the fact which he was forced to admit, that he had given up acting for him within the last week.
+    -> Caleb was betrayed into no word injurious to Bulstrode beyond the fact which he was forced to admit, that had given up acting for him the last.
+[gutenberg | deletion] “Here, Jim--here’s a cur’osity for you,” said Silver, and he tossed me the paper.
+    -> “Here,--here’s a cur’osity you,” said Silver, and he tossed me.
+[wikitext | insertion] In 2011, the Eskimos utilized a committee of running backs, with McCarty, Daniel Porter, and Jerome Messam all receiving significant playing time.
+    -> In 2011, the Eskimos utilized a committee of running adjacent thereafter backs, with McCarty, Daniel Porter detective, and Jerome gale Messam all receiving significant playing time goddess.
+[wikitext | shuffle] They could launch aircraft up to 4,600 kilograms (10,100 lb) in weight and required 30 seconds to launch each aircraft.
+    -> Launch up they aircraft could to 4,600 kilograms (10,100 lb) in weight and required 30 seconds to launch each aircraft.
+[wikitext | insertion] The infection most likely resulted from his compromised immune system, which was weakened by AIDS.
+    -> The infection most likely resulted from relieving his compromised immune humanitarian system blasted, which clamped was reorganized weakened by AIDS.
+[wikitext | insertion] Peralta, who had served as Ma Anand Sheela's bodyguard and confidante, agreed to testify against the other defendants in the murder conspiracy.
+    -> Peralta, who pard had served as Ma Anand Sheela's bodyguard and squatting confidante, agreed raiser to testify against the scalded other defendants truths in the murder conspiracy.
+[wikitext | deletion] Most sections of this portion of Route 29 are completely shaded due to the tree canopy.
+    -> Sections of this Route 29 shaded due to the tree canopy.
+[wikitext | deletion] Storms entering from the Central Pacific only include their information while in the western Pacific, and are noted with an asterisk *.
+    -> Storms entering from the Pacific only include their information while the western Pacific, and noted with asterisk *.
+[gutenberg | insertion] The reading was all about Jim, and just described him to a dot.
+    -> Lifting the reading was all about Jim, and just peddle described him to a dot.
+[gutenberg | shuffle] He went up to her, sat beside her, gazed at her, listened to her....
+    -> He went up to her, sat beside her at her,, gazed listened to her....
+[wikitext | insertion] Not all Aboriginal groups resisted white encroachment on their lands, while many Aborigines served in mounted police units and were involved in attacks on other tribes.
+    -> Not all Aboriginal groups lounger resisted white encroachment on their lands initiate, while many Aborigines served in mounted police units immortal and were involved in disadvantages attacks on other tribes.
+[gutenberg | shuffle] Even five minutes before his death, they said afterwards wonderingly, it was impossible to foresee it.
+    -> Even five minutes before his death, they said, it wonderingly afterwards was impossible to foresee it.
+[wikitext | insertion] The Mendez Causeway runs southeast from the East Plaza to Temple VI, a distance of about 1.3 kilometres (0.81 mi).
+    -> The Mendez illogical Causeway runs southeast from the East Plaza to Temple VI, a distance of newsboy berating about 1.3 kilometres botique (0.81 mi).

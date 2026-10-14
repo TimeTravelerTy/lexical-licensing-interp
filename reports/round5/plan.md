@@ -881,6 +881,26 @@ Several can hold at once; all are reported.
   participle's output probability (A1), which a probe on the final state
   need not inherit. A1–A2 do not decide this.
 
+**Pre-run clarification (A5, 2026-10-14, after a code review, before any
+model run).**
+- **Corpus shortcut controls.** The first build gave perturbed sentences
+  surface cues that originals never had: 5,348 lowercase starts, 964
+  without terminal punctuation, glued words, and capitalized inserted
+  words. The frozen corpus (`data/round5/probe/`) now:
+  - inserts lowercase common word types only;
+  - restores sentence-initial casing after a perturbation;
+  - keeps insertions and shuffles before the terminal punctuation;
+  - re-draws a perturbation until the sentence starts like an original;
+  - renders originals and perturbed sentences with one spacing rule;
+  - drops originals with unbalanced brackets or quotes; initials no longer
+    end sentences.
+  Audit: 0 bad starts and 0 missing terminal punctuation in either class;
+  mid-sentence capitals 1.74 vs 1.68 per sentence.
+- **Baseline.** The artifact baseline uses length, punctuation and casing
+  counts (token, word, punctuation, mid-sentence-capital and comma counts).
+- Splits 1–2 re-select C at split 0's layer; they measure stability of the
+  probe at that layer, not of the layer choice.
+
 ## Order (A3–A5)
 
 1. Commit this part.

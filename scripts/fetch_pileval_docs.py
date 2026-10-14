@@ -6,13 +6,15 @@ data/round5/restore/manifest.csv: `find` gives the occurrence segments; up to --
 ranks are retrieved with `get_doc_by_rank` (a window of --disp tokens around the occurrence, decoded text). Windows
 from a document already used are skipped. Sequential requests with a delay; retries with backoff.
 
-Output: data/round5/restore/pileval_docs.jsonl (verb, doc_ix, rank, needle_offset, text), pileval_meta.json.
+Output: data/round5/restore/pileval_docs.jsonl (verb, doc_ix, rank, occ_char = the selected occurrence's character
+offset, text), pileval_meta.json.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
 import time
 import urllib.request
 from pathlib import Path
@@ -59,20 +61,27 @@ def main(args):
                     s = int(np.searchsorted(bounds, i, side="right"))
                     off = i - (bounds[s - 1] if s else 0)
                     picks.append((s, segs[s][0] + int(off)))
-        got = 0
+        got = missing = 0
         for s, r in picks:
+            # empty query: one continuously decoded span (highlight splitting can glue words); the window is centred on
+            # the occurrence at this rank, so the occurrence nearest the middle is the selected one
             d = call({"index": args.index, "query_type": "get_doc_by_rank", "s": s, "rank": r, "max_disp_len": args.disp,
-                      "query": v})
+                      "query": ""})
+            time.sleep(args.delay)
             dix = int(d["doc_ix"])
             if dix in seen:
                 continue
-            seen.add(dix)
             text = "".join(sp[0] for sp in d["spans"])
-            rows.append({"verb": v, "doc_ix": dix, "shard": s, "rank": r, "needle_offset": int(d.get("needle_offset", -1)),
+            occ = [m.start() for m in re.finditer(rf"(?<![A-Za-z]){re.escape(v)}(?![A-Za-z])", text)]
+            if not occ:
+                missing += 1
+                continue
+            seen.add(dix)
+            mid = len(text) / 2
+            rows.append({"verb": v, "doc_ix": dix, "shard": s, "rank": r, "occ_char": min(occ, key=lambda o: abs(o - mid)),
                          "text": text})
             got += 1
-            time.sleep(args.delay)
-        per[v] = {"occurrences": cnt, "windows": got}
+        per[v] = {"occurrences": cnt, "windows": got, "no_surface_match": missing}
         print(v, per[v], flush=True)
         time.sleep(args.delay)
     out.parent.mkdir(parents=True, exist_ok=True)

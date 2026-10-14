@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import time
 from pathlib import Path
 
@@ -107,10 +108,13 @@ def run(args):
         sgn = np.sign(xs[tr & (c == 1), j].mean() - xs[tr & (c == 0), j].mean())
         mt, mi = (sgn * xs[te & (c == 1), j]).mean(), (sgn * xs[te & (c == 0), j]).mean()
         scale[f] = (sgn, mi, mt)
-    verb_fold = {}
-    for v, p in zip(das.verb, das.pair_id):
-        verb_fold[v] = fold0[p]
+    verb_fold = {}  # participle -> the held-out split-0 fold of its DAS pair
+    for col in ("trans_part", "intrans_part"):
+        for v, f in zip(pf[col], pf.fold_split0):
+            assert verb_fold.get(v, f) == f, f"inconsistent fold for {v}"
+            verb_fold[v] = int(f)
     allv = pd.concat([head.assign(group="head"), man.assign(group="rare")], ignore_index=True)
+    meta["das_participles_held_out_fold"] = sorted(v for v in allv.verb if v in verb_fold)
     frames = ("She has {}", "He has {}", "They have {}")
     Z = np.zeros(len(allv))
     for fr in frames:
@@ -184,15 +188,35 @@ def run(args):
                                     "good": d.sentence_good, "bad": d.sentence_bad}))
     fq = pd.concat(fq, ignore_index=True)
     docs = [json.loads(l) for l in Path(args.pileval_docs).read_text().splitlines()]
-    pile = pd.read_parquet(args.pile10k).text.tolist()[:500]
-    lm_texts = [("pileval", d["verb"], d["doc_ix"], d["text"]) for d in docs] + [("pile10k", "", i, t) for i, t in enumerate(pile)]
-    first_word = {}
+    p10 = pd.read_parquet(args.pile10k).text
+    pick = np.sort(np.random.default_rng(args.seed).choice(len(p10), 500, replace=False))
+    lm_texts = [("pileval", d["verb"], d["doc_ix"], d["text"], d["occ_char"]) for d in docs] + \
+               [("pile10k", "", int(i), p10.iloc[i], -1) for i in pick]
 
-    def lm_nll(text):
-        ids = tok(text, add_special_tokens=False).input_ids[:args.lm_len]
-        return ids
+    def window(text, occ):
+        """Pythia token ids and char offsets: the first lm_len tokens, or lm_len tokens centred on the occurrence."""
+        enc = tok(text, add_special_tokens=False, return_offsets_mapping=True)
+        ids, offs = enc.input_ids, enc.offset_mapping
+        if occ < 0 or len(ids) <= args.lm_len:
+            st = 0
+        else:
+            j = next((k for k, (a, b) in enumerate(offs) if b > occ), len(ids) - 1)
+            st = max(0, min(j - args.lm_len // 2, len(ids) - args.lm_len))
+        return ids[st:st + args.lm_len], offs[st:st + args.lm_len]
 
-    lm_ids = [lm_nll(t) for _, _, _, t in lm_texts]
+    lm_win = [window(t, occ) for _, _, _, t, occ in lm_texts]
+    lm_ids = [w[0] for w in lm_win]
+    # the selected occurrence must be a scored edited token
+    tid = dict(zip(man.verb, man.first_id))
+    sel_pos = []
+    for (src, verb, _, text, occ), (ids, offs) in zip(lm_texts, lm_win):
+        if src != "pileval":
+            sel_pos.append(-1)
+            continue
+        js = [k for k, (a, b) in enumerate(offs) if a <= occ < b or (a == occ - 1 and text[a] == " ")]
+        js = [k for k in js if k >= 1 and ids[k] == int(tid[verb])]
+        sel_pos.append(js[0] if js else -2)
+    meta["pileval_selected_occurrence_missing"] = int(sum(p == -2 for p in sel_pos))
     meta["n_pileval_windows"] = len(docs)
     print(f"setup {time.time() - t0:.0f}s; curated {len(cur)}, FreqBLiMP {len(fq)}, LM texts {len(lm_texts)}", flush=True)
 
@@ -230,15 +254,17 @@ def run(args):
             for j, q in enumerate(chunk):
                 n = len(q) - 1
                 v = nll[j, :n].double().cpu().numpy()
-                src, verb, dix, _ = lm_texts[i + j]
+                src, verb, dix, text, _ = lm_texts[i + j]
+                offs = lm_win[i + j][1]
                 tgt_pos = [p for p in range(1, len(q)) if q[p] in edited_ids]
                 ctxw = []
-                for p in tgt_pos:
-                    prev = tok.decode([q[p - 1]]).strip().lower() if p >= 1 else ""
+                for p in tgt_pos:  # the full preceding surface word (character offsets), not a BPE piece
+                    m = re.search(r"([A-Za-z]+)[^A-Za-z]*$", text[:offs[p][0]])
+                    prev = m.group(1).lower() if m else ""
                     ctxw.append("be" if prev in BE else "perf" if prev in PERF else "other")
                 rows_l.append({"cond": cond, "src": src, "verb": verb, "doc_ix": dix, "n_tok": n, "nll_sum": float(v.sum()),
                                "edited_nll": [float(v[p - 1]) for p in tgt_pos], "edited_ctx": ctxw,
-                               "edited_tok": [int(q[p]) for p in tgt_pos]})
+                               "edited_tok": [int(q[p]) for p in tgt_pos], "selected_pos": sel_pos[i + j]})
         print(f"{cond}: {time.time() - t1:.0f}s", flush=True)
     with torch.no_grad():
         W.copy_(W0)
