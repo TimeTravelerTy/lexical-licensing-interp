@@ -226,12 +226,12 @@ def run(args):
         t1 = time.time()
         # curated passive pairs
         for i in range(0, len(cur), args.batch):
-            g = cur.iloc[i:i + args.batch]
+            g = cur.iloc[i:i + args.batch].to_dict("records")
             for side in ("good", "bad"):
-                sc = score_batch(model, tok, dev, [{"sentence": r[f"sentence_{side}"], "prefix": r.prefix,
-                                                    "verb": r[f"{side}_verb"], "paradigm": r.paradigm} for r in g.itertuples()])
-                for r, x in zip(g.itertuples(), sc):
-                    rows_c.append({"cond": cond, "pair_id": r.pair_id, "side": side, "whole": x["whole_lp"],
+                sc = score_batch(model, tok, dev, [{"sentence": r[f"sentence_{side}"], "prefix": r["prefix"],
+                                                    "verb": r[f"{side}_verb"], "paradigm": r["paradigm"]} for r in g])
+                for r, x in zip(g, sc):
+                    rows_c.append({"cond": cond, "pair_id": r["pair_id"], "side": side, "whole": x["whole_lp"],
                                    "verb": x["verb_lp"], "suffix": x["suffix_lp"], "by": x["by_lp"]})
         # FreqBLiMP
         lg, ig = sentence_lp(model, tok, dev, fq.good.tolist(), args.batch)
