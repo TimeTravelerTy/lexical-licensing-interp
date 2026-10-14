@@ -712,3 +712,52 @@ Yes/No readout is not a usable second measure of the rare-verb deficit at
 any of these sizes. The LP contrast (A1) and the probe (A5) remain the
 measures. Task 4's 60.8% on curated Head contexts did not carry over to
 the released items.
+
+## D11. Expanded verb list
+
+Built locally from FreqBLiMP `passive_1` / `passive_2` (released items),
+the verb-expansion inventory, round 4's candidates and the 126 curated
+pairs. Report: `d11_verbs.md`; files: `data/round5/verbs_expanded/`;
+loader: `scripts/verbs_expanded.py`.
+
+- **Ratings.** 1,233 in-band lemmas (of 1,312 pooled), rated T / I /
+  reject by Claude and by Codex, each blind to the source class and to the
+  other. Agreement 0.94, κ = 0.88. Accepted only when both said T or both
+  said I. Accepted: Head 319 T / 47 I, Tail 395 / 133, XTail 118 / 126.
+- **Pairs.** Matching within band: the maximum number of one-to-one pairs
+  within the calipers (participle Zipf ≤ 0.35, lemma Zipf ≤ 0.25), then
+  the minimum total participle gap, then lemma order (exact integer
+  assignment).
+  - Head 47 pairs, Tail 132, XTail 102: 281 in total.
+  - Mean participle gap 0.04, mean lemma gap 0.14.
+  - Every accepted Head intransitive is paired. Head intransitives are the
+    bottleneck, as expected.
+- **Token cells** (T × I, single / multi-token): Head is mostly
+  single-single (43 of 47). Tail and XTail are mostly multi-multi (91 and
+  101).
+- **Split.** 93 pairs contain a lemma used in an earlier DAS training or
+  selection run and are trainable only. Of the other 188, one third per
+  band × token cell is held out: 62 pairs (Head 4, Tail 29, XTail 29).
+  The loader asserts lemma-disjoint splits and no held-out lemma in any
+  earlier DAS run.
+- 164 pairs contain a curated verb (flagged). No model was run on the list.
+
+**Rule** (≥ 128 pairs, ≥ 40 per band): **met** (281; Head 47).
+
+**Deviations and checks (D11).**
+- The registry of historical DAS verbs covers every earlier DAS training or
+  selection run in the repo (rounds 1–2, the verb-expansion pairs and the
+  round-3 Head train / dev items), not only the two inventories the plan
+  names. It was widened after Codex's review, and it only moves pairs
+  from held-out to trainable.
+- The rating guide was revised after Codex's review, before either
+  rating was frozen. The draft rejected verbs with common transitive and
+  intransitive uses (break-type); the plan's T criterion admits them, so
+  they are T with an `optional` flag. Claude's labels were drafted under
+  the draft guide and revised to the final one before freezing (31 rejects
+  became T optional, 1 I became reject).
+- Token counts for 15 participles missing from the existing inventories
+  were computed with the Pythia tokenizer on the TSUBAME login node
+  (`sources/ntok_extra.csv`).
+- The matching was checked against brute force on 400 small random
+  instances (cardinality, total gap and tie-break all agree).

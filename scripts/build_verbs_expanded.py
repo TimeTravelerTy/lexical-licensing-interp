@@ -222,7 +222,8 @@ def match(args):
             "t_curated", "i_curated", "das_historical"]
     P = pd.DataFrame(rows, columns=cols)
     # token-count cell: T single / multi x I single / multi (orientation kept)
-    P["tok_cell"] = np.where(P.t_single == 1, "T1", "T2+") + np.where(P.i_single == 1, "-I1", "-I2+")
+    P["tok_cell"] = (pd.Series(np.where(P.t_single == 1, "T1", "T2+"), index=P.index)
+                     + pd.Series(np.where(P.i_single == 1, "-I1", "-I2+"), index=P.index))
     rng = np.random.default_rng(args.seed)
     P["split"] = "trainable"
     for (b, cell), g in P[P.das_historical == 0].sort_values(["band", "tok_cell", "t_lemma"]).groupby(["band", "tok_cell"],

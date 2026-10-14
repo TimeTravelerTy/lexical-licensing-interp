@@ -1,0 +1,1234 @@
+item,label,flag,reason
+0,T,obligatory,People or claims can be distrusted
+1,T,obligatory,Abilities can be impaired by injury
+2,reject,,Common copular and raising uses
+3,T,obligatory,Diseases can be eradicated
+4,T,obligatory,People can be seduced
+5,T,obligatory,People can be electrocuted
+6,T,obligatory,Equipment or elections can be rigged
+7,T,obligatory,Witnesses can be suborned
+8,I,,Normally describes reclining without an object
+9,T,obligatory,Obstacles can be surmounted
+10,I,,Normally describes yielding without an object
+11,T,obligatory,Audiences can be titillated
+12,T,obligatory,Supplies can be procured
+13,T,obligatory,Marriages or decisions can be annulled
+14,I,,Takes locative or prepositional complements
+15,reject,,Dominantly intransitive; instructions can be shouted
+16,T,obligatory,People can be exasperated
+17,T,optional,Fields are seeded; plants also seed
+18,T,obligatory,Property can be repossessed
+19,T,obligatory,People can be fascinated
+20,I,,Normally describes lingering without an object
+21,I,,Normally describes hiding without an object
+22,I,,Normally takes over as a preposition
+23,I,rare_trans,Transitive unloading use is specialized
+24,I,,Normally describes marriage between groups
+25,I,rare_trans,Direct object uses are uncommon
+26,T,obligatory,Members can be excommunicated
+27,T,optional,Stories are embellished; speakers also embellish
+28,T,obligatory,Materials can be pulped
+29,T,obligatory,Children or talents can be nurtured
+30,T,optional,Supplies are stockpiled; people also stockpile
+31,T,obligatory,People can be exhorted
+32,I,,Normally describes walking with exaggerated confidence
+33,T,obligatory,Goods can be crated
+34,T,obligatory,Audiences can be enthralled
+35,T,obligatory,Actions or people can be authorised
+36,T,obligatory,People or projects can be abandoned
+37,T,obligatory,Food or wages can be garnished
+38,T,obligatory,People or objects can be blessed
+39,reject,,Dominantly intransitive; proceedings can be stayed
+40,T,obligatory,Goods can be priced
+41,T,obligatory,People can be reprimanded
+42,T,optional,Objects are tapped; people also tap
+43,T,obligatory,Objects can be displayed
+44,T,obligatory,People can be concerned by developments
+45,T,obligatory,People can be inveigled into actions
+46,T,obligatory,People or goals can be pursued
+47,T,optional,People are fooled; others fool around
+48,I,,Normally takes on as a preposition
+49,T,obligatory,Food or resources can be consumed
+50,T,obligatory,Objects can be nailed in place
+51,T,optional,Recruits are enlisted; people also enlist
+52,T,obligatory,Stories or data can be serialized
+53,T,obligatory,People can be mauled
+54,I,,Describes time passing without an object
+55,reject,,Dominantly intransitive; prices can be hiked
+56,T,obligatory,Troops or attention can be commanded
+57,T,optional,Events are delayed; people also delay
+58,I,rare_trans,Duration objects lack natural verbal passives
+59,I,,Normally describes bubbling without an object
+60,T,obligatory,Reputations can be besmirched
+61,I,rare_trans,Direct speech or response objects are rare
+62,T,optional,People are frightened; animals frighten easily
+63,I,,Normally describes reaching a destination
+64,I,,Normally describes declining without an object
+65,I,,Normally describes submission without an object
+66,I,rare_trans,Transitive industrial uses are specialized
+67,I,rare_trans,Direct object annoyance use is uncommon
+68,T,obligatory,Territory can be annexed
+69,T,obligatory,Details can be omitted
+70,reject,,Dominantly intransitive; secrets can be confided
+71,T,obligatory,Data or problems can be analyzed
+72,T,obligatory,Competitors can be outshone
+73,T,optional,Materials are extruded; substances also extrude
+74,T,obligatory,People or animals can be slain
+75,I,rare_trans,Direct object religious use is uncommon
+76,T,obligatory,Goods can be stowed
+77,T,optional,Rights are accorded; accounts also accord
+78,I,,Normally takes on as a preposition
+79,T,obligatory,Works can be copyrighted
+80,I,,Normally describes existing together
+81,I,rare_trans,Reflexive or body part objects are uncommon
+82,T,obligatory,People can be tormented
+83,T,obligatory,Practices can be eschewed
+84,T,optional,Seeds are planted; gardeners also plant
+85,T,obligatory,Surfaces can be disinfected
+86,T,optional,Heads are ducked; people also duck
+87,T,obligatory,Property or skills can be acquired
+88,I,rare_trans,Direct object testimony uses are uncommon
+89,T,obligatory,Consent or meanings can be implied
+90,T,optional,Tissues are ossified; tissues also ossify
+91,T,obligatory,Surfaces can be shellacked
+92,T,obligatory,Effects can be counteracted
+93,T,optional,Forces are rearmed; countries also rearm
+94,I,,Normally describes leisurely walking
+95,T,obligatory,Items can be reclassified
+96,T,obligatory,People can be chided
+97,T,obligatory,Money or gratitude can be owed
+98,T,obligatory,People can be browbeaten
+99,T,obligatory,Objects or control can be wrested
+100,T,obligatory,Orders or assignments can be randomised
+101,T,obligatory,Obstacles or opponents can be overcome
+102,T,obligatory,People can be demeaned
+103,T,obligatory,Blades can be sheathed
+104,T,obligatory,Institutions or expectations can be subverted
+105,T,optional,Packages are delivered; couriers also deliver
+106,T,optional,People are gassed; others gas about
+107,T,obligatory,Dough can be kneaded
+108,T,obligatory,Software can be ported
+109,T,optional,Towns are plundered; invaders also plunder
+110,T,obligatory,People can be terrified
+111,T,obligatory,Supplies can be replenished
+112,T,obligatory,Practices or people can be institutionalized
+113,T,obligatory,Actions or visitors can be allowed
+114,T,optional,Objects are grabbed; people also grab
+115,T,obligatory,People can be jailed
+116,T,obligatory,Food or traditions can be preserved
+117,I,,Normally takes in as a preposition
+118,T,obligatory,People or plants can be nourished
+119,I,,Normally takes prepositional complements
+120,T,obligatory,People or objects can be impaled
+121,T,obligatory,People or problems can be confronted
+122,T,obligatory,Work or institutions can be superintended
+123,I,,Normally describes moving back or diminishing
+124,T,obligatory,People can be immunized
+125,I,,Normally describes operating without an object
+126,I,rare_trans,Reflexive use common; passivizable outwitting use rare
+127,T,optional,People are warned; speakers also warn
+128,T,obligatory,People can be involved in activities
+129,I,,Normally takes with as a preposition
+130,T,optional,Strings are plucked; musicians also pluck
+131,I,rare_trans,Direct object rejection use is uncommon
+132,I,,Normally describes moving quickly
+133,T,optional,Money is invested; people also invest
+134,I,,Normally describes anger or intense activity
+135,T,obligatory,People or substances can be poisoned
+136,T,optional,Property is insured; people insure against risks
+137,I,,Normally describes quarreling without an object
+138,T,obligatory,Meat can be tenderized
+139,T,obligatory,Tasks or people can be assigned
+140,T,optional,Prisoners are guarded; people guard against danger
+141,I,,Normally describes staring or opening widely
+142,I,rare_trans,Waiting tables is an exceptional transitive use
+143,I,,Normally describes dropping or slouching
+144,T,obligatory,People can be detained
+145,I,,Normally describes wind blowing intermittently
+146,I,,Normally takes with as a preposition
+147,T,obligatory,People or companies can be divested
+148,T,obligatory,Ideas can be popularized
+149,T,optional,Orders are obeyed; people also obey
+150,T,obligatory,People or costs can be assessed
+151,T,obligatory,People can be pitied
+152,T,optional,Rooms are decorated; people also decorate
+153,T,optional,Muscles are relaxed; people also relax
+154,T,obligatory,Information can be chunked
+155,T,obligatory,Guesses can be hazarded
+156,I,,Normally describes appearing large or imminent
+157,T,obligatory,Instruction or treatment can be individualized
+158,T,obligatory,Crops or prospects can be blighted
+159,T,obligatory,Bodies can be cremated
+160,I,rare_trans,Direct speech objects are uncommon
+161,T,obligatory,Safety or success can be ensured
+162,T,obligatory,Fish or meat can be boned
+163,T,optional,Statements are qualified; competitors also qualify
+164,T,obligatory,Claims or associations can be disavowed
+165,I,rare_trans,Direct object judgment use is archaic
+166,T,obligatory,News or decisions can be announced
+167,T,obligatory,Values or decisions can be reappraised
+168,T,obligatory,Objects can be purloined
+169,I,,Normally takes of or in
+170,T,obligatory,Responses can be elicited
+171,T,obligatory,Objects or institutions can be destroyed
+172,I,,Normally takes to as a preposition
+173,I,,Normally takes with as a preposition
+174,I,rare_trans,Quoted speech lacks a common natural passive
+175,T,obligatory,Objects or experiences can be tinged
+176,I,,Normally describes evasive speaking
+177,T,obligatory,People can be discomfited
+178,T,obligatory,Possessions can be hocked
+179,T,obligatory,Objects or people can be booted
+180,T,obligatory,People can be recompensed
+181,T,obligatory,People or achievements can be belittled
+182,T,obligatory,People can be hounded
+183,T,obligatory,Scenes or outcomes can be visualized
+184,T,optional,Money is donated; people also donate
+185,T,obligatory,People or activities can be detested
+186,T,obligatory,Records or competitors can be surpassed
+187,T,obligatory,People or claims can be dismissed
+188,T,obligatory,Requests or rights can be granted
+189,I,rare_trans,Life objects are idiomatic or nonpassivizable
+190,I,,Normally describes lingering or trifling
+191,T,obligatory,Mechanisms can be actuated
+192,T,obligatory,Objects or people can be camouflaged
+193,T,obligatory,People can be brained with objects
+194,I,,Normally describes rhythmic throbbing
+195,reject,,Common clause taking and caretaking uses
+196,T,obligatory,People or performances can be accompanied
+197,T,obligatory,Food can be devoured
+198,I,,Normally takes in or over
+199,T,obligatory,People can be conned
+200,T,obligatory,People or attention can be attracted
+201,T,obligatory,Progress or people can be impeded
+202,T,obligatory,People or problems can be addressed
+203,T,obligatory,Wounds or consciences can be salved
+204,I,,Normally describes staring without an object
+205,reject,,Dominantly intransitive; words can be murmured
+206,T,obligatory,Names or logos can be trademarked
+207,T,obligatory,Beliefs or affection can be professed
+208,T,optional,People are educated; teachers also educate
+209,T,obligatory,People can be burdened
+210,T,optional,Surfaces are repainted; people also repaint
+211,T,obligatory,Shapes or accounts can be distorted
+212,T,optional,Books are published; authors also publish
+213,T,obligatory,Dangers or conditions can be braved
+214,I,rare_trans,Direct object departure uses are uncommon
+215,I,,Normally takes on or over
+216,T,obligatory,People or offenses can be pardoned
+217,T,obligatory,Committees can be constituted
+218,T,optional,Animals are pastured; animals also pasture
+219,T,obligatory,People can be goaded
+220,T,obligatory,People or images can be captured
+221,T,optional,Results are yielded; people also yield
+222,I,,Normally describes making mistakes
+223,T,obligatory,People or results can be biassed
+224,I,rare_trans,Transitive entertaining use is uncommon
+225,T,obligatory,Data can be tabulated
+226,I,,Normally describes temporarily residing somewhere
+227,I,rare_trans,Transitive arranging or routing uses are uncommon
+228,T,optional,Students are enrolled; students also enroll
+229,I,,Normally describes craving with prepositional complements
+230,I,rare_trans,Direct speech objects are uncommon
+231,T,obligatory,Goods or situations can be salvaged
+232,T,obligatory,Walls or misconduct can be whitewashed
+233,T,obligatory,Amounts or effects can be quantified
+234,I,rare_trans,Direct object planning use is uncommon
+235,T,obligatory,Children or policies can be adopted
+236,reject,,Dominantly intransitive; terms can be agreed
+237,T,obligatory,People or courses can be recommended
+238,I,rare_trans,Chatting someone up is an idiomatic exception
+239,T,obligatory,People or locations can be targeted
+240,T,optional,Claims are retracted; parts also retract
+241,T,optional,Products are designed; designers also design
+242,T,obligatory,Goals or careers can be furthered
+243,T,obligatory,Grievances or imbalances can be redressed
+244,T,obligatory,Products or candidates can be endorsed
+245,T,obligatory,People or violence can be incited
+246,T,optional,Walls are papered; people paper over problems
+247,T,obligatory,Actions or visitors can be permitted
+248,T,obligatory,People can be reviled
+249,T,obligatory,People can be blackmailed
+250,T,obligatory,People or systems can be supplanted
+251,T,optional,Values are interpolated; analysts also interpolate
+252,T,obligatory,People or needs can be accommodated
+253,reject,,Dominantly intransitive; warnings can be screamed
+254,T,obligatory,Buildings can be ransacked
+255,T,optional,Processes are computerized; organizations also computerize
+256,I,,Normally describes living together
+257,I,,Normally describes beginning or becoming apparent
+258,T,obligatory,Events can be foretold
+259,T,optional,People are gagged; people also gag
+260,T,optional,Bills are paid; people also pay
+261,T,obligatory,Powers or areas can be circumscribed
+262,I,,Normally describes inactive living
+263,T,obligatory,Power or positions can be usurped
+264,T,optional,Land is abutted by adjoining properties
+265,T,optional,People are ogled; others also ogle
+266,T,obligatory,Objects can be unpinned
+267,I,rare_trans,Transitive making moral use is uncommon
+268,T,obligatory,Events or visitors can be hosted
+269,T,obligatory,Changes can be necessitated
+270,T,obligatory,Details can be noted
+271,T,obligatory,People or ideas can be disparaged
+272,I,rare_trans,Transitive physical uses are specialized
+273,T,obligatory,Limits or boundaries can be overstepped
+274,T,obligatory,Sights can be beheld
+275,T,obligatory,Objects or people can be tagged
+276,I,,Normally takes with as a preposition
+277,I,rare_trans,Direct object expressions are uncommon
+278,T,obligatory,People or objects can be nabbed
+279,T,optional,People are roused; people also rouse
+280,I,,Normally describes returning to previous illness
+281,T,obligatory,Rivers can be dammed
+282,T,obligatory,Laws or ideas can be promulgated
+283,T,optional,Rewards are promised; people also promise
+284,T,obligatory,People can be indicted
+285,T,obligatory,Property or performance can be appraised
+286,I,rare_trans,Direct object speech uses are uncommon
+287,I,,Normally describes conflicting or colliding
+288,T,obligatory,People can be reproved
+289,T,optional,Objects are tipped; people also tip
+290,I,,Normally describes recovering from illness
+291,T,obligatory,Sources or people can be cited
+292,T,optional,Features are distinguished; people distinguish between alternatives
+293,reject,,Participle mainly describes land as an adjective
+294,I,,Normally takes with or for
+295,T,obligatory,Shoes or garments can be unlaced
+296,T,obligatory,Rules can be enforced
+297,I,,Normally takes on or upon
+298,I,,Normally describes evasive or ambiguous speaking
+299,T,optional,Donations are solicited; people also solicit
+300,I,,Normally describes diminishing or settling
+301,T,obligatory,Pests or populations can be exterminated
+302,T,optional,Work is reviewed; reviewers also review
+303,T,obligatory,People can be pressured
+304,T,obligatory,People or facts can be misrepresented
+305,T,optional,Horses are ridden; people also ride
+306,I,,Normally describes abandoning allegiance
+307,T,optional,Property is rented; people also rent
+308,T,optional,People are pleased; performers aim to please
+309,T,obligatory,Unrest or fears can be quelled
+310,T,obligatory,Projects can be financed by investors.
+311,T,optional,Can bet money or simply bet.
+312,T,obligatory,People can be informed by officials.
+313,T,obligatory,Reservations can be confirmed by staff.
+314,T,obligatory,Words can be pronounced by speakers.
+315,I,rare_trans,Transitive threats occur mainly in literary usage.
+316,T,obligatory,Materials can be saturated with liquid.
+317,T,obligatory,Activities can be forbidden by authorities.
+318,T,optional,Can scold someone or simply scold.
+319,T,obligatory,Holes can be patched by workers.
+320,T,obligatory,People can be ridiculed by critics.
+321,I,,Persevering takes no ordinary direct object.
+322,T,obligatory,Questions can be evaded by respondents.
+323,T,obligatory,Leaders can be ousted by opponents.
+324,T,obligatory,Actions can be condemned by observers.
+325,I,rare_trans,Transitive blending occurs mainly in cooking instructions.
+326,T,obligatory,Records can be expunged by authorities.
+327,T,obligatory,Events can be televised by broadcasters.
+328,I,rare_trans,Transitive proliferation occurs mainly in technical usage.
+329,I,,Abstaining takes prepositional complements rather than objects.
+330,T,obligatory,Developments can dismay people and permit passives.
+331,T,obligatory,Performers can be acclaimed by audiences.
+332,T,optional,Ships berth; crews also berth ships.
+333,I,,Loitering takes no ordinary direct object.
+334,T,obligatory,Orders can be executed by officers.
+335,I,rare_trans,Transitive perspiration of fluids is uncommon.
+336,T,obligatory,Questions can perplex readers and permit passives.
+337,T,optional,Can compensate workers or compensate for losses.
+338,T,obligatory,Substances can be ingested by patients.
+339,T,obligatory,People can be placated by concessions.
+340,I,rare_trans,Transitive uses involve idiomatic lie one's way.
+341,T,optional,Can telegraph messages or telegraph for help.
+342,T,obligatory,People can be defamed by accusers.
+343,T,optional,Can apply paint or apply for work.
+344,T,optional,Can grasp objects or grasp at them.
+345,reject,,Mainly takes clauses expressing desired outcomes.
+346,T,obligatory,Documents can be notarized by officials.
+347,I,rare_trans,Transitive utterances occur mainly in literary narration.
+348,T,obligatory,Responsibilities can be assumed by others.
+349,T,obligatory,Amounts can be deducted by accountants.
+350,T,obligatory,Materials can be reused by manufacturers.
+351,I,,Malfunctioning takes no ordinary direct object.
+352,T,obligatory,Experiences can be relished by participants.
+353,I,rare_trans,Transitive feather shedding occurs in biological usage.
+354,T,optional,Can mutter words or simply mutter.
+355,I,,Teeming takes prepositional complements rather than objects.
+356,T,optional,Can cheat someone or simply cheat.
+357,I,,Dissenting takes no ordinary direct object.
+358,T,obligatory,Systems can be controlled by operators.
+359,I,rare_trans,Transitive use chiefly involves wine and dine.
+360,T,obligatory,Objects can be sighted by observers.
+361,I,,Farting takes no ordinary direct object.
+362,T,optional,Can launch rockets; rockets also launch.
+363,T,obligatory,Forces can be annihilated by opponents.
+364,T,obligatory,Practices can be deprecated by critics.
+365,T,obligatory,Conclusions can be deduced by investigators.
+366,T,obligatory,Victims can be immolated by attackers.
+367,T,obligatory,Campaigns can be spearheaded by organizers.
+368,T,obligatory,Officials can be bribed by applicants.
+369,T,optional,Can guzzle drinks or simply guzzle.
+370,I,rare_trans,Transitive utterances occur mainly in literary narration.
+371,I,,Triumphing takes no ordinary direct object.
+372,T,obligatory,Decisions can be quashed by courts.
+373,T,obligatory,Texts can be abridged by editors.
+374,T,optional,Can pillage villages or simply pillage.
+375,T,obligatory,Results can be invalidated by errors.
+376,T,obligatory,Secrets can be divulged by informants.
+377,T,optional,Can curve objects; objects also curve.
+378,T,obligatory,Smells can nauseate people and permit passives.
+379,T,obligatory,Responses can be conditioned by training.
+380,T,optional,Can shampoo hair or simply shampoo.
+381,I,rare_trans,Transitive extension of body parts is uncommon.
+382,I,rare_trans,Causative transitive uses are mainly technical.
+383,T,obligatory,Vehicles can be carjacked by criminals.
+384,T,optional,Can bluff opponents or simply bluff.
+385,T,obligatory,Products can be adulterated by manufacturers.
+386,T,obligatory,People can be apprised of developments.
+387,I,rare_trans,Transitive use chiefly involves creep someone out.
+388,I,rare_trans,Transitive uses chiefly involve idiomatic constructions.
+389,T,optional,Can lend money or lend to friends.
+390,T,optional,Can recollect events or simply recollect.
+391,I,,Tingling takes no ordinary direct object.
+392,T,obligatory,Parts can be lubricated by mechanics.
+393,I,rare_trans,Transitive extension of body parts is uncommon.
+394,T,obligatory,People can be immortalized by artists.
+395,I,,Aching takes no ordinary direct object.
+396,T,obligatory,People can be upbraided by superiors.
+397,T,obligatory,Structures can be obliterated by explosions.
+398,T,obligatory,People can be eulogized by speakers.
+399,I,rare_trans,Transitive utterances occur mainly in literary narration.
+400,T,optional,Can bridle horses or bridle at criticism.
+401,T,optional,Can advertise products or simply advertise.
+402,I,,Emerging takes no ordinary direct object.
+403,T,obligatory,Tissue can be excised by surgeons.
+404,reject,,Dominantly intransitive; common transitive senses permit passives.
+405,reject,,Mainly takes clauses expressing assumptions.
+406,T,obligatory,People can be confounded by unexpected results.
+407,T,optional,Can prepare meals or prepare for events.
+408,T,obligatory,Parts can be oiled by mechanics.
+409,T,optional,Can advise clients or advise against actions.
+410,T,obligatory,Objects can be espied by observers.
+411,T,optional,Can import goods or import from abroad.
+412,T,optional,Can present findings or present at conferences.
+413,T,obligatory,People can be ostracized by communities.
+414,T,obligatory,Buildings can be renovated by contractors.
+415,I,,Gloating takes prepositional complements rather than objects.
+416,T,obligatory,Software can be reinstalled by users.
+417,T,obligatory,Surfaces can be polished by workers.
+418,T,obligatory,Representatives can be reelected by voters.
+419,T,obligatory,Water can be purified by filters.
+420,T,obligatory,Candidates can be selected by committees.
+421,I,rare_trans,Transitive disappearance occurs mainly in conjuring.
+422,T,obligatory,Stone can be quarried by workers.
+423,reject,,Participle mainly describes location adjectivally.
+424,T,obligatory,Rooms can be illuminated by lamps.
+425,T,obligatory,People can be ravished by attackers.
+426,I,rare_trans,Transitive birth and ice shedding are specialized.
+427,T,obligatory,Achievements can be praised by observers.
+428,reject,,Participle mainly describes grooved surfaces adjectivally.
+429,T,obligatory,Access can be restricted by administrators.
+430,T,obligatory,Notes can be appended by editors.
+431,T,obligatory,Workers can be employed by companies.
+432,I,,Peering takes prepositional complements rather than objects.
+433,I,rare_trans,Causative transitive uses are uncommon.
+434,T,obligatory,Ideas can be derided by critics.
+435,T,obligatory,People can be protected by guards.
+436,I,,Salivating takes no ordinary direct object.
+437,I,,Existing takes no direct object.
+438,T,obligatory,Trades can be plied by skilled workers.
+439,T,obligatory,Spaces can be prettified by decorators.
+440,T,obligatory,Principles can be exemplified by cases.
+441,T,obligatory,News can disquiet people and permit passives.
+442,I,,Proceeding takes no ordinary direct object.
+443,T,obligatory,Activities can be suspended by authorities.
+444,T,obligatory,Beliefs can be avowed by adherents.
+445,T,obligatory,Supplies can be cached by travelers.
+446,T,obligatory,Terms can be defined by authors.
+447,T,obligatory,Warnings can be disregarded by recipients.
+448,T,obligatory,Conduct can be condoned by authorities.
+449,T,obligatory,Laws can be enacted by legislatures.
+450,T,optional,Can upgrade equipment or simply upgrade.
+451,T,obligatory,People can be coerced by threats.
+452,I,,Happening takes no direct object.
+453,T,optional,Can pack bags or simply pack.
+454,T,obligatory,Equipment can be maintained by technicians.
+455,T,obligatory,Foods can be craved by people.
+456,T,obligatory,Objects can be manipulated by operators.
+457,T,optional,Can chase people or chase after them.
+458,T,obligatory,Objects can be weighted by workers.
+459,T,obligatory,Properties can be leased by owners.
+460,T,obligatory,Vessels can be chartered by travelers.
+461,I,rare_trans,Causative transitive uses are rare or archaic.
+462,reject,,Commonly takes clauses asserting disputed claims.
+463,reject,,Dominantly intransitive; resting body parts permits passives.
+464,T,obligatory,Products can be hyped by promoters.
+465,T,obligatory,Fluids can be suctioned by clinicians.
+466,I,,Moseying takes no ordinary direct object.
+467,I,,Opting takes prepositional complements rather than objects.
+468,T,obligatory,People can be maligned by opponents.
+469,T,obligatory,Buildings can be inspected by officials.
+470,T,obligatory,Achievements can be lauded by critics.
+471,I,,Competing takes no ordinary direct object.
+472,T,obligatory,People can be knighted by monarchs.
+473,T,obligatory,Resources can be apportioned by administrators.
+474,T,obligatory,Objects can be embedded in materials.
+475,T,obligatory,Documents can be obtained by applicants.
+476,T,optional,Can disengage mechanisms; mechanisms also disengage.
+477,T,obligatory,People can be blamed by others.
+478,T,obligatory,Animals can be petted by people.
+479,T,obligatory,Defendants can be arraigned by courts.
+480,I,rare_trans,Transitive route objects seldom permit natural passives.
+481,T,obligatory,Corn can be husked by workers.
+482,T,optional,Can park vehicles or simply park.
+483,I,rare_trans,Transitive extension of body parts is uncommon.
+484,T,optional,Can bully someone or simply bully.
+485,T,obligatory,Troops can be stationed by commanders.
+486,I,rare_trans,Transitive finger drumming is idiomatic.
+487,T,obligatory,Activities can be prohibited by authorities.
+488,T,obligatory,Vehicles can be overloaded by workers.
+489,T,obligatory,Outcomes can be envisaged by planners.
+490,I,rare_trans,Transitive utterances occur mainly in literary narration.
+491,I,,Slumbering takes no ordinary direct object.
+492,T,obligatory,Ordinary comprised of construction permits verbal passives.
+493,T,obligatory,Texts can be truncated by editors.
+494,T,obligatory,Limbs can be immobilized by clinicians.
+495,I,,Luxuriating takes prepositional complements rather than objects.
+496,T,optional,Can wheedle money or simply wheedle.
+497,T,optional,Can lather skin; soap also lathers.
+498,T,obligatory,Travelers can be waylaid by attackers.
+499,I,rare_trans,Transitive praises occur mainly in literary usage.
+500,T,obligatory,Conclusions can be inferred by readers.
+501,T,obligatory,Operations can be sabotaged by opponents.
+502,T,obligatory,Actions can disgust observers and permit passives.
+503,I,rare_trans,Direct object uses are rare or literary.
+504,T,optional,Can dump rubbish or simply dump.
+505,T,optional,Can defer decisions or defer to others.
+506,reject,,Mainly takes clauses or prepositional complements.
+507,I,rare_trans,Transitive movement of body parts is uncommon.
+508,T,obligatory,People can be envied by others.
+509,T,obligatory,Clothing can be donned by wearers.
+510,I,rare_trans,Direct object deliberation occurs mainly in formal usage.
+511,T,obligatory,Skills can be mastered by learners.
+512,T,obligatory,Drugs can stupefy people and permit passives.
+513,I,,Mattering takes no direct object.
+514,T,obligatory,Plans can be scrapped by organizers.
+515,T,obligatory,Objects can be prised loose by workers.
+516,T,obligatory,Customers can be fleeced by fraudsters.
+517,I,,Smoldering takes no ordinary direct object.
+518,T,obligatory,Words can be uttered by speakers.
+519,T,obligatory,People can be deterred by penalties.
+520,T,obligatory,Opponents can be walloped by fighters.
+521,T,obligatory,Communities can be terrorized by attackers.
+522,T,obligatory,Deposits can be forfeited by customers.
+523,T,obligatory,Duties can be reassigned by managers.
+524,T,obligatory,Risks can be minimized by precautions.
+525,T,obligatory,Territory can be ceded by governments.
+526,T,optional,Can leach minerals; minerals also leach.
+527,T,obligatory,People can be abducted by kidnappers.
+528,T,obligatory,Names can be abbreviated by writers.
+529,T,obligatory,Funds can be appropriated by officials.
+530,T,obligatory,Payments can be refunded by sellers.
+531,I,,Dwindling takes no ordinary direct object.
+532,T,obligatory,People can be importuned by petitioners.
+533,T,obligatory,Victims can be maimed by attackers.
+534,T,obligatory,Challenges can daunt people and permit passives.
+535,T,obligatory,Objects can be buried by workers.
+536,T,obligatory,Messages can be misdirected by senders.
+537,T,optional,Can contort bodies; bodies also contort.
+538,T,obligatory,Owners can be dispossessed by authorities.
+539,T,obligatory,Surfaces can be buffed by workers.
+540,T,obligatory,Opponents can be pummeled by fighters.
+541,T,obligatory,Athletes can be doped by trainers.
+542,T,obligatory,Sentences can be punctuated by writers.
+543,I,,Corresponding takes prepositional complements rather than objects.
+544,T,optional,Can mulch beds or simply mulch.
+545,T,optional,Can smear ink; ink also smears.
+546,T,obligatory,Offenders can be fined by authorities.
+547,T,optional,Can resupply troops; troops also resupply.
+548,T,optional,Can adapt materials or adapt to circumstances.
+549,I,rare_trans,Transitive utterances occur mainly in literary narration.
+550,I,,Hesitating takes no ordinary direct object.
+551,T,obligatory,Guests can be regaled with stories.
+552,T,obligatory,People can be bamboozled by tricksters.
+553,T,obligatory,Areas can be enclosed by builders.
+554,T,obligatory,Valuables can be pawned by owners.
+555,reject,,Dominantly intransitive; swimming channels permits natural passives.
+556,reject,,Dominantly intransitive; elaborating theories also permits passives.
+557,T,optional,Can shave faces or simply shave.
+558,I,rare_trans,Transitive utterances occur mainly in literary usage.
+559,T,optional,Can mince meat or mince along.
+560,T,obligatory,Questions can flummox respondents and permit passives.
+561,T,obligatory,People can be mistrusted by others.
+562,I,,Waning takes no ordinary direct object.
+563,T,obligatory,Systems can be monitored by technicians.
+564,T,obligatory,Faces can be disfigured by injuries.
+565,T,obligatory,Memories can be evoked by smells.
+566,T,obligatory,Practices can be perpetuated by institutions.
+567,I,,Lapsing takes no ordinary direct object.
+568,I,rare_trans,Direct object uses occur mainly in older usage.
+569,I,,Succumbing takes prepositional complements rather than objects.
+570,I,,Sympathizing takes prepositional complements rather than objects.
+571,T,obligatory,Officials can be lambasted by critics.
+572,T,optional,Can splatter paint; paint also splatters.
+573,I,rare_trans,Causative transitive uses occur mainly in conjuring.
+574,T,obligatory,Actions can be termed mistakes by observers.
+575,T,obligatory,Institutions can be accredited by agencies.
+576,T,obligatory,Objects can be classified by researchers.
+577,reject,,Dominantly intransitive; reeling objects in permits passives.
+578,T,obligatory,Claims can be renounced by holders.
+579,T,obligatory,Buildings can be demolished by contractors.
+580,T,obligatory,Bodies can be exhumed by investigators.
+581,I,rare_trans,Transitive reversal occurs mainly in computing.
+582,T,obligatory,Entities can be postulated by theorists.
+583,T,obligatory,Tasks can be completed by workers.
+584,I,,Vacationing takes no ordinary direct object.
+585,T,obligatory,Materials can be pulverized by machines.
+586,T,obligatory,People can be loved by others.
+587,T,obligatory,Decisions can be overruled by authorities.
+588,T,obligatory,Images can be superimposed by editors.
+589,T,obligatory,People can be pigeonholed by observers.
+590,T,obligatory,Regions can be deforested by developers.
+591,T,optional,Can transmit signals; radios also transmit.
+592,T,obligatory,Figures can be venerated by followers.
+593,I,,Arising takes no direct object.
+594,T,obligatory,Money can be extorted by criminals.
+595,T,obligatory,Supplies can be requisitioned by officials.
+596,reject,,Dominantly intransitive; retiring equipment also permits passives.
+597,T,obligatory,Factors can be overemphasized by analysts.
+598,T,obligatory,Mountains can be scaled by climbers.
+599,T,obligatory,Routes can be obstructed by barriers.
+600,T,optional,Can score goals or simply score.
+601,T,obligatory,Accusations can be insinuated by speakers.
+602,T,obligatory,Property can be encumbered by debts.
+603,T,obligatory,Promises can be fulfilled by people.
+604,T,obligatory,Organs can be transplanted by surgeons.
+605,T,obligatory,Maps can be redrawn by cartographers.
+606,T,obligatory,Resources can be squandered by managers.
+607,T,obligatory,Groups can be stigmatized by societies.
+608,I,rare_trans,Transitive proclamation occurs mainly in archaic usage.
+609,T,obligatory,Devices can be bricked by faulty updates.
+610,T,obligatory,Butter can be creamed by cooks.
+611,T,obligatory,Results can be proclaimed by officials.
+612,reject,,Dominantly intransitive; marking with stars permits passives.
+613,T,optional,Can measure objects; objects also measure differently.
+614,T,optional,Can concede points or simply concede.
+615,I,rare_trans,Transitive utterances occur mainly in literary narration.
+616,T,obligatory,Sheets can be perforated by machines.
+617,T,obligatory,Defendants can be convicted by juries.
+618,I,,Emigrating takes no ordinary direct object.
+619,I,,Concurring takes prepositional complements rather than objects.
+620,T,obligatory,Received objects permit natural passives
+621,I,,Normally takes with rather than direct objects
+622,T,obligatory,Bottles can be stoppered
+623,T,obligatory,Direct objects permit natural passives
+624,T,obligatory,Objects can be stashed
+625,T,obligatory,Information can be abstracted from sources
+626,T,obligatory,Weapons can be wielded
+627,T,obligatory,Items can be enumerated
+628,T,optional,Objects can be sorted; object often omitted
+629,T,obligatory,Data can be recoded
+630,T,obligatory,Materials can be contaminated
+631,T,obligatory,Objects can be replaced
+632,T,obligatory,People can be harassed
+633,T,obligatory,People can be assailed
+634,T,obligatory,Pursuers can be eluded
+635,T,obligatory,People can be extradited
+636,T,obligatory,Institutions can be abolished
+637,T,obligatory,Resources can be conserved
+638,reject,,Mainly copular or raising
+639,T,obligatory,Force can be exerted
+640,I,,Ordinarily describes joking without direct objects
+641,T,obligatory,People and events can be portrayed
+642,I,,Ordinarily intransitive
+643,T,obligatory,Containers can be stuffed
+644,T,obligatory,People can be pacified
+645,I,rare_trans,Direct object use uncommon
+646,I,,Ordinarily takes about rather than direct objects
+647,T,obligatory,Vehicles can be impounded
+648,T,optional,People can be supervised; object often omitted
+649,I,,Ordinarily intransitive
+650,I,rare_trans,Transitive uses chiefly technical
+651,I,,Ordinarily intransitive
+652,T,obligatory,People can be elbowed aside
+653,I,,Requires on rather than direct objects
+654,I,rare_trans,Transitive uses rare or literary
+655,T,optional,Goods can be pilfered; object often omitted
+656,T,obligatory,Ideas can be encapsulated
+657,T,optional,Specimens can be dissected; object sometimes omitted
+658,I,,Ordinarily intransitive
+659,T,obligatory,People and things can be introduced
+660,T,obligatory,People and reactions can be provoked
+661,reject,,Dominantly intransitive; troops can be regrouped
+662,T,optional,People can be assisted; object often omitted
+663,T,obligatory,Property can be possessed
+664,T,obligatory,Secrets can be blurted out
+665,I,,Ordinarily intransitive
+666,I,,Takes for rather than direct objects
+667,T,obligatory,Vehicles can be commandeered
+668,T,optional,Orchestras can be conducted; object often omitted
+669,T,optional,Countries can be ruled; intransitive uses common
+670,I,,Ordinarily intransitive
+671,I,rare_trans,Transitive use chiefly bargain away
+672,T,obligatory,People can be perturbed by events
+673,T,obligatory,Events can be staged
+674,T,obligatory,Money can be earned
+675,reject,,Dominantly intransitive; territories can be roamed
+676,T,obligatory,People can be deluded
+677,T,obligatory,Bread can be buttered
+678,T,obligatory,Feelings can be engendered
+679,I,rare_trans,Transitive utterance uses uncommon
+680,T,obligatory,People can be contacted
+681,T,obligatory,Samples can be centrifuged
+682,T,obligatory,Messages can be decoded
+683,T,optional,Teeth can be gnashed; intransitive use exists
+684,T,obligatory,Needs can be obviated
+685,T,optional,Works can be exhibited; object often omitted
+686,T,obligatory,People can be exalted
+687,I,rare_trans,Direct object uses chiefly specialized
+688,T,obligatory,Obstacles can be avoided
+689,I,,Takes to rather than direct objects
+690,I,rare_trans,Transitive uses uncommon
+691,T,obligatory,People can be overawed
+692,T,optional,Necks can be craned; intransitive use common
+693,T,obligatory,People can be summoned
+694,reject,,Participle mainly adjectival in ordinary use
+695,T,obligatory,Cells can be transfected
+696,T,obligatory,Populations can be subjugated
+697,T,obligatory,Abilities can be overrated
+698,T,obligatory,Material can be sequenced
+699,T,obligatory,People can be inoculated
+700,T,optional,People can be trolled; object often omitted
+701,T,obligatory,Surfaces can be greased
+702,I,,Ordinarily intransitive
+703,T,obligatory,Doubts can be dispelled
+704,T,obligatory,Items can be included
+705,T,obligatory,People can be robbed
+706,I,,Ordinarily intransitive
+707,T,obligatory,People can be slandered
+708,T,optional,Objects can be dislodged; intransitive use exists
+709,T,obligatory,People can be snubbed
+710,T,obligatory,People can be displeased by actions
+711,T,obligatory,People and things can be represented
+712,I,,Ordinarily intransitive
+713,T,obligatory,Objects can be bronzed
+714,T,obligatory,People and things can be named
+715,T,obligatory,People can be disenfranchised
+716,T,obligatory,People can be censured
+717,T,obligatory,Competitors can be outstripped
+718,I,,Ordinarily intransitive
+719,T,obligatory,Waves and barriers can be breasted
+720,T,obligatory,Marks can be effaced
+721,I,rare_trans,Transitive uses chiefly nautical
+722,T,optional,Texts can be skimmed; intransitive uses common
+723,T,optional,People can be supplicated; object sometimes omitted
+724,T,obligatory,Buildings can be roofed
+725,I,rare_trans,Transitive speech uses uncommon
+726,T,obligatory,Objects can be desired
+727,T,optional,Offers can be accepted; object often omitted
+728,T,obligatory,Events can be detailed
+729,I,,Ordinarily intransitive
+730,T,obligatory,People and things can be hated
+731,T,obligatory,Possessions can be treasured
+732,I,,Ordinarily intransitive
+733,T,obligatory,People can be elected
+734,T,obligatory,Materials can be pretreated
+735,I,rare_trans,Direct object uses uncommon
+736,T,obligatory,People can be galvanized
+737,T,obligatory,Places can be rid of pests
+738,I,,Ordinarily intransitive
+739,I,,Ordinarily intransitive
+740,T,obligatory,Objects can be imbued with qualities
+741,T,obligatory,Buildings can be razed
+742,T,optional,Food can be marinated; intransitive use common
+743,T,obligatory,Animals can be slaughtered
+744,reject,,Dominantly intransitive; officeholders can be succeeded
+745,T,obligatory,Signals can be detected
+746,T,obligatory,People can be shadowed
+747,T,optional,Income can be tithed; object often omitted
+748,I,,Ordinarily intransitive
+749,T,obligatory,Costs can be outweighed by benefits
+750,reject,,Participle mainly adjectival in ordinary use
+751,T,obligatory,People can be circumcised
+752,I,,Ordinarily intransitive
+753,T,obligatory,People and things can be loathed
+754,I,rare_trans,Transitive logging use specialized
+755,T,optional,Objects can be stacked; intransitive use exists
+756,I,rare_trans,Direct objects chiefly cognate or idiomatic
+757,T,obligatory,People can be idolized
+758,I,,Ordinarily intransitive
+759,T,obligatory,Works can be dedicated
+760,T,optional,Reactions can be sparked; intransitive use common
+761,T,optional,Property can be inherited; object often omitted
+762,I,rare_trans,Transitive construction use specialized
+763,I,,Ordinarily intransitive
+764,T,obligatory,Documents can be formatted
+765,T,obligatory,Paper can be wadded
+766,T,optional,Works can be plagiarized; object often omitted
+767,T,obligatory,Objects can be extracted
+768,I,rare_trans,Transitive computing use specialized
+769,I,rare_trans,Transitive uses chiefly sporting or idiomatic
+770,I,,Ordinarily intransitive
+771,T,obligatory,Bodies can be mutilated
+772,T,obligatory,People can be befriended
+773,T,obligatory,People can be deprived of possessions
+774,I,rare_trans,Direct object use chiefly sporting
+775,T,obligatory,Money and materials can be deposited
+776,I,,Ordinarily intransitive
+777,T,optional,Crops can be reaped; object sometimes omitted
+778,T,obligatory,People can be equipped
+779,T,obligatory,People can be misquoted
+780,I,,Takes with rather than direct objects
+781,I,,Ordinarily intransitive
+782,T,obligatory,Instruments can be calibrated
+783,I,,Ordinarily intransitive
+784,T,obligatory,Bodies can be disembowelled
+785,T,optional,Targets can be attacked; object often omitted
+786,T,obligatory,Materials and experiences can be enriched
+787,I,rare_trans,Transitive medical use specialized
+788,I,,Ordinarily intransitive
+789,I,rare_trans,Transitive uses uncommon
+790,T,optional,People can be dolled up
+791,T,obligatory,Heavy objects can be lugged
+792,T,obligatory,Objects can be suffused with light
+793,T,obligatory,Animals can be skinned
+794,T,obligatory,People can be cajoled
+795,T,optional,Fists can be clenched; intransitive use common
+796,T,optional,Objects can be rinsed; object often omitted
+797,I,rare_trans,Distance objects lack natural passives
+798,I,rare_trans,Transitive gathering use uncommon
+799,T,obligatory,Events can be graced by guests
+800,reject,,Dominantly intransitive; cases can be pleaded
+801,T,obligatory,Misconduct can be alleged
+802,T,obligatory,Behavior can be tolerated
+803,I,,Ordinarily intransitive
+804,T,obligatory,Soldiers can be billeted
+805,I,,Ordinarily intransitive
+806,I,rare_trans,Reflexive behave yourself lacks ordinary passive
+807,reject,,Dominantly intransitive; genes can be mutated
+808,T,obligatory,Scenes can be depicted
+809,T,obligatory,Rooms can be furnished
+810,T,obligatory,People can be anointed
+811,I,rare_trans,Transitive attachment use specialized
+812,T,obligatory,Plans can be thwarted
+813,reject,,Dominantly intransitive; orders can be yelled
+814,T,obligatory,Officials can be impeached
+815,T,obligatory,People and entrances can be barred
+816,I,,Takes to rather than direct objects
+817,T,obligatory,People can be reminded
+818,T,obligatory,Interests can be safeguarded
+819,T,obligatory,People can be liberated
+820,I,rare_trans,Idiomatic objects lack natural passives
+821,T,obligatory,Decisions can be rued
+822,T,optional,Values can be approximated; intransitive use exists
+823,T,obligatory,Roles and texts can be recast
+824,T,obligatory,Objects can be renamed
+825,I,,Ordinarily intransitive
+826,T,obligatory,People and objects can be tracked
+827,T,optional,Objects can be borrowed; object often omitted
+828,T,optional,Surfaces can be scrubbed; object often omitted
+829,T,obligatory,People can be credited
+830,T,optional,Objects can be weighed; intransitive use common
+831,T,obligatory,Ideas can be symbolized
+832,T,obligatory,Actions can be instigated
+833,I,,Ordinarily intransitive
+834,T,obligatory,People can be deported
+835,T,obligatory,Material can be deleted
+836,I,rare_trans,Transitive uses chiefly specialized
+837,T,obligatory,People can be taunted
+838,T,obligatory,People can be accused
+839,T,optional,Cargo can be unloaded; object often omitted
+840,T,obligatory,Wrongdoing can be abetted
+841,T,obligatory,People can be disabused of beliefs
+842,T,obligatory,Objects can be perfumed
+843,T,obligatory,People can be berated
+844,I,,Ordinarily intransitive
+845,T,optional,Resources can be hoarded; object often omitted
+846,T,optional,Objects can be gripped; intransitive use exists
+847,T,obligatory,People can be decapitated
+848,reject,,Dominantly intransitive; ranks can be swelled
+849,T,obligatory,Customers can be billed
+850,T,obligatory,Property can be owned
+851,I,,Ordinarily intransitive
+852,T,obligatory,Objects can be hefted
+853,I,rare_trans,Transitive utterance uses uncommon
+854,T,obligatory,People can be dissuaded
+855,I,,Ordinarily intransitive
+856,T,obligatory,Events can be commemorated
+857,I,,Ordinarily intransitive
+858,T,optional,Objects can be seized; intransitive uses common
+859,I,rare_trans,Transitive uses chiefly technical
+860,T,obligatory,People can be nominated
+861,T,obligatory,People can be honoured
+862,I,,Ordinarily intransitive
+863,reject,,Mainly copular
+864,T,optional,Food can be grated; intransitive uses common
+865,I,rare_trans,Transitive uses chiefly technical or idiomatic
+866,T,optional,Air can be inhaled; object often omitted
+867,T,obligatory,People can be clouted
+868,T,optional,Objects can be pawed; intransitive use exists
+869,reject,,Dominantly intransitive; memories can be jogged
+870,T,obligatory,Bodies can be entombed
+871,T,obligatory,Resources can be utilized
+872,T,optional,People can be aided; object sometimes omitted
+873,T,optional,Amounts can be summed; sum up omits
+874,T,obligatory,Actions can be mandated
+875,T,optional,Words can be enunciated; object often omitted
+876,T,obligatory,Objects and events can be described
+877,I,rare_trans,Transitive cognate uses uncommon
+878,T,obligatory,Procedures can be standardized
+879,T,obligatory,People and objects can be garlanded
+880,I,rare_trans,Transitive uses chiefly specialized
+881,reject,,Dominantly intransitive; decisions can be appealed
+882,T,obligatory,Clothing can be doffed
+883,T,obligatory,People can be exonerated
+884,I,rare_trans,Transitive administrative use specialized
+885,T,obligatory,People and products can be promoted
+886,T,optional,Events can be celebrated; object often omitted
+887,T,obligatory,Claims can be overstated
+888,I,,Ordinarily intransitive
+889,T,optional,People can be punished; object sometimes omitted
+890,T,obligatory,Meat can be larded
+891,I,,Ordinarily intransitive
+892,I,,Ordinarily intransitive
+893,T,obligatory,Prizes can be awarded
+894,T,optional,Material can be balled; intransitive uses exist
+895,T,obligatory,Income can be taxed
+896,T,obligatory,Places and people can be inundated
+897,reject,,Participle mainly adjectival in ordinary use
+898,T,obligatory,Ground can be sodded
+899,I,,Ordinarily intransitive
+900,T,optional,Mixtures can be emulsified; intransitive use exists
+901,T,optional,Issues can be probed; object sometimes omitted
+902,I,,Ordinarily intransitive
+903,T,obligatory,Appetites can be sated
+904,T,obligatory,Objects and programs can be taped
+905,T,obligatory,Structures can be imaged
+906,T,obligatory,People can be assured
+907,I,,Takes in rather than direct objects
+908,T,obligatory,Feelings can be feigned
+909,T,optional,Crimes can be committed; intransitive uses common
+910,T,obligatory,Objects can be placed
+911,T,obligatory,Objects can be riddled with holes
+912,T,optional,Targets can be bombed; intransitive uses common
+913,T,obligatory,Work can be evaluated
+914,T,optional,Restrictions can be imposed; intransitive use common
+915,T,obligatory,Organisms and practices can be extirpated
+916,I,rare_trans,Transitive utterance uses uncommon
+917,T,obligatory,People can be lynched
+918,T,obligatory,Limits can be exceeded
+919,I,,Ordinarily intransitive
+920,I,,Ordinarily intransitive
+921,T,obligatory,People can be honored
+922,T,obligatory,Branches can be lopped
+923,T,optional,People can be criticized; object often omitted
+924,I,,Ordinarily intransitive
+925,T,obligatory,Buildings and people can be consecrated
+926,T,obligatory,Actions can be authorized
+927,T,obligatory,Programs can be debugged
+928,T,obligatory,Spaces can be cluttered
+929,T,obligatory,Food can be diced
+930,I,,Intransitive movement verb
+931,T,optional,Amounts can be reduced or reduce
+932,T,obligatory,Offers can be rebuffed
+933,T,optional,Cargo is loaded; vehicles also load
+934,I,rare_trans,Transitive utterance use is rare
+935,T,obligatory,Objects can be filched
+936,I,,Intransitive concealment or movement
+937,T,obligatory,Documents can be duplicated
+938,reject,,Dominantly intransitive; oaths can be sworn
+939,T,optional,Victims drown or are drowned
+940,I,rare_trans,Transitive secretion use is uncommon
+941,T,obligatory,Equipment can be installed
+942,T,obligatory,Contracts can be voided
+943,T,obligatory,Crops can be cultivated
+944,reject,,Participle mainly an adjective
+945,I,rare_trans,Transitive thwarting sense is uncommon
+946,T,obligatory,Dogs can be leashed
+947,I,,Takes prepositional or clausal complements
+948,I,rare_trans,Direct offspring object is uncommon
+949,I,,Listening takes a prepositional complement
+950,I,rare_trans,Transitive deflection use is technical
+951,T,obligatory,Plans can be devised
+952,T,obligatory,Inscriptions can be engraved
+953,T,obligatory,Public figures can be satirized
+954,T,obligatory,Prisoners can be confined
+955,T,obligatory,Possibilities can be precluded
+956,T,optional,Infants suckle or are suckled
+957,I,,Intransitive manner of walking
+958,T,obligatory,Activities can be enjoyed
+959,T,obligatory,Boundaries can be transcended
+960,T,obligatory,Flames can be doused
+961,T,optional,Goods are manufactured; object often omitted
+962,I,,Intransitive outdoor dining
+963,I,rare_trans,Cognate object use is uncommon
+964,T,obligatory,Patients can be examined
+965,I,,Intransitive twisting movement
+966,T,optional,Students are instructed; object sometimes omitted
+967,T,obligatory,Letters can be posted
+968,I,,No common direct object
+969,I,rare_trans,Transitive utterance use is uncommon
+970,T,obligatory,Milk can be pasteurized
+971,T,obligatory,Surfaces can be decontaminated
+972,T,obligatory,Property can be bequeathed
+973,I,rare_trans,Direct comparison object is uncommon
+974,T,obligatory,Materials can be irradiated
+975,T,obligatory,Resources can be channelled
+976,T,obligatory,Guests can be welcomed
+977,I,,Takes prepositional complements
+978,T,obligatory,Skin can be cleansed
+979,T,obligatory,Material can be heaped
+980,T,obligatory,Documents can be certified
+981,T,obligatory,Reputations can be sullied
+982,T,optional,Goods are peddled; object often omitted
+983,T,obligatory,Symptoms can be masked
+984,T,obligatory,Shields can be emblazoned
+985,T,obligatory,Monarchs can be crowned
+986,I,rare_trans,Direct teasing object is uncommon
+987,I,rare_trans,Transitive trimming sense is specialized
+988,T,obligatory,Lips can be pursed
+989,I,rare_trans,Direct answer object is uncommon
+990,T,obligatory,Hooks can be baited
+991,T,optional,Paint is daubed; object sometimes omitted
+992,T,obligatory,Money can be counterfeited
+993,reject,,Dominantly intransitive; commands can be growled
+994,T,obligatory,Events can be timed
+995,reject,,Commonly copular or preposition-taking
+996,T,obligatory,Instruments can be sterilized
+997,T,obligatory,Platforms can be elevated
+998,I,rare_trans,Direct cud object is specialized
+999,I,rare_trans,Transitive bark removal is specialized
+1000,T,obligatory,Objects can be retrieved
+1001,I,rare_trans,Transitive shattering sense is archaic
+1002,I,,Intransitive departure command
+1003,I,,Intransitive flowering or development
+1004,I,,Intransitive departure
+1005,T,obligatory,Suspects can be identified
+1006,T,obligatory,Materials can be supplied
+1007,I,,Takes prepositional or infinitival complements
+1008,T,optional,Plans are contrived; infinitival use common
+1009,reject,,Mainly clause-taking
+1010,T,optional,Settings are readjusted; people also readjust
+1011,I,,Intransitive recurrence
+1012,T,obligatory,Teeth can be bared
+1013,T,obligatory,Customers can be defrauded
+1014,T,optional,Funds are embezzled; object sometimes omitted
+1015,reject,,Dominantly intransitive; children can be babysat
+1016,T,obligatory,Accounts can be corroborated
+1017,T,optional,Residents evacuate or are evacuated
+1018,I,,Complaining takes prepositional complements
+1019,reject,,Mainly clause-taking
+1020,T,obligatory,Materials can be sourced
+1021,T,obligatory,Vegetables can be parboiled
+1022,I,rare_trans,Transitive placement use is uncommon
+1023,T,optional,Numbers are subtracted; object sometimes omitted
+1024,I,,Academic subject follows a preposition
+1025,T,obligatory,Guests can be seated
+1026,T,obligatory,Buildings can be ruined
+1027,T,obligatory,Objects can be brought
+1028,I,,Intransitive visual effect
+1029,I,,Takes prepositional or infinitival complements
+1030,T,obligatory,Facts can be ascertained
+1031,T,obligatory,Ports can be blockaded
+1032,T,obligatory,Advice can be disdained
+1033,T,obligatory,Arguments can be explicated
+1034,T,optional,Assets are liquidated; businesses also liquidate
+1035,I,,Intransitive prolonged conflict
+1036,reject,,Participle mainly an adjective
+1037,I,,Takes prepositional complements
+1038,T,obligatory,Claims can be discredited
+1039,T,obligatory,Messages can be sent
+1040,T,obligatory,Students can be expelled
+1041,I,rare_trans,Direct financial contribution object is uncommon
+1042,T,obligatory,Aircraft can be piloted
+1043,T,obligatory,Supplies can be rationed
+1044,I,,Objections take prepositional complements
+1045,T,obligatory,Infants can be swaddled
+1046,T,obligatory,Suspects can be incriminated
+1047,T,obligatory,Allegations can be denied
+1048,T,obligatory,Goals can be attained
+1049,T,optional,Poems are recited; object often omitted
+1050,I,,Intransitive shaking
+1051,T,obligatory,Children can be christened
+1052,I,,Socializing takes a prepositional complement
+1053,T,obligatory,People can be abased
+1054,I,,Intransitive stealthy movement
+1055,T,obligatory,Drafts can be rewritten
+1056,T,obligatory,Shrines can be desecrated
+1057,T,obligatory,Obstacles can be eliminated
+1058,T,obligatory,Stories can be concocted
+1059,I,,Boasting takes prepositional or clausal complements
+1060,T,obligatory,Proposals can be scorned
+1061,T,obligatory,People can be molested
+1062,reject,,Participle mainly an adjective
+1063,T,obligatory,Animals can be shooed
+1064,T,obligatory,Ice cream can be scooped
+1065,T,optional,Pages are numbered; groups also number
+1066,T,optional,Tails wag or are wagged
+1067,T,obligatory,Visitors can be guided
+1068,T,optional,Intentions are signaled; object often omitted
+1069,I,,Intransitive remaining or persistence
+1070,T,optional,People hide or are hidden
+1071,T,obligatory,Property can be vandalized
+1072,T,obligatory,Representatives can be designated
+1073,T,obligatory,Accounts can be audited
+1074,I,rare_trans,Transitive boiling sense is archaic
+1075,T,obligatory,Victims can be bludgeoned
+1076,reject,,Commonly copular
+1077,T,obligatory,Behavior can be characterized
+1078,T,optional,Doors unlatch or are unlatched
+1079,I,,Participation takes a prepositional complement
+1080,T,obligatory,Letters can be mailed
+1081,T,obligatory,Growth can be inhibited
+1082,T,obligatory,Dogs can be wormed
+1083,T,obligatory,Conditions can be diagnosed
+1084,T,optional,Customers are overcharged; object often omitted
+1085,T,obligatory,People can be reproached
+1086,I,,Takes prepositional or clausal complements
+1087,T,obligatory,Trees can be uprooted
+1088,T,optional,Settings are adjusted; people also adjust
+1089,T,obligatory,Plans can be frustrated
+1090,T,optional,Events are prophesied; object often omitted
+1091,T,obligatory,Restrictions can be circumvented
+1092,T,obligatory,Recipients can be notified
+1093,T,obligatory,Claims can be repudiated
+1094,I,,Consequences take prepositional complements
+1095,T,obligatory,Assistance can be proffered
+1096,T,obligatory,Audiences can be captivated
+1097,T,obligatory,People can be tantalized
+1098,T,optional,Events are attended; prepositional use common
+1099,T,obligatory,Cattle can be branded
+1100,T,optional,Goals are achieved; object sometimes omitted
+1101,T,obligatory,Information can be disseminated
+1102,I,rare_trans,Direct route objects have limited passivization
+1103,T,obligatory,Bodies can be racked with pain
+1104,T,obligatory,Competitors can be outbid
+1105,T,obligatory,Guests can be greeted
+1106,T,obligatory,People can be infected
+1107,T,obligatory,Policies can be formulated
+1108,I,rare_trans,Transitive chemical use is technical
+1109,T,obligatory,People can be kidnapped
+1110,T,obligatory,Spectators can be awed
+1111,I,rare_trans,Direct object occurs in idiomatic constructions
+1112,T,obligatory,Flowers can be strewn
+1113,I,rare_trans,Transitive decomposition use is uncommon
+1114,T,obligatory,Applicants can be excluded
+1115,I,rare_trans,Transitive uses are idiomatic or specialized
+1116,T,optional,Suspects are prosecuted; object sometimes omitted
+1117,T,obligatory,Animals can be tamed
+1118,T,obligatory,Events can be heralded
+1119,T,obligatory,Water usage can be metered
+1120,T,obligatory,Objects can be handed to recipients
+1121,T,obligatory,People can be emancipated
+1122,T,optional,Resources are provided; prepositional use common
+1123,T,obligatory,Access can be limited
+1124,T,optional,Claims are contradicted; object sometimes omitted
+1125,T,optional,Objects are recovered; patients also recover
+1126,T,obligatory,Objects can be inserted
+1127,reject,,Dominantly intransitive; fortunes can be gambled
+1128,T,obligatory,Property can be expropriated
+1129,I,,Intransitive exposure to sunlight
+1130,T,obligatory,Officials can be appointed
+1131,T,obligatory,Resources can be expended
+1132,T,obligatory,Land can be despoiled
+1133,T,optional,Patients are treated; object sometimes omitted
+1134,I,rare_trans,Transitive utterance use is uncommon
+1135,T,obligatory,Money can be misspent
+1136,T,optional,Territories are conquered; object sometimes omitted
+1137,T,obligatory,Virtues can be extolled
+1138,T,obligatory,Evidence can be fabricated
+1139,T,obligatory,Hormones can be secreted
+1140,I,rare_trans,Transitive decomposition use is specialized
+1141,T,obligatory,People can be shunned
+1142,reject,,Dominantly intransitive; proposals can be originated
+1143,I,rare_trans,Direct fecal object is specialized
+1144,T,obligatory,Regions can be encompassed
+1145,T,optional,Contents are disgorged; object sometimes omitted
+1146,T,obligatory,Prisoners can be flogged
+1147,T,optional,People are imitated; object sometimes omitted
+1148,T,obligatory,Employees can be sacked
+1149,I,rare_trans,Transitive movement use is uncommon
+1150,T,optional,Objects are clutched; prepositional use common
+1151,I,,Intransitive renewed emergence
+1152,T,obligatory,People can be regarded favorably
+1153,T,obligatory,Activities can be banned
+1154,I,,Criticism takes a prepositional complement
+1155,T,obligatory,Recordings can be transcribed
+1156,T,obligatory,Surfaces can be defaced
+1157,T,optional,Ideas are conceived; pregnancy use intransitive
+1158,T,optional,Costs are overestimated; object sometimes omitted
+1159,I,,Intransitive sound or electrical activity
+1160,I,,Interaction takes a prepositional complement
+1161,I,,Takes a prepositional complement
+1162,T,obligatory,Actions can be mistimed
+1163,T,obligatory,Resources can be allocated
+1164,I,,Intransitive renewed appearance
+1165,T,obligatory,People can be thanked
+1166,I,,Shellfish gathering or idiomatic silence
+1167,T,obligatory,Organisms can be cloned
+1168,I,rare_trans,Direct code object is technical
+1169,T,obligatory,Businesses can be patronized
+1170,I,,Takes a prepositional complement
+1171,T,optional,Secrets are blabbed; object often omitted
+1172,I,rare_trans,Direct route object is uncommon
+1173,reject,,Dominantly intransitive; powers can be devolved
+1174,T,obligatory,Hair can be styled
+1175,I,,Intransitive pulsing
+1176,T,optional,Products are rated; intransitive evaluation common
+1177,I,rare_trans,Transitive utterance use is uncommon
+1178,T,obligatory,Hair can be permed
+1179,reject,,Dominantly intransitive; people can be bustled
+1180,I,rare_trans,Capacity objects lack natural verbal passives
+1181,T,obligatory,People can be insulted
+1182,I,,Intransitive strenuous work
+1183,T,obligatory,People can be gulled
+1184,T,optional,Clothes soil or are soiled
+1185,reject,,Participle mainly an adjective
+1186,T,obligatory,Populations can be decimated
+1187,I,rare_trans,Direct secretion objects resist ordinary passivization
+1188,T,obligatory,Targets can be missed
+1189,I,,Looking takes a prepositional complement
+1190,T,optional,Objections are interposed; intransitive intervention common
+1191,T,optional,Bonds sunder or are sundered
+1192,I,,Intransitive posture or movement
+1193,T,obligatory,Documents can be scrutinized
+1194,T,obligatory,Suspects can be arrested
+1195,I,,Intransitive gradual flow
+1196,T,obligatory,People can be vilified
+1197,T,obligatory,Payment can be exacted
+1198,I,rare_trans,Transitive utterance use is uncommon
+1199,T,obligatory,Audiences can be edified
+1200,T,optional,Explanations are hypothesized; object often omitted
+1201,reject,,Dominantly intransitive; intruders can be spied
+1202,T,obligatory,Areas can be policed
+1203,T,obligatory,Children can be orphaned by war
+1204,T,optional,Positions are defended; object often omitted
+1205,reject,,Dominantly intransitive; people can be hurried
+1206,T,obligatory,Rooms can be reserved
+1207,T,obligatory,Food can be spiced
+1208,T,optional,Goods are shoplifted; object often omitted
+1209,T,obligatory,People can be chastised
+1210,T,optional,Ideas are elucidated; object sometimes omitted
+1211,I,rare_trans,Direct prayer objects are uncommon
+1212,T,obligatory,People can be admonished
+1213,I,,Intransitive occurrence or outcome
+1214,T,obligatory,Leaks can be contained
+1215,I,,Intransitive coming together
+1216,T,obligatory,Patients can be sectioned
+1217,T,obligatory,Disputes can be adjudged
+1218,I,,Intransitive physiological process
+1219,T,obligatory,Records can be updated
+1220,reject,,Participle mainly an adjective
+1221,I,,Intransitive social activity
+1222,T,obligatory,Lives can be spared
+1223,T,obligatory,Thirst can be slaked
+1224,T,optional,Children are reared; horses also rear
+1225,T,obligatory,Records can be falsified
+1226,I,rare_trans,Transitive forced disappearance use is specialized
+1227,T,optional,Flames smother or are smothered
+1228,reject,,Mainly takes predicative complements
+1229,T,obligatory,Competitors can be outdone
+1230,T,optional,Surfaces encrust or are encrusted
+1231,I,,Intransitive growth
+1232,T,obligatory,Suspects can be interrogated
