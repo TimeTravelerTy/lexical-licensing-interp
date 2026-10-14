@@ -1,0 +1,76 @@
+{
+  "args": {
+    "manifest": "data/round5/restore/manifest.csv",
+    "head": "data/round5/restore/head_singletons.csv",
+    "dbar": "data/round5/restore/dbar.npy",
+    "pileval_docs": "data/round5/restore/pileval_docs.jsonl",
+    "pile10k": "/gs/bs/tga-sip_arase/tyrone/hf_cache/hub/datasets--NeelNanda--pile-10k/snapshots/127bfedcd5047750df5ccf3a12979a47bfa0bafa/data/train-00000-of-00001-4746b8785c874cc7.parquet",
+    "pairs": "data/passive_band_cross/pairs.jsonl",
+    "cur_ref": "results/round5/frame/curated_p1_fp32_scores.csv",
+    "freqblimp": "/gs/fs/tga-sip_arase/tyrone/freq-blimp/data/freqblimp",
+    "bases": "results/das_round2/bases_rank1.npz",
+    "das_items": "results/das_round2/final_strict/items.csv",
+    "folds": "results/das_round2/final_strict/pairs_folds.csv",
+    "out_dir": "results/round5/restore",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 256,
+    "lm_len": 512,
+    "seed": 17
+  },
+  "checks": {
+    "affinity_reproduces_max": 8.076507294063617e-07,
+    "edit_target_err_oracle": 5.963399661440549e-07,
+    "unedited_rows_max_oracle": 0.0,
+    "edit_target_err_oracle_T": 5.963399661440549e-07,
+    "unedited_rows_max_oracle_T": 0.0,
+    "edit_target_err_oracle_I": 3.9269173335299e-07,
+    "unedited_rows_max_oracle_I": 0.0,
+    "edit_target_err_labelfree": 6.293471144225293e-07,
+    "unedited_rows_max_labelfree": 0.0,
+    "unedited_reproduces_fp32_max": 0.0004418492317199152
+  },
+  "inputs": {
+    "manifest": "bd6ddff4051569b2e6547aa756b99983daa66badccf5a4363a3f6d752f1a13a4",
+    "head": "e5e01d437a3d2f18c7688998e7d4d45945086c7c3f6b02fe1b25f701e1001c30",
+    "dbar": "0fd81f8bae23de840cb0c0eca55559611bdbbbc5e38f99ccac768fd559007ed5"
+  },
+  "das_participles_held_out_fold": [
+    "died",
+    "earned",
+    "emerged",
+    "existed",
+    "happened",
+    "hosted",
+    "imposed",
+    "included",
+    "insured",
+    "mattered",
+    "occurred",
+    "remained",
+    "scored",
+    "sent",
+    "thanked",
+    "vanished"
+  ],
+  "zfit": {
+    "alpha": -3.825583036269375,
+    "beta": 4.083541959970332,
+    "cv_r2_head": 0.4355287612249107,
+    "cv_r2_shuffled_95": 0.005777039009562997,
+    "resid_mean_T": 0.052310622640696934,
+    "resid_mean_I": -0.49171985282254477,
+    "resid_zipf_slope": -0.02812812753690269,
+    "z_range_head": [
+      -0.2222161536179467,
+      1.3407278986196909
+    ],
+    "z_range_rare": [
+      0.017422165126330703,
+      1.2303634334327043
+    ]
+  },
+  "pileval_selected_occurrence_missing": 0,
+  "n_pileval_windows": 559,
+  "seconds": 2826
+}

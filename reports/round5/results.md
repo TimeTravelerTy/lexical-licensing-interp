@@ -8,7 +8,7 @@ after code review `32feb71`, bf16 clarification `21671df`; B5–B6:
 - A1–A2: `a1_frame.md`, `a2_decomposition.md`;
 - B5–B6: `b5_necessity.md`, `b6_serial.md`;
 - C8–C9: `c8_fillergap_gates.md`, `c8_fillergap.md`, `c9_shared_readers.md`;
-- A3: `a3_counts.md`; A5: `a5_probe.md`;
+- A3: `a3_counts.md`; A4: `a4_restore.md`; A5: `a5_probe.md`;
 - B7: `b7_wild.md`;
 - D: `d10_scaleup.md`, `d10b_suite.md` (and `suite/`), `d10c_yesno.md`,
   `d11_verbs.md`.
@@ -16,7 +16,7 @@ after code review `32feb71`, bf16 clarification `21671df`; B5–B6:
 TSUBAME jobs: 9007119 (A1–A2), 9007211 (curated `passive_1` rescored in
 fp32), 9007340 (B5; earlier attempts 9007281 and 9007322 stopped at the
 self-patch check, see below), 9007282 (B6), 9007314 (C8 natural pass),
-9007336 (C8 patches), 9008384 (C9), 9008634 (A5), 9008705 (B7), 9008724 (D10), 9009081 (D10b, D10c; 9008725
+9007336 (C8 patches), 9008384 (C9), 9009899 (A4; 9009891 crashed on a code bug), 9008634 (A5), 9008705 (B7), 9008724 (D10), 9009081 (D10b, D10c; 9008725
 stopped at a check, see D10b).
 
 ## Summary
@@ -77,6 +77,11 @@ stopped at a check, see D10b).
   the larger pool they do for transitives. For intransitives, wordfreq
   Zipf predicts the rejection best, and their "was V" hits are mostly
   prepositional passives.
+- **A4, editing the output rows.** Setting the 32 rare Tail single-token
+  participles' affinity to the Head class mean recovers +0.53 nats [+0.24,
+  +0.83] of passive margin on their pairs. Most of it comes from the
+  intransitives. The edit is specific and leaves ordinary text unchanged.
+  A label-free target from z gets less than half of it.
 - **A5, a probe instead of LP.** A grammaticality probe on the final state
   (dev AUC 0.93) beats LP on Head passives (88 vs 79%). It loses *more*
   accuracy with rarity: Head − XTail +16.3 pp vs +9.7. So the deficit is
@@ -606,6 +611,87 @@ count predicts how acceptable Pythia finds it after "was". For
 intransitives the picture fits preemption: overall frequency (Zipf) is the
 best single predictor of how strongly they are rejected. Their "was V"
 count mostly records prepositional passives and adds nothing reliable.
+
+## A4. Output-side restoration on single-token rare participles
+
+Each of the 32 rare single-token participles (all Tail: 23 T, 9 I) has its
+unembedding row moved along A2's Δh̄, so its passive-slot affinity becomes
+a target a*. TSUBAME job 9009899; job 9009891 crashed at its first scoring
+call on a code bug and wrote nothing. Report: `a4_restore.md`.
+
+- **Checks.** The edited rows hit their targets to 6e-7, and every other row
+  is unchanged. The unedited run reproduces the fp32 curated scores to
+  4.4e-4. All 32 verbs have 11–20 Pile-validation windows (559 in total).
+- **Label-free calibration** (Head single-token verbs, a_V ~ z_V): CV R²
+  0.44 (shuffled z, 95th percentile: 0.006). Residuals are −0.49 for
+  intransitives and +0.05 for transitives: z underpredicts how negative
+  intransitive affinities are. The rare verbs' z values lie inside the
+  Head range.
+- **Affected curated `passive_1` pairs** (12 Tail pairs; whole-sentence
+  margin change, nats):
+
+| condition | Δ margin [95% CI] | accuracy: 71.3% → | Head pairs Δ margin |
+|---|---|---|---|
+| oracle | **+0.528 [+0.238, +0.830]** | 77.8% (+6.5 pp [+2.1, +11.5]) | 0.000 |
+| oracle, T only | +0.198 [+0.004, +0.488] | 73.0% | 0.000 |
+| oracle, I only | +0.330 [+0.094, +0.600] | 76.1% | 0.000 |
+| label-free | +0.247 [−0.083, +0.584] | 74.9% | 0.000 |
+
+  - The share of the Head − affected margin gap closed is 0.49, with a CI
+    of [−1.67, +3.20]. The gap itself is not reliable (+1.08 [−0.17,
+    +2.27]).
+  - `passive_2`: the same changes (oracle +0.53 [+0.26, +0.82]).
+  - Released FreqBLiMP: on the affected Tail items, oracle accuracy goes
+    from 73 to 75% (`passive_1`) and from 77 to 82% (`passive_2`). The
+    band-level change is +0.4 and +0.7 pp.
+- **Specificity.**
+  - Head pairs and all 201 unaffected FreqBLiMP cells: no change. The
+    edits move other sentences' probabilities only through the
+    normalizer, and the largest cell change is 0.00 pp.
+  - Affected non-passive items (1,123): −0.1 pp [−0.4, +0.2].
+  - Pile-10k NLL per token: +0.0000.
+  - Pile-validation NLL per token: +0.0001 [+0.0000, +0.0003].
+- **NLL at the edited tokens** (Pile validation, oracle): +0.045 [−0.000,
+  +0.099] pooled, +0.058 [+0.012, +0.110] per-verb macro. By preceding
+  word:
+  - after be-forms +0.02 (n 196), after perfect forms +0.03 (n 17), other
+    +0.05 (n 619);
+  - intransitives after be-forms −0.03 (n 15): 2 of 4 verbs rise
+    slightly (mutated, branched, +0.01).
+  - The label-free edit costs more (+0.075).
+
+**Declared decisions.**
+- Oracle improves rare passives: **yes** (+0.53, CI above 0 and ≥ 0.25).
+- Specific: **yes** (oracle and label-free).
+- Label-free achieves half the oracle: **no** (Δ_LF − 0.5 Δ_oracle −0.02
+  [−0.22, +0.19]).
+- Side arms (reported): I only improves (+0.33); T only does not reach the
+  0.25 bar (+0.20).
+
+**Against the predictions.**
+- Oracle ≈ +0.5 nats, mostly from the I-only arm: **held** (+0.53; I only
+  0.33, T only 0.20).
+- Specific, with Head-pair changes < 0.02: **held** (0.000).
+- NLL at edited tokens < 0.1 on average: **held** (+0.045). Rises for some
+  intransitives after be-forms: **barely** (two verbs, +0.01; the class
+  mean falls).
+- Label-free below half the oracle: **held**. Part of the rationale did not
+  hold: the rare verbs' z values are not outside the Head range. The
+  shortfall comes from z underpredicting intransitive affinities.
+
+**Reading.** Moving just the rare participles' output rows to the Head
+class mean on the shared was − has direction recovers about half a nat of
+margin on their passives. Most of that comes from making rare
+intransitives less likely after "was". The change is specific, and it
+costs almost nothing in ordinary text: the rare-verb deficit is partly an
+unembedding-side gap that a minimum-norm edit can fill. It is a
+Tail-singleton result; XTail participles are all multi-token, and no
+transfer was tested.
+
+The label-free version, which predicts the target from the early
+verb-class coordinate z, gets less than half the gain. It cannot recover
+how far intransitive rows should move. A5 shows that the deficit also has
+a component the output rows cannot reach.
 
 ## A5. Non-LP readout: a grammaticality probe
 

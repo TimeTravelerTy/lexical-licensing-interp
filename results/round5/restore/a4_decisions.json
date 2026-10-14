@@ -1,0 +1,23 @@
+{
+ "oracle_improves": true,
+ "oracle_head_within_0.05": true,
+ "oracle_T_improves": false,
+ "oracle_T_head_within_0.05": true,
+ "oracle_I_improves": true,
+ "oracle_I_head_within_0.05": true,
+ "labelfree_improves": false,
+ "labelfree_head_within_0.05": true,
+ "labelfree_half_oracle": false,
+ "oracle_unaffected_within_0.5pp": true,
+ "oracle_T_unaffected_within_0.5pp": true,
+ "oracle_I_unaffected_within_0.5pp": true,
+ "labelfree_unaffected_within_0.5pp": true,
+ "oracle_pile10k_below_0.002": true,
+ "oracle_T_pile10k_below_0.002": true,
+ "oracle_I_pile10k_below_0.002": true,
+ "labelfree_pile10k_below_0.002": true,
+ "oracle_specific": true,
+ "oracle_T_specific": true,
+ "oracle_I_specific": true,
+ "labelfree_specific": true
+}

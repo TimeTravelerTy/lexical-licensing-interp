@@ -55,3 +55,4 @@ results/round5/wild/wild_tokens.parquet
 results/round5/frame_suite/*/frame_h.npz
 results/round5/frame_suite/*/frame_scores.parquet
 results/round5/probe/probe_freqblimp.parquet
+results/round5/restore/restore_freqblimp.parquet
