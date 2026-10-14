@@ -909,3 +909,194 @@ model run).**
    via the API; one TSUBAME job.
 4. A5: corpus and pairs built locally and frozen; one TSUBAME job.
 5. Report in `results.md`.
+
+# Part B7: switch neurons in the wild (declared 2026-10-14)
+
+Written after C9 showed that D11's switch neurons separate the verb classes
+in wh-gap frames as well as passive ones. Revised after an outside review
+(Codex), before any run.
+
+**Question.** What do D11's top switch neurons respond to in ordinary text?
+
+**Neurons.** MLP11.n3462, MLP14.n2114, MLP14.n5407 (ranks 1–3, carrying 0.44
+of the half-B switch), plus ranks 4–10 of `conjunction_switch_neurons.csv`.
+s_n = sign(I_A) is the switch direction; it is negative for ranks 9 and 10.
+
+**Text.** 2,000 documents drawn with seed 17 from NeelNanda/pile-10k (a Pile
+training sample; input hash recorded), each truncated to 512 Pythia
+tokens. Saved per token: token id, character offsets, the full word it
+ends, the preceding words, the next token id, and the post-activation of
+the ten neurons (input of `dense_4h_to_h`), fp32.
+
+**Measures.**
+- Per neuron, the activation distribution: mean, SD, share > 0, 99th and
+  99.9th percentiles.
+- **Top contexts.** The 100 tokens with the largest raw activation
+  (primary; ties by document then position). Sensitivity: the signed
+  ranking s_n · a, which for ranks 9 and 10 is the *lowest*-activation
+  contexts and is labelled so. Each is reported with 24 tokens before and 4
+  after, the number of unique documents and words, and a version
+  deduplicated to one context per document.
+- **Surface proxies** for the top 100, with the same proxies in two
+  baselines (all tokens; tokens meeting the participle-candidate definition
+  (a)):
+  - (a) participle candidate: ends a word in -ed / -en, or the word is among
+    A1's 962 participles;
+  - (b) be/get-form among the 3 preceding words;
+  - (c) wh-word or relativizer among the 8 preceding words, no be/get-form
+    among the 3;
+  - (d) the next token is " by" (exact token id).
+  These are proxies, not grammatical classifications (e.g. (b) also catches
+  copulas and progressives, (c) "that"-declaratives). Uncertainty comes
+  from document-level resampling with the top list recomputed in each draw
+  (1,000 draws).
+- **Construction annotation** (the basis for any label). The top 40 raw
+  contexts of each top-3 neuron are labelled independently by Claude and by
+  Codex (context-only, blind to the hypothesis and to each other). Each
+  context gets one of: verbal passive participle; adjectival / copular
+  participle; active perfect or simple past; object gap (wh / relative)
+  after the verb; other; uncertain. Both label sets are frozen before
+  comparison; agreement is Cohen's κ. Each annotator also writes a one-line
+  free description.
+
+**Decision rules** (per top-3 neuron, from the annotation; both annotators'
+rates reported):
+- **passive-participle detector:** the joint "verbal passive participle"
+  rate is ≥ 0.5 for both annotators;
+- **gap-sensitive participle reader:** verbal passive + object-gap ≥ 0.5 for
+  both, with object-gap ≥ 0.15;
+- **other:** anything else, described.
+Ranks 4–10: proxies and descriptions only.
+
+**Predictions.**
+- The top-3 neurons are **passive-participle detectors**: verbal passive in
+  ≥ 0.5 of the top 40, and proxy (b) well above the participle-candidate
+  baseline.
+- Following C9, some top contexts are object gaps: gap-sensitive reading
+  possible for one of the three.
+- " by" follows in ≥ 20% of the top 100.
+
+# Part D: scale-up prep (declared 2026-10-14)
+
+Feasibility only. Revised after an outside review (Codex), before any run.
+
+## D10. Feasibility on Pythia-6.9B and 12B
+
+Separate processes per model (1.4B as the reference), fp32, TF32 off, on an
+80 GB H100. Each measurement uses warm-up, CUDA synchronization and 5
+measured repetitions, and reports peak allocated and reserved memory.
+Feasibility updates are discarded; no scientific DAS result is produced.
+- **Load memory and forward throughput** on the passive-test prompts.
+- **DAS.** One round-2 training step: rank-1 rotation as
+  `run_das_round2.py` (frozen model, Adam on the rotation only), the
+  round-2 batch size, at the earliest, middle and latest planned site.
+  Fallback if out of memory: halve the batch, keep fp32. A **DAS run** is
+  one site × 15 fold-split fits:
+  T_run = T_setup + N_steps · t_step + T_eval, with N_steps from round 2's
+  swaps, epochs and batch. Controls (shuffled labels, random) are estimated
+  as extra runs.
+- **Path patching.** One complete representative batch of
+  `run_path_patch_frames.py` (all captures, head / MLP replacements and the
+  component-chunk evaluations) at short and long prompt lengths. Per run
+  (D10's 11,657 rows): T = batches × t_batch, two-frame and three-frame
+  versions.
+- **Site plan** at matched relative depth, s' = ⌊s × L' / 24 + 0.5⌋:
+  - 6.9B (32 layers): 5, 8, 11, 13, 16, 19, 21, 23;
+  - 12B (36 layers): 6, 9, 12, 15, 18, 21, 24, 26;
+  - ±1 adjacent sites as a later sensitivity.
+  Matched depth is a search heuristic, not evidence of homologous
+  mechanisms.
+Output: `reports/round5/d10_scaleup.md` (table and plan).
+
+## D10b. A1/A2 across the Pythia suite
+
+A1's runner on Pythia 160M, 410M, 1B, 2.8B, 6.9B and 12B (1.4B as run).
+- They share the tokenizer, so A1's inputs carry over; each model still
+  runs its own numerical checks (tokenization, first-subtoken
+  reconstruction, identity).
+- A small block (one prefix set, multi-token verbs included) is timed
+  first. The full runs go ahead under a cap of 4 GPU-hours in total.
+- Per model, A1's tables and readings (L, Δ_pass(T), Δ_pass(I), M_has, by
+  band) and A2's checks, Head AUC and singleton D_L.
+- No curated-score accounting (it needs per-model curated scores).
+- Descriptive across size.
+
+**Prediction** (1.4B is the reference: ΔL 2.12, intransitive side +2.60).
+The L deficit appears at every size ≥ 410M and stays on the intransitive
+side. Its size is within ±50% of 1.4B's.
+
+## D10c. FreqBLiMP passive_1 Yes/No on 6.9B and 12B
+
+Task 4's prompt (`YES_NO_BASE_PROMPT`).
+- Score = LSE(Yes logits) − LSE(No logits), with Yes = {"Yes", " Yes"} and
+  No = {"No", " No"} (token ids verified).
+- A pair is correct if the good sentence scores higher; exact ties get half
+  credit.
+- Items: released FreqBLiMP `passive_1`, 3 bands × 1,000. Models: 1.4B
+  (reference), 6.9B, 12B; fp32.
+- Also reported: continuous margins and the Yes + No probability mass.
+- Item bootstrap, with a good-verb-cluster sensitivity and paired draws
+  for comparisons between models.
+
+**Decision rules** (per model and band; both reported):
+- **above chance:** 95% CI above 50%;
+- **practically at chance:** 90% CI within 45–55%;
+- **below chance:** 95% CI below 50%;
+- otherwise unresolved.
+
+**Prediction.** Task 4 found 1.4B at 60.8% [50.5, 69.8] on curated Head
+contexts. On released items: 1.4B Head about 55% (unresolved or above
+chance), Tail and XTail practically at chance; 6.9B and 12B above chance on
+Head (60–70%) and weaker on XTail.
+
+## D11. Expanded verb list
+
+**Goal.** An expanded inventory of at least 128 T/I pairs (twice the 64
+primary pairs), at least 40 per band. Existing curated pairs may be
+included (flagged), single-token participles are flagged, and a held-out
+split is never used for DAS.
+
+**Sources** (VerbNet is not available here without another download, so
+the existing inventories are used):
+- FreqBLiMP's released `passive_1` / `passive_2` good and bad participles
+  (freq-blimp data as on TSUBAME, hashes recorded);
+- the round-2 / 3 expansion inventory (`data/verb_expansion/verbs.csv`,
+  with its earlier rater decisions);
+- round 4's candidates (`data/round4/fillergap/candidates.csv`);
+- the 126 curated pairs.
+
+**Criteria**, applied independently by Claude and Codex (blind to each
+other), with labels and reasons stored:
+- T: has an ordinary direct-object use and a natural verbal passive in
+  the relevant sense; obligatory vs optional transitivity flagged.
+- I: dominantly intransitive, with no common passivizable transitive use;
+  rare transitive senses flagged.
+- Used only if both raters accept. This is a screening procedure, not
+  lexical ground truth.
+
+**Matching.** Within band (wordfreq 3.1.1 participle Zipf; bands as
+FreqBLiMP). First maximize the number of one-to-one T–I pairs within
+calipers (participle 0.35, lemma 0.25), then minimize the total Zipf gap;
+ties broken by lemma.
+
+**Split.**
+- Pairs whose verbs appear in any historical DAS training inventory
+  (round-2 `train_pairs.csv`, `verb_expansion/das_train_pairs.csv`) are
+  **trainable** only.
+- Of the rest, one third per band × token-count cell (seed 17) is
+  **held-out**: never used for DAS training, for site / rank / epoch
+  selection, or for donor or reference calibration.
+- Splits are by lemma, and loaders check them.
+
+**Rule.** Success means ≥ 128 pairs in total and ≥ 40 per band. Otherwise
+the shortfall per band is reported. Head intransitives are the likely
+bottleneck (only 26 clear Head pairs before). No model is run on the list
+in this round.
+
+## Order (B7, D)
+
+1. Commit this part.
+2. B7: one TSUBAME job; the annotation after it.
+3. D10, D10b, D10c: TSUBAME jobs.
+4. D11: built locally with Codex as the second rater.
+5. Report in `results.md`.
