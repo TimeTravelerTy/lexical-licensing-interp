@@ -1,0 +1,167 @@
+{
+ "index": "v4_pileval_llama",
+ "per_verb": {
+  "adhered": {
+   "occurrences": 699,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "branched": {
+   "occurrences": 739,
+   "windows": 16,
+   "no_surface_match": 0
+  },
+  "chuckled": {
+   "occurrences": 521,
+   "windows": 18,
+   "no_surface_match": 0
+  },
+  "corresponded": {
+   "occurrences": 640,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "crept": {
+   "occurrences": 584,
+   "windows": 18,
+   "no_surface_match": 0
+  },
+  "glared": {
+   "occurrences": 503,
+   "windows": 13,
+   "no_surface_match": 0
+  },
+  "grinned": {
+   "occurrences": 1195,
+   "windows": 11,
+   "no_surface_match": 0
+  },
+  "inquired": {
+   "occurrences": 733,
+   "windows": 14,
+   "no_surface_match": 0
+  },
+  "mutated": {
+   "occurrences": 1048,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "abbreviated": {
+   "occurrences": 488,
+   "windows": 19,
+   "no_surface_match": 0
+  },
+  "accorded": {
+   "occurrences": 500,
+   "windows": 18,
+   "no_surface_match": 0
+  },
+  "approximated": {
+   "occurrences": 798,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "calibrated": {
+   "occurrences": 696,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "clenched": {
+   "occurrences": 453,
+   "windows": 11,
+   "no_surface_match": 0
+  },
+  "deprecated": {
+   "occurrences": 767,
+   "windows": 16,
+   "no_surface_match": 1
+  },
+  "diced": {
+   "occurrences": 586,
+   "windows": 17,
+   "no_surface_match": 0
+  },
+  "disseminated": {
+   "occurrences": 526,
+   "windows": 19,
+   "no_surface_match": 0
+  },
+  "doped": {
+   "occurrences": 661,
+   "windows": 18,
+   "no_surface_match": 0
+  },
+  "elicited": {
+   "occurrences": 1041,
+   "windows": 19,
+   "no_surface_match": 0
+  },
+  "excised": {
+   "occurrences": 459,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "exerted": {
+   "occurrences": 969,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "formatted": {
+   "occurrences": 659,
+   "windows": 18,
+   "no_surface_match": 2
+  },
+  "gripped": {
+   "occurrences": 633,
+   "windows": 13,
+   "no_surface_match": 0
+  },
+  "inhibited": {
+   "occurrences": 3071,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "perturbed": {
+   "occurrences": 569,
+   "windows": 18,
+   "no_surface_match": 0
+  },
+  "precluded": {
+   "occurrences": 710,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "purified": {
+   "occurrences": 2939,
+   "windows": 19,
+   "no_surface_match": 0
+  },
+  "signaled": {
+   "occurrences": 453,
+   "windows": 14,
+   "no_surface_match": 0
+  },
+  "subtracted": {
+   "occurrences": 552,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "superimposed": {
+   "occurrences": 546,
+   "windows": 20,
+   "no_surface_match": 0
+  },
+  "transcribed": {
+   "occurrences": 744,
+   "windows": 18,
+   "no_surface_match": 0
+  },
+  "uttered": {
+   "occurrences": 629,
+   "windows": 12,
+   "no_surface_match": 0
+  }
+ },
+ "disp": 600,
+ "date": "2026-10-14"
+}
