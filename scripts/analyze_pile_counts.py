@@ -76,21 +76,23 @@ def main(args):
     pre = pd.read_csv(args.data_dir / "prefixes.csv", keep_default_na=False)
     S = pd.read_parquet(args.frame)
     assert C["count"].notna().all(), f"{C['count'].isna().sum()} failed queries"
-    # audit: every exact slot query's token ids end with the overall query's ids (OR queries are not audited)
+    # audit: every slot query's token ids end with the overall query's ids
+    C = C[~C.slot.str.endswith("_or")]  # OR queries from an abandoned fetch configuration are not used
     ov = C[C.slot == "overall"].set_index("verb").token_ids
-    simple = ~C.slot.str.endswith("_or")
+    simple = np.ones(len(C), bool)
     C["suffix_ok"] = True
     C.loc[simple, "suffix_ok"] = [str(t).split()[-len(str(ov[v]).split()):] == str(ov[v]).split()
                                   for v, t in zip(C.verb[simple], C.token_ids[simple])]
     bad = sorted(set(C[~C.suffix_ok].verb))
     W = C.pivot_table(index="verb", columns="slot", values="count", aggfunc="first")
     W["c"] = W["overall"]
-    exact_be = W[[f"be_{x}" for x in BE]].sum(1, min_count=len(BE))
-    exact_perf = W[[f"perf_{x}" for x in PERF]].sum(1, min_count=len(PERF))
-    W["c_be"] = exact_be.fillna(W["be_or"])  # curated: exact sum; pool: OR count (approximate)
-    W["c_perf"] = exact_perf.fillna(W["perf_or"])
-    W["c_be_cap"] = W["c_be"] + W["capbe_or"]  # curated verbs only (NaN for pool)
-    W["c_be_wasbeen"] = W["be_was"] + W["be_been"]  # curated verbs only
+    cur_v = set(V[V.curated == 1].verb)
+    full_be = W[[f"be_{x}" for x in BE]].sum(1, min_count=len(BE))
+    main_be = W[[f"be_{x}" for x in ("was", "were", "been")]].sum(1)
+    W["c_be"] = np.where(W.index.isin(cur_v), full_be, main_be)  # curated: all six; pool: was + were + been
+    W["c_perf"] = np.where(W.index.isin(cur_v), W[[f"perf_{x}" for x in PERF]].sum(1, min_count=len(PERF)), W["perf_has"])
+    W["c_be_cap"] = np.where(W.index.isin(cur_v), W["c_be"] + W.get("capbe_was", np.nan) + W.get("capbe_were", np.nan), np.nan)
+    W["c_be_wasbeen"] = np.where(W.index.isin(cur_v), W["be_was"] + W["be_been"], np.nan)
     V = V.join(W[["c", "c_be", "c_perf", "c_be_cap", "c_be_wasbeen"]], on="verb")
     V = V[~V.verb.isin(bad)].reset_index(drop=True)
     V["bandkey"] = V.band.str.split("|").str[0]

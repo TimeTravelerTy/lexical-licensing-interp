@@ -49,14 +49,13 @@ def main(args):
     queries = []
     for v, cur in zip(V.verb, V.curated):
         queries.append((v, "overall", v))
-        if cur == 1:  # curated (primary): exact single-sequence counts per auxiliary
+        if cur == 1:  # curated (primary): every auxiliary, exact single-sequence counts
             queries += [(v, f"be_{x}", f"{x} {v}") for x in BE]
             queries += [(v, f"perf_{x}", f"{x} {v}") for x in PERF]
-            # capitalized auxiliaries (sensitivity): one OR query (infini-gram flags CNF counts as approximate)
-            queries.append((v, "capbe_or", " OR ".join(f"{x.capitalize()} {v}" for x in BE)))
-        else:  # pool (secondary): slot sums as OR queries (approximate)
-            queries.append((v, "be_or", " OR ".join(f"{x} {v}" for x in BE)))
-            queries.append((v, "perf_or", " OR ".join(f"{x} {v}" for x in PERF)))
+            queries += [(v, "capbe_was", f"Was {v}"), (v, "capbe_were", f"Were {v}")]  # capitalization sensitivity
+        else:  # pool (secondary): the three main passive auxiliaries and "has"
+            queries += [(v, f"be_{x}", f"{x} {v}") for x in ("was", "were", "been")]
+            queries.append((v, "perf_has", f"has {v}"))
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     part = out / "pile_counts.partial.jsonl"
