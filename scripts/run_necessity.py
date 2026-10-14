@@ -300,7 +300,7 @@ def run(args):
             seqs_g = [ids["good"][f][j] for j in b]
             rec = {"item_id": prim.item_id.to_numpy()[b], "frame": f}
             # unpatched readouts of this very batch: the baseline for every intervention (same padding / batch)
-            rd0, _, _ = P.run(seqs_g)
+            rd0, pr0, neu0 = P.run(seqs_g, d=dB)  # capture only (no tcoord): own coordinate and activations
             for k in READ:
                 rec[f"nat_{k}"] = rd0[k].double().cpu().numpy()
             noise = max(float(np.abs(rec[f"nat_{k}"] - nat[(f, "good")][k][b]).max()) for k in READ)
@@ -314,10 +314,8 @@ def run(args):
                     rec[f"{cname}_{k}"] = rd[k].double().cpu().numpy()
                 for kk, v in ver.items():
                     meta["checks"][kk] = max(meta["checks"].get(kk, 0.0), v)
-            # self patch: own natural coordinate and own natural top-50 activations
-            own = torch.as_tensor(proj[(f, "good")][b, prim.fold.to_numpy()[b]], dtype=torch.float32, device=dev)
-            owna = torch.as_tensor(acts[(f, "good")][b], dtype=torch.float32, device=dev)
-            rd, _, _ = P.run(seqs_g, d=dB, tcoord=own, nset="top50", ntgt=owna)
+            # self patch: this batch's own coordinate and own top-50 activations
+            rd, _, _ = P.run(seqs_g, d=dB, tcoord=pr0, nset="top50", ntgt=neu0)
             err = max(float(np.abs(rd[k].double().cpu().numpy() - rec[f"nat_{k}"]).max()) for k in READ)
             meta["checks"]["self_patch_max_abs"] = max(meta["checks"].get("self_patch_max_abs", 0.0), err)
             # equalized coordinate: good and bad both at (tT + tI) / 2; capture top-50 activations
