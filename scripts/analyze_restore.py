@@ -79,31 +79,34 @@ def main(args):
         u = Wp["unedited"].to_numpy()
         lines += [f"## Curated `{par}`", "",
                   f"Affected pairs: {len(np.unique(pairs[aff]))} ({sorted(np.unique(pairs[aff]))}).", "",
-                  "| Condition | affected: Δ margin | affected: Δ accuracy (pp) | Head pairs: Δ margin | share of deficit closed |",
-                  "|---|---|---|---|---|"]
+                  "| Condition | affected: Δ margin | affected: accuracy after (%) | affected: Δ accuracy (pp) | Head pairs: Δ margin | "
+                  "share of deficit closed |", "|---|---|---|---|---|---|"]
         deficit = mean(u, head) - mean(u, aff)
+        acc0 = mean((u > 0).astype(float) * 100, aff)
         for cnd in CONDS:
             d = Wp[cnd].to_numpy() - u
             da = mean(d, aff)
-            acc = mean(((Wp[cnd].to_numpy() > 0).astype(float) - (u > 0)) * 100, aff)
+            acc1 = mean((Wp[cnd].to_numpy() > 0).astype(float) * 100, aff)
+            acc = acc1 - acc0
             dh = mean(d, head)
-            share = da / deficit
-            lines.append(f"| {cnd} | {fmt(da)} | {fmt(acc, 1)} | {fmt(dh)} | {fmt(share, 2)} |")
+            share = (da - dh) / deficit  # reduction of the Head-minus-affected gap
+            lines.append(f"| {cnd} | {fmt(da)} | {fmt(acc1, 1)} | {fmt(acc, 1)} | {fmt(dh)} | {fmt(share, 2)} |")
             for nm, v in (("d_margin_affected", da), ("d_acc_affected", acc), ("d_margin_head", dh), ("share_closed", share)):
                 rows.append({"set": f"curated_{par}", "cond": cnd, "stat": nm, "est": v[0], "lo": ci(v)[0], "hi": ci(v)[1]})
             if par == "passive_1":
                 dec[f"{cnd}_improves"] = bool(ci(da)[0] > 0 and da[0] >= 0.25)
                 dec[f"{cnd}_head_within_0.05"] = bool(-0.05 < ci(dh)[0] and ci(dh)[1] < 0.05)
                 dec[f"{cnd}_d_affected"] = da
-        lines += ["", f"Unedited margins: Head pairs {fmt(mean(u, head))}, affected pairs {fmt(mean(u, aff))}; deficit "
-                      f"{fmt(deficit)}.", "",
-                  "Accuracy and margin by band (all pairs):", "", "| Condition | Head | Tail | XTail |", "|---|---|---|---|"]
+        lines += ["", f"Unedited: affected-pair accuracy {fmt(acc0, 1)}%; margins: Head pairs {fmt(mean(u, head))}, affected "
+                      f"pairs {fmt(mean(u, aff))}; deficit {fmt(deficit)}.", "",
+                  "Accuracy (%) and whole-sentence margin by band, all pairs (95% CI):", "",
+                  "| Condition | Head | Tail | XTail |", "|---|---|---|---|"]
         for cnd in ("unedited",) + CONDS:
             v = Wp[cnd].to_numpy()
             cells = []
             for b in ("head", "tail", "xtail"):
                 m = (I_.verb_band == b).to_numpy()
-                cells.append(f"{100 * mean((v > 0).astype(float), m)[0]:.1f}% / {mean(v, m)[0]:+.2f}")
+                cells.append(f"{fmt(mean((v > 0).astype(float) * 100, m), 1)} / {fmt(mean(v, m), 2)}")
             lines.append(f"| {cnd} | " + " | ".join(cells) + " |")
         lines.append("")
     # label-free vs half the oracle (affected curated passive_1)
@@ -122,45 +125,105 @@ def main(args):
     strata = (it.band + "|" + it.uid).to_numpy()
     wi = weights(rng, strata, args.n_boot)
     lines += ["## Released FreqBLiMP", "",
-              f"Items containing an edited token: {int(affm.sum())} ({', '.join(f'{k}: {v}' for k, v in it[affm].uid.value_counts().items())}).", "",
-              "| Condition | passive_1 affected: Δ acc (pp) | passive_1 Tail: acc before → after | unaffected items pooled: Δ acc (pp) | max |Δ acc| over cells (pp) |",
-              "|---|---|---|---|---|"]
+              f"Items containing an edited token: {int(affm.sum())} ({', '.join(f'{k}: {v}' for k, v in it[affm].uid.value_counts().items())}).", ""]
     u = Fw["unedited"].to_numpy()
+
+    def wmean(v, m):
+        return (wi[:, m] * v[m][None]).sum(1) / wi[:, m].sum(1)
+
+    # passive paradigms by band, all items and affected items
+    lines += ["**Passive paradigms** (accuracy % / whole-sentence margin, 95% CI over items; Δ = condition − unedited):", "",
+              "| paradigm | band | items (affected) | unedited | " + " | ".join(f"Δ {c}" for c in CONDS) + " | affected: unedited acc → "
+              + " / ".join(CONDS) + " |", "|---|---|---|---|" + "---|" * len(CONDS) + "---|"]
+    for par in ("passive_1", "passive_2"):
+        for b in ("head", "tail", "xtail"):
+            m = ((it.uid == par) & (it.band == b)).to_numpy()
+            ma = m & affm
+            cells = [f"{fmt(wmean((u > 0).astype(float) * 100, m), 1)} / {fmt(wmean(u, m), 2)}"]
+            for cnd in CONDS:
+                v = Fw[cnd].to_numpy()
+                cells.append(f"{fmt(wmean(((v > 0).astype(float) - (u > 0)) * 100, m), 1)} / {fmt(wmean(v - u, m), 3)}")
+            aff_cell = "—"
+            if ma.any():
+                aff_cell = f"{100 * (u[ma] > 0).mean():.0f}% → " + " / ".join(
+                    f"{100 * (Fw[c].to_numpy()[ma] > 0).mean():.0f}%" for c in CONDS)
+            lines.append(f"| {par} | {b} | {int(m.sum())} ({int(ma.sum())}) | " + " | ".join(cells) + f" | {aff_cell} |")
+    # specificity: every paradigm x band cell, split by affected status (signed accuracy change, pp)
+    cell_rows = []
+    for (b, uid), g in it.reset_index().groupby(["band", "uid"]):
+        for status, mask in (("unaffected", ~affm[g.index]), ("affected", affm[g.index])):
+            if not mask.any():
+                continue
+            ix = g.index.to_numpy()[mask]
+            rec = {"band": b, "uid": uid, "status": status, "n": int(mask.sum()),
+                   "acc_unedited": 100 * float((u[ix] > 0).mean())}
+            for cnd in CONDS:
+                rec[f"d_acc_{cnd}"] = 100 * float(((Fw[cnd].to_numpy()[ix] > 0).astype(float) - (u[ix] > 0)).mean())
+            cell_rows.append(rec)
+    cells = pd.DataFrame(cell_rows)
+    cells.to_csv(rdir / "a4_cells.csv", index=False)
+    lines += ["", f"**Specificity, all 67 paradigms × 3 bands** (signed accuracy change per cell in `a4_cells.csv`; "
+                  f"{int((cells.status == 'unaffected').sum())} unaffected cells, {int((cells.status == 'affected').sum())} cells "
+                  "with affected items):", "",
+              "| Condition | unaffected pooled: Δ acc (pp) | unaffected cells: mean / max |Δ| (pp) | cells with |Δ| > 0.5 pp | "
+              "affected non-passive items: Δ acc (pp), n |", "|---|---|---|---|---|"]
+    nonpass = affm & ~it.uid.isin(["passive_1", "passive_2"]).to_numpy()
     for cnd in CONDS:
         dacc = ((Fw[cnd].to_numpy() > 0).astype(float) - (u > 0)) * 100
-        m1 = (it.uid == "passive_1").to_numpy() & affm
-        a1 = (wi[:, m1] * dacc[m1]).sum(1) / wi[:, m1].sum(1) if m1.any() else np.full(len(wi), np.nan)
-        un = ~affm
-        pool = (wi[:, un] * dacc[un]).sum(1) / wi[:, un].sum(1)
-        cell = pd.Series(dacc[un]).groupby(strata[un]).mean().abs().max()
-        tail = ((it.uid == "passive_1") & (it.band == "tail")).to_numpy()
-        lines.append(f"| {cnd} | {fmt(a1, 1) if m1.any() else '—'} | {100 * (u[tail] > 0).mean():.1f}% → "
-                     f"{100 * (Fw[cnd].to_numpy()[tail] > 0).mean():.1f}% | {fmt(pool, 2)} | {cell:.2f} |")
+        pool = wmean(dacc, ~affm)
+        cu = cells[cells.status == "unaffected"][f"d_acc_{cnd}"]
+        coll = f"{fmt(wmean(dacc, nonpass), 1)}, n {int(nonpass.sum())}" if nonpass.any() else "—"
+        lines.append(f"| {cnd} | {fmt(pool, 2)} | {cu.abs().mean():.2f} / {cu.abs().max():.2f} | {int((cu.abs() > 0.5).sum())} | {coll} |")
         dec[f"{cnd}_unaffected_within_0.5pp"] = bool(-0.5 < ci(pool)[0] and ci(pool)[1] < 0.5)
         rows.append({"set": "freqblimp_unaffected", "cond": cnd, "stat": "d_acc_pp", "est": pool[0], "lo": ci(pool)[0],
                      "hi": ci(pool)[1]})
     # LM loss
     Lm = pd.read_parquet(rdir / "restore_lm.parquet")
-    lines += ["", "## LM loss", "", "| Condition | Pile-10k: Δ NLL / token | Pile-val: Δ NLL / token (token-weighted) | "
-              "Pile-val: per-verb macro Δ | edited tokens: Δ NLL (be / perfect / other) |", "|---|---|---|---|---|"]
+    tok2verb = dict(zip(man.first_id.astype(int), man.verb))
     base = Lm[Lm.cond == "unedited"].reset_index(drop=True)
+    pv = (base.src != "pile10k").to_numpy()
+    p10 = ~pv
+    occ = base[pv].groupby("verb").size().reindex(man.verb, fill_value=0)
+    lines += ["", "## LM loss", "",
+              f"Pile-validation windows per edited verb (occurrences found, deduplicated): {occ.to_dict()}; "
+              f"verbs with none: {sorted(occ[occ == 0].index) or 'none'}.", "",
+              "| Condition | Pile-10k: Δ NLL / token | Pile-val: Δ NLL / token (token-weighted) | Pile-val: per-verb macro Δ / token | "
+              "edited tokens: Δ NLL pooled | per-verb macro | after be / perfect / other |", "|---|---|---|---|---|---|---|"]
+    wd = weights(rng, np.zeros(int(p10.sum())), args.n_boot)
+    vlist = sorted(set(base.verb[pv]))
+    vix = pd.Index(vlist).get_indexer(base.verb[pv])
+    wvb = weights(rng, np.zeros(len(vlist)), args.n_boot)  # verbs resampled (clusters of windows)
+    ntok_pv = base.n_tok[pv].to_numpy()
     for cnd in CONDS:
         x = Lm[Lm.cond == cnd].reset_index(drop=True)
-        assert (x.doc_ix.to_numpy() == base.doc_ix.to_numpy()).all()
-        d = x.nll_sum - base.nll_sum
-        p10 = (base.src == "pile10k").to_numpy()
-        wd = weights(rng, np.zeros(int(p10.sum())), args.n_boot)
-        r10 = (wd * d[p10].to_numpy()[None]).sum(1) / (wd * base.n_tok[p10].to_numpy()[None]).sum(1)
-        pv = ~p10
-        rpv = d[pv].sum() / base.n_tok[pv].sum()
-        mac = (d[pv] / base.n_tok[pv]).groupby(base.verb[pv]).mean().mean()
-        ed = {"be": [], "perf": [], "other": []}
-        for (a, b_), (ca, cb_) in zip(zip(x.edited_nll[pv], base.edited_nll[pv]), zip(x.edited_ctx[pv], base.edited_ctx[pv])):
-            for va, vb, c_ in zip(a, b_, ca):
-                ed[c_].append(va - vb)
-        eds = " / ".join(f"{np.mean(v):+.3f} (n {len(v)})" if v else "—" for v in ed.values())
-        lines.append(f"| {cnd} | {fmt(r10, 4)} | {rpv:+.4f} | {mac:+.4f} | {eds} |")
+        assert (x.doc_ix.to_numpy() == base.doc_ix.to_numpy()).all() and (x.src == base.src).all()
+        d = (x.nll_sum - base.nll_sum).to_numpy()
+        r10 = (wd * d[p10][None]).sum(1) / (wd * base.n_tok[p10].to_numpy()[None]).sum(1)
+        wdoc = wvb[:, vix]  # each window weighted by its verb's draw count
+        rpv = (wdoc * d[pv][None]).sum(1) / (wdoc * ntok_pv[None]).sum(1)
+        per_verb = pd.Series(d[pv] / ntok_pv).groupby(vix).mean().reindex(range(len(vlist))).to_numpy()
+        mac = (wvb * per_verb[None]).sum(1) / wvb.sum(1)
+        # edited tokens: by the edited verb (the token's own verb), pooled and macro, with context splits
+        recs = []
+        for a, b_, ca, tk, w_ in zip(x.edited_nll[pv], base.edited_nll[pv], x.edited_ctx[pv], x.edited_tok[pv], base.verb[pv]):
+            for va, vb, c_, t_ in zip(a, b_, ca, tk):
+                recs.append((tok2verb.get(int(t_), str(t_)), c_, va - vb, w_))
+        E = pd.DataFrame(recs, columns=["ev", "ctx", "d", "window_verb"])
+        ev_list = sorted(set(E.ev))
+        ewv = weights(rng, np.zeros(len(ev_list)), args.n_boot)
+        eix = pd.Index(ev_list).get_indexer(E.ev)
+        pooled = (ewv[:, eix] * E.d.to_numpy()[None]).sum(1) / ewv[:, eix].sum(1)
+        pe = E.groupby(eix).d.mean().reindex(range(len(ev_list))).to_numpy()
+        emac = (ewv * pe[None]).sum(1) / ewv.sum(1)
+        split = " / ".join(f"{E.d[E.ctx == c_].mean():+.3f} (n {int((E.ctx == c_).sum())})" if (E.ctx == c_).any() else "—"
+                           for c_ in ("be", "perf", "other"))
+        lines.append(f"| {cnd} | {fmt(r10, 4)} | {fmt(rpv, 4)} | {fmt(mac, 4)} | {fmt(pooled, 3)} | {fmt(emac, 3)} | {split} |")
         dec[f"{cnd}_pile10k_below_0.002"] = bool(ci(r10)[1] < 0.002)
+        for nm, v in (("pile10k_dnll", r10), ("pileval_dnll", rpv), ("pileval_macro", mac), ("edited_dnll", pooled),
+                      ("edited_macro", emac)):
+            rows.append({"set": "lm", "cond": cnd, "stat": nm, "est": v[0], "lo": ci(v)[0], "hi": ci(v)[1]})
+        if cnd == "oracle":
+            E.groupby(["ev", "ctx"]).d.agg(["mean", "size"]).reset_index().to_csv(rdir / "a4_edited_tokens_oracle.csv", index=False)
     for cnd in CONDS:
         dec[f"{cnd}_specific"] = bool(dec.get(f"{cnd}_head_within_0.05") and dec.get(f"{cnd}_unaffected_within_0.5pp")
                                       and dec.get(f"{cnd}_pile10k_below_0.002"))
