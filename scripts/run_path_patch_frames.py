@@ -175,6 +175,8 @@ def run(args):
     plan = pd.read_csv(args.plan, usecols=["item_id", "split", "fold", "side", "cond", "base", "donor"])
     bases = load_bases(Path(args.site_dir) / "bases.pt", runner.device)
     if args.feasibility:  # round 5 D10 timing only: random unit bases of this model's width, results discarded
+        torch.backends.cuda.matmul.allow_tf32 = False
+        torch.backends.cudnn.allow_tf32 = False
         gen = torch.Generator(device="cpu").manual_seed(0)
         hdim = runner.model.config.hidden_size
         bases = {k: (lambda v: (v / v.norm()).to(runner.device))(torch.randn(hdim, generator=gen)) for k in bases}
@@ -256,9 +258,12 @@ def run(args):
         for f, g in rows[rows.half == half].groupby("fold"):
             d8 = bases[(0, f)]
             g = g.sort_values("len")
-            for _, gl in g.groupby("len"):  # equal lengths within a batch (no padding)
+            groups_ = list(g.groupby("len"))
+            if args.feasibility and half == 1:  # time long prompts in half B (half A starts with the short ones)
+                groups_ = groups_[::-1]
+            for _, gl in groups_:  # equal lengths within a batch (no padding)
                 for i in range(0, len(gl), args.batch):
-                    if args.feasibility and n_batches >= args.feasibility:
+                    if args.feasibility and n_batches >= args.feasibility * (half + 1):
                         break
                     if args.feasibility:
                         torch.cuda.synchronize()
@@ -359,16 +364,18 @@ def run(args):
                                                  **rec}))
                     if args.feasibility:
                         torch.cuda.synchronize()
-                        t_batches.append((len(gg), int(gg.len.iloc[0]), time.time() - tb))
+                        t_batches.append((half, len(gg), int(gg.len.iloc[0]), time.time() - tb))
                         n_batches += 1
             print(f"half {half} fold {f} done ({time.time() - t0:.0f}s)", flush=True)
-            if args.feasibility and n_batches >= args.feasibility:
+            if args.feasibility and n_batches >= args.feasibility * (half + 1):
                 break
-        if args.feasibility and n_batches >= args.feasibility:
+        if args.feasibility and half == 1:
             break
     if args.feasibility:
+        by_half = {h: [t for (hh, n, ln, t) in t_batches if hh == h and n == args.batch][1:] for h in (0, 1)}
         rep = {"model": args.model, "frames": args.frames, "rows_total": len(rows), "batch": args.batch,
-               "batches_timed": t_batches, "peak_alloc_GiB": torch.cuda.max_memory_allocated() / 2 ** 30,
+               "batches_timed": t_batches,
+               "median_full_batch_s": {str(h): float(np.median(v)) if v else None for h, v in by_half.items()}, "peak_alloc_GiB": torch.cuda.max_memory_allocated() / 2 ** 30,
                "peak_reserved_GiB": torch.cuda.max_memory_reserved() / 2 ** 30}
         Path(args.out_dir).mkdir(parents=True, exist_ok=True)
         (Path(args.out_dir) / f"feasibility_{args.frames}_{args.model.split('/')[-1]}.json").write_text(json.dumps(rep, indent=1))

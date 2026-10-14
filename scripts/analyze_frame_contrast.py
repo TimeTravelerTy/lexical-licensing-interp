@@ -494,7 +494,8 @@ def main(args):
           "negligible = 90% CI within ±0.25; otherwise unresolved.", ""]
     boots = a1(args, pairs, pre, tabs, l1, rows, dec, rng)
     token_cells(pairs, tabs, V, boots, l1, rows)
-    accounting(args, pairs, tabs, boots, l1, rows, rng)
+    if not args.no_accounting:
+        accounting(args, pairs, tabs, boots, l1, rows, rng)
     l2 = ["# Round 5, A2: exact decomposition", "", "Spec: `plan.md`, A2. Freq contexts unless stated; Δh̄ and "
           "affinities are recomputed in each context draw.", ""]
     gate, a2info = a2(args, pairs, pre, V, tabs, boots, l2, rows, rng)
@@ -532,4 +533,5 @@ if __name__ == "__main__":
     ap.add_argument("--report-dir", default="reports/round5")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
+    ap.add_argument("--no-accounting", action="store_true", help="skip the curated-score accounting (other models, D10b)")
     main(ap.parse_args())
