@@ -1,4 +1,4 @@
-# Results index, rounds 1–4 (for paper planning)
+# Results index, rounds 1–5 (for paper planning)
 
 One row per experiment. Pythia-1.4B throughout unless stated. Numbers are
 copied from the cited report; CIs are 95% (bootstrap as in that report).
@@ -99,6 +99,28 @@ No predictions were declared in this period.
 | R4-E13d | Is the natural Head − XTail " by" deficit reliable (126 pairs)? | +0.45 [−0.33, +1.27] | descriptive | `round4/e13_deficit.md` | — | **main** |
 | R4-E13T | Oracle at the translation stage (top-50 switch neurons) | XTail Δ by +0.165 [+0.103, +0.229]; vs random +0.169 [+0.107, +0.234]; Head control −0.094 [−0.208, +0.019]: rule not met | partly | `round4/e13t_oracle_translation.md` | — | **main** |
 
+## R5: locating the deficit, mechanism tests, scale
+
+Declared in `round5/plan.md`; results in `round5/results.md`. "Declared"
+summarizes that part's predictions.
+
+| ID | Question | Key number [95% CI] | Declared | Report | Figure | Tag |
+|---|---|---|---|---|---|---|
+| R5-A1 | Where is the participle deficit? (was vs has frame contrast L, 126 pairs) | L Head 3.84 / Tail 2.82 / XTail 1.72; ΔL +2.12 [+1.26, +2.94]; intransitive side +2.60, transitive −0.48 | mixed (deficit held; size, sides, ΔM_has missed) | `round5/a1_frame.md` | — | **main** |
+| R5-A2 | Exact decomposition L = Δh · (u_T − u_I) | identity error 4e-5; I-row affinity Zipf slope −1.58; first subtoken carries XTail 0.03 / Tail 0.34 of L; singleton D_L +2.09 [+1.00, +3.23] | mostly held (subtoken share missed) | `round5/a2_decomposition.md` | — | **main** |
+| R5-A3 | Do Pile passive-slot counts predict Δ_pass beyond overall frequency? | curated: unresolved (T +0.045 [−0.09, +0.20], I +0.043 [−0.21, +0.32] CV MSE); pool T: slot adds +0.41 [+0.25, +0.61]; I-verb "was V" = prepositional passives | missed (unresolved) | `round5/a3_counts.md` | — | app |
+| R5-A4 | Output-side restoration of rare (Tail) single-token participles along the was − has direction | oracle +0.53 [+0.24, +0.83] nats on affected passives (I-only +0.33, T-only +0.20); Head and unaffected items unchanged; label-free −0.02 [−0.22, +0.19] vs half the oracle | held | `round5/a4_restore.md` | — | **main** |
+| R5-A5 | Does a grammaticality probe (Wang et al. 2026) show the rarity decline? | probe Head 88.2 → XTail 71.9%, D +16.3 [+12.9, +19.8]; LP D +9.7; D_LP − D_probe −6.6 [−11.0, −2.0] | missed (larger, not smaller, decline) | `round5/a5_probe.md` | — | **main** |
+| R5-B5 | Is d (or the switch neurons) necessary for good passives? | d → I mean removes 0.15 of " by"; top-50 neurons 0.09; both 0.19; class info beyond d (0.59 of the gap remains) | mostly missed (necessity) | `round5/b5_necessity.md` | — | **main** (negative) |
+| R5-B6 | Serial chain heads → mid MLPs → late object MLPs | freeze leaves 0.14–0.26 of the late switch; strict two-hop 0.29–1.08 (chain holds 2 of 4) | mixed | `round5/b6_serial.md` | — | **main** |
+| R5-C8 | Filler-gap licensing with non-DAS verbs | matrix licensing-like at sites 4, 8, 10; embedded mixed at 8, surface at 6 | mixed | `round5/c8_fillergap.md` | — | **main** |
+| R5-C9 | Do the switch neurons read the class in wh-gap frames too? | ρ_nat 1.83–1.93, ρ_in 1.43–1.57 (what / passive); "that" frame ≈ 0: shared and filler-conditioned | missed (stronger than predicted) | `round5/c9_shared_readers.md` | — | **main** |
+| R5-B7 | What do the top switch neurons respond to in Pile text? | MLP11.n3462: object gap 0.78 + passive 0.23 of top 40; MLP14.n2114 / n5407: passive 0.85 / 0.97, " by" next 0.53 / 0.78; κ = 1.00 | held for ranks 2–3, rank 1 gap reader | `round5/b7_wild.md` | — | **main** |
+| R5-D10 | Feasibility on 6.9B / 12B | fp32 on one H100; DAS run 2.1 / 3.5 min; replication ≈ 3 / 5 GPU-h | — (feasibility) | `round5/d10_scaleup.md` | — | app |
+| R5-D10b | A1/A2 across Pythia 160M–12B | ΔL 1.57–2.44 at every size (CI above 0), intransitive side throughout | held | `round5/d10b_suite.md` | — | **main** |
+| R5-D10c | FreqBLiMP passive_1 Yes/No on 1.4B / 6.9B / 12B | Yes for 97–100% of sentences; Head 0.50 / 0.45 / 0.40 | missed | `round5/d10c_yesno.md` | — | app (negative) |
+| R5-D11 | Expanded T/I verb list | 281 pairs (Head 47, Tail 132, XTail 102), 62 held out; κ = 0.88 | held (rule met) | `round5/d11_verbs.md` | — | app |
+
 ## Suggested storyline (for discussion, not a decision)
 
 1. **Behaviour.** The passive frequency decline is a verb effect, not a
@@ -119,3 +141,18 @@ No predictions were declared in this period.
    Restoring d does nothing (R4-E13); restoring switch neurons helps a
    little (R4-E13T). The *by* deficit itself is unreliable (R4-E13d), so the
    rare-verb deficit is mostly not in the continuation.
+5. **Round 5: where the deficit is.** It is in the passive slot itself and
+   comes from intransitives: frequent intransitive participles are
+   rejected after "was", rare ones much less (R5-A1). On the output side
+   this is a compressed contrast along one was − has direction (R5-A2),
+   and editing rare rows to the Head level recovers about half a nat
+   (R5-A4). The deficit is the same at every Pythia size from 160M to 12B
+   (R5-D10b). A grammaticality probe on the final state shows an even
+   larger rarity drop (R5-A5), so the deficit is not only output-side.
+   Pile slot counts do not reliably explain it for the curated verbs
+   (R5-A3).
+6. **Round 5: the mechanism is not passive-specific.** The early d value is
+   far from necessary (R5-B5). The late object MLPs depend on the mid MLPs
+   (R5-B6). The switch neurons read the verb class in wh-gap frames too,
+   only with a filler present (R5-C9). In natural text the top neuron fires
+   on transitive verbs with a missing object (R5-B7).

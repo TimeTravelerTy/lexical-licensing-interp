@@ -14,9 +14,9 @@ before its runs. Read the plan, then its results file.
 | Round 4 | Confirm current claims; filler-gap test; nonce cues; translation stage; restoration | `round4/plan.md` | `round4/results.md` (generated: `round4/*.md`) |
 | Round 5 | Locate the rare-verb deficit (prediction side); finish mechanism tests; generalization; scale-up prep | `round5/plan.md` | `round5/results.md` (generated: `round5/*.md`) |
 
-`results_index.md` lists every experiment of rounds 1–4 with its key number, declared
+`results_index.md` lists every experiment of rounds 1–5 with its key number, declared
 outcome, report and figure, tagged main / appendix / drop (suggestions for the paper).
 
 Outputs live under `../results/` (round 2–3: `das_round2/`; round 4:
-`round4/`); regenerable inputs under `../data/`. Large raw dumps are
+`round4/`; round 5: `round5/`); regenerable inputs under `../data/`. Large raw dumps are
 gitignored; their hashes are in the run metadata.
