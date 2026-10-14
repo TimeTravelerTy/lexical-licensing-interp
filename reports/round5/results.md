@@ -8,7 +8,7 @@ after code review `32feb71`, bf16 clarification `21671df`; B5–B6:
 - A1–A2: `a1_frame.md`, `a2_decomposition.md`;
 - B5–B6: `b5_necessity.md`, `b6_serial.md`;
 - C8–C9: `c8_fillergap_gates.md`, `c8_fillergap.md`, `c9_shared_readers.md`;
-- A5: `a5_probe.md`;
+- A3: `a3_counts.md`; A5: `a5_probe.md`;
 - B7: `b7_wild.md`;
 - D: `d10_scaleup.md`, `d10b_suite.md` (and `suite/`), `d10c_yesno.md`,
   `d11_verbs.md`.
@@ -530,6 +530,65 @@ the filler-gap frames. Which MLP layers write the filler-gap preference
 stays open, because the declared linear readout did not track L there.
 
 # Part A3–A5
+
+## A3. Training-data predictor (Pile counts)
+
+Exact infini-gram counts in the Pile training set (`v4_piletrain_llama`;
+6,574 queries, none failed). Outcome: Δ_pass(V) from A1 (freq frames).
+Report: `a3_counts.md`.
+
+- **Audit.** Every slot query's tokens end with the overall query's
+  tokens; no verb was dropped. No curated or pool verb has a zero count in
+  any slot.
+- **What "was V" counts** (hand audit, 10 verbs, up to 10 contexts each):
+  - for transitives, 47 of 47 contexts are verbal passives;
+  - for intransitives it is mostly prepositional passives ("was
+    apologized to", "was glared at", "was flirted with"; 27 of 40);
+  - the rest are clause boundaries or nonstandard use ("whatever it was
+    happened"; 10 of 10 for "happened");
+  - "was hitchhiked" never occurs.
+
+  So c_be is a passive count for T verbs and mainly a prepositional-
+  passive count for I verbs.
+- **Curated verbs** (primary; CV MSE, 10 folds grouped by pair):
+
+| class | r(Zipf) | r(log c) | r(log c_be) | partial r(ρ_be \| log c) | CV ~log c | ~log c_be | ~log c + log c_be | difference [95% CI] | ~Zipf | decision |
+|---|---|---|---|---|---:|---:|---:|---|---:|---|
+| T | −0.14 | −0.14 | −0.06 | +0.16 [+0.01, +0.31] | 2.070 | 2.095 | 2.026 | +0.045 [−0.091, +0.198] | 2.077 | **unresolved** |
+| I | −0.58 | −0.50 | −0.26 | +0.19 [+0.00, +0.37] | 2.649 | 3.350 | 2.606 | +0.043 [−0.212, +0.315] | 2.353 | **unresolved** |
+
+  - The smoothing, capitalization and was + been sensitivities are all
+    unresolved too.
+  - For I verbs the slot count alone predicts much worse than overall
+    frequency (3.35 vs 2.65). wordfreq Zipf predicts better than Pile log c
+    (2.35; in-sample R² 0.34 vs 0.25).
+- **Pool verbs** (secondary): T **slot frequency adds**: CV error 2.049 →
+  1.636, difference +0.41 [+0.25, +0.61]; in-sample R² rises from 0.00
+  to 0.20. It holds under every smoothing. I: unresolved (+0.34 [−0.09,
+  +1.00]).
+- **Pairs, L ~ T and I predictors:** unresolved (+0.18 [−0.43, +0.76]), in
+  every sensitivity.
+- **Conditional on overall frequency**, verbs seen more often after a
+  be-form have a higher Δ_pass, i.e. they are more acceptable after "was".
+  The partial r is positive in all four class × population cells (+0.16 to
+  +0.45).
+
+**Against the predictions.**
+- I: overall frequency suffices: **missed**. The point estimate shows no
+  gain (1.6% of the error), but the CI is too wide to call it
+  negligible.
+- T: slot frequency adds: **missed on the curated verbs** (unresolved).
+  **Held in the secondary pool** (627 verbs).
+- L: overall frequency suffices: **missed** (unresolved).
+- Descriptive: Pile log c does not beat wordfreq Zipf.
+
+**Reading.** With 126 verbs per class, the curated test cannot separate
+"slot counts add" from "overall frequency suffices". The larger pool shows
+that, at fixed overall frequency, a transitive participle's Pile passive
+count predicts how acceptable Pythia finds it after "was". For
+intransitives the picture fits preemption: overall frequency (Zipf) is the
+best single predictor of how strongly they are rejected. Their "was V"
+count mostly records prepositional passives and adds nothing reliable.
 
 ## A5. Non-LP readout: a grammaticality probe
 
