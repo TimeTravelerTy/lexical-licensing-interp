@@ -1,0 +1,25 @@
+paradigm,method,band,acc,lo,hi
+passive_1,probe (split 0),head,88.2,86.2,90.1
+passive_1,probe (split 0),tail,82.0,79.6,84.4
+passive_1,probe (split 0),xtail,71.9,69.1,74.7
+passive_1,probe (split 1),head,88.6,86.7,90.6
+passive_1,probe (split 1),tail,82.6,80.2,84.9
+passive_1,probe (split 1),xtail,72.7,69.9,75.3
+passive_1,probe (split 2),head,88.6,86.7,90.5
+passive_1,probe (split 2),tail,82.1,79.6,84.5
+passive_1,probe (split 2),xtail,71.8,69.0,74.50249999999998
+passive_1,LP,head,79.1,76.7,81.7
+passive_1,LP,tail,79.2,76.8,81.6
+passive_1,LP,xtail,69.4,66.7,72.10249999999998
+passive_2,probe (split 0),head,91.2,89.5,92.9
+passive_2,probe (split 0),tail,83.9,81.6,86.1
+passive_2,probe (split 0),xtail,71.4,68.5,74.3
+passive_2,probe (split 1),head,90.8,88.9,92.5
+passive_2,probe (split 1),tail,83.9,81.6,86.00249999999998
+passive_2,probe (split 1),xtail,73.9,71.0975,76.40249999999999
+passive_2,probe (split 2),head,90.6,88.8,92.3
+passive_2,probe (split 2),tail,83.4,81.1,85.6
+passive_2,probe (split 2),xtail,72.8,70.0,75.6
+passive_2,LP,head,81.5,79.0,84.00249999999998
+passive_2,LP,tail,79.3,76.7975,81.70249999999999
+passive_2,LP,xtail,73.2,70.4,75.8

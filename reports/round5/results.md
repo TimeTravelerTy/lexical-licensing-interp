@@ -8,13 +8,16 @@ after code review `32feb71`, bf16 clarification `21671df`; B5–B6:
 - A1–A2: `a1_frame.md`, `a2_decomposition.md`;
 - B5–B6: `b5_necessity.md`, `b6_serial.md`;
 - C8–C9: `c8_fillergap_gates.md`, `c8_fillergap.md`, `c9_shared_readers.md`;
+- A5: `a5_probe.md`;
 - B7: `b7_wild.md`;
-- D: `d10_scaleup.md`.
+- D: `d10_scaleup.md`, `d10b_suite.md` (and `suite/`), `d10c_yesno.md`,
+  `d11_verbs.md`.
 
 TSUBAME jobs: 9007119 (A1–A2), 9007211 (curated `passive_1` rescored in
 fp32), 9007340 (B5; earlier attempts 9007281 and 9007322 stopped at the
 self-patch check, see below), 9007282 (B6), 9007314 (C8 natural pass),
-9007336 (C8 patches), 9008384 (C9), 9008705 (B7), 9008724 (D10).
+9007336 (C8 patches), 9008384 (C9), 9008634 (A5), 9008705 (B7), 9008724 (D10), 9009081 (D10b, D10c; 9008725
+stopped at a check, see D10b).
 
 ## Summary
 
@@ -526,6 +529,64 @@ This holds for recruitment, not mediation: no neuron was intervened on in
 the filler-gap frames. Which MLP layers write the filler-gap preference
 stays open, because the declared linear readout did not track L there.
 
+# Part A3–A5
+
+## A5. Non-LP readout: a grammaticality probe
+
+Wang et al. 2026's probe, adapted (`plan.md`, A5): L2 logistic regression
+on the last token's residual state, trained to separate 49,998 corpus
+sentences (Gutenberg, WikiText-103) from perturbed copies. TSUBAME job
+9008634. Report: `a5_probe.md`.
+
+- **Probe quality.** Layer 13 has the best dev AUC (0.930). The baselines
+  reach 0.569 (length, punctuation and casing) and 0.844 (LM log-prob per
+  token). Three document splits give the same layer accuracy within 1 pp.
+  **Informative** on all three criteria (AUC ≥ 0.85; +0.36 over the
+  artifact baseline; Head `passive_1` 88.2%, CI above 50%).
+- **Released `passive_1`** (accuracy, %, 95% CI):
+
+| readout | Head | Tail | XTail | D = Head − XTail | Head − Tail |
+|---|---|---|---|---|---|
+| probe | 88.2 [86.2, 90.1] | 82.0 [79.6, 84.4] | 71.9 [69.1, 74.7] | +16.3 [+12.9, +19.8] | +6.2 [+3.0, +9.2] |
+| LP | 79.1 [76.7, 81.7] | 79.2 [76.8, 81.6] | 69.4 [66.7, 72.1] | +9.7 [+5.9, +13.6] | −0.1 [−3.6, +3.6] |
+
+  - Paired: D_LP − D_probe = −6.6 [−11.0, −2.0]. The probe's drop is
+    *larger* than LP's. D_probe − 0.5 D_LP = +11.5 [+7.9, +14.9].
+  - Good-verb clusters give the same: D_LP − D_probe −6.6 [−12.5, −0.8].
+  - The probe-logit margin shrinks with rarity: +3.00 / +1.61 / +0.88.
+  - Splits 1–2 give D_probe +15.9 and +16.8.
+- **Secondary.**
+  - `passive_2`: the same pattern (D_probe +19.8 vs D_LP +8.3).
+  - Curated band-cross `passive_1`: probe 89 / 85 / 79%, LP 81 / 78 / 73%.
+  - All 67 paradigms: mean Head accuracy is 77.6% for the probe and 79.2%
+    for LP. The mean Head − XTail drop is 2.6 pp for the probe and 1.7 pp
+    for LP. The two drops correlate at +0.64 across paradigms.
+
+**Declared decisions.**
+- Detectable decline: **yes**.
+- Declines like LP: **yes**.
+- Smaller decline than LP: **no**; the decline is larger.
+- Practically no decline: **no**.
+
+**Against the predictions.**
+- The probe is informative: **held**.
+- Its Head accuracy is below LP's: **missed** (88 vs 79%).
+- Smaller decline than LP, not "declines like LP": **missed**. Both
+  "declines like LP" and a significantly larger drop hold.
+
+**Reading.** The rare-verb deficit is not confined to the participle's
+output probability. A probe on the sentence-final state separates good
+from bad passives better than LP on frequent verbs, and it loses more of
+that advantage for rare verbs. It already drops at Tail, where LP does not.
+So the representation at the end of the sentence carries less of the
+good/bad distinction for rare verbs. That argues against a purely
+output-side account of the deficit, which was the prediction's rationale.
+
+One caveat: the probe was trained to detect perturbed text, and rare
+words look unusual in both members of an XTail pair. That may compress its
+margin through a familiarity signal as well as through grammaticality.
+This experiment cannot separate the two.
+
 # Part B7
 
 ## B7. Switch neurons in the wild
@@ -675,6 +736,51 @@ H100; TSUBAME job 9008724). Table and derivation: `d10_scaleup.md`.
 final) plus two path-patching frame sets costs about 3 GPU-hours. The same
 on 12B costs about 5. Both are feasible on gpu_1 nodes without code
 changes.
+
+## D10b. A1/A2 across the Pythia suite
+
+A1's runner on six more Pythia sizes (freq prefixes, fp32; TSUBAME job
+9009081, 26 min of forward passes in total). Each model was analysed with
+`analyze_frame_contrast.py --no-accounting`. Table: `d10b_suite.md`;
+per-model reports: `suite/pythia-*/`.
+
+| model | L: Head / Tail / XTail | ΔL (Head − XTail) | intransitive side −ΔΔ_pass(I) | transitive side ΔΔ_pass(T) | Head AUC | singleton D_L |
+|---|---|---|---:|---:|---:|---|
+| 160M | 3.10 / 2.08 / 1.53 | +1.57 [+0.76, +2.28] | +2.10 | −0.53 | 0.95 | +1.72 [+0.80, +2.62] |
+| 410M | 3.86 / 3.05 / 1.42 | +2.44 [+1.66, +3.22] | +2.94 | −0.49 | 0.96 | +1.85 [+0.64, +3.05] |
+| 1B | 4.02 / 3.14 / 1.73 | +2.29 [+1.45, +3.10] | +2.86 | −0.57 | 0.96 | +2.20 [+1.00, +3.38] |
+| 1.4B | 3.84 / 2.82 / 1.72 | +2.12 [+1.26, +2.94] | +2.60 | −0.48 | 0.96 | +2.09 [+1.00, +3.23] |
+| 2.8B | 3.74 / 2.99 / 2.00 | +1.74 [+0.84, +2.61] | +2.25 | −0.51 | 0.95 | +2.11 [+0.98, +3.26] |
+| 6.9B | 3.87 / 2.85 / 1.59 | +2.27 [+1.41, +3.09] | +2.80 | −0.53 | 0.95 | +2.11 [+1.08, +3.19] |
+| 12B | 3.92 / 3.06 / 2.04 | +1.88 [+0.91, +2.79] | +2.57 | −0.69 | 0.95 | +2.25 [+1.14, +3.43] |
+
+- ΔL is a **deficit** (A1's rule) at every size, 160M included.
+- At every size the deficit comes from the intransitive side: rare
+  intransitives are rejected less after "was". The transitive side moves
+  slightly the other way.
+- ΔM_has is unresolved everywhere, so the A1 reading stays unresolved, as
+  for 1.4B.
+- Head AUC and the singleton contrast D_L hardly change with size.
+
+**Against the prediction.** The deficit appears at every size ≥ 410M,
+stays on the intransitive side, and is within ±50% of 1.4B's (1.06–3.18):
+**held** for all five sizes (1.74–2.44). 160M shows it too.
+
+**Reading.** Scale does not remove the rare-verb deficit at the passive
+slot. Across a 75-fold range of parameters it stays about 2 nats, and its
+source stays the same: frequent intransitive participles are rejected
+after "was", rare ones are not. The models were all trained on the same
+data, so this fits a deficit that tracks training exposure more than
+model capacity.
+
+**Checks and deviations (D10b).**
+- Tolerance clarification (pre-run, `plan.md`, D10b): 160M's largest
+  |logit| at the slot is 845, against 17–20 for every other size. That
+  explains its larger fp32 errors (reconstruction 1.4e-3, identity
+  2.7e-3), both within the 1e-2 tolerance. All other models are below
+  6.4e-5.
+- The planned timing block was skipped. The full runs took 26 min, well
+  inside the 4 GPU-hour cap.
 
 ## D10c. FreqBLiMP passive_1 Yes/No on 1.4B, 6.9B and 12B
 

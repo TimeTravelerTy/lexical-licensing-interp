@@ -1,0 +1,183 @@
+{
+ "freq": {
+  "L_head_xtail": "deficit",
+  "Mhas_head_xtail": "unresolved",
+  "reading": "unresolved",
+  "L_head_tail": "deficit",
+  "Mhas_head_tail": "unresolved",
+  "reading_head_tail": "unresolved",
+  "dL": [
+   1.5679022109190612,
+   0.7628742334997556,
+   2.284462677504388
+  ],
+  "dMhas": [
+   -0.20226890606669867,
+   -0.9989206332463664,
+   0.6143244436670533
+  ]
+ },
+ "freq_animate": {
+  "L_head_xtail": "deficit",
+  "Mhas_head_xtail": "unresolved",
+  "reading": "unresolved"
+ },
+ "freq_inanimate": {
+  "L_head_xtail": "deficit",
+  "Mhas_head_xtail": "unresolved",
+  "reading": "unresolved"
+ },
+ "been": {
+  "L_head_xtail": "deficit",
+  "Mhas_head_xtail": "unresolved",
+  "reading": "unresolved",
+  "L_head_tail": "deficit",
+  "Mhas_head_tail": "unresolved",
+  "reading_head_tail": "unresolved",
+  "dL": [
+   1.4853262591983512,
+   0.6843511888658022,
+   2.2495289310226085
+  ],
+  "dMhas": [
+   -0.20226890606669867,
+   -0.9813152793314528,
+   0.5600951853491162
+  ]
+ },
+ "been_animate": {
+  "L_head_xtail": "deficit",
+  "Mhas_head_xtail": "unresolved",
+  "reading": "unresolved"
+ },
+ "been_inanimate": {
+  "L_head_xtail": "deficit",
+  "Mhas_head_xtail": "unresolved",
+  "reading": "unresolved"
+ },
+ "cur": {
+  "L_head_xtail": "deficit",
+  "Mhas_head_xtail": "unresolved",
+  "reading": "unresolved",
+  "L_head_tail": "deficit",
+  "Mhas_head_tail": "unresolved",
+  "reading_head_tail": "unresolved",
+  "dL": [
+   1.7630549700822646,
+   0.9846674807915256,
+   2.5237733220651446
+  ],
+  "dMhas": [
+   -0.3081124002910377,
+   -1.1580073274081595,
+   0.48988886557216327
+  ]
+ },
+ "they": {
+  "L_head_xtail": "deficit",
+  "Mhas_head_xtail": "unresolved",
+  "reading": "unresolved",
+  "L_head_tail": "deficit",
+  "Mhas_head_tail": "unresolved",
+  "reading_head_tail": "unresolved",
+  "dL": [
+   1.8264582299541394,
+   1.1321642878181661,
+   2.54332596452176
+  ],
+  "dMhas": [
+   -0.035594225878325836,
+   -0.7642582247838234,
+   0.703575222396148
+  ]
+ },
+ "a4_gate": {
+  "gate1": true,
+  "gate2": 1.0,
+  "gate3": true,
+  "runs": true,
+  "detail": {
+   "curated + pool (gate)": {
+    "D_L": [
+     1.718989166388158,
+     0.7972339412782755,
+     2.621441201860792
+    ],
+    "D_T": [
+     0.4716109205322002,
+     0.08521109797524523,
+     0.8604310910821373
+    ],
+    "D_I": [
+     -1.2473782458559577,
+     -2.0473395285457694,
+     -0.3974844844646516
+    ],
+    "n": {
+     "T_head": 282,
+     "T_rare": 23,
+     "I_head": 30,
+     "I_rare": 9
+    },
+    "rare_bands": [
+     "tail"
+    ]
+   },
+   "curated only": {
+    "D_L": [
+     2.1371080133497626,
+     0.8753829554925212,
+     3.433701853751825
+    ],
+    "D_T": [
+     0.646528137032718,
+     -0.06502397695804496,
+     1.507795675282141
+    ],
+    "D_I": [
+     -1.4905798763170446,
+     -2.4510155119550965,
+     -0.4364415307526316
+    ],
+    "n": {
+     "T_head": 26,
+     "T_rare": 6,
+     "I_head": 26,
+     "I_rare": 7
+    },
+    "rare_bands": [
+     "tail"
+    ]
+   },
+   "curated + pool, Head Zipf \u2264 4.0": {
+    "D_L": [
+     1.116558273628553,
+     0.15855159075645503,
+     2.059985003861375
+    ],
+    "D_T": [
+     0.47544376776223063,
+     0.09584321948537264,
+     0.896517443587087
+    ],
+    "D_I": [
+     -0.6411145058663226,
+     -1.4573246481713558,
+     0.23692013284409436
+    ],
+    "n": {
+     "T_head": 150,
+     "T_rare": 23,
+     "I_head": 13,
+     "I_rare": 9
+    },
+    "rare_bands": [
+     "tail"
+    ]
+   }
+  },
+  "auc_head": 0.9467455621301775,
+  "deviation_share": 0.4227354176221661,
+  "P_err": 0.0004786541973454961
+ }
+}

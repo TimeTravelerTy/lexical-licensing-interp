@@ -1,0 +1,26 @@
+{
+  "args": {
+    "pairs": "data/round5/probe/pairs.csv",
+    "freqblimp": "/gs/fs/tga-sip_arase/tyrone/freq-blimp/data/freqblimp",
+    "band_cross": "data/passive_band_cross/pairs.jsonl",
+    "out_dir": "results/round5/probe",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 128
+  },
+  "pairs_sha256": "891861bd28e4fb1322ffab97596c93b6aa77030d56c84eb5e31a82e7622a9929",
+  "n_sentences": 99996,
+  "layer": 13,
+  "dev_auc_best": 0.9302355926500491,
+  "C": {
+    "0": 0.03125,
+    "1": 0.03125,
+    "2": 0.03125
+  },
+  "baselines_dev_auc": {
+    "length_punct": 0.5693612191402785,
+    "lm_logprob": 0.6827768385561552,
+    "lm_logprob_per_token": 0.8438307717639393
+  },
+  "seconds": 1776
+}

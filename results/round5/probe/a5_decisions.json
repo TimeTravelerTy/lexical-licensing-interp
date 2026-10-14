@@ -1,0 +1,36 @@
+{
+ "passive_1": {
+  "detectable_decline": true,
+  "declines_like_LP": true,
+  "smaller_than_LP": false,
+  "practically_no_decline": false,
+  "D_probe": [
+   16.299999999999997,
+   12.900000000000006,
+   19.799999999999997
+  ],
+  "D_LP": [
+   9.699999999999989,
+   5.900000000000006,
+   13.599999999999994
+  ],
+  "informative": true
+ },
+ "passive_2": {
+  "detectable_decline": true,
+  "declines_like_LP": true,
+  "smaller_than_LP": false,
+  "practically_no_decline": false,
+  "D_probe": [
+   19.799999999999997,
+   16.400000000000006,
+   23.200000000000003
+  ],
+  "D_LP": [
+   8.299999999999997,
+   4.797499999999998,
+   12.002499999999987
+  ],
+  "informative": true
+ }
+}
