@@ -1,0 +1,50 @@
+{
+ "hasbeen|all 64 pairs": {
+  "gate": true,
+  "d_partly_necessary": false,
+  "neurons_remove_more_than_d": false,
+  "class_info_beyond_d": true,
+  "specificity": true,
+  "controls_within_0.1": {
+   "d_T": true,
+   "n50_T": false
+  },
+  "d_adds_beyond_neurons": "adds"
+ },
+ "hasbeen|D11 half-B pairs": {
+  "gate": true,
+  "d_partly_necessary": false,
+  "neurons_remove_more_than_d": false,
+  "class_info_beyond_d": true,
+  "specificity": true,
+  "controls_within_0.1": {
+   "d_T": true,
+   "n50_T": true
+  },
+  "d_adds_beyond_neurons": "unresolved"
+ },
+ "was|all 64 pairs": {
+  "gate": true,
+  "d_partly_necessary": false,
+  "neurons_remove_more_than_d": false,
+  "class_info_beyond_d": true,
+  "specificity": false,
+  "controls_within_0.1": {
+   "d_T": true,
+   "n50_T": false
+  },
+  "d_adds_beyond_neurons": "adds"
+ },
+ "was|D11 half-B pairs": {
+  "gate": true,
+  "d_partly_necessary": false,
+  "neurons_remove_more_than_d": false,
+  "class_info_beyond_d": true,
+  "specificity": true,
+  "controls_within_0.1": {
+   "d_T": true,
+   "n50_T": true
+  },
+  "d_adds_beyond_neurons": "unresolved"
+ }
+}

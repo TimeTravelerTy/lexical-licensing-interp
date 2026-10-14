@@ -1,0 +1,55 @@
+{
+  "args": {
+    "items": "data/das_round2/passive_test/items.csv",
+    "plan": "data/das_round2/passive_test/plan.csv.gz",
+    "folds": "results/das_round2/final_strict/pairs_folds.csv",
+    "site_dir": "results/das_round2/final_strict_site8",
+    "switch": "results/round4/translation/conjunction_switch_neurons.csv",
+    "neurons": "data/round4/oracle_translation/neurons.csv",
+    "out_dir": "results/round5/necessity",
+    "contexts": 32,
+    "seed": 17,
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 256,
+    "dtype": "float32",
+    "d_mlp": 8192
+  },
+  "items": 7983,
+  "b7_items": 2048,
+  "neuron_sets": {
+    "r10_1": 10,
+    "r10_2": 10,
+    "r10_3": 10,
+    "r10_4": 10,
+    "r10_5": 10,
+    "r50_1": 50,
+    "r50_2": 50,
+    "r50_3": 50,
+    "r50_4": 50,
+    "r50_5": 50,
+    "top10": 10,
+    "top50": 50,
+    "w50": 50
+  },
+  "min_target_pairs": {
+    "hasbeen": 53,
+    "was": 53
+  },
+  "inputs": {
+    "items": "a33a501584b9d9d7391be0681fb86e5e826796ab5027c74b170c0a4c0a4f2bbc",
+    "plan": "54bfbe9fc26da65f6c74c349ddd6cfc4cfe6962db4a3e0d5fda25359093fc606",
+    "switch": "7509432594aed7853d19bc4239524ff5c52a6da7c44c5bbdd73de12b8ea41104",
+    "neurons": "850fb586d4ba7817e3684dd4425c0afce71b0fabc6bbff8c97fa7ae967070e73",
+    "bases": "4425f0b09a59361dcf6effa4ad8798c8e6282035267104de97ce4ac410f78d70"
+  },
+  "checks": {
+    "batch_noise_vs_natural_pass": 4.982948303222656e-05,
+    "site8_target": 2.5033950805664062e-06,
+    "site8_outside": 0.0,
+    "neuron_target": 0.0,
+    "neuron_outside": 0.0,
+    "self_patch_max_abs": 0.0
+  },
+  "seconds": 99.8
+}

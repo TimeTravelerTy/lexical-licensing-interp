@@ -1,0 +1,72 @@
+{
+ "all 64 pairs": {
+  "per_target": {
+   "15": {
+    "eligible": true,
+    "chain": false,
+    "freeze_necessary": true,
+    "comparator_ok": false,
+    "neurons_carry": false
+   },
+   "18": {
+    "eligible": true,
+    "chain": false,
+    "freeze_necessary": true,
+    "comparator_ok": false,
+    "neurons_carry": false
+   },
+   "21": {
+    "eligible": true,
+    "chain": true,
+    "freeze_necessary": true,
+    "comparator_ok": true,
+    "neurons_carry": false
+   },
+   "22": {
+    "eligible": true,
+    "chain": true,
+    "freeze_necessary": true,
+    "comparator_ok": true,
+    "neurons_carry": false
+   }
+  },
+  "chain_carries_late_switch": false,
+  "mid_anchor_outputs_necessary": true,
+  "switch_neurons_carry_chain": "unresolved"
+ },
+ "D11 half-B pairs": {
+  "per_target": {
+   "15": {
+    "eligible": true,
+    "chain": false,
+    "freeze_necessary": true,
+    "comparator_ok": false,
+    "neurons_carry": false
+   },
+   "18": {
+    "eligible": true,
+    "chain": false,
+    "freeze_necessary": true,
+    "comparator_ok": false,
+    "neurons_carry": false
+   },
+   "21": {
+    "eligible": true,
+    "chain": true,
+    "freeze_necessary": true,
+    "comparator_ok": true,
+    "neurons_carry": false
+   },
+   "22": {
+    "eligible": true,
+    "chain": true,
+    "freeze_necessary": true,
+    "comparator_ok": true,
+    "neurons_carry": false
+   }
+  },
+  "chain_carries_late_switch": false,
+  "mid_anchor_outputs_necessary": true,
+  "switch_neurons_carry_chain": "unresolved"
+ }
+}
