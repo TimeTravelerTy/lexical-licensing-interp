@@ -269,86 +269,114 @@ change.
    (fp32): A1 scores, h at the auxiliary, the checks.
 3. Analysis locally; report in `results.md`.
 
+
 # Part B5–B6: mechanism completion (declared 2026-10-14)
+
+Revised after an outside review (Codex) of the first draft, before any run.
 
 Shared setup: the round-4 D10 frames ("The N has been V" = passive base;
 "The N has V" = counterfactual; "The N was V" = second passive), the site-8
 rank-1 d (split-0 basis, each item's cross-fitted fold, as B7 / D10 / D11),
 fp32, interventions and readouts at the participle's last token. Items: the
-64 primary pairs. The D11 switch neurons are ranks 1–10 (4 in MLP11, 6 in
-MLP14) and 1–50 (16 / 34) of `results/round4/translation/conjunction_switch_neurons.csv`.
-Pair bootstrap within band (× contexts where stated), 2,000 draws, seed 17.
+64 primary pairs. Switch neurons: ranks 1–10 (4 in MLP11, 6 in MLP14) and
+1–50 (16 / 34) of `results/round4/translation/conjunction_switch_neurons.csv`.
+They were selected in D11 on these primary pairs (half A), so B5–B6 are new
+causal tests of an existing selected set, not independent replications;
+results on D11's half-B pairs (33) are reported alongside all 64. Values are
+averaged within pair (over contexts and donors) before pairs are averaged;
+shares are ratios of population means; every ratio and paired comparison
+uses the same bootstrap draws (pairs within band, × contexts where stated;
+2,000 draws, seed 17).
 
 ## B5. Necessity on good (transitive) passives
 
-**Question.** Round 4 showed sufficiency: moving an intransitive verb's d
-coordinate within the passive range gives 0.44 of the natural " by" gap (A2),
-and setting the switch neurons helps rare verbs (E13-T). Are d and the
-switch neurons also necessary: does setting a transitive verb's value to the
-intransitive level remove its " by" preference?
+**Question.** Round 4 showed sufficiency-type results: on bad items, moving
+the d coordinate from the intransitive to the transitive class mean gives
+0.44 of the natural " by" gap (A2), and setting the switch neurons to the
+frequent-verb mean helps rare verbs (E13-T). B5 asks the reverse: does
+setting a transitive verb's value to the intransitive level remove its
+" by" preference? (A2's 0.44 is R_I(t_T) − R_I(t_I) on bad items; B5
+measures R_T(natural) − R_T(t_I) on good items, so using 0.44 as a
+prediction assumes a symmetric response.)
 
-**Items.** The B7 items (32 contexts per primary pair, seed 17; 2,048 items),
-good prompt as base, in the has-been frame (primary) and the was frame
-(secondary). A natural pass over every primary passive-test item (good and
-bad prompt, both frames) supplies the targets.
+**Items.** The B7 items (32 contexts per primary pair, seed 17; 2,048
+items), natural good prompt as the base (no site-8 donor patch), in the
+has-been frame (primary) and the was frame (secondary). A natural pass over
+every primary passive-test item (good and bad prompt, both frames) supplies
+the targets.
 
-**Targets** (computed once from the natural pass; inference conditions on
-them). For an item in context c and frame f, eligible pairs = primary pairs
-other than its own and outside the DAS training pairs of its basis:
-- t_I(d) = mean raw projection on the item's basis of the eligible pairs'
-  **bad** items in c and f; t_T(d) the same over their **good** items;
-- for each switch neuron, its mean post-activation over the eligible bad
-  items in c and f (I-mean) and over the eligible good items (T-mean).
+**Targets** (from the natural pass; inference conditions on them). For an
+item in context c and frame f, eligible pairs = primary pairs other than its
+own and outside the DAS training pairs of its basis:
+- t_I(d) / t_T(d) = mean raw projection on the item's basis of the eligible
+  pairs' natural **bad** / **good** items in c and f;
+- per neuron, its mean post-activation over the eligible natural bad items
+  in c and f (I-mean) and over the good items (T-mean).
 
 **Interventions on the good item** (one at a time):
 - **(a) d_I:** the site-8 coordinate set to t_I: h ← h + (t_I − h·d) d;
 - **(b) n10_I / n50_I:** the top-10 / top-50 switch neurons set to their
-  I-means (not zero);
+  I-means (not zero); no site-8 change;
 - **(c) c10 / c50:** (a) and (b) together;
-- controls: **d_T** and **n50_T** (set to the good-class means, leave-own-out:
-  specificity; under a common linear response they move little);
-  **r10_k / r50_k**, k = 1–5: five layer-matched random neuron sets (10 = 4 +
-  6, drawn with seed 17 outside the top 50; 50 = the round-4 E13-T `random1`–
-  `random5` sets, `data/round4/oracle_translation/neurons.csv`), set to their
-  own I-means; reported as the mean over the five sets.
+- controls: **d_T**, **n50_T** (good-class means, leave-own-out);
+  **r10_k / r50_k**, k = 1–5, layer-matched random sets (10 = 4 + 6, drawn
+  with seed 17 outside the top 50; 50 = the E13-T `random1`–`random5`) and
+  **w50** (the E13-T `wmatched` set, matched on " by" output weight), each
+  set to its own I-means; random sets reported as the mean over the five.
+- **(d) equalized coordinate** (for "class information beyond d"): good
+  and bad items both get the same site-8 coordinate, the context mean
+  t_mid = (t_T + t_I) / 2; the top-50 neurons' good − bad activation
+  difference (in w_by units: Σ Δa_n · w_by,n) and the " by" good − bad gap
+  are recomputed and compared with their natural values. Remaining
+  fraction = equalized / natural (ratio of population means).
 
 **Readouts:** log P(" by") (primary), log P(O), log P("."), log P(PREP
 without " by") (the C9 sets). **Share removed** = mean(by_nat,good −
-by_cond) / mean(by_nat,good − by_nat,bad) over the same items (ratio of
-population means; pairs within band × contexts). Δ in nats is reported
-with it.
+by_cond) / mean(by_nat,good − by_nat,bad). Also reported: Δ in nats; the
+target contrasts R(d_T) − R(d_I) and R(n50_T) − R(n50_I); the interaction
+(c) − (a) − (b).
 
-**Checks (fail-fast).** Setting each item to its own natural value (d
-coordinate, neuron activations) reproduces the natural readouts (≤ 1e-4);
-patched entries equal their targets; nothing else in the hooked tensors
-changes.
+**Checks (fail-fast).** Setting each item to its own natural values
+reproduces the natural readouts (≤ 1e-4); patched entries equal their
+targets and nothing else in the hooked tensor changes at that hook.
+
+**Gate.** The natural good − bad " by" gap in the frame must have a 95% CI
+above 0 and be ≥ 0.2 nats; otherwise B5 is unresolved in that frame.
 
 **Decision rules** (has-been frame; was reported alongside).
 - **d is partly necessary:** share(a) has a 95% CI above 0 and is ≥ 0.25.
-- **The neurons carry class information beyond d:** share(n50_I) −
-  share(a) (paired) has a 95% CI above 0.
-- **Neuron specificity:** share(n50_I) − share(r50) and share(n10_I) −
-  share(r10) have 95% CIs above 0.
-- **d adds beyond the neurons:** share(c50) − share(n50_I) has a 95% CI
-  above 0 and is ≥ 0.1; **nothing beyond** if its 90% CI is within ±0.1;
-  otherwise unresolved.
-- **Controls:** d_T and n50_T change " by" by less than 0.1 nats (95% CI
-  within ±0.1). If not, the shares are flagged as partly a generic response
-  to class-mean replacement (as E13).
+- **Neuron replacement removes more than coordinate replacement:**
+  share(n50_I) − share(a) (paired) has a 95% CI above 0. This compares
+  interventions; by itself it does not show that the neurons get class
+  information from outside d.
+- **Class information beyond the d coordinate:** under (d), the top-50
+  neurons' good − bad difference keeps a 95% CI above 0 and ≥ 25% of its
+  natural value. (Beyond this rank-1 coordinate only; other directions at
+  site 8 are not equalized.)
+- **Neuron specificity:** share(n50_I) − share(r50), share(n50_I) −
+  share(w50) and share(n10_I) − share(r10) have 95% CIs above 0.
+- **d adds beyond the clamped neurons:** share(c50) − share(n50_I) has a
+  95% CI above 0 and is ≥ 0.1; **nothing beyond** if its 90% CI is within
+  ±0.1; otherwise unresolved.
+- **Controls:** d_T and n50_T should change " by" by less than 0.1 nats
+  (95% CI within ±0.1). A failure qualifies the shares (it can reflect a
+  generic response to class-mean replacement, nonlinearity or lost
+  verb-specific content); it is reported, not treated as proof of either.
 
-**Predictions.**
-- share(a) ≈ 0.45 (0.3–0.6): d is partly necessary (the sufficiency value
-  was 0.44).
-- share(n50_I) ≈ 0.6 (0.4–0.8); share(n10_I) ≈ 0.4 (0.25–0.6). From D11:
-  the top 50's natural good − bad direct effect is ≈ 1.4 w_by units ≈ 0.45
-  logit after the final-LN scale, against a natural gap of ≈ 0.7–0.9 nats,
-  plus indirect effects.
-- The neurons carry class information beyond d: **yes**. Specificity:
-  **yes** (random sets ≈ 0).
-- c50 − n50_I ≈ +0.1–0.2 (d also acts through MLPs 13, 16, 17): "d adds
-  beyond the neurons" borderline.
-- Controls within ±0.1: d_T yes; n50_T may fail (E13-T's Head control was
-  −0.09 with a CI to −0.21).
+**Predictions** (motivated by A2 and D11, not determined by them).
+- share(a) ≈ 0.45 (0.3–0.6): **d is partly necessary**.
+- share(n50_I) ≈ 0.6 (0.4–0.8); share(n10_I) ≈ 0.4 (0.25–0.6). (D11: the
+  top 50's natural good − bad direct effect ≈ 1.4 w_by units ≈ 0.45 logit
+  after the final-LN scale, against a natural gap of ≈ 0.7–0.9 nats;
+  indirect effects need not add.)
+- Neuron replacement removes more than coordinate replacement: **yes**.
+- Equalized coordinate: the neurons keep ≈ 50% of their good − bad
+  difference: **class information beyond d: yes** (the verbs differ in
+  more than the rank-1 coordinate).
+- Specificity: **yes** against random; against w50 smaller but CI above 0.
+- c50 − n50_I ≈ +0.1–0.2 (d also acts through MLPs 13, 16, 17): borderline.
+- d_T within ±0.1: yes; n50_T may fail (E13-T's Head control was −0.09,
+  CI to −0.21).
 
 ## B6. Serial chain into the late object MLPs
 
@@ -357,66 +385,79 @@ between frames, and earlier MLPs switch the late object MLPs 15, 18, 21,
 22 (heads ≈ 0 there). Is it one chain: heads → mid MLPs 11–17 → late
 MLPs?
 
-**Rows and quantities.** The D10 rows (B7 items, all split-0 T-donor rows,
-site-8 interchange in every frame). As D10: for a target MLP t (readout
-Ō), Δ_t = its readout under (patched − unpatched) in a frame; the switch
-S_t = Δ_t(has) − Δ_t(has been); a path effect replaces some upstream
-contributions in t's input at the participle's last token by their has-frame
-values (patched and unpatched runs each with their own), with the
-final-LN reference scale of the base patched run.
-Known one-hop shares (D10): earlier MLPs jointly 1.11, 0.87, 1.15, 1.28 of
-S for MLPs 15, 18, 21, 22; heads −0.16 to +0.12.
+**Rows.** The D10 rows (B7 items, all split-0 T-donor rows, site-8
+interchange in every frame). Known (D10): S_t and its eligibility; the
+one-hop share of all earlier MLPs jointly (1.11, 0.87, 1.15, 1.28 of S for
+MLPs 15, 18, 21, 22) and of heads (−0.16 to +0.12); the saved D10 singles
+give summed mid-only single-MLP shares 0.79, 0.49, 0.76, 1.40 (sums of
+singles, not joint effects).
 
-**Paths** (targets t ∈ {15, 18, 21, 22}; M_t = the MLPs in 11–17 below t:
-11–14 for t = 15, 11–17 otherwise):
-- **one-hop, mid:** the outputs of M_t replaced by their has-frame values
-  (reference for (a));
-- **(a) two-hop:** step 1, each m ∈ M_t recomputed with its input changed
-  only by the has-frame minus base outputs of all heads below m; step 2,
-  t's input changed only by the step-1 changes of M_t. **Parallel**
-  (primary): in step 1 each m sees only the head changes. **Sequential**
-  (sensitivity): m also sees the step-1 changes of the M_t MLPs below it.
-  Also each m alone (summed vs joint).
-- **(b) freeze:** full forward passes in the has frame (patched and
-  unpatched) with the outputs of M_t at the participle's last token held at
-  their has-been values from the matching base run; the remaining switch
-  of t is Δ_t(has, frozen) − Δ_t(has been). Two freeze runs: 11–14 (for
-  t = 15) and 11–17 (for 18, 21, 22). Other positions are not frozen.
-- **(c) two-hop through the top-50 neurons only:** as (a), but step 2 uses
-  only the change in the top-50 neurons' contributions (Δ activation × the
-  neuron's output weight), all in MLPs 11 and 14; compared with (a)
-  restricted to MLPs 11 and 14 (full outputs).
+**Definitions.** q ∈ {p, u} = patched / unpatched (site-8 T-donor
+interchange or not); b = the has-been (base) frame, h = the has frame.
+x^q_{b,m} = the residual input of layer m at the participle's last token in
+run (b, q); G_m(x) = MLP m's output vector including its input LayerNorm;
+r = the centered Ō readout; σ = the final-LN scale of the (b, p) run, used
+for every quantity below (S, one-hop, two-hop, frozen). Pythia's attention
+and MLP read the same layer input, so "heads below m" are the heads of
+layers < m.
+- **Switch:** S_t = Δ_t(h) − Δ_t(b), Δ_t(f) = r·[G_t(x^p_{f,t}) −
+  G_t(x^u_{f,t})] / σ.
+- **Path effect** of input changes (e^p, e^u) into t: PE_t(e) = r·[G_t(x^p_{b,t}
+  + e^p) − G_t(x^u_{b,t} + e^u)] / σ − Δ_t(b).
+- H^q_m = Σ over heads in layers < m of (head output in (h, q) − head
+  output in (b, q)) at the anchor.
+- M_t = the MLPs in 11–17 below t (11–14 for t = 15; 11–17 for 18, 21, 22).
+- **One-hop, mid:** e^q = Σ_{m∈M_t} (mlp_m(h, q) − mlp_m(b, q)).
+- **(a) two-hop, parallel (primary):** v^q_m = G_m(x^q_{b,m} + H^q_m) −
+  G_m(x^q_{b,m}); e^q = Σ_{m∈M_t} v^q_m. **Sequential (sensitivity; longer
+  paths, not strictly two-hop):** v^q_m = G_m(x^q_{b,m} + H^q_m + Σ_{k∈M_t,
+  k<m} v^q_k) − G_m(x^q_{b,m}). **Singles:** each m alone, e^q = v^q_m from
+  the same (joint) step 1; summed vs joint measures non-additivity at the
+  target.
+- **(c) neurons only (parallel):** e^q = Σ over the top-50 neurons n of
+  [a_n(x^q_{b,m} + H^q_m) − a_n(x^q_{b,m})] W_out[:, n]; comparator: (a)
+  restricted to m ∈ {11, 14}.
+- **(b) anchor-output freeze:** full forward passes in the has frame (p and
+  u) with the outputs of M_t at the anchor held at their (b, q) values;
+  remaining switch = r·[G_t(x^p) − G_t(x^u)] / σ − Δ_t(b) in the frozen runs.
+  Two freeze runs: 11–14 (for t = 15) and 11–17 (for 18, 21, 22). Other
+  positions keep the has frame, and everything downstream recomputes, so
+  the freeze tests necessity of the anchor outputs under this clamp; it
+  need not equal 1 − the two-hop share.
 
-**Reported per target:** S_t; one-hop shares (all earlier MLPs, mid);
-two-hop shares (parallel, sequential); the sum of the single-m two-hop
-effects vs the joint two-hop and the unexplained remainder S_t − joint;
-the remaining share after freezing; (c) / (a: 11+14). Shares are signed
-fractions of S_t (sign(S_t) · PE / |S_t|), with pair-bootstrap CIs.
-Exactness check: replacing every upstream component reproduces S_t
-(≤ 1e-5), as D10.
+**Checks.** Replacing every upstream component reproduces S_t (≤ 1e-5),
+as D10; with zero source change (H = 0), both two-hop variants give 0; a
+self-freeze (the has frame's own values) reproduces Δ_t(h).
 
-**Decision rules** (eligible targets: |S_t| ≥ 0.05).
-- **The chain carries the late switch:** parallel two-hop share ≥ 0.5,
+**Reported per target:** S_t; shares (signed, sign(S_t) · PE / |S_t|,
+unrestricted) of one-hop mid, two-hop parallel and sequential, singles
+and their sum, the remainder S_t − joint two-hop (signed; omitted paths
+plus interactions), (c) / S_t and (c) / (a: 11 + 14), and the remaining
+share after freezing.
+
+**Decision rules** (eligible targets: |S_t| ≥ 0.05; with fewer than 3
+eligible, unresolved).
+- **The chain carries the late switch:** parallel two-hop share ≥ 0.5 with
   CI above 0, for ≥ 3 of the 4 targets.
-- **Mid MLPs are necessary:** remaining share after freezing ≤ 0.5 (point)
-  with its CI upper bound < 1, for ≥ 3 of 4.
-- **The switch neurons carry the chain:** (c) ≥ 0.5 × (a: 11+14) for ≥ 3 of
-  4.
-- Joint vs summed and the remainder are descriptive.
+- **Anchor outputs of the mid MLPs are necessary:** remaining share after
+  freezing ≤ 0.5 (point) with its CI upper bound < 1, for ≥ 3 of 4 (t = 15
+  freezes 11–14, reported separately from the 11–17 freezes).
+- **The switch neurons carry the chain:** for targets where (a: 11 + 14)
+  has a share ≥ 0.25 with CI above 0, (c) ≥ 0.5 × (a: 11 + 14); needs ≥ 3
+  such targets, otherwise unresolved.
 
 **Predictions.**
-- One-hop mid share 0.7–1.0 (most of the earlier-MLP path is mid MLPs:
-  12, 16, 13, 17, 11, 14 led in B7).
-- Parallel two-hop ≈ 0.5 (0.3–0.7) of S_t: the chain holds for 3 of 4
+- One-hop mid share 0.6–1.2 (the summed singles vary, 0.49–1.40).
+- Parallel two-hop ≈ 0.5 (0.3–0.7) of S_t: **the chain holds for 3 of 4**
   (low confidence); sequential larger by ≈ 0.1.
-- Freezing removes most of the switch: remaining ≤ 0.4 for 18, 21, 22;
-  ≈ 0.5 for 15 (only 11–14 frozen). Mid MLPs necessary: **yes**.
-- The top-50 neurons carry < 0.5 of the 11 + 14 two-hop (they were selected
-  on " by", not on what feeds the object MLPs): **no**.
+- Freeze: remaining ≤ 0.4 for 18, 21, 22 and ≈ 0.5 for 15 (only 11–14
+  frozen): **necessary: yes**.
+- The top-50 neurons carry < 0.5 of the 11 + 14 two-hop (selected on " by",
+  not on what feeds the object MLPs): **no**.
 - Joint ≈ summed within 20%.
 
 ## Order (B5–B6)
 
-1. Commit this part (after review).
+1. Commit this part.
 2. One TSUBAME job each (fp32); B6 extends `run_path_patch_frames.py`.
 3. Analysis; report in `results.md`.
