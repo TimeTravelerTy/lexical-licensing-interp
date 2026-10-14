@@ -1,0 +1,38 @@
+{
+ "inputs": {
+  "fb": "353ccc052fc13874ad8de617940cb617df7ae000592a44fbd857a75de5e6b2c2",
+  "ve": "3c4c9776e152b30a152e52a890341878be767379f6969a7134ba5ea081841669",
+  "c4": "6ecfe0bcc73559d38b38afbde0f01d175ce9f1a2e9291a8013f730f98fb80be7",
+  "cur": "a5c92f97b8f87f337102b8522d55ed194d06d656de3299f7215021cbd8a46a3d",
+  "a1": "cd6d3dca4ca42ff3581d4a052983eed2048688a8c441459394a18a633eacf658",
+  "fb_lemmas": "bc3fd20da63339d9280e85ae971690a92cbc64bd5262eb3e44060a58f2eda4f0",
+  "data/das_round2/sensitivity_named/train_pairs.csv": "0e54aba406dcbb207f304c9016165da5742251245ca2e6628b80bcf38b4712e1",
+  "data/das_round2/sensitivity_named/train_pairs_participle_matched.csv": "d293623f0bbd79c9318b26356294a3fa048715747fcf255a5dc2cc004851e61b",
+  "data/das_round2/train_pairs.csv": "03a8300b4c3ad2ad80fbe198be30b0aea489c6bdfc18bb66da998ffa44a51e6d",
+  "data/das_round2/train_pairs_participle_matched.csv": "5cea50f7d6e853c429278ab1b271a7564245e60a9d5a0b9286a2179f426129c7",
+  "data/passive_das/actives.jsonl": "d3d7681c0447f1ee894fa8a457d36091cf4db10d4949ae6b9c41dbccbc888d4b",
+  "data/verb_expansion/das_train_pairs.csv": "0dc17294f6271f2d7c9ebc757d11016a29d8376eafb7a814e76bde3e3bac218d",
+  "results/das_v1/20260617-pythia14b-das-primary-l23-dummy-hookfix.train_detail.csv": "a0fc7c6d42d2eee4ab486812be9713ec4e23d062551a1efe232d80f2fce216cf",
+  "results/das_v1/20260617-pythia14b-das-primary-l23-hookfix.train_detail.csv": "81ab0facb8910ee6464977c89c60f6a49e55d80af7fe3b00453e924dcd544d50",
+  "results/das_v1/20260617-pythia14b-das-primary-l23-random-hookfix.train_detail.csv": "19e6466b90fdcaf113c6aa6ec64e608b10b540a0f04d1d2cf682886ca47431e2",
+  "results/das_v1/20260617-pythia14b-das-primary-l23-shuffled-hookfix.train_detail.csv": "cfa0f492da3dcee19bb34c4e42255054058cbf9e31bd71a8b97fdc626f59bc51",
+  "results/das_v1_transfer/20260618-pythia14b-das-transfer-head-l23-dummy.train_detail.csv": "b885f3900459df456ba2457a2ac3b6f12c4a4b08452511ad93e2fb03baf00560",
+  "results/das_v1_transfer/20260618-pythia14b-das-transfer-head-l23-random.train_detail.csv": "04c4dffecd7b2e93616bdce25b29c5a7a2f4b443e9c2320ce068b5cc727af7f9",
+  "results/das_v1_transfer/20260618-pythia14b-das-transfer-head-l23-shuffled.train_detail.csv": "46eda5fd75c547650e5990f25748ae89d7fe33f100afc358c68fe2fecf16fe21",
+  "results/das_v1_transfer/20260618-pythia14b-das-transfer-head-l23.train_detail.csv": "dbb88bf6262380eb8e2629dd2834ad14ca1fd44318c61d2697dee47c57d05918",
+  "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l18-none-s17-verb_to_subject_anchor.train_detail.csv": "df87f67a8fe4744be7c1830fcf32df6a5eec008c1a1c7617593f7031bf63f900",
+  "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l18-none-s17.train_detail.csv": "0d5b330c47da5cacda42b2d05d167dca556ac55c229ca353dc9497658adda1eb",
+  "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l20-none-s17-verb_to_subject_anchor.train_detail.csv": "9f2d433f964f872c750d1326b7e8a249c0561743cb66530f42b74e91e2308215",
+  "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l20-none-s17.train_detail.csv": "eb6cf1ea71e9a25a593bb3bb23a18b341e3624999b2eff6bed7d55ce42c045a8",
+  "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l23-none-s17-subject_anchor.train_detail.csv": "54fd6c9a69c6a68f1c4eb1b392c4bfa3f9595ac56ed3215983314ae0d24c81eb",
+  "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l23-none-s17-verb_to_subject_anchor.train_detail.csv": "f030a35bab8d65e0e7af5f672d8d13e1e51cda781893a2d6b88166f874c2ce50",
+  "results/das_v2_transfer/20260623-pythia14b-v2-das-head-to-low-l23-red_blue-s17.train_detail.csv": "f7679d19fe2a928726ba8f1d16b1a978f416474dc581922d91a7da00c33830e5",
+  "data/round5/verbs_expanded/sources/ntok_extra.csv": "c29c6ba6918aabcb00ff0d7801d0a765fec2edb897c241641a111eb3edcc4d60"
+ },
+ "wordfreq": "3.1.1",
+ "seed": 17,
+ "outputs": {
+  "candidates.csv": "a523604e05ff14d7307360fdf051c94c2cf3dcedf196df3692684628d1f0b0d0",
+  "rating_items.csv": "2e9d771831d2e99cd649adc728852eb736939a2287285a437caa5fcd82df5c3e"
+ }
+}

@@ -1,0 +1,1234 @@
+item,label,flag,reason
+0,T,obligatory,"NP object, passive fine"
+1,T,obligatory,"NP object, passive fine"
+2,I,,"intransitive, also raising/copular"
+3,T,obligatory,"NP object, passive fine"
+4,T,obligatory,"animate object, passive fine"
+5,T,obligatory,"NP object, passive fine"
+6,T,obligatory,"NP object, passive fine"
+7,T,obligatory,"NP object, rare verb"
+8,I,,intransitive posture
+9,T,obligatory,"NP object, passive fine"
+10,I,,intransitive
+11,T,obligatory,"psych object, passive fine"
+12,T,obligatory,"NP object, passive fine"
+13,T,obligatory,"NP object, passive fine"
+14,I,,"intransitive, locative PP"
+15,reject,,common transitive speech objects
+16,T,obligatory,"psych object, passive fine"
+17,T,obligatory,"NP object, passive fine"
+18,T,obligatory,"NP object, passive fine"
+19,T,obligatory,"psych object, passive fine"
+20,I,,intransitive
+21,I,,intransitive
+22,I,,"intransitive, tower over"
+23,I,rare_trans,disembark troops rare
+24,I,,intransitive
+25,I,rare_trans,inquire about; inquire the way archaic
+26,T,obligatory,"NP object, passive fine"
+27,T,obligatory,"NP object, passive fine"
+28,T,obligatory,"NP object, passive fine"
+29,T,obligatory,"NP object, passive fine"
+30,T,obligatory,"NP object, passive fine"
+31,T,obligatory,"animate object, passive fine"
+32,I,,intransitive manner
+33,T,obligatory,"NP object, passive fine"
+34,T,obligatory,"psych object, passive fine"
+35,T,obligatory,"NP object, passive fine"
+36,T,obligatory,"NP object, passive fine"
+37,T,obligatory,"NP object, passive fine"
+38,T,obligatory,"NP object, passive fine"
+39,I,rare_trans,stay the execution rare; copular use
+40,T,obligatory,"NP object, passive fine"
+41,T,obligatory,"NP object, passive fine"
+42,T,optional,tap the phone; tap on intransitive
+43,T,obligatory,"NP object, passive fine"
+44,reject,,participle mainly adjectival
+45,T,obligatory,"NP object, passive fine"
+46,T,obligatory,"NP object, passive fine"
+47,T,obligatory,"NP object, passive fine"
+48,I,,impinge on
+49,T,obligatory,"NP object, passive fine"
+50,T,obligatory,"NP object, passive fine"
+51,T,optional,"enlist help common, also intransitive"
+52,T,obligatory,"NP object, passive fine"
+53,T,obligatory,"NP object, passive fine"
+54,I,,intransitive
+55,T,optional,hike prices; also intransitive
+56,T,obligatory,"NP object, passive fine"
+57,T,obligatory,"NP object, passive fine"
+58,I,,intransitive duration
+59,I,,intransitive emission
+60,T,obligatory,"NP object, passive fine"
+61,I,,intransitive
+62,T,obligatory,"psych object, passive fine"
+63,I,,intransitive
+64,I,,intransitive
+65,I,,intransitive
+66,I,,intransitive
+67,reject,,"niche verb, both uses"
+68,T,obligatory,"NP object, passive fine"
+69,T,obligatory,"NP object, passive fine"
+70,reject,,confide in vs confide a secret
+71,T,obligatory,"NP object, passive fine"
+72,T,obligatory,"NP object, passive fine"
+73,T,obligatory,"NP object, passive fine"
+74,T,obligatory,"NP object, passive fine"
+75,I,rare_trans,blaspheme God archaic
+76,T,obligatory,"NP object, passive fine"
+77,T,obligatory,"accorded respect, passive fine"
+78,I,,intransitive
+79,T,obligatory,"NP object, passive fine"
+80,I,,intransitive
+81,I,,intransitive posture
+82,T,obligatory,"NP object, passive fine"
+83,T,obligatory,"NP object, passive fine"
+84,T,obligatory,"NP object, passive fine"
+85,T,obligatory,"NP object, passive fine"
+86,reject,,duck the question vs duck down
+87,T,obligatory,"NP object, passive fine"
+88,I,,"intransitive, testify to"
+89,reject,,mainly clause-taking
+90,reject,,both causative and intransitive
+91,T,obligatory,"NP object, passive fine"
+92,T,obligatory,"NP object, passive fine"
+93,T,optional,causative and intransitive
+94,I,,intransitive manner
+95,T,obligatory,"NP object, passive fine"
+96,T,obligatory,"NP object, passive fine"
+97,T,obligatory,"NP object, passive fine"
+98,T,obligatory,"NP object, passive fine"
+99,T,obligatory,"NP object, passive fine"
+100,T,obligatory,"NP object, passive fine"
+101,T,obligatory,"NP object, passive fine"
+102,T,obligatory,"NP object, passive fine"
+103,T,obligatory,"NP object, passive fine"
+104,T,obligatory,"NP object, passive fine"
+105,T,obligatory,"NP object, passive fine"
+106,T,obligatory,"NP object, passive fine"
+107,T,obligatory,"NP object, passive fine"
+108,T,obligatory,ported to a platform
+109,T,obligatory,"NP object, passive fine"
+110,T,obligatory,"psych object, passive fine"
+111,T,obligatory,"NP object, passive fine"
+112,T,obligatory,"NP object, passive fine"
+113,T,obligatory,"NP object, passive fine"
+114,T,obligatory,"NP object, passive fine"
+115,T,obligatory,"NP object, passive fine"
+116,T,obligatory,"NP object, passive fine"
+117,I,,intransitive
+118,T,obligatory,"NP object, passive fine"
+119,I,,intransitive
+120,T,obligatory,"NP object, passive fine"
+121,T,obligatory,"NP object, passive fine"
+122,T,obligatory,"NP object, rare verb"
+123,I,,intransitive
+124,T,obligatory,"NP object, passive fine"
+125,I,,intransitive
+126,I,rare_trans,overreach oneself
+127,T,obligatory,"NP object, passive fine"
+128,T,obligatory,"NP object, passive fine"
+129,I,,intransitive
+130,T,obligatory,"NP object, passive fine"
+131,I,rare_trans,disapprove of; legal transitive rare
+132,I,,intransitive motion
+133,T,optional,invest money; also invest in
+134,I,,intransitive
+135,T,obligatory,"NP object, passive fine"
+136,T,obligatory,"NP object, passive fine"
+137,I,,intransitive
+138,T,obligatory,"NP object, passive fine"
+139,T,obligatory,"NP object, passive fine"
+140,T,obligatory,"NP object, passive fine"
+141,I,,intransitive
+142,I,rare_trans,"wait tables, not passivizable"
+143,I,,intransitive
+144,T,obligatory,"NP object, passive fine"
+145,I,,intransitive weather
+146,I,,intransitive
+147,T,obligatory,"NP object, passive fine"
+148,T,obligatory,"NP object, passive fine"
+149,T,obligatory,"NP object, passive fine"
+150,T,obligatory,"NP object, passive fine"
+151,T,obligatory,"NP object, passive fine"
+152,T,obligatory,"NP object, passive fine"
+153,reject,,both causative and intransitive
+154,T,obligatory,"NP object, passive fine"
+155,T,obligatory,hazard a guess
+156,I,,intransitive
+157,T,obligatory,"NP object, passive fine"
+158,T,obligatory,"NP object, passive fine"
+159,T,obligatory,"NP object, passive fine"
+160,I,,intransitive
+161,T,obligatory,"NP object, passive fine"
+162,T,obligatory,bone a fish
+163,reject,,qualify for vs qualify a claim
+164,T,obligatory,"NP object, passive fine"
+165,I,,account for
+166,T,obligatory,"NP object, passive fine"
+167,T,obligatory,"NP object, passive fine"
+168,T,obligatory,"NP object, passive fine"
+169,I,,consist of
+170,T,obligatory,"NP object, passive fine"
+171,T,obligatory,"NP object, passive fine"
+172,I,,intransitive
+173,I,,tamper with
+174,reject,,quote-taking speech verb
+175,T,obligatory,mostly passive tinged with
+176,I,,intransitive
+177,T,obligatory,"NP object, passive fine"
+178,T,obligatory,"NP object, passive fine"
+179,T,obligatory,"booted out, passive fine"
+180,T,obligatory,"NP object, passive fine"
+181,T,obligatory,"NP object, passive fine"
+182,T,obligatory,"NP object, passive fine"
+183,T,obligatory,"NP object, passive fine"
+184,T,optional,object often omitted
+185,T,obligatory,"NP object, passive fine"
+186,T,obligatory,"NP object, passive fine"
+187,T,obligatory,"NP object, passive fine"
+188,T,obligatory,"NP object, passive fine"
+189,I,rare_trans,cognate object live a life
+190,I,,intransitive
+191,T,obligatory,"NP object, passive fine"
+192,T,obligatory,"NP object, passive fine"
+193,T,obligatory,colloquial NP object
+194,I,,intransitive
+195,reject,,mainly tend to raising
+196,T,obligatory,"NP object, passive fine"
+197,T,obligatory,"NP object, passive fine"
+198,I,,intransitive
+199,T,obligatory,"NP object, passive fine"
+200,T,obligatory,"NP object, passive fine"
+201,T,obligatory,"NP object, passive fine"
+202,T,obligatory,"NP object, passive fine"
+203,T,obligatory,"NP object, passive fine"
+204,I,,intransitive
+205,reject,,quote-taking speech verb
+206,T,obligatory,"NP object, passive fine"
+207,T,obligatory,"NP object, passive fine"
+208,T,obligatory,"NP object, passive fine"
+209,T,obligatory,"NP object, passive fine"
+210,T,obligatory,"NP object, passive fine"
+211,T,obligatory,"NP object, passive fine"
+212,T,obligatory,"NP object, passive fine"
+213,T,obligatory,"NP object, passive fine"
+214,I,rare_trans,depart this life archaic
+215,I,,fawn over
+216,T,obligatory,"NP object, passive fine"
+217,reject,,relational verb
+218,T,obligatory,"NP object, rare verb"
+219,T,obligatory,"NP object, passive fine"
+220,T,obligatory,"NP object, passive fine"
+221,T,optional,yield results; also yield to
+222,I,,intransitive
+223,T,obligatory,"NP object, passive fine"
+224,I,rare_trans,feast your eyes idiom
+225,T,obligatory,"NP object, passive fine"
+226,I,,intransitive
+227,I,,intransitive motion
+228,T,optional,enroll students; also enroll in
+229,I,,intransitive
+230,I,,"intransitive, complain about"
+231,T,obligatory,"NP object, passive fine"
+232,T,obligatory,"NP object, passive fine"
+233,T,obligatory,"NP object, passive fine"
+234,I,rare_trans,meditate revenge archaic
+235,T,obligatory,"NP object, passive fine"
+236,reject,,agree the terms passivizable
+237,T,obligatory,"NP object, passive fine"
+238,I,,intransitive
+239,T,obligatory,"NP object, passive fine"
+240,T,obligatory,"NP object, passive fine"
+241,T,obligatory,"NP object, passive fine"
+242,T,obligatory,"NP object, passive fine"
+243,T,obligatory,"NP object, passive fine"
+244,T,obligatory,"NP object, passive fine"
+245,T,obligatory,"NP object, passive fine"
+246,T,obligatory,paper the walls
+247,T,obligatory,"NP object, passive fine"
+248,T,obligatory,"NP object, passive fine"
+249,T,obligatory,"NP object, passive fine"
+250,T,obligatory,"NP object, passive fine"
+251,T,obligatory,"NP object, passive fine"
+252,T,obligatory,"NP object, passive fine"
+253,I,rare_trans,scream abuse rare
+254,T,obligatory,"NP object, passive fine"
+255,T,obligatory,"NP object, passive fine"
+256,I,,intransitive
+257,I,,intransitive
+258,T,obligatory,"NP object, passive fine"
+259,T,obligatory,"NP object, passive fine"
+260,T,optional,pay the bill; object omissible
+261,T,obligatory,"NP object, passive fine"
+262,I,,intransitive
+263,T,obligatory,"NP object, passive fine"
+264,reject,,transitive abut not passivizable
+265,T,obligatory,"NP object, passive fine"
+266,T,obligatory,"NP object, passive fine"
+267,I,,intransitive
+268,T,obligatory,"NP object, passive fine"
+269,T,obligatory,"NP object, passive fine"
+270,T,obligatory,"NP object, passive fine"
+271,T,obligatory,"NP object, passive fine"
+272,I,,intransitive
+273,T,obligatory,"NP object, passive fine"
+274,T,obligatory,archaic NP object
+275,T,obligatory,"NP object, passive fine"
+276,I,,intransitive
+277,I,,intransitive
+278,T,obligatory,"NP object, passive fine"
+279,T,obligatory,"NP object, passive fine"
+280,I,,intransitive
+281,T,obligatory,"NP object, passive fine"
+282,T,obligatory,"NP object, passive fine"
+283,T,obligatory,"NP object, passive fine"
+284,T,obligatory,"NP object, passive fine"
+285,T,obligatory,"NP object, passive fine"
+286,I,,intransitive
+287,I,,intransitive
+288,T,obligatory,"NP object, passive fine"
+289,T,optional,tip the waiter; also tip over
+290,I,,intransitive
+291,T,obligatory,"NP object, passive fine"
+292,T,obligatory,"NP object, passive fine"
+293,reject,,participle mainly adjectival
+294,I,,intransitive
+295,T,obligatory,"NP object, passive fine"
+296,T,obligatory,"NP object, passive fine"
+297,I,,encroach on
+298,I,,intransitive
+299,T,obligatory,"NP object, passive fine"
+300,I,,intransitive
+301,T,obligatory,"NP object, passive fine"
+302,T,obligatory,"NP object, passive fine"
+303,T,obligatory,"NP object, passive fine"
+304,T,obligatory,"NP object, passive fine"
+305,T,optional,ride a horse; also intransitive
+306,I,,intransitive
+307,T,obligatory,"NP object, passive fine"
+308,reject,,participle mainly adjectival
+309,T,obligatory,"NP object, passive fine"
+310,T,obligatory,"NP object, passive fine"
+311,reject,,bet on vs bet money
+312,T,obligatory,"NP object, passive fine"
+313,T,obligatory,"NP object, passive fine"
+314,T,obligatory,"NP object, passive fine"
+315,I,,intransitive
+316,T,obligatory,"NP object, passive fine"
+317,T,obligatory,"NP object, passive fine"
+318,T,obligatory,"NP object, passive fine"
+319,T,obligatory,"NP object, passive fine"
+320,T,obligatory,"NP object, passive fine"
+321,I,,intransitive
+322,T,obligatory,"NP object, passive fine"
+323,T,obligatory,"NP object, passive fine"
+324,T,obligatory,"NP object, passive fine"
+325,I,,intransitive motion
+326,T,obligatory,"NP object, passive fine"
+327,T,obligatory,"NP object, passive fine"
+328,I,,intransitive
+329,I,,intransitive
+330,T,obligatory,"psych object, passive fine"
+331,T,obligatory,"NP object, passive fine"
+332,T,optional,berth a ship; also intransitive
+333,I,,intransitive
+334,T,obligatory,"NP object, passive fine"
+335,I,,intransitive
+336,T,obligatory,"psych object, passive fine"
+337,T,optional,compensate victims; also compensate for
+338,T,obligatory,"NP object, passive fine"
+339,T,obligatory,"NP object, passive fine"
+340,I,,"intransitive, tell untruths"
+341,T,obligatory,"NP object, passive fine"
+342,T,obligatory,"NP object, passive fine"
+343,T,optional,apply paint; also apply for
+344,T,obligatory,"NP object, passive fine"
+345,reject,,clause-taking
+346,T,obligatory,"NP object, passive fine"
+347,I,,intransitive sound
+348,T,obligatory,"NP object, passive fine"
+349,T,obligatory,"NP object, passive fine"
+350,T,obligatory,"NP object, passive fine"
+351,I,,intransitive
+352,T,obligatory,"NP object, passive fine"
+353,I,rare_trans,molt feathers rare
+354,reject,,quote-taking speech verb
+355,I,,teem with
+356,T,optional,cheat someone; also cheat on
+357,I,,intransitive
+358,T,obligatory,"NP object, passive fine"
+359,I,,intransitive
+360,T,obligatory,"NP object, passive fine"
+361,I,,intransitive
+362,T,obligatory,"NP object, passive fine"
+363,T,obligatory,"NP object, passive fine"
+364,T,obligatory,"NP object, passive fine"
+365,T,obligatory,"NP object, passive fine"
+366,T,obligatory,"NP object, passive fine"
+367,T,obligatory,"NP object, passive fine"
+368,T,obligatory,"NP object, passive fine"
+369,T,optional,object omissible
+370,I,,intransitive
+371,I,,"intransitive, triumph over"
+372,T,obligatory,"NP object, passive fine"
+373,T,obligatory,"NP object, passive fine"
+374,T,obligatory,"NP object, passive fine"
+375,T,obligatory,"NP object, passive fine"
+376,T,obligatory,"NP object, passive fine"
+377,reject,,causative and intransitive
+378,T,obligatory,"psych object, passive fine"
+379,T,obligatory,"NP object, passive fine"
+380,T,obligatory,"NP object, passive fine"
+381,I,,intransitive
+382,I,,intransitive
+383,T,obligatory,"NP object, passive fine"
+384,I,rare_trans,bluff an opponent less common
+385,T,obligatory,"NP object, passive fine"
+386,T,obligatory,"NP object, passive fine"
+387,I,,intransitive motion
+388,I,,"intransitive, laugh at"
+389,T,obligatory,"NP object, passive fine"
+390,T,obligatory,"NP object, passive fine"
+391,I,,intransitive
+392,T,obligatory,"NP object, passive fine"
+393,I,,intransitive
+394,T,obligatory,"NP object, passive fine"
+395,I,,intransitive
+396,T,obligatory,"NP object, passive fine"
+397,T,obligatory,"NP object, passive fine"
+398,T,obligatory,"NP object, passive fine"
+399,I,,intransitive sound
+400,reject,,bridle a horse vs bridle at
+401,T,obligatory,"NP object, passive fine"
+402,I,,intransitive
+403,T,obligatory,"NP object, passive fine"
+404,I,rare_trans,sit an exam not common
+405,reject,,clause-taking
+406,T,obligatory,"NP object, passive fine"
+407,T,optional,prepare food; also prepare for
+408,T,obligatory,"NP object, passive fine"
+409,T,obligatory,"NP object, passive fine"
+410,T,obligatory,archaic NP object
+411,T,obligatory,"NP object, passive fine"
+412,T,obligatory,"NP object, passive fine"
+413,T,obligatory,"NP object, passive fine"
+414,T,obligatory,"NP object, passive fine"
+415,I,,intransitive
+416,T,obligatory,"NP object, passive fine"
+417,T,obligatory,"NP object, passive fine"
+418,T,obligatory,"NP object, passive fine"
+419,T,obligatory,"NP object, passive fine"
+420,T,obligatory,"NP object, passive fine"
+421,I,,intransitive
+422,T,obligatory,"NP object, passive fine"
+423,reject,,participle mainly adjectival
+424,T,obligatory,"NP object, passive fine"
+425,T,obligatory,"NP object, passive fine"
+426,I,rare_trans,calve icebergs technical
+427,T,obligatory,"NP object, passive fine"
+428,I,,intransitive
+429,T,obligatory,"NP object, passive fine"
+430,T,obligatory,"NP object, passive fine"
+431,T,obligatory,"NP object, passive fine"
+432,I,,"intransitive, peer at"
+433,I,,intransitive sound
+434,T,obligatory,"NP object, passive fine"
+435,T,obligatory,"NP object, passive fine"
+436,I,,intransitive
+437,I,,intransitive
+438,T,obligatory,plied with drinks
+439,T,obligatory,"NP object, passive fine"
+440,T,obligatory,"NP object, passive fine"
+441,T,obligatory,"NP object, passive fine"
+442,I,,intransitive
+443,T,obligatory,"NP object, passive fine"
+444,T,obligatory,"NP object, passive fine"
+445,T,obligatory,"NP object, passive fine"
+446,T,obligatory,"NP object, passive fine"
+447,T,obligatory,"NP object, passive fine"
+448,T,obligatory,"NP object, passive fine"
+449,T,obligatory,"NP object, passive fine"
+450,T,obligatory,"NP object, passive fine"
+451,T,obligatory,"NP object, passive fine"
+452,I,,intransitive
+453,T,optional,object often omitted
+454,T,obligatory,"NP object, passive fine"
+455,T,obligatory,"NP object, passive fine"
+456,T,obligatory,"NP object, passive fine"
+457,T,obligatory,"NP object, passive fine"
+458,T,obligatory,"NP object, passive fine"
+459,T,obligatory,"NP object, passive fine"
+460,T,obligatory,"NP object, passive fine"
+461,I,,intransitive
+462,I,,contend with; clause
+463,I,rare_trans,rest one's case less common
+464,T,obligatory,"NP object, passive fine"
+465,T,obligatory,"NP object, passive fine"
+466,I,,intransitive motion
+467,I,,opt for
+468,T,obligatory,"NP object, passive fine"
+469,T,obligatory,"NP object, passive fine"
+470,T,obligatory,"NP object, passive fine"
+471,I,,intransitive
+472,T,obligatory,"NP object, passive fine"
+473,T,obligatory,"NP object, passive fine"
+474,T,obligatory,"NP object, passive fine"
+475,T,obligatory,"NP object, passive fine"
+476,T,optional,causative and intransitive
+477,T,obligatory,"NP object, passive fine"
+478,T,obligatory,"NP object, passive fine"
+479,T,obligatory,"NP object, passive fine"
+480,I,,intransitive motion
+481,T,obligatory,"NP object, passive fine"
+482,T,optional,object omissible
+483,I,,intransitive
+484,T,obligatory,"NP object, passive fine"
+485,T,obligatory,"NP object, passive fine"
+486,reject,,drum fingers vs drum intransitive
+487,T,obligatory,"NP object, passive fine"
+488,T,obligatory,"NP object, passive fine"
+489,T,obligatory,"NP object, passive fine"
+490,I,,intransitive
+491,I,,intransitive
+492,reject,,relational verb
+493,T,obligatory,"NP object, passive fine"
+494,T,obligatory,"NP object, passive fine"
+495,I,,intransitive
+496,T,obligatory,"NP object, passive fine"
+497,reject,,causative and intransitive
+498,T,obligatory,"NP object, passive fine"
+499,I,,intransitive
+500,T,obligatory,"NP object, passive fine"
+501,T,obligatory,"NP object, passive fine"
+502,T,obligatory,"psych object, passive fine"
+503,I,,"intransitive, reply to"
+504,T,obligatory,"NP object, passive fine"
+505,T,optional,defer payment; also defer to
+506,reject,,quote-taking; remark on
+507,I,,intransitive
+508,T,obligatory,"NP object, passive fine"
+509,T,obligatory,"NP object, passive fine"
+510,I,,deliberate on
+511,T,obligatory,"NP object, passive fine"
+512,T,obligatory,"NP object, passive fine"
+513,I,,intransitive
+514,T,obligatory,"NP object, passive fine"
+515,T,obligatory,"NP object, passive fine"
+516,T,obligatory,"NP object, passive fine"
+517,I,,intransitive
+518,T,obligatory,"NP object, passive fine"
+519,T,obligatory,"NP object, passive fine"
+520,T,obligatory,"NP object, passive fine"
+521,T,obligatory,"NP object, passive fine"
+522,T,obligatory,"NP object, passive fine"
+523,T,obligatory,"NP object, passive fine"
+524,T,obligatory,"NP object, passive fine"
+525,T,obligatory,"NP object, passive fine"
+526,T,optional,causative and intransitive
+527,T,obligatory,"NP object, passive fine"
+528,T,obligatory,"NP object, passive fine"
+529,T,obligatory,"NP object, passive fine"
+530,T,obligatory,"NP object, passive fine"
+531,I,,intransitive
+532,T,obligatory,"NP object, passive fine"
+533,T,obligatory,"NP object, passive fine"
+534,T,obligatory,"NP object, passive fine"
+535,T,obligatory,"NP object, passive fine"
+536,T,obligatory,"NP object, passive fine"
+537,reject,,causative and intransitive
+538,T,obligatory,"NP object, passive fine"
+539,T,obligatory,"NP object, passive fine"
+540,T,obligatory,"NP object, passive fine"
+541,T,obligatory,"NP object, passive fine"
+542,T,obligatory,"NP object, passive fine"
+543,I,,intransitive
+544,T,obligatory,"NP object, passive fine"
+545,T,obligatory,"NP object, passive fine"
+546,T,obligatory,"NP object, passive fine"
+547,T,obligatory,"NP object, passive fine"
+548,T,optional,adapt a novel; also adapt to
+549,I,,"intransitive, muse on"
+550,I,,intransitive
+551,T,obligatory,"NP object, passive fine"
+552,T,obligatory,"NP object, passive fine"
+553,T,obligatory,"NP object, passive fine"
+554,T,obligatory,"NP object, passive fine"
+555,I,rare_trans,swim the Channel rare
+556,I,rare_trans,elaborate on; formal transitive rare
+557,T,optional,reflexive omission
+558,I,,intransitive
+559,T,obligatory,"NP object, passive fine"
+560,T,obligatory,"NP object, passive fine"
+561,T,obligatory,"NP object, passive fine"
+562,I,,intransitive
+563,T,obligatory,"NP object, passive fine"
+564,T,obligatory,"NP object, passive fine"
+565,T,obligatory,"NP object, passive fine"
+566,T,obligatory,"NP object, passive fine"
+567,I,,intransitive
+568,I,,object to
+569,I,,intransitive
+570,I,,intransitive
+571,T,obligatory,"NP object, passive fine"
+572,T,optional,causative and intransitive
+573,I,,intransitive
+574,T,obligatory,"termed X, passive fine"
+575,T,obligatory,"NP object, passive fine"
+576,T,obligatory,"NP object, passive fine"
+577,I,rare_trans,reel in a fish
+578,T,obligatory,"NP object, passive fine"
+579,T,obligatory,"NP object, passive fine"
+580,T,obligatory,"NP object, passive fine"
+581,I,,intransitive
+582,T,obligatory,"NP object, passive fine"
+583,T,obligatory,"NP object, passive fine"
+584,I,,intransitive
+585,T,obligatory,"NP object, passive fine"
+586,T,obligatory,"NP object, passive fine"
+587,T,obligatory,"NP object, passive fine"
+588,T,obligatory,"NP object, passive fine"
+589,T,obligatory,"NP object, passive fine"
+590,T,obligatory,"NP object, passive fine"
+591,T,obligatory,"NP object, passive fine"
+592,T,obligatory,"NP object, passive fine"
+593,I,,intransitive
+594,T,obligatory,"NP object, passive fine"
+595,T,obligatory,"NP object, passive fine"
+596,reject,,retire a jersey/debt passivizable
+597,T,obligatory,"NP object, passive fine"
+598,T,obligatory,"NP object, passive fine"
+599,T,obligatory,"NP object, passive fine"
+600,T,optional,object omissible
+601,reject,,mainly clause-taking
+602,T,obligatory,"NP object, passive fine"
+603,T,obligatory,"NP object, passive fine"
+604,T,obligatory,"NP object, passive fine"
+605,T,obligatory,"NP object, passive fine"
+606,T,obligatory,"NP object, passive fine"
+607,T,obligatory,"NP object, passive fine"
+608,I,,intransitive
+609,T,obligatory,"NP object, passive fine"
+610,T,obligatory,"NP object, passive fine"
+611,T,obligatory,"NP object, passive fine"
+612,reject,,star in vs starred item
+613,T,obligatory,"NP object, passive fine"
+614,T,obligatory,"NP object, passive fine"
+615,I,,intransitive
+616,T,obligatory,"NP object, passive fine"
+617,T,obligatory,"NP object, passive fine"
+618,I,,intransitive
+619,I,,intransitive
+620,T,obligatory,"NP object, passive fine"
+621,I,,intransitive
+622,T,obligatory,"NP object, passive fine"
+623,T,obligatory,"NP object, passive fine"
+624,T,obligatory,"NP object, passive fine"
+625,T,obligatory,technical NP object
+626,T,obligatory,"NP object, passive fine"
+627,T,obligatory,"NP object, passive fine"
+628,T,obligatory,"NP object, passive fine"
+629,T,obligatory,"NP object, passive fine"
+630,T,obligatory,"NP object, passive fine"
+631,T,obligatory,"NP object, passive fine"
+632,T,obligatory,"NP object, passive fine"
+633,T,obligatory,"NP object, passive fine"
+634,T,obligatory,"NP object, passive fine"
+635,T,obligatory,"NP object, passive fine"
+636,T,obligatory,"NP object, passive fine"
+637,T,obligatory,"NP object, passive fine"
+638,reject,,copular / raising
+639,T,obligatory,"NP object, passive fine"
+640,I,,intransitive
+641,T,obligatory,"NP object, passive fine"
+642,I,,intransitive
+643,T,obligatory,"NP object, passive fine"
+644,T,obligatory,"NP object, passive fine"
+645,I,,rummage through
+646,I,,intransitive
+647,T,obligatory,"NP object, passive fine"
+648,T,obligatory,"NP object, passive fine"
+649,I,,intransitive
+650,I,rare_trans,jig a part technical
+651,I,,intransitive
+652,T,obligatory,"NP object, passive fine"
+653,I,,rely on
+654,I,,intransitive
+655,T,obligatory,"NP object, passive fine"
+656,T,obligatory,"NP object, passive fine"
+657,T,obligatory,"NP object, passive fine"
+658,I,,intransitive
+659,T,obligatory,"NP object, passive fine"
+660,T,obligatory,"NP object, passive fine"
+661,I,rare_trans,regroup forces less common
+662,T,obligatory,"NP object, passive fine"
+663,T,obligatory,"NP object, passive fine"
+664,reject,,"blurt out particle, quote"
+665,I,,intransitive
+666,I,,long for
+667,T,obligatory,"NP object, passive fine"
+668,T,obligatory,"NP object, passive fine"
+669,T,optional,rule a country; also rule on
+670,I,,intransitive
+671,I,,bargain for
+672,T,obligatory,"NP object, passive fine"
+673,T,obligatory,"NP object, passive fine"
+674,T,obligatory,"NP object, passive fine"
+675,I,rare_trans,"roam the streets, no passive"
+676,T,obligatory,"NP object, passive fine"
+677,T,obligatory,"NP object, passive fine"
+678,T,obligatory,"NP object, passive fine"
+679,I,,intransitive sound
+680,T,obligatory,"NP object, passive fine"
+681,T,obligatory,"NP object, passive fine"
+682,T,obligatory,"NP object, passive fine"
+683,reject,,"fixed object teeth, passive odd"
+684,T,obligatory,"NP object, passive fine"
+685,T,obligatory,"NP object, passive fine"
+686,T,obligatory,"NP object, passive fine"
+687,I,,intransitive motion
+688,T,obligatory,"NP object, passive fine"
+689,I,,allude to
+690,I,,intransitive
+691,T,obligatory,"NP object, passive fine"
+692,reject,,"fixed object neck, passive odd"
+693,T,obligatory,"NP object, passive fine"
+694,reject,,participle mainly adjectival
+695,T,obligatory,"NP object, passive fine"
+696,T,obligatory,"NP object, passive fine"
+697,T,obligatory,"NP object, passive fine"
+698,T,obligatory,"NP object, passive fine"
+699,T,obligatory,"NP object, passive fine"
+700,T,obligatory,"NP object, passive fine"
+701,T,obligatory,"NP object, passive fine"
+702,I,,intransitive
+703,T,obligatory,"NP object, passive fine"
+704,T,obligatory,"NP object, passive fine"
+705,T,obligatory,"NP object, passive fine"
+706,I,,intransitive posture
+707,T,obligatory,"NP object, passive fine"
+708,T,obligatory,"NP object, passive fine"
+709,T,obligatory,"NP object, passive fine"
+710,reject,,participle mainly adjectival
+711,T,obligatory,"NP object, passive fine"
+712,I,,intransitive
+713,reject,,participle mainly adjectival
+714,T,obligatory,"NP object, passive fine"
+715,T,obligatory,"NP object, passive fine"
+716,T,obligatory,"NP object, passive fine"
+717,T,obligatory,"NP object, passive fine"
+718,I,,intransitive
+719,reject,,"rare verb, participle adjectival"
+720,T,obligatory,"NP object, passive fine"
+721,I,,intransitive
+722,T,optional,skim milk; skim through
+723,I,,intransitive
+724,T,obligatory,"NP object, passive fine"
+725,I,,intransitive sound
+726,T,obligatory,"NP object, passive fine"
+727,T,obligatory,"NP object, passive fine"
+728,T,obligatory,"NP object, passive fine"
+729,I,,intransitive
+730,T,obligatory,"NP object, passive fine"
+731,T,obligatory,"NP object, passive fine"
+732,I,,intransitive motion
+733,T,obligatory,"NP object, passive fine"
+734,T,obligatory,"NP object, passive fine"
+735,I,,intransitive
+736,T,obligatory,"NP object, passive fine"
+737,T,obligatory,"rid of, passive fine"
+738,I,,intransitive
+739,I,,intransitive
+740,T,obligatory,"NP object, passive fine"
+741,T,obligatory,"NP object, passive fine"
+742,T,optional,object omissible
+743,T,obligatory,"NP object, passive fine"
+744,reject,,succeed in vs succeed someone
+745,T,obligatory,"NP object, passive fine"
+746,T,obligatory,"NP object, passive fine"
+747,I,rare_trans,tithe income rare
+748,I,,intransitive
+749,T,obligatory,"NP object, passive fine"
+750,T,obligatory,"NP object, passive fine"
+751,T,obligatory,"NP object, passive fine"
+752,I,,intransitive
+753,T,obligatory,"NP object, passive fine"
+754,I,rare_trans,lumbered with BrE idiom
+755,T,obligatory,"NP object, passive fine"
+756,I,rare_trans,dream a dream cognate
+757,T,obligatory,"NP object, passive fine"
+758,I,,intransitive
+759,T,obligatory,"NP object, passive fine"
+760,T,obligatory,"NP object, passive fine"
+761,T,obligatory,"NP object, passive fine"
+762,I,,side with
+763,I,,intransitive
+764,T,obligatory,"NP object, passive fine"
+765,T,obligatory,"NP object, passive fine"
+766,T,obligatory,"NP object, passive fine"
+767,T,obligatory,"NP object, passive fine"
+768,I,,intransitive
+769,I,,intransitive
+770,I,,intransitive
+771,T,obligatory,"NP object, passive fine"
+772,T,obligatory,"NP object, passive fine"
+773,T,obligatory,"NP object, passive fine"
+774,I,,intransitive
+775,T,obligatory,"NP object, passive fine"
+776,I,,intransitive
+777,T,obligatory,"NP object, passive fine"
+778,T,obligatory,"NP object, passive fine"
+779,T,obligatory,"NP object, passive fine"
+780,I,,cope with
+781,I,,intransitive
+782,T,obligatory,"NP object, passive fine"
+783,I,,intransitive
+784,T,obligatory,"NP object, passive fine"
+785,T,obligatory,"NP object, passive fine"
+786,T,obligatory,"NP object, passive fine"
+787,I,,intransitive
+788,I,,intransitive
+789,I,,intransitive sound
+790,reject,,"doll up particle, adjectival"
+791,T,obligatory,"NP object, passive fine"
+792,T,obligatory,"NP object, passive fine"
+793,T,obligatory,"NP object, passive fine"
+794,T,obligatory,"NP object, passive fine"
+795,T,obligatory,"NP object, passive fine"
+796,T,obligatory,"NP object, passive fine"
+797,I,,intransitive motion
+798,I,,intransitive
+799,T,obligatory,"NP object, passive fine"
+800,I,rare_trans,plead guilty; plead a case
+801,reject,,"clause-taking, adjectival participle"
+802,T,obligatory,"NP object, passive fine"
+803,I,,intransitive
+804,T,obligatory,"NP object, passive fine"
+805,I,,care for / about
+806,I,,intransitive
+807,I,rare_trans,mutate a gene technical
+808,T,obligatory,"NP object, passive fine"
+809,T,obligatory,"NP object, passive fine"
+810,T,obligatory,"NP object, passive fine"
+811,I,,adhere to
+812,T,obligatory,"NP object, passive fine"
+813,I,rare_trans,yell insults rare
+814,T,obligatory,"NP object, passive fine"
+815,T,obligatory,"NP object, passive fine"
+816,I,,accede to
+817,T,obligatory,"NP object, passive fine"
+818,T,obligatory,"NP object, passive fine"
+819,T,obligatory,"NP object, passive fine"
+820,I,,intransitive
+821,T,obligatory,"NP object, passive fine"
+822,T,obligatory,"NP object, passive fine"
+823,T,obligatory,"NP object, passive fine"
+824,T,obligatory,"NP object, passive fine"
+825,I,,intransitive
+826,T,obligatory,"NP object, passive fine"
+827,T,obligatory,"NP object, passive fine"
+828,T,obligatory,"NP object, passive fine"
+829,T,obligatory,"NP object, passive fine"
+830,T,optional,weigh options; also intransitive
+831,T,obligatory,"NP object, passive fine"
+832,T,obligatory,"NP object, passive fine"
+833,I,,intransitive
+834,T,obligatory,"NP object, passive fine"
+835,T,obligatory,"NP object, passive fine"
+836,I,,intransitive motion
+837,T,obligatory,"NP object, passive fine"
+838,T,obligatory,"NP object, passive fine"
+839,T,obligatory,"NP object, passive fine"
+840,T,obligatory,"NP object, passive fine"
+841,T,obligatory,"NP object, passive fine"
+842,T,obligatory,"NP object, passive fine"
+843,T,obligatory,"NP object, passive fine"
+844,I,,intransitive
+845,T,obligatory,"NP object, passive fine"
+846,T,obligatory,"NP object, passive fine"
+847,T,obligatory,"NP object, passive fine"
+848,reject,,swell intransitive vs swell the ranks
+849,T,obligatory,"NP object, passive fine"
+850,T,obligatory,"NP object, passive fine"
+851,I,,intransitive
+852,T,obligatory,"NP object, passive fine"
+853,I,,intransitive
+854,T,obligatory,"NP object, passive fine"
+855,I,,intransitive
+856,T,obligatory,"NP object, passive fine"
+857,I,,intransitive
+858,T,obligatory,"NP object, passive fine"
+859,I,,intransitive
+860,T,obligatory,"NP object, passive fine"
+861,T,obligatory,"NP object, passive fine"
+862,I,,intransitive motion
+863,reject,,copular
+864,T,obligatory,"NP object, passive fine"
+865,I,,intransitive motion
+866,T,optional,object omissible
+867,T,obligatory,"NP object, passive fine"
+868,T,obligatory,"NP object, passive fine"
+869,I,rare_trans,jog one's memory idiom
+870,T,obligatory,"NP object, passive fine"
+871,T,obligatory,"NP object, passive fine"
+872,T,obligatory,"NP object, passive fine"
+873,T,obligatory,"sum up, passive fine"
+874,T,obligatory,"NP object, passive fine"
+875,T,obligatory,"NP object, passive fine"
+876,T,obligatory,"NP object, passive fine"
+877,I,,intransitive
+878,T,obligatory,"NP object, passive fine"
+879,T,obligatory,"NP object, passive fine"
+880,I,,intransitive
+881,reject,,appeal to vs appeal a ruling
+882,T,obligatory,"NP object, passive fine"
+883,T,obligatory,"NP object, passive fine"
+884,I,,intransitive
+885,T,obligatory,"NP object, passive fine"
+886,T,obligatory,"NP object, passive fine"
+887,T,obligatory,"NP object, passive fine"
+888,I,,intransitive
+889,T,obligatory,"NP object, passive fine"
+890,T,obligatory,"NP object, passive fine"
+891,I,,intransitive
+892,I,,intransitive
+893,T,obligatory,"NP object, passive fine"
+894,reject,,"ball fists, passive odd"
+895,T,obligatory,"NP object, passive fine"
+896,T,obligatory,"NP object, passive fine"
+897,T,obligatory,"NP object, passive fine"
+898,T,obligatory,"NP object, rare verb"
+899,I,,intransitive emission
+900,T,optional,causative and intransitive
+901,T,obligatory,"NP object, passive fine"
+902,I,,intransitive
+903,T,obligatory,"NP object, passive fine"
+904,T,obligatory,"NP object, passive fine"
+905,T,obligatory,technical NP object
+906,T,obligatory,"NP object, passive fine"
+907,I,,glory in
+908,T,obligatory,"NP object, passive fine"
+909,T,obligatory,"NP object, passive fine"
+910,T,obligatory,"NP object, passive fine"
+911,T,obligatory,"riddled with, passive fine"
+912,T,obligatory,"NP object, passive fine"
+913,T,obligatory,"NP object, passive fine"
+914,T,obligatory,"NP object, passive fine"
+915,T,obligatory,"NP object, passive fine"
+916,I,,intransitive
+917,T,obligatory,"NP object, passive fine"
+918,T,obligatory,"NP object, passive fine"
+919,I,,intransitive
+920,I,,intransitive
+921,T,obligatory,"NP object, passive fine"
+922,T,obligatory,"NP object, passive fine"
+923,T,obligatory,"NP object, passive fine"
+924,I,,"intransitive, leer at"
+925,T,obligatory,"NP object, passive fine"
+926,T,obligatory,"NP object, passive fine"
+927,T,obligatory,"NP object, passive fine"
+928,T,obligatory,"NP object, passive fine"
+929,T,obligatory,"NP object, passive fine"
+930,I,,intransitive motion
+931,T,obligatory,"NP object, passive fine"
+932,T,obligatory,"NP object, passive fine"
+933,T,obligatory,"NP object, passive fine"
+934,I,,intransitive
+935,T,obligatory,"NP object, passive fine"
+936,I,,intransitive
+937,T,obligatory,"NP object, passive fine"
+938,T,optional,swear an oath; also curse
+939,T,optional,causative and intransitive
+940,I,,intransitive
+941,T,obligatory,"NP object, passive fine"
+942,T,obligatory,"NP object, passive fine"
+943,T,obligatory,"NP object, passive fine"
+944,reject,,"fixed object, participle adjectival"
+945,I,,balk at
+946,T,obligatory,"NP object, passive fine"
+947,I,,consent to
+948,I,,intransitive
+949,I,,listen to
+950,I,,intransitive
+951,T,obligatory,"NP object, passive fine"
+952,T,obligatory,"NP object, passive fine"
+953,T,obligatory,"NP object, passive fine"
+954,T,obligatory,"NP object, passive fine"
+955,T,obligatory,"NP object, passive fine"
+956,T,obligatory,"NP object, passive fine"
+957,I,,intransitive motion
+958,T,obligatory,"NP object, passive fine"
+959,T,obligatory,"NP object, passive fine"
+960,T,obligatory,"NP object, passive fine"
+961,T,obligatory,"NP object, passive fine"
+962,I,,intransitive
+963,I,,intransitive
+964,T,obligatory,"NP object, passive fine"
+965,I,,intransitive
+966,T,obligatory,"NP object, passive fine"
+967,T,obligatory,"NP object, passive fine"
+968,I,,intransitive
+969,I,,intransitive sound
+970,T,obligatory,"NP object, passive fine"
+971,T,obligatory,"NP object, passive fine"
+972,T,obligatory,"NP object, passive fine"
+973,I,rare_trans,excel oneself rare
+974,T,obligatory,"NP object, passive fine"
+975,T,obligatory,"NP object, passive fine"
+976,T,obligatory,"NP object, passive fine"
+977,I,,intransitive
+978,T,obligatory,"NP object, passive fine"
+979,T,obligatory,"NP object, passive fine"
+980,T,obligatory,"NP object, passive fine"
+981,T,obligatory,"NP object, passive fine"
+982,T,obligatory,"NP object, passive fine"
+983,T,obligatory,"NP object, passive fine"
+984,T,obligatory,"NP object, passive fine"
+985,T,obligatory,"NP object, passive fine"
+986,I,,intransitive
+987,I,,intransitive motion
+988,reject,,"fixed object lips, passive odd"
+989,I,,respond to
+990,T,obligatory,"NP object, passive fine"
+991,T,obligatory,"NP object, passive fine"
+992,T,obligatory,"NP object, passive fine"
+993,I,,intransitive sound
+994,T,obligatory,"NP object, passive fine"
+995,I,,"intransitive, look at"
+996,T,obligatory,"NP object, passive fine"
+997,T,obligatory,"NP object, passive fine"
+998,I,,intransitive
+999,reject,,disembark vs remove bark
+1000,T,obligatory,"NP object, passive fine"
+1001,I,,intransitive
+1002,I,,intransitive
+1003,I,,intransitive
+1004,I,,intransitive
+1005,T,obligatory,"NP object, passive fine"
+1006,T,obligatory,"NP object, passive fine"
+1007,I,,yearn for
+1008,T,obligatory,"NP object, passive fine"
+1009,reject,,mainly clause-taking
+1010,T,optional,readjust settings; also intransitive
+1011,I,,intransitive
+1012,T,obligatory,bare one's teeth
+1013,T,obligatory,"NP object, passive fine"
+1014,T,obligatory,"NP object, passive fine"
+1015,T,optional,object omissible
+1016,T,obligatory,"NP object, passive fine"
+1017,T,optional,evacuate a town; also intransitive
+1018,I,,intransitive
+1019,reject,,clause-taking
+1020,T,obligatory,"NP object, passive fine"
+1021,T,obligatory,"NP object, passive fine"
+1022,I,,intransitive
+1023,T,obligatory,"NP object, passive fine"
+1024,I,,major in
+1025,T,obligatory,"NP object, passive fine"
+1026,T,obligatory,"NP object, passive fine"
+1027,T,obligatory,"NP object, passive fine"
+1028,I,,intransitive emission
+1029,I,,intransitive
+1030,T,obligatory,"NP object, passive fine"
+1031,T,obligatory,"NP object, passive fine"
+1032,T,obligatory,"NP object, passive fine"
+1033,T,obligatory,"NP object, passive fine"
+1034,T,obligatory,"NP object, passive fine"
+1035,I,,intransitive
+1036,reject,,participle mainly adjectival
+1037,I,,belong to
+1038,T,obligatory,"NP object, passive fine"
+1039,T,obligatory,"NP object, passive fine"
+1040,T,obligatory,"NP object, passive fine"
+1041,I,,subscribe to
+1042,T,obligatory,"NP object, passive fine"
+1043,T,obligatory,"NP object, passive fine"
+1044,I,,intransitive
+1045,T,obligatory,"NP object, passive fine"
+1046,T,obligatory,"NP object, passive fine"
+1047,T,obligatory,"NP object, passive fine"
+1048,T,obligatory,"NP object, passive fine"
+1049,T,obligatory,"NP object, passive fine"
+1050,I,,intransitive
+1051,T,obligatory,"NP object, passive fine"
+1052,I,,intransitive
+1053,T,obligatory,abase oneself
+1054,I,,intransitive motion
+1055,T,obligatory,"NP object, passive fine"
+1056,T,obligatory,"NP object, passive fine"
+1057,T,obligatory,"NP object, passive fine"
+1058,T,obligatory,"NP object, passive fine"
+1059,I,,intransitive
+1060,T,obligatory,"NP object, passive fine"
+1061,T,obligatory,"NP object, passive fine"
+1062,reject,,relate to vs relate a story
+1063,T,obligatory,"NP object, passive fine"
+1064,T,obligatory,"NP object, passive fine"
+1065,T,obligatory,"NP object, passive fine"
+1066,reject,,wag a finger vs tail wags
+1067,T,obligatory,"NP object, passive fine"
+1068,T,optional,signal intent; also signal to
+1069,I,,intransitive
+1070,T,optional,hide money; also intransitive
+1071,T,obligatory,"NP object, passive fine"
+1072,T,obligatory,"NP object, passive fine"
+1073,T,obligatory,"NP object, passive fine"
+1074,I,,intransitive
+1075,T,obligatory,"NP object, passive fine"
+1076,I,,"intransitive, also copular"
+1077,T,obligatory,"NP object, passive fine"
+1078,T,obligatory,"NP object, passive fine"
+1079,I,,participate in
+1080,T,obligatory,"NP object, passive fine"
+1081,T,obligatory,"NP object, passive fine"
+1082,reject,,"worm one's way, deworm"
+1083,T,obligatory,"NP object, passive fine"
+1084,T,obligatory,"NP object, passive fine"
+1085,T,obligatory,"NP object, passive fine"
+1086,reject,,clause-taking
+1087,T,obligatory,"NP object, passive fine"
+1088,T,optional,adjust settings; also adjust to
+1089,T,obligatory,"NP object, passive fine"
+1090,T,obligatory,"NP object, passive fine"
+1091,T,obligatory,"NP object, passive fine"
+1092,T,obligatory,"NP object, passive fine"
+1093,T,obligatory,"NP object, passive fine"
+1094,I,,result in
+1095,T,obligatory,"NP object, passive fine"
+1096,T,obligatory,"NP object, passive fine"
+1097,T,obligatory,"NP object, passive fine"
+1098,T,obligatory,"attend a meeting, passive fine"
+1099,T,obligatory,"NP object, passive fine"
+1100,T,obligatory,"NP object, passive fine"
+1101,T,obligatory,"NP object, passive fine"
+1102,I,rare_trans,"travel the world, no passive"
+1103,T,obligatory,"racked with, passive fine"
+1104,T,obligatory,"NP object, passive fine"
+1105,T,obligatory,"NP object, passive fine"
+1106,T,obligatory,"NP object, passive fine"
+1107,T,obligatory,"NP object, passive fine"
+1108,I,,react to
+1109,T,obligatory,"NP object, passive fine"
+1110,T,obligatory,"NP object, passive fine"
+1111,I,,stare at
+1112,T,obligatory,"NP object, passive fine"
+1113,I,rare_trans,decay transitive rare
+1114,T,obligatory,"NP object, passive fine"
+1115,I,rare_trans,shop someone BrE slang
+1116,T,obligatory,"NP object, passive fine"
+1117,T,obligatory,"NP object, passive fine"
+1118,T,obligatory,"NP object, passive fine"
+1119,T,obligatory,"NP object, passive fine"
+1120,T,obligatory,"NP object, passive fine"
+1121,T,obligatory,"NP object, passive fine"
+1122,T,obligatory,"NP object, passive fine"
+1123,T,obligatory,"NP object, passive fine"
+1124,T,obligatory,"NP object, passive fine"
+1125,T,optional,recover a loss; also intransitive
+1126,T,obligatory,"NP object, passive fine"
+1127,I,rare_trans,gamble money less common
+1128,T,obligatory,"NP object, passive fine"
+1129,I,,intransitive
+1130,T,obligatory,"NP object, passive fine"
+1131,T,obligatory,"NP object, passive fine"
+1132,T,obligatory,"NP object, passive fine"
+1133,T,obligatory,"NP object, passive fine"
+1134,I,,intransitive
+1135,T,obligatory,"NP object, passive fine"
+1136,T,obligatory,"NP object, passive fine"
+1137,T,obligatory,"NP object, passive fine"
+1138,T,obligatory,"NP object, passive fine"
+1139,T,obligatory,"NP object, passive fine"
+1140,I,,intransitive
+1141,T,obligatory,"NP object, passive fine"
+1142,I,rare_trans,originate an idea less common
+1143,I,,intransitive
+1144,T,obligatory,"NP object, passive fine"
+1145,T,obligatory,"NP object, passive fine"
+1146,T,obligatory,"NP object, passive fine"
+1147,T,obligatory,"NP object, passive fine"
+1148,T,obligatory,"NP object, passive fine"
+1149,I,,intransitive
+1150,T,obligatory,"NP object, passive fine"
+1151,I,,intransitive
+1152,T,obligatory,"NP object, passive fine"
+1153,T,obligatory,"NP object, passive fine"
+1154,I,,inveigh against
+1155,T,obligatory,"NP object, passive fine"
+1156,T,obligatory,"NP object, passive fine"
+1157,T,obligatory,"NP object, passive fine"
+1158,T,obligatory,"NP object, passive fine"
+1159,I,,intransitive sound
+1160,I,,intransitive
+1161,I,,intransitive
+1162,T,obligatory,"NP object, passive fine"
+1163,T,obligatory,"NP object, passive fine"
+1164,I,,intransitive
+1165,T,obligatory,"NP object, passive fine"
+1166,I,,clam up
+1167,T,obligatory,"NP object, passive fine"
+1168,I,,comment on
+1169,T,obligatory,"NP object, passive fine"
+1170,I,,amount to
+1171,I,rare_trans,blab secrets less common
+1172,I,,intransitive
+1173,T,optional,devolve power; also intransitive
+1174,T,obligatory,"NP object, passive fine"
+1175,I,,intransitive
+1176,T,obligatory,"NP object, passive fine"
+1177,I,,intransitive sound
+1178,T,obligatory,"NP object, passive fine"
+1179,I,,intransitive
+1180,I,,intransitive
+1181,T,obligatory,"NP object, passive fine"
+1182,I,,intransitive
+1183,T,obligatory,"NP object, passive fine"
+1184,T,obligatory,"NP object, passive fine"
+1185,reject,,participle mainly adjectival
+1186,T,obligatory,"NP object, passive fine"
+1187,I,,intransitive
+1188,T,obligatory,"NP object, passive fine"
+1189,I,,gaze at
+1190,T,obligatory,"NP object, passive fine"
+1191,T,obligatory,"NP object, passive fine"
+1192,I,,intransitive posture
+1193,T,obligatory,"NP object, passive fine"
+1194,T,obligatory,"NP object, passive fine"
+1195,I,,intransitive
+1196,T,obligatory,"NP object, passive fine"
+1197,T,obligatory,"NP object, passive fine"
+1198,I,,intransitive
+1199,T,obligatory,"NP object, passive fine"
+1200,reject,,mainly clause-taking
+1201,reject,,spy on vs spied a figure
+1202,T,obligatory,"NP object, passive fine"
+1203,T,obligatory,mostly passive orphaned
+1204,T,obligatory,"NP object, passive fine"
+1205,reject,,hurry someone vs hurry up
+1206,T,obligatory,"NP object, passive fine"
+1207,T,obligatory,"NP object, passive fine"
+1208,T,optional,object or objectless
+1209,T,obligatory,"NP object, passive fine"
+1210,T,obligatory,"NP object, passive fine"
+1211,I,,"intransitive, pray for"
+1212,T,obligatory,"NP object, passive fine"
+1213,I,,intransitive
+1214,T,obligatory,"NP object, passive fine"
+1215,I,,intransitive
+1216,T,obligatory,"NP object, passive fine"
+1217,T,obligatory,"NP object, passive fine"
+1218,I,,intransitive
+1219,T,obligatory,"NP object, passive fine"
+1220,reject,,participle mainly adjectival
+1221,I,,intransitive
+1222,T,obligatory,"NP object, passive fine"
+1223,T,obligatory,"NP object, passive fine"
+1224,T,obligatory,"rear children, passive fine"
+1225,T,obligatory,"NP object, passive fine"
+1226,I,,intransitive
+1227,T,obligatory,"NP object, passive fine"
+1228,T,obligatory,"deemed X, passive fine"
+1229,T,obligatory,"NP object, passive fine"
+1230,T,obligatory,"NP object, passive fine"
+1231,I,,intransitive
+1232,T,obligatory,"NP object, passive fine"
