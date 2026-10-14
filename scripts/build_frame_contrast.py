@@ -131,6 +131,7 @@ def main(args):
     V["ids"] = [" ".join(map(str, x)) for x in ids]
     V["first_id"] = [x[0] for x in ids]
     V = V.sort_values(["curated", "verb"], ascending=[False, True]).reset_index(drop=True)
+    ids = [list(map(int, x.split())) for x in V.ids]  # aligned with the sorted table
 
     # tokenization is compositional: joined string = prefix ids + participle ids
     for p in list(pre.pass_prefix) + list(pre.act_prefix):

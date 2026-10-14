@@ -1,0 +1,39 @@
+{
+ "inputs": {
+  "data/passive_band_cross/pairs.jsonl": "a19c0d99ff2ced8bd71bd1613450197ed420b99982d0d43c796d340c16d3d184",
+  "data/freqblimp_original_passives/pairs.jsonl": "353ccc052fc13874ad8de617940cb617df7ae000592a44fbd857a75de5e6b2c2"
+ },
+ "versions": {
+  "wordfreq": "3.1.1",
+  "transformers": "4.57.6",
+  "tokenizers": "0.22.2"
+ },
+ "model": "EleutherAI/pythia-1.4b",
+ "noun_replacements": [],
+ "pool_excluded": [
+  "baby-sat"
+ ],
+ "counts": {
+  "prefixes": {
+   "been": 24,
+   "cur": 126,
+   "freq": 24,
+   "they": 1
+  },
+  "verbs": {
+   "curated0_I": 83,
+   "curated0_T": 627,
+   "curated1_I": 126,
+   "curated1_T": 126
+  },
+  "single_token_rare": {
+   "I": 9,
+   "T": 23
+  }
+ },
+ "outputs": {
+  "prefixes.csv": "220049609373f9ed8958e0fd0f976c2323c0bec681deac2b7edd44d9e20dfe40",
+  "verbs.csv": "cd6d3dca4ca42ff3581d4a052983eed2048688a8c441459394a18a633eacf658",
+  "pairs.csv": "a5c92f97b8f87f337102b8522d55ed194d06d656de3299f7215021cbd8a46a3d"
+ }
+}
