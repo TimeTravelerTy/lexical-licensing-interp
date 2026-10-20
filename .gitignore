@@ -56,3 +56,15 @@ results/round5/frame_suite/*/frame_h.npz
 results/round5/frame_suite/*/frame_scores.parquet
 results/round5/probe/probe_freqblimp.parquet
 results/round5/restore/restore_freqblimp.parquet
+
+# Round 6: raw scores of the suite models and checkpoints (SHA-256 in each frame_meta.json); 1.4B kept
+results/round6/frame_d11/*/frame_scores.parquet
+results/round6/frame_d11/*/frame_h.npz
+!results/round6/frame_d11/pythia-1.4b/frame_scores.parquet
+!results/round6/frame_d11/pythia-1.4b/frame_h.npz
+results/round6/checkpoints/*/*/frame_scores.parquet
+results/round6/checkpoints/*/*/frame_h.npz
+results/round6/preempt/preempt_scores.parquet
+results/round6/classify/restore_freqblimp.parquet
+# Round 6 count fetch partials (merged into pile_counts.csv)
+data/round6/counts/pile_counts.partial*.jsonl
