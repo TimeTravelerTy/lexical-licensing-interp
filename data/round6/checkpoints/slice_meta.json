@@ -1,0 +1,22 @@
+{
+ "url": "https://huggingface.co/datasets/EleutherAI/pile-standard-pythia-preshuffled/resolve/main/document-{:05d}-of-00020.bin",
+ "steps": [
+  128,
+  512,
+  1000,
+  2000,
+  4000,
+  8000,
+  16000,
+  32000,
+  64000,
+  100000,
+  130000,
+  142000
+ ],
+ "slice_tokens": 25000000,
+ "record_tokens": 2098176,
+ "total_steps": 143000,
+ "verbs": 134,
+ "date": "2026-10-20"
+}
