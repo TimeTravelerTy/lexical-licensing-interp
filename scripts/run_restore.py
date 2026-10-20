@@ -15,6 +15,10 @@ curated fp32 scores (results/round5/frame/curated_p1_fp32_scores.csv) for passiv
 
 Outputs (--out-dir): restore_curated.parquet, restore_freqblimp.parquet, restore_lm.parquet, restore_zfit.csv,
 restore_meta.json.
+
+Round 6, C4 options (defaults leave round 5's behaviour unchanged): --classify-manifest adds the "classify" condition
+(a* = the Head mean of the class assigned from z), --conditions restricts the conditions, --skip-lm drops the LM-loss
+evaluation, --extra-z computes z for further verbs (restore_zfit_extra.csv), --zfit-ref checks z against round 5.
 """
 
 from __future__ import annotations
@@ -116,15 +120,28 @@ def run(args):
     allv = pd.concat([head.assign(group="head"), man.assign(group="rare")], ignore_index=True)
     meta["das_participles_held_out_fold"] = sorted(v for v in allv.verb if v in verb_fold)
     frames = ("She has {}", "He has {}", "They have {}")
-    Z = np.zeros(len(allv))
-    for fr in frames:
-        h8 = torch.cat([site8([fr.format(v) for v in allv.verb.tolist()[i:i + 256]]) for i in range(0, len(allv), 256)])
-        x = (h8 @ D.T).double().cpu().numpy()
-        z = np.stack([(scale[f][0] * x[:, j] - scale[f][1]) / (scale[f][2] - scale[f][1]) for j, (_, f) in enumerate(KEYS)], 1)
-        zz = np.where([v in verb_fold for v in allv.verb], z[np.arange(len(allv)), [verb_fold.get(v, 0) for v in allv.verb]],
-                      z.mean(1))
-        Z += zz / len(frames)
-    allv["z"] = Z
+
+    def zvals(verbs):
+        Z = np.zeros(len(verbs))
+        for fr in frames:
+            h8 = torch.cat([site8([fr.format(v) for v in verbs[i:i + 256]]) for i in range(0, len(verbs), 256)])
+            x = (h8 @ D.T).double().cpu().numpy()
+            z = np.stack([(scale[f][0] * x[:, j] - scale[f][1]) / (scale[f][2] - scale[f][1]) for j, (_, f) in enumerate(KEYS)], 1)
+            zz = np.where([v in verb_fold for v in verbs], z[np.arange(len(verbs)), [verb_fold.get(v, 0) for v in verbs]],
+                          z.mean(1))
+            Z += zz / len(frames)
+        return Z
+
+    allv["z"] = zvals(allv.verb.tolist())
+    if args.zfit_ref:  # round 6 C4: the recomputed z must reproduce round 5's
+        ref = pd.read_csv(args.zfit_ref).set_index("verb").z
+        meta["checks"]["z_reproduces_max"] = float(np.abs(allv.set_index("verb").z - ref.loc[allv.verb]).max())
+        assert meta["checks"]["z_reproduces_max"] < 1e-4, meta["checks"]
+    if args.extra_z:  # round 6 C4: z for verbs that are classified but not edited
+        ex = pd.read_csv(args.extra_z, keep_default_na=False)
+        ex["z"] = zvals(ex.verb.tolist())
+        ex["das_heldout_fold"] = [verb_fold.get(v, -1) for v in ex.verb]
+        ex.to_csv(out / "restore_zfit_extra.csv", index=False)
     H_ = allv[allv.group == "head"]
     X = np.column_stack([np.ones(len(H_)), H_.z])
     beta = np.linalg.lstsq(X, H_.a.to_numpy(), rcond=None)[0]
@@ -159,6 +176,20 @@ def run(args):
                "oracle_T": dict(zip(rare[rare.role == "T"].first_id, rare[rare.role == "T"].a_oracle)),
                "oracle_I": dict(zip(rare[rare.role == "I"].first_id, rare[rare.role == "I"].a_oracle)),
                "labelfree": dict(zip(rare.first_id, rare.a_labelfree))}
+    for k_ in ("classify_manifest", "extra_z", "zfit_ref"):
+        if getattr(args, k_, ""):
+            meta["inputs"][k_] = sha(getattr(args, k_))
+    if args.classify_manifest:  # round 6 C4: the oracle target of the class read from z
+        cm = pd.read_csv(args.classify_manifest)
+        assert cm.verb.is_unique and cm.first_id.is_unique, "classify manifest must map verbs to tokens one-to-one"
+        live = allv[allv.group == "rare"].set_index("verb")
+        assert np.allclose(live.z.loc[cm.verb].to_numpy(), cm.z.to_numpy(), atol=1e-4), "manifest z differs from live z"
+        assert (live.first_id.loc[cm.verb].to_numpy() == cm.first_id.to_numpy()).all(), "manifest token ids differ"
+        assert set(cm.first_id) == set(rare.first_id), "classify manifest does not cover the edited participles"
+        targets["classify"] = dict(zip(cm.first_id, cm.a_classify))
+    if args.conditions:
+        assert set(args.conditions) <= set(targets) and "unedited" in args.conditions, args.conditions
+        targets = {k: v for k, v in targets.items() if k in args.conditions}
     edited_ids = set(int(t) for t in rare.first_id)
     nd2 = float(dbar @ dbar)
 
@@ -187,11 +218,16 @@ def run(args):
             fq.append(pd.DataFrame({"band": band, "uid": f.stem, "pairID": d.pairID.astype(str),
                                     "good": d.sentence_good, "bad": d.sentence_bad}))
     fq = pd.concat(fq, ignore_index=True)
-    docs = [json.loads(l) for l in Path(args.pileval_docs).read_text().splitlines()]
-    p10 = pd.read_parquet(args.pile10k).text
-    pick = np.sort(np.random.default_rng(args.seed).choice(len(p10), 500, replace=False))
-    lm_texts = [("pileval", d["verb"], d["doc_ix"], d["text"], d["occ_char"]) for d in docs] + \
-               [("pile10k", "", int(i), p10.iloc[i], -1) for i in pick]
+    meta["freqblimp_sha256"] = {f"{b}/{f.name}": sha(f) for b in ("head", "tail", "xtail")
+                                for f in sorted((Path(args.freqblimp) / b).glob("*.jsonl"))}
+    if args.skip_lm:
+        docs, lm_texts = [], []
+    else:
+        docs = [json.loads(l) for l in Path(args.pileval_docs).read_text().splitlines()]
+        p10 = pd.read_parquet(args.pile10k).text
+        pick = np.sort(np.random.default_rng(args.seed).choice(len(p10), 500, replace=False))
+        lm_texts = [("pileval", d["verb"], d["doc_ix"], d["text"], d["occ_char"]) for d in docs] + \
+                   [("pile10k", "", int(i), p10.iloc[i], -1) for i in pick]
 
     def window(text, occ):
         """Pythia token ids and char offsets: the first lm_len tokens, or lm_len tokens centred on the occurrence."""
@@ -278,7 +314,8 @@ def run(args):
     F = pd.concat(rows_f, ignore_index=True)
     F.to_parquet(out / "restore_freqblimp.parquet", index=False)
     fq.drop(columns=["good", "bad"]).assign(row=np.arange(len(fq))).to_parquet(out / "restore_freqblimp_items.parquet", index=False)
-    pd.DataFrame(rows_l).to_parquet(out / "restore_lm.parquet", index=False)
+    if rows_l:
+        pd.DataFrame(rows_l).to_parquet(out / "restore_lm.parquet", index=False)
     meta["seconds"] = round(time.time() - t0)
     (out / "restore_meta.json").write_text(json.dumps(meta, indent=2, default=str) + "\n")
     print(json.dumps(meta["checks"]), flush=True)
@@ -293,7 +330,12 @@ if __name__ == "__main__":
     ap.add_argument("--head", default="data/round5/restore/head_singletons.csv")
     ap.add_argument("--dbar", default="data/round5/restore/dbar.npy")
     ap.add_argument("--pileval-docs", default="data/round5/restore/pileval_docs.jsonl")
-    ap.add_argument("--pile10k", required=True)
+    ap.add_argument("--pile10k", default="")
+    ap.add_argument("--skip-lm", action="store_true", help="round 6 C4: no LM-loss evaluation")
+    ap.add_argument("--conditions", nargs="*", default=None, help="round 6 C4: subset of conditions (must include unedited)")
+    ap.add_argument("--classify-manifest", default="", help="round 6 C4: adds the 'classify' condition")
+    ap.add_argument("--extra-z", default="", help="round 6 C4: verbs whose z is computed (not edited)")
+    ap.add_argument("--zfit-ref", default="", help="round 6 C4: round 5's restore_zfit.csv (z reproduction check)")
     ap.add_argument("--pairs", default="data/passive_band_cross/pairs.jsonl")
     ap.add_argument("--cur-ref", default="results/round5/frame/curated_p1_fp32_scores.csv")
     ap.add_argument("--freqblimp", required=True)

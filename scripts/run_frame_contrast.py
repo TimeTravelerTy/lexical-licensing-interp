@@ -53,8 +53,9 @@ def main(args):
     missing = (set(pairs.t_verb) | set(pairs.i_verb)) - scored_cur
     assert not missing, f"{len(missing)} pair verbs not scored in the cur prefixes (use --cur-all?): {sorted(missing)[:5]}"
     tok = AutoTokenizer.from_pretrained(args.model, local_files_only=True)
+    rev = {"revision": args.revision} if args.revision else {}
     model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=torch.float32,
-                                                 local_files_only=True).to(dev).eval()
+                                                 local_files_only=not args.allow_download, **rev).to(dev).eval()
     W = model.embed_out.weight  # [vocab, H]; GPT-NeoX unembedding has no bias
     assert getattr(model.embed_out, "bias", None) is None
     cap = {}
@@ -112,7 +113,7 @@ def main(args):
                 keys.append((pr["set"], pr["context_id"], frame))
         print(f"forward passes done in {time.time() - t0:.0f}s; max h deviation {max_h_dev:.2e}; "
               f"max first-subtoken reconstruction error {max_first_err:.2e}; max |logit| at the slot {max_logit:.1f}", flush=True)
-        assert max_h_dev <= 1e-4, max_h_dev
+        assert max_h_dev <= args.h_tol, max_h_dev
         assert max_first_err <= args.tol, max_first_err
 
         S = pd.DataFrame(rows, columns=["set", "context_id", "frame", "verb", "lp", "lp1", "n_tok", "lp_sub"])
@@ -140,9 +141,10 @@ def main(args):
     S.to_parquet(out / "frame_scores.parquet", index=False)
     np.savez(out / "frame_h.npz", H=H, LSE=np.array(LSE), keys=np.array(["|".join(k) for k in keys]),
              U=U, U_ids=np.array(uniq))
-    meta = {"model": args.model, "dtype": "float32", "tf32": False, "n_rows": len(S), "cur_all": bool(args.cur_all),
+    meta = {"model": args.model, "revision": args.revision or "main", "dtype": "float32", "tf32": False, "n_rows": len(S),
+            "cur_all": bool(args.cur_all),
             "inputs": {f: sha(data / f) for f in ("prefixes.csv", "verbs.csv", "pairs.csv")},
-            "checks": {"max_h_deviation": max_h_dev, "max_first_subtoken_error": max_first_err,
+            "checks": {"max_h_deviation": max_h_dev, "h_tol": args.h_tol, "max_first_subtoken_error": max_first_err,
                        "max_identity_error": max_id_err, "max_abs_logit": max_logit, "tol": args.tol},
             "outputs": {f: sha(out / f) for f in ("frame_scores.parquet", "frame_h.npz")}}
     (out / "frame_meta.json").write_text(json.dumps(meta, indent=1))
@@ -157,6 +159,10 @@ if __name__ == "__main__":
     ap.add_argument("--batch", type=int, default=384)
     ap.add_argument("--out-dir", default="results/round5/frame")
     ap.add_argument("--cur-all", action="store_true", help="score every verb in the cur prefixes (round 6, D11)")
+    ap.add_argument("--revision", default="", help="round 6 A6: a Pythia checkpoint revision (e.g. step1000)")
+    ap.add_argument("--allow-download", action="store_true", help="round 6 A6: fetch a missing revision (compute node)")
+    ap.add_argument("--h-tol", type=float, default=1e-4,
+                    help="tolerance of the shared-prefix h check (round 6 A2 clarification: 1e-2 for the suite models)")
     ap.add_argument("--tol", type=float, default=1e-3,
                     help="tolerance of the reconstruction and identity checks (1e-3 for 1.4B; 1e-2 for the D10b suite)")
     main(ap.parse_args())

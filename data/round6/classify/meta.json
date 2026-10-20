@@ -1,0 +1,25 @@
+{
+ "theta": 0.514448597292102,
+ "head_class_mean_a": {
+  "I": -3.7580476648644194,
+  "T": 0.09028626949045539
+ },
+ "n_head": {
+  "T": 282,
+  "I": 30
+ },
+ "n_rare": 32,
+ "n_extra": {
+  "head/I": 17,
+  "tail/I": 12,
+  "tail/T": 16
+ },
+ "inputs": {
+  "results/round5/restore/restore_zfit.csv": "200bfb65d4e1f5fea3353642cd287dcfa586b881ac79080a9b1f8f9c5d0bfe24",
+  "data/round6/frame_d11/verbs.csv": "ed5b04cdfad28caba5d80e98761829d68e6860d70015a952ec80d55c1173efed"
+ },
+ "outputs": {
+  "manifest.csv": "380ac861ece334e36ca19005480931b3809c183a8dbcc93f75f89c282569503e",
+  "extra_z.csv": "b677aa9f1fc49330bfedc46a57addfc34faf6c89392a01284fab419391f6e89d"
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "contexts": 8869,
+ "by_arm": {
+  "pre": 1124,
+  "exp": 1124,
+  "mention": 1124,
+  "fill": 1124,
+  "other": 1124,
+  "vs": 1124,
+  "ing": 1124,
+  "none": 361,
+  "trans": 320,
+  "fill_t": 320
+ },
+ "seed": 17,
+ "length_spread_within_verb_k_max": 1,
+ "mean_pad_tokens_k8": {
+  "exp": 16.93,
+  "fill": 12.35,
+  "fill_t": 4.44,
+  "ing": 3.84,
+  "mention": 2.95,
+  "other": 11.77,
+  "pre": 11.79,
+  "trans": 0.0,
+  "vs": 11.79
+ },
+ "dist_last_mention_k8_mean": {
+  "mention": 3.52,
+  "pre": 5.05,
+  "trans": 6.84
+ },
+ "inputs": {
+  "data/round5/verbs_expanded/pairs.csv": "d24c28538e8d2e1725451e404f678760c295dfb9e60ca2616874212b694087f2",
+  "data/round6/frame_d11/prefixes.csv": "220049609373f9ed8958e0fd0f976c2323c0bec681deac2b7edd44d9e20dfe40",
+  "data/round6/preempt/i_frames.csv": "a7bbca83356b3ca0804dffb885e19343a951603ff5a730b1a332e5d811c44bc0",
+  "data/round6/preempt/t_frames.csv": "f7d6161ec6b389e1b0296ac3448169e480a5768c8c447725770c0522c6565f93"
+ },
+ "outputs": {
+  "contexts.csv": "108a1837eb6f6ed50aa0ec3b1b62ff189f39be5e1d00cdd945162b65dfdf5061"
+ }
+}

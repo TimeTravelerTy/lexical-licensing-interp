@@ -340,6 +340,19 @@ reported descriptively.
   unresolved (22 Tail and 18 XTail pairs).
 - Head AUC ≥ 0.9; singleton D_L > 0 with CI above 0 at 1.4B.
 
+**Run clarification (A2, 2026-10-20, after job 9069457's checks, before
+any analysis).** Pythia-160M stopped at the shared-prefix check: h differed
+across the rows of a batch by up to 6.8e-4 (tolerance 1e-4); its
+first-subtoken reconstruction error was 1.6e-3 and its largest |logit| at
+the slot 845 (round 5's D10b saw the same scale at 160M). Scoring every
+verb in the cur prefixes changes batch shapes relative to round 5, and the
+fp32 rounding at this logit scale exceeds 1e-4; a hook or position error
+would give differences of 0.1 or more. 1.4B, 410M, 1B and 2.8B passed with
+h deviation 0. The runner gains `--h-tol` (default 1e-4, unchanged for
+1.4B); suite models that fail only this check are rerun with 1e-2, the
+tolerance D10b set for the reconstruction check, and the realized
+deviation is reported.
+
 ## Order (A1–A2)
 
 1. Commit this part.
@@ -352,3 +365,298 @@ reported descriptively.
    models.
 5. Analyses: `analyze_frame_d11.py` (A2), `analyze_exposure.py` (A1);
    reports `a2_suite_d11.md`, `a1_exposure.md`; summary in `results.md`.
+
+
+# Part B3, C4, C5: other alternations, classify-from-z restore, in-context preemption (declared 2026-10-20)
+
+Written while A1's counts were being fetched and before A2's analysis (no
+A1/A2 outcome seen; A2's 1.4B scores exist but have not been analysed).
+Revised after an outside review (Codex) of the first draft and its code,
+before any run. **Disclosure (C4):** while smoke-testing the C4 analysis
+code on a mock built from round-5 A4's stored outputs, the classification of
+A4's 32 rare single-token verbs from their stored z was computed and seen:
+balanced accuracy 0.94 (23 of 23 T and 8 of 9 I assigned correctly). C4's
+classification result on that population is therefore known before
+declaration; its restoration outcome is not (the mock copied the oracle
+condition).
+
+## B3. Other alternations: the symmetric entrenchment prediction
+
+**Question.** In the passive, the rare-verb deficit sits on the side of the
+verb that is (nearly) never used in the frame: rare intransitives are not
+rejected after "was". Entrenchment predicts the same elsewhere: in an
+object frame the dispreferred verb is the intransitive (rare I verbs should
+leave room for an object), in a no-object frame it is the obligatorily
+transitive verb (rare T verbs should leave room for a clause end). "Never
+attested" is too strong for this inventory (111 of 281 I verbs carry a
+"rare transitive" flag from at least one rater), so the hypothesis is
+stated as preferred versus dispreferred frame; excluding flagged verbs is a
+sensitivity.
+
+**Verb inventory.** Checked before declaration:
+- FreqBLiMP's alternation paradigms have few verb types on the side that
+  matters: causative good (alternating) verbs 96 / 42 / 12 types (Head /
+  Tail / XTail), inchoative good 96 / 42 / 12, drop_argument good 55 / 13 /
+  19. The June causative / inchoative templates (`data/aligned_templates_v2`)
+  have 17–36 lemmas per cell. Neither supports per-verb analysis by band.
+- D11 (281 T/I pairs) does, so **D11 is the B3 inventory**. Its T verbs are
+  non-alternating transitives, its I verbs non-alternating intransitives
+  (the transitive / intransitive contrast behind the bad sides of
+  FreqBLiMP's `transitive`, `intransitive`, `causative`, `inchoative` and
+  `drop_argument`, not the causative alternation itself).
+
+**Frames** (D11 verbs, the 24 A1 nouns, no BOS): primary simple past "The N
+p"; secondary perfect "The N has v". The next-token distribution at the
+verb's last subtoken:
+- **O**, an object-onset proxy: round 2's object set (26 tokens). It also
+  catches non-object continuations ("slept the entire afternoon", "laughed
+  himself sick"), so claims are about object-onset expectation, and a
+  strict set of unambiguous objective pronouns (him, them, me, us) is the
+  declared sensitivity; an O conclusion is claimed only if the strict set
+  agrees in sign.
+- **Clause end**: "." (primary; commas, colons and newlines can precede an
+  outstanding object); the punctuation set {".", ",", ";", ":", "!", "?",
+  "\n"} as sensitivity.
+- PREP (the prepositions of round 2's I set): reported by band.
+
+**Populations.** M_obj on all 281 pairs. M_end on the **eligible pairs**:
+the T verb flagged obligatory by both raters and the I verb forming a
+complete bare clause ("The N V-ed." without its complement; Claude's
+annotation `bare_ok` in `data/round6/preempt/i_frames.csv`, frozen before
+any run; 29 I verbs need their complement, e.g. rely, consist, belong); 197
+pairs. Sensitivities: all obligatory-T pairs; I verbs with a rare-transitive
+flag excluded (any rater, both raters).
+
+**Measures** (per pair, mean over nouns): M_obj = log P(O|T) − log P(O|I);
+M_end = log P(.|I) − log P(.|T). Band contrasts as A2 (token-standardized
+Tail − XTail over 2×2, 2×3, 3×2, 3×3 with weights 85 / 36 / 35 / 22; Head −
+XTail), with side contributions.
+
+**Side test (primary).** Per-verb OLS slopes of each side quantity on the
+verb's Zipf, with the frame-specific log token count as covariate, on the
+same pairs for both classes (all pairs for O, eligible pairs for "."):
+- predicted side: log P(O | I) and log P(. | T) — **tracks frequency**
+  (95% CI below 0), **reversed** (95% CI above 0), **flat** (90% CI within
+  ±0.25 nats per Zipf unit) or unresolved;
+- other side: log P(O | T), log P(. | I) — flat / slope ≠ 0 / unresolved;
+- **side specificity**: the paired difference (predicted-side slope minus
+  the other side's slope): **side-specific** if its 95% CI is below 0,
+  **reversed** if above 0, otherwise not side-specific.
+Sensitivities: token count as categories (1 / 2 / 3 / 4+); multi-token
+Tail and XTail pairs only (common support); animate or inanimate nouns only
+(inanimate subjects make some prefixes anomalous: "The report slept").
+Bootstrap: pairs within band × nouns within animacy, 2,000 draws; identical
+draws for every model.
+
+**Against counts** (A1's counts; run after they are complete): log P(O | I)
+~ C (A1's c_total) and C → C + log c_obj (c_obj = Σ count("P p the"), itself
+an object-onset proxy); log P(. | T), eligible pairs, ~ C and C → C + log
+c_end (Σ count("P p.")). Log token count is in every model. A1's CV rules;
+predicted coefficients: C < 0, frame count > 0. Zero shares of the frame
+counts by band.
+
+**Released FreqBLiMP (descriptive).** Pythia-1.4B LP accuracy by band with
+item CIs (already known: causative 79.3 / 86.7 / 78.8, transitive 75.3 /
+75.5 / 69.2, inchoative 87.2 / 91.5 / 81.2, drop_argument 80.0 / 60.5 /
+71.3, intransitive 67.5 / 73.6 / 69.8). Item-level association: each item's
+critical verb (the one differing word) mapped to a D11 lemma via its
+inflections; item margin regressed on the bad verb's side measure (log P(O |
+I) for causative / transitive, log P(. | T) for inchoative / drop_argument /
+intransitive) with band fixed effects and the bad verb's Zipf and log token
+count as controls; verbs resampled within band. Analysed only with ≥ 3
+mapped verb types in every band and ≥ 15 in total (checked: drop_argument
+has 1 / 2 / 4 types and is descriptive only). It is labelled an
+association: lexical, inflectional and good-verb differences are not
+controlled, and it does not test the mechanism.
+
+**Decision rules.** Band contrasts: A2's rules (bound 0.25 nats) on ΔM_obj
+and ΔM_end; side labels only given a deficit (I-side / T-side when that
+side's contribution has a CI above 0 and exceeds the other's, paired).
+**The B3 prediction holds** for a frame if the predicted-side slope tracks
+frequency and the side difference is side-specific (for O, with the strict
+pronoun set agreeing in sign). "Unresolved" does not count as support.
+
+**Predictions.**
+- Object frame: log P(O | I) **tracks frequency**, **side-specific**; ΔM_obj
+  Head − XTail **deficit, I-side**; token-standardized deficit or
+  unresolved.
+- Clause end (eligible pairs): log P(. | T) **tracks frequency**,
+  **side-specific** (low confidence: an objectless obligatory transitive is
+  rarely followed by a period even for rare verbs, so the effect may be
+  small); ΔM_end Head − XTail deficit, T-side.
+- Counts: C coefficients < 0 with "b better"; frame counts add (low
+  confidence).
+- Released items: negative associations for causative and transitive
+  (descriptive).
+- Suite (descriptive): the same side specificity at every size.
+
+**Runs.** One TSUBAME job (with C4 and C5): the B3 prefixes (562 verbs × 24
+nouns × 2 frames) on 1.4B and the six other suite models. Inputs
+`data/round6/alternation/`; runner `run_next_sets.py`; analysis
+`analyze_alternation.py`; report `b3_alternations.md`.
+
+## C4. Classify-from-z restore
+
+**Question.** Round-5 A4 restored rare single-token participles by moving
+each unembedding row along Δh̄ to its class's Head mean (oracle: the class
+label given) or to a value predicted linearly from the verb's site-8 z
+(label-free; below half the oracle). Here the class is read from z: can the
+verb's own early verb-class coordinate supply the label the oracle needs?
+
+**Setup** (A4's, unchanged: model, Δh̄, edit rule, z = the mean over "She has
+V", "He has V", "They have V" of the split-0 fold-scaled site-8 coordinate,
+DAS verbs on their held-out fold; evaluations).
+- Threshold θ: fit on A4's Head single-token verbs only (282 T, 30 I): the
+  value maximizing balanced accuracy (Youden's J); ties → the midpoint of
+  the first contiguous run of maximizing candidates.
+- Assignment: T if z ≥ θ, else I. **classify** condition: move the row to
+  the Head mean affinity of the assigned class (the oracle target of that
+  class). The job recomputes z, checks it against A4's to 1e-4 and checks
+  the frozen manifest (verb ↔ token, z, assignment).
+- Sensitivity: θ fit on A4's Head plus D11's 17 extra Head singletons
+  (reported, not edited).
+
+**Populations.** Primary: A4's 32 rare single-token participles (Tail: 23 T,
+9 I). Secondary (classification only): D11's Tail single-token verbs (24 T,
+20 I; 28 not in A4's set, their z computed in the job).
+
+**Measures.**
+- Classification: per-class accuracy and balanced accuracy, 95% CIs with
+  Head and rare verbs resampled within class and θ refit in every draw;
+  Head in-sample and leave-one-out balanced accuracy (conditional on the
+  existing z construction).
+- Restoration (conditions unedited, oracle, classify): affected curated
+  `passive_1` (primary) and `passive_2` margins, classify − oracle, share of
+  the deficit closed; released passive items; specificity (curated Head
+  pairs; unaffected FreqBLiMP items across all 67 paradigms; Pile-10k NLL)
+  and NLL at the edited tokens on Pile-validation windows (A4's LM-loss
+  evaluation, rerun because a misclassified verb gets the other class's
+  target). Edited rows change every softmax normalizer, so specificity is
+  measured, not assumed. Restoration CIs condition on the frozen θ,
+  assignments and targets.
+
+**Decision rules.**
+- **z classifies rare verbs above chance**: balanced accuracy on the 32 has
+  a 95% CI above 0.5 (known before declaration; see the disclosure).
+- **Classify-restore improves rare passives**: affected curated `passive_1`
+  margin change with 95% CI above 0 and ≥ 0.25 nats.
+- **Achieves half the oracle** (interpreted only if the oracle improves, as
+  it did in A4): Δ_classify − 0.5 Δ_oracle 95% CI above 0 (paired).
+- **Matches the oracle**: 90% CI of Δ_classify − Δ_oracle within ±0.1 nats.
+- Specific: A4's bounds (Head pairs ±0.05 nats; unaffected items ±0.5 pp;
+  Pile-10k < +0.002 nats per token).
+
+**Predictions.** Classification above chance (seen; not a prediction).
+Given one misclassified I verb, classify-restore **improves** and
+**achieves half the oracle**; it does not match the oracle if the
+misclassified verb is in an affected pair (an I verb moved to the T mean
+makes its bad passives more probable). Specific: yes. D11 Tail singletons
+(secondary; partially seen: 16 of the 44 are in A4's set, 28 are new):
+balanced accuracy above 0.5 (low confidence).
+
+**Runs.** `run_restore.py` with the C4 manifest (`build_classify_manifest.py`),
+conditions unedited / oracle / classify, LM loss included, extra z for
+D11's Tail singletons. Analysis `analyze_classify.py`; report
+`c4_classify.md`.
+
+## C5. In-context preemption
+
+**Question.** Does seeing a rare intransitive used intransitively, a few
+times in the context, make the model reject it after "was" (statistical
+preemption in context), beyond exposure to the word or to its exact form?
+
+**Probe.** A1's frames after the context: "The N was" / "The N has"
+(primary) and "The N has been" / "The N has" (secondary), the 24 A1 nouns
+(none occurs in any context), no BOS. Δ_pass(V | arm, k) = log P(V | ctx +
+was-prefix) − log P(V | ctx + has-prefix); raw log-probs per frame kept.
+
+**Verbs.** Rare I: D11 Tail and XTail intransitives (incl. multi-token).
+**Primary population**: those annotated dynamic (a natural -ing nominal and
+progressive; 233 of 234; statives such as consist, belong, exist are
+excluded). Head I (dynamic, 40): reference. Rare T control: 80 D11 T verbs
+(40 Tail, 40 XTail; seed 17).
+
+**Contexts** (k ∈ {1, 2, 4, 8}; k = 0 = no context, i.e. A1's scores).
+Per-verb frames (`data/round6/preempt/i_frames.csv`; Claude's annotation,
+frozen before any run): subject class (separate 8-noun pools per class:
+person, animal, canine, large animal, object, kitchen item, event, weather /
+conflict, show, quantity, substance, drink, light, fire, sound, machine,
+vehicle, organic matter, protruding part, path, water body, place, plant,
+document, time), plural flag (with correct plurals), optional complement
+("relied on the map"), optional fixed subject ("the duck quacked"),
+adjunct policy (none for e.g. "lasted for hours", "died"), bare_ok,
+dynamic, theme (unaccusative-like sole argument). The generated sentences
+were audited by reading them (the review found and the revision fixed
+cases such as "The crisiss…", "The bell smoldered", "The path teemed with
+fish").
+- **preemptive**: k sentences "The S p (complement) (adjunct).";
+- **exposure-only**: k nominal -ing mentions in eight carrier sentences
+  ("Nobody noticed the V-ing.");
+- **exact-form mention**: k metalinguistic mentions of the probed
+  participle with its leading space ("Someone wrote glared on the board.",
+  "The puzzle needed the word glared."): the exact form is repeated without
+  a competing intransitive use;
+- **filler**: k verbless fragments, each matched in length to its
+  preemptive sentence;
+- **other-verb**: the preemptive sentences of another intransitive of the
+  same band with the same complement status and the closest length;
+- **inflection mismatch**: "The S V-s …" (present) and "The S is V-ing …";
+- **transitive control** (rare T): "The S p the O (adjunct).", with its
+  filler.
+Each verb's 8 sentence slots are put in a verb-specific random order, and
+an arm's k-sentence context is the first k slots, so the dose does not add
+the same subject or adjunct at the same k for every verb. Within a verb and
+k, every arm is left-padded with verbless fragments to the longest arm's
+length (± 1 token), so the arms compared have equal length and their own
+sentences stay next to the probe. Checks: no be- or have-form directly
+before any form of the target verb (except the "is V-ing" arm); no probe
+noun in any context; joined tokenization = parts.
+
+**Contrasts** (primary population; verb means over nouns; at k = 8):
+E_arm = Δ_pass(arm) − Δ_pass(filler) for pre, exp, mention, other, vs, ing;
+the paired differences E_pre − E_exp, E_pre − E_mention, E_pre − E_other,
+E_pre − E_vs, E_pre − E_ing; the Head level (Head I under filler, k = 8),
+the rare − Head gap G and the paired distance reduction D = G − |Δ_pass,rare(pre)
+− Head level|; dose: slope of Δ_pass(pre) − Δ_pass(filler) on log2 k; T
+control E_T = Δ_pass(trans) − Δ_pass(filler_t); raw log-probs (levels by
+dose and k = 8 changes after was, has and has been). Bootstrap: verbs within
+band × nouns within animacy, 2,000 draws. Breakdowns: band, token count,
+complement; sensitivities: all rare I including statives; theme subjects.
+
+**Decision rules** (bound 0.25 nats):
+- E_pre **lowers** (95% CI below 0 and ≤ −0.25) / raises / negligible /
+  unresolved;
+- **beyond exposure**: E_pre − E_exp 95% CI below 0 and ≤ −0.25;
+- **beyond exact-form mention**: E_pre − E_mention 95% CI below 0 and ≤
+  −0.25;
+- **verb-specific**: E_pre − E_other 95% CI below 0;
+- **T control does not fall**: E_T 95% CI lower bound above −0.25;
+- **in-context preemption is claimed** only if all five hold.
+Secondary: **moves toward Head** = G 95% CI above 0 and D 95% CI above 0
+(the share −E_pre / G is reported only when G is resolved above 0); dose and
+mismatch comparisons reported with CIs. "Unresolved" never counts as
+support. The theme-subject subset tests the stronger "affected-entity"
+reading descriptively; for unergatives the context shows the verb's sole
+argument as subject, which is contextual valency evidence rather than a
+semantic competitor of the passive.
+
+**Predictions** (the brief's hypothesis; low confidence, because an
+in-context copy effect raises a repeated form's probability after any
+auxiliary and can shrink Δ_pass toward 0 instead): E_pre **lowers**,
+beyond exposure, beyond exact-form mention, verb-specific; the T control
+does not fall → preemption claimed. Rare verbs move toward the Head level.
+The mismatch arms lower Δ_pass less than the preemptive arm. Raw log-probs
+rise after both auxiliaries in the preemptive and mention arms (copy), less
+after "was" in the preemptive arm.
+
+**Runs.** One TSUBAME job, Pythia-1.4B, fp32 (8,869 contexts × 72 probes ≈
+640k sequences). Builder `build_preemption.py`, runner `run_preemption.py`,
+analysis `analyze_preemption.py`; report `c5_preemption.md`.
+
+## Order (B3, C4, C5)
+
+1. Commit this part.
+2. Builders (done before commit, tokenizer only): B3 prefixes, C4 manifest,
+   C5 contexts.
+3. TSUBAME: one job (C5, C4, B3 suite).
+4. Analyses and reports; B3's count analyses after A1's counts.

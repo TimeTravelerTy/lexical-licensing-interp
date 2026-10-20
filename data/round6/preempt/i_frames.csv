@@ -1,0 +1,282 @@
+lemma,subj_class,plural,comp,subj_override,adj,bare_ok,dynamic,theme
+progress,E,0,,,,1,1,1
+stare,P,0,at the wall,,,1,1,0
+behave,P,0,well,,,1,1,0
+rely,P,0,on the map,,,0,1,0
+dream,P,0,about the sea,,,1,1,0
+comment,P,0,on the news,,,1,1,0
+consist,O,0,of two parts,,none,0,0,0
+laugh,P,0,,,,1,1,0
+struggle,P,0,,,,1,1,0
+occur,E,0,,,,1,1,1
+belong,O,0,to the museum,,none,0,0,0
+stumble,P,0,,,,1,1,0
+vanish,O,0,,,,1,1,1
+depart,P,0,,,,1,1,1
+travel,P,0,,,,1,1,0
+care,P,0,about the result,,,0,1,0
+step,P,0,forward,,,0,1,0
+complain,P,0,,,,1,1,0
+emerge,P,0,,,,1,1,1
+opt,P,0,for the cheaper option,,,0,1,0
+last,E,0,for hours,,none,0,0,0
+live,P,0,in the city,,,1,1,0
+participate,P,0,,,,1,1,0
+arrive,P,0,,,,1,1,1
+result,E,0,in chaos,,,0,1,0
+die,A,0,,,none,1,1,1
+disappear,O,0,,,,1,1,1
+reply,P,0,,,,1,1,0
+lie,P,0,about the money,,,1,1,0
+wait,P,0,,,,1,1,0
+proceed,P,0,,,,1,1,0
+respond,P,0,,,,1,1,0
+exist,E,0,for years,,none,1,0,0
+happen,E,0,,,,1,1,1
+amount,Q,0,to very little,,none,0,0,0
+subscribe,P,0,to the magazine,,,0,1,0
+account,Q,0,for half of the total,,none,0,0,0
+react,P,0,,,,1,1,0
+apologize,P,0,,,,1,1,0
+listen,P,0,,,,1,1,0
+object,P,0,to the idea,,,1,1,0
+sleep,A,0,,,,1,1,0
+matter,E,0,,,,1,0,0
+side,P,0,with the others,,,0,1,0
+pray,P,0,,,,1,1,0
+testify,P,0,,,,1,1,0
+compete,P,0,,,,1,1,0
+muse,P,0,about the past,,,1,1,0
+sigh,P,0,,,,1,1,0
+glare,P,0,at the screen,,,1,1,0
+waver,Lt,0,,,,1,1,0
+howl,Cn,0,,,,1,1,0
+lapse,D,0,,,,1,1,1
+slump,Q,0,,,,1,1,1
+whine,Cn,0,,,,1,1,0
+abound,Cn,1,in the valley,,none,1,0,0
+major,P,0,in history,,,0,1,0
+shop,P,0,,,,1,1,0
+decay,Ob,0,,,,1,1,1
+grin,P,0,,,,1,1,0
+dwindle,Q,0,,,,1,1,1
+glow,Lt,0,,,,1,1,0
+linger,P,0,,,,1,1,0
+diverge,Q,1,,,,1,1,1
+balk,P,0,at the price,,,1,1,0
+acquiesce,P,0,,,,1,1,0
+shudder,P,0,,,,1,1,0
+sin,P,0,,,,1,1,0
+subside,Ew,0,,,,1,1,1
+rage,Ew,0,,,,1,1,0
+vie,P,1,for the prize,,,0,1,0
+wane,Lt,0,,,,1,1,1
+clash,P,1,,,,1,1,0
+relent,P,0,,,,1,1,0
+officiate,P,0,,,,1,1,0
+inquire,P,0,about the schedule,,,1,1,0
+bargain,P,0,,,,1,1,0
+creep,P,0,,,,1,1,0
+branch,G,0,,,,1,1,0
+err,P,0,,,,1,1,0
+cope,P,0,,,,1,1,0
+bloom,F,0,,,,1,1,1
+rave,P,0,about the food,,,1,1,0
+flirt,P,0,,,,1,1,0
+cringe,P,0,,,,1,1,0
+peer,P,0,at the screen,,,1,1,0
+chuckle,P,0,,,,1,1,0
+crow,A,0,,rooster,,1,1,0
+consent,P,0,,,,1,1,0
+limp,P,0,,,,1,1,0
+meditate,P,0,,,,1,1,0
+flop,Sh,0,,,,1,1,1
+cooperate,P,0,,,,1,1,0
+gasp,P,0,,,,1,1,0
+reappear,P,0,,,,1,1,1
+blossom,F,0,,,,1,1,1
+feast,P,0,,,,1,1,0
+transpire,E,0,,,,1,1,1
+abstain,P,0,,,,1,1,0
+succumb,P,0,,,,1,1,1
+collude,P,1,,,,1,1,0
+giggle,P,0,,,,1,1,0
+lurk,P,0,,,,1,1,0
+seep,S,0,,,,1,1,1
+fluctuate,Q,0,,,,1,1,1
+faint,P,0,,,,1,1,1
+tremble,P,0,,,,1,1,0
+toil,P,0,,,,1,1,0
+flinch,P,0,,,,1,1,0
+rebel,P,0,,,,1,1,0
+hesitate,P,0,,,,1,1,0
+rant,P,0,,,,1,1,0
+gush,S,0,,,,1,1,1
+allude,P,0,to the past,,,0,1,0
+converge,P,1,,,,1,1,0
+retaliate,P,0,,,,1,1,0
+stagnate,Q,0,,,,1,1,1
+prosper,P,0,,,,1,1,0
+reign,P,0,,,,1,1,0
+dive,P,0,,,,1,1,0
+sneeze,P,0,,,,1,1,0
+disembark,P,0,,,,1,1,0
+conspire,P,1,,,,1,1,0
+accede,P,0,,,,1,1,0
+groan,P,0,,,,1,1,0
+gaze,P,0,at the sea,,,1,1,0
+overreact,P,0,,,,1,1,0
+loom,Ew,0,,,,1,1,0
+excel,P,0,,,,1,1,0
+elope,P,0,,,,1,1,0
+adhere,P,0,to the rules,,,0,1,0
+interact,P,1,,,,1,1,0
+congregate,P,1,,,,1,1,0
+ache,P,0,,,,1,1,0
+blush,P,0,,,,1,1,0
+tower,P,0,over the others,,,0,1,0
+dawn,Td,0,,,none,1,1,1
+deliberate,P,0,,,,1,1,0
+resonate,Sd,0,,,,1,1,0
+malfunction,M,0,,,,1,1,1
+party,P,0,,,,1,1,0
+function,M,0,,,,1,1,0
+sprawl,Pl,0,,,,1,1,0
+triumph,P,0,,,,1,1,0
+emigrate,P,0,,,,1,1,0
+dine,P,0,,,,1,1,0
+spiral,Q,0,,,,1,1,1
+sympathize,P,0,,,,1,1,0
+defect,P,0,,,,1,1,0
+revert,Q,0,to normal,,,0,1,1
+elapse,T,0,,,none,1,1,1
+arise,E,0,,,,1,1,1
+proliferate,E,1,,,,1,1,1
+dwell,P,0,on the past,,,0,1,0
+languish,P,0,,,,1,1,0
+fart,P,0,,,,1,1,0
+yearn,P,0,for home,,,1,1,0
+brag,P,0,,,,1,1,0
+peek,P,0,,,,1,1,0
+encroach,P,0,on the field,,,0,1,0
+correspond,P,0,with the office,,,0,1,0
+tamper,P,0,with the lock,,,0,1,0
+chat,P,0,,,,1,1,0
+disapprove,P,0,,,,1,1,0
+dissent,P,0,,,,1,1,0
+materialize,E,0,,,,1,1,1
+kneel,P,0,,,,1,1,0
+relapse,P,0,,,,1,1,1
+persevere,P,0,,,,1,1,0
+shiver,P,0,,,,1,1,0
+thrive,F,0,,,,1,1,1
+concur,P,0,,,,1,1,0
+veer,Vh,0,,,,1,1,1
+pee,A,0,,,,1,1,0
+stroll,P,0,,,,1,1,0
+recede,W,0,,,,1,1,1
+glance,P,0,at the clock,,,1,1,0
+sob,P,0,,,,1,1,0
+sprint,P,0,,,,1,1,0
+blaspheme,P,0,,,,1,1,0
+decamp,P,0,,,,1,1,0
+eventuate,E,0,,,,1,1,1
+impinge,E,0,on the outcome,,,0,1,0
+fraternize,P,1,,,,1,1,0
+luxuriate,P,0,,,,1,1,0
+remonstrate,P,0,,,,1,1,0
+picnic,P,0,,,,1,1,0
+fizz,Dr,0,,,,1,1,1
+desist,P,0,,,,1,1,0
+scoot,P,0,,,,1,1,0
+bask,A,0,,,,1,1,0
+tingle,P,0,all over,,,1,1,0
+loll,P,0,,,,1,1,0
+overreach,P,0,,,,1,1,0
+menstruate,P,0,,,,1,1,0
+smolder,Fi,0,,,,1,1,0
+slog,P,0,,,,1,1,0
+moonlight,P,0,,,,1,1,0
+banter,P,0,,,,1,1,0
+vacillate,P,0,,,,1,1,0
+equivocate,P,0,,,,1,1,0
+eavesdrop,P,0,,,,1,1,0
+toddle,A,0,,puppy,,1,1,0
+writhe,P,0,,,,1,1,0
+skulk,P,0,,,,1,1,0
+pulsate,Lt,0,,,,1,1,0
+moralize,P,0,,,,1,1,0
+prevaricate,P,0,,,,1,1,0
+cavort,P,0,,,,1,1,0
+clatter,Ki,0,,,,1,1,0
+cohabit,P,1,,,,1,1,0
+sidle,P,0,,,,1,1,0
+gloat,P,0,,,,1,1,0
+grouse,P,0,,,,1,1,0
+coexist,P,1,,,,1,1,0
+swagger,P,0,,,,1,1,0
+lumber,Lg,0,,,,1,1,0
+defecate,A,0,,,,1,1,0
+empathize,P,0,,,,1,1,0
+crackle,Fi,0,,,,1,1,0
+commiserate,P,1,,,,1,1,0
+hyperventilate,P,0,,,,1,1,0
+gyrate,P,0,,,,1,1,0
+procreate,A,1,,,,1,1,0
+sunbathe,P,0,,,,1,1,0
+salivate,A,0,,,,1,1,0
+exult,P,0,,,,1,1,0
+reemerge,P,0,,,,1,1,1
+saunter,P,0,,,,1,1,0
+sleepwalk,P,0,,,,1,1,0
+intermarry,P,1,,,,1,1,0
+ruminate,P,0,,,,1,1,0
+clam,P,0,up,,,0,1,0
+jig,P,0,,,,1,1,0
+loiter,P,0,,,,1,1,0
+jest,P,0,,,,1,1,0
+calve,A,0,,cow,,1,1,0
+gape,P,0,,,,1,1,0
+convalesce,P,0,,,,1,1,0
+intercede,P,0,,,,1,1,0
+sojourn,P,0,,,,1,1,0
+drool,A,0,,,,1,1,0
+strive,P,0,,,,1,1,0
+assent,P,0,,,,1,1,0
+slouch,P,0,,,,1,1,0
+flounce,P,0,,,,1,1,0
+putrefy,Ob,0,,,,1,1,1
+pant,A,0,,,,1,1,0
+feud,P,1,,,,1,1,0
+fawn,P,0,over the guests,,,0,1,0
+oscillate,Q,0,,,,1,1,0
+hitchhike,P,0,,,,1,1,0
+rummage,P,0,through the drawer,,,1,1,0
+jut,Pt,0,out,,,0,1,0
+lounge,P,0,,,,1,1,0
+slink,Cn,0,,,,1,1,0
+sulk,P,0,,,,1,1,0
+slobber,A,0,,,,1,1,0
+molt,A,0,,bird,,1,1,0
+waddle,A,0,,duck,,1,1,0
+leer,P,0,,,,1,1,0
+shimmer,Lt,0,,,,1,1,0
+protrude,Pt,0,,,,1,1,0
+whiz,Vh,0,past,,,0,1,0
+bluster,P,0,,,,1,1,0
+resound,Sd,0,,,,1,1,0
+tarry,P,0,,,,1,1,0
+tiptoe,P,0,,,,1,1,0
+seethe,P,0,,,,1,1,0
+teem,W,0,with fish,,none,0,1,0
+quack,A,0,,duck,,1,1,0
+putter,P,0,,,,1,1,0
+kayak,P,0,,,,1,1,0
+throb,Sd,0,,,,1,1,0
+totter,P,0,,,,1,1,0
+inveigh,P,0,against the policy,,,0,1,0
+burgeon,Q,0,,,,1,1,1
+zigzag,P,0,,,,1,1,0
+wallow,Lg,0,,,,1,1,0
+vegetate,P,0,,,,1,1,0
+reoccur,E,0,,,,1,1,1

@@ -1,0 +1,12 @@
+{
+ "rows": 26976,
+ "verbs": 562,
+ "inputs": {
+  "verbs.csv": "ed5b04cdfad28caba5d80e98761829d68e6860d70015a952ec80d55c1173efed",
+  "prefixes.csv": "220049609373f9ed8958e0fd0f976c2323c0bec681deac2b7edd44d9e20dfe40"
+ },
+ "outputs": {
+  "prefixes.csv": "1744091ae4efea0cbbaedbc0be37c112149dec2b904d65f3ea8a476ce7d1bf04",
+  "sets.json": "e712c14033ed698d39eb948aa545436b2bb0077e68b876fe841cdaff328bcdf8"
+ }
+}
