@@ -1,0 +1,176 @@
+set,context_id,context_band,noun,animacy,noun_zipf,pass_prefix,act_prefix
+freq,freq/man,,man,animate,5.82,The man was,The man has
+freq,freq/woman,,woman,animate,5.35,The woman was,The woman has
+freq,freq/child,,child,animate,5.3,The child was,The child has
+freq,freq/boy,,boy,animate,5.17,The boy was,The boy has
+freq,freq/girl,,girl,animate,5.38,The girl was,The girl has
+freq,freq/student,,student,animate,5.02,The student was,The student has
+freq,freq/teacher,,teacher,animate,4.88,The teacher was,The teacher has
+freq,freq/doctor,,doctor,animate,4.9,The doctor was,The doctor has
+freq,freq/officer,,officer,animate,5.03,The officer was,The officer has
+freq,freq/player,,player,animate,5.19,The player was,The player has
+freq,freq/friend,,friend,animate,5.37,The friend was,The friend has
+freq,freq/father,,father,animate,5.26,The father was,The father has
+freq,freq/house,,house,inanimate,5.71,The house was,The house has
+freq,freq/car,,car,inanimate,5.45,The car was,The car has
+freq,freq/book,,book,inanimate,5.43,The book was,The book has
+freq,freq/door,,door,inanimate,5.08,The door was,The door has
+freq,freq/letter,,letter,inanimate,4.95,The letter was,The letter has
+freq,freq/report,,report,inanimate,5.32,The report was,The report has
+freq,freq/plan,,plan,inanimate,5.29,The plan was,The plan has
+freq,freq/system,,system,inanimate,5.56,The system was,The system has
+freq,freq/building,,building,inanimate,5.29,The building was,The building has
+freq,freq/window,,window,inanimate,4.8,The window was,The window has
+freq,freq/road,,road,inanimate,5.24,The road was,The road has
+freq,freq/project,,project,inanimate,5.22,The project was,The project has
+been,been/man,,man,animate,5.82,The man has been,The man has
+been,been/woman,,woman,animate,5.35,The woman has been,The woman has
+been,been/child,,child,animate,5.3,The child has been,The child has
+been,been/boy,,boy,animate,5.17,The boy has been,The boy has
+been,been/girl,,girl,animate,5.38,The girl has been,The girl has
+been,been/student,,student,animate,5.02,The student has been,The student has
+been,been/teacher,,teacher,animate,4.88,The teacher has been,The teacher has
+been,been/doctor,,doctor,animate,4.9,The doctor has been,The doctor has
+been,been/officer,,officer,animate,5.03,The officer has been,The officer has
+been,been/player,,player,animate,5.19,The player has been,The player has
+been,been/friend,,friend,animate,5.37,The friend has been,The friend has
+been,been/father,,father,animate,5.26,The father has been,The father has
+been,been/house,,house,inanimate,5.71,The house has been,The house has
+been,been/car,,car,inanimate,5.45,The car has been,The car has
+been,been/book,,book,inanimate,5.43,The book has been,The book has
+been,been/door,,door,inanimate,5.08,The door has been,The door has
+been,been/letter,,letter,inanimate,4.95,The letter has been,The letter has
+been,been/report,,report,inanimate,5.32,The report has been,The report has
+been,been/plan,,plan,inanimate,5.29,The plan has been,The plan has
+been,been/system,,system,inanimate,5.56,The system has been,The system has
+been,been/building,,building,inanimate,5.29,The building has been,The building has
+been,been/window,,window,inanimate,4.8,The window has been,The window has
+been,been/road,,road,inanimate,5.24,The road has been,The road has
+been,been/project,,project,inanimate,5.22,The project has been,The project has
+cur,curated/passive_1/head/bet,head,money,,5.64,The money was,The money has
+cur,curated/passive_1/head/blame,head,manager,,4.97,The manager was,The manager has
+cur,curated/passive_1/head/celebrate,head,victory,,4.73,The victory was,The victory has
+cur,curated/passive_1/head/confront,head,suspect,,4.51,The suspect was,The suspect has
+cur,curated/passive_1/head/crown,head,king,,5.17,The king was,The king has
+cur,curated/passive_1/head/defend,head,city,,5.61,The city was,The city has
+cur,curated/passive_1/head/earn,head,prize,,4.59,The prize was,The prize has
+cur,curated/passive_1/head/exhibit,head,painting,,4.6,The painting was,The painting has
+cur,curated/passive_1/head/hate,head,rival,,4.18,The rival was,The rival has
+cur,curated/passive_1/head/host,head,conference,,5.01,The conference was,The conference has
+cur,curated/passive_1/head/impose,head,fine,,5.23,The fine was,The fine has
+cur,curated/passive_1/head/include,head,chapter,,4.65,The chapter was,The chapter has
+cur,curated/passive_1/head/insure,head,house,,5.71,The house was,The house has
+cur,curated/passive_1/head/introduce,head,guest,,4.58,The guest was,The guest has
+cur,curated/passive_1/head/lease,head,apartment,,4.65,The apartment was,The apartment has
+cur,curated/passive_1/head/lend,head,book,,5.43,The book was,The book has
+cur,curated/passive_1/head/load,head,truck,,4.64,The truck was,The truck has
+cur,curated/passive_1/head/measure,head,distance,,4.85,The distance was,The distance has
+cur,curated/passive_1/head/rate,head,film,,5.2,The film was,The film has
+cur,curated/passive_1/head/rob,head,bank,,5.16,The bank was,The bank has
+cur,curated/passive_1/head/score,head,goal,,5.06,The goal was,The goal has
+cur,curated/passive_1/head/send,head,letter,,4.95,The letter was,The letter has
+cur,curated/passive_1/head/sum,head,amount,,5.13,The amount was,The amount has
+cur,curated/passive_1/head/target,head,building,,5.29,The building was,The building has
+cur,curated/passive_1/head/thank,head,teacher,,4.88,The teacher was,The teacher has
+cur,curated/passive_1/head/upgrade,head,software,,4.77,The software was,The software has
+cur,curated/passive_1/tail/approximate,tail,value,,5.15,The value was,The value has
+cur,curated/passive_1/tail/audit,tail,account,,5.21,The account was,The account has
+cur,curated/passive_1/tail/awe,tail,crowd,,4.7,The crowd was,The crowd has
+cur,curated/passive_1/tail/blurt,tail,secret,,4.92,The secret was,The secret has
+cur,curated/passive_1/tail/bribe,tail,guard,,4.73,The guard was,The guard has
+cur,curated/passive_1/tail/christen,tail,infant,,3.99,The infant was,The infant has
+cur,curated/passive_1/tail/coerce,tail,witness,,4.52,The witness was,The witness has
+cur,curated/passive_1/tail/commemorate,tail,event,,5.18,The event was,The event has
+cur,curated/passive_1/tail/deter,tail,burglar,,3.34,The burglar was,The burglar has
+cur,curated/passive_1/tail/dice,tail,onion,,3.89,The onion was,The onion has
+cur,curated/passive_1/tail/dope,tail,horse,,4.76,The horse was,The horse has
+cur,curated/passive_1/tail/duck,tail,question,,5.35,The question was,The question has
+cur,curated/passive_1/tail/eschew,tail,habit,,4.24,The habit was,The habit has
+cur,curated/passive_1/tail/evade,tail,guard,,4.73,The guard was,The guard has
+cur,curated/passive_1/tail/exert,tail,influence,,4.78,The influence was,The influence has
+cur,curated/passive_1/tail/fleece,tail,tourist,,4.2,The tourist was,The tourist has
+cur,curated/passive_1/tail/forest,tail,hill,,4.82,The hill was,The hill has
+cur,curated/passive_1/tail/gag,tail,prisoner,,4.2,The prisoner was,The prisoner has
+cur,curated/passive_1/tail/galvanize,tail,crowd,,4.7,The crowd was,The crowd has
+cur,curated/passive_1/tail/garnish,tail,dish,,4.21,The dish was,The dish has
+cur,curated/passive_1/tail/heap,tail,soil,,4.42,The soil was,The soil has
+cur,curated/passive_1/tail/imitate,tail,singer,,4.52,The singer was,The singer has
+cur,curated/passive_1/tail/ingest,tail,pill,,4.03,The pill was,The pill has
+cur,curated/passive_1/tail/nab,tail,thief,,3.88,The thief was,The thief has
+cur,curated/passive_1/tail/orphan,tail,child,,5.3,The child was,The child has
+cur,curated/passive_1/tail/outdo,tail,champion,,4.62,The champion was,The champion has
+cur,curated/passive_1/tail/overestimate,tail,cost,,5.24,The cost was,The cost has
+cur,curated/passive_1/tail/perfume,tail,room,,5.39,The room was,The room has
+cur,curated/passive_1/tail/preclude,tail,option,,4.8,The option was,The option has
+cur,curated/passive_1/tail/quarry,tail,stone,,4.8,The stone was,The stone has
+cur,curated/passive_1/tail/quell,tail,riot,,4.09,The riot was,The riot has
+cur,curated/passive_1/tail/rear,tail,child,,5.3,The child was,The child has
+cur,curated/passive_1/tail/recast,tail,statue,,4.09,The statue was,The statue has
+cur,curated/passive_1/tail/refund,tail,fee,,4.51,The fee was,The fee has
+cur,curated/passive_1/tail/reinstall,tail,program,,5.27,The program was,The program has
+cur,curated/passive_1/tail/rouse,tail,sleeper,,3.46,The sleeper was,The sleeper has
+cur,curated/passive_1/tail/safeguard,tail,document,,4.5,The document was,The document has
+cur,curated/passive_1/tail/scrub,tail,floor,,4.94,The floor was,The floor has
+cur,curated/passive_1/tail/slander,tail,politician,,4.16,The politician was,The politician has
+cur,curated/passive_1/tail/smother,tail,victim,,4.5600000000000005,The victim was,The victim has
+cur,curated/passive_1/tail/spice,tail,soup,,4.15,The soup was,The soup has
+cur,curated/passive_1/tail/stockpile,tail,medicine,,4.73,The medicine was,The medicine has
+cur,curated/passive_1/tail/stow,tail,luggage,,3.8,The luggage was,The luggage has
+cur,curated/passive_1/tail/subjugate,tail,province,,4.47,The province was,The province has
+cur,curated/passive_1/tail/subvert,tail,plan,,5.29,The plan was,The plan has
+cur,curated/passive_1/tail/tame,tail,horse,,4.76,The horse was,The horse has
+cur,curated/passive_1/tail/trademark,tail,logo,,4.28,The logo was,The logo has
+cur,curated/passive_1/tail/transcend,tail,limit,,4.7,The limit was,The limit has
+cur,curated/passive_1/tail/utter,tail,word,,5.26,The word was,The word has
+cur,curated/passive_1/tail/whitewash,tail,wall,,5.04,The wall was,The wall has
+cur,curated/passive_1/xtail/blab,xtail,secret,,4.92,The secret was,The secret has
+cur,curated/passive_1/xtail/blaspheme,xtail,deity,,3.55,The deity was,The deity has
+cur,curated/passive_1/xtail/clout,xtail,opponent,,4.2,The opponent was,The opponent has
+cur,curated/passive_1/xtail/crate,xtail,vase,,3.54,The vase was,The vase has
+cur,curated/passive_1/xtail/daub,xtail,wall,,5.04,The wall was,The wall has
+cur,curated/passive_1/xtail/debug,xtail,program,,5.27,The program was,The program has
+cur,curated/passive_1/xtail/disabuse,xtail,student,,5.02,The student was,The student has
+cur,curated/passive_1/xtail/disgorge,xtail,cargo,,4.19,The cargo was,The cargo has
+cur,curated/passive_1/xtail/disquiet,xtail,family,,5.66,The family was,The family has
+cur,curated/passive_1/xtail/doff,xtail,hat,,4.53,The hat was,The hat has
+cur,curated/passive_1/xtail/edify,xtail,student,,5.02,The student was,The student has
+cur,curated/passive_1/xtail/espy,xtail,ship,,4.93,The ship was,The ship has
+cur,curated/passive_1/xtail/extirpate,xtail,weed,,4.27,The weed was,The weed has
+cur,curated/passive_1/xtail/filch,xtail,wallet,,4.15,The wallet was,The wallet has
+cur,curated/passive_1/xtail/garland,xtail,bride,,4.08,The bride was,The bride has
+cur,curated/passive_1/xtail/gull,xtail,tourist,,4.2,The tourist was,The tourist has
+cur,curated/passive_1/xtail/guzzle,xtail,beer,,4.7,The beer was,The beer has
+cur,curated/passive_1/xtail/heft,xtail,stone,,4.8,The stone was,The stone has
+cur,curated/passive_1/xtail/immolate,xtail,prisoner,,4.2,The prisoner was,The prisoner has
+cur,curated/passive_1/xtail/incriminate,xtail,suspect,,4.51,The suspect was,The suspect has
+cur,curated/passive_1/xtail/lard,xtail,roast,,3.87,The roast was,The roast has
+cur,curated/passive_1/xtail/lather,xtail,face,,5.45,The face was,The face has
+cur,curated/passive_1/xtail/lug,xtail,suitcase,,3.55,The suitcase was,The suitcase has
+cur,curated/passive_1/xtail/mistrust,xtail,colleague,,3.98,The colleague was,The colleague has
+cur,curated/passive_1/xtail/mulch,xtail,garden,,4.77,The garden was,The garden has
+cur,curated/passive_1/xtail/obviate,xtail,need,,5.97,The need was,The need has
+cur,curated/passive_1/xtail/ogle,xtail,model,,5.13,The model was,The model has
+cur,curated/passive_1/xtail/outshine,xtail,rival,,4.18,The rival was,The rival has
+cur,curated/passive_1/xtail/perm,xtail,hair,,5.08,The hair was,The hair has
+cur,curated/passive_1/xtail/pigeonhole,xtail,applicant,,3.64,The applicant was,The applicant has
+cur,curated/passive_1/xtail/placate,xtail,crowd,,4.7,The crowd was,The crowd has
+cur,curated/passive_1/xtail/prise,xtail,lid,,3.81,The lid was,The lid has
+cur,curated/passive_1/xtail/rearm,xtail,militia,,3.88,The militia was,The militia has
+cur,curated/passive_1/xtail/recompense,xtail,worker,,4.43,The worker was,The worker has
+cur,curated/passive_1/xtail/redress,xtail,grievance,,3.15,The grievance was,The grievance has
+cur,curated/passive_1/xtail/regale,xtail,guest,,4.58,The guest was,The guest has
+cur,curated/passive_1/xtail/reproach,xtail,student,,5.02,The student was,The student has
+cur,curated/passive_1/xtail/reprove,xtail,student,,5.02,The student was,The student has
+cur,curated/passive_1/xtail/resupply,xtail,platoon,,3.52,The platoon was,The platoon has
+cur,curated/passive_1/xtail/shoo,xtail,pigeon,,3.61,The pigeon was,The pigeon has
+cur,curated/passive_1/xtail/shoplift,xtail,shirt,,4.63,The shirt was,The shirt has
+cur,curated/passive_1/xtail/stopper,xtail,bottle,,4.57,The bottle was,The bottle has
+cur,curated/passive_1/xtail/suckle,xtail,calf,,3.71,The calf was,The calf has
+cur,curated/passive_1/xtail/sunder,xtail,alliance,,4.4,The alliance was,The alliance has
+cur,curated/passive_1/xtail/swaddle,xtail,baby,,5.26,The baby was,The baby has
+cur,curated/passive_1/xtail/tithe,xtail,harvest,,4.03,The harvest was,The harvest has
+cur,curated/passive_1/xtail/unlatch,xtail,gate,,4.47,The gate was,The gate has
+cur,curated/passive_1/xtail/wad,xtail,paper,,5.07,The paper was,The paper has
+cur,curated/passive_1/xtail/wag,xtail,tail,,4.34,The tail was,The tail has
+cur,curated/passive_1/xtail/wallop,xtail,boxer,,3.74,The boxer was,The boxer has
+they,they,,,,,They were,They have

@@ -1,0 +1,64 @@
+{
+ "verbs": 608,
+ "queries": 27968,
+ "reused": 3655,
+ "to_fetch": 24313,
+ "inputs": {
+  "data/round6/frame_d11/verbs.csv": "ed5b04cdfad28caba5d80e98761829d68e6860d70015a952ec80d55c1173efed",
+  "data/round5/frame/verbs.csv": "cd6d3dca4ca42ff3581d4a052983eed2048688a8c441459394a18a633eacf658",
+  "data/round5/counts/pile_counts.csv": "7995af4be59c54a28eba1a0731c16ac39d5e59e5077b6234c9f5aea954926cbb"
+ },
+ "past_forms": {
+  "arisen": "arose",
+  "striven": "strove",
+  "browbeaten": "browbeat",
+  "outdone": "outdid"
+ },
+ "be": [
+  "was",
+  "were",
+  "been",
+  "is",
+  "are",
+  "be",
+  "being"
+ ],
+ "perfect": [
+  "has",
+  "have",
+  "had",
+  "having"
+ ],
+ "competing_subjects_broad": [
+  "he",
+  "she",
+  "it",
+  "they",
+  "He",
+  "She",
+  "It",
+  "They"
+ ],
+ "competing_anchors": [
+  "that",
+  "when",
+  "and"
+ ],
+ "competing_anchor_subjects": [
+  "he",
+  "she",
+  "they"
+ ],
+ "frame_subjects": [
+  "he",
+  "she",
+  "they",
+  "He",
+  "She",
+  "They"
+ ],
+ "index": "v4_piletrain_llama",
+ "outputs": {
+  "queries.csv": "7f5223e25a0a72b0d0572efc8a32bf6fdee30a04f1fa802fe59f1ed0cfdec3bb"
+ }
+}

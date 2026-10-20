@@ -4,7 +4,8 @@
 Inputs from `build_frame_contrast.py` (--data-dir): prefixes.csv, verbs.csv, pairs.csv.
 For every prefix (set x context) and frame (pass = "was"/"were", act = "has"/"have") and verb, the log-prob of
 each participle subtoken given the prefix and the earlier subtokens (no BOS, as score_matched_passives.py).
-freq and they prefixes: every verb (curated + pool); cur prefixes: the curated verbs only.
+freq and they prefixes: every verb (curated + pool); cur prefixes: the curated verbs only (every verb with --cur-all,
+round 6).
 Also, per prefix and frame, the final-LN output h at the prefix's last token and the log-normalizer there; and
 the unembedding rows of the verbs' first subtokens.
 
@@ -47,6 +48,10 @@ def main(args):
     V = pd.read_csv(data / "verbs.csv", keep_default_na=False)
     pairs = pd.read_csv(data / "pairs.csv", keep_default_na=False)
     vids = [list(map(int, s.split())) for s in V.ids]
+    # every pair verb must be scored in every prefix set (else the identity check fails after the expensive scoring)
+    scored_cur = set(V.verb) if args.cur_all else set(V.verb[V.curated == 1])
+    missing = (set(pairs.t_verb) | set(pairs.i_verb)) - scored_cur
+    assert not missing, f"{len(missing)} pair verbs not scored in the cur prefixes (use --cur-all?): {sorted(missing)[:5]}"
     tok = AutoTokenizer.from_pretrained(args.model, local_files_only=True)
     model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=torch.float32,
                                                  local_files_only=True).to(dev).eval()
@@ -67,7 +72,7 @@ def main(args):
     t0 = time.time()
     with torch.inference_mode():
         for _, pr in pre.iterrows():
-            vi = cur_idx if pr["set"] == "cur" else all_idx
+            vi = cur_idx if pr["set"] == "cur" and not args.cur_all else all_idx
             for frame in FRAMES:
                 prefix = pr[f"{frame}_prefix"]
                 pid = tok.encode(prefix, add_special_tokens=False)
@@ -135,7 +140,7 @@ def main(args):
     S.to_parquet(out / "frame_scores.parquet", index=False)
     np.savez(out / "frame_h.npz", H=H, LSE=np.array(LSE), keys=np.array(["|".join(k) for k in keys]),
              U=U, U_ids=np.array(uniq))
-    meta = {"model": args.model, "dtype": "float32", "tf32": False, "n_rows": len(S),
+    meta = {"model": args.model, "dtype": "float32", "tf32": False, "n_rows": len(S), "cur_all": bool(args.cur_all),
             "inputs": {f: sha(data / f) for f in ("prefixes.csv", "verbs.csv", "pairs.csv")},
             "checks": {"max_h_deviation": max_h_dev, "max_first_subtoken_error": max_first_err,
                        "max_identity_error": max_id_err, "max_abs_logit": max_logit, "tol": args.tol},
@@ -151,6 +156,7 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--batch", type=int, default=384)
     ap.add_argument("--out-dir", default="results/round5/frame")
+    ap.add_argument("--cur-all", action="store_true", help="score every verb in the cur prefixes (round 6, D11)")
     ap.add_argument("--tol", type=float, default=1e-3,
                     help="tolerance of the reconstruction and identity checks (1e-3 for 1.4B; 1e-2 for the D10b suite)")
     main(ap.parse_args())
