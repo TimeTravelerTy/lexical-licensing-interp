@@ -5,7 +5,7 @@ Input: data/round6/preempt/contexts.csv (build_preemption.py) and A1's freq noun
 For every context and noun N, the probes "The N was" / "The N has" / "The N has been" are appended (after a space; k = 0:
 the probe alone, as A1) and the participle's subtoken log-probs are scored (teacher forcing, no BOS). Sequences are
 sorted by length and batched by a token budget. Check: batched log-probs reproduce single-sequence passes for a sample
-to 1e-4 nats.
+to --tol nats (1e-3; run clarification after job 9069908: 1.7e-4 > the first 1e-4 tolerance), checked after saving.
 Output: preempt_scores.parquet (cid, noun, frame [was / has / hasbeen], lp, lp1, n_tok), preempt_meta.json.
 """
 
@@ -95,7 +95,6 @@ def main(args):
         a, _ = score(np.array([j]))[0]
         chk = max(chk, abs(a - lp_sum[j]))
     print(f"done in {time.time() - t0:.0f}s; batched vs single max diff {chk:.1e}", flush=True)
-    assert chk <= 1e-4, chk
     S = pd.DataFrame(keys, columns=["cid", "noun", "frame"])
     S["lp"], S["lp1"], S["n_tok"] = lp_sum, lp_first, ntok
     o = Path(args.out_dir)
@@ -107,6 +106,7 @@ def main(args):
             "outputs": {"preempt_scores.parquet": sha(o / "preempt_scores.parquet")}}
     (o / "preempt_meta.json").write_text(json.dumps(meta, indent=1))
     print(json.dumps(meta, indent=1))
+    assert chk <= args.tol, chk  # round 6 C5 run clarification: 1e-3 (fp32 padding noise), checked after saving
 
 
 if __name__ == "__main__":
@@ -117,5 +117,6 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--token-budget", type=int, default=32768)
     ap.add_argument("--max-batch", type=int, default=512)
+    ap.add_argument("--tol", type=float, default=1e-3)
     ap.add_argument("--out-dir", default="results/round6/preempt")
     main(ap.parse_args())

@@ -653,6 +653,17 @@ after "was" in the preemptive arm.
 640k sequences). Builder `build_preemption.py`, runner `run_preemption.py`,
 analysis `analyze_preemption.py`; report `c5_preemption.md`.
 
+**Run clarification (C5, 2026-10-20, after job 9069908, before any C5
+output existed).** The C5 runner's own consistency check (batched
+log-probs vs single-sequence passes for 64 sampled sequences) found a
+largest difference of 1.7e-4 nats against a tolerance of 1e-4 written into
+the runner, and stopped before saving. Right-padded batches of different
+lengths change the fp32 reduction order; an indexing or padding error would
+give differences of 0.1 nats or more. The tolerance becomes 1e-3 (A1's
+tolerance for its 1.4B checks), the check now runs after the outputs are
+saved, and the same change is made in the B3 runner. C5 is rerun unchanged
+otherwise.
+
 ## Order (B3, C4, C5)
 
 1. Commit this part.

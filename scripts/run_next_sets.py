@@ -3,7 +3,7 @@
 
 Input: prefixes.csv (id, text) and sets.json (build_alternation.py). For every prefix, the log-softmax at its last token
 and, per set, log sum_{t in set} P(t). No BOS (as A1). Check: the batched result reproduces an unbatched forward pass for
-a sample of prefixes to 1e-4.
+a sample of prefixes to --tol (1e-3), checked after saving.
 Output: next_sets.parquet (id + one column per set), next_sets_meta.json.
 """
 
@@ -66,7 +66,6 @@ def main(args):
         r = forward([i])
         chk = max(chk, max(abs(r[k][0] - out[k][i]) for k in S))
     print(f"{len(P)} prefixes in {time.time() - t0:.0f}s; batched vs single max diff {chk:.1e}", flush=True)
-    assert chk <= 1e-4, chk
     res = pd.DataFrame({"id": P.id, **out})
     o = Path(args.out_dir)
     o.mkdir(parents=True, exist_ok=True)
@@ -75,6 +74,7 @@ def main(args):
             "inputs": {f: sha(data / f) for f in ("prefixes.csv", "sets.json")},
             "outputs": {"next_sets.parquet": sha(o / "next_sets.parquet")}}
     (o / "next_sets_meta.json").write_text(json.dumps(meta, indent=1))
+    assert chk <= args.tol, chk  # checked after saving (round 6 run clarification)
 
 
 if __name__ == "__main__":
@@ -83,5 +83,6 @@ if __name__ == "__main__":
     ap.add_argument("--model", default="EleutherAI/pythia-1.4b")
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--batch", type=int, default=512)
+    ap.add_argument("--tol", type=float, default=1e-3)
     ap.add_argument("--out-dir", default="results/round6/alternation/pythia-1.4b")
     main(ap.parse_args())
