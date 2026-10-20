@@ -3,6 +3,12 @@
   "data/round5/verbs_expanded/pairs.csv": "d24c28538e8d2e1725451e404f678760c295dfb9e60ca2616874212b694087f2",
   "data/round5/frame/prefixes.csv": "220049609373f9ed8958e0fd0f976c2323c0bec681deac2b7edd44d9e20dfe40"
  },
+ "prefix_sets": [
+  "been",
+  "cur",
+  "freq",
+  "they"
+ ],
  "versions": {
   "transformers": "4.57.3",
   "tokenizers": "0.22.1"

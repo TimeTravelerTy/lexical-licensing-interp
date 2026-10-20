@@ -1,0 +1,36 @@
+{
+ "inputs": {
+  "data/round5/verbs_expanded/pairs.csv": "d24c28538e8d2e1725451e404f678760c295dfb9e60ca2616874212b694087f2",
+  "data/round5/frame/prefixes.csv": "220049609373f9ed8958e0fd0f976c2323c0bec681deac2b7edd44d9e20dfe40"
+ },
+ "prefix_sets": [
+  "freq"
+ ],
+ "versions": {
+  "transformers": "4.57.3",
+  "tokenizers": "0.22.1"
+ },
+ "model": "EleutherAI/pythia-1.4b",
+ "joined_tokenization_checks": 26976,
+ "counts": {
+  "pairs": {
+   "head": 47,
+   "tail": 132,
+   "xtail": 102
+  },
+  "verbs": 562,
+  "curated_verbs": 206,
+  "single_token": {
+   "head/I": 45,
+   "head/T": 44,
+   "tail/I": 20,
+   "tail/T": 24,
+   "xtail/T": 1
+  }
+ },
+ "outputs": {
+  "prefixes.csv": "9452a8a210de0df701864e7322be12842d7f9ce7dfb5f6b8f64dd0544bbd784a",
+  "verbs.csv": "ed5b04cdfad28caba5d80e98761829d68e6860d70015a952ec80d55c1173efed",
+  "pairs.csv": "11d15d27d8179cdfaf27ff0ed1208eb607b584d98ce8e7299ad6c307118706b1"
+ }
+}

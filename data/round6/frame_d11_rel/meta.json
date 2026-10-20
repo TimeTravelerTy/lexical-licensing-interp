@@ -1,0 +1,23 @@
+{
+ "inputs": {
+  "data/passive_band_cross/pairs.jsonl": "a19c0d99ff2ced8bd71bd1613450197ed420b99982d0d43c796d340c16d3d184",
+  "data/round6/frame_d11/verbs.csv": "ed5b04cdfad28caba5d80e98761829d68e6860d70015a952ec80d55c1173efed",
+  "data/round6/frame_d11/pairs.csv": "11d15d27d8179cdfaf27ff0ed1208eb607b584d98ce8e7299ad6c307118706b1"
+ },
+ "contexts": {
+  "head": 100,
+  "tail": 100,
+  "xtail": 100
+ },
+ "noun_zipf_median": {
+  "head": 3.94,
+  "tail": 2.715,
+  "xtail": 1.685
+ },
+ "joined_tokenization_checks": 337200,
+ "outputs": {
+  "prefixes.csv": "c4ee5e05e23b9208b67438f09ef5906ba89d137fbfd02a8a6208098248c333d5",
+  "verbs.csv": "ed5b04cdfad28caba5d80e98761829d68e6860d70015a952ec80d55c1173efed",
+  "pairs.csv": "11d15d27d8179cdfaf27ff0ed1208eb607b584d98ce8e7299ad6c307118706b1"
+ }
+}

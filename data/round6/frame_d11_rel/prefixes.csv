@@ -1,0 +1,301 @@
+set,context_id,context_band,noun,animacy,noun_zipf,pass_prefix,act_prefix
+rel,released/head/passive_1/113,head,investigators,,3.88,Most investigators are,Most investigators have
+rel,released/head/passive_1/126,head,survivor,,4.0,The survivor wasn't,The survivor hasn't
+rel,released/head/passive_1/132,head,Jason,,4.46,Jason is,Jason has
+rel,released/head/passive_1/137,head,winner,,4.8,Every winner was,Every winner has
+rel,released/head/passive_1/175,head,dealers,,4.01,A lot of dealers weren't,A lot of dealers haven't
+rel,released/head/passive_1/182,head,researcher,,3.92,The researcher isn't,The researcher hasn't
+rel,released/head/passive_1/184,head,Architects,,3.91,Architects were,Architects have
+rel,released/head/passive_1/189,head,fraternity,,3.56,Every fraternity wasn't,Every fraternity hasn't
+rel,released/head/passive_1/190,head,friends,,5.43,That keeper's friends weren't,That keeper's friends haven't
+rel,released/head/passive_1/195,head,teens,,4.16,These teens aren't,These teens haven't
+rel,released/head/passive_1/197,head,Erin,,3.68,Erin wasn't,Erin hasn't
+rel,released/head/passive_1/201,head,vegetarian,,3.78,A vegetarian wasn't,A vegetarian hasn't
+rel,released/head/passive_1/209,head,conference,,5.01,Every conference wasn't,Every conference hasn't
+rel,released/head/passive_1/218,head,striker,,3.9,Every striker isn't,Every striker hasn't
+rel,released/head/passive_1/233,head,devils,,3.79,These devils were,These devils have
+rel,released/head/passive_1/240,head,officer,,5.03,Every officer wasn't,Every officer hasn't
+rel,released/head/passive_1/245,head,vets,,3.5100000000000002,Many vets weren't,Many vets haven't
+rel,released/head/passive_1/249,head,avengers,,3.78,These avengers aren't,These avengers haven't
+rel,released/head/passive_1/25,head,liar,,4.02,A liar isn't,A liar hasn't
+rel,released/head/passive_1/254,head,Teresa,,3.71,Teresa wasn't,Teresa hasn't
+rel,released/head/passive_1/26,head,cards,,4.76,These cards aren't,These cards haven't
+rel,released/head/passive_1/260,head,Applicants,,3.94,Applicants weren't,Applicants haven't
+rel,released/head/passive_1/275,head,workers,,4.95,All workers are,All workers have
+rel,released/head/passive_1/290,head,sneak,,3.99,Every sneak isn't,Every sneak hasn't
+rel,released/head/passive_1/291,head,legion,,3.86,That legion was,That legion has
+rel,released/head/passive_1/334,head,dean,,4.4,This dean isn't,This dean hasn't
+rel,released/head/passive_1/339,head,fools,,3.88,All fools were,All fools have
+rel,released/head/passive_1/340,head,military,,5.2,A military was,A military has
+rel,released/head/passive_1/342,head,teacher,,4.88,Every outlaw's teacher wasn't,Every outlaw's teacher hasn't
+rel,released/head/passive_1/343,head,grenade,,3.65,Some grenade was,Some grenade has
+rel,released/head/passive_1/357,head,shoe,,4.24,Some shoe isn't,Some shoe hasn't
+rel,released/head/passive_1/395,head,Descriptions,,3.92,Descriptions aren't,Descriptions haven't
+rel,released/head/passive_1/399,head,shareholder,,3.63,That shareholder wasn't,That shareholder hasn't
+rel,released/head/passive_1/402,head,historians,,3.82,The historians were,The historians have
+rel,released/head/passive_1/412,head,duchess,,3.7600000000000002,The duchess isn't,The duchess hasn't
+rel,released/head/passive_1/416,head,executives,,4.03,A lot of executives are,A lot of executives have
+rel,released/head/passive_1/420,head,boss,,4.76,That gentleman's boss was,That gentleman's boss has
+rel,released/head/passive_1/43,head,defendant,,3.98,This defendant is,This defendant has
+rel,released/head/passive_1/440,head,confession,,3.88,A confession is,A confession has
+rel,released/head/passive_1/454,head,pumpkin,,3.83,Some pumpkin wasn't,Some pumpkin hasn't
+rel,released/head/passive_1/460,head,ex-wives,,4.0,Many ex-wives weren't,Many ex-wives haven't
+rel,released/head/passive_1/462,head,constable,,3.79,This constable was,This constable has
+rel,released/head/passive_1/464,head,activist,,4.13,This activist was,This activist has
+rel,released/head/passive_1/473,head,refugee,,3.98,Some refugee was,Some refugee has
+rel,released/head/passive_1/475,head,aluminium,,3.73,The aluminium was,The aluminium has
+rel,released/head/passive_1/476,head,subset,,3.53,This subset is,This subset has
+rel,released/head/passive_1/49,head,Churchill,,3.83,Winston Churchill was,Winston Churchill has
+rel,released/head/passive_1/493,head,eyes,,5.21,These eyes are,These eyes have
+rel,released/head/passive_1/498,head,Andrea,,3.88,Andrea wasn't,Andrea hasn't
+rel,released/head/passive_1/504,head,buttons,,3.98,All buttons are,All buttons have
+rel,released/head/passive_1/517,head,mechanics,,4.13,Some mechanics aren't,Some mechanics haven't
+rel,released/head/passive_1/518,head,critic,,3.95,Every critic is,Every critic has
+rel,released/head/passive_1/527,head,Rose,,4.82,Rose is,Rose has
+rel,released/head/passive_1/533,head,authors,,4.49,These authors are,These authors have
+rel,released/head/passive_1/535,head,hank,,3.73,This hank wasn't,This hank hasn't
+rel,released/head/passive_1/539,head,clerk,,4.0,A clerk wasn't,A clerk hasn't
+rel,released/head/passive_1/545,head,investigator,,3.83,Some investigator isn't,Some investigator hasn't
+rel,released/head/passive_1/546,head,fans,,5.03,Most fans aren't,Most fans haven't
+rel,released/head/passive_1/57,head,platoon,,3.52,That platoon isn't,That platoon hasn't
+rel,released/head/passive_1/572,head,guys,,5.41,The guys weren't,The guys haven't
+rel,released/head/passive_1/574,head,confederate,,3.7,That confederate is,That confederate has
+rel,released/head/passive_1/621,head,substitute,,4.17,This substitute was,This substitute has
+rel,released/head/passive_1/628,head,cousins,,3.95,All flyers' cousins are,All flyers' cousins have
+rel,released/head/passive_1/629,head,managers,,4.47,Those managers are,Those managers have
+rel,released/head/passive_1/637,head,magistrate,,3.71,A magistrate isn't,A magistrate hasn't
+rel,released/head/passive_1/640,head,flyer,,3.58,The flyer is,The flyer has
+rel,released/head/passive_1/651,head,strangers,,4.14,Those strangers are,Those strangers have
+rel,released/head/passive_1/667,head,closer,,4.73,Every closer isn't,Every closer hasn't
+rel,released/head/passive_1/674,head,sponsor,,4.04,Every sponsor is,Every sponsor has
+rel,released/head/passive_1/68,head,Psychologists,,3.56,Psychologists were,Psychologists have
+rel,released/head/passive_1/682,head,locks,,3.94,Most locks are,Most locks have
+rel,released/head/passive_1/683,head,adolescents,,3.53,Some adolescents weren't,Some adolescents haven't
+rel,released/head/passive_1/695,head,title,,5.1,That title isn't,That title hasn't
+rel,released/head/passive_1/7,head,opinion,,4.94,The opinion wasn't,The opinion hasn't
+rel,released/head/passive_1/700,head,guru,,3.82,A guru wasn't,A guru hasn't
+rel,released/head/passive_1/709,head,sewage,,3.55,This sewage was,This sewage has
+rel,released/head/passive_1/725,head,tory,,3.9,Some tory isn't,Some tory hasn't
+rel,released/head/passive_1/749,head,strawberries,,3.54,A lot of strawberries are,A lot of strawberries have
+rel,released/head/passive_1/760,head,psychic,,3.8,Some psychic is,Some psychic has
+rel,released/head/passive_1/774,head,hitter,,3.5,This hitter isn't,This hitter hasn't
+rel,released/head/passive_1/795,head,sock,,3.61,That sock wasn't,That sock hasn't
+rel,released/head/passive_1/8,head,lamb,,4.02,A lamb was,A lamb has
+rel,released/head/passive_1/800,head,globe,,4.28,That globe was,That globe has
+rel,released/head/passive_1/830,head,captains,,3.62,Some captains aren't,Some captains haven't
+rel,released/head/passive_1/84,head,blocking,,4.12,This blocking isn't,This blocking hasn't
+rel,released/head/passive_1/873,head,patron,,3.73,This patron wasn't,This patron hasn't
+rel,released/head/passive_1/88,head,investigator,,3.83,Some investigator isn't,Some investigator hasn't
+rel,released/head/passive_1/884,head,inspectors,,3.63,A lot of inspectors aren't,A lot of inspectors haven't
+rel,released/head/passive_1/889,head,fantasy,,4.52,Some fantasy isn't,Some fantasy hasn't
+rel,released/head/passive_1/899,head,controllers,,3.68,A lot of controllers weren't,A lot of controllers haven't
+rel,released/head/passive_1/91,head,burner,,3.54,The burner is,The burner has
+rel,released/head/passive_1/910,head,doors,,4.54,The doors are,The doors have
+rel,released/head/passive_1/936,head,wizards,,3.62,These wizards were,These wizards have
+rel,released/head/passive_1/94,head,murderers,,3.53,All murderers were,All murderers have
+rel,released/head/passive_1/952,head,councils,,3.94,These councils were,These councils have
+rel,released/head/passive_1/958,head,warden,,3.63,Some warden is,Some warden has
+rel,released/head/passive_1/969,head,athlete,,4.11,That athlete is,That athlete has
+rel,released/head/passive_1/99,head,Masters,,4.35,Masters were,Masters have
+rel,released/head/passive_1/993,head,cousin,,4.41,Many shoppers' cousin wasn't,Many shoppers' cousin hasn't
+rel,released/head/passive_1/999,head,shark,,4.1,Every shark isn't,Every shark hasn't
+rel,released/tail/passive_1/0,tail,interrogator,,2.58,This interrogator wasn't,This interrogator hasn't
+rel,released/tail/passive_1/109,tail,propagandists,,2.65,These propagandists aren't,These propagandists haven't
+rel,released/tail/passive_1/124,tail,politico,,3.16,A politico was,A politico has
+rel,released/tail/passive_1/131,tail,bouncers,,2.77,A lot of nieces of a lot of bouncers were,A lot of nieces of a lot of bouncers have
+rel,released/tail/passive_1/140,tail,sacrilege,,2.64,Some sacrilege wasn't,Some sacrilege hasn't
+rel,released/tail/passive_1/141,tail,ecologists,,2.59,The ecologists were,The ecologists have
+rel,released/tail/passive_1/166,tail,romantics,,2.74,Most romantics were,Most romantics have
+rel,released/tail/passive_1/175,tail,Sceptics,,2.45,Sceptics are,Sceptics have
+rel,released/tail/passive_1/176,tail,dispersion,,3.18,A dispersion was,A dispersion has
+rel,released/tail/passive_1/180,tail,parliamentarians,,2.95,Many parliamentarians were,Many parliamentarians have
+rel,released/tail/passive_1/201,tail,blotches,,2.45,A lot of blotches aren't,A lot of blotches haven't
+rel,released/tail/passive_1/207,tail,pensioners,,3.17,Those pensioners were,Those pensioners have
+rel,released/tail/passive_1/22,tail,prude,,2.58,That prude isn't,That prude hasn't
+rel,released/tail/passive_1/225,tail,chiller,,2.54,This chiller was,This chiller has
+rel,released/tail/passive_1/241,tail,janitors,,2.68,Many janitors aren't,Many janitors haven't
+rel,released/tail/passive_1/246,tail,moc,,2.61,Grandfathers of the moc were,Grandfathers of the moc have
+rel,released/tail/passive_1/247,tail,gradation,,2.4,This gradation wasn't,This gradation hasn't
+rel,released/tail/passive_1/25,tail,cavalier,,3.17,A cavalier isn't,A cavalier hasn't
+rel,released/tail/passive_1/254,tail,hobbyist,,2.57,Some hobbyist was,Some hobbyist has
+rel,released/tail/passive_1/258,tail,tactician,,2.57,Every tactician is,Every tactician has
+rel,released/tail/passive_1/260,tail,frizz,,2.4,The frizz is,The frizz has
+rel,released/tail/passive_1/266,tail,linemen,,2.92,A lot of linemen weren't,A lot of linemen haven't
+rel,released/tail/passive_1/271,tail,acrobats,,2.5100000000000002,Most acrobats were,Most acrobats have
+rel,released/tail/passive_1/276,tail,glimpses,,3.19,Most glimpses aren't,Most glimpses haven't
+rel,released/tail/passive_1/281,tail,googly,,2.58,Every googly was,Every googly has
+rel,released/tail/passive_1/293,tail,delinquents,,2.64,These delinquents aren't,These delinquents haven't
+rel,released/tail/passive_1/3,tail,pseudoscience,,2.56,Some pseudoscience isn't,Some pseudoscience hasn't
+rel,released/tail/passive_1/324,tail,schoolboys,,2.66,The schoolboys were,The schoolboys have
+rel,released/tail/passive_1/338,tail,mommies,,2.54,A lot of mommies aren't,A lot of mommies haven't
+rel,released/tail/passive_1/343,tail,procurator,,2.66,That procurator is,That procurator has
+rel,released/tail/passive_1/355,tail,conservationists,,2.77,Some conservationists are,Some conservationists have
+rel,released/tail/passive_1/359,tail,cretin,,2.45,Every cretin is,Every cretin has
+rel,released/tail/passive_1/366,tail,Acrobats,,2.5100000000000002,Acrobats aren't,Acrobats haven't
+rel,released/tail/passive_1/371,tail,salter,,2.81,A salter was,A salter has
+rel,released/tail/passive_1/374,tail,foibles,,2.49,All foibles were,All foibles have
+rel,released/tail/passive_1/389,tail,Miscreants,,2.4,Miscreants aren't,Miscreants haven't
+rel,released/tail/passive_1/395,tail,Archeologists,,2.49,Archeologists weren't,Archeologists haven't
+rel,released/tail/passive_1/396,tail,sizzle,,2.8,Some sizzle was,Some sizzle has
+rel,released/tail/passive_1/401,tail,passer,,3.17,Some passer was,Some passer has
+rel,released/tail/passive_1/407,tail,cheep,,2.47,This cheep is,This cheep has
+rel,released/tail/passive_1/424,tail,junkies,,3.04,Those junkies are,Those junkies have
+rel,released/tail/passive_1/447,tail,potters,,2.85,A lot of potters aren't,A lot of potters haven't
+rel,released/tail/passive_1/448,tail,gastroenterology,,2.63,Every gastroenterology was,Every gastroenterology has
+rel,released/tail/passive_1/458,tail,individuality,,3.2,Every individuality was,Every individuality has
+rel,released/tail/passive_1/477,tail,buccaneers,,2.97,A lot of buccaneers weren't,A lot of buccaneers haven't
+rel,released/tail/passive_1/486,tail,archivist,,2.8,That archivist isn't,That archivist hasn't
+rel,released/tail/passive_1/49,tail,apprentices,,3.15,The apprentices were,The apprentices have
+rel,released/tail/passive_1/492,tail,pollsters,,2.59,Those pollsters were,Those pollsters have
+rel,released/tail/passive_1/5,tail,wretch,,2.83,This wretch is,This wretch has
+rel,released/tail/passive_1/510,tail,medallist,,3.08,The medallist was,The medallist has
+rel,released/tail/passive_1/528,tail,ramble,,2.85,The ramble wasn't,The ramble hasn't
+rel,released/tail/passive_1/548,tail,weakling,,2.43,The weakling was,The weakling has
+rel,released/tail/passive_1/557,tail,centering,,2.95,The centering was,The centering has
+rel,released/tail/passive_1/566,tail,speculators,,2.94,Many speculators were,Many speculators have
+rel,released/tail/passive_1/570,tail,aberrant,,2.69,Some aberrant was,Some aberrant has
+rel,released/tail/passive_1/590,tail,arsonist,,2.59,An arsonist isn't,An arsonist hasn't
+rel,released/tail/passive_1/592,tail,baddies,,2.74,A lot of baddies are,A lot of baddies have
+rel,released/tail/passive_1/599,tail,ogre,,3.1,That ogre was,That ogre has
+rel,released/tail/passive_1/600,tail,aggravation,,2.7600000000000002,An aggravation is,An aggravation has
+rel,released/tail/passive_1/605,tail,Nobodies,,2.61,Nobodies are,Nobodies have
+rel,released/tail/passive_1/607,tail,crawlers,,2.48,A lot of crawlers weren't,A lot of crawlers haven't
+rel,released/tail/passive_1/612,tail,castes,,3.06,All castes weren't,All castes haven't
+rel,released/tail/passive_1/616,tail,boarders,,2.87,Many boarders are,Many boarders have
+rel,released/tail/passive_1/625,tail,swerving,,2.66,Every swerving isn't,Every swerving hasn't
+rel,released/tail/passive_1/633,tail,psychopathology,,2.48,Every psychopathology is,Every psychopathology has
+rel,released/tail/passive_1/646,tail,Cyborgs,,2.56,Cyborgs weren't,Cyborgs haven't
+rel,released/tail/passive_1/673,tail,Challengers,,3.18,Challengers were,Challengers have
+rel,released/tail/passive_1/679,tail,skirmishes,,2.94,Many skirmishes are,Many skirmishes have
+rel,released/tail/passive_1/684,tail,equating,,2.9,An equating was,An equating has
+rel,released/tail/passive_1/688,tail,grandsons,,2.81,These grandsons were,These grandsons have
+rel,released/tail/passive_1/690,tail,blowouts,,2.44,A lot of blowouts are,A lot of blowouts have
+rel,released/tail/passive_1/694,tail,rowers,,2.77,Many rowers are,Many rowers have
+rel,released/tail/passive_1/695,tail,Neocons,,2.5100000000000002,Neocons are,Neocons have
+rel,released/tail/passive_1/70,tail,lobbyist,,3.1,Some lobbyist is,Some lobbyist has
+rel,released/tail/passive_1/700,tail,inspectorate,,2.78,Every inspectorate isn't,Every inspectorate hasn't
+rel,released/tail/passive_1/703,tail,fandoms,,2.56,A lot of fandoms are,A lot of fandoms have
+rel,released/tail/passive_1/719,tail,grantees,,2.44,Most grantees aren't,Most grantees haven't
+rel,released/tail/passive_1/722,tail,sufferer,,2.94,That sufferer isn't,That sufferer hasn't
+rel,released/tail/passive_1/734,tail,phonology,,2.66,That phonology isn't,That phonology hasn't
+rel,released/tail/passive_1/773,tail,moderates,,3.13,A lot of moderates weren't,A lot of moderates haven't
+rel,released/tail/passive_1/777,tail,playmaker,,2.92,This playmaker is,This playmaker has
+rel,released/tail/passive_1/78,tail,paratrooper,,2.5100000000000002,This paratrooper is,This paratrooper has
+rel,released/tail/passive_1/792,tail,messengers,,3.14,The messengers weren't,The messengers haven't
+rel,released/tail/passive_1/804,tail,smacking,,3.02,Some smacking was,Some smacking has
+rel,released/tail/passive_1/806,tail,actuary,,2.5,The actuary is,The actuary has
+rel,released/tail/passive_1/835,tail,quakers,,2.95,Most quakers weren't,Most quakers haven't
+rel,released/tail/passive_1/84,tail,pathologist,,3.15,The pathologist was,The pathologist has
+rel,released/tail/passive_1/850,tail,astrophysicist,,2.62,This astrophysicist wasn't,This astrophysicist hasn't
+rel,released/tail/passive_1/872,tail,erecting,,2.85,That erecting was,That erecting has
+rel,released/tail/passive_1/886,tail,federalists,,2.64,These federalists aren't,These federalists haven't
+rel,released/tail/passive_1/91,tail,deserters,,2.7600000000000002,Some deserters aren't,Some deserters haven't
+rel,released/tail/passive_1/913,tail,kickers,,2.83,A lot of kickers aren't,A lot of kickers haven't
+rel,released/tail/passive_1/927,tail,custodian,,3.12,This custodian isn't,This custodian hasn't
+rel,released/tail/passive_1/936,tail,bummer,,3.2,A bummer is,A bummer has
+rel,released/tail/passive_1/941,tail,exchangers,,2.66,The exchangers aren't,The exchangers haven't
+rel,released/tail/passive_1/942,tail,Lackeys,,2.46,Lackeys are,Lackeys have
+rel,released/tail/passive_1/968,tail,Botanists,,2.6,Botanists weren't,Botanists haven't
+rel,released/tail/passive_1/974,tail,spenders,,2.46,Most spenders are,Most spenders have
+rel,released/tail/passive_1/983,tail,tickles,,2.86,The tickles weren't,The tickles haven't
+rel,released/tail/passive_1/987,tail,foreshadowing,,2.7600000000000002,The foreshadowing is,The foreshadowing has
+rel,released/xtail/passive_1/121,xtail,leches,,1.58,All leches weren't,All leches haven't
+rel,released/xtail/passive_1/128,xtail,Nonconformists,,1.96,Nonconformists are,Nonconformists have
+rel,released/xtail/passive_1/134,xtail,misuses,,2.08,All misuses weren't,All misuses haven't
+rel,released/xtail/passive_1/142,xtail,gilders,,1.31,Many gilders are,Many gilders have
+rel,released/xtail/passive_1/15,xtail,bursar,,2.19,This bursar isn't,This bursar hasn't
+rel,released/xtail/passive_1/168,xtail,tinsmith,,1.6,The tinsmith is,The tinsmith has
+rel,released/xtail/passive_1/169,xtail,booklovers,,1.56,Some booklovers aren't,Some booklovers haven't
+rel,released/xtail/passive_1/181,xtail,snoopers,,1.84,These snoopers are,These snoopers have
+rel,released/xtail/passive_1/188,xtail,massagers,,1.59,Some massagers were,Some massagers have
+rel,released/xtail/passive_1/20,xtail,controversialist,,1.67,Every controversialist wasn't,Every controversialist hasn't
+rel,released/xtail/passive_1/211,xtail,suborders,,1.56,All suborders weren't,All suborders haven't
+rel,released/xtail/passive_1/225,xtail,authoress,,1.6300000000000001,This authoress is,This authoress has
+rel,released/xtail/passive_1/238,xtail,participations,,2.19,Many participations weren't,Many participations haven't
+rel,released/xtail/passive_1/240,xtail,masseurs,,1.71,Those masseurs are,Those masseurs have
+rel,released/xtail/passive_1/247,xtail,theologist,,1.2,Every theologist was,Every theologist has
+rel,released/xtail/passive_1/259,xtail,Embroiderers,,1.66,Embroiderers were,Embroiderers have
+rel,released/xtail/passive_1/281,xtail,picnickers,,1.75,A lot of picnickers are,A lot of picnickers have
+rel,released/xtail/passive_1/287,xtail,inspectorates,,1.4,These inspectorates weren't,These inspectorates haven't
+rel,released/xtail/passive_1/295,xtail,counterterrorist,,1.74,This counterterrorist wasn't,This counterterrorist hasn't
+rel,released/xtail/passive_1/296,xtail,croupiers,,1.33,The croupiers weren't,The croupiers haven't
+rel,released/xtail/passive_1/301,xtail,interlopers,,2.16,These interlopers were,These interlopers have
+rel,released/xtail/passive_1/303,xtail,ropers,,1.68,Most ropers were,Most ropers have
+rel,released/xtail/passive_1/310,xtail,Victimizers,,1.39,Victimizers weren't,Victimizers haven't
+rel,released/xtail/passive_1/314,xtail,thanes,,1.71,All thanes are,All thanes have
+rel,released/xtail/passive_1/319,xtail,evacuee,,1.93,Some evacuee is,Some evacuee has
+rel,released/xtail/passive_1/338,xtail,lunger,,1.58,This lunger isn't,This lunger hasn't
+rel,released/xtail/passive_1/344,xtail,beloveds,,1.71,Many beloveds are,Many beloveds have
+rel,released/xtail/passive_1/358,xtail,millwrights,,1.61,Some millwrights were,Some millwrights have
+rel,released/xtail/passive_1/363,xtail,handymen,,1.84,Most handymen aren't,Most handymen haven't
+rel,released/xtail/passive_1/364,xtail,Hayseeds,,1.33,Hayseeds aren't,Hayseeds haven't
+rel,released/xtail/passive_1/366,xtail,litterbugs,,1.32,Many litterbugs aren't,Many litterbugs haven't
+rel,released/xtail/passive_1/373,xtail,adjudicators,,2.04,Those adjudicators were,Those adjudicators have
+rel,released/xtail/passive_1/375,xtail,isotropy,,1.56,Some isotropy isn't,Some isotropy hasn't
+rel,released/xtail/passive_1/377,xtail,Clockmakers,,1.78,Clockmakers weren't,Clockmakers haven't
+rel,released/xtail/passive_1/380,xtail,hubbies,,1.5,Those hubbies weren't,Those hubbies haven't
+rel,released/xtail/passive_1/45,xtail,solfeggio,,1.48,A solfeggio wasn't,A solfeggio hasn't
+rel,released/xtail/passive_1/454,xtail,maestros,,2.04,Most maestros were,Most maestros have
+rel,released/xtail/passive_1/470,xtail,sharers,,2.04,Most sharers are,Most sharers have
+rel,released/xtail/passive_1/5,xtail,rainmaking,,1.4,A rainmaking is,A rainmaking has
+rel,released/xtail/passive_1/509,xtail,gipsies,,1.86,A lot of gipsies are,A lot of gipsies have
+rel,released/xtail/passive_1/533,xtail,utopians,,1.77,Most utopians are,Most utopians have
+rel,released/xtail/passive_1/535,xtail,stridency,,1.49,This stridency isn't,This stridency hasn't
+rel,released/xtail/passive_1/544,xtail,Bunglers,,1.28,Bunglers aren't,Bunglers haven't
+rel,released/xtail/passive_1/550,xtail,Litterbugs,,1.32,Litterbugs are,Litterbugs have
+rel,released/xtail/passive_1/551,xtail,osteopaths,,1.74,The osteopaths are,The osteopaths have
+rel,released/xtail/passive_1/563,xtail,chauvinists,,1.82,Many chauvinists aren't,Many chauvinists haven't
+rel,released/xtail/passive_1/568,xtail,curacy,,1.9000000000000001,Every curacy was,Every curacy has
+rel,released/xtail/passive_1/579,xtail,Roughnecks,,2.06,Roughnecks are,Roughnecks have
+rel,released/xtail/passive_1/583,xtail,positivists,,1.73,Those positivists were,Those positivists have
+rel,released/xtail/passive_1/599,xtail,featherweights,,1.45,These featherweights weren't,These featherweights haven't
+rel,released/xtail/passive_1/60,xtail,groaner,,1.2,A groaner was,A groaner has
+rel,released/xtail/passive_1/602,xtail,craniotomy,,1.97,This craniotomy was,This craniotomy has
+rel,released/xtail/passive_1/616,xtail,dairymen,,1.3,Those dairymen were,Those dairymen have
+rel,released/xtail/passive_1/623,xtail,gigolos,,1.6300000000000001,These gigolos aren't,These gigolos haven't
+rel,released/xtail/passive_1/628,xtail,Maskers,,1.58,Maskers aren't,Maskers haven't
+rel,released/xtail/passive_1/637,xtail,shipmate,,2.06,This shipmate is,This shipmate has
+rel,released/xtail/passive_1/647,xtail,typists,,2.07,Most typists are,Most typists have
+rel,released/xtail/passive_1/651,xtail,pedant,,2.13,A pedant is,A pedant has
+rel,released/xtail/passive_1/669,xtail,preservers,,1.94,Some preservers were,Some preservers have
+rel,released/xtail/passive_1/682,xtail,assignee,,2.18,That assignee is,That assignee has
+rel,released/xtail/passive_1/689,xtail,complainers,,2.2,A lot of complainers were,A lot of complainers have
+rel,released/xtail/passive_1/702,xtail,toastmasters,,2.19,These toastmasters were,These toastmasters have
+rel,released/xtail/passive_1/704,xtail,geriatricians,,1.3,All geriatricians aren't,All geriatricians haven't
+rel,released/xtail/passive_1/705,xtail,philanthropies,,2.12,Most philanthropies weren't,Most philanthropies haven't
+rel,released/xtail/passive_1/713,xtail,musicologists,,1.76,Most musicologists were,Most musicologists have
+rel,released/xtail/passive_1/72,xtail,landlubbers,,1.52,Some landlubbers are,Some landlubbers have
+rel,released/xtail/passive_1/727,xtail,itinerants,,1.47,A lot of itinerants were,A lot of itinerants have
+rel,released/xtail/passive_1/729,xtail,stepmothers,,1.68,Those stepmothers were,Those stepmothers have
+rel,released/xtail/passive_1/737,xtail,daubers,,1.33,A lot of daubers aren't,A lot of daubers haven't
+rel,released/xtail/passive_1/748,xtail,noncombatants,,2.05,All noncombatants were,All noncombatants have
+rel,released/xtail/passive_1/763,xtail,crackpots,,1.96,Most crackpots aren't,Most crackpots haven't
+rel,released/xtail/passive_1/788,xtail,teetotallers,,1.31,Many teetotallers were,Many teetotallers have
+rel,released/xtail/passive_1/814,xtail,permissibility,,1.74,Every permissibility isn't,Every permissibility hasn't
+rel,released/xtail/passive_1/815,xtail,loiterers,,1.37,All loiterers weren't,All loiterers haven't
+rel,released/xtail/passive_1/827,xtail,lurchers,,1.33,Most lurchers weren't,Most lurchers haven't
+rel,released/xtail/passive_1/829,xtail,embezzlers,,1.47,The embezzlers weren't,The embezzlers haven't
+rel,released/xtail/passive_1/830,xtail,cataleptic,,1.24,This cataleptic isn't,This cataleptic hasn't
+rel,released/xtail/passive_1/832,xtail,profundity,,2.2,The profundity was,The profundity has
+rel,released/xtail/passive_1/851,xtail,slickers,,2.05,All slickers aren't,All slickers haven't
+rel,released/xtail/passive_1/874,xtail,Anorexics,,1.76,Anorexics are,Anorexics have
+rel,released/xtail/passive_1/875,xtail,partakers,,1.98,Those partakers aren't,Those partakers haven't
+rel,released/xtail/passive_1/881,xtail,utopians,,1.77,A lot of utopians are,A lot of utopians have
+rel,released/xtail/passive_1/882,xtail,assignor,,1.6,This assignor was,This assignor has
+rel,released/xtail/passive_1/885,xtail,yardbird,,1.46,Every yardbird wasn't,Every yardbird hasn't
+rel,released/xtail/passive_1/900,xtail,tragedians,,1.49,Those tragedians are,Those tragedians have
+rel,released/xtail/passive_1/908,xtail,sartor,,1.73,Every sartor was,Every sartor has
+rel,released/xtail/passive_1/912,xtail,Corollaries,,1.66,Corollaries aren't,Corollaries haven't
+rel,released/xtail/passive_1/915,xtail,scamps,,1.68,Many scamps aren't,Many scamps haven't
+rel,released/xtail/passive_1/929,xtail,assignation,,2.07,That assignation isn't,That assignation hasn't
+rel,released/xtail/passive_1/93,xtail,reenlistment,,1.61,Every reenlistment isn't,Every reenlistment hasn't
+rel,released/xtail/passive_1/944,xtail,countrywoman,,1.71,That countrywoman wasn't,That countrywoman hasn't
+rel,released/xtail/passive_1/959,xtail,careerists,,1.68,Those careerists were,Those careerists have
+rel,released/xtail/passive_1/97,xtail,dilettantes,,1.69,Those dilettantes are,Those dilettantes have
+rel,released/xtail/passive_1/970,xtail,crasher,,2.12,Every crasher isn't,Every crasher hasn't
+rel,released/xtail/passive_1/978,xtail,brawlers,,2.18,Some brawlers weren't,Some brawlers haven't
+rel,released/xtail/passive_1/980,xtail,spritzes,,1.32,All spritzes were,All spritzes have
+rel,released/xtail/passive_1/983,xtail,exacerbations,,2.15,The exacerbations were,The exacerbations have
+rel,released/xtail/passive_1/99,xtail,reenactor,,1.61,Some reenactor isn't,Some reenactor hasn't
+rel,released/xtail/passive_1/995,xtail,photosensitivity,,1.87,Every photosensitivity is,Every photosensitivity has
+rel,released/xtail/passive_1/997,xtail,baronage,,1.3800000000000001,Every baronage wasn't,Every baronage hasn't

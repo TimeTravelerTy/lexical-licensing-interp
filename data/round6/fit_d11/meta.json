@@ -1,0 +1,18 @@
+{
+ "links": 35406,
+ "unique_good": 33720,
+ "unique_bad": 30629,
+ "to_rate": 41047,
+ "reused": 23302,
+ "inputs": {
+  "data/round5/verbs_expanded/pairs.csv": "d24c28538e8d2e1725451e404f678760c295dfb9e60ca2616874212b694087f2",
+  "data/passive_band_cross/pairs.jsonl": "a19c0d99ff2ced8bd71bd1613450197ed420b99982d0d43c796d340c16d3d184",
+  "data/matched_passives_v2/pairs.jsonl": "72f0fa0116506b1d888fce989dde5b76fc5bccc40bd0664db286c5cba4ac6916",
+  "results/fit_ratings/gemma4_31b_it.csv": "d55e61355c414ab793342bd11bd8ad6d28a5115eea42f4c262ca65ab880a7fb0",
+  "results/fit_ratings/bad_gemma4_31b_it.csv": "39d4b0a04d59dd4c00dbbdf7eadf900444a3c459a466a647873314bf8448e9e4"
+ },
+ "outputs": {
+  "items.jsonl": "cb32d28ded6b13a5e5c827830d77b33a38650b0de70effa40b21401a99e982ce",
+  "links.csv": "f4a2572dc689ed355bd59e6b0dc7d309b9cdd955ce2a99e9a26d2df2edc77f34"
+ }
+}

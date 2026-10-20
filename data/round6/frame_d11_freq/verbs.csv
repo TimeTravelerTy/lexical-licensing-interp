@@ -1,0 +1,563 @@
+verb,role,curated,pool,band,verb_pair,zipf,split,n_tok,ids,first_id
+guarded,T,0,0,head,head/guard/progress,3.63,heldout,1,39824,39824
+progressed,I,0,0,head,head/guard/progress,3.63,heldout,1,33127,33127
+manipulated,T,0,0,head,head/manipulate/stare,3.6,heldout,1,32494,32494
+stared,I,0,0,head,head/manipulate/stare,3.6,heldout,1,15014,15014
+poisoned,T,0,0,head,head/poison/behave,3.58,heldout,1,47494,47494
+behaved,I,0,0,head,head/poison/behave,3.59,heldout,1,44944,44944
+tagged,T,0,0,head,head/tag/rely,3.82,heldout,1,31480,31480
+relied,I,0,0,head,head/tag/rely,3.82,heldout,1,15494,15494
+aided,T,0,0,head,head/aid/dream,3.74,trainable,1,35479,35479
+dreamed,I,0,0,head,head/aid/dream,3.75,trainable,1,33305,33305
+avoided,T,0,0,head,head/avoid/comment,4.07,trainable,1,16371,16371
+commented,I,0,0,head,head/avoid/comment,4.07,trainable,1,20503,20503
+borrowed,T,0,0,head,head/borrow/consist,3.91,trainable,1,29563,29563
+consisted,I,0,0,head,head/borrow/consist,3.91,trainable,1,14278,14278
+celebrated,T,1,0,head,head/celebrate/laugh,4.24,trainable,1,19651,19651
+laughed,I,1,0,head,head/celebrate/laugh,4.24,trainable,1,12918,12918
+defended,T,1,0,head,head/defend/struggle,4.0,trainable,1,25860,25860
+struggled,I,1,0,head,head/defend/struggle,4.01,trainable,1,19460,19460
+defined,T,0,0,head,head/define/occur,4.56,trainable,1,2931,2931
+occurred,I,1,0,head,head/define/occur,4.57,trainable,1,5866,5866
+eliminated,T,0,0,head,head/eliminate/belong,4.05,trainable,1,17527,17527
+belonged,I,1,0,head,head/eliminate/belong,4.01,trainable,1,20651,20651
+evacuated,T,0,0,head,head/evacuate/stumble,3.66,trainable,1,44543,44543
+stumbled,I,0,0,head,head/evacuate/stumble,3.66,trainable,1,30773,30773
+expelled,T,0,0,head,head/expel/vanish,3.7,trainable,1,39372,39372
+vanished,I,1,0,head,head/expel/vanish,3.72,trainable,1,30117,30117
+fulfilled,T,0,0,head,head/fulfill/depart,3.77,trainable,1,25146,25146
+departed,I,0,0,head,head/fulfill/depart,3.78,trainable,1,29115,29115
+guided,T,0,0,head,head/guide/travel,4.06,trainable,1,18107,18107
+traveled,I,0,0,head,head/guide/travel,4.06,trainable,1,19624,19624
+handed,T,0,0,head,head/hand/care,4.42,trainable,1,14048,14048
+cared,I,0,0,head,head/hand/care,4.11,trainable,1,24782,24782
+hated,T,1,0,head,head/hate/step,4.2,trainable,1,21023,21023
+stepped,I,0,0,head,head/hate/step,4.2,trainable,1,12293,12293
+imported,T,0,0,head,head/import/complain,3.95,trainable,1,21117,21117
+complained,I,1,0,head,head/import/complain,3.99,trainable,1,19375,19375
+imposed,T,1,0,head,head/impose/emerge,4.16,trainable,1,11295,11295
+emerged,I,1,0,head,head/impose/emerge,4.16,trainable,1,13082,13082
+lent,T,1,0,head,head/lend/opt,3.75,trainable,1,21685,21685
+opted,I,1,0,head,head/lend/opt,3.75,trainable,1,33549,33549
+numbered,T,0,0,head,head/number/last,3.82,trainable,1,31050,31050
+lasted,I,0,0,head,head/number/last,4.09,trainable,1,20578,20578
+placed,T,0,0,head,head/place/live,4.85,trainable,1,4845,4845
+lived,I,0,0,head,head/place/live,4.88,trainable,1,6940,6940
+praised,T,0,0,head,head/praise/participate,4.02,trainable,1,26108,26108
+participated,I,1,0,head,head/praise/participate,4.01,trainable,1,13640,13640
+prepared,T,0,0,head,head/prepare/arrive,4.74,trainable,1,5480,5480
+arrived,I,1,0,head,head/prepare/arrive,4.79,trainable,1,7244,7244
+rated,T,1,0,head,head/rate/result,4.3,trainable,1,20139,20139
+resulted,I,1,0,head,head/rate/result,4.37,trainable,1,7369,7369
+received,T,0,0,head,head/receive/die,5.16,trainable,1,2959,2959
+died,I,1,0,head,head/receive/die,5.2,trainable,1,4962,4962
+recovered,T,0,0,head,head/recover/disappear,4.25,trainable,1,12372,12372
+disappeared,I,0,0,head,head/recover/disappear,4.26,trainable,1,15159,15159
+regarded,T,0,0,head,head/regard/reply,4.29,trainable,1,12258,12258
+replied,I,1,0,head,head/regard/reply,4.28,trainable,1,10017,10017
+reserved,T,0,0,head,head/reserve/lie,4.18,trainable,1,10827,10827
+lied,I,1,0,head,head/reserve/lie,4.21,trainable,1,27786,27786
+reviewed,T,0,0,head,head/review/wait,4.23,trainable,1,9814,9814
+waited,I,0,0,head,head/review/wait,4.26,trainable,1,13308,13308
+robbed,T,1,0,head,head/rob/proceed,3.88,trainable,1,38208,38208
+proceeded,I,1,0,head,head/rob/proceed,3.87,trainable,1,20311,20311
+ruined,T,0,0,head,head/ruin/respond,4.26,trainable,1,27826,27826
+responded,I,1,0,head,head/ruin/respond,4.26,trainable,1,10974,10974
+ruled,T,0,0,head,head/rule/exist,4.3,trainable,1,12969,12969
+existed,I,1,0,head,head/rule/exist,4.29,trainable,1,13164,13164
+sent,T,1,0,head,head/send/happen,5.16,trainable,1,2197,2197
+happened,I,1,0,head,head/send/happen,5.2,trainable,1,4592,4592
+skinned,T,0,0,head,head/skin/amount,3.54,trainable,2,1629 13172,1629
+amounted,I,0,0,head,head/skin/amount,3.53,trainable,1,37752,37752
+slaughtered,T,0,0,head,head/slaughter/subscribe,3.53,trainable,3,1499 4551 2122,1499
+subscribed,I,0,0,head,head/slaughter/subscribe,3.53,trainable,2,20404 264,20404
+sorted,T,0,0,head,head/sort/account,3.83,trainable,1,20045,20045
+accounted,I,0,0,head,head/sort/account,3.82,trainable,1,20184,20184
+spared,T,0,0,head,head/spare/react,3.64,trainable,1,40335,40335
+reacted,I,0,0,head,head/spare/react,3.64,trainable,1,29771,29771
+stacked,T,0,0,head,head/stack/apologize,3.63,trainable,1,24982,24982
+apologized,I,1,0,head,head/stack/apologize,3.63,trainable,1,46446,46446
+supplied,T,0,0,head,head/supply/listen,4.24,trainable,1,12164,12164
+listened,I,1,0,head,head/supply/listen,4.21,trainable,1,18029,18029
+taped,T,0,0,head,head/tape/object,3.5,trainable,2,246 7760,246
+objected,I,1,0,head,head/tape/object,3.5,trainable,1,27511,27511
+targeted,T,1,0,head,head/target/sleep,4.22,trainable,1,10522,10522
+slept,I,0,0,head,head/target/sleep,4.18,trainable,1,21567,21567
+taxed,T,0,0,head,head/tax/matter,3.52,trainable,1,48715,48715
+mattered,I,1,0,head,head/tax/matter,3.53,trainable,1,43074,43074
+thanked,T,1,0,head,head/thank/side,3.64,trainable,1,35891,35891
+sided,I,0,0,head,head/thank/side,3.94,trainable,2,256 1356,256
+tipped,T,0,0,head,head/tip/pray,3.67,trainable,1,40414,40414
+prayed,I,0,0,head,head/tip/pray,3.67,trainable,1,34469,34469
+weighed,T,0,0,head,head/weigh/testify,3.81,trainable,1,24398,24398
+testified,I,1,0,head,head/weigh/testify,3.82,trainable,1,7859,7859
+yielded,T,0,0,head,head/yield/compete,3.51,trainable,1,20714,20714
+competed,I,1,0,head,head/yield/compete,3.51,trainable,1,29177,29177
+approximated,T,1,0,tail,tail/approximate/muse,2.68,heldout,1,34930,34930
+mused,I,1,0,tail,tail/approximate/muse,2.67,heldout,2,1948 264,1948
+audited,T,1,0,tail,tail/audit/sigh,3.13,heldout,2,3820 959,3820
+sighed,I,0,0,tail,tail/audit/sigh,3.13,heldout,1,21374,21374
+condoned,T,0,0,tail,tail/condone/glare,2.64,heldout,2,6882 11406,6882
+glared,I,1,0,tail,tail/condone/glare,2.59,heldout,1,47278,47278
+defrauded,T,0,0,tail,tail/defraud/waver,2.67,heldout,3,809 376 21015,809
+wavered,I,0,0,tail,tail/defraud/waver,2.67,heldout,2,5149 433,5149
+distrusted,T,0,0,tail,tail/distrust/howl,2.48,heldout,3,940 83 15172,940
+howled,I,0,0,tail,tail/distrust/howl,2.48,heldout,2,849 1070,849
+encompassed,T,0,0,tail,tail/encompass/lapse,2.94,heldout,2,18387 264,18387
+lapsed,I,0,0,tail,tail/encompass/lapse,2.94,heldout,2,298 13395,298
+eradicated,T,0,0,tail,tail/eradicate/slump,3.03,heldout,2,31559 6857,31559
+slumped,I,1,0,tail,tail/eradicate/slump,3.03,heldout,2,1499 26515,1499
+excised,T,0,0,tail,tail/excise/whine,2.58,heldout,1,48448,48448
+whined,I,0,0,tail,tail/excise/whine,2.58,heldout,2,364 967,364
+fleeced,T,1,0,tail,tail/fleece/abound,2.41,heldout,2,32645 758,32645
+abounded,I,0,0,tail,tail/fleece/abound,2.41,heldout,2,490 8055,490
+furthered,T,0,0,tail,tail/further/major,2.62,heldout,3,11829 783 433,11829
+majored,I,0,0,tail,tail/further/major,2.79,heldout,2,19684 2149,19684
+gassed,T,0,0,tail,tail/gas/shop,3.01,heldout,2,305 39479,305
+shopped,I,0,0,tail,tail/gas/shop,3.01,heldout,2,6738 1882,6738
+greased,T,0,0,tail,tail/grease/decay,2.88,heldout,2,13738 833,13738
+decayed,I,0,0,tail,tail/grease/decay,2.84,heldout,2,10027 264,10027
+heaped,T,1,0,tail,tail/heap/grin,2.87,heldout,2,344 7760,344
+grinned,I,1,0,tail,tail/heap/grin,2.87,heldout,1,30443,30443
+impregnated,T,0,0,tail,tail/impregnate/dwindle,2.92,heldout,2,45286 456,45286
+dwindled,I,1,0,tail,tail/impregnate/dwindle,2.92,heldout,3,277 16668 1070,277
+metered,T,0,0,tail,tail/meter/glow,2.63,heldout,2,1313 2122,1313
+glowed,I,1,0,tail,tail/meter/glow,2.63,heldout,2,15795 264,15795
+outweighed,T,0,0,tail,tail/outweigh/linger,2.9,heldout,2,32180 18201,32180
+lingered,I,1,0,tail,tail/outweigh/linger,2.9,heldout,2,23614 2122,23614
+overestimated,T,1,0,tail,tail/overestimate/diverge,2.76,heldout,2,35039 18280,35039
+diverged,I,1,0,tail,tail/overestimate/diverge,2.76,heldout,2,11711 2400,11711
+pillaged,T,0,0,tail,tail/pillage/balk,2.53,heldout,2,12575 2961,12575
+balked,I,0,0,tail,tail/pillage/balk,2.53,heldout,3,270 1278 264,270
+proffered,T,0,0,tail,tail/proffer/acquiesce,2.42,heldout,1,47356,47356
+acquiesced,I,0,0,tail,tail/proffer/acquiesce,2.42,heldout,3,4171 447 758,4171
+rationed,T,0,0,tail,tail/ration/shudder,2.48,heldout,2,42904 264,42904
+shuddered,I,1,0,tail,tail/ration/shudder,2.47,heldout,2,35928 3466,35928
+reared,T,1,0,tail,tail/rear/sin,3.07,heldout,2,294 1096,294
+sinned,I,1,0,tail,tail/rear/sin,3.05,heldout,2,256 13172,256
+smothered,T,1,0,tail,tail/smother/subside,3.02,heldout,2,924 25688,924
+subsided,I,1,0,tail,tail/smother/subside,3.01,heldout,2,8790 1356,8790
+spiced,T,1,0,tail,tail/spice/rage,3.02,heldout,2,653 5491,653
+raged,I,0,0,tail,tail/spice/rage,3.06,heldout,2,391 2961,391
+stockpiled,T,1,0,tail,tail/stockpile/vie,2.49,heldout,3,5739 81 4206,5739
+vied,I,1,0,tail,tail/stockpile/vie,2.45,heldout,2,362 728,362
+symbolized,T,0,0,tail,tail/symbolize/wane,2.85,heldout,2,9484 1025,9484
+waned,I,1,0,tail,tail/symbolize/wane,2.87,heldout,2,259 20625,259
+treasured,T,0,0,tail,tail/treasure/clash,3.12,heldout,2,2578 47845,2578
+clashed,I,1,0,tail,tail/treasure/clash,3.12,heldout,2,502 6948,502
+venerated,T,0,0,tail,tail/venerate/relent,2.71,heldout,2,49110 456,49110
+relented,I,0,0,tail,tail/venerate/relent,2.71,heldout,2,774 8006,774
+vilified,T,0,0,tail,tail/vilify/officiate,2.7,heldout,2,20442 1245,20442
+officiated,I,0,0,tail,tail/vilify/officiate,2.72,heldout,2,2039 4215,2039
+wielded,T,0,0,tail,tail/wield/inquire,2.97,heldout,2,37214 264,37214
+inquired,I,1,0,tail,tail/wield/inquire,2.97,heldout,1,39257,39257
+abstracted,T,0,0,tail,tail/abstract/bargain,2.84,trainable,2,12002 264,12002
+bargained,I,1,0,tail,tail/abstract/bargain,2.85,trainable,2,14862 1243,14862
+accommodated,T,0,0,tail,tail/accommodate/creep,3.16,trainable,2,10085 456,10085
+crept,I,1,0,tail,tail/accommodate/creep,3.15,trainable,1,43801,43801
+appropriated,T,0,0,tail,tail/appropriate/branch,3.14,trainable,2,3991 456,3991
+branched,I,0,0,tail,tail/appropriate/branch,3.18,trainable,1,36690,36690
+ascertained,T,0,0,tail,tail/ascertain/err,2.79,trainable,1,46494,46494
+erred,I,0,0,tail,tail/ascertain/err,2.81,trainable,1,14416,14416
+awed,T,1,0,tail,tail/awe/cope,2.63,trainable,2,3768 264,3768
+coped,I,0,0,tail,tail/awe/cope,2.63,trainable,2,5440 264,5440
+bared,T,0,0,tail,tail/bare/bloom,2.64,trainable,2,270 1096,270
+bloomed,I,1,0,tail,tail/bare/bloom,2.66,trainable,2,30601 264,30601
+beheld,T,0,0,tail,tail/behold/rave,2.51,trainable,2,320 13028,320
+raved,I,1,0,tail,tail/behold/rave,2.5,trainable,2,1218 1272,1218
+blackmailed,T,0,0,tail,tail/blackmail/flirt,2.87,trainable,3,2806 5719 264,2806
+flirted,I,1,0,tail,tail/blackmail/flirt,2.84,trainable,3,892 4580 264,892
+blockaded,T,0,0,tail,tail/blockade/cringe,2.61,trainable,2,2972 7917,2972
+cringed,I,0,0,tail,tail/blockade/cringe,2.57,trainable,3,260 804 264,260
+braved,T,0,0,tail,tail/brave/peer,2.63,trainable,2,6513 1272,6513
+peered,I,0,0,tail,tail/brave/peer,2.66,trainable,1,43517,43517
+bribed,T,1,0,tail,tail/bribe/chuckle,3.05,trainable,2,49364 264,49364
+chuckled,I,1,0,tail,tail/bribe/chuckle,3.05,trainable,1,43637,43637
+buffed,T,0,0,tail,tail/buff/crow,2.43,trainable,2,14664 264,14664
+crowed,I,0,0,tail,tail/buff/crow,2.4,trainable,2,6207 264,6207
+burdened,T,0,0,tail,tail/burden/consent,3.13,trainable,3,3600 69 2348,3600
+consented,I,0,0,tail,tail/burden/consent,3.12,trainable,1,42243,42243
+cached,T,0,0,tail,tail/cache/limp,2.6,trainable,1,37164,37164
+limped,I,0,0,tail,tail/cache/limp,2.6,trainable,2,1579 9357,1579
+circumvented,T,0,0,tail,tail/circumvent/meditate,2.53,trainable,2,39256 264,39256
+meditated,I,0,0,tail,tail/circumvent/meditate,2.55,trainable,2,1129 15281,1129
+cleansed,T,0,0,tail,tail/cleanse/flop,2.97,trainable,2,30671 264,30671
+flopped,I,0,0,tail,tail/cleanse/flop,2.98,trainable,2,9071 1882,9071
+cloned,T,0,0,tail,tail/clone/cooperate,3.07,trainable,1,26877,26877
+cooperated,I,1,0,tail,tail/clone/cooperate,3.08,trainable,2,10239 456,10239
+cluttered,T,0,0,tail,tail/clutter/gasp,2.94,trainable,2,26986 3606,26986
+gasped,I,0,0,tail,tail/clutter/gasp,2.94,trainable,1,39787,39787
+corroborated,T,0,0,tail,tail/corroborate/reappear,2.92,trainable,1,47790,47790
+reappeared,I,1,0,tail,tail/corroborate/reappear,2.92,trainable,2,43482 1096,43482
+craved,T,0,0,tail,tail/crave/blossom,2.9,trainable,2,8034 1272,8034
+blossomed,I,1,0,tail,tail/crave/blossom,2.9,trainable,2,33620 14944,33620
+dammed,T,0,0,tail,tail/dam/feast,2.5,trainable,2,2687 1314,2687
+feasted,I,0,0,tail,tail/dam/feast,2.4,trainable,2,704 12457,704
+decimated,T,0,0,tail,tail/decimate/transpire,3.07,trainable,2,1086 18280,1086
+transpired,I,1,0,tail,tail/decimate/transpire,3.06,trainable,2,811 24875,811
+decoded,T,0,0,tail,tail/decode/abstain,2.78,trainable,1,45775,45775
+abstained,I,1,0,tail,tail/decode/abstain,2.78,trainable,2,20965 1243,20965
+deducted,T,0,0,tail,tail/deduct/succumb,3.16,trainable,2,31363 2356,31363
+succumbed,I,0,0,tail,tail/deduct/succumb,3.16,trainable,3,18382 360 3026,18382
+defaced,T,0,0,tail,tail/deface/collude,2.74,trainable,2,809 2575,809
+colluded,I,1,0,tail,tail/deface/collude,2.74,trainable,2,3007 21015,3007
+deterred,T,1,0,tail,tail/deter/giggle,2.9,trainable,2,843 13004,843
+giggled,I,0,0,tail,tail/deter/giggle,2.89,trainable,2,41542 1070,41542
+detested,T,0,0,tail,tail/detest/lurk,2.56,trainable,2,843 7250,843
+lurked,I,1,0,tail,tail/detest/lurk,2.57,trainable,2,29661 16386,29661
+disavowed,T,0,0,tail,tail/disavow/seep,2.56,trainable,3,557 580 12997,557
+seeped,I,1,0,tail,tail/disavow/seep,2.56,trainable,3,396 554 264,396
+dislodged,T,0,0,tail,tail/dislodge/fluctuate,2.7,trainable,3,557 39079 2400,557
+fluctuated,I,1,0,tail,tail/dislodge/fluctuate,2.71,trainable,2,10920 11634,10920
+disregarded,T,0,0,tail,tail/disregard/faint,3.09,trainable,2,20398 13073,20398
+fainted,I,0,0,tail,tail/disregard/faint,3.12,trainable,2,16487 264,16487
+dissuaded,T,0,0,tail,tail/dissuade/tremble,2.56,trainable,3,557 3467 7917,557
+trembled,I,0,0,tail,tail/dissuade/tremble,2.55,trainable,3,2578 1814 1070,2578
+divested,T,0,0,tail,tail/divest/toil,2.62,trainable,2,2017 7250,2017
+toiled,I,1,0,tail,tail/divest/toil,2.61,trainable,2,281 4206,281
+divulged,T,0,0,tail,tail/divulge/flinch,2.52,trainable,3,2017 335 2400,2017
+flinched,I,0,0,tail,tail/divulge/flinch,2.52,trainable,2,892 39012,892
+doped,T,1,0,tail,tail/dope/rebel,2.94,trainable,1,39986,39986
+rebelled,I,0,0,tail,tail/dope/rebel,2.95,trainable,2,6142 5911,6142
+duplicated,T,0,0,tail,tail/duplicate/hesitate,3.08,trainable,1,44223,44223
+hesitated,I,0,0,tail,tail/duplicate/hesitate,3.08,trainable,1,32360,32360
+elbowed,T,0,0,tail,tail/elbow/rant,2.45,trainable,2,24784 264,24784
+ranted,I,0,0,tail,tail/elbow/rant,2.46,trainable,2,391 9581,391
+elucidated,T,0,0,tail,tail/elucidate/gush,2.5,trainable,1,41167,41167
+gushed,I,0,0,tail,tail/elucidate/gush,2.51,trainable,2,305 6093,305
+envisaged,T,0,0,tail,tail/envisage/allude,3.11,trainable,2,47335 2961,47335
+alluded,I,0,0,tail,tail/envisage/allude,3.11,trainable,2,512 21015,512
+evaded,T,1,0,tail,tail/evade/converge,2.91,trainable,2,612 7917,612
+converged,I,0,0,tail,tail/evade/converge,2.91,trainable,2,5975 2400,5975
+exterminated,T,0,0,tail,tail/exterminate/retaliate,2.81,trainable,3,385 20792 456,385
+retaliated,I,1,0,tail,tail/exterminate/retaliate,2.8,trainable,2,24998 4215,24998
+feigned,T,0,0,tail,tail/feign/stagnate,2.65,trainable,2,704 1300,704
+stagnated,I,1,0,tail,tail/feign/stagnate,2.65,trainable,2,36879 456,36879
+gagged,T,1,0,tail,tail/gag/prosper,2.9,trainable,2,305 37522,305
+prospered,I,0,0,tail,tail/gag/prosper,2.9,trainable,2,5847 11712,5847
+gripped,T,0,0,tail,tail/grip/reign,3.14,trainable,1,43176,43176
+reigned,I,0,0,tail,tail/grip/reign,3.15,trainable,2,294 1300,294
+heralded,T,0,0,tail,tail/herald/dive,3.0,trainable,3,617 267 4861,617
+dived,I,0,0,tail,tail/herald/dive,2.97,trainable,2,277 1567,277
+hounded,T,0,0,tail,tail/hound/sneeze,2.7,trainable,2,288 8055,288
+sneezed,I,0,0,tail,tail/hound/sneeze,2.68,trainable,3,16037 70 4337,16037
+idolized,T,0,0,tail,tail/idolize/disembark,2.55,trainable,2,36123 1025,36123
+disembarked,I,0,0,tail,tail/idolize/disembark,2.56,trainable,4,557 16697 782 264,557
+ingested,T,1,0,tail,tail/ingest/conspire,3.11,trainable,2,6446 7250,6446
+conspired,I,1,0,tail,tail/ingest/conspire,3.11,trainable,2,772 24875,772
+inoculated,T,0,0,tail,tail/inoculate/accede,2.57,trainable,1,33599,33599
+acceded,I,0,0,tail,tail/inoculate/accede,2.58,trainable,2,756 16533,756
+loathed,T,0,0,tail,tail/loathe/groan,2.72,trainable,2,2343 41746,2343
+groaned,I,0,0,tail,tail/loathe/groan,2.69,trainable,1,50206,50206
+lynched,T,0,0,tail,tail/lynch/gaze,2.83,trainable,2,50117 2147,50117
+gazed,I,0,0,tail,tail/lynch/gaze,2.83,trainable,1,37432,37432
+maligned,T,0,0,tail,tail/malign/overreact,2.69,trainable,2,278 2132,278
+overreacted,I,0,0,tail,tail/malign/overreact,2.69,trainable,3,689 22312 264,689
+nabbed,T,1,0,tail,tail/nab/loom,2.79,trainable,3,295 357 3026,295
+loomed,I,0,0,tail,tail/nab/loom,2.8,trainable,2,2343 14944,2343
+orphaned,T,1,0,tail,tail/orphan/excel,3.17,trainable,2,33260 264,33260
+excelled,I,0,0,tail,tail/orphan/excel,3.19,trainable,2,2507 5911,2507
+overcharged,T,0,0,tail,tail/overcharge/elope,2.52,trainable,2,689 31094,689
+eloped,I,0,0,tail,tail/overcharge/elope,2.52,trainable,2,1045 11802,1045
+overloaded,T,0,0,tail,tail/overload/adhere,3.13,trainable,2,689 19052,689
+adhered,I,1,0,tail,tail/overload/adhere,3.12,trainable,1,42159,42159
+pardoned,T,0,0,tail,tail/pardon/interact,3.11,trainable,3,268 472 11406,268
+interacted,I,1,0,tail,tail/pardon/interact,3.11,trainable,2,8008 264,8008
+patronized,T,0,0,tail,tail/patronize/congregate,2.46,trainable,2,24081 1025,24081
+congregated,I,0,0,tail,tail/patronize/congregate,2.45,trainable,2,44615 456,44615
+pawned,T,0,0,tail,tail/pawn/ache,2.41,trainable,2,43392 264,43392
+ached,I,0,0,tail,tail/pawn/ache,2.41,trainable,2,913 742,913
+perfumed,T,1,0,tail,tail/perfume/blush,2.64,trainable,2,20403 21625,20403
+blushed,I,1,0,tail,tail/perfume/blush,2.64,trainable,2,787 6093,787
+petted,T,0,0,tail,tail/pet/tower,2.43,trainable,2,268 37883,268
+towered,I,0,0,tail,tail/pet/tower,2.42,trainable,2,281 8736,281
+piloted,T,0,0,tail,tail/pilot/dawn,3.03,trainable,2,7861 4225,7861
+dawned,I,1,0,tail,tail/pilot/dawn,3.03,trainable,2,20632 264,20632
+pitied,T,0,0,tail,tail/pity/deliberate,2.51,trainable,2,8483 728,8483
+deliberated,I,0,0,tail,tail/pity/deliberate,2.49,trainable,2,12465 456,12465
+plundered,T,0,0,tail,tail/plunder/resonate,2.95,trainable,3,499 328 3466,499
+resonated,I,0,0,tail,tail/plunder/resonate,2.95,trainable,2,8146 456,8146
+plied,T,0,0,tail,tail/ply/malfunction,2.56,trainable,2,499 728,499
+malfunctioned,I,0,0,tail,tail/ply/malfunction,2.57,trainable,2,43280 264,43280
+policed,T,0,0,tail,tail/police/party,2.54,trainable,2,877 5491,877
+partied,I,0,0,tail,tail/police/party,2.8,trainable,2,629 728,629
+ported,T,0,0,tail,tail/port/function,3.04,trainable,2,2245 264,2245
+functioned,I,1,0,tail,tail/port/function,3.07,trainable,2,1159 264,1159
+precluded,T,1,0,tail,tail/preclude/sprawl,2.68,trainable,1,38932,38932
+sprawled,I,0,0,tail,tail/preclude/sprawl,2.68,trainable,2,30108 1070,30108
+probed,T,0,0,tail,tail/probe/triumph,2.88,trainable,1,39039,39039
+triumphed,I,0,0,tail,tail/probe/triumph,2.91,trainable,3,1195 1765 742,1195
+professed,T,0,0,tail,tail/profess/emigrate,3.12,trainable,2,4180 264,4180
+emigrated,I,1,0,tail,tail/profess/emigrate,3.12,trainable,2,37797 14092,37797
+quantified,T,0,0,tail,tail/quantify/dine,2.97,trainable,1,18755,18755
+dined,I,0,0,tail,tail/quantify/dine,2.98,trainable,2,277 967,277
+quarried,T,1,0,tail,tail/quarry/spiral,2.49,trainable,2,25721 2200,25721
+spiraled,I,0,0,tail,tail/quarry/spiral,2.46,trainable,2,15009 3256,15009
+quelled,T,1,0,tail,tail/quell/sympathize,2.46,trainable,2,572 5911,572
+sympathized,I,1,0,tail,tail/quell/sympathize,2.46,trainable,2,34144 1025,34144
+racked,T,0,0,tail,tail/rack/defect,3.03,trainable,2,391 16970,391
+defected,I,0,0,tail,tail/rack/defect,3.03,trainable,2,372 5925,372
+recited,T,0,0,tail,tail/recite/revert,3.14,trainable,1,49064,49064
+reverted,I,0,0,tail,tail/recite/revert,3.14,trainable,2,294 13083,294
+reelected,T,0,0,tail,tail/reelect/elapse,2.95,trainable,2,294 43514,294
+elapsed,I,0,0,tail,tail/reelect/elapse,2.95,trainable,1,38667,38667
+refunded,T,1,0,tail,tail/refund/arise,3.18,trainable,2,23005 264,23005
+arisen,I,0,0,tail,tail/refund/arise,3.2,trainable,1,45764,45764
+reinstalled,T,1,0,tail,tail/reinstall/proliferate,2.54,trainable,2,294 40539,294
+proliferated,I,0,0,tail,tail/reinstall/proliferate,2.53,trainable,2,7987 12072,7987
+relished,T,0,0,tail,tail/relish/dwell,2.65,trainable,2,774 1428,774
+dwelt,I,0,0,tail,tail/relish/dwell,2.65,trainable,2,19858 2585,19858
+requisitioned,T,0,0,tail,tail/requisition/languish,2.52,trainable,3,997 10293 264,997
+languished,I,1,0,tail,tail/requisition/languish,2.52,trainable,3,298 2435 1428,298
+rinsed,T,0,0,tail,tail/rinse/fart,2.77,trainable,1,41502,41502
+farted,I,0,0,tail,tail/rinse/fart,2.78,trainable,2,18337 264,18337
+roused,T,1,0,tail,tail/rouse/yearn,2.62,trainable,2,391 24695,391
+yearned,I,0,0,tail,tail/rouse/yearn,2.58,trainable,2,807 9306,807
+sabotaged,T,0,0,tail,tail/sabotage/brag,2.92,trainable,2,45608 2961,45608
+bragged,I,1,0,tail,tail/sabotage/brag,2.93,trainable,2,1308 37522,1308
+safeguarded,T,1,0,tail,tail/safeguard/peek,2.62,trainable,3,4999 4297 13073,4999
+peeked,I,0,0,tail,tail/safeguard/peek,2.64,trainable,2,36811 264,36811
+sated,T,0,0,tail,tail/sate/encroach,2.43,trainable,2,256 456,256
+encroached,I,0,0,tail,tail/sate/encroach,2.43,trainable,3,2349 287 2729,2349
+scooped,T,0,0,tail,tail/scoop/correspond,3.04,trainable,2,46254 11802,46254
+corresponded,I,1,0,tail,tail/scoop/correspond,3.04,trainable,1,40575,40575
+secreted,T,0,0,tail,tail/secrete/tamper,2.95,trainable,1,27668,27668
+tampered,I,0,0,tail,tail/secrete/tamper,2.95,trainable,2,21526 11712,21526
+signaled,T,0,0,tail,tail/signal/chat,3.1,trainable,1,49908,49908
+chatted,I,0,0,tail,tail/signal/chat,3.17,trainable,2,448 19822,448
+skimmed,T,0,0,tail,tail/skim/disapprove,2.94,trainable,2,43816 1314,43816
+disapproved,I,0,0,tail,tail/skim/disapprove,2.94,trainable,2,31521 1272,31521
+slandered,T,1,0,tail,tail/slander/dissent,2.53,trainable,3,256 1373 2122,256
+dissented,I,0,0,tail,tail/slander/dissent,2.56,trainable,2,5408 8006,5408
+squandered,T,0,0,tail,tail/squander/materialize,2.89,trainable,3,3896 395 2122,3896
+materialized,I,0,0,tail,tail/squander/materialize,2.9,trainable,2,2144 1025,2144
+stowed,T,1,0,tail,tail/stow/kneel,2.79,trainable,2,331 12997,331
+knelt,I,0,0,tail,tail/stow/kneel,2.8,trainable,1,47511,47511
+subtracted,T,0,0,tail,tail/subtract/relapse,2.71,trainable,1,42426,42426
+relapsed,I,0,0,tail,tail/subtract/relapse,2.71,trainable,2,774 13395,774
+subverted,T,1,0,tail,tail/subvert/persevere,2.64,trainable,2,749 13083,749
+persevered,I,1,0,tail,tail/subvert/persevere,2.63,trainable,3,591 339 29558,591
+sullied,T,0,0,tail,tail/sully/shiver,2.4,trainable,3,256 962 728,256
+shivered,I,0,0,tail,tail/sully/shiver,2.4,trainable,2,439 7782,439
+tamed,T,1,0,tail,tail/tame/thrive,3.01,trainable,2,246 3163,246
+thrived,I,1,0,tail,tail/tame/thrive,3.01,trainable,2,289 30487,289
+taunted,T,0,0,tail,tail/taunt/concur,2.74,trainable,2,15307 16218,15307
+concurred,I,1,0,tail,tail/taunt/concur,2.74,trainable,2,15038 433,15038
+transcended,T,1,0,tail,tail/transcend/veer,2.74,trainable,2,21427 1834,21427
+veered,I,0,0,tail,tail/transcend/veer,2.73,trainable,2,1670 2122,1670
+transplanted,T,0,0,tail,tail/transplant/pee,3.06,trainable,1,38887,38887
+peed,I,1,0,tail,tail/transplant/pee,3.1,trainable,2,759 264,759
+trolled,T,0,0,tail,tail/troll/stroll,2.88,trainable,2,246 9095,246
+strolled,I,0,0,tail,tail/troll/stroll,2.85,trainable,2,331 9095,331
+usurped,T,0,0,tail,tail/usurp/recede,2.78,trainable,3,441 321 9357,441
+receded,I,1,0,tail,tail/usurp/recede,2.78,trainable,3,294 758 264,294
+uttered,T,1,0,tail,tail/utter/glance,3.18,trainable,1,41856,41856
+glanced,I,0,0,tail,tail/utter/glance,3.17,trainable,1,17377,17377
+visualized,T,0,0,tail,tail/visualize/sob,2.8,trainable,1,27130,27130
+sobbed,I,0,0,tail,tail/visualize/sob,2.8,trainable,2,30323 3026,30323
+voided,T,0,0,tail,tail/void/sprint,2.72,trainable,2,2991 264,2991
+sprinted,I,0,0,tail,tail/void/sprint,2.69,trainable,2,8689 26082,8689
+besmirched,T,0,0,xtail,xtail/besmirch/blaspheme,1.91,heldout,4,6290 78 1426 742,6290
+blasphemed,I,1,0,xtail,xtail/besmirch/blaspheme,1.91,heldout,4,787 4938 248 1314,787
+cajoled,T,0,0,xtail,xtail/cajole/decamp,2.19,heldout,4,260 1432 311 264,260
+decamped,I,1,0,xtail,xtail/cajole/decamp,2.08,heldout,2,1086 17263,1086
+decontaminated,T,0,0,xtail,xtail/decontaminate/eventuate,2.1,heldout,3,372 1987 22315,372
+eventuated,I,1,0,xtail,xtail/decontaminate/eventuate,1.93,heldout,2,2362 11634,2362
+deforested,T,0,0,xtail,xtail/deforest/impinge,2.03,heldout,3,809 27764 264,809
+impinged,I,0,0,xtail,xtail/deforest/impinge,1.85,heldout,3,1607 272 264,1607
+despoiled,T,0,0,xtail,xtail/despoil/fraternize,1.82,heldout,3,711 5367 4206,711
+fraternized,I,0,0,xtail,xtail/despoil/fraternize,1.51,heldout,3,1315 17752 1025,1315
+espied,T,1,0,xtail,xtail/espy/luxuriate,1.38,heldout,2,17985 728,17985
+luxuriated,I,0,0,xtail,xtail/espy/luxuriate,1.36,heldout,3,14093 321 4215,14093
+eulogized,T,0,0,xtail,xtail/eulogize/remonstrate,2.04,heldout,4,299 335 462 1025,299
+remonstrated,I,1,0,xtail,xtail/eulogize/remonstrate,1.89,heldout,3,867 26739 456,867
+hazarded,T,0,0,xtail,xtail/hazard/picnic,1.29,heldout,2,12052 13073,12052
+picnicked,I,0,0,xtail,xtail/hazard/picnic,1.4,heldout,3,14402 79 14050,14402
+hefted,T,1,0,xtail,xtail/heft/fizz,1.54,heldout,3,344 649 264,344
+fizzed,I,1,0,xtail,xtail/heft/fizz,1.55,heldout,3,269 478 4337,269
+husked,T,0,0,xtail,xtail/husk/desist,1.47,heldout,2,5424 16386,5424
+desisted,I,1,0,xtail,xtail/husk/desist,1.54,heldout,2,711 6136,711
+lopped,T,0,0,xtail,xtail/lop/scoot,2.19,heldout,2,2343 1882,2343
+scooted,I,0,0,xtail,xtail/lop/scoot,2.2,heldout,3,660 1412 264,660
+mistrusted,T,1,0,xtail,xtail/mistrust/bask,2.1,heldout,3,5384 83 15172,5384
+basked,I,1,0,xtail,xtail/mistrust/bask,2.08,heldout,2,1666 16386,1666
+mulched,T,1,0,xtail,xtail/mulch/tingle,1.84,heldout,2,22871 2147,22871
+tingled,I,1,0,xtail,xtail/mulch/tingle,1.79,heldout,2,39838 1070,39838
+obviated,T,1,0,xtail,xtail/obviate/loll,1.79,heldout,3,691 87 4215,691
+lolled,I,1,0,xtail,xtail/obviate/loll,1.74,heldout,2,23385 1070,23385
+ogled,T,1,0,xtail,xtail/ogle/overreach,1.88,heldout,2,9040 1070,9040
+overreached,I,0,0,xtail,xtail/ogle/overreach,1.95,heldout,3,689 250 2729,689
+reappraised,T,0,0,xtail,xtail/reappraise/menstruate,1.49,heldout,3,294 1212 42750,294
+menstruated,I,0,0,xtail,xtail/reappraise/menstruate,1.44,heldout,2,36513 456,36513
+reproved,T,1,0,xtail,xtail/reprove/smolder,1.82,heldout,2,294 27369,294
+smoldered,I,1,0,xtail,xtail/reprove/smolder,1.61,heldout,3,924 311 3466,924
+resupplied,T,1,0,xtail,xtail/resupply/slog,1.88,heldout,3,501 1135 16283,501
+slogged,I,1,0,xtail,xtail/resupply/slog,1.93,heldout,2,44216 2400,44216
+rued,T,0,0,xtail,xtail/rue/moonlight,1.7,heldout,2,391 2107,391
+moonlighted,I,0,0,xtail,xtail/rue/moonlight,1.6,heldout,2,46826 264,46826
+shampooed,T,0,0,xtail,xtail/shampoo/banter,1.86,heldout,4,439 1301 3288 264,439
+bantered,I,1,0,xtail,xtail/shampoo/banter,1.8,heldout,3,270 386 2122,270
+stupefied,T,0,0,xtail,xtail/stupefy/vacillate,2.14,heldout,4,331 48772 71 728,331
+vacillated,I,1,0,xtail,xtail/stupefy/vacillate,1.9,heldout,3,5809 408 456,5809
+suborned,T,0,0,xtail,xtail/suborn/equivocate,1.5,heldout,2,749 39737,749
+equivocated,I,0,0,xtail,xtail/suborn/equivocate,1.43,heldout,2,32270 30510,32270
+suckled,T,1,0,xtail,xtail/suckle/eavesdrop,1.94,heldout,2,15327 1070,15327
+eavesdropped,I,1,0,xtail,xtail/suckle/eavesdrop,1.96,heldout,4,299 3465 3002 1882,299
+superintended,T,0,0,xtail,xtail/superintend/toddle,1.7,heldout,3,2221 565 1834,2221
+toddled,I,1,0,xtail,xtail/superintend/toddle,1.56,heldout,2,35130 1070,35130
+swaddled,T,1,0,xtail,xtail/swaddle/writhe,2.1,heldout,3,1863 1911 1070,1863
+writhed,I,1,0,xtail,xtail/swaddle/writhe,2.09,heldout,2,2416 742,2416
+tantalized,T,0,0,xtail,xtail/tantalize/skulk,1.54,heldout,3,22602 267 1025,22602
+skulked,I,0,0,xtail,xtail/tantalize/skulk,1.42,heldout,3,1629 335 16386,1629
+tenderized,T,0,0,xtail,xtail/tenderize/pulsate,1.48,heldout,2,14510 1025,14510
+pulsated,I,0,0,xtail,xtail/tenderize/pulsate,1.38,heldout,2,24295 456,24295
+unlatched,T,1,0,xtail,xtail/unlatch/moralize,1.79,heldout,3,440 13324 2147,440
+moralized,I,0,0,xtail,xtail/unlatch/moralize,1.52,heldout,2,9447 1025,9447
+unpinned,T,0,0,xtail,xtail/unpin/prevaricate,1.45,heldout,3,440 81 13172,440
+prevaricated,I,0,0,xtail,xtail/unpin/prevaricate,1.45,heldout,3,1404 274 6857,1404
+abased,T,0,0,xtail,xtail/abase/cavort,1.54,trainable,2,490 833,490
+cavorted,I,0,0,xtail,xtail/abase/cavort,1.36,trainable,2,9605 7551,9605
+billeted,T,0,0,xtail,xtail/billet/clatter,2.18,trainable,2,10370 24894,10370
+clattered,I,0,0,xtail,xtail/billet/clatter,2.17,trainable,2,502 12376,502
+browbeaten,T,0,0,xtail,xtail/browbeat/cohabit,1.65,trainable,3,6479 1257 15030,6479
+cohabited,I,0,0,xtail,xtail/browbeat/cohabit,1.63,trainable,3,8126 357 959,8126
+carjacked,T,0,0,xtail,xtail/carjack/sidle,2.1,trainable,3,1113 75 16970,1113
+sidled,I,1,0,xtail,xtail/carjack/sidle,1.77,trainable,2,25549 1070,25549
+centrifuged,T,0,0,xtail,xtail/centrifuge/gloat,2.08,trainable,1,29881,29881
+gloated,I,1,0,xtail,xtail/centrifuge/gloat,1.98,trainable,2,43976 456,43976
+clouted,T,1,0,xtail,xtail/clout/grouse,1.46,trainable,3,502 483 264,502
+groused,I,1,0,xtail,xtail/clout/grouse,1.52,trainable,2,650 24695,650
+counteracted,T,0,0,xtail,xtail/counteract/coexist,2.17,trainable,2,4828 33019,4828
+coexisted,I,1,0,xtail,xtail/counteract/coexist,2.19,trainable,3,820 911 6136,820
+counterfeited,T,0,0,xtail,xtail/counterfeit/swagger,1.96,trainable,3,4828 453 959,4828
+swaggered,I,0,0,xtail,xtail/counterfeit/swagger,1.67,trainable,3,1863 356 12466,1863
+crated,T,1,0,xtail,xtail/crate/lumber,2.18,trainable,2,1531 456,1531
+lumbered,I,1,0,xtail,xtail/crate/lumber,2.18,trainable,2,13053 7455,13053
+daubed,T,1,0,xtail,xtail/daub/defecate,2.0,trainable,3,4204 538 264,4204
+defecated,I,1,0,xtail,xtail/daub/defecate,1.94,trainable,3,7965 68 456,7965
+debugged,T,1,0,xtail,xtail/debug/empathize,1.75,trainable,2,13844 2400,13844
+empathized,I,0,0,xtail,xtail/debug/empathize,1.75,trainable,3,802 3967 1025,802
+demeaned,T,0,0,xtail,xtail/demean/crackle,2.17,trainable,3,1471 15719 264,1471
+crackled,I,1,0,xtail,xtail/demean/crackle,2.17,trainable,2,9370 1070,9370
+disabused,T,1,0,xtail,xtail/disabuse/commiserate,1.77,trainable,3,557 357 3197,557
+commiserated,I,1,0,xtail,xtail/disabuse/commiserate,1.65,trainable,3,764 9141 456,764
+disembowelled,T,0,0,xtail,xtail/disembowel/hyperventilate,1.66,trainable,4,557 358 11939 5911,557
+hyperventilated,I,0,0,xtail,xtail/disembowel/hyperventilate,1.45,trainable,3,4373 2254 31718,4373
+disgorged,T,1,0,xtail,xtail/disgorge/gyrate,1.7,trainable,3,20538 2061 264,20538
+gyrated,I,0,0,xtail,xtail/disgorge/gyrate,1.4,trainable,3,305 6147 456,305
+disquieted,T,1,0,xtail,xtail/disquiet/procreate,1.53,trainable,3,557 40748 264,557
+procreated,I,0,0,xtail,xtail/disquiet/procreate,1.5,trainable,2,354 22337,354
+doffed,T,1,0,xtail,xtail/doff/sunbathe,1.44,trainable,3,513 567 264,513
+sunbathed,I,0,0,xtail,xtail/doff/sunbathe,1.41,trainable,3,5101 13419 742,5101
+edified,T,1,0,xtail,xtail/edify/salivate,1.55,trainable,2,1407 1245,1407
+salivated,I,1,0,xtail,xtail/edify/salivate,1.5,trainable,2,3779 8550,3779
+effaced,T,0,0,xtail,xtail/efface/exult,1.91,trainable,2,3098 2575,3098
+exulted,I,1,0,xtail,xtail/efface/exult,1.71,trainable,3,385 503 264,385
+emulsified,T,0,0,xtail,xtail/emulsify/reemerge,2.07,trainable,3,802 7228 1245,802
+reemerged,I,0,0,xtail,xtail/emulsify/reemerge,2.02,trainable,3,294 37114 264,294
+enunciated,T,0,0,xtail,xtail/enunciate/saunter,2.19,trainable,3,546 7157 4215,546
+sauntered,I,0,0,xtail,xtail/enunciate/saunter,2.2,trainable,3,618 328 3606,618
+explicated,T,0,0,xtail,xtail/explicate/sleepwalk,1.68,trainable,2,1414 6857,1414
+sleepwalked,I,0,0,xtail,xtail/explicate/sleepwalk,1.53,trainable,3,4600 13678 264,4600
+extirpated,T,1,0,xtail,xtail/extirpate/intermarry,2.14,trainable,4,1021 343 81 456,1021
+intermarried,I,0,0,xtail,xtail/extirpate/intermarry,2.14,trainable,2,734 38982,734
+filched,T,1,0,xtail,xtail/filch/ruminate,1.6,trainable,2,1193 2147,1193
+ruminated,I,0,0,xtail,xtail/filch/ruminate,1.6,trainable,2,11267 3901,11267
+garlanded,T,1,0,xtail,xtail/garland/clam,1.9,trainable,3,6746 1373 264,6746
+clammed,I,0,0,xtail,xtail/garland/clam,1.68,trainable,2,502 15416,502
+gulled,T,1,0,xtail,xtail/gull/jig,1.5,trainable,2,305 49277,305
+jigged,I,0,0,xtail,xtail/gull/jig,1.55,trainable,3,480 304 2400,480
+guzzled,T,1,0,xtail,xtail/guzzle/loiter,1.75,trainable,3,1149 4396 1070,1149
+loitered,I,0,0,xtail,xtail/guzzle/loiter,1.72,trainable,3,2343 614 433,2343
+hocked,T,0,0,xtail,xtail/hock/jest,1.44,trainable,3,288 825 264,288
+jested,I,0,0,xtail,xtail/hock/jest,1.42,trainable,2,480 7250,480
+immolated,T,1,0,xtail,xtail/immolate/calve,1.95,trainable,2,4293 35631,4293
+calved,I,0,0,xtail,xtail/immolate/calve,1.66,trainable,2,1724 1272,1724
+incriminated,T,1,0,xtail,xtail/incriminate/gape,2.07,trainable,3,1485 3428 3901,1485
+gaped,I,1,0,xtail,xtail/incriminate/gape,2.03,trainable,2,305 7760,305
+inveigled,T,0,0,xtail,xtail/inveigle/convalesce,1.44,trainable,4,275 306 304 1070,275
+convalesced,I,0,0,xtail,xtail/inveigle/convalesce,1.35,trainable,4,345 1208 265 758,345
+kneaded,T,0,0,xtail,xtail/knead/intercede,2.17,trainable,2,7725 7917,7725
+interceded,I,0,0,xtail,xtail/knead/intercede,2.08,trainable,3,734 758 264,734
+larded,T,1,0,xtail,xtail/lard/sojourn,1.56,trainable,2,298 13073,298
+sojourned,I,0,0,xtail,xtail/lard/sojourn,1.57,trainable,3,594 19923 9306,594
+leached,T,0,0,xtail,xtail/leach/drool,2.17,trainable,2,458 2729,458
+drooled,I,1,0,xtail,xtail/leach/drool,2.15,trainable,3,3926 311 264,3926
+leashed,T,0,0,xtail,xtail/leash/strive,2.11,trainable,2,458 6948,458
+striven,I,0,0,xtail,xtail/leash/strive,2.12,trainable,3,331 1069 257,331
+lugged,T,1,0,xtail,xtail/lug/assent,2.13,trainable,2,26285 2400,26285
+assented,I,0,0,xtail,xtail/lug/assent,2.11,trainable,2,718 8006,718
+outshone,T,1,0,xtail,xtail/outshine/slouch,2.08,trainable,3,562 1200 531,562
+slouched,I,1,0,xtail,xtail/outshine/slouch,2.04,trainable,2,1499 27151,1499
+overemphasized,T,0,0,xtail,xtail/overemphasize/flounce,1.84,trainable,5,25732 2013 545 284 1025,25732
+flounced,I,0,0,xtail,xtail/overemphasize/flounce,1.56,trainable,2,892 11493,892
+parboiled,T,0,0,xtail,xtail/parboil/putrefy,1.65,trainable,3,1061 2399 4206,1061
+putrefied,I,0,0,xtail,xtail/parboil/putrefy,1.49,trainable,3,1691 709 728,1691
+pastured,T,0,0,xtail,xtail/pasture/pant,2.06,trainable,2,2469 1520,2469
+panted,I,1,0,xtail,xtail/pasture/pant,1.93,trainable,2,268 9581,268
+pawed,T,0,0,xtail,xtail/paw/feud,1.99,trainable,2,1349 7184,1349
+feuded,I,0,0,xtail,xtail/paw/feud,2.01,trainable,2,704 21015,704
+permed,T,1,0,xtail,xtail/perm/fawn,1.88,trainable,2,591 1314,591
+fawned,I,1,0,xtail,xtail/perm/fawn,1.88,trainable,3,4195 939 264,4195
+pigeonholed,T,1,0,xtail,xtail/pigeonhole/oscillate,2.14,trainable,4,8393 33453 11171 264,8393
+oscillated,I,0,0,xtail,xtail/pigeonhole/oscillate,2.04,trainable,2,9774 456,9774
+pilfered,T,0,0,xtail,xtail/pilfer/hitchhike,2.12,trainable,2,7861 3850,7861
+hitchhiked,I,1,0,xtail,xtail/pilfer/hitchhike,2.12,trainable,3,47826 73 33457,47826
+placated,T,1,0,xtail,xtail/placate/rummage,2.14,trainable,2,21927 456,21927
+rummaged,I,0,0,xtail,xtail/placate/rummage,2.1,trainable,3,11267 78 2961,11267
+prised,T,1,0,xtail,xtail/prise/jut,1.84,trainable,2,819 1701,819
+jutted,I,1,0,xtail,xtail/prise/jut,1.8,trainable,3,480 307 8659,480
+pulped,T,0,0,xtail,xtail/pulp/lounge,1.9,trainable,2,4734 9357,4734
+lounged,I,0,0,xtail,xtail/pulp/lounge,1.97,trainable,3,298 415 2400,298
+ravished,T,0,0,xtail,xtail/ravish/slink,2.09,trainable,2,37952 1428,37952
+slunk,I,0,0,xtail,xtail/ravish/slink,1.97,trainable,2,1499 3938,1499
+readjusted,T,0,0,xtail,xtail/readjust/sulk,2.14,trainable,3,1239 6309 264,1239
+sulked,I,1,0,xtail,xtail/readjust/sulk,1.98,trainable,2,18253 16386,18253
+rearmed,T,1,0,xtail,xtail/rearm/slobber,1.75,trainable,2,10581 1314,10581
+slobbered,I,0,0,xtail,xtail/rearm/slobber,1.49,trainable,3,1499 706 7455,1499
+recoded,T,0,0,xtail,xtail/recode/molt,1.89,trainable,2,761 7459,761
+molted,I,0,0,xtail,xtail/recode/molt,1.68,trainable,3,278 7391 264,278
+recollected,T,0,0,xtail,xtail/recollect/waddle,2.1,trainable,2,28433 2231,28433
+waddled,I,0,0,xtail,xtail/recollect/waddle,2.1,trainable,3,259 1911 1070,259
+recompensed,T,1,0,xtail,xtail/recompense/leer,1.67,trainable,3,294 3118 8821,294
+leered,I,1,0,xtail,xtail/recompense/leer,1.67,trainable,2,458 2122,458
+redressed,T,1,0,xtail,xtail/redress/shimmer,2.01,trainable,2,2502 2079,2502
+shimmered,I,1,0,xtail,xtail/redress/shimmer,1.89,trainable,3,439 303 38086,439
+regaled,T,1,0,xtail,xtail/regale/protrude,2.14,trainable,2,810 3256,810
+protruded,I,0,0,xtail,xtail/regale/protrude,2.13,trainable,2,26322 21015,26322
+reproached,T,1,0,xtail,xtail/reproach/whiz,2.16,trainable,2,41543 2729,41543
+whizzed,I,1,0,xtail,xtail/reproach/whiz,2.15,trainable,3,364 478 4337,364
+salved,T,0,0,xtail,xtail/salve/bluster,1.34,trainable,2,3779 1272,3779
+blustered,I,0,0,xtail,xtail/salve/bluster,1.42,trainable,3,787 461 2122,787
+satirized,T,0,0,xtail,xtail/satirize/resound,2.11,trainable,3,2206 343 1025,2206
+resounded,I,1,0,xtail,xtail/satirize/resound,2.01,trainable,2,501 8055,501
+shellacked,T,0,0,xtail,xtail/shellac/tarry,1.56,trainable,2,8135 16970,8135
+tarried,I,0,0,xtail,xtail/shellac/tarry,1.55,trainable,2,13586 2200,13586
+shooed,T,1,0,xtail,xtail/shoo/tiptoe,2.03,trainable,3,439 3288 264,439
+tiptoed,I,0,0,xtail,xtail/shoo/tiptoe,2.03,trainable,4,246 9155 80 264,246
+shoplifted,T,1,0,xtail,xtail/shoplift/seethe,1.92,trainable,4,439 4488 2094 264,439
+seethed,I,1,0,xtail,xtail/shoplift/seethe,1.92,trainable,3,396 292 742,396
+slaked,T,0,0,xtail,xtail/slake/teem,1.78,trainable,2,1499 6840,1499
+teemed,I,1,0,xtail,xtail/slake/teem,1.71,trainable,2,716 11574,716
+sodded,T,0,0,xtail,xtail/sod/quack,1.3,trainable,2,9359 4861,9359
+quacked,I,1,0,xtail,xtail/sod/quack,1.39,trainable,2,572 16970,572
+stoppered,T,1,0,xtail,xtail/stopper/putter,1.32,trainable,2,3523 11712,3523
+puttered,I,1,0,xtail,xtail/stopper/putter,1.36,trainable,2,1691 3606,1691
+suctioned,T,0,0,xtail,xtail/suction/kayak,1.56,trainable,2,34907 264,34907
+kayaked,I,0,0,xtail,xtail/suction/kayak,1.6,trainable,2,41885 6840,41885
+sundered,T,1,0,xtail,xtail/sunder/throb,1.9,trainable,2,5101 3466,5101
+throbbed,I,0,0,xtail,xtail/sunder/throb,1.91,trainable,3,10218 67 3026,10218
+titillated,T,0,0,xtail,xtail/titillate/totter,1.69,trainable,3,8225 408 456,8225
+tottered,I,1,0,xtail,xtail/titillate/totter,1.59,trainable,2,1931 3606,1931
+unlaced,T,0,0,xtail,xtail/unlace/inveigh,1.42,trainable,2,46144 2575,46144
+inveighed,I,0,0,xtail,xtail/unlace/inveigh,1.43,trainable,3,275 306 18201,275
+upbraided,T,0,0,xtail,xtail/upbraid/burgeon,1.82,trainable,3,598 4946 1356,598
+burgeoned,I,1,0,xtail,xtail/upbraid/burgeon,1.74,trainable,3,3600 463 11406,3600
+wadded,T,1,0,xtail,xtail/wad/zigzag,1.85,trainable,2,259 22566,259
+zigzagged,I,0,0,xtail,xtail/wad/zigzag,1.78,trainable,3,48567 91 37522,48567
+walloped,T,1,0,xtail,xtail/wallop/wallow,1.86,trainable,2,3402 11802,3402
+wallowed,I,1,0,xtail,xtail/wallop/wallow,1.84,trainable,2,3402 12997,3402
+waylaid,T,0,0,xtail,xtail/waylay/vegetate,2.18,trainable,2,1039 37712,1039
+vegetated,I,1,0,xtail,xtail/waylay/vegetate,2.19,trainable,2,8466 456,8466
+wheedled,T,0,0,xtail,xtail/wheedle/reoccur,1.21,trainable,3,488 264 1070,488
+reoccurred,I,0,0,xtail,xtail/wheedle/reoccur,1.28,trainable,3,294 30714 433,294

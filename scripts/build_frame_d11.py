@@ -58,8 +58,13 @@ def main(args):
     assert (V.n_tok == V.d11_ntok).all(), V[V.n_tok != V.d11_ntok]
     V = V.drop(columns="d11_ntok")
 
-    shutil.copy(Path(args.round5) / "prefixes.csv", out / "prefixes.csv")
-    pre = pd.read_csv(out / "prefixes.csv", keep_default_na=False)
+    pre = pd.read_csv(Path(args.round5) / "prefixes.csv", keep_default_na=False)
+    if args.sets:  # round 6 A6: a subset of prefix sets (checkpoint runs use freq only)
+        assert set(args.sets) <= set(pre["set"]) and args.sets, f"unknown prefix sets: {args.sets}"
+        pre = pre[pre["set"].isin(args.sets)]
+        pre.to_csv(out / "prefixes.csv", index=False)
+    else:
+        shutil.copy(Path(args.round5) / "prefixes.csv", out / "prefixes.csv")
     n_checked = 0
     for st, pp, ap_ in zip(pre["set"], pre.pass_prefix, pre.act_prefix):
         for prefix in (pp, ap_):
@@ -71,7 +76,8 @@ def main(args):
     V.to_csv(out / "verbs.csv", index=False)
     pairs.to_csv(out / "pairs.csv", index=False)
     import importlib.metadata as md
-    meta = {"inputs": {args.pairs: sha(args.pairs), str(Path(args.round5) / "prefixes.csv"): sha(out / "prefixes.csv")},
+    meta = {"inputs": {args.pairs: sha(args.pairs), str(Path(args.round5) / "prefixes.csv"): sha(Path(args.round5) / "prefixes.csv")},
+            "prefix_sets": sorted(set(pre["set"])),
             "versions": {k: md.version(k) for k in ("transformers", "tokenizers")}, "model": args.model,
             "joined_tokenization_checks": n_checked,
             "counts": {"pairs": pairs.groupby("band").size().to_dict(), "verbs": len(V),
@@ -88,4 +94,5 @@ if __name__ == "__main__":
     ap.add_argument("--round5", default="data/round5/frame")
     ap.add_argument("--model", default="EleutherAI/pythia-1.4b")
     ap.add_argument("--out-dir", default="data/round6/frame_d11")
+    ap.add_argument("--sets", nargs="*", default=None, help="keep only these prefix sets (A6: freq)")
     main(ap.parse_args())

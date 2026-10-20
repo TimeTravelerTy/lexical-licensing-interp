@@ -660,3 +660,198 @@ analysis `analyze_preemption.py`; report `c5_preemption.md`.
    C5 contexts.
 3. TSUBAME: one job (C5, C4, B3 suite).
 4. Analyses and reports; B3's count analyses after A1's counts.
+
+
+# Part A6–A7: training dynamics and fit controls (declared 2026-10-20)
+
+Written before any A1, A2, B3, C4 or C5 outcome was analysed (A2's runs and
+B3–C5's job exist; counts are still being fetched). Revised after an
+outside review (Codex) of the first draft, before any run. Disclosure: while
+testing analysis code, mock analyses built partly from round-5 scores of
+the 433 D11 verbs that round 5 had already scored (the rest random) printed
+band contrasts; they are not used, and the mocks were then replaced with
+fully random data.
+
+## A6. Checkpoints: when does the deficit appear, and does exposure predict it?
+
+**Models and steps.** Pythia-1.4B (primary) and 410M (replication), 16
+checkpoints each, roughly log-spaced: steps 64, 128, 256, 512, 1000, 2000,
+3000, 4000, 6000, 10000, 16000, 25000, 40000, 63000, 100000, 143000 (=
+the final model). Pythia-6.9B at steps 512, 2000, 8000, 23000, 63000,
+143000, descriptive ("cheap": about 70 GB of extra half-precision weight
+downloads). Intermediate checkpoints are downloaded in the compute job to a
+per-checkpoint directory on node-local scratch, scored and deleted; the
+final models come from the shared HDD cache (the one exception to the
+scratch rule). Resolved revision commits and library versions are recorded.
+
+**Runs.** `run_frame_contrast.py --revision step<N>` on the D11 verbs with
+the freq prefixes only (`data/round6/frame_d11_freq/`), fp32. Checks as A2;
+tolerance 1e-2 (reconstruction, identity, shared-prefix h) for every
+checkpoint except the final 1.4B (A2's 1e-3 / 1e-4); finite log-probs
+required. Missing-checkpoint policy: the primary analysis needs all 16 1.4B
+checkpoints; if any fails, it is rerun once, and the analysis otherwise
+reports the available steps with the missing ones listed.
+
+**Measures per checkpoint.** As A2 (freq): band means of L, Δ_pass(T),
+Δ_pass(I); ΔL (Head − XTail) and the token-standardized ΔL_tok with side
+parts and A2's readings; a_V for single-token verbs (Δh̄ from the
+checkpoint's own states): Head AUC (T vs I) and singleton D_L. Bootstrap as
+A2, identical draws across checkpoints and models. Readings are
+checkpointwise; the "onset" is described as the first step after which
+every later checkpoint reads deficit (descriptive; no simultaneous
+inference).
+
+**Training tokens and exposure.** Pythia's standard models see 1024 × 2048
+= 2,097,152 training tokens per step (299.9B tokens at step 143000, just
+under one epoch of the standard Pile, in a fixed shuffled order). The
+exposure proxy is E_{v,t} = (c_total,v + 0.5) × t / 143000: verb v's Pile
+count (A1's c_total, smoothing before scaling) times the fraction of
+training completed. It assumes v's occurrences are spread evenly over the
+stream, and it is final-scaled: relative to absolute occurrence counts it
+is off by one global constant, which shifts the log-exposure axis without
+changing any comparison below.
+
+**Stationarity diagnostic** (limited; it cannot validate the assumption for
+individual rare verbs). `fetch_pythia_slices.py` reads 12 slices of 25M
+stored tokens of the training-order data
+(`EleutherAI/pile-standard-pythia-preshuffled`; each step stores 1024
+records of 2049 ids, so step t starts at stored token t × 1024 × 2049;
+HTTP range requests, about 0.6 GB) starting at steps 128, 512, 1000, 2000,
+4000, 8000, 16000, 32000, 64000, 100000, 130000, 142000, and counts every
+D11 single-token participle (lowercase leading-space token; Head 89, Tail
+44). For the Head and Tail groups pooled, a quasi-Poisson log-linear trend
+of the slice counts on log step (offset: slice length) gives the
+last-to-first rate ratio. **Stationary within ±20%** if its 95% CI lies
+within [0.8, 1.25] for both groups; the 10 most frequent Head verbs are
+reported individually. Not covered: capitalized or unmarked forms,
+multi-token verbs, and verb-specific genre concentration.
+
+**Predictive curve collapse** (primary; D11 I verbs × the 16 steps, 1.4B;
+410M as replication). Outcome Δ_pass(I)_{v,t}. With x = log10(c_total + 0.5)
+and s = log10(t / 143000), log10 E = x + s. Models (OLS; log participle
+token count in every model):
+- M_E: f(x + s) — curve collapse onto exposure;
+- M_Cg: q(x) + step fixed effects — stable frequency plus general learning;
+- M_2D: h(x, s) — natural-spline main effects of x and s and their tensor
+  product (frequency-dependent learning without collapse);
+- M_Eg: M_E + step fixed effects (diagnostic);
+- M_g: step fixed effects only (baseline).
+Splines: natural cubic splines (truncated-power basis, Hastie et al. eq.
+5.4–5.5: a linear term and two nonlinear terms), boundary knots at the 2.5
+and 97.5 and interior knots at the 33.3 and 66.7 percentiles of the
+predictor over all units (no outcome used, fixed before CV). CV: A1's frozen
+fold map (by D11 pair, so all steps of a verb share a fold); bootstrap
+pairs within band × nouns within animacy (2,000 draws), CV per draw; units
+weighted equally. With r = (MSE_a − MSE_b) / MSE_a, the improvement of b
+over a, and its 95% bootstrap interval:
+- **CC1** (collapse vs free 2D, a = M_E, b = M_2D): **collapse holds** if
+  the upper bound of r is below 0.02 (M_2D adds no useful predictive
+  value); **collapse fails** if the lower bound exceeds 0.02; otherwise
+  unresolved.
+- **CC2** (a = M_E, b = M_Cg): **exposure as predictive as frequency +
+  step** if the upper bound is below 0.02; **frequency + step more
+  predictive** if the lower bound exceeds 0.02; otherwise unresolved.
+- **Usefulness** (a = M_g, b = M_E): M_E must improve on step-only by more
+  than 2% (lower bound of r above 0.02).
+- **Curve collapse is supported** only if CC1 holds and M_E is useful.
+- Reported, not gated: M_E → M_Eg, the step offsets, and a matched check
+  (verb × step cells with log10 E within 0.1 but steps at least 4× apart).
+- Sensitivities: steps ≥ 1000 and ≥ 4000 (secondary); c_marked in place of
+  c_total; T verbs and L (descriptive).
+A supported collapse is a predictive restriction consistent with
+exposure-driven learning, not a causal exposure-equivalence claim:
+frequency also indexes stable lexical differences, and the identification
+comes from comparisons across verbs that share one response curve.
+
+**Predictions.**
+- The Head − XTail L deficit reads "deficit" from step 2000 onward (onset
+  step: low confidence); ΔL_tok reads deficit at the final step (as A2);
+  the deficit is intransitive-side wherever it reads deficit; Head AUC
+  rises above 0.9 by step 4000.
+- All steps: M_E useful; CC1 **collapse fails** (the earliest checkpoints
+  have not learned the construction whatever the exposure, so learning is
+  frequency-dependent in a way exposure alone does not capture); steps ≥
+  4000: **collapse holds** (low confidence). CC2 unresolved.
+- 410M: the same readings. 6.9B: deficit at every step ≥ 2000
+  (descriptive). Stationarity: holds.
+
+**Runs.** One TSUBAME job (with A7's released-context scoring); analysis
+`analyze_checkpoints.py` after A1's counts; report `a6_checkpoints.md`.
+
+## A7. Fit controls and robustness on the D11 pairs
+
+**1. Matched-fit regression** (round P's design on D11).
+- Items (`build_fit_items_d11.py`): every D11 pair in each of the 126
+  curated `passive_1` contexts: good "<prefix><T participle><suffix>" ("The
+  house was abandoned by the company.") and bad-patient "The <patient> <I
+  past>." ("The house glared."), as round P; 23,302 sentences reuse round-P
+  ratings, 41,047 are new. As in round P the bad-patient item is a bare
+  clause; for the 29 I verbs that need a complement ("The house relied.")
+  this is incomplete, so a sensitivity drops their pairs.
+- Rater: `google/gemma-4-31B-it`, `rate_fit.py`, both prompts averaged.
+  Validation before use: every new sentence has both prompts and no
+  duplicates; digit mass; prompt agreement; band means; a blind audit (60
+  new sentences stratified by item type × band, rated 1–7 by Claude before
+  any Gemma rating existed; `data/round6/fit_d11/audit.csv`), reported as a
+  Spearman correlation.
+- Outcomes per pair × context, from A2's 1.4B cur set: **M_was** (the
+  participle margin T − I after the curated was-prefix; primary, as round
+  P), **L** with its sides Δ_pass(T) and Δ_pass(I), and M_has (accounting
+  β(M_was) = β(L) + β(M_has)). M_was includes general lexical
+  predictability, so a residual on it alone is not a passive-specific
+  residual; L is the was–has contrast.
+- Models: round P's WLS (`analyze_bad_fit.fit`): unmatched (band dummies),
+  good fit, good fit + bad-patient fit (primary); fit per rating point − 4;
+  bootstrap pairs within band × contexts within context band, 2,000 draws.
+  Attenuation = unmatched − matched coefficient (paired draws).
+  Sensitivities (XTail on M_was): bare-clause I verbs only; quadratic fit
+  terms; band-specific fit slopes.
+- **Decision** (XTail − Head coefficients; a deficit is negative): requires
+  an unmatched deficit (95% CI below 0, estimate ≤ −0.25); then **survives
+  matched fit** if the matched coefficient has a 95% CI below 0 and an
+  estimate ≤ −0.25; **negligible after fit adjustment** if its 90% CI lies
+  within ±0.25; otherwise unresolved. The same rule for Tail and for L.
+- Token-standardized: within each of the cells 2×2, 2×3, 3×2, 3×3, the
+  fit-adjusted Tail − XTail difference (WLS with cell intercepts, cell ×
+  Tail terms and the two fit terms), combined with A2's weights 85 / 36 / 35
+  / 22; A2's rule (positive = deficit).
+- Prediction (round P, curated: −1.11 [−1.78, −0.46] participle margin at
+  matched fit): M_was **survives**, estimate −0.5 to −2.0; L survives; the
+  token-standardized contrast is a deficit or unresolved.
+
+**2. Noun-rarity check** (round P's verb band × context band cross, on
+D11). The released contexts carry the noun bands (curated contexts do not:
+their band is that of the verb they were written for; patient Zipf medians
+4.96 / 4.70 / 4.45). The D11 verbs are scored in round P's 300 released
+`passive_1` contexts (100 per band; patient Zipf medians 3.94 / 2.72 /
+1.69; `data/round6/frame_d11_rel/`, built by `build_frame_rel.py`): each
+released passive prefix ("The opinion wasn't") and its perfect counterpart
+("The opinion hasn't"; was / is → has, were / are → have). Outcomes: L and
+the passive participle margin M_pass (T − I after the released prefix), by
+verb band × noun band; verb effect = XTail − Head verbs averaged over noun
+bands, context effect = XTail − Head nouns averaged over verb bands;
+bootstrap pairs within band × contexts within noun band. **Decision**:
+context effect **negligible** if its 90% CI lies within ±0.25 nats; verb
+effect by A2's rule (Head − XTail). The curated-context cross is reported as
+a secondary check. Prediction: noun (context) effect negligible, verb
+effect deficit (as P-cross).
+
+**3. Robustness table.** For D11 (1.4B) and the curated 126 (round 5), every
+A1 prefix set (freq, been, cur, they): ΔL (Head − XTail), ΔL_tok (D11), the
+side parts and A2's readings; D11's freq row for every suite size.
+Descriptive, compiled from A2 and round 5. (The 126 curated context IDs
+contain 109 distinct prefixes; contexts are resampled by ID, as round P.)
+
+**Runs.** The released-context scoring in the A6 job; one rating job
+(Gemma venv, bash, about 82k prompt evaluations; round P rated 47k in under
+1.5 h). Analysis `analyze_fit_d11.py`; report `a7_fit_controls.md`.
+
+## Order (A6, A7)
+
+1. Commit this part.
+2. Builders (done before commit; no outcome): `frame_d11_freq`,
+   `frame_d11_rel`, `build_fit_items_d11.py`, the audit sheet.
+3. Local: `fetch_pythia_slices.py`.
+4. TSUBAME: the checkpoint job (with released-context scoring); the rating
+   job.
+5. Analyses after A1's counts (A6) and the ratings (A7).

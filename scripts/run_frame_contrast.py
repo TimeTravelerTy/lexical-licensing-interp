@@ -49,11 +49,12 @@ def main(args):
     pairs = pd.read_csv(data / "pairs.csv", keep_default_na=False)
     vids = [list(map(int, s.split())) for s in V.ids]
     # every pair verb must be scored in every prefix set (else the identity check fails after the expensive scoring)
-    scored_cur = set(V.verb) if args.cur_all else set(V.verb[V.curated == 1])
-    missing = (set(pairs.t_verb) | set(pairs.i_verb)) - scored_cur
-    assert not missing, f"{len(missing)} pair verbs not scored in the cur prefixes (use --cur-all?): {sorted(missing)[:5]}"
-    tok = AutoTokenizer.from_pretrained(args.model, local_files_only=True)
+    if (pre["set"] == "cur").any():
+        scored_cur = set(V.verb) if args.cur_all else set(V.verb[V.curated == 1])
+        missing = (set(pairs.t_verb) | set(pairs.i_verb)) - scored_cur
+        assert not missing, f"{len(missing)} pair verbs not scored in the cur prefixes (use --cur-all?): {sorted(missing)[:5]}"
     rev = {"revision": args.revision} if args.revision else {}
+    tok = AutoTokenizer.from_pretrained(args.model, local_files_only=not args.allow_download, **rev)
     model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=torch.float32,
                                                  local_files_only=not args.allow_download, **rev).to(dev).eval()
     W = model.embed_out.weight  # [vocab, H]; GPT-NeoX unembedding has no bias
@@ -117,6 +118,7 @@ def main(args):
         assert max_first_err <= args.tol, max_first_err
 
         S = pd.DataFrame(rows, columns=["set", "context_id", "frame", "verb", "lp", "lp1", "n_tok", "lp_sub"])
+        assert np.isfinite(S.lp).all() and np.isfinite(S.lp1).all(), "non-finite log-probs"
         H = np.stack(H).astype(np.float32)
         kidx = {k: i for i, k in enumerate(keys)}
         uniq = sorted(set(V.first_id.astype(int)))
@@ -141,7 +143,8 @@ def main(args):
     S.to_parquet(out / "frame_scores.parquet", index=False)
     np.savez(out / "frame_h.npz", H=H, LSE=np.array(LSE), keys=np.array(["|".join(k) for k in keys]),
              U=U, U_ids=np.array(uniq))
-    meta = {"model": args.model, "revision": args.revision or "main", "dtype": "float32", "tf32": False, "n_rows": len(S),
+    meta = {"model": args.model, "revision": args.revision or "main",
+            "resolved_commit": getattr(model.config, "_commit_hash", None), "dtype": "float32", "tf32": False, "n_rows": len(S),
             "cur_all": bool(args.cur_all),
             "inputs": {f: sha(data / f) for f in ("prefixes.csv", "verbs.csv", "pairs.csv")},
             "checks": {"max_h_deviation": max_h_dev, "h_tol": args.h_tol, "max_first_subtoken_error": max_first_err,
