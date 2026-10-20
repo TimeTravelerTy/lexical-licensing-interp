@@ -60,20 +60,20 @@ Secondary: the curated contexts (context band = the band of the context's origin
 
 ## 3. Robustness: every A1 prefix set
 
-| population | set | ΔL Head − XTail | reading | ΔL_tok (Tail − XTail) | reading | side (token-std.) |
-|---|---|---|---|---|---|---|
-| D11 (1.4B) | freq | +1.41 [+0.71, +2.15] | deficit | +0.99 [+0.43, +1.53] | deficit | intransitive-side |
-| D11 (1.4B) | been | +1.23 [+0.50, +1.94] | deficit | +1.35 [+0.80, +1.93] | deficit | intransitive-side |
-| D11 (1.4B) | cur | +1.40 [+0.70, +2.11] | deficit | +1.12 [+0.58, +1.67] | deficit | intransitive-side |
-| D11 (1.4B) | they | +1.24 [+0.54, +1.88] | deficit | +0.89 [+0.21, +1.60] | deficit | intransitive-side |
-| curated 126 (1.4B, round 5) | freq | +2.12 [+1.26, +2.94] | — | — | — | — |
-| curated 126 (1.4B, round 5) | been | +1.82 [+0.98, +2.67] | — | — | — | — |
-| curated 126 (1.4B, round 5) | cur | +2.12 [+1.27, +2.95] | — | — | — | — |
-| curated 126 (1.4B, round 5) | they | +1.73 [+0.87, +2.57] | — | — | — | — |
-| D11 (pythia-160m) | freq | +1.52 [+0.92, +2.16] | deficit | +0.97 [+0.40, +1.54] | deficit | intransitive-side |
-| D11 (pythia-410m) | freq | +1.65 [+0.97, +2.31] | deficit | +1.26 [+0.66, +1.86] | deficit | intransitive-side |
-| D11 (pythia-1b) | freq | +1.64 [+0.94, +2.34] | deficit | +1.66 [+1.08, +2.22] | deficit | intransitive-side |
-| D11 (pythia-2.8b) | freq | +1.20 [+0.50, +1.93] | deficit | +0.89 [+0.23, +1.52] | deficit | intransitive-side |
-| D11 (pythia-6.9b) | freq | +1.64 [+0.93, +2.33] | deficit | +1.04 [+0.47, +1.57] | deficit | intransitive-side |
-| D11 (pythia-12b) | freq | +1.39 [+0.68, +2.09] | deficit | +0.94 [+0.38, +1.48] | deficit | intransitive-side |
+| population | set | ΔL Head − XTail | reading | ΔL_tok (Tail − XTail) | reading | side parts T / −I | side |
+|---|---|---|---|---|---|---|---|
+| D11 (1.4B) | freq | +1.41 [+0.71, +2.15] | deficit | +0.99 [+0.43, +1.53] | deficit | tok. -0.41 [-0.78, -0.06] / +1.40 [+0.96, +1.83]; Head − XTail -0.36 / +1.77 | intransitive-side (token-std.) |
+| D11 (1.4B) | been | +1.23 [+0.50, +1.94] | deficit | +1.35 [+0.80, +1.93] | deficit | tok. +0.09 [-0.30, +0.47] / +1.26 [+0.81, +1.73]; Head − XTail -0.05 / +1.28 | intransitive-side (token-std.) |
+| D11 (1.4B) | cur | +1.40 [+0.70, +2.11] | deficit | +1.12 [+0.58, +1.67] | deficit | tok. -0.24 [-0.58, +0.08] / +1.36 [+0.92, +1.78]; Head − XTail -0.19 / +1.58 | intransitive-side (token-std.) |
+| D11 (1.4B) | they | +1.24 [+0.54, +1.88] | deficit | +0.89 [+0.21, +1.60] | deficit | tok. -0.64 [-1.15, -0.15] / +1.54 [+1.01, +2.04]; Head − XTail -0.61 / +1.85 | intransitive-side (token-std.) |
+| curated 126 (1.4B, round 5) | freq | +2.12 [+1.26, +2.94] | deficit | — | — | Head − XTail -0.48 [-1.17, +0.14] / +2.60 [+1.85, +3.28] | I part > T part (non-overlapping 95% CIs; not A2's paired rule) |
+| curated 126 (1.4B, round 5) | been | +1.82 [+0.98, +2.67] | deficit | — | — | Head − XTail -0.21 [-0.87, +0.44] / +2.03 [+1.27, +2.78] | I part > T part (non-overlapping 95% CIs; not A2's paired rule) |
+| curated 126 (1.4B, round 5) | cur | +2.12 [+1.27, +2.95] | deficit | — | — | Head − XTail -0.31 [-0.89, +0.25] / +2.43 [+1.63, +3.21] | I part > T part (non-overlapping 95% CIs; not A2's paired rule) |
+| curated 126 (1.4B, round 5) | they | +1.73 [+0.87, +2.57] | deficit | — | — | Head − XTail -0.97 [-1.57, -0.38] / +2.70 [+2.01, +3.35] | I part > T part (non-overlapping 95% CIs; not A2's paired rule) |
+| D11 (pythia-160m) | freq | +1.52 [+0.92, +2.16] | deficit | +0.97 [+0.40, +1.54] | deficit | tok. -0.22 [-0.65, +0.20] / +1.19 [+0.74, +1.65]; Head − XTail -0.15 / +1.68 | intransitive-side (token-std.) |
+| D11 (pythia-410m) | freq | +1.65 [+0.97, +2.31] | deficit | +1.26 [+0.66, +1.86] | deficit | tok. -0.22 [-0.63, +0.20] / +1.47 [+0.99, +1.96]; Head − XTail -0.51 / +2.16 | intransitive-side (token-std.) |
+| D11 (pythia-1b) | freq | +1.64 [+0.94, +2.34] | deficit | +1.66 [+1.08, +2.22] | deficit | tok. +0.04 [-0.40, +0.49] / +1.62 [+1.15, +2.09]; Head − XTail -0.47 / +2.11 | intransitive-side (token-std.) |
+| D11 (pythia-2.8b) | freq | +1.20 [+0.50, +1.93] | deficit | +0.89 [+0.23, +1.52] | deficit | tok. -0.41 [-0.88, +0.05] / +1.30 [+0.84, +1.75]; Head − XTail -0.29 / +1.49 | intransitive-side (token-std.) |
+| D11 (pythia-6.9b) | freq | +1.64 [+0.93, +2.33] | deficit | +1.04 [+0.47, +1.57] | deficit | tok. -0.48 [-0.88, -0.10] / +1.51 [+1.10, +1.95]; Head − XTail -0.29 / +1.93 | intransitive-side (token-std.) |
+| D11 (pythia-12b) | freq | +1.39 [+0.68, +2.09] | deficit | +0.94 [+0.38, +1.48] | deficit | tok. -0.48 [-0.91, -0.08] / +1.42 [+0.99, +1.85]; Head − XTail -0.44 / +1.83 | intransitive-side (token-std.) |
 

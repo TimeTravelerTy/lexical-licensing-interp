@@ -225,26 +225,44 @@ def main(args):
     lines.append("")
     # 3. robustness table
     A2 = json.loads(Path(args.a2_decisions).read_text())
+    A2s = pd.read_csv(args.a2_summary).set_index(["model", "set", "quantity"]).est
     R5 = pd.read_csv(args.r5_summary)
     lines += ["## 3. Robustness: every A1 prefix set", "",
-              "| population | set | ΔL Head − XTail | reading | ΔL_tok (Tail − XTail) | reading | side (token-std.) |",
-              "|---|---|---|---|---|---|---|"]
+              "| population | set | ΔL Head − XTail | reading | ΔL_tok (Tail − XTail) | reading | side parts T / −I | side |",
+              "|---|---|---|---|---|---|---|---|"]
+    def parts(d, mdl, st):
+        # token-standardized parts with A2's CIs; Head - XTail parts as point estimates (A2 stored no CIs for them)
+        g = lambda q: A2s[(mdl, st, q)]
+        hx_t, hx_i = g("dT_head") - g("dT_xtail"), -(g("dI_head") - g("dI_xtail"))
+        return (f"tok. {d['dT_tok'][0]:+.2f} [{d['dT_tok'][1]:+.2f}, {d['dT_tok'][2]:+.2f}] / "
+                f"{d['minus_dI_tok'][0]:+.2f} [{d['minus_dI_tok'][1]:+.2f}, {d['minus_dI_tok'][2]:+.2f}]; "
+                f"Head − XTail {hx_t:+.2f} / {hx_i:+.2f}")
     for st in ("freq", "been", "cur", "they"):
         d = A2["pythia-1.4b"][st]
         lines.append(f"| D11 (1.4B) | {st} | {d['dL_head_xtail'][0]:+.2f} [{d['dL_head_xtail'][1]:+.2f}, {d['dL_head_xtail'][2]:+.2f}] | "
                      f"{d['dL_head_xtail_reading']} | {d['L_tok'][0]:+.2f} [{d['L_tok'][1]:+.2f}, {d['L_tok'][2]:+.2f}] | "
-                     f"{d['L_tok_reading']} | {d['side_tok']} |")
+                     f"{d['L_tok_reading']} | {parts(d, 'pythia-1.4b', st)} | {d['side_tok']} (token-std.) |")
     for st in ("freq", "been", "cur", "they"):
         r = R5[(R5.set == st) & (R5.quantity == "L") & (R5.stat == "head-xtail")]
         if len(r):
             r = r.iloc[0]
-            lines.append(f"| curated 126 (1.4B, round 5) | {st} | {r.est:+.2f} [{r.lo:+.2f}, {r.hi:+.2f}] | — | — | — | — |")
+            # A2's rule from the stored 95% CI (round 5 kept no 90% CI: negligible vs unresolved cannot be told apart)
+            rd = ("deficit" if r.lo > 0 and r.est >= 0.25 else "surplus" if r.hi < 0 and r.est <= -0.25
+                  else "no deficit (90% CI not stored)")
+            g = lambda q: R5[(R5.set == st) & (R5.quantity == q) & (R5.stat == "head-xtail")].iloc[0]
+            t_, i_ = g("dT"), g("dI")
+            pt = f"Head − XTail {t_.est:+.2f} [{t_.lo:+.2f}, {t_.hi:+.2f}] / {-i_.est:+.2f} [{-i_.hi:+.2f}, {-i_.lo:+.2f}]"
+            # round 5 stored no paired draws, so A2's side rule cannot be applied; descriptive comparison of the parts
+            sd = ("I part > T part (non-overlapping 95% CIs; not A2's paired rule)" if -i_.hi > 0 and -i_.hi > t_.hi
+                  else "T part > I part (non-overlapping 95% CIs; not A2's paired rule)" if t_.lo > 0 and t_.lo > -i_.lo
+                  else "no side label (paired draws not stored)")
+            lines.append(f"| curated 126 (1.4B, round 5) | {st} | {r.est:+.2f} [{r.lo:+.2f}, {r.hi:+.2f}] | {rd} | — | — | {pt} | {sd} |")
     for mdl, d in A2.items():
         if mdl.startswith("pythia") and mdl != "pythia-1.4b" and "freq" in d:
             f_ = d["freq"]
             lines.append(f"| D11 ({mdl}) | freq | {f_['dL_head_xtail'][0]:+.2f} [{f_['dL_head_xtail'][1]:+.2f}, {f_['dL_head_xtail'][2]:+.2f}] | "
                          f"{f_['dL_head_xtail_reading']} | {f_['L_tok'][0]:+.2f} [{f_['L_tok'][1]:+.2f}, {f_['L_tok'][2]:+.2f}] | "
-                         f"{f_['L_tok_reading']} | {f_['side_tok']} |")
+                         f"{f_['L_tok_reading']} | {parts(f_, mdl, 'freq')} | {f_['side_tok']} (token-std.) |")
     lines.append("")
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -263,6 +281,7 @@ if __name__ == "__main__":
     ap.add_argument("--d11-pairs", default="data/round6/frame_d11/pairs.csv")
     ap.add_argument("--scores", default="results/round6/frame_d11/pythia-1.4b/frame_scores.parquet")
     ap.add_argument("--a2-decisions", default="results/round6/frame_d11/a2_decisions.json")
+    ap.add_argument("--a2-summary", default="results/round6/frame_d11/a2_summary.csv")
     ap.add_argument("--r5-summary", default="results/round5/frame/a1_a2_summary.csv")
     ap.add_argument("--rel-scores", default="results/round6/frame_d11_rel/pythia-1.4b/frame_scores.parquet")
     ap.add_argument("--rel-prefixes", default="data/round6/frame_d11_rel/prefixes.csv")
