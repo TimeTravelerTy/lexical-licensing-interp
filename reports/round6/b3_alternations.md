@@ -45,9 +45,10 @@ log P(PREP) by band (T / I): Head -2.88 / -0.75; Tail -3.04 / -0.91; XTail -2.81
 
 Perfect frame ("The N has v"), 1.4B: M_obj Head − XTail +1.10 (deficit, I-side), token-std. +0.81 (deficit); M_end Head − XTail +1.93 (deficit, T-side), token-std. +1.27 (deficit); side specificity O side-specific, O_strict side-specific, DOT side-specific, END side-specific.
 
-## Against counts
+## Against counts (1.4B, simple past; A1's c_total and the B3 frame counts; log token count in every model)
 
-A1's counts not available yet (rerun when they are).
+- log P(O | I verb): tokens → + C +0.066 [+0.013, +0.126] → **b better**, C coefficient -0.548 [-0.742, -0.342]; + log frame count +0.144 [+0.020, +0.253] → **b better**, frame-count coefficient +0.574 [+0.380, +0.760]; share with frame count 0 by band Head 0.00, Tail 0.02, XTail 0.13. (The frame count "P p the" is itself an object-onset proxy: "the" can begin a temporal NP.)
+- log P(. | T verb), eligible pairs: tokens → + C +0.176 [+0.061, +0.318] → **b better**, C coefficient -0.847 [-1.095, -0.591]; + log frame count -0.012 [-0.055, +0.011] → **unresolved**, frame-count coefficient -0.009 [-0.199, +0.168]; share with frame count 0 by band Head 0.00, Tail 0.04, XTail 0.15. (Frame count: Σ count("P p.").)
 
 ## Released FreqBLiMP (Pythia-1.4B LP): accuracy and a descriptive item-level association
 

@@ -303,8 +303,9 @@ def main(args):
                                   "frame_coef": [c2[0], *ci(c2)], "zero_share_frame_count": zero.to_dict()}
             lines += [f"- {lab}: tokens → + C {fmt(dl01, 3)} → **{d01}**, C coefficient {fmt(c1, 3)}; + log frame count "
                       f"{fmt(dl12, 3)} → **{d12}**, frame-count coefficient {fmt(c2, 3)}; share with frame count 0 by band "
-                      + ", ".join(f"{NAME[b]} {v:.2f}" for b, v in zero.items()) + ". (The frame count \"P p the\" is itself an "
-                      "object-onset proxy: \"the\" can begin a temporal NP.)"]
+                      + ", ".join(f"{NAME[b]} {v:.2f}" for b, v in zero.items()) + "."
+                      + (" (The frame count \"P p the\" is itself an object-onset proxy: \"the\" can begin a temporal NP.)"
+                         if "O |" in lab else " (Frame count: Σ count(\"P p.\").)")]
         lines.append("")
     else:
         lines += ["## Against counts", "", "A1's counts not available yet (rerun when they are).", ""]

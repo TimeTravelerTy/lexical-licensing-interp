@@ -1,0 +1,11 @@
+{
+ "index": "v4_piletrain_llama",
+ "api": "https://api.infini-gram.io/",
+ "queries": 27968,
+ "fetched_round6": 24313,
+ "reused_round5": 3655,
+ "approx": 0,
+ "date": "2026-10-21",
+ "final_delay_s": 0.6,
+ "throttles_this_session": 0
+}
