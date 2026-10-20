@@ -153,6 +153,8 @@ def main(args):
         wn = weights(rng, pre.animacy.to_numpy(), args.n_boot)
         wv = weights(rng, np.array([f"{b}|{s_}" for b, s_ in zip(band, split)]), args.n_boot)  # as A2: band x split
         wc = weights(rng, np.array([f"{b}|{c}|{s_}" for b, c, s_ in zip(band, P.cell, split)]), args.n_boot)
+        # curve collapse: pairs within band, as declared for A6's collapse (drawn after, so the trajectory draws are unchanged)
+        wb = weights(rng, band, args.n_boot)
         pm = lambda w, Y, m: (w[:, m] * Y[:, m]).sum(1) / w[:, m].sum(1)
 
         def tok(Y):
@@ -166,6 +168,7 @@ def main(args):
                   "| step | checks (recon / identity) | L Head / Tail / XTail | ΔL Head − XTail | reading | side | ΔL_tok | reading | "
                   "side (token-std.) | Δ_pass(I) Head / XTail | Head AUC | D_L |", "|---|---|---|---|---|---|---|---|---|---|---|---|"]
         YI, YT = {}, {}
+        side_lines = []
         dsz = dec[f"pythia-{size}"] = {}
         for st in steps:
             sdir = root / f"step{st}"
@@ -191,19 +194,28 @@ def main(args):
                          + " / ".join(f"{mb[b][0]:+.2f}" for b in BANDS) + f" | {fmt(hx)} | {classify(hx)} | {sd} | {fmt(tk)} | "
                          f"{classify(tk)} | {sd_tok} | {pm(wv, I, band == 'head')[0]:+.2f} / {pm(wv, I, band == 'xtail')[0]:+.2f} | "
                          f"{auc:.2f} | {fmt(DL)} |")
+            side_lines.append(f"| {st} | " + " / ".join(f"{pm(wv, T, band == b)[0]:+.2f}" for b in BANDS) + " | "
+                              + " / ".join(f"{pm(wv, I, band == b)[0]:+.2f}" for b in BANDS)
+                              + f" | {fmt(dT)} / {fmt(-dI)} | {fmt(tT)} / {fmt(-tI)} |")
             for nm, v in (("dL_head_xtail", hx), ("dL_tok", tk), ("D_L", DL)):
                 rows.append({"size": size, "step": st, "stat": nm, "est": v[0], "lo": ci(v)[0], "hi": ci(v)[1]})
         for key in ("reading", "reading_tok"):
             reads = [dsz[st_][key] for st_ in steps]
             onset = next((steps[i] for i in range(len(steps)) if all(r == "deficit" for r in reads[i:])), None)
             dsz[f"onset_{key}"] = onset
+        lines += ["", "Band means and side parts (positive part = contributes to the deficit):", "",
+                  "| step | Δ_pass(T) Head / Tail / XTail | Δ_pass(I) Head / Tail / XTail | Head − XTail parts T / −I | "
+                  "token-std. parts T / −I |", "|---|---|---|---|---|", *side_lines]
         lines += ["", f"Onset (first step after which every later checkpoint reads deficit; descriptive): Head − XTail "
                       f"{dsz['onset_reading']}, token-standardized {dsz['onset_reading_tok']}.", ""]
         if len(steps) < 4:
             continue
         # predictive curve collapse: units = I verb x step (step-major order)
         folds = fold_map(band, args.seed)
-        ntok_i = np.log(V.set_index("verb").n_tok.loc[P.t_verb if args.outcome == "T" else P.i_verb].to_numpy(float))
+        nt = V.set_index("verb").n_tok
+        ntok_i = np.log(nt.loc[P.t_verb if args.outcome == "T" else P.i_verb].to_numpy(float))
+        if args.outcome == "L":  # descriptive: pair level, mean of the two verbs' log token counts
+            ntok_i = 0.5 * (np.log(nt.loc[P.t_verb].to_numpy(float)) + np.log(nt.loc[P.i_verb].to_numpy(float)))
 
         def ns(x):
             k = np.percentile(x, [2.5, 100 / 3, 200 / 3, 97.5])
@@ -217,6 +229,8 @@ def main(args):
             c = cnt.loc[P.i_verb].to_numpy() + 0.5
             if args.outcome == "T":
                 c = cnt.loc[P.t_verb].to_numpy() + 0.5
+            if args.outcome == "L":  # pair exposure: geometric mean of the two verbs' smoothed counts
+                c = np.sqrt((cnt.loc[P.t_verb].to_numpy() + 0.5) * (cnt.loc[P.i_verb].to_numpy() + 0.5))
             for sub_lab, keep in (("all steps", steps), ("steps ≥ 1000", [s_ for s_ in steps if s_ >= 1000]),
                                   ("steps ≥ 4000", [s_ for s_ in steps if s_ >= 4000])):
                 if lab == "c_marked" and sub_lab != "all steps":
@@ -238,7 +252,9 @@ def main(args):
                 outcome = "Δ_pass(I)"
                 if args.outcome == "T":
                     Y, outcome = np.concatenate([YT[s_] for s_ in ks], axis=1), "Δ_pass(T)"
-                W = np.tile(wv, (1, len(ks)))
+                if args.outcome == "L":
+                    Y, outcome = np.concatenate([YT[s_] - YI[s_] for s_ in ks], axis=1), "L"
+                W = np.tile(wb, (1, len(ks)))
                 F = np.tile(folds, len(ks))
                 ms = {k: np.array([cv_mse(X, Y[b], W[b], F) for b in range(len(Y))]) for k, X in Xs.items()}
                 r1, l1, h1 = rel_bounds(ms["M_E"], ms["M_2D"])
@@ -276,14 +292,15 @@ def main(args):
                                 late, early = (j, i) if st_u[j] > st_u[i] else (i, j)
                                 diffs.append(y0[late] - y0[early])
                     if diffs:
-                        lines.append(f"  Matched cells (|Δ log10 E| < 0.1, steps ≥ 4× apart): {len(diffs)} pairs; mean Δ_pass(I) later − "
+                        lines.append(f"  Matched cells (|Δ log10 E| < 0.1, steps ≥ 4× apart): {len(diffs)} pairs; mean {outcome} later − "
                                      f"earlier {np.mean(diffs):+.3f} (median {np.median(diffs):+.3f}).")
                     for s_ in ks:
-                        cells.append(pd.DataFrame({"size": size, "step": s_, "verb": P.i_verb, "band": band,
-                                                   "logE": np.log10(c * s_ / TOTAL), "delta_pass_I": YI[s_][0]}))
+                        yv = {"I": YI[s_][0], "T": YT[s_][0], "L": YT[s_][0] - YI[s_][0]}[args.outcome]
+                        cells.append(pd.DataFrame({"size": size, "step": s_, "t_verb": P.t_verb, "i_verb": P.i_verb, "band": band,
+                                                   "logE": np.log10(c * s_ / TOTAL), "outcome": args.outcome, "y": yv}))
         lines.append("")
     out = Path(args.res_dir)
-    sfx = "_T" if args.outcome == "T" else ""  # the descriptive T run must not overwrite the primary outputs
+    sfx = "" if args.outcome == "I" else f"_{args.outcome}"  # descriptive T / L runs must not overwrite the primary outputs
     Path(args.report).write_text("\n".join(lines) + "\n")
     pd.DataFrame(rows).to_csv(out / f"a6_summary{sfx}.csv", index=False)
     (out / f"a6_decisions{sfx}.json").write_text(json.dumps(dec, indent=1, default=float))
@@ -299,8 +316,9 @@ if __name__ == "__main__":
     ap.add_argument("--counts", default="data/round6/counts/pile_counts.csv")
     ap.add_argument("--slices", default="data/round6/checkpoints/slice_counts.csv")
     ap.add_argument("--sizes", nargs="+", default=["1.4b", "410m", "6.9b"])
-    ap.add_argument("--outcome", default="I", choices=["I", "T"],
-                    help="primary: I (Delta_pass(I)); T: the descriptive transitive sensitivity (separate report)")
+    ap.add_argument("--outcome", default="I", choices=["I", "T", "L"],
+                    help="primary: I (Delta_pass(I)); T, L: the descriptive sensitivities (separate reports; L uses the "
+                         "pair's geometric-mean count and mean log token count)")
     ap.add_argument("--report", default="reports/round6/a6_checkpoints.md")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)

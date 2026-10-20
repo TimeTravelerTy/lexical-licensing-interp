@@ -44,14 +44,35 @@ Spec: `plan.md`, A6. Runs: `run_frame_contrast.py --revision step<N>` (freq pref
 | 100000 | 2e-05 / 3e-05 | +3.16 / +2.49 / +1.88 | +1.28 [+0.57, +2.01] | deficit | intransitive-side | +1.04 [+0.49, +1.58] | deficit | intransitive-side | -2.82 / -1.15 | 0.92 | +1.44 [+0.51, +2.33] |
 | 143000 | 3e-05 / 4e-05 | +3.37 / +2.56 / +1.96 | +1.41 [+0.70, +2.15] | deficit | intransitive-side | +0.99 [+0.44, +1.55] | deficit | intransitive-side | -2.89 / -1.12 | 0.93 | +1.56 [+0.65, +2.48] |
 
+Band means and side parts (positive part = contributes to the deficit):
+
+| step | Δ_pass(T) Head / Tail / XTail | Δ_pass(I) Head / Tail / XTail | Head − XTail parts T / −I | token-std. parts T / −I |
+|---|---|---|---|---|
+| 64 | +0.13 / -0.02 / +0.07 | +0.06 / +0.03 / +0.05 | +0.06 [-0.06, +0.18] / -0.00 [-0.12, +0.12] | -0.07 [-0.17, +0.04] / +0.05 [-0.06, +0.15] |
+| 128 | +0.16 / -0.01 / -0.03 | +0.06 / +0.05 / -0.05 | +0.19 [+0.04, +0.32] / -0.11 [-0.24, +0.02] | -0.05 [-0.17, +0.06] / -0.05 [-0.18, +0.08] |
+| 256 | +0.53 / +0.21 / +0.19 | +0.25 / +0.29 / +0.28 | +0.34 [+0.15, +0.52] / +0.03 [-0.15, +0.23] | -0.07 [-0.25, +0.11] / +0.05 [-0.11, +0.21] |
+| 512 | +0.58 / +0.74 / +1.11 | -1.19 / +0.67 / +1.09 | -0.52 [-0.86, -0.20] / +2.28 [+1.89, +2.70] | -0.31 [-0.57, -0.04] / +0.20 [-0.04, +0.43] |
+| 1000 | +0.24 / +0.27 / +0.56 | -2.95 / -0.79 / +0.40 | -0.32 [-0.79, +0.11] / +3.35 [+2.91, +3.82] | -0.12 [-0.41, +0.18] / +0.78 [+0.44, +1.13] |
+| 2000 | +0.64 / +0.69 / +0.94 | -2.59 / -0.88 / +0.61 | -0.30 [-0.75, +0.11] / +3.20 [+2.72, +3.69] | -0.06 [-0.38, +0.26] / +1.32 [+0.90, +1.75] |
+| 3000 | +0.69 / +0.71 / +1.07 | -2.80 / -1.30 / +0.49 | -0.39 [-0.83, +0.05] / +3.28 [+2.72, +3.84] | -0.20 [-0.58, +0.17] / +1.66 [+1.21, +2.10] |
+| 4000 | +0.37 / +0.42 / +0.81 | -2.95 / -1.78 / -0.12 | -0.44 [-0.89, -0.01] / +2.82 [+2.23, +3.41] | -0.18 [-0.54, +0.19] / +1.70 [+1.21, +2.17] |
+| 6000 | +0.08 / +0.09 / +0.55 | -3.24 / -2.23 / -0.97 | -0.46 [-0.91, -0.04] / +2.27 [+1.69, +2.82] | -0.15 [-0.61, +0.29] / +1.18 [+0.72, +1.62] |
+| 10000 | +0.40 / +0.36 / +0.74 | -2.90 / -2.28 / -0.68 | -0.34 [-0.78, +0.06] / +2.22 [+1.60, +2.81] | -0.12 [-0.51, +0.27] / +1.75 [+1.25, +2.24] |
+| 16000 | +0.28 / +0.31 / +0.67 | -2.79 / -2.13 / -1.03 | -0.39 [-0.85, +0.06] / +1.76 [+1.18, +2.35] | -0.16 [-0.56, +0.24] / +1.22 [+0.76, +1.70] |
+| 25000 | +0.27 / +0.22 / +0.60 | -2.85 / -2.24 / -1.30 | -0.33 [-0.76, +0.07] / +1.54 [+0.99, +2.10] | -0.28 [-0.66, +0.11] / +1.20 [+0.78, +1.64] |
+| 40000 | +0.42 / +0.41 / +0.78 | -2.78 / -2.07 / -1.08 | -0.37 [-0.81, +0.06] / +1.70 [+1.13, +2.29] | -0.31 [-0.73, +0.09] / +1.25 [+0.80, +1.69] |
+| 63000 | +0.34 / +0.36 / +0.80 | -2.90 / -1.98 / -0.82 | -0.46 [-0.92, -0.01] / +2.09 [+1.52, +2.67] | -0.27 [-0.68, +0.14] / +1.41 [+0.95, +1.88] |
+| 100000 | +0.34 / +0.28 / +0.73 | -2.82 / -2.21 / -1.15 | -0.39 [-0.85, +0.06] / +1.67 [+1.11, +2.27] | -0.32 [-0.70, +0.04] / +1.37 [+0.93, +1.79] |
+| 143000 | +0.48 / +0.33 / +0.84 | -2.89 / -2.23 / -1.12 | -0.36 [-0.85, +0.10] / +1.77 [+1.20, +2.38] | -0.41 [-0.78, -0.05] / +1.40 [+0.94, +1.85] |
+
 Onset (first step after which every later checkpoint reads deficit; descriptive): Head − XTail 256, token-standardized 1000.
 
-- Curve collapse [Δ_pass(I)] (c_total, all steps; 16 steps × 281 verbs): CV MSE M_E 2.123, M_Cg 2.077, M_2D 2.029, M_Eg 1.985, M_g 2.237. **CC1** M_E vs M_2D relative gain of M_2D +0.044 [+0.007, +0.070] → **unresolved**; **CC2** vs M_Cg +0.021 [-0.014, +0.049] → **unresolved**; M_E beats step-only by > 2%: **False** (+0.051 [-0.005, +0.107]); diagnostic step beyond E +0.065 [+0.041, +0.087].
+- Curve collapse [Δ_pass(I)] (c_total, all steps; 16 steps × 281 verbs): CV MSE M_E 2.123, M_Cg 2.077, M_2D 2.029, M_Eg 1.985, M_g 2.237. **CC1** M_E vs M_2D relative gain of M_2D +0.044 [+0.005, +0.071] → **unresolved**; **CC2** vs M_Cg +0.021 [-0.014, +0.049] → **unresolved**; M_E beats step-only by > 2%: **False** (+0.051 [-0.006, +0.105]); diagnostic step beyond E +0.065 [+0.041, +0.088].
   Step offsets in M_Eg (relative to the first step): 128: +0.06, 256: +0.46, 512: +0.87, 1000: -0.14, 2000: +0.24, 3000: +0.14, 4000: -0.20, 6000: -0.57, 10000: -0.17, 16000: +0.02, 25000: +0.07, 40000: +0.47, 63000: +0.78, 100000: +0.76, 143000: +0.88
   Matched cells (|Δ log10 E| < 0.1, steps ≥ 4× apart): 226550 pairs; mean Δ_pass(I) later − earlier +0.080 (median +0.102).
-- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 1000; 12 steps × 281 verbs): CV MSE M_E 2.546, M_Cg 2.508, M_2D 2.491, M_Eg 2.458, M_g 2.766. **CC1** M_E vs M_2D relative gain of M_2D +0.022 [-0.020, +0.053] → **unresolved**; **CC2** vs M_Cg +0.015 [-0.026, +0.050] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.079 [+0.029, +0.129]); diagnostic step beyond E +0.035 [+0.011, +0.066].
-- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 4000; 9 steps × 281 verbs): CV MSE M_E 2.730, M_Cg 2.645, M_2D 2.637, M_Eg 2.615, M_g 2.887. **CC1** M_E vs M_2D relative gain of M_2D +0.034 [-0.010, +0.072] → **unresolved**; **CC2** vs M_Cg +0.031 [-0.013, +0.072] → **unresolved**; M_E beats step-only by > 2%: **False** (+0.054 [+0.006, +0.102]); diagnostic step beyond E +0.042 [+0.011, +0.083].
-- Curve collapse [Δ_pass(I)] (c_marked, all steps; 16 steps × 281 verbs): CV MSE M_E 2.123, M_Cg 2.077, M_2D 2.029, M_Eg 1.985, M_g 2.237. **CC1** M_E vs M_2D relative gain of M_2D +0.044 [+0.007, +0.070] → **unresolved**; **CC2** vs M_Cg +0.021 [-0.014, +0.048] → **unresolved**; M_E beats step-only by > 2%: **False** (+0.051 [-0.005, +0.107]); diagnostic step beyond E +0.065 [+0.041, +0.087].
+- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 1000; 12 steps × 281 verbs): CV MSE M_E 2.546, M_Cg 2.508, M_2D 2.491, M_Eg 2.458, M_g 2.766. **CC1** M_E vs M_2D relative gain of M_2D +0.022 [-0.021, +0.052] → **unresolved**; **CC2** vs M_Cg +0.015 [-0.026, +0.050] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.079 [+0.026, +0.128]); diagnostic step beyond E +0.035 [+0.009, +0.063].
+- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 4000; 9 steps × 281 verbs): CV MSE M_E 2.730, M_Cg 2.645, M_2D 2.637, M_Eg 2.615, M_g 2.887. **CC1** M_E vs M_2D relative gain of M_2D +0.034 [-0.011, +0.071] → **unresolved**; **CC2** vs M_Cg +0.031 [-0.013, +0.070] → **unresolved**; M_E beats step-only by > 2%: **False** (+0.054 [+0.003, +0.101]); diagnostic step beyond E +0.042 [+0.010, +0.080].
+- Curve collapse [Δ_pass(I)] (c_marked, all steps; 16 steps × 281 verbs): CV MSE M_E 2.123, M_Cg 2.077, M_2D 2.029, M_Eg 1.985, M_g 2.237. **CC1** M_E vs M_2D relative gain of M_2D +0.044 [+0.005, +0.070] → **unresolved**; **CC2** vs M_Cg +0.021 [-0.014, +0.049] → **unresolved**; M_E beats step-only by > 2%: **False** (+0.051 [-0.006, +0.105]); diagnostic step beyond E +0.065 [+0.041, +0.088].
 
 ## pythia-410m: trajectories (freq)
 
@@ -74,14 +95,35 @@ Onset (first step after which every later checkpoint reads deficit; descriptive)
 | 100000 | 2e-05 / 2e-05 | +3.31 / +2.71 / +1.79 | +1.53 [+0.86, +2.19] | deficit | intransitive-side | +1.32 [+0.67, +1.96] | deficit | intransitive-side | -3.36 / -1.34 | 0.94 | +1.35 [+0.42, +2.30] |
 | 143000 | 2e-05 / 3e-05 | +3.37 / +2.67 / +1.72 | +1.65 [+0.98, +2.30] | deficit | intransitive-side | +1.26 [+0.64, +1.85] | deficit | intransitive-side | -3.22 / -1.07 | 0.95 | +1.39 [+0.48, +2.35] |
 
+Band means and side parts (positive part = contributes to the deficit):
+
+| step | Δ_pass(T) Head / Tail / XTail | Δ_pass(I) Head / Tail / XTail | Head − XTail parts T / −I | token-std. parts T / −I |
+|---|---|---|---|---|
+| 64 | +0.06 / -0.02 / +0.02 | +0.03 / +0.04 / +0.02 | +0.04 [-0.07, +0.15] / -0.00 [-0.12, +0.11] | -0.05 [-0.15, +0.06] / -0.01 [-0.13, +0.10] |
+| 128 | +0.09 / -0.00 / +0.08 | +0.02 / +0.07 / +0.10 | +0.01 [-0.11, +0.12] / +0.08 [-0.05, +0.21] | -0.08 [-0.18, +0.01] / +0.03 [-0.10, +0.14] |
+| 256 | +0.42 / +0.22 / +0.29 | +0.24 / +0.26 / +0.22 | +0.14 [-0.02, +0.28] / -0.02 [-0.18, +0.16] | -0.20 [-0.37, -0.04] / +0.08 [-0.11, +0.27] |
+| 512 | +0.81 / +0.56 / +0.92 | -0.54 / +0.49 / +0.62 | -0.11 [-0.41, +0.20] / +1.16 [+0.81, +1.52] | -0.41 [-0.64, -0.18] / -0.07 [-0.34, +0.21] |
+| 1000 | -0.12 / +0.39 / +0.88 | -2.70 / -0.28 / +0.71 | -1.01 [-1.42, -0.65] / +3.42 [+2.99, +3.87] | -0.38 [-0.67, -0.08] / +0.51 [+0.18, +0.84] |
+| 2000 | +0.17 / +0.61 / +0.50 | -3.15 / -1.34 / +0.13 | -0.32 [-0.77, +0.13] / +3.28 [+2.77, +3.78] | +0.39 [-0.03, +0.82] / +1.33 [+0.92, +1.72] |
+| 3000 | +0.65 / +0.75 / +0.93 | -2.82 / -1.30 / +0.26 | -0.29 [-0.73, +0.14] / +3.08 [+2.51, +3.62] | -0.06 [-0.40, +0.30] / +1.63 [+1.21, +2.06] |
+| 4000 | +0.09 / +0.21 / +0.44 | -2.92 / -1.72 / -0.33 | -0.35 [-0.77, +0.07] / +2.59 [+2.04, +3.13] | +0.04 [-0.34, +0.42] / +1.28 [+0.85, +1.69] |
+| 6000 | +0.30 / +0.34 / +0.55 | -2.93 / -1.96 / -0.43 | -0.25 [-0.69, +0.15] / +2.49 [+1.95, +3.04] | +0.14 [-0.17, +0.45] / +1.58 [+1.16, +1.98] |
+| 10000 | +0.39 / +0.44 / +0.76 | -2.70 / -2.01 / -0.54 | -0.37 [-0.82, +0.05] / +2.16 [+1.64, +2.67] | -0.06 [-0.46, +0.34] / +1.66 [+1.21, +2.08] |
+| 16000 | +0.27 / +0.31 / +0.67 | -2.97 / -2.02 / -0.57 | -0.41 [-0.89, +0.04] / +2.40 [+1.81, +2.96] | -0.00 [-0.38, +0.39] / +1.56 [+1.09, +2.04] |
+| 25000 | +0.15 / +0.30 / +0.62 | -3.00 / -2.04 / -0.71 | -0.48 [-0.94, -0.05] / +2.28 [+1.70, +2.87] | -0.08 [-0.47, +0.29] / +1.47 [+1.03, +1.89] |
+| 40000 | +0.26 / +0.38 / +0.82 | -2.92 / -1.86 / -0.67 | -0.56 [-1.01, -0.14] / +2.25 [+1.66, +2.83] | -0.18 [-0.57, +0.23] / +1.30 [+0.84, +1.75] |
+| 63000 | +0.14 / +0.44 / +0.90 | -3.05 / -1.96 / -0.62 | -0.76 [-1.21, -0.34] / +2.43 [+1.82, +3.02] | -0.19 [-0.58, +0.20] / +1.40 [+0.88, +1.93] |
+| 100000 | -0.05 / +0.15 / +0.45 | -3.36 / -2.56 / -1.34 | -0.49 [-0.95, -0.06] / +2.02 [+1.44, +2.61] | -0.11 [-0.50, +0.29] / +1.43 [+0.92, +1.94] |
+| 143000 | +0.15 / +0.31 / +0.65 | -3.22 / -2.36 / -1.07 | -0.51 [-0.97, -0.07] / +2.16 [+1.56, +2.75] | -0.22 [-0.64, +0.22] / +1.47 [+0.98, +1.95] |
+
 Onset (first step after which every later checkpoint reads deficit; descriptive): Head − XTail 512, token-standardized 2000.
 
-- Curve collapse [Δ_pass(I)] (c_total, all steps; 16 steps × 281 verbs): CV MSE M_E 1.933, M_Cg 1.930, M_2D 1.885, M_Eg 1.829, M_g 2.099. **CC1** M_E vs M_2D relative gain of M_2D +0.025 [-0.009, +0.047] → **unresolved**; **CC2** vs M_Cg +0.002 [-0.032, +0.026] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.079 [+0.025, +0.134]); diagnostic step beyond E +0.054 [+0.030, +0.079].
+- Curve collapse [Δ_pass(I)] (c_total, all steps; 16 steps × 281 verbs): CV MSE M_E 1.933, M_Cg 1.930, M_2D 1.885, M_Eg 1.829, M_g 2.099. **CC1** M_E vs M_2D relative gain of M_2D +0.025 [-0.010, +0.047] → **unresolved**; **CC2** vs M_Cg +0.002 [-0.032, +0.028] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.079 [+0.025, +0.133]); diagnostic step beyond E +0.054 [+0.029, +0.079].
   Step offsets in M_Eg (relative to the first step): 128: +0.10, 256: +0.37, 512: +0.64, 1000: +0.15, 2000: -0.37, 3000: -0.07, 4000: -0.38, 6000: -0.33, 10000: -0.10, 16000: +0.08, 25000: +0.24, 40000: +0.59, 63000: +0.76, 100000: +0.38, 143000: +0.76
   Matched cells (|Δ log10 E| < 0.1, steps ≥ 4× apart): 226550 pairs; mean Δ_pass(I) later − earlier +0.133 (median +0.123).
-- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 1000; 12 steps × 281 verbs): CV MSE M_E 2.349, M_Cg 2.293, M_2D 2.284, M_Eg 2.279, M_g 2.575. **CC1** M_E vs M_2D relative gain of M_2D +0.028 [-0.012, +0.057] → **unresolved**; **CC2** vs M_Cg +0.024 [-0.013, +0.056] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.088 [+0.041, +0.138]); diagnostic step beyond E +0.030 [+0.007, +0.061].
-- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 4000; 9 steps × 281 verbs): CV MSE M_E 2.471, M_Cg 2.394, M_2D 2.408, M_Eg 2.388, M_g 2.677. **CC1** M_E vs M_2D relative gain of M_2D +0.026 [-0.017, +0.059] → **unresolved**; **CC2** vs M_Cg +0.031 [-0.010, +0.067] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.077 [+0.030, +0.128]); diagnostic step beyond E +0.034 [+0.005, +0.071].
-- Curve collapse [Δ_pass(I)] (c_marked, all steps; 16 steps × 281 verbs): CV MSE M_E 1.933, M_Cg 1.930, M_2D 1.885, M_Eg 1.829, M_g 2.099. **CC1** M_E vs M_2D relative gain of M_2D +0.025 [-0.010, +0.047] → **unresolved**; **CC2** vs M_Cg +0.002 [-0.032, +0.026] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.079 [+0.025, +0.135]); diagnostic step beyond E +0.054 [+0.030, +0.079].
+- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 1000; 12 steps × 281 verbs): CV MSE M_E 2.349, M_Cg 2.293, M_2D 2.284, M_Eg 2.279, M_g 2.575. **CC1** M_E vs M_2D relative gain of M_2D +0.028 [-0.014, +0.056] → **unresolved**; **CC2** vs M_Cg +0.024 [-0.015, +0.056] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.088 [+0.038, +0.135]); diagnostic step beyond E +0.030 [+0.006, +0.060].
+- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 4000; 9 steps × 281 verbs): CV MSE M_E 2.471, M_Cg 2.394, M_2D 2.408, M_Eg 2.388, M_g 2.677. **CC1** M_E vs M_2D relative gain of M_2D +0.026 [-0.018, +0.059] → **unresolved**; **CC2** vs M_Cg +0.031 [-0.013, +0.067] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.077 [+0.027, +0.125]); diagnostic step beyond E +0.034 [+0.004, +0.069].
+- Curve collapse [Δ_pass(I)] (c_marked, all steps; 16 steps × 281 verbs): CV MSE M_E 1.933, M_Cg 1.930, M_2D 1.885, M_Eg 1.829, M_g 2.099. **CC1** M_E vs M_2D relative gain of M_2D +0.025 [-0.009, +0.046] → **unresolved**; **CC2** vs M_Cg +0.002 [-0.032, +0.028] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.079 [+0.024, +0.133]); diagnostic step beyond E +0.054 [+0.029, +0.079].
 
 ## pythia-6.9b: trajectories (freq)
 
@@ -94,12 +136,23 @@ Onset (first step after which every later checkpoint reads deficit; descriptive)
 | 63000 | 3e-05 / 4e-05 | +3.24 / +2.50 / +1.71 | +1.53 [+0.84, +2.23] | deficit | intransitive-side | +1.18 [+0.62, +1.74] | deficit | intransitive-side | -3.11 / -1.23 | 0.94 | +1.30 [+0.43, +2.17] |
 | 143000 | 3e-05 / 5e-05 | +3.50 / +2.64 / +1.86 | +1.64 [+0.93, +2.35] | deficit | intransitive-side | +1.04 [+0.47, +1.59] | deficit | intransitive-side | -3.27 / -1.34 | 0.94 | +1.40 [+0.51, +2.29] |
 
+Band means and side parts (positive part = contributes to the deficit):
+
+| step | Δ_pass(T) Head / Tail / XTail | Δ_pass(I) Head / Tail / XTail | Head − XTail parts T / −I | token-std. parts T / −I |
+|---|---|---|---|---|
+| 512 | +0.96 / +0.69 / +0.48 | -0.60 / +0.39 / +0.46 | +0.48 [+0.15, +0.81] / +1.06 [+0.71, +1.45] | -0.04 [-0.33, +0.27] / +0.10 [-0.18, +0.39] |
+| 2000 | -0.25 / -0.11 / +0.34 | -3.56 / -1.75 / -0.31 | -0.59 [-1.07, -0.13] / +3.24 [+2.75, +3.72] | -0.17 [-0.54, +0.18] / +1.22 [+0.77, +1.65] |
+| 8000 | +0.19 / +0.23 / +0.65 | -3.01 / -2.31 / -1.15 | -0.47 [-0.99, +0.02] / +1.86 [+1.27, +2.43] | -0.32 [-0.73, +0.08] / +1.36 [+0.86, +1.85] |
+| 23000 | +0.43 / +0.44 / +0.69 | -2.73 / -2.07 / -0.94 | -0.26 [-0.73, +0.18] / +1.80 [+1.26, +2.37] | -0.21 [-0.63, +0.19] / +1.30 [+0.84, +1.75] |
+| 63000 | +0.12 / +0.16 / +0.48 | -3.11 / -2.34 / -1.23 | -0.36 [-0.83, +0.09] / +1.88 [+1.32, +2.46] | -0.27 [-0.67, +0.12] / +1.45 [+0.99, +1.93] |
+| 143000 | +0.23 / +0.13 / +0.52 | -3.27 / -2.51 / -1.34 | -0.29 [-0.77, +0.17] / +1.93 [+1.35, +2.53] | -0.48 [-0.86, -0.11] / +1.51 [+1.07, +1.95] |
+
 Onset (first step after which every later checkpoint reads deficit; descriptive): Head − XTail 512, token-standardized 2000.
 
-- Curve collapse [Δ_pass(I)] (c_total, all steps; 6 steps × 281 verbs): CV MSE M_E 2.534, M_Cg 2.357, M_2D 2.317, M_Eg 2.332, M_g 2.550. **CC1** M_E vs M_2D relative gain of M_2D +0.086 [+0.044, +0.113] → **collapse fails**; **CC2** vs M_Cg +0.070 [+0.031, +0.099] → **frequency + step more predictive**; M_E beats step-only by > 2%: **False** (+0.006 [-0.042, +0.061]); diagnostic step beyond E +0.080 [+0.052, +0.107].
+- Curve collapse [Δ_pass(I)] (c_total, all steps; 6 steps × 281 verbs): CV MSE M_E 2.534, M_Cg 2.357, M_2D 2.317, M_Eg 2.332, M_g 2.550. **CC1** M_E vs M_2D relative gain of M_2D +0.086 [+0.043, +0.110] → **collapse fails**; **CC2** vs M_Cg +0.070 [+0.031, +0.097] → **frequency + step more predictive**; M_E beats step-only by > 2%: **False** (+0.006 [-0.049, +0.061]); diagnostic step beyond E +0.080 [+0.052, +0.106].
   Step offsets in M_Eg (relative to the first step): 2000: -1.29, 8000: -1.17, 23000: -0.44, 63000: -0.29, 143000: -0.10
   Matched cells (|Δ log10 E| < 0.1, steps ≥ 4× apart): 30485 pairs; mean Δ_pass(I) later − earlier +0.179 (median +0.216).
-- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 1000; 5 steps × 281 verbs): CV MSE M_E 2.666, M_Cg 2.600, M_2D 2.558, M_Eg 2.574, M_g 2.841. **CC1** M_E vs M_2D relative gain of M_2D +0.040 [-0.004, +0.080] → **unresolved**; **CC2** vs M_Cg +0.025 [-0.019, +0.068] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.062 [+0.025, +0.100]); diagnostic step beyond E +0.034 [+0.004, +0.077].
-- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 4000; 4 steps × 281 verbs): CV MSE M_E 2.710, M_Cg 2.636, M_2D 2.637, M_Eg 2.616, M_g 2.864. **CC1** M_E vs M_2D relative gain of M_2D +0.027 [-0.012, +0.061] → **unresolved**; **CC2** vs M_Cg +0.028 [-0.011, +0.064] → **unresolved**; M_E beats step-only by > 2%: **False** (+0.054 [+0.008, +0.104]); diagnostic step beyond E +0.035 [+0.008, +0.070].
-- Curve collapse [Δ_pass(I)] (c_marked, all steps; 6 steps × 281 verbs): CV MSE M_E 2.534, M_Cg 2.357, M_2D 2.317, M_Eg 2.332, M_g 2.550. **CC1** M_E vs M_2D relative gain of M_2D +0.086 [+0.044, +0.113] → **collapse fails**; **CC2** vs M_Cg +0.070 [+0.031, +0.099] → **frequency + step more predictive**; M_E beats step-only by > 2%: **False** (+0.006 [-0.042, +0.061]); diagnostic step beyond E +0.080 [+0.052, +0.107].
+- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 1000; 5 steps × 281 verbs): CV MSE M_E 2.666, M_Cg 2.600, M_2D 2.558, M_Eg 2.574, M_g 2.841. **CC1** M_E vs M_2D relative gain of M_2D +0.040 [-0.006, +0.075] → **unresolved**; **CC2** vs M_Cg +0.025 [-0.022, +0.065] → **unresolved**; M_E beats step-only by > 2%: **True** (+0.062 [+0.022, +0.099]); diagnostic step beyond E +0.034 [+0.002, +0.074].
+- Curve collapse [Δ_pass(I)] (c_total, steps ≥ 4000; 4 steps × 281 verbs): CV MSE M_E 2.710, M_Cg 2.636, M_2D 2.637, M_Eg 2.616, M_g 2.864. **CC1** M_E vs M_2D relative gain of M_2D +0.027 [-0.014, +0.058] → **unresolved**; **CC2** vs M_Cg +0.028 [-0.013, +0.060] → **unresolved**; M_E beats step-only by > 2%: **False** (+0.054 [+0.003, +0.100]); diagnostic step beyond E +0.035 [+0.007, +0.068].
+- Curve collapse [Δ_pass(I)] (c_marked, all steps; 6 steps × 281 verbs): CV MSE M_E 2.534, M_Cg 2.357, M_2D 2.317, M_Eg 2.332, M_g 2.550. **CC1** M_E vs M_2D relative gain of M_2D +0.086 [+0.043, +0.110] → **collapse fails**; **CC2** vs M_Cg +0.070 [+0.031, +0.097] → **frequency + step more predictive**; M_E beats step-only by > 2%: **False** (+0.006 [-0.049, +0.060]); diagnostic step beyond E +0.080 [+0.052, +0.106].
 
