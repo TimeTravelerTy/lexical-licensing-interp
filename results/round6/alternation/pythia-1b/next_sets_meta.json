@@ -1,0 +1,14 @@
+{
+ "model": "EleutherAI/pythia-1b",
+ "dtype": "float32",
+ "tf32": false,
+ "rows": 26976,
+ "check_batched_vs_single": 3.0994415283203125e-05,
+ "inputs": {
+  "prefixes.csv": "1744091ae4efea0cbbaedbc0be37c112149dec2b904d65f3ea8a476ce7d1bf04",
+  "sets.json": "e712c14033ed698d39eb948aa545436b2bb0077e68b876fe841cdaff328bcdf8"
+ },
+ "outputs": {
+  "next_sets.parquet": "0309528cfe775d8d1c7fc631194a7fce170140a9506a3833896db1033ec870b0"
+ }
+}

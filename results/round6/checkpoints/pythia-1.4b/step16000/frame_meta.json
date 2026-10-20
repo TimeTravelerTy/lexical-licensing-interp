@@ -1,0 +1,26 @@
+{
+ "model": "EleutherAI/pythia-1.4b",
+ "revision": "step16000",
+ "resolved_commit": "7227add89b788c09c721b976969beb64fa71d10c",
+ "dtype": "float32",
+ "tf32": false,
+ "n_rows": 26976,
+ "cur_all": false,
+ "inputs": {
+  "prefixes.csv": "9452a8a210de0df701864e7322be12842d7f9ce7dfb5f6b8f64dd0544bbd784a",
+  "verbs.csv": "ed5b04cdfad28caba5d80e98761829d68e6860d70015a952ec80d55c1173efed",
+  "pairs.csv": "11d15d27d8179cdfaf27ff0ed1208eb607b584d98ce8e7299ad6c307118706b1"
+ },
+ "checks": {
+  "max_h_deviation": 0.0,
+  "h_tol": 0.01,
+  "max_first_subtoken_error": 2.002716064453125e-05,
+  "max_identity_error": 3.423878034869432e-05,
+  "max_abs_logit": 14.548450469970703,
+  "tol": 0.01
+ },
+ "outputs": {
+  "frame_scores.parquet": "57f8c92fd12781576674e1baac11aa6c67b01d5ca89947120636c60df8676077",
+  "frame_h.npz": "7c8084bcb9b5319bffa4bfd1371ce00c38f9bdb854ede98b2eada014bd2dd66f"
+ }
+}

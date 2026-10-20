@@ -68,3 +68,4 @@ results/round6/preempt/preempt_scores.parquet
 results/round6/classify/restore_freqblimp.parquet
 # Round 6 count fetch partials (merged into pile_counts.csv)
 data/round6/counts/pile_counts.partial*.jsonl
+results/round6/frame_d11_rel/*/frame_h.npz

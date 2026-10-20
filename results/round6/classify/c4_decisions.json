@@ -1,0 +1,56 @@
+{
+ "theta": 0.514448597292102,
+ "ba_rare": [
+  0.9444444444444444,
+  0.8333333333333333,
+  1.0
+ ],
+ "above_chance": true,
+ "acc_T_rare": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "acc_I_rare": [
+  0.8888888888888888,
+  0.6666666666666666,
+  1.0
+ ],
+ "ba_head_in_sample": 0.9875886524822695,
+ "ba_head_loo": 0.9709219858156029,
+ "ba_d11_tail": [
+  1.0,
+  0.95,
+  1.0
+ ],
+ "acc_T_d11_tail": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "acc_I_d11_tail": [
+  1.0,
+  0.9,
+  1.0
+ ],
+ "theta_sensitivity": 0.514448597292102,
+ "ba_rare_theta2": 0.9444444444444444,
+ "ba_d11_tail_theta2": 1.0,
+ "oracle_improves": true,
+ "oracle_head_within_0.05": true,
+ "classify_improves": true,
+ "classify_head_within_0.05": true,
+ "half_oracle": true,
+ "matches_oracle": true,
+ "classify_minus_oracle": [
+  1.5344401749217695e-07,
+  -8.193897477595802e-07,
+  1.20269820984009e-06
+ ],
+ "oracle_unaffected_within_0.5pp": true,
+ "oracle_specific": true,
+ "classify_unaffected_within_0.5pp": true,
+ "classify_specific": true,
+ "oracle_pile10k_below_0.002": true,
+ "classify_pile10k_below_0.002": true
+}
