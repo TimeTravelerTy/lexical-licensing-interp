@@ -92,8 +92,8 @@ def main(args):
     z = pd.concat([Vd.zipf, Vc.zipf])
     z = z[~z.index.duplicated()].loc[ct.index].astype(float)
     lc = np.log10(ct + 0.5)
-    b = np.polyfit(z, lc, 1)
-    resid = lc - np.polyval(b, z)
+    coef = np.polyfit(z, lc, 1)
+    resid = lc - np.polyval(coef, z)
     ci_ = Vc[Vc.role == "I"].index
     r = resid.loc[ci_]
     top, bot = r.nlargest(10).index.tolist(), r.nsmallest(10).index.tolist()
@@ -147,7 +147,7 @@ def main(args):
     lab = D[["audit", "group", "verb", "variant", "k", "snippet"]].assign(label="")
     if not (out / "diag_labels.csv").exists():
         lab.to_csv(out / "diag_labels.csv", index=False)
-    meta = {"index": args.index, "regression": list(map(float, b)), "pile_gt_zipf": top, "pile_lt_zipf": bot,
+    meta = {"index": args.index, "regression": list(map(float, coef)), "pile_gt_zipf": top, "pile_lt_zipf": bot,
             "controls": ctrl, "precision_verbs": list(map(str, prec)), "rows": len(D), "date": time.strftime("%Y-%m-%d")}
     (out / "diag_meta.json").write_text(json.dumps(meta, indent=1))
     print(json.dumps(meta, indent=1))

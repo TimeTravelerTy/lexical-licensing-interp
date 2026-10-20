@@ -1,0 +1,88 @@
+{
+ "index": "v4_piletrain_llama",
+ "regression": [
+  0.9186110110092918,
+  2.6454496670153334
+ ],
+ "pile_gt_zipf": [
+  "testified",
+  "grinned",
+  "glared",
+  "quivered",
+  "shuddered",
+  "panted",
+  "gaped",
+  "shimmered",
+  "tottered",
+  "jutted"
+ ],
+ "pile_lt_zipf": [
+  "peed",
+  "scrammed",
+  "lied",
+  "eventuated",
+  "quacked",
+  "hitchhiked",
+  "drooled",
+  "colluded",
+  "stagnated",
+  "flirted"
+ ],
+ "controls": [
+  "coexisted",
+  "fizzed",
+  "whizzed",
+  "wallowed",
+  "basked",
+  "goggled",
+  "functioned",
+  "reappeared",
+  "lurked",
+  "complained"
+ ],
+ "precision_verbs": [
+  "robbed",
+  "stowed",
+  "debugged",
+  "competed",
+  "glared",
+  "puttered"
+ ],
+ "rows": 715,
+ "date": "2026-10-20",
+ "note": "meta rebuilt from the saved CSVs after the fetch run failed at the meta step (variable shadowing, fixed)",
+ "control_residuals": {
+  "coexisted": -0.00319978976536639,
+  "fizzed": -0.007109742586306922,
+  "whizzed": 0.007358081234976055,
+  "wallowed": -0.009163496841700258,
+  "basked": -0.02540394842337257,
+  "goggled": -0.03668762957643423,
+  "functioned": -0.011619994442875203,
+  "reappeared": 0.01781023226104228,
+  "lurked": -0.018799164062405893,
+  "complained": 0.004575827452512726
+ },
+ "residuals": {
+  "testified": 0.7466343901858608,
+  "grinned": 0.727993473091562,
+  "glared": 0.6457045469588794,
+  "quivered": 0.6218371059038841,
+  "shuddered": 0.6208809535381272,
+  "panted": 0.5926958933187958,
+  "gaped": 0.5516764973451256,
+  "shimmered": 0.5122953320088683,
+  "tottered": 0.47888340631199267,
+  "jutted": 0.47339789532591325,
+  "peed": -0.697760901092698,
+  "scrammed": -0.5324272637378371,
+  "lied": -0.4193192260609395,
+  "eventuated": -0.3916110063341973,
+  "quacked": -0.3697115860236355,
+  "hitchhiked": -0.35812206848012096,
+  "drooled": -0.3476589934263643,
+  "colluded": -0.3162645102528634,
+  "stagnated": -0.29681990604289155,
+  "flirted": -0.29545687389137676
+ }
+}
