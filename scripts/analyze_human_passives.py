@@ -42,11 +42,13 @@ def sentences(args):
     for c in CONDS:
         for p in PARADIGMS:
             f = Path(args.original) if c == "original" else Path(args.freqblimp) / c / f"{p}.jsonl"
-            d = pd.read_json(f, lines=True, dtype={"pairID": str})
-            if c == "original":
-                d = d[d.UID == p]
-            for r in d.itertuples(index=False):
-                out[(c, p, str(r.pairID))] = (r.sentence_good, r.sentence_bad)
+            for line in open(f):
+                r = json.loads(line)
+                if c == "original":  # as the trial-pool builder: subtask, idx, good_original / bad_original
+                    if r.get("subtask") == p:
+                        out[(c, p, str(r["idx"]))] = (r["good_original"], r["bad_original"])
+                else:
+                    out[(c, p, str(r["pairID"]))] = (r["sentence_good"], r["sentence_bad"])
     return out
 
 
