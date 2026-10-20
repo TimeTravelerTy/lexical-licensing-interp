@@ -88,12 +88,15 @@ def side_reading(dT, dI, total):
 
 
 def reproduce(model, S, args):
+    """Every D11 verb that round 5 scored must match in every set and context round 5 scored it in."""
     ref = Path(args.r5_frame) if model == "pythia-1.4b" else Path(args.r5_suite) / model
-    if not (ref / "frame_scores.parquet").exists():
-        return 0, float("nan")
     R = pd.read_parquet(ref / "frame_scores.parquet")
-    m = S.merge(R, on=["set", "context_id", "frame", "verb"], suffixes=("", "_r5"))
-    return len(m), float((m.lp - m.lp_r5).abs().max()) if len(m) else float("nan")
+    keys = ["set", "context_id", "frame", "verb"]
+    R = R[R.verb.isin(set(S.verb))]
+    m = R.merge(S, on=keys, suffixes=("_r5", ""), how="left")
+    assert m.lp.notna().all(), f"{model}: {int(m.lp.isna().sum())} round-5 rows of shared verbs not reproduced"
+    assert len(m) > 0, f"{model}: no shared rows with round 5"
+    return len(m), float((m.lp - m.lp_r5).abs().max())
 
 
 def affinity(model_dir, pre, V, Bb, rng, n_boot):
@@ -151,7 +154,7 @@ def main(args):
         meta = json.loads((mdir / "frame_meta.json").read_text())
         n_rep, rep_err = reproduce(model, S, args)
         tol = 1e-3 if model == "pythia-1.4b" else 1e-2
-        assert n_rep == 0 or rep_err <= tol, f"{model}: round-5 reproduction error {rep_err}"
+        assert rep_err <= tol, f"{model}: round-5 reproduction error {rep_err}"
         tabs = pair_tables(S, pairs, pre)
         dm = dec[model] = {"checks": {**meta["checks"], "round5_rows_compared": n_rep, "round5_max_abs_diff": rep_err}}
         detail += [f"## {model}", "",
@@ -207,6 +210,14 @@ def main(args):
                 if isinstance(v, list) and len(v) == 3 and all(isinstance(t, float) for t in v):
                     rows.append({"model": model, "set": st, "quantity": k, "est": v[0], "lo": v[1], "hi": v[2]})
             if st != "freq":
+                bt = [f"{st} band means: "]
+                for k in ("L", "dT", "dI", "Mhas", "L1", "Lrest"):
+                    m = {b: Bb.mean(q[k], band == b) for b in BANDS}
+                    bt.append(f"{LAB[k]} " + " / ".join(f"{m[b][0]:+.2f}" for b in BANDS))
+                    for b in BANDS:
+                        rows.append({"model": model, "set": st, "quantity": f"{k}_{b}", "est": m[b][0],
+                                     "lo": ci(m[b])[0], "hi": ci(m[b])[1]})
+                dm[st]["band_text"] = "; ".join(bt[1:])
                 continue
             # detailed freq tables
             detail += ["### freq (primary): band means", "",
@@ -247,12 +258,13 @@ def main(args):
                        f"(ā_T,Tail − ā_I,Tail) {fmt(DL)} (D_T {fmt(DT)}, D_I {fmt(DI)}; n {n}).", ""]
             verbs_out.append(pd.DataFrame({"model": model, "verb": V.verb, "role": V.role, "band": V.band,
                                            "n_tok": V.n_tok, "a": a}))
-        detail += ["Other prefix sets (ΔL_tok; reading; side):", "", "| set | ΔL_tok | reading | side | ΔL Head − XTail |",
-                   "|---|---|---|---|---|"]
+        detail += ["All prefix sets (ΔL_tok; reading; side; band means Head / Tail / XTail):", "",
+                   "| set | ΔL_tok | reading | side | ΔL Head − XTail | band means |", "|---|---|---|---|---|---|"]
         for st in SETS:
             x = dm[st]
             detail.append(f"| {st} | {x['L_tok'][0]:+.2f} [{x['L_tok'][1]:+.2f}, {x['L_tok'][2]:+.2f}] | {x['L_tok_reading']} | "
-                          f"{x['side_tok']} | {x['dL_head_xtail'][0]:+.2f} [{x['dL_head_xtail'][1]:+.2f}, {x['dL_head_xtail'][2]:+.2f}] |")
+                          f"{x['side_tok']} | {x['dL_head_xtail'][0]:+.2f} [{x['dL_head_xtail'][1]:+.2f}, {x['dL_head_xtail'][2]:+.2f}] | "
+                          f"{x.get('band_text', 'see freq table above')} |")
         detail.append("")
         f = dm["freq"]
         summ.append(f"| {model} | {f['L_tok'][0]:+.2f} [{f['L_tok'][1]:+.2f}, {f['L_tok'][2]:+.2f}] | **{f['L_tok_reading']}** | "

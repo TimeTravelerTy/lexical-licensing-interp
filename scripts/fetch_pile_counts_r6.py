@@ -70,6 +70,13 @@ def main(args):
     mine = Q.verb.map(vorder) % sn == si  # this process fetches its own verbs; records of every shard are loaded
     done = {}
     want = {(v, sl): (k, q) for v, sl, k, q in zip(Q.verb, Q.slot, Q.kind, Q["query"])}
+    def check(r):
+        """Provenance: the stored request must be the current one, from this index."""
+        key = (r["verb"], r["slot"])
+        assert key in want, f"partial record not in the query list: {key}"
+        assert (r["kind"], r["query"]) == want[key], f"stale partial record for {key}: {r['query']!r}"
+        assert r.get("index") == args.index, f"partial record for {key} without / from another index"
+
     for pf in sorted(out.glob("pile_counts.partial*.jsonl")):
         lines = pf.read_text().splitlines()
         for j, line in enumerate(lines):
@@ -82,11 +89,8 @@ def main(args):
                 if j == len(lines) - 1:  # another shard is mid-write
                     break
                 raise
-            key = (r["verb"], r["slot"])
-            if key in want:  # provenance: the stored request must be the current one
-                assert (r["kind"], r["query"]) == want[key], f"stale partial record for {key}: {r['query']!r}"
-                assert r.get("index", args.index) == args.index, f"partial record for {key} from another index"
-            done[key] = r
+            check(r)
+            done[(r["verb"], r["slot"])] = r
     cl = Client(args.index, args.delay)
     t0, n_new = time.time(), 0
     with part.open("a") as fh:
@@ -124,6 +128,7 @@ def main(args):
                 r = json.loads(line)
             except json.JSONDecodeError:
                 continue
+            check(r)
             done.setdefault((r["verb"], r["slot"]), r)
     missing = [k for k in zip(Q.verb, Q.slot) if k not in done]
     if missing:

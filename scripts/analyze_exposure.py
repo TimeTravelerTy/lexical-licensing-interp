@@ -77,9 +77,20 @@ def fmt(d, p=3, lo=2.5, hi=97.5):
     return f"{d[0]:+.{p}f} [{a:+.{p}f}, {b:+.{p}f}]"
 
 
+RANK_DEFICIENT = set()
+
+
 def wls(X, y, w):
     sw = np.sqrt(w)
-    return np.linalg.lstsq(X * sw[:, None], y * sw, rcond=None)[0]
+    beta, _, rank, _ = np.linalg.lstsq(X * sw[:, None], y * sw, rcond=None)
+    if rank < X.shape[1]:
+        RANK_DEFICIENT.add(X.shape[1])
+    return beta
+
+
+def r2(X, y):
+    b = np.linalg.lstsq(X, y, rcond=None)[0]
+    return 1 - ((y - X @ b) ** 2).sum() / ((y - y.mean()) ** 2).sum()
 
 
 def fold_map(bands, seed, folds=10):
@@ -213,13 +224,19 @@ class Pop:
 def run_comparisons(pop, lines, rows, tag="", ids=None, **kw):
     out = {}
     lines += ["| ID | family | outcome | a → b | MSE a | MSE b | Δ = a − b (95% CI) | Δ / MSE a (90% CI) | decision | "
-              "added coefficient (95% CI) | question |", "|---|---|---|---|---|---|---|---|---|---|---|"]
+              "added coefficient (95% CI) | in-sample R² a / b | cond(b) | question |",
+              "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for cid, cls, a, b, qtxt in COMPARISONS:
         if ids and cid not in ids:
             continue
+        RANK_DEFICIENT.clear()
         ma, mb = pop.cv(cls, a, **kw), pop.cv(cls, b, **kw)
+        rankflag = " (rank-deficient fits occurred)" if RANK_DEFICIENT else ""
         d, delta = decide(ma, mb)
         rel = delta / ma
+        Xa, Xb = pop.design(cls, a, **{k: v for k, v in kw.items() if k != "mask"}), pop.design(cls, b, **{k: v for k, v in kw.items() if k != "mask"})
+        y0 = pop.Yd[cls][0]
+        r2a, r2b, cond = r2(Xa, y0), r2(Xb, y0), np.linalg.cond(Xb)
         added = [x for x in b if x not in a]
         cf = [pop.coef(cls, b, b.index(x) + 1, **kw) for x in added] if added else []
         cft = "; ".join(f"{x} {fmt(c)}" for x, c in zip(added, cf))
@@ -227,8 +244,10 @@ def run_comparisons(pop, lines, rows, tag="", ids=None, **kw):
         extra = f"; Bonferroni 98.75% {fmt(delta, 3, 0.625, 99.375)}" if cid in PRIMARY else ""
         lines.append(f"| {cid} | {fam} | {cls if cls == 'L' else f'Δ_pass({cls})'} | {' + '.join(a) or 'null'} → "
                      f"{' + '.join(b)} | {ma[0]:.3f} | {mb[0]:.3f} | {fmt(delta)}{extra} | {rel[0]:+.3f} "
-                     f"[{ci(rel, 5, 95)[0]:+.3f}, {ci(rel, 5, 95)[1]:+.3f}] | **{d}** | {cft} | {qtxt} |")
-        rec = {"decision": d, "mse_a": ma[0], "mse_b": mb[0], "delta": [delta[0], *ci(delta)],
+                     f"[{ci(rel, 5, 95)[0]:+.3f}, {ci(rel, 5, 95)[1]:+.3f}] | **{d}**{rankflag} | {cft} | {r2a:.3f} / {r2b:.3f} | "
+                     f"{cond:.0f} | {qtxt} |")
+        rec = {"decision": d, "mse_a": ma[0], "mse_b": mb[0], "delta": [delta[0], *ci(delta)], "r2": [r2a, r2b],
+               "cond_b": cond, "rank_deficient": bool(RANK_DEFICIENT),
                "coef": {x: [c[0], *ci(c)] for x, c in zip(added, cf)}}
         if cid in SIGN and len(added) == 1:
             c = cf[0]
@@ -253,7 +272,16 @@ def main(args):
     Sd, Sc = pd.read_parquet(args.d11_scores), pd.read_parquet(args.cur_scores)
     # declared order: the D3 / precision audits are labelled before the outcome analysis
     dpath, lpath = Path(args.diag_contexts), Path(args.diag_labels)
-    assert dpath.exists() and lpath.exists() or args.allow_missing_audit, "D3 audit not finished"
+    audit = None
+    if dpath.exists() and lpath.exists():
+        Dc = pd.read_csv(dpath, keep_default_na=False)
+        Lb = pd.read_csv(lpath, keep_default_na=False)
+        audit = Dc.merge(Lb[["audit", "verb", "variant", "k", "label"]], on=["audit", "verb", "variant", "k"], how="left")
+        ok = {"D3": {"verbal", "adjectival", "nominal", "other"}, "precision": {"finite active", "other"}}
+        bad = audit[[l not in ok[a] for a, l in zip(audit.audit, audit.label.fillna(""))]]
+        assert bad.empty, f"{len(bad)} audit rows unlabelled or with an unknown label"
+    else:
+        assert args.allow_missing_audit, "D3 / precision audit not finished"
     m = Sd[Sd.set == "freq"].merge(Sc[Sc.set == "freq"], on=["context_id", "frame", "verb"], suffixes=("", "_r5"))
     rep = float((m.lp - m.lp_r5).abs().max())
     assert rep <= 1e-3, f"D11 vs round-5 scores differ by {rep}"
@@ -310,7 +338,7 @@ def main(args):
         lines.append("")
         dec[name] = {"main": run_comparisons(pop, lines, rows)}
         lines.append("")
-        sens_ids = ("I1", "I3", "T2", "T3", "L1", "L2a", "L2b", "L2")
+        sens_ids = ("I1", "I3", "I5", "T2", "T3", "L1", "L2a", "L2b", "L2")  # I5 on curated = D1's sensitivities
         variants = [("token count added (log participle tokens)", dict(add_tok=True)),
                     ("c_total marked only", dict(swap={"C": "C_marked"})),
                     ("c_total upper bound", dict(swap={"C": "C_upper"})),
@@ -444,11 +472,8 @@ def main(args):
     rest = D2[~D2.verb.isin(top.verb)]
     lines += ["", f"Mean squared error on these 20 verbs: Zipf {se(top, 'pred_zipf'):.2f}, Pile {se(top, 'pred_pile'):.2f}; on the "
               f"other {len(rest)}: Zipf {se(rest, 'pred_zipf'):.2f}, Pile {se(rest, 'pred_pile'):.2f}.", ""]
-    if dpath.exists() and lpath.exists():
-        Dc = pd.read_csv(dpath, keep_default_na=False)
-        Lb = pd.read_csv(lpath, keep_default_na=False)
-        Dc = Dc.merge(Lb[["audit", "verb", "variant", "k", "label"]], on=["audit", "verb", "variant", "k"], how="left")
-        assert Dc.label.notna().all() and Dc.label.ne("").all(), "audit labels incomplete"
+    if audit is not None:
+        Dc = audit
         d3 = Dc[Dc.audit == "D3"]
         lines += ["- D3: Pile subsets and hand-labelled uses of sampled occurrences (variants in proportion to their counts):", "",
                   "| group | verbs | occurrences | top Pile subsets (share) | verbal | adjectival | nominal / name | other |",

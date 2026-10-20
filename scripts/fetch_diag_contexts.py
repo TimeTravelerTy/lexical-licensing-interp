@@ -17,7 +17,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import time
 from pathlib import Path
 
@@ -50,7 +49,7 @@ def call(body, tries=30, delay=0.8):
     raise SystemExit(f"failed: {body}")
 
 
-def sample(index, query, n, needle):
+def sample(index, query, n):
     f = call({"index": index, "query_type": "find", "query": query})
     segs, cnt = f["segment_by_shard"], int(f["cnt"])
     out = []
@@ -61,14 +60,17 @@ def sample(index, query, n, needle):
     for k, i in enumerate(np.unique(np.linspace(0, cnt - 1, min(n, cnt)).round().astype(int))):
         s = int(np.searchsorted(bounds, i, side="right"))
         r = segs[s][0] + int(i - (bounds[s - 1] if s else 0))
-        d = call({"index": index, "query_type": "get_doc_by_rank", "s": s, "rank": r, "max_disp_len": 80, "query": ""})
+        # passing the query marks the ranked occurrence itself (span label "0"); no relocation by regex
+        d = call({"index": index, "query_type": "get_doc_by_rank", "s": s, "rank": r, "max_disp_len": 80, "query": query})
         spans = d["spans"]
-        text = "".join(sp[0] for sp in spans) if isinstance(spans, list) else str(spans)
+        hit = [j for j, sp in enumerate(spans) if sp[1] is not None]
+        assert len(hit) == 1, f"expected one marked needle span, got {spans}"
+        j = hit[0]
+        pre_t, needle_t = "".join(sp[0] for sp in spans[:j]), spans[j][0]
+        post_t = "".join(sp[0] for sp in spans[j + 1:])
         meta = json.loads(d.get("metadata", "{}") or "{}")
         pile = meta.get("metadata", {}).get("meta", {}).get("pile_set_name", "")
-        occ = [m.start() for m in re.finditer(needle, text)]
-        o = min(occ, key=lambda x: abs(x - len(text) / 2)) if occ else len(text) // 2
-        snip = (text[max(0, o - 150):o] + "[[" + text[o:o + 40] + "]]" + text[o + 40:o + 120]).replace("\n", " ⏎ ")
+        snip = (pre_t[-150:] + "[[" + needle_t + "]]" + post_t[:120]).replace("\n", " ⏎ ")
         out.append({"k": k, "doc_ix": int(d["doc_ix"]), "pile_set": pile, "snippet": snip})
     return cnt, out
 
@@ -90,10 +92,19 @@ def main(args):
     top, bot = r.nlargest(10).index.tolist(), r.nsmallest(10).index.tolist()
     need = Vc.loc[top + bot].band.value_counts()
     pool = r.drop(top + bot).abs().sort_values()
+    raw = {b: 10 * n / 20 for b, n in need.items()}  # largest-remainder allocation summing to 10
+    alloc = {b: int(np.floor(x)) for b, x in raw.items()}
+    for b in sorted(raw, key=lambda b: raw[b] - alloc[b], reverse=True)[: 10 - sum(alloc.values())]:
+        alloc[b] += 1
     ctrl = []
-    for band, n in need.items():
-        ctrl += [v for v in pool.index if Vc.loc[v, "band"] == band][: max(1, round(10 * n / 20))]
-    ctrl = sorted(ctrl, key=lambda v: pool[v])[:10]
+    for b, n in alloc.items():
+        ctrl += [v for v in pool.index if Vc.loc[v, "band"] == b][:n]
+    for v in pool.index:  # refill from the smallest |residual| if a band lacked candidates
+        if len(ctrl) >= 10:
+            break
+        if v not in ctrl:
+            ctrl.append(v)
+    assert len(ctrl) == 10
     rows = []
     for group, verbs in (("Pile > Zipf", top), ("Pile < Zipf", bot), ("control", ctrl)):
         for v in verbs:
@@ -106,7 +117,7 @@ def main(args):
             for k in sorted(raw, key=lambda k: raw[k] - alloc[k], reverse=True)[: args.per_verb - sum(alloc.values())]:
                 alloc[k] += 1
             for name, (q, c) in var.items():
-                cnt, occ = sample(args.index, q, alloc[name], rf"(?<![A-Za-z]){re.escape(q.strip())}(?![A-Za-z])")
+                cnt, occ = sample(args.index, q, alloc[name])
                 rows += [{"audit": "D3", "group": group, "verb": v, "variant": name, "query": q, "count": cnt, **o} for o in occ]
             print(group, v, alloc, flush=True)
     rng = np.random.default_rng(args.seed)
@@ -119,7 +130,7 @@ def main(args):
         p = PAST.get(v, v)
         for pron in ("it", "she"):
             q = f"{pron} {p}"
-            cnt, occ = sample(args.index, q, 10, rf"(?<![A-Za-z]){re.escape(q)}(?![A-Za-z])")
+            cnt, occ = sample(args.index, q, 10)
             rows += [{"audit": "precision", "group": Vc.loc[v, "role"], "verb": v, "variant": pron, "query": q, "count": cnt, **o}
                      for o in occ]
         print("precision", v, flush=True)

@@ -60,6 +60,11 @@ def main(args):
         q += [(v, f"obj_{p}", "string", f"{p} {past} the", "") for p in FRAME]
         q += [(v, f"end_{p}", "string", f"{p} {past}.", "") for p in FRAME]
     Q = pd.DataFrame(q, columns=["verb", "slot", "kind", "query", "depends_on"])
+    # fetch order (the API is rate-limited): primary slots first, then B3 frame counts, then the secondary measures
+    tier = lambda sl: (0 if sl.startswith(("overall", "nl_", "be_", "perf_", "compa_")) else
+                       1 if sl.startswith(("obj_", "end_")) else 2 if sl.startswith("comp_") else 3)
+    Q["tier"] = Q.slot.map(tier)
+    Q = Q.sort_values(["tier"], kind="stable").drop(columns="tier").reset_index(drop=True)
     old = pd.read_csv(args.r5_counts)
     old_meta = json.loads((Path(args.r5_counts).parent / "meta.json").read_text())
     assert old_meta["index"] == args.index, f"round-5 counts come from {old_meta['index']}, not {args.index}"
