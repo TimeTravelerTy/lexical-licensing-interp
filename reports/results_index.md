@@ -1,4 +1,4 @@
-# Results index, rounds 1–5 (for paper planning; round 6 added when it reports)
+# Results index, rounds 1–6 (for paper planning)
 
 One row per experiment. Pythia-1.4B throughout unless stated. Numbers are
 copied from the cited report; CIs are 95% (bootstrap as in that report).
@@ -129,6 +129,22 @@ summarizes that part's predictions.
 | R5-D10c | FreqBLiMP passive_1 Yes/No on 1.4B / 6.9B / 12B | Yes for 97–100% of sentences; Head 0.50 / 0.45 / 0.40 | missed | `round5/d10c_yesno.md` | — | app (negative) | P1 |
 | R5-D11 | Expanded T/I verb list | 281 pairs (Head 47, Tail 132, XTail 102), 62 held out; κ = 0.88 | held (rule met) | `round5/d11_verbs.md` | — | app | P1 |
 
+## R6: frequency and entrenchment (paper 1)
+
+Declared in `round6/plan.md`; results in `round6/results.md`. "Declared"
+summarizes that part's predictions.
+
+| ID | Question | Key number [95% CI] | Declared | Report | Figure | Tag | Paper |
+|---|---|---|---|---|---|---|---|
+| R6-0 | Human FreqBLiMP judgments of passives by band | forced choice: `passive_1` correct among decided 94.6 → 85.7%, can't decide 18 → 38% (Head → XTail; 15 items per cell, descriptive) | — (descriptive) | `round6/human_passives.md` | — | app | P1 |
+| R6-A1 | Does Pile exposure (total, competing frame, BE/HAVE preference) predict Δ_pass? (D11) | I1 null → C +0.34 [+0.10, +0.62], C −0.73; T3 C → C + S +0.28 [+0.10, +0.50]; I3, T2 unresolved; Zipf beats Pile counts for Δ_pass(I) (I5 −0.135 [−0.246, −0.037]); sampled occurrences of the 10 most Pile-over-represented curated I verbs: 64% Books3 | mixed (I1, T3 held; I3, T2, I5, D1, D3 missed) | `round6/a1_exposure.md` | — | **main** | P1 |
+| R6-A2 | D11 frame contrast across Pythia 160M–12B, token-standardized | ΔL_tok (Tail − XTail) +0.89 to +1.66 at every size; 1.4B +0.99 [+0.43, +1.53], intransitive side (−ΔΔ_pass(I) +1.40); held-out pairs unresolved (+0.53 [−0.66, +1.63]) | held (except the size range: 1B 68% above 1.4B) | `round6/a2_suite_d11.md` | — | **main** | P1 |
+| R6-B3 | Symmetric entrenchment: object onset after rare I, clause end after rare T | log P(O \| I) Zipf slope −0.31 [−0.52, −0.11], side-specific −0.27 [−0.49, −0.06]; log P(. \| T) −0.69 [−0.89, −0.48], side-specific −0.61 [−1.01, −0.24]; ΔM_obj Head − XTail +0.82 (I side), ΔM_end +1.27 (T side) | held (both frames; every-size side specificity and the `transitive` item association not established) | `round6/b3_alternations.md` | — | **main** | P1 |
+| R6-C4 | Classify-from-z restore (class read from site-8 z) | rare singletons 31 / 32 correct, balanced accuracy 0.944 [0.833, 1.000]; curated affected margin +0.53 [+0.24, +0.83] = oracle | held (classification seen before declaration) | `round6/c4_classify.md` | — | **main** | P1+P2 |
+| R6-C5 | In-context preemption of rare intransitives | E_pre +1.17 [+0.89, +1.43] (raises Δ_pass(I), predicted lowers); beyond mention −1.13 [−1.40, −0.86]; other-verb +0.74; T control unresolved | missed (reversed) | `round6/c5_preemption.md` | — | app (negative) | P1 |
+| R6-A6 | When does the deficit appear in training, and does one exposure curve predict it? (1.4B, 410M, 6.9B checkpoints) | 1.4B Head − XTail deficit from step 256, peak ≈ 3 nats at steps 1000–3000, 1.21–1.63 from step 16000; curve collapse CC1 +0.044 [+0.005, +0.071] unresolved, usefulness vs step-only not established (holds from step 1000 and at 410M); stationarity diagnostic (lowercase single-token forms) shows no drift | mixed (deficit timing held; T-side at step 256; collapse predictions unresolved) | `round6/a6_checkpoints.md` | — | **main** | P1 |
+| R6-A7 | Fit controls on D11: matched fit, noun rarity, robustness | M_was XTail − Head −1.15 → −0.72 [−1.32, −0.13] at matched fit; L −1.06 [−1.75, −0.33]; noun effect on L +0.09 [−0.03, +0.21] (negligible), verb effect −1.28 | held | `round6/a7_fit_controls.md` | — | app | P1 |
+
 ## Suggested storyline (for discussion, not a decision)
 
 1. **Behaviour.** The passive frequency decline is a verb effect, not a
@@ -165,3 +181,19 @@ summarizes that part's predictions.
    (R5-B6). The switch neurons read the verb class in wh-gap frames too,
    only with a filler present (R5-C9). In natural text the top neuron fires
    on transitive verbs with a missing object (R5-B7).
+
+7. **Round 6: frequency, entrenchment and exposure.** On the 281-pair D11
+   inventory the deficit survives token-count standardization at every
+   size (R6-A2), matched plausibility and noun rarity (R6-A7). It is the
+   passive case of a general pattern: in object and clause-end frames
+   too, the rare verb that the frame does not suit leaves room for it
+   (R6-B3). Total Pile exposure predicts intransitive rejection and the
+   corpus BE/HAVE preference predicts transitive acceptance, but
+   competing-frame counts give no resolved gain and, for intransitive
+   rejection, Zipf beats the Pile counts (R6-A1). In training, the deficit appears by step 256–1000, is
+   largest around steps 1000–3000 and then narrows to a stable gap; one
+   exposure curve neither fits nor fails (R6-A6). In-context exposure
+   raises rather than lowers the passive preference (R6-C5). A rare
+   single-token verb's own early z carries its class, and an edit driven
+   by that label matches the oracle on the curated affected pairs
+   (R6-C4).

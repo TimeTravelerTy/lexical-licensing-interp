@@ -9,7 +9,8 @@ experiment:
 - 0: `../results_index.md` (paper tags), `human_passives.md`;
 - A1: `a1_exposure.md`; A2: `a2_suite_d11.md`;
 - B3: `b3_alternations.md`; C4: `c4_classify.md`; C5: `c5_preemption.md`;
-- A6: `a6_checkpoints.md`; A7: `a7_fit_controls.md`.
+- A6: `a6_checkpoints.md` (`a6_checkpoints_T.md`, `a6_checkpoints_L.md`
+  descriptive); A7: `a7_fit_controls.md`.
 
 TSUBAME jobs: 9069457 (A2, seven models; 160M stopped at a check), 9069909
 (A2, 160M rerun under the declared clarification), 9069908 (B3, C4; C5
@@ -25,6 +26,17 @@ of the 433 D11 verbs that round 5 had already scored with random numbers
 for the rest, and so printed partly real band contrasts before A2's
 analysis; they were not used and the mocks were replaced.
 
+Changes after outcomes were seen (each listed in its section): Codex
+reviewed every write-up against the plan and the generated reports, and
+that review led to these changes. (a) A6's curve-collapse bootstrap was
+changed to the declared within-band resampling; no verdict changed. (b)
+The declared A6 L sensitivity and the per-checkpoint band means and side
+parts were added. (c) A7's robustness table gained its declared side parts
+and the curated rows' readings. (d) Report-text fixes in B3 (a
+clause-end note) and the A6 Δ_pass(T) run (a mislabelled output). A6 ran
+before A1, on A1's complete c_total counts (identical to the final file),
+while A1's other counts were still being fetched.
+
 ## Summary
 
 - **Part 0.** Round 5 was already in the results index; every row now
@@ -33,6 +45,20 @@ analysis; they were not used and the mocks were replaced.
   only accuracy by band is reported: annotators also find rare passives
   harder (`passive_1` correct among decided 94.6 → 85.7%, can't-decide 18
   → 38% from Head to XTail), on 15 items per cell (descriptive).
+- **A1, Pile exposure.** Total Pile exposure predicts how strongly an
+  intransitive participle is rejected after "was" (I1: CV gain +0.34
+  [+0.10, +0.62], −0.73 nats per decade), and the corpus BE/HAVE
+  preference predicts transitive acceptance (T3: +0.28 [+0.10, +0.50]);
+  both survive Bonferroni, and every sensitivity except one alternative S
+  measure for T3 (BE vs pronoun frame: unresolved). Neither the
+  competing-frame count (I3) nor the passive-slot count (T2) gives a
+  resolved CV gain, and the competing-frame coefficient has the wrong sign
+  for preemption. wordfreq Zipf predicts intransitive rejection better
+  than the Pile counts themselves (I5), on D11 and the curated verbs. In
+  an occurrence sample for the ten curated intransitives that the Pile
+  most over-represents relative to Zipf, 64% come from Books3 fiction
+  ("grinned", "glared"), and 7 of the 10 are rejected after "was" less
+  than their counts predict.
 - **A2, the D11 frame contrast across the Pythia suite.** The rare-verb
   deficit replicates on the 281-pair inventory and survives token-count
   standardization.
@@ -52,7 +78,8 @@ analysis; they were not used and the mocks were replaced.
   for a period (log P(. | T) −0.69; intransitives unresolved). Both are
   side-specific; the Head − XTail deficits are on the predicted side
   (I-side for objects, T-side for clause ends). Side specificity is not
-  established at every suite size. Count analyses wait for A1.
+  established at every suite size. Total Pile exposure predicts both
+  side measures, as predicted.
 - **C4, classify-from-z restore.** Rare single-token verbs' own site-8 z
   gives their class (31 of 32 correct; θ fit on Head verbs), and an edit to the Head
   class target driven by that label matches the oracle on the curated
@@ -106,6 +133,120 @@ analysis; they were not used and the mocks were replaced.
   acceptable" and 7 "unknown words" as a reason; several reasons allowed). CIs are in the report; with 15 items per
   cell none of the band differences is resolved.
 
+## A1. Pile exposure: counts, BE/HAVE preference, model comparison
+
+Spec: `plan.md`, A1; report `a1_exposure.md`. Counts: 27,968 exact
+infini-gram counts on the Pile training index (24,313 fetched in round 6,
+3,655 reused from round 5; none approximate; `data/round6/counts/`).
+The D11 run reproduces round 5's scores for shared verbs exactly. The D3
+and precision audits (715 sampled occurrences) were labelled by Claude
+before the outcome analysis ran. The sampler had to choose the ranked
+occurrence when the API marked several in one window (23 of 715); the
+fix was made before any label existed.
+
+**Counts.** Median c_total, Head / Tail / XTail: I 1.99M / 168k / 18.6k;
+T 1.88M / 142k / 19.5k. The lowercase word-initial form carries 97–99% of
+c_total. 33 forms have an upper-bound count more than 50% above c_total
+(word-internal matches such as "lied" in "relied"), which is why the upper
+bound is only a sensitivity.
+
+**Primary family (D11, 281 pairs; CV Δ = MSE_a − MSE_b, 95% and
+Bonferroni 98.75% CIs).**
+
+| ID | comparison | Δ (95% CI) | Bonferroni 98.75% | decision | added coefficient | prediction |
+|---|---|---|---|---|---|---|
+| I1 | Δ_pass(I): null → C | +0.339 [+0.102, +0.618] | [+0.058, +0.696] | **b better** | C −0.73 [−0.98, −0.47] | **held** |
+| I3 | Δ_pass(I): C → C + K | +0.040 [−0.119, +0.203] | [−0.184, +0.258] | unresolved | K +0.59 [+0.24, +1.11] | **failed** (and K has the opposite sign) |
+| T2 | Δ_pass(T): C → C + B | +0.094 [−0.005, +0.239] | [−0.019, +0.295] | unresolved | B +0.94 [+0.41, +1.48] | **failed** (sign as predicted, no CV gain) |
+| T3 | Δ_pass(T): C → C + S | +0.276 [+0.101, +0.497] | [+0.067, +0.571] | **b better** | S +0.42 [+0.28, +0.57] | **held** |
+
+- Total exposure predicts intransitive rejection: verbs with larger Pile
+  counts have more negative Δ_pass(I) (−0.73 nats per decade). The
+  competing-frame count (anchored "that / when / and + pronoun + V-ed")
+  gives no resolved CV gain, and given C its coefficient is positive, the wrong
+  sign for preemption (C and K correlate +0.83, so the partial
+  coefficient is weakly identified).
+- The corpus BE/HAVE preference S predicts transitive acceptance: verbs
+  more often after be-forms than after have-forms (relative to the
+  inventory) are more probable after "was" relative to "has". Both slots
+  contribute (C → C + B + P: B +0.86, P −1.03; b better).
+- Every primary verdict is the same with the participle token count added,
+  with marked-only or upper-bound c_total, with smoothing 0.1 or 1, and
+  with the broad pronoun K or the Fisher or was-vs-has S. With S = BE vs
+  pronoun frame, T3 is unresolved (+0.099 [−0.000, +0.232]).
+- Curated 126 pairs (secondary): the same four verdicts (I1 +0.841, T3
+  +0.362 b better; I3, T2 unresolved). With the broad pronoun K, I3 reads
+  b better there, with K +2.03 (the wrong sign, so the direction
+  prediction still fails).
+
+**Secondary comparisons (D11).** I2 (C → K alone): a better, total
+exposure beats the competing frame alone. I4 (C → C + B): unresolved. I5
+(Zipf → C): **a better**: wordfreq Zipf predicts Δ_pass(I) better than
+the Pile count (−0.135 [−0.246, −0.037]; every sensitivity, curated too).
+T1 (null → C): unresolved. T4 (Zipf → C): unresolved. L1, L2a, L2b, L2:
+unresolved (S_T and K_I coefficients have the expected signs, +0.32 and
+−0.62, without CV gains). Single-token subset (a_V; descriptive): all
+four primary comparisons unresolved (65–69 verbs).
+
+**Correlations (descriptive).** Across D11 intransitives, Δ_pass(I)
+correlates −0.34 with log c_total, −0.40 with Zipf, −0.55 with log c_perf,
+and +0.68 with the corpus log-odds of "was v" versus "has v" (curated:
+−0.50, −0.58, −0.69, +0.76). For transitives the was-vs-has log-odds is
+also the strongest correlate (+0.48; curated +0.66).
+
+**Re-binning by counts.** Re-binning verbs by c_total (bin sizes = band
+sizes) moves few pairs (Head → bin 1: 43 of 47; XTail → bin 3: 94 of
+102). Top − bottom differences, count bins vs Zipf bands: −Δ_pass(I)
++1.49 [+0.90, +2.10] vs +1.77 [+1.17, +2.37] (difference −0.27 [−0.56,
++0.05]); Δ_pass(T) −0.59 [−1.07, −0.13] vs −0.36 [−0.84, +0.12]; L +1.18
+[+0.42, +1.89] vs +1.41 [+0.67, +2.12] (band means in the report). B1
+(band dummies → count-bin dummies): unresolved for Δ_pass(T), Δ_pass(I)
+and L.
+
+**Diagnostics.** No class × band has more than 1% zero counts for
+c_be or c_comp. In-sample R² is small (I1: 0.115; T3: 0.192); design condition
+numbers in the main D11 comparisons are at most 62 (C + K: 46; up to 129
+with the token-count covariate).
+
+**Diagnosis of the curated-I case** (round 5: Zipf beat Pile counts).
+- D1: with the new c_total the Zipf advantage on curated intransitives is
+  unchanged (MSE_C − MSE_Z +0.296 [+0.142, +0.487], 1.01 times round 5's;
+  the same with every count variant, including round 5's lowercase-only
+  count). Canonicalization does not explain it.
+- D2: the 20 curated I verbs whose Pile count departs most from Zipf.
+  Pile > Zipf: testified, grinned, glared, quivered, shuddered, panted,
+  gaped, shimmered, tottered, jutted. Pile < Zipf: peed, scrammed, lied,
+  eventuated, quacked, hitchhiked, drooled, colluded, stagnated, flirted.
+  Out of fold, Zipf predicts 13 of the 20 better (MSE 1.70 vs Pile 2.38).
+- D3 (why): the Pile-over-represented verbs are narrative-fiction verbs:
+  64% of their sampled occurrences come from Books3 (controls 40%; Pile <
+  Zipf 29%), plus FreeLaw for "testified", and 97% are verbal uses
+  (controls 93%; Pile < Zipf 95%). For 7 of the 10, Δ_pass(I) is less
+  negative than their large Pile counts predict. The counts weight
+  fiction description and dialogue-tag verbs ("grinned", "glared")
+  heavily, and the model does not reject most of these after "was" as
+  strongly as their counts suggest. The Pile-under-represented verbs are
+  also mostly verbal uses, with a few other senses or names (reactor
+  "scrammed", the surname "Peed").
+- Precision of the broad pronoun proxy: for the intransitives (competed,
+  glared, puttered) all 60 sampled "it / she p" occurrences are finite
+  active uses. For the transitives, "she p" is (25 of 25), but "it p" is
+  mostly a small clause or causative ("get it stowed", "have it
+  debugged": stowed 0 of 10, debugged 1 of 10, robbed 10 of 10).
+
+**Against the predictions.**
+- I1 b better, C < 0: **held**. I3 b better, K < 0: **failed** (unresolved;
+  K's partial coefficient positive). I2 and I4 do not improve on total
+  exposure: held. I5 unresolved on D11: **failed** (Zipf better).
+- T1 not b better: held. T2 b better, B > 0: **failed** (unresolved). T3 b
+  better, S > 0: **held**.
+- L2a or L2b b better: **failed** (both unresolved).
+- D1, the Zipf advantage at most half its round-5 size: **failed** (1.01×);
+  it does not reverse: held. D3, over-representation from technical
+  subsets or homographs: **failed** (fiction, Books3, verbal uses).
+- Count bins' rejection gradient at least as large as Head − XTail's:
+  **failed** (+1.49 vs +1.77; the difference is unresolved).
+
 ## A2. The D11 frame contrast across the Pythia suite
 
 Spec: `plan.md`, A2; report `a2_suite_d11.md`. All checks passed (1.4B
@@ -156,8 +297,8 @@ runner file on TSUBAME had been updated to the declared clarification
 (`f8ff21b`: tolerance 1e-3, checked after saving) before the B3 step began
 (pull before 14:03; B3 from 14:22), so B3 ran under it: batched-vs-single
 differences 3.1e-5 to 9.0e-4, four models above the original 1e-4 (160M
-9.0e-4, 410M 2.2e-4, 2.8B 1.2e-4, 12B 1.3e-4). The count analyses wait for
-A1's counts.
+9.0e-4, 410M 2.2e-4, 2.8B 1.2e-4, 12B 1.3e-4). The count analyses ran once
+A1's counts were complete.
 
 Inventory: D11 (T = non-alternating transitives, I = non-alternating
 intransitives). Frames "The N p" (primary) and "The N has v"; O = the
@@ -206,6 +347,16 @@ strict pronoun set at every size; the broad O set at 160M–1.4B (unresolved
 at 2.8B–12B, differences −0.16 to −0.20); "." at 410M–12B (unresolved at
 160M).
 
+**Against counts (1.4B, simple past; A1's counts; log token count in
+every model).** log P(O | I verb): adding log c_total helps (+0.066
+[+0.013, +0.126], b better; C −0.55 [−0.74, −0.34]: more frequent
+intransitives leave less room for an object), and the object-frame count
+Σ count("P p the") adds beyond it (+0.144 [+0.020, +0.253]; +0.57
+[+0.38, +0.76]). log P(. | T verb), eligible pairs: c_total helps (+0.176
+[+0.061, +0.318]; C −0.85 [−1.10, −0.59]); the clause-end count Σ
+count("P p.") gives no resolved gain (−0.012 [−0.055, +0.011]). Zero
+frame counts: XTail 13% (object) and 15% (clause end).
+
 **Released FreqBLiMP (descriptive association, 1.4B).** Item margin on the
 bad verb's side measure: `causative` −0.79 [−1.05, −0.52], negative (items
 whose bad intransitive leaves more room for an object have smaller
@@ -221,7 +372,9 @@ items: `causative` negative, held; `transitive` unresolved, so not
 supported. Suite, "the same side specificity at every size": **not
 established** (side-specific at 7 of 7 sizes for the strict pronouns, 6 of
 7 for ".", 4 of 7 for the broad O set; unresolved sizes give no support).
-Counts: pending A1.
+Counts: C < 0 with "b better" for both frames, **held**; frame counts add
+for the object frame, held, and not for the clause end (unresolved; low
+confidence).
 
 ## C4. Classify-from-z restore
 
