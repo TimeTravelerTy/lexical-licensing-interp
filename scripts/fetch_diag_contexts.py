@@ -60,18 +60,25 @@ def sample(index, query, n):
     for k, i in enumerate(np.unique(np.linspace(0, cnt - 1, min(n, cnt)).round().astype(int))):
         s = int(np.searchsorted(bounds, i, side="right"))
         r = segs[s][0] + int(i - (bounds[s - 1] if s else 0))
-        # passing the query marks the ranked occurrence itself (span label "0"); no relocation by regex
+        # passing the query marks the needle spans in the window (all occurrences, not only the ranked one)
         d = call({"index": index, "query_type": "get_doc_by_rank", "s": s, "rank": r, "max_disp_len": 80, "query": query})
         spans = d["spans"]
+        if isinstance(spans, str):
+            import ast
+            spans = ast.literal_eval(spans)
         hit = [j for j, sp in enumerate(spans) if sp[1] is not None]
-        assert len(hit) == 1, f"expected one marked needle span, got {spans}"
-        j = hit[0]
+        assert hit, f"no marked needle span: {spans}"
+        # every occurrence of the needle in the window is marked; the ranked one starts at token needle_offset of the
+        # disp_len-token window, so take the marked span whose character start is closest to that relative position
+        starts = np.cumsum([0] + [len(sp[0]) for sp in spans])[:-1]
+        target = d["needle_offset"] / max(d["disp_len"], 1) * sum(len(sp[0]) for sp in spans)
+        j = min(hit, key=lambda j: abs(starts[j] - target))
         pre_t, needle_t = "".join(sp[0] for sp in spans[:j]), spans[j][0]
         post_t = "".join(sp[0] for sp in spans[j + 1:])
         meta = json.loads(d.get("metadata", "{}") or "{}")
         pile = meta.get("metadata", {}).get("meta", {}).get("pile_set_name", "")
         snip = (pre_t[-150:] + "[[" + needle_t + "]]" + post_t[:120]).replace("\n", " ⏎ ")
-        out.append({"k": k, "doc_ix": int(d["doc_ix"]), "pile_set": pile, "snippet": snip})
+        out.append({"k": k, "doc_ix": int(d["doc_ix"]), "pile_set": pile, "n_marked": len(hit), "snippet": snip})
     return cnt, out
 
 

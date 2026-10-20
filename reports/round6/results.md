@@ -45,6 +45,35 @@ analysis; they were not used and the mocks were replaced.
     transitives are, if anything, accepted more (ΔΔ_pass(T) −0.41).
   - The held-out (DAS-unexposed) pairs point the same way at every size
     but are too few to resolve (1.4B three-cell +0.53 [−0.66, +1.63]).
+- **B3, other alternations.** The symmetric entrenchment prediction holds
+  in both frames tested on D11. After "The N V-ed", rarer intransitives
+  leave more room for an object (log P(O | I) falls with Zipf, −0.31 per
+  unit; transitives flat) and rarer obligatory transitives leave more room
+  for a period (log P(. | T) −0.69; intransitives unresolved). Both are
+  side-specific; the Head − XTail deficits are on the predicted side
+  (I-side for objects, T-side for clause ends). Side specificity is not
+  established at every suite size. Count analyses wait for A1.
+- **C4, classify-from-z restore.** Rare verbs' own site-8 z gives their
+  class (31 of 32 correct; θ fit on Head verbs), and an edit to the Head
+  class target driven by that label matches the oracle on the curated
+  affected pairs (+0.53 nats) without changing Head pairs, unaffected
+  items or Pile loss.
+- **C5, in-context preemption: not supported, reversed.** Repeating a rare
+  intransitive's own past form in the context makes "was V-ed" relatively
+  more probable (Δ_pass(I) +1.17 against filler), not less; exact-form
+  mentions do so more; nominal (-ing) mentions show no resolved effect.
+  Context effects, not preemption, dominate.
+- **A6, training dynamics.** The deficit appears early (1.4B: from step
+  256–1000) and peaks at about 3 nats around steps 1000–3000, while
+  frequent intransitives are already rejected after "was" and rare ones
+  are still accepted. Rare verbs then catch up partway, and over the last
+  ~90% of training the gap is flat (≈ 1.4 nats). Whether one exposure
+  curve predicts all verbs is unresolved (curve collapse neither holds nor
+  fails); training-stream rates are stationary.
+- **A7, fit controls.** The D11 deficit survives matched plausibility (M_was
+  XTail − Head −0.72 [−1.32, −0.13] at matched fit), does not come from
+  rare nouns in the context (noun effect negligible), and reads a deficit
+  under every prefix set and model size.
 
 ## Part 0: housekeeping
 
@@ -304,6 +333,87 @@ arm minus the length-matched filler arm):
   effect is near 0 and unresolved).
   Raw log-probs rise after both auxiliaries in the preemptive and mention
   arms: held. Less after "was" in the preemptive arm: failed (more).
+
+## A6. Checkpoints: when the deficit appears, and whether exposure predicts it
+
+Spec: `plan.md`, A6; report `a6_checkpoints.md` (Δ_pass(T) version,
+descriptive: `a6_checkpoints_T.md`). Job 9070046: all 16 + 16 + 6
+checkpoints scored, none missing, every check passed (reconstruction ≤
+4.5e-5, h deviation 0); the final checkpoints reproduce A2. The analysis
+used A1's c_total (the four c_total query families, complete) before A1's
+other counts had finished; the values are those of the final count file.
+
+**Stationarity (diagnostic).** Slice-count rate ratio, last to first: Head
+single-token participles 1.010 [0.996, 1.025], Tail 1.015 [0.957, 1.077];
+stationary within ±20% (the ten most frequent Head verbs individually
+0.96–1.05).
+
+**Trajectories, 1.4B** (L by band, Head / Tail / XTail; ΔL Head − XTail;
+ΔL_tok):
+
+| step | L | ΔL Head − XTail | ΔL_tok | Δ_pass(I) Head / XTail | Head AUC |
+|---|---|---|---|---|---|
+| 64 | +0.07 / −0.05 / +0.02 | +0.06, negligible | −0.02, negligible | +0.06 / +0.05 | 0.54 |
+| 256 | +0.28 / −0.07 / −0.09 | +0.37 [+0.14, +0.62], deficit, **T-side** | −0.02, negligible | +0.25 / +0.28 | 0.69 |
+| 512 | +1.78 / +0.06 / +0.02 | +1.76, deficit, I-side | −0.11, unresolved | −1.19 / +1.09 | 0.90 |
+| 1000 | +3.19 / +1.06 / +0.17 | +3.03, deficit, I-side | +0.66 [+0.21, +1.12], deficit | −2.95 / +0.40 | 0.95 |
+| 4000 | +3.32 / +2.21 / +0.94 | +2.38, deficit, I-side | +1.52, deficit | −2.95 / −0.12 | 0.93 |
+| 16000 | +3.07 / +2.44 / +1.70 | +1.37, deficit, I-side | +1.07, deficit | −2.79 / −1.03 | 0.92 |
+| 143000 | +3.37 / +2.56 / +1.96 | +1.41 [+0.70, +2.15], deficit, I-side | +0.99 [+0.44, +1.55], deficit | −2.89 / −1.12 | 0.93 |
+
+- The deficit reads "deficit" at every 1.4B checkpoint from step 256
+  (Head − XTail) and from step 1000 (token-standardized); 410M from 512 and
+  2000; 6.9B at every checkpoint scored (from 512; token-standardized from
+  2000). Descriptive onset, no simultaneous inference.
+- Shape: Head intransitives are rejected after "was" by step 1000 (−2.95),
+  while XTail intransitives are still accepted after "was" at steps
+  512–3000 (Δ_pass(I) +0.4 to +1.1). The Head − XTail gap peaks at about
+  3 nats (steps 1000–3000) and shrinks as rare intransitives catch up
+  (XTail Δ_pass(I) +0.49 at 3000 → −1.03 at 16000); from step 16000 to the
+  end (about 90% of training) it is flat (+1.37 → +1.41; XTail −1.03 →
+  −1.12). 410M and 6.9B show the same shape.
+
+**Curve collapse (Δ_pass(I), 1.4B, primary).** CV MSE: exposure-only M_E
+2.123, frequency + step M_Cg 2.077, free 2D M_2D 2.029, step-only M_g
+2.237.
+- CC1 (M_E → M_2D): +0.044 [+0.007, +0.070] → **unresolved** (neither
+  holds nor fails).
+- CC2 (M_E → M_Cg): +0.021 [−0.014, +0.049] → unresolved.
+- Usefulness (M_g → M_E): +0.051 [−0.005, +0.107] → **not established**.
+- **Curve collapse is not supported** (and not rejected). Step terms add
+  beyond exposure (M_E → M_Eg +0.065 [+0.041, +0.087], diagnostic); at
+  matched exposure, later checkpoints have slightly higher Δ_pass(I) (mean
+  +0.08 over 226,550 matched cell pairs).
+- Steps ≥ 1000: M_E useful (+0.079 [+0.029, +0.129]); CC1 +0.022 [−0.020,
+  +0.053] and CC2 unresolved. Steps ≥ 4000: CC1 +0.034 [−0.010, +0.072],
+  unresolved; M_E not useful by the 2% rule (+0.054 [+0.006, +0.102]).
+  c_marked in place of c_total: identical to three decimals.
+- 410M (replication): M_E useful (+0.079 [+0.025, +0.134]); CC1 +0.025
+  [−0.009, +0.047] and CC2 +0.002 unresolved; the same for steps ≥ 1000
+  and ≥ 4000 (M_E useful in both). 6.9B (6 steps, descriptive): collapse
+  fails (+0.086 [+0.044, +0.113]), frequency + step more predictive
+  (+0.070 [+0.031, +0.099]), M_E not useful; from step 1000 (5 steps), CC1
+  and CC2 unresolved and M_E useful.
+
+- Δ_pass(T) (descriptive, `a6_checkpoints_T.md`): exposure predicts
+  transitive acceptance worse than step terms alone (1.4B M_g → M_E
+  −0.030 [−0.055, −0.013]; 410M −0.017), as expected when Δ_pass(T) has
+  little frequency trend.
+
+**Against the predictions.**
+- 1.4B deficit from step 2000 onward: **held** (from 256). ΔL_tok deficit
+  at the final step: held. Intransitive-side wherever it reads deficit:
+  **failed at one checkpoint** (step 256, Head − XTail +0.37, T-side);
+  held at every step from 512. Head AUC above 0.9 by step 4000: held (0.90
+  at 512, 0.95 at 1000).
+- All steps: M_E useful — **not established**; CC1 collapse fails —
+  **not established** (unresolved); steps ≥ 4000 collapse holds — not
+  established (unresolved); CC2 unresolved — as predicted.
+- 410M, the same readings: trajectory readings held (deficit from 512,
+  intransitive-side wherever it reads deficit, AUC 0.94 by 1000); on the
+  collapse, 410M differs from 1.4B in that M_E is useful, and CC1 is
+  unresolved in both. 6.9B deficit at every step ≥ 2000: held.
+  Stationarity holds: held.
 
 ## A7. Fit controls and robustness
 

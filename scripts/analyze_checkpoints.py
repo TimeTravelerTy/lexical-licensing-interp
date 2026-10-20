@@ -283,11 +283,12 @@ def main(args):
                                                    "logE": np.log10(c * s_ / TOTAL), "delta_pass_I": YI[s_][0]}))
         lines.append("")
     out = Path(args.res_dir)
+    sfx = "_T" if args.outcome == "T" else ""  # the descriptive T run must not overwrite the primary outputs
     Path(args.report).write_text("\n".join(lines) + "\n")
-    pd.DataFrame(rows).to_csv(out / "a6_summary.csv", index=False)
-    (out / "a6_decisions.json").write_text(json.dumps(dec, indent=1, default=float))
+    pd.DataFrame(rows).to_csv(out / f"a6_summary{sfx}.csv", index=False)
+    (out / f"a6_decisions{sfx}.json").write_text(json.dumps(dec, indent=1, default=float))
     if cells:
-        pd.concat(cells).to_csv(out / "a6_cells.csv", index=False)
+        pd.concat(cells).to_csv(out / f"a6_cells{sfx}.csv", index=False)
     print("\n".join(lines))
 
 
