@@ -1,4 +1,4 @@
-# Results index, rounds 1–6 (for paper planning)
+# Results index, rounds 1–7 (for paper planning)
 
 One row per experiment. Pythia-1.4B throughout unless stated. Numbers are
 copied from the cited report; CIs are 95% (bootstrap as in that report).
@@ -144,6 +144,18 @@ summarizes that part's predictions.
 | R6-C5 | In-context preemption of rare intransitives | E_pre +1.17 [+0.89, +1.43] (raises Δ_pass(I), predicted lowers); beyond mention −1.13 [−1.40, −0.86]; other-verb +0.74; T control unresolved | missed (reversed) | `round6/c5_preemption.md` | — | app (negative) | P1 |
 | R6-A6 | When does the deficit appear in training, and does one exposure curve predict it? (1.4B, 410M, 6.9B checkpoints) | 1.4B Head − XTail deficit from step 256, peak ≈ 3 nats at steps 1000–3000, 1.21–1.63 from step 16000; curve collapse CC1 +0.044 [+0.005, +0.071] unresolved, usefulness vs step-only not established (holds from step 1000 and at 410M); stationarity diagnostic (lowercase single-token forms) shows no drift | mixed (deficit timing held; T-side at step 256; collapse predictions unresolved) | `round6/a6_checkpoints.md` | — | **main** | P1 |
 | R6-A7 | Fit controls on D11: matched fit, noun rarity, robustness | M_was XTail − Head −1.15 → −0.72 [−1.32, −0.13] at matched fit; L −1.06 [−1.75, −0.33]; noun effect on L +0.09 [−0.03, +0.21] (negligible), verb effect −1.28 | held | `round6/a7_fit_controls.md` | — | app | P1 |
+
+## R7: per-verb trajectories (paper 1)
+
+Declared in `round7/plan.md`; A8 reanalyses A6's checkpoint scores (no new
+runs). Pythia-1.4B primary, 410M replication, 6.9B descriptive.
+
+| ID | Question | Key number [95% CI] | Declared | Report | Figure | Tag | Paper |
+|---|---|---|---|---|---|---|---|
+| R7-A8a | Does a rare intransitive stop preferring "was" earlier than its own exposure predicts? (per-verb onset vs Pile count) | β_on −0.39 [−0.54, −0.28] (count equivalence: −1); Tobit −0.62 [−0.90, −0.37], maturity floor −0.59 [−0.86, −0.37]; median log10 own exposure at onset Head 3.57 / Tail 3.07 / XTail 2.65 | held at 1.4B, robust to censoring; 410M "held, not robust to censoring" (maturity floor includes −1); without persistence no frequency effect | `round7/a8_trajectories.md` | `round7/figures/a8_f2_onset_1.4b.png` | **main** | P1 |
+| R7-A8b | Late in training (steps ≥ 16000), is the between-verb frequency gradient what further exposure does within a verb? | β_b −0.75 [−0.98, −0.50], β_w −0.02 [−0.23, +0.18], β_b − β_w −0.73 [−1.04, −0.43], −0.73 after common-curve calibration; 410M −0.45 [−0.77, −0.11]; 6.9B (3 steps) −0.18 [−0.49, +0.15] | held (1.4B, 410M; β_w near 0 only at 1.4B, and that prediction was informed by A6's band means) | `round7/a8_trajectories.md` | `round7/figures/a8_f3_late_slopes.png` | **main** | P1 |
+| R7-A8c | At matched own exposure, do rare and frequent intransitives cross? (exposure-aligned curves) | Q1 − Q5 negative at log10 E 3.0–3.6 (≈ −1.2), grid ends at the sign change (+0.25 [−0.40, +0.93] at 3.9); Zipf XTail − Head crosses near 3.8 (descriptive sensitivity; survives the simultaneous band, per-verb alignment and common-curve calibration, but not steps ≥ 512: its negative side needs Head verbs before step 512); A6's matched diagnostic reproduced, +0.080 [−0.168, +0.356] | missed (primary, all sizes: no resolved positive point at 1.4B / 410M, insufficient overlap at 6.9B) | `round7/a8_trajectories.md` | `round7/figures/a8_f1_exposure_1.4b.png` | app | P1 |
+| R7-A8d | When does T vs I separation appear in each band, relative to the XTail onsets? | separation step Head 256 / Tail 1000 / XTail 3000 (1.4B); XTail median onset 3,418; per-verb split-half r_SB ≥ 0.97 at every step | — (descriptive) | `round7/a8_trajectories.md` | — | app | P1 |
 
 ## Suggested storyline (for discussion, not a decision)
 

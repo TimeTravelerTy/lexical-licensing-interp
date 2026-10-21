@@ -1,0 +1,3814 @@
+{
+ "pythia-1.4b": {
+  "steps": [
+   64,
+   128,
+   256,
+   512,
+   1000,
+   2000,
+   3000,
+   4000,
+   6000,
+   10000,
+   16000,
+   25000,
+   40000,
+   63000,
+   100000,
+   143000
+  ],
+  "reliability": {
+   "r_half_I": [
+    0.997084779371064,
+    0.9970716748960449,
+    0.9953911162565353,
+    0.9974103258592768,
+    0.9954823711379861,
+    0.9905624972900314,
+    0.9882787701442812,
+    0.9829644432351274,
+    0.9782209269510632,
+    0.9782579403835175,
+    0.9747324227410108,
+    0.9713403551070183,
+    0.9669783749280839,
+    0.9709219434799488,
+    0.9676626933029204,
+    0.9677168567368174
+   ],
+   "r_SB_I": [
+    0.9985402619563031,
+    0.9985336905326107,
+    0.9976902354100328,
+    0.9987034841528573,
+    0.9977360717752483,
+    0.995258876461896,
+    0.9941048357847385,
+    0.9914090457733676,
+    0.9889905759502282,
+    0.9890094920522511,
+    0.9872045564411625,
+    0.9854618484227063,
+    0.9832120040093866,
+    0.9852464697466863,
+    0.9835656249380842,
+    0.9835936033415298
+   ],
+   "flagged_steps": [],
+   "r_SB_T": [
+    0.9986197225907809,
+    0.9987636217284165,
+    0.9977929675284692,
+    0.9963918516067073,
+    0.9942217803618247,
+    0.9893513608621799,
+    0.9855729736950805,
+    0.9803828592120234,
+    0.9804075015564333,
+    0.9749667514424686,
+    0.9759874997291723,
+    0.972955350265891,
+    0.971200411413514,
+    0.9724299246448037,
+    0.9694697125116658,
+    0.9688129039571074
+   ],
+   "r_SB_I_band": {
+    "head": [
+     0.9981789692294428,
+     0.9986172128151939,
+     0.9990978989390001,
+     0.9995294956238624,
+     0.9978949225000394,
+     0.9956079590619215,
+     0.9938902049785437,
+     0.9931349494523486,
+     0.990675918145101,
+     0.9909657378245484,
+     0.9909879499424337,
+     0.9907745880317074,
+     0.9895073356691568,
+     0.9898634625967926,
+     0.9894753029719696,
+     0.9888914486426551
+    ],
+    "tail": [
+     0.9984617422089755,
+     0.9983675529559862,
+     0.9975910808891286,
+     0.9979489662744105,
+     0.9961316987018166,
+     0.9930076791715666,
+     0.9921830183823094,
+     0.9884730714819007,
+     0.985836609466807,
+     0.9865089173873528,
+     0.98586883766577,
+     0.9826178147189515,
+     0.9817632454578921,
+     0.9812437271307015,
+     0.981893741806021,
+     0.982183612189379
+    ],
+    "xtail": [
+     0.9987713726262604,
+     0.9987560260507247,
+     0.9976014638099964,
+     0.997094405361854,
+     0.9949187440943105,
+     0.9894530054229889,
+     0.9866846331820938,
+     0.9846289037791216,
+     0.984362310655722,
+     0.9850383989444816,
+     0.9836437358406543,
+     0.9828043245970266,
+     0.9762941091275025,
+     0.9811128171948819,
+     0.9774265395288022,
+     0.9767420852154387
+    ]
+   },
+   "onset_r_half": 0.9317244470482016,
+   "onset_splits_finite": 200,
+   "onset_mean_verbs": 206.255,
+   "onset_censoring_agreement": 0.9294128113879003
+  },
+  "onset": {
+   "primary (crossers, + log n_tok)": {
+    "beta_on": [
+     -0.390998769236747,
+     -0.5384459439357124,
+     -0.2758805441542528
+    ],
+    "label": "held",
+    "n": 215,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(d) no token covariate": {
+    "beta_on": [
+     -0.4231713370459745,
+     -0.5185999002351196,
+     -0.3544791832290462
+    ],
+    "label": "held",
+    "n": 215,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "lenient end (persistence shortened at the last two steps)": {
+    "beta_on": [
+     -0.45026079586284706,
+     -0.6385633457262124,
+     -0.3122908027849101
+    ],
+    "label": "held",
+    "n": 219,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(a) no persistence": {
+    "beta_on": [
+     0.0022348808019951854,
+     -0.20668333049114307,
+     0.16626296939165844
+    ],
+    "label": "no frequency effect on onset",
+    "n": 148,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(b) threshold \u22121": {
+    "beta_on": [
+     -0.4404558419947419,
+     -0.5608632598646285,
+     -0.276739333246306
+    ],
+    "label": "held",
+    "n": 195,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(c) Tobit (all verbs, + log n_tok)": {
+    "beta_on": [
+     -0.6196297521085012,
+     -0.9035332904065798,
+     -0.37420361732024016
+    ],
+    "label": "held",
+    "n": 281,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(e) Tobit, maturity floor (onsets \u2264 512 left-censored)": {
+    "beta_on": [
+     -0.5850242591734509,
+     -0.8625464795894174,
+     -0.37244353936266583
+    ],
+    "label": "held",
+    "n": 281,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(f) checkpoint-interval censored (all verbs, + log n_tok)": {
+    "beta_on": [
+     -0.6237938172184849,
+     -0.905013564780761,
+     -0.37561854155650337
+    ],
+    "label": "held",
+    "n": 281,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "verdict": "held"
+  },
+  "late": {
+   "window": [
+    16000,
+    25000,
+    40000,
+    63000,
+    100000,
+    143000
+   ],
+   "beta_b": [
+    -0.7473852250399581,
+    -0.9784535507394959,
+    -0.5016245328994375
+   ],
+   "beta_b_ntok": [
+    -1.052179414057373,
+    -1.3908712722715735,
+    -0.6940625710702343
+   ],
+   "beta_w": [
+    -0.018559129122270368,
+    -0.22515996223876822,
+    0.17582326797749614
+   ],
+   "beta_w_90": [
+    -0.19626114966329886,
+    0.14719204317894394
+   ],
+   "diff": [
+    -0.7288260959176878,
+    -1.0413268815700918,
+    -0.4323260195485888
+   ],
+   "gamma": [
+    0.029442294093658686,
+    -0.13544055425253626,
+    0.19585362582904342
+   ],
+   "beta_t_at_mean_x": [
+    -0.018559129122270417,
+    -0.22426909205682485,
+    0.17506257328031086
+   ],
+   "diff_null": [
+    -0.0003908190618135965,
+    -0.054822546311609946,
+    0.046899123565581
+   ],
+   "diff_calibrated": [
+    -0.7284352768558742,
+    -1.045302131040056,
+    -0.42317340543173254
+   ],
+   "gamma_null": [
+    -0.006661078112896947,
+    -0.3240635530100877,
+    0.353736035127505
+   ],
+   "gamma_calibrated": [
+    0.036103372206555635,
+    -0.3019439510595972,
+    0.34935204203694703
+   ],
+   "main": "held",
+   "verdict": "held (also beyond the fitted common exposure curve)",
+   "calibrated_reading": "below 0",
+   "beta_b_near_A1": "held",
+   "beta_w_near_0": "held",
+   "gamma_label": "unresolved",
+   "gamma_calibrated_label": "unresolved",
+   "flagged_window_steps": [],
+   "null_fit_valid_draws": 2000
+  },
+  "curves": {
+   "quintile|all|bin|Q1 \u2212 Q5": {
+    "grid": [
+     3.0,
+     3.9
+    ],
+    "n": 10,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.8492269760305495
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6
+    ],
+    "pos_points": [],
+    "crit_sim": 2.369238410563267,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|verb|Q1 \u2212 Q5": {
+    "grid": [
+     3.0,
+     4.0
+    ],
+    "n": 11,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.762959123837587
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5
+    ],
+    "pos_points": [],
+    "crit_sim": 2.439401832852569,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|bin|Q1 \u2212 Q2": {
+    "grid": [
+     1.3,
+     3.9
+    ],
+    "n": 27,
+    "reading": "crossing (reversed order)",
+    "simultaneous": "crossing (reversed order)",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.028521058052977,
+     2.268862009580616,
+     2.426836364412214,
+     3.141533121877608
+    ],
+    "neg_points": [
+     2.6,
+     2.7,
+     2.8
+    ],
+    "pos_points": [
+     1.3,
+     1.4,
+     1.5,
+     1.6,
+     1.7,
+     1.8,
+     1.9
+    ],
+    "crit_sim": 2.7676031476084395,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (reversed order)",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|verb|Q1 \u2212 Q2": {
+    "grid": [
+     1.4,
+     4.0
+    ],
+    "n": 27,
+    "reading": "crossing (reversed order)",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.069855988316855,
+     3.077759714708038
+    ],
+    "neg_points": [
+     2.8,
+     2.9
+    ],
+    "pos_points": [
+     1.4,
+     1.5,
+     1.6,
+     1.7,
+     1.8,
+     1.9
+    ],
+    "crit_sim": 2.8516465822443844,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (reversed order)",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|bin|Q2 \u2212 Q3": {
+    "grid": [
+     1.7,
+     4.6
+    ],
+    "n": 30,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "crossing (non-monotonic: both orders)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     2.341812152246455,
+     2.758906412835892,
+     2.9862903031408123,
+     3.4825912140905206
+    ],
+    "neg_points": [
+     2.4,
+     2.5,
+     2.6,
+     3.2,
+     3.3
+    ],
+    "pos_points": [
+     1.9,
+     2.0,
+     2.1,
+     2.2,
+     3.7,
+     4.2,
+     4.3,
+     4.4
+    ],
+    "crit_sim": 2.785456366240465,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|all|verb|Q2 \u2212 Q3": {
+    "grid": [
+     1.8,
+     4.6
+    ],
+    "n": 29,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.3666314764039424,
+     3.479918610672134
+    ],
+    "neg_points": [
+     2.6,
+     2.7,
+     3.2
+    ],
+    "pos_points": [
+     1.9,
+     2.0,
+     2.1,
+     2.2,
+     4.0,
+     4.1,
+     4.2,
+     4.3,
+     4.4
+    ],
+    "crit_sim": 2.887951789135063,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|all|bin|Q3 \u2212 Q4": {
+    "grid": [
+     2.2,
+     5.0
+    ],
+    "n": 29,
+    "reading": "crossing (reversed order)",
+    "simultaneous": "crossing (reversed order)",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.7533666711855553,
+     3.2051036264952386,
+     3.4357572778486642,
+     3.8868359197239775
+    ],
+    "neg_points": [
+     2.9,
+     3.0,
+     3.1
+    ],
+    "pos_points": [
+     2.2,
+     2.3,
+     2.4,
+     2.5,
+     2.6,
+     2.7
+    ],
+    "crit_sim": 2.7378626469574723,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (reversed order)",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|verb|Q3 \u2212 Q4": {
+    "grid": [
+     2.1,
+     5.0
+    ],
+    "n": 30,
+    "reading": "crossing (reversed order)",
+    "simultaneous": "crossing (reversed order)",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.756636303237815,
+     3.2432618161711186,
+     3.3148735363925548,
+     3.9090013752075885
+    ],
+    "neg_points": [
+     2.9,
+     3.0
+    ],
+    "pos_points": [
+     2.1,
+     2.2,
+     2.3,
+     2.4,
+     2.5,
+     2.6,
+     2.7
+    ],
+    "crit_sim": 2.8097844505516396,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (reversed order)",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|bin|Q4 \u2212 Q5": {
+    "grid": [
+     3.0,
+     5.4
+    ],
+    "n": 25,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "crossing (reversed order)",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.103836556718049,
+     4.093236909099398,
+     4.3000726092404085,
+     4.4320205654034694
+    ],
+    "neg_points": [
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9
+    ],
+    "pos_points": [
+     3.0,
+     4.9,
+     5.0,
+     5.1
+    ],
+    "crit_sim": 2.606655480905453,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|all|verb|Q4 \u2212 Q5": {
+    "grid": [
+     3.0,
+     5.4
+    ],
+    "n": 25,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.0131869059971454,
+     4.577162635180501
+    ],
+    "neg_points": [
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "pos_points": [],
+    "crit_sim": 2.6932304761924515,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|all|bin|XTail \u2212 Head": {
+    "grid": [
+     3.0,
+     4.2
+    ],
+    "n": 13,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     3.8310758398750178
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7
+    ],
+    "pos_points": [
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.4073908101618984,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|verb|XTail \u2212 Head": {
+    "grid": [
+     3.0,
+     4.2
+    ],
+    "n": 13,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     3.7962864904987477
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5
+    ],
+    "pos_points": [
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.5328029769081604,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|bin|XTail \u2212 Tail": {
+    "grid": [
+     1.9,
+     4.2
+    ],
+    "n": 24,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "crossing (non-monotonic: both orders)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     2.6132909302124028,
+     3.0887494444784043,
+     3.214464148725291,
+     3.540926401512647
+    ],
+    "neg_points": [
+     2.7,
+     2.8,
+     2.9,
+     3.0
+    ],
+    "pos_points": [
+     1.9,
+     2.0,
+     2.1,
+     2.2,
+     2.3,
+     2.4,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.7660556276468777,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|verb|XTail \u2212 Tail": {
+    "grid": [
+     1.9,
+     4.2
+    ],
+    "n": 24,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "crossing (non-monotonic: both orders)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     2.346149233228483,
+     3.2903174212965136
+    ],
+    "neg_points": [
+     2.8,
+     2.9,
+     3.0
+    ],
+    "pos_points": [
+     1.9,
+     2.0,
+     2.1,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.7455677130679446,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|bin|Tail \u2212 Head": {
+    "grid": [
+     3.0,
+     5.2
+    ],
+    "n": 23,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     4.05967814390133
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9
+    ],
+    "pos_points": [
+     4.2,
+     4.3,
+     4.6,
+     4.7,
+     4.8,
+     4.9,
+     5.0,
+     5.1,
+     5.2
+    ],
+    "crit_sim": 2.59882930799944,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|verb|Tail \u2212 Head": {
+    "grid": [
+     3.0,
+     5.2
+    ],
+    "n": 23,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     4.297682025644951
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0
+    ],
+    "pos_points": [
+     4.7,
+     4.8,
+     4.9,
+     5.0,
+     5.1,
+     5.2
+    ],
+    "crit_sim": 2.6576368911667094,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|bin|Q1 \u2212 Q5": {
+    "grid": [
+     3.9,
+     3.9
+    ],
+    "n": 1,
+    "reading": "insufficient overlap (one grid point)",
+    "simultaneous": "\u2014",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [],
+    "crit_sim": 1.9738706494821963,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "insufficient overlap (one grid point)",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|verb|Q1 \u2212 Q5": {
+    "grid": [
+     3.9,
+     4.0
+    ],
+    "n": 2,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [
+     3.9,
+     4.0
+    ],
+    "crit_sim": 2.0756543383230004,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|bin|Q1 \u2212 Q2": {
+    "grid": [
+     2.2,
+     3.9
+    ],
+    "n": 18,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.268862009580616,
+     2.426836364412214,
+     3.141533121877608
+    ],
+    "neg_points": [
+     2.6,
+     2.7,
+     2.8
+    ],
+    "pos_points": [],
+    "crit_sim": 2.5852732557536053,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|verb|Q1 \u2212 Q2": {
+    "grid": [
+     2.3,
+     4.0
+    ],
+    "n": 18,
+    "reading": "only negative where resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.077759714708038
+    ],
+    "neg_points": [
+     2.8,
+     2.9
+    ],
+    "pos_points": [],
+    "crit_sim": 2.6581716963306503,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|bin|Q2 \u2212 Q3": {
+    "grid": [
+     2.7,
+     4.6
+    ],
+    "n": 20,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     2.758906412835892,
+     2.9862903031408123,
+     3.4825912140905206
+    ],
+    "neg_points": [
+     3.2,
+     3.3
+    ],
+    "pos_points": [
+     3.7,
+     4.2,
+     4.3,
+     4.4
+    ],
+    "crit_sim": 2.6277401111504934,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|verb|Q2 \u2212 Q3": {
+    "grid": [
+     2.7,
+     4.6
+    ],
+    "n": 20,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "none resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.479918610672134
+    ],
+    "neg_points": [
+     3.2
+    ],
+    "pos_points": [
+     4.0,
+     4.1,
+     4.2,
+     4.3,
+     4.4
+    ],
+    "crit_sim": 2.671919901673867,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|bin|Q3 \u2212 Q4": {
+    "grid": [
+     3.1,
+     5.0
+    ],
+    "n": 20,
+    "reading": "only negative where resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.2051036264952386,
+     3.4357572778486642,
+     3.8868359197239775
+    ],
+    "neg_points": [
+     3.1
+    ],
+    "pos_points": [],
+    "crit_sim": 2.531969593678974,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|verb|Q3 \u2212 Q4": {
+    "grid": [
+     3.0,
+     5.0
+    ],
+    "n": 21,
+    "reading": "only negative where resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.169344539697249,
+     3.348358613313461,
+     3.9090013752075885
+    ],
+    "neg_points": [
+     3.0
+    ],
+    "pos_points": [],
+    "crit_sim": 2.5852493570054182,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|bin|Q4 \u2212 Q5": {
+    "grid": [
+     3.9,
+     5.4
+    ],
+    "n": 16,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     4.093236909099398,
+     4.3000726092404085,
+     4.4320205654034694
+    ],
+    "neg_points": [
+     3.9
+    ],
+    "pos_points": [
+     4.9,
+     5.0,
+     5.1
+    ],
+    "crit_sim": 2.3804364035275154,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|verb|Q4 \u2212 Q5": {
+    "grid": [
+     3.9,
+     5.4
+    ],
+    "n": 16,
+    "reading": "none resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     4.555619591185119
+    ],
+    "neg_points": [],
+    "pos_points": [],
+    "crit_sim": 2.496075964854283,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "none resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|bin|XTail \u2212 Head": {
+    "grid": [
+     3.9,
+     4.2
+    ],
+    "n": 4,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.1657243934144996,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|verb|XTail \u2212 Head": {
+    "grid": [
+     3.9,
+     4.2
+    ],
+    "n": 4,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.2772711885312935,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|bin|XTail \u2212 Tail": {
+    "grid": [
+     2.9,
+     4.2
+    ],
+    "n": 14,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     3.0887494444784043,
+     3.214464148725291,
+     3.540926401512647
+    ],
+    "neg_points": [
+     2.9,
+     3.0
+    ],
+    "pos_points": [
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.5318603475599666,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|\u2265 512|verb|XTail \u2212 Tail": {
+    "grid": [
+     2.8,
+     4.2
+    ],
+    "n": 15,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.212025443568206
+    ],
+    "neg_points": [],
+    "pos_points": [
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.5667800662667437,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|bin|Tail \u2212 Head": {
+    "grid": [
+     3.9,
+     5.2
+    ],
+    "n": 14,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     4.05967814390133
+    ],
+    "neg_points": [
+     3.9
+    ],
+    "pos_points": [
+     4.2,
+     4.3,
+     4.6,
+     4.7,
+     4.8,
+     4.9,
+     5.0,
+     5.1,
+     5.2
+    ],
+    "crit_sim": 2.4196646969659605,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|\u2265 512|verb|Tail \u2212 Head": {
+    "grid": [
+     3.9,
+     5.2
+    ],
+    "n": 14,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [
+     4.7,
+     4.8,
+     4.9,
+     5.0,
+     5.1,
+     5.2
+    ],
+    "crit_sim": 2.4902737971951665,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "verdict": "missed",
+   "pooled_D": [
+    -0.011733627671880914,
+    -0.22417600621456865,
+    0.2037844474574392
+   ],
+   "a6_diag": [
+    0.0797011646061216,
+    -0.16830480460134137,
+    0.3564813058526641,
+    226550
+   ],
+   "a6_diag_reproduced": true,
+   "pooled_minus_diag": [
+    -0.09143479227800251,
+    -0.18344588288068236,
+    -0.0028723418340570396
+   ]
+  },
+  "class": {
+   "separation_step": {
+    "head": 256,
+    "tail": 1000,
+    "xtail": 3000
+   },
+   "xtail_median_onset": "3,418",
+   "xtail_bandmean_onset": 4000,
+   "identity_max_dev": 4.152958684514041e-06
+  }
+ },
+ "pythia-410m": {
+  "steps": [
+   64,
+   128,
+   256,
+   512,
+   1000,
+   2000,
+   3000,
+   4000,
+   6000,
+   10000,
+   16000,
+   25000,
+   40000,
+   63000,
+   100000,
+   143000
+  ],
+  "reliability": {
+   "r_half_I": [
+    0.9960264692707469,
+    0.9960707000017852,
+    0.9950120555990584,
+    0.9940034829067002,
+    0.9948641631886797,
+    0.9892632150298675,
+    0.9852577719534191,
+    0.9802177745236746,
+    0.9806859074643763,
+    0.978171442057281,
+    0.9798047740674626,
+    0.9765436741630776,
+    0.9764671187883561,
+    0.9742153329047926,
+    0.9725184864490574,
+    0.9718444639972175
+   ],
+   "r_SB_I": [
+    0.9980092795409148,
+    0.9980314825530923,
+    0.9974997923511576,
+    0.9969927248649744,
+    0.997425470412426,
+    0.9946026323268782,
+    0.9925741491836221,
+    0.9900100757952828,
+    0.990248785805545,
+    0.9889652850715418,
+    0.9897993851731921,
+    0.9881326549250906,
+    0.9880934618198606,
+    0.9869392833368036,
+    0.9860678043122347,
+    0.9857212186270984
+   ],
+   "flagged_steps": [],
+   "r_SB_T": [
+    0.9979656405146263,
+    0.997670852634864,
+    0.9971616950795227,
+    0.9955625016392374,
+    0.9941744029567983,
+    0.9889955378741704,
+    0.9831466992310945,
+    0.9800785493242992,
+    0.9776476756802138,
+    0.977284494257404,
+    0.9787241817169483,
+    0.9755869471416618,
+    0.9750868053842714,
+    0.9744045737645571,
+    0.9744386293943901,
+    0.9741184417046426
+   ],
+   "r_SB_I_band": {
+    "head": [
+     0.9979383803253373,
+     0.9982748620881173,
+     0.998484973632613,
+     0.9991845679865533,
+     0.9979135679573186,
+     0.9943181855934189,
+     0.9946435533553529,
+     0.9927212141960026,
+     0.992940638459359,
+     0.9912624625777132,
+     0.9911187690748574,
+     0.9905888263142093,
+     0.9901271428441739,
+     0.9900790001761614,
+     0.9894868108071049,
+     0.9890524414160248
+    ],
+    "tail": [
+     0.9979092836245761,
+     0.9978480874199008,
+     0.9973738353321556,
+     0.9964225401138133,
+     0.9953845102490052,
+     0.9916840811863072,
+     0.9895171032081738,
+     0.9861920064244319,
+     0.9869870563075507,
+     0.9870861293554161,
+     0.9878253445024527,
+     0.9831046272383727,
+     0.9853731398840835,
+     0.9836189103317219,
+     0.9833376712141955,
+     0.9821786804797783
+    ],
+    "xtail": [
+     0.9982060157909215,
+     0.9981935336309558,
+     0.9976437289411362,
+     0.9963892394825243,
+     0.993467549695069,
+     0.9896640048827163,
+     0.9840259075548654,
+     0.9825825323364729,
+     0.9811026385126617,
+     0.9804596534520305,
+     0.9846301367509637,
+     0.9855639366089151,
+     0.9838417195820576,
+     0.9817320326008797,
+     0.9814920490404285,
+     0.9810043085556862
+    ]
+   },
+   "onset_r_half": 0.8806392816193813,
+   "onset_splits_finite": 200,
+   "onset_mean_verbs": 199.795,
+   "onset_censoring_agreement": 0.9276156583629893
+  },
+  "onset": {
+   "primary (crossers, + log n_tok)": {
+    "beta_on": [
+     -0.19268992444676328,
+     -0.38669157238006296,
+     -0.06948810902669883
+    ],
+    "label": "held",
+    "n": 212,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(d) no token covariate": {
+    "beta_on": [
+     -0.3345072650556454,
+     -0.46354544863051206,
+     -0.25974665335578284
+    ],
+    "label": "held",
+    "n": 212,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "lenient end (persistence shortened at the last two steps)": {
+    "beta_on": [
+     -0.2540827901915377,
+     -0.5426295592823263,
+     -0.12949636590488592
+    ],
+    "label": "held",
+    "n": 223,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(a) no persistence": {
+    "beta_on": [
+     -0.13775229968615854,
+     -0.41324233012849076,
+     0.06508494721811042
+    ],
+    "label": "no frequency effect on onset",
+    "n": 149,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(b) threshold \u22121": {
+    "beta_on": [
+     -0.4028031115769845,
+     -0.5572956106365382,
+     -0.2536587616067253
+    ],
+    "label": "held",
+    "n": 191,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(c) Tobit (all verbs, + log n_tok)": {
+    "beta_on": [
+     -0.5670891914860616,
+     -0.9720083151583571,
+     -0.2942650397233633
+    ],
+    "label": "held",
+    "n": 281,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(e) Tobit, maturity floor (onsets \u2264 512 left-censored)": {
+    "beta_on": [
+     -0.6383655650247186,
+     -1.049568513434437,
+     -0.3799903063443867
+    ],
+    "label": "failed (consistent with count equivalence)",
+    "n": 281,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(f) checkpoint-interval censored (all verbs, + log n_tok)": {
+    "beta_on": [
+     -0.5672740300608875,
+     -0.9725725000109451,
+     -0.28531101106407214
+    ],
+    "label": "held",
+    "n": 281,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "verdict": "held, not robust to censoring (maturity-floor Tobit not 'held')"
+  },
+  "late": {
+   "window": [
+    16000,
+    25000,
+    40000,
+    63000,
+    100000,
+    143000
+   ],
+   "beta_b": [
+    -0.9782907653110415,
+    -1.226523857304046,
+    -0.7273308574385594
+   ],
+   "beta_b_ntok": [
+    -1.1603058666079404,
+    -1.5240718500903765,
+    -0.796861906593883
+   ],
+   "beta_w": [
+    -0.5308997132263648,
+    -0.7665102593780599,
+    -0.3186111670056537
+   ],
+   "beta_w_90": [
+    -0.7334635107005819,
+    -0.3495574663137024
+   ],
+   "diff": [
+    -0.4473910520846768,
+    -0.7696144739208346,
+    -0.10913377384846559
+   ],
+   "gamma": [
+    0.10130405258433606,
+    -0.05324693980655132,
+    0.25842767392364846
+   ],
+   "beta_t_at_mean_x": [
+    -0.530899713226365,
+    -0.76816112823111,
+    -0.31859428342811663
+   ],
+   "diff_null": [
+    -0.0030910513269012396,
+    -0.05415353747113069,
+    0.03976658751488929
+   ],
+   "diff_calibrated": [
+    -0.44430000075777554,
+    -0.7698411593633072,
+    -0.09448588301238497
+   ],
+   "gamma_null": [
+    -0.013921271341960117,
+    -0.3178612904226202,
+    0.30206543134506775
+   ],
+   "gamma_calibrated": [
+    0.11522532392629617,
+    -0.23379566696531165,
+    0.46654259784647123
+   ],
+   "main": "held",
+   "verdict": "held (also beyond the fitted common exposure curve)",
+   "calibrated_reading": "below 0",
+   "beta_b_near_A1": "held",
+   "beta_w_near_0": "missed",
+   "gamma_label": "unresolved",
+   "gamma_calibrated_label": "unresolved",
+   "flagged_window_steps": [],
+   "null_fit_valid_draws": 2000
+  },
+  "curves": {
+   "quintile|all|bin|Q1 \u2212 Q5": {
+    "grid": [
+     3.0,
+     3.9
+    ],
+    "n": 10,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8
+    ],
+    "pos_points": [],
+    "crit_sim": 2.365135670407261,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|verb|Q1 \u2212 Q5": {
+    "grid": [
+     3.0,
+     4.0
+    ],
+    "n": 11,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.924840367264266
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5
+    ],
+    "pos_points": [],
+    "crit_sim": 2.5349142335212034,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|bin|Q1 \u2212 Q2": {
+    "grid": [
+     1.3,
+     3.9
+    ],
+    "n": 27,
+    "reading": "crossing (reversed order)",
+    "simultaneous": "crossing (reversed order)",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.001441234706119,
+     3.038507981175998,
+     3.7343915473357367
+    ],
+    "neg_points": [
+     2.4,
+     2.5,
+     2.6
+    ],
+    "pos_points": [
+     1.3,
+     1.4,
+     1.5,
+     1.6,
+     1.7,
+     1.8,
+     1.9
+    ],
+    "crit_sim": 2.822187068755361,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (reversed order)",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|verb|Q1 \u2212 Q2": {
+    "grid": [
+     1.4,
+     4.0
+    ],
+    "n": 27,
+    "reading": "crossing (reversed order)",
+    "simultaneous": "crossing (reversed order)",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.1242329295423446,
+     3.1274285755860274,
+     3.8334568627584824
+    ],
+    "neg_points": [
+     2.3,
+     2.4,
+     2.5,
+     2.6,
+     2.7
+    ],
+    "pos_points": [
+     1.4,
+     1.5,
+     1.6,
+     1.7,
+     1.8,
+     1.9
+    ],
+    "crit_sim": 2.87347094967942,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (reversed order)",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|bin|Q2 \u2212 Q3": {
+    "grid": [
+     1.7,
+     4.6
+    ],
+    "n": 30,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.539572706593209,
+     3.168603893579635,
+     4.49877636214424,
+     4.502297154850317
+    ],
+    "neg_points": [
+     2.7,
+     2.8
+    ],
+    "pos_points": [
+     1.8,
+     1.9,
+     2.0,
+     2.1,
+     2.2,
+     2.3,
+     2.4,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2,
+     4.3
+    ],
+    "crit_sim": 2.849891544033123,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|all|verb|Q2 \u2212 Q3": {
+    "grid": [
+     1.8,
+     4.6
+    ],
+    "n": 29,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.5466762612024327,
+     3.15302566586987
+    ],
+    "neg_points": [
+     2.8,
+     2.9
+    ],
+    "pos_points": [
+     1.9,
+     2.0,
+     2.1,
+     2.2,
+     2.3,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2,
+     4.3
+    ],
+    "crit_sim": 2.832276683937882,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|all|bin|Q3 \u2212 Q4": {
+    "grid": [
+     2.2,
+     5.0
+    ],
+    "n": 29,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.834444396083126,
+     3.8300166579086237,
+     4.850716549791807,
+     4.984782852332137
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2
+    ],
+    "pos_points": [
+     2.4,
+     2.5,
+     2.6,
+     4.5,
+     4.6
+    ],
+    "crit_sim": 2.7892122400303547,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|all|verb|Q3 \u2212 Q4": {
+    "grid": [
+     2.1,
+     5.0
+    ],
+    "n": 30,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.822702681832391,
+     3.706430002306335,
+     4.959962656880392
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3
+    ],
+    "pos_points": [
+     2.3,
+     2.4,
+     2.5,
+     2.6,
+     4.3,
+     4.4,
+     4.5,
+     4.6
+    ],
+    "crit_sim": 2.802212050932105,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|all|bin|Q4 \u2212 Q5": {
+    "grid": [
+     3.0,
+     5.4
+    ],
+    "n": 25,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "crossing (reversed order)",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.114230580924517,
+     4.090886866409407,
+     5.287531372163655,
+     5.309912677428864
+    ],
+    "neg_points": [
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0
+    ],
+    "pos_points": [
+     3.0,
+     4.4
+    ],
+    "crit_sim": 2.697750605057112,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|all|verb|Q4 \u2212 Q5": {
+    "grid": [
+     3.0,
+     5.4
+    ],
+    "n": 25,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.07478875130239,
+     4.430988087762321
+    ],
+    "neg_points": [
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0
+    ],
+    "pos_points": [],
+    "crit_sim": 2.756718956890699,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|all|bin|XTail \u2212 Head": {
+    "grid": [
+     3.0,
+     4.2
+    ],
+    "n": 13,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     3.88863254885341
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7
+    ],
+    "pos_points": [
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.4958984088942073,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|verb|XTail \u2212 Head": {
+    "grid": [
+     3.0,
+     4.2
+    ],
+    "n": 13,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     3.7910245752697045
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5
+    ],
+    "pos_points": [
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.5484464468126404,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|bin|XTail \u2212 Tail": {
+    "grid": [
+     1.9,
+     4.2
+    ],
+    "n": 24,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "crossing (non-monotonic: both orders)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     2.3993288575893406,
+     3.1662911761595294
+    ],
+    "neg_points": [
+     2.7,
+     2.8,
+     2.9,
+     3.0
+    ],
+    "pos_points": [
+     1.9,
+     2.0,
+     2.1,
+     2.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.7397389393330767,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|verb|XTail \u2212 Tail": {
+    "grid": [
+     1.9,
+     4.2
+    ],
+    "n": 24,
+    "reading": "crossing (non-monotonic: both orders)",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.305249938670087,
+     3.149328318070106
+    ],
+    "neg_points": [
+     2.9
+    ],
+    "pos_points": [
+     1.9,
+     2.0,
+     2.1,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.705267197351015,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (non-monotonic: both orders)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|bin|Tail \u2212 Head": {
+    "grid": [
+     3.0,
+     5.2
+    ],
+    "n": 23,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     4.07923609940225
+    ],
+    "neg_points": [
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0
+    ],
+    "pos_points": [
+     4.2,
+     4.3,
+     4.4,
+     4.5,
+     4.6,
+     4.7,
+     4.8,
+     4.9,
+     5.0
+    ],
+    "crit_sim": 2.6889780814151725,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|verb|Tail \u2212 Head": {
+    "grid": [
+     3.0,
+     5.2
+    ],
+    "n": 23,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     4.178694765545914
+    ],
+    "neg_points": [
+     3.1,
+     3.2,
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9
+    ],
+    "pos_points": [
+     4.6,
+     4.7,
+     4.8
+    ],
+    "crit_sim": 2.7410616393533944,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|bin|Q1 \u2212 Q5": {
+    "grid": [
+     3.9,
+     3.9
+    ],
+    "n": 1,
+    "reading": "insufficient overlap (one grid point)",
+    "simultaneous": "\u2014",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [],
+    "crit_sim": 1.951881240863967,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "insufficient overlap (one grid point)",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|verb|Q1 \u2212 Q5": {
+    "grid": [
+     3.9,
+     4.0
+    ],
+    "n": 2,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [
+     4.0
+    ],
+    "crit_sim": 2.1526040803717925,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|bin|Q1 \u2212 Q2": {
+    "grid": [
+     2.2,
+     3.9
+    ],
+    "n": 18,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.038507981175998,
+     3.7343915473357367
+    ],
+    "neg_points": [
+     2.4,
+     2.5,
+     2.6
+    ],
+    "pos_points": [],
+    "crit_sim": 2.696751341828715,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|verb|Q1 \u2212 Q2": {
+    "grid": [
+     2.3,
+     4.0
+    ],
+    "n": 18,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.1274285755860274,
+     3.8334568627584824
+    ],
+    "neg_points": [
+     2.4,
+     2.5,
+     2.6,
+     2.7
+    ],
+    "pos_points": [],
+    "crit_sim": 2.717550053858255,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|bin|Q2 \u2212 Q3": {
+    "grid": [
+     2.7,
+     4.6
+    ],
+    "n": 20,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.168603893579635,
+     4.49877636214424,
+     4.502297154850317
+    ],
+    "neg_points": [
+     2.7,
+     2.8
+    ],
+    "pos_points": [
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2,
+     4.3
+    ],
+    "crit_sim": 2.6915040143196025,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|verb|Q2 \u2212 Q3": {
+    "grid": [
+     2.7,
+     4.6
+    ],
+    "n": 20,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.15302566586987
+    ],
+    "neg_points": [
+     2.8,
+     2.9
+    ],
+    "pos_points": [
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2,
+     4.3
+    ],
+    "crit_sim": 2.6914842717145917,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|bin|Q3 \u2212 Q4": {
+    "grid": [
+     3.1,
+     5.0
+    ],
+    "n": 20,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     3.8300166579086237,
+     4.850716549791807,
+     4.984782852332137
+    ],
+    "neg_points": [
+     3.1,
+     3.2
+    ],
+    "pos_points": [
+     4.5,
+     4.6
+    ],
+    "crit_sim": 2.595054604508055,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|verb|Q3 \u2212 Q4": {
+    "grid": [
+     3.0,
+     5.0
+    ],
+    "n": 21,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "none resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.706430002306335,
+     4.959962656880392
+    ],
+    "neg_points": [
+     3.1,
+     3.2,
+     3.3
+    ],
+    "pos_points": [
+     4.3,
+     4.4,
+     4.5,
+     4.6
+    ],
+    "crit_sim": 2.6667149469603744,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|bin|Q4 \u2212 Q5": {
+    "grid": [
+     3.9,
+     5.4
+    ],
+    "n": 16,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     4.090886866409407,
+     5.287531372163655,
+     5.309912677428864
+    ],
+    "neg_points": [
+     3.9,
+     4.0
+    ],
+    "pos_points": [
+     4.4
+    ],
+    "crit_sim": 2.5300362096206794,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|verb|Q4 \u2212 Q5": {
+    "grid": [
+     3.9,
+     5.4
+    ],
+    "n": 16,
+    "reading": "none resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.978847027527054,
+     4.161405060725774,
+     4.219824289907082
+    ],
+    "neg_points": [],
+    "pos_points": [],
+    "crit_sim": 2.587047137250503,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "none resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|bin|XTail \u2212 Head": {
+    "grid": [
+     3.9,
+     4.2
+    ],
+    "n": 4,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.2041823890680967,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|verb|XTail \u2212 Head": {
+    "grid": [
+     3.9,
+     4.2
+    ],
+    "n": 4,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.3137549227089025,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|bin|XTail \u2212 Tail": {
+    "grid": [
+     2.9,
+     4.2
+    ],
+    "n": 14,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     3.1662911761595294
+    ],
+    "neg_points": [
+     2.9,
+     3.0
+    ],
+    "pos_points": [
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.550282533849306,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|\u2265 512|verb|XTail \u2212 Tail": {
+    "grid": [
+     2.8,
+     4.2
+    ],
+    "n": 15,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.1056920753397987
+    ],
+    "neg_points": [],
+    "pos_points": [
+     3.3,
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.5893881134814083,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|bin|Tail \u2212 Head": {
+    "grid": [
+     3.9,
+     5.2
+    ],
+    "n": 14,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     4.07923609940225
+    ],
+    "neg_points": [
+     3.9,
+     4.0
+    ],
+    "pos_points": [
+     4.2,
+     4.3,
+     4.4,
+     4.5,
+     4.6,
+     4.7,
+     4.8,
+     4.9,
+     5.0
+    ],
+    "crit_sim": 2.4738618071953495,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|\u2265 512|verb|Tail \u2212 Head": {
+    "grid": [
+     3.9,
+     5.2
+    ],
+    "n": 14,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [
+     4.4,
+     4.5,
+     4.6,
+     4.7,
+     4.8
+    ],
+    "crit_sim": 2.561639112954256,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "verdict": "missed",
+   "pooled_D": [
+    0.042414807161271814,
+    -0.14176354205792135,
+    0.23911765739663085
+   ],
+   "a6_diag": [
+    0.13308379099069229,
+    -0.11645934772280914,
+    0.3804487809914237,
+    226550
+   ],
+   "a6_diag_reproduced": true,
+   "pooled_minus_diag": [
+    -0.09066898382942047,
+    -0.1825778395126283,
+    0.001692240504877971
+   ]
+  },
+  "class": {
+   "separation_step": {
+    "head": 256,
+    "tail": 1000,
+    "xtail": 2000
+   },
+   "xtail_median_onset": "2,316",
+   "xtail_bandmean_onset": 4000,
+   "identity_max_dev": 2.366809614517962e-06
+  }
+ },
+ "pythia-6.9b": {
+  "steps": [
+   512,
+   2000,
+   8000,
+   23000,
+   63000,
+   143000
+  ],
+  "reliability": {
+   "r_half_I": [
+    0.9932975612944349,
+    0.9917465261982338,
+    0.980618709838724,
+    0.9734885247755901,
+    0.9679614942115607,
+    0.9713823262775566
+   ],
+   "r_SB_I": [
+    0.9966375122130724,
+    0.9958561625722927,
+    0.9902145273772285,
+    0.9865661872913982,
+    0.9837199529143861,
+    0.9854834481668097
+   ],
+   "flagged_steps": [],
+   "r_SB_T": [
+    0.9961749552323466,
+    0.9915508307275114,
+    0.9813658896092733,
+    0.9753152961545655,
+    0.9717440647117557,
+    0.9720635013765512
+   ],
+   "r_SB_I_band": {
+    "head": [
+     0.9994701337611926,
+     0.993717216079571,
+     0.990704685228093,
+     0.9908373942032856,
+     0.9902071573052874,
+     0.9902769729397123
+    ],
+    "tail": [
+     0.9964847237402191,
+     0.9948700788899749,
+     0.9887265625042808,
+     0.9849044733153782,
+     0.9832890391109356,
+     0.9841488809757447
+    ],
+    "xtail": [
+     0.9938270256073004,
+     0.991177961284293,
+     0.9884338878972391,
+     0.9812202045078293,
+     0.9745237901948948,
+     0.9779860504970352
+    ]
+   },
+   "onset_r_half": 0.9215503697232964,
+   "onset_splits_finite": 200,
+   "onset_mean_verbs": 138.605,
+   "onset_censoring_agreement": 0.9148398576512454
+  },
+  "onset": {
+   "primary (crossers, + log n_tok)": {
+    "beta_on": [
+     -0.1742453615617256,
+     -0.2926679413028974,
+     -0.0005530787448059963
+    ],
+    "label": "held",
+    "n": 147,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(d) no token covariate": {
+    "beta_on": [
+     -0.2268599019255841,
+     -0.3006188939397398,
+     -0.12744200376093134
+    ],
+    "label": "held",
+    "n": 147,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "lenient end (persistence shortened at the last two steps)": {
+    "beta_on": [
+     -0.34939922363131926,
+     -0.5303438916503987,
+     -0.07762718658828703
+    ],
+    "label": "held",
+    "n": 170,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(a) no persistence": {
+    "beta_on": [
+     -0.1965882716463075,
+     -0.33327921537013927,
+     -0.021223196004742238
+    ],
+    "label": "held",
+    "n": 165,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(b) threshold \u22121": {
+    "beta_on": [
+     -0.26518121518472443,
+     -0.38793529670510324,
+     -0.12094975775306824
+    ],
+    "label": "held",
+    "n": 149,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(c) Tobit (all verbs, + log n_tok)": {
+    "beta_on": [
+     -0.5781366172591805,
+     -0.8675521655606834,
+     -0.28505545205200183
+    ],
+    "label": "held",
+    "n": 281,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(e) Tobit, maturity floor (onsets \u2264 512 left-censored)": {
+    "beta_on": [
+     -0.5781366172591805,
+     -0.8675521655606834,
+     -0.28505545205200183
+    ],
+    "label": "held",
+    "n": 281,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "(f) checkpoint-interval censored (all verbs, + log n_tok)": {
+    "beta_on": [
+     -0.5795836888623183,
+     -0.8755976010650806,
+     -0.2809859254631134
+    ],
+    "label": "held",
+    "n": 281,
+    "valid_draws": 2000,
+    "failed_fits": 0
+   },
+   "verdict": "held"
+  },
+  "late": {
+   "window": [
+    23000,
+    63000,
+    143000
+   ],
+   "beta_b": [
+    -0.746493324696704,
+    -0.9876343025341348,
+    -0.4918692401523571
+   ],
+   "beta_b_ntok": [
+    -1.1043696334832316,
+    -1.4413429353302762,
+    -0.7517926142426363
+   ],
+   "beta_w": [
+    -0.5682582768197088,
+    -0.7886279271766266,
+    -0.36205872813653545
+   ],
+   "beta_w_90": [
+    -0.7471272845524516,
+    -0.39755699823814733
+   ],
+   "diff": [
+    -0.1782350478769953,
+    -0.4942444872954705,
+    0.15348127988274668
+   ],
+   "gamma": [
+    -0.011442385673771671,
+    -0.149338750253664,
+    0.12565852407136185
+   ],
+   "beta_t_at_mean_x": [
+    -0.5682582768197092,
+    -0.7885811987404043,
+    -0.36093293266139503
+   ],
+   "diff_null": [
+    0.008246816273646318,
+    -0.04458954174545971,
+    0.05790571702597461
+   ],
+   "diff_calibrated": [
+    -0.1864818641506416,
+    -0.504349988631026,
+    0.1437726869910594
+   ],
+   "gamma_null": [
+    0.05313604427594033,
+    -0.259253705290147,
+    0.37301044586170246
+   ],
+   "gamma_calibrated": [
+    -0.06457842994971201,
+    -0.39440016387689014,
+    0.2785750883155083
+   ],
+   "main": "failed (consistent with count equivalence)",
+   "verdict": "failed (consistent with count equivalence)",
+   "calibrated_reading": "includes 0",
+   "beta_b_near_A1": "held",
+   "beta_w_near_0": "missed",
+   "gamma_label": "unresolved",
+   "gamma_calibrated_label": "unresolved",
+   "flagged_window_steps": [],
+   "null_fit_valid_draws": 2000
+  },
+  "curves": {
+   "quintile|all|bin|Q1 \u2212 Q5": {
+    "grid": [
+     3.9,
+     3.9
+    ],
+    "n": 1,
+    "reading": "insufficient overlap (one grid point)",
+    "simultaneous": "\u2014",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [
+     3.9
+    ],
+    "pos_points": [],
+    "crit_sim": 2.000638582598069,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "insufficient overlap (one grid point)",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|verb|Q1 \u2212 Q5": {
+    "grid": [
+     3.9,
+     4.0
+    ],
+    "n": 2,
+    "reading": "none resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [],
+    "crit_sim": 2.0891837540234928,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "none resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|bin|Q1 \u2212 Q2": {
+    "grid": [
+     2.2,
+     3.9
+    ],
+    "n": 18,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.01146975073514
+    ],
+    "neg_points": [
+     2.2,
+     2.3,
+     2.4,
+     2.5,
+     2.6
+    ],
+    "pos_points": [],
+    "crit_sim": 2.5088689071531385,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|verb|Q1 \u2212 Q2": {
+    "grid": [
+     2.3,
+     4.0
+    ],
+    "n": 18,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.99645352797662
+    ],
+    "neg_points": [
+     2.3,
+     2.4,
+     2.5
+    ],
+    "pos_points": [],
+    "crit_sim": 2.5829318079638375,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|bin|Q2 \u2212 Q3": {
+    "grid": [
+     2.7,
+     4.6
+    ],
+    "n": 20,
+    "reading": "only positive where resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.0197253906823907
+    ],
+    "neg_points": [],
+    "pos_points": [
+     3.8,
+     3.9,
+     4.0
+    ],
+    "crit_sim": 2.514599025225568,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|verb|Q2 \u2212 Q3": {
+    "grid": [
+     2.7,
+     4.6
+    ],
+    "n": 20,
+    "reading": "only positive where resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.1162701131535155
+    ],
+    "neg_points": [],
+    "pos_points": [
+     3.6,
+     3.7,
+     3.8,
+     3.9
+    ],
+    "crit_sim": 2.5270349349999734,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|bin|Q3 \u2212 Q4": {
+    "grid": [
+     3.1,
+     5.0
+    ],
+    "n": 20,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.568648315131734,
+     4.686229770962998,
+     4.730001500305562
+    ],
+    "neg_points": [
+     3.1,
+     3.2,
+     3.3
+    ],
+    "pos_points": [],
+    "crit_sim": 2.4448848782544044,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|verb|Q3 \u2212 Q4": {
+    "grid": [
+     3.0,
+     5.0
+    ],
+    "n": 21,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.6952147139429936,
+     4.872536445240959
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4
+    ],
+    "pos_points": [],
+    "crit_sim": 2.5573213169398694,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|all|bin|Q4 \u2212 Q5": {
+    "grid": [
+     3.9,
+     5.4
+    ],
+    "n": 16,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     4.255731495243593
+    ],
+    "neg_points": [
+     3.9,
+     4.0,
+     4.1
+    ],
+    "pos_points": [
+     4.4,
+     4.5,
+     4.6,
+     4.7,
+     4.8,
+     4.9
+    ],
+    "crit_sim": 2.3231429322691115,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|all|verb|Q4 \u2212 Q5": {
+    "grid": [
+     3.9,
+     5.4
+    ],
+    "n": 16,
+    "reading": "only positive where resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     4.293973453190867
+    ],
+    "neg_points": [],
+    "pos_points": [
+     4.7
+    ],
+    "crit_sim": 2.527971027243628,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|all|bin|XTail \u2212 Head": {
+    "grid": [
+     3.9,
+     4.2
+    ],
+    "n": 4,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     4.013597101373062
+    ],
+    "neg_points": [
+     3.9
+    ],
+    "pos_points": [
+     4.2
+    ],
+    "crit_sim": 2.103160305307591,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|verb|XTail \u2212 Head": {
+    "grid": [
+     3.9,
+     4.2
+    ],
+    "n": 4,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.2610098667204177,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|all|bin|XTail \u2212 Tail": {
+    "grid": [
+     2.9,
+     4.2
+    ],
+    "n": 14,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     3.2055204244936126
+    ],
+    "neg_points": [
+     2.9,
+     3.0
+    ],
+    "pos_points": [
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.3790848889540244,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|verb|XTail \u2212 Tail": {
+    "grid": [
+     2.8,
+     4.2
+    ],
+    "n": 15,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.135319415387946
+    ],
+    "neg_points": [],
+    "pos_points": [
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.5185886119879375,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|all|bin|Tail \u2212 Head": {
+    "grid": [
+     3.9,
+     5.2
+    ],
+    "n": 14,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     4.202608743254853
+    ],
+    "neg_points": [
+     3.9,
+     4.0,
+     4.1
+    ],
+    "pos_points": [
+     4.3,
+     4.4,
+     4.5,
+     4.6,
+     4.7,
+     4.8,
+     4.9,
+     5.0,
+     5.1
+    ],
+    "crit_sim": 2.339784391048245,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|all|verb|Tail \u2212 Head": {
+    "grid": [
+     3.9,
+     5.2
+    ],
+    "n": 14,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     4.030331529502527
+    ],
+    "neg_points": [],
+    "pos_points": [
+     4.5,
+     4.6,
+     4.7,
+     4.8,
+     4.9,
+     5.0,
+     5.1,
+     5.2
+    ],
+    "crit_sim": 2.5268647958570454,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|bin|Q1 \u2212 Q5": {
+    "grid": [
+     3.9,
+     3.9
+    ],
+    "n": 1,
+    "reading": "insufficient overlap (one grid point)",
+    "simultaneous": "\u2014",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [
+     3.9
+    ],
+    "pos_points": [],
+    "crit_sim": 2.000638582598069,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "insufficient overlap (one grid point)",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|verb|Q1 \u2212 Q5": {
+    "grid": [
+     3.9,
+     4.0
+    ],
+    "n": 2,
+    "reading": "none resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [],
+    "crit_sim": 2.0891837540234928,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "none resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|bin|Q1 \u2212 Q2": {
+    "grid": [
+     2.2,
+     3.9
+    ],
+    "n": 18,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.01146975073514
+    ],
+    "neg_points": [
+     2.2,
+     2.3,
+     2.4,
+     2.5,
+     2.6
+    ],
+    "pos_points": [],
+    "crit_sim": 2.5088689071531385,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|verb|Q1 \u2212 Q2": {
+    "grid": [
+     2.3,
+     4.0
+    ],
+    "n": 18,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     2.99645352797662
+    ],
+    "neg_points": [
+     2.3,
+     2.4,
+     2.5
+    ],
+    "pos_points": [],
+    "crit_sim": 2.5829318079638375,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|bin|Q2 \u2212 Q3": {
+    "grid": [
+     2.7,
+     4.6
+    ],
+    "n": 20,
+    "reading": "only positive where resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.0197253906823907
+    ],
+    "neg_points": [],
+    "pos_points": [
+     3.8,
+     3.9,
+     4.0
+    ],
+    "crit_sim": 2.514599025225568,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|verb|Q2 \u2212 Q3": {
+    "grid": [
+     2.7,
+     4.6
+    ],
+    "n": 20,
+    "reading": "only positive where resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.1162701131535155
+    ],
+    "neg_points": [],
+    "pos_points": [
+     3.6,
+     3.7,
+     3.8,
+     3.9
+    ],
+    "crit_sim": 2.5270349349999734,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|bin|Q3 \u2212 Q4": {
+    "grid": [
+     3.1,
+     5.0
+    ],
+    "n": 20,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.568648315131734,
+     4.686229770962998,
+     4.730001500305562
+    ],
+    "neg_points": [
+     3.1,
+     3.2,
+     3.3
+    ],
+    "pos_points": [],
+    "crit_sim": 2.4448848782544044,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|verb|Q3 \u2212 Q4": {
+    "grid": [
+     3.0,
+     5.0
+    ],
+    "n": 21,
+    "reading": "only negative where resolved",
+    "simultaneous": "only negative where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.6952147139429936,
+     4.872536445240959
+    ],
+    "neg_points": [
+     3.0,
+     3.1,
+     3.2,
+     3.3,
+     3.4
+    ],
+    "pos_points": [],
+    "crit_sim": 2.5573213169398694,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only negative where resolved",
+    "calibrated_predicted_order": false
+   },
+   "quintile|\u2265 512|bin|Q4 \u2212 Q5": {
+    "grid": [
+     3.9,
+     5.4
+    ],
+    "n": 16,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     4.255731495243593
+    ],
+    "neg_points": [
+     3.9,
+     4.0,
+     4.1
+    ],
+    "pos_points": [
+     4.4,
+     4.5,
+     4.6,
+     4.7,
+     4.8,
+     4.9
+    ],
+    "crit_sim": 2.3231429322691115,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "quintile|\u2265 512|verb|Q4 \u2212 Q5": {
+    "grid": [
+     3.9,
+     5.4
+    ],
+    "n": 16,
+    "reading": "only positive where resolved",
+    "simultaneous": "none resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     4.293973453190867
+    ],
+    "neg_points": [],
+    "pos_points": [
+     4.7
+    ],
+    "crit_sim": 2.527971027243628,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|bin|XTail \u2212 Head": {
+    "grid": [
+     3.9,
+     4.2
+    ],
+    "n": 4,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": true,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     4.013597101373062
+    ],
+    "neg_points": [
+     3.9
+    ],
+    "pos_points": [
+     4.2
+    ],
+    "crit_sim": 2.103160305307591,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|\u2265 512|verb|XTail \u2212 Head": {
+    "grid": [
+     3.9,
+     4.2
+    ],
+    "n": 4,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [],
+    "neg_points": [],
+    "pos_points": [
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.2610098667204177,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|bin|XTail \u2212 Tail": {
+    "grid": [
+     2.9,
+     4.2
+    ],
+    "n": 14,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     3.2055204244936126
+    ],
+    "neg_points": [
+     2.9,
+     3.0
+    ],
+    "pos_points": [
+     3.4,
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.3790848889540244,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|\u2265 512|verb|XTail \u2212 Tail": {
+    "grid": [
+     2.8,
+     4.2
+    ],
+    "n": 15,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     3.135319415387946
+    ],
+    "neg_points": [],
+    "pos_points": [
+     3.5,
+     3.6,
+     3.7,
+     3.8,
+     3.9,
+     4.0,
+     4.1,
+     4.2
+    ],
+    "crit_sim": 2.5185886119879375,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "zipf|\u2265 512|bin|Tail \u2212 Head": {
+    "grid": [
+     3.9,
+     5.2
+    ],
+    "n": 14,
+    "reading": "crossing (predicted order)",
+    "simultaneous": "crossing (predicted order)",
+    "predicted_order": true,
+    "predicted_order_sim": true,
+    "crossing_log10_E": [
+     4.202608743254853
+    ],
+    "neg_points": [
+     3.9,
+     4.0,
+     4.1
+    ],
+    "pos_points": [
+     4.3,
+     4.4,
+     4.5,
+     4.6,
+     4.7,
+     4.8,
+     4.9,
+     5.0,
+     5.1
+    ],
+    "crit_sim": 2.339784391048245,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "crossing (predicted order)",
+    "calibrated_predicted_order": true
+   },
+   "zipf|\u2265 512|verb|Tail \u2212 Head": {
+    "grid": [
+     3.9,
+     5.2
+    ],
+    "n": 14,
+    "reading": "only positive where resolved",
+    "simultaneous": "only positive where resolved",
+    "predicted_order": false,
+    "predicted_order_sim": false,
+    "crossing_log10_E": [
+     4.030331529502527
+    ],
+    "neg_points": [],
+    "pos_points": [
+     4.5,
+     4.6,
+     4.7,
+     4.8,
+     4.9,
+     5.0,
+     5.1,
+     5.2
+    ],
+    "crit_sim": 2.5268647958570454,
+    "incomplete_draws": 0,
+    "flagged_points": 0,
+    "calibrated_reading": "only positive where resolved",
+    "calibrated_predicted_order": false
+   },
+   "verdict": "missed",
+   "pooled_D": [
+    0.18493127798215914,
+    -0.05168707264893967,
+    0.4121967919510617
+   ],
+   "a6_diag": [
+    0.17863242360002035,
+    -0.13271278970451345,
+    0.4620995620794097,
+    30485
+   ],
+   "a6_diag_reproduced": true,
+   "pooled_minus_diag": [
+    0.0062988543821387855,
+    -0.10323666296516175,
+    0.11643336563507731
+   ]
+  },
+  "class": {
+   "separation_step": {
+    "head": 512,
+    "tail": 512,
+    "xtail": 2000
+   },
+   "xtail_median_onset": "2,451",
+   "xtail_bandmean_onset": 2000,
+   "identity_max_dev": 6.326551103497113e-06
+  }
+ },
+ "replication": {
+  "onset (\u03b2_on verdict)": {
+   "labels": {
+    "1.4b": "held",
+    "410m": "held, not robust to censoring (maturity-floor Tobit not 'held')",
+    "6.9b": "held"
+   },
+   "replicates": "no"
+  },
+  "late window (\u03b2_b \u2212 \u03b2_w verdict)": {
+   "labels": {
+    "1.4b": "held (also beyond the fitted common exposure curve)",
+    "410m": "held (also beyond the fitted common exposure curve)",
+    "6.9b": "failed (consistent with count equivalence)"
+   },
+   "replicates": "yes"
+  },
+  "crossing (Q1 \u2212 Q5 verdict)": {
+   "labels": {
+    "1.4b": "missed",
+    "410m": "missed",
+    "6.9b": "missed"
+   },
+   "replicates": "yes"
+  }
+ }
+}

@@ -868,7 +868,7 @@ def figures(fd, figd):
         ax.set_ylim(logt[0] - 0.25, logt[-1] + 0.25)
         ax.set_xlabel("log10 c_total (Pile count)")
         ax.set_ylabel("onset step (log scale)")
-        ax.set_title(f"Pythia-{size}: onset of Δ_pass(I) < 0 (▽ ≤ {int(10 ** logt[0])}, △ > {int(round(10 ** bnd)):,}"
+        ax.set_title(f"Pythia-{size}: onset of Δ_pass(I) < 0 (▽ ≤ {int(round(10 ** logt[0]))}, △ > {int(round(10 ** bnd)):,}"
                      + ("; hollow: interpolation uses a † step" if fi.any() else "") + ")", fontsize=9, color=INK, loc="left")
         ax.legend(frameon=False, fontsize=7, loc="upper left", bbox_to_anchor=(1.01, 1.0))
         fig.tight_layout()
