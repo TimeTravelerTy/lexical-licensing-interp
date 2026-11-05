@@ -75,7 +75,7 @@ def run(args):
     model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=dtype,
                                                  local_files_only=not args.allow_download)
     if args.fp32_unembed:
-        from gemma_utils import fp32_unembed
+        from model_arch import fp32_unembed
         fp32_unembed(model)
     device = torch.device(args.device)
     model.to(device).eval()

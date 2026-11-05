@@ -21,10 +21,11 @@ Modes
   seeds x 5 folds, rank chosen by the prespecified rule, then random-subspace
   and shuffled-label controls for the chosen rank. Saves bases.
 
-Gemma replication (opt-in; defaults reproduce the Pythia runs): --bos prepends the BOS id (right padding kept, so
-the last-token anchor is still attention_mask.sum - 1); --fp32-unembed computes logits in fp32 from the final-norm
-output; hook points come from gemma_utils (GPT-NeoX embed_in / layers, Gemma model.embed_tokens / model.layers).
-Runners that build their own args without these attributes get the Pythia defaults.
+Architectures (model_arch.ARCH, keyed by config.model_type): hook points, BOS and fp32-unembedding defaults come
+from the map; --bos/--no-bos and --fp32-unembed/--no-fp32-unembed override them (runners that build their own args
+without these attributes get the map defaults, which for Pythia are the stored settings: no BOS, bf16 logits).
+With BOS, right padding is kept, so the last-token anchor is still attention_mask.sum - 1. At start-up the runner
+checks that every hooked site output equals output_hidden_states (sites 0..L-1; model_arch.check_sites).
 """
 
 from __future__ import annotations
@@ -75,12 +76,14 @@ class Runner:
         self.tok.padding_side = "right"
         self.model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=getattr(torch, args.dtype),
                                                           local_files_only=True).to(self.device).eval()
-        from gemma_utils import embed_module, fp32_unembed, layer_modules
+        import model_arch as ma
 
-        if getattr(args, "fp32_unembed", False):
-            fp32_unembed(self.model)
-        self.bos = [self.tok.bos_token_id] if getattr(args, "bos", False) else []
-        self.embed, self.layers = embed_module(self.model), layer_modules(self.model)
+        bos, f32 = ma.resolve(self.model, getattr(args, "bos", None), getattr(args, "fp32_unembed", None))
+        if f32:
+            ma.fp32_unembed(self.model)
+        self.bos = [self.tok.bos_token_id] if bos else []
+        self.settings = {"model_type": self.model.config.model_type, "bos": bos, "fp32_unembed": f32}
+        self.embed, self.layers = ma.embed_module(self.model), ma.layer_modules(self.model)
         for p in self.model.parameters():
             p.requires_grad_(False)
         self.ids = {}
@@ -93,6 +96,12 @@ class Runner:
                 ids.append(enc[0])
             self.ids[name] = torch.tensor(ids, device=self.device)
         self.n_sites = self.model.config.num_hidden_layers + 1
+        assert self.n_sites == len(self.layers) + 1
+        enc = self.encode(["She has arrived", "They have seen the man"])
+        inner, last = ma.check_sites(self.model, enc.input_ids, enc.attention_mask)
+        assert inner == 0.0, f"hooked site outputs differ from output_hidden_states (max {inner})"
+        self.settings.update({"site_check_max_abs_sites_0_to_L-1": inner, "site_check_last_site": last})
+        print(f"runner settings {self.settings}", flush=True)
 
     def encode(self, prompts):
         enc = self.tok(prompts, return_tensors="pt", padding=True, add_special_tokens=False)
@@ -425,7 +434,8 @@ if __name__ == "__main__":
     ap.add_argument("--n-same", type=int, default=2)
     ap.add_argument("--batch-size", type=int, default=64)
     ap.add_argument("--lr", type=float, default=1e-2)
-    ap.add_argument("--bos", action="store_true", help="Gemma replication: prepend BOS")
-    ap.add_argument("--fp32-unembed", action="store_true", help="Gemma replication: fp32 logits from the final norm")
+    ap.add_argument("--bos", action=argparse.BooleanOptionalAction, default=None, help="default: model_arch.ARCH")
+    ap.add_argument("--fp32-unembed", action=argparse.BooleanOptionalAction, default=None,
+                    help="default: model_arch.ARCH")
     args = ap.parse_args()
     run_sweep(args) if args.mode == "sweep" else run_final(args)

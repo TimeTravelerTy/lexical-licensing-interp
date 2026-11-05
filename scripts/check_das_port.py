@@ -37,8 +37,7 @@ def main(args):
     items["M_nat"] = m.cpu().numpy()
     items["correct"] = np.where(items.cls == 1, items.M_nat > 0, items.M_nat < 0)
     items["n_tok_model"] = [len(runner.tok.encode(" " + p.split(" ", 2)[2], add_special_tokens=False)) for p in prompts]
-    res = {"model": args.model, "dtype": args.dtype, "bos": bool(args.bos), "fp32_unembed": bool(args.fp32_unembed),
-           "n_sites": runner.n_sites, "n_items": len(items)}
+    res = {"model": args.model, "dtype": args.dtype, **runner.settings, "n_sites": runner.n_sites, "n_items": len(items)}
 
     # 4. behaviour filter
     vc = items.groupby("verb").correct.sum()
@@ -115,8 +114,8 @@ if __name__ == "__main__":
     ap.add_argument("--model", default="EleutherAI/pythia-1.4b")
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--dtype", default="bfloat16")
-    ap.add_argument("--bos", action="store_true")
-    ap.add_argument("--fp32-unembed", action="store_true")
+    ap.add_argument("--bos", action=argparse.BooleanOptionalAction, default=None, help="default: model_arch.ARCH")
+    ap.add_argument("--fp32-unembed", action=argparse.BooleanOptionalAction, default=None)
     ap.add_argument("--reproduce", action="store_true")
     ap.add_argument("--stored", default="results/das_round2/final_strict_site8")
     ap.add_argument("--n-check", type=int, default=20)

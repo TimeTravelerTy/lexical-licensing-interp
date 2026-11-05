@@ -7,7 +7,7 @@ to kernel noise.
 
 Gemma replication (opt-in; defaults unchanged): --bos prepends the BOS id to every prompt (right padding kept,
 so the readout position is still attention_mask.sum - 1); --fp32-unembed computes logits in fp32 from the
-final-norm output (gemma_utils.fp32_unembed).
+final-norm output (model_arch.fp32_unembed).
 """
 
 from __future__ import annotations
@@ -43,7 +43,7 @@ def run(args):
     model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=dtype,
                                                  local_files_only=not args.allow_download)
     if args.fp32_unembed:
-        from gemma_utils import fp32_unembed
+        from model_arch import fp32_unembed
         fp32_unembed(model)
     device = torch.device(args.device)
     model.to(device).eval()

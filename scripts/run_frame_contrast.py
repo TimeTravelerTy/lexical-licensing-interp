@@ -17,7 +17,7 @@ Checks (fail-fast):
 
 Gemma replication (opt-in flags; the defaults reproduce the Pythia runs): --bos prepends the BOS id to every
 prefix (the tokenization checks are unchanged, without BOS); --dtype loads the model in another dtype;
---fp32-unembed computes logits in fp32 from the final-norm output (gemma_utils.fp32_unembed); --next-token " by"
+--fp32-unembed computes logits in fp32 from the final-norm output (model_arch.fp32_unembed); --next-token " by"
 adds lp_next_by = log P(" by") after the full participle (the position after its last subtoken).
 
 Output (--out-dir): frame_scores.parquet (one row per set x context x frame x verb), frame_h.npz, frame_meta.json.
@@ -60,7 +60,7 @@ def main(args):
         assert not missing, f"{len(missing)} pair verbs not scored in the cur prefixes (use --cur-all?): {sorted(missing)[:5]}"
     rev = {"revision": args.revision} if args.revision else {}
     tok = AutoTokenizer.from_pretrained(args.model, local_files_only=not args.allow_download, **rev)
-    from gemma_utils import check_no_softcap, final_norm, fp32_unembed
+    from model_arch import check_no_softcap, final_norm, fp32_unembed
 
     model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=getattr(torch, args.dtype),
                                                  local_files_only=not args.allow_download, **rev).to(dev).eval()
