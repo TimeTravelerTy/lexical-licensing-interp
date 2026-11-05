@@ -1,0 +1,609 @@
+verb,d11_role,d11_band,cur_role,cur_band,band,in_d11,in_curated,curated,n_tok,ids,first_id,pythia_ntok,gemma_ntok
+abased,T,xtail,,,xtail,1,0,0,2,763 1361,763,2,2
+abounded,I,tail,,,tail,1,0,0,2,763 38229,763,2,2
+abstained,I,tail,I,tail,tail,1,1,1,2,34751 3836,34751,2,2
+abstracted,T,tail,,,tail,1,0,0,1,149656,149656,2,1
+acceded,I,tail,,,tail,1,0,0,2,1055 57644,1055,2,2
+accommodated,T,tail,,,tail,1,0,0,1,98509,98509,2,1
+accounted,I,head,,,head,1,0,0,1,36020,36020,1,1
+ached,I,tail,,,tail,1,0,0,2,496 3059,496,2,2
+acquiesced,I,tail,,,tail,1,0,0,2,132530 1465,132530,3,2
+adhered,I,tail,I,tail,tail,1,1,1,1,95023,95023,1,1
+aided,T,head,,,head,1,0,0,1,65343,65343,1,1
+alluded,I,tail,,,tail,1,0,0,1,104539,104539,2,1
+amounted,I,head,,,head,1,0,0,1,49273,49273,1,1
+apologized,I,head,I,head,head,1,1,1,1,110784,110784,1,1
+appeared,,,I,head,head,0,1,1,1,9177,9177,1,1
+appropriated,T,tail,,,tail,1,0,0,1,79248,79248,2,1
+approximated,T,tail,T,tail,tail,1,1,1,1,70034,70034,1,1
+arisen,I,tail,,,tail,1,0,0,1,84921,84921,1,1
+arrived,I,head,I,head,head,1,1,1,1,12208,12208,1,1
+ascertained,T,tail,,,tail,1,0,0,1,77833,77833,1,1
+assented,I,xtail,,,xtail,1,0,0,2,1188 16764,1188,2,2
+audited,T,tail,T,tail,tail,1,1,1,1,121541,121541,2,1
+avoided,T,head,,,head,1,0,0,1,28717,28717,1,1
+awed,T,tail,T,tail,tail,1,1,1,2,1764 524,1764,2,2
+balked,I,tail,,,tail,1,0,0,2,90256 524,90256,3,2
+bantered,I,xtail,I,xtail,xtail,1,1,1,2,8418 58120,8418,3,2
+bared,T,tail,,,tail,1,0,0,2,518 1792,518,2,2
+bargained,I,tail,I,tail,tail,1,1,1,2,25877 3836,25877,2,2
+basked,I,xtail,I,xtail,xtail,1,1,1,2,41665 524,41665,2,2
+behaved,I,head,,,head,1,0,0,1,99389,99389,1,1
+beheld,T,tail,,,tail,1,0,0,1,231670,231670,2,1
+belonged,I,head,I,head,head,1,1,1,1,44619,44619,1,1
+besmirched,T,xtail,,,xtail,1,0,0,3,5426 18570 3059,5426,4,3
+bet,,,T,head,head,0,1,1,1,1146,1146,1,1
+billeted,T,xtail,,,xtail,1,0,0,2,8039 28974,8039,2,2
+blabbed,,,T,xtail,xtail,0,1,1,3,1105 596 4250,1105,3,3
+blackmailed,T,tail,,,tail,1,0,0,2,2764 192387,2764,3,2
+blamed,,,T,head,head,0,1,1,1,57396,57396,1,1
+blasphemed,I,xtail,T,xtail,xtail,1,1,1,3,149050 499 1992,149050,4,3
+blockaded,T,tail,,,tail,1,0,0,2,3355 13496,3355,2,2
+bloomed,I,tail,I,tail,tail,1,1,1,2,3839 28890,3839,2,2
+blossomed,I,tail,I,tail,tail,1,1,1,1,190088,190088,2,1
+blurted,,,T,tail,tail,0,1,1,3,1105 5337 524,1105,3,3
+blushed,I,tail,I,tail,tail,1,1,1,1,234622,234622,2,1
+blustered,I,xtail,,,xtail,1,0,0,3,1105 707 3747,1105,3,3
+borrowed,T,head,,,head,1,0,0,1,46439,46439,1,1
+bragged,I,tail,I,tail,tail,1,1,1,2,91932 3701,91932,2,2
+branched,I,tail,,,tail,1,0,0,1,91637,91637,1,1
+braved,T,tail,,,tail,1,0,0,2,8518 1872,8518,2,2
+bribed,T,tail,T,tail,tail,1,1,1,2,122577 524,122577,2,2
+browbeaten,T,xtail,,,xtail,1,0,0,3,69135 1553 6793,69135,3,3
+buffed,T,tail,,,tail,1,0,0,2,8190 524,8190,2,2
+burdened,T,tail,,,tail,1,0,0,1,148364,148364,3,1
+burgeoned,I,xtail,I,xtail,xtail,1,1,1,3,5717 787 23446,5717,3,3
+bustled,,,I,xtail,xtail,0,1,1,2,27002 991,27002,2,2
+cached,T,tail,,,tail,1,0,0,1,62873,62873,1,1
+cajoled,T,xtail,,,xtail,1,0,0,3,505 9368 991,505,4,3
+calved,I,xtail,,,xtail,1,0,0,2,1421 1872,1421,2,2
+cared,I,head,,,head,1,0,0,1,47694,47694,1,1
+carjacked,T,xtail,,,xtail,1,0,0,3,1295 21591 524,1295,3,3
+cavorted,I,xtail,,,xtail,1,0,0,2,14681 19798,14681,2,2
+celebrated,T,head,T,head,head,1,1,1,1,23101,23101,1,1
+centrifuged,T,xtail,,,xtail,1,0,0,1,111412,111412,1,1
+chatted,I,tail,,,tail,1,0,0,1,146109,146109,2,1
+christened,,,T,tail,tail,0,1,1,2,32943 4027,32943,2,2
+chuckled,I,tail,I,tail,tail,1,1,1,1,142272,142272,1,1
+circumvented,T,tail,,,tail,1,0,0,2,101148 524,101148,2,2
+clammed,I,xtail,,,xtail,1,0,0,2,732 30884,732,2,2
+clashed,I,tail,I,tail,tail,1,1,1,1,171049,171049,2,1
+clattered,I,xtail,,,xtail,1,0,0,2,732 42790,732,2,2
+cleansed,T,tail,,,tail,1,0,0,1,214566,214566,2,1
+cloned,T,tail,,,tail,1,0,0,1,84447,84447,1,1
+clouted,T,xtail,T,xtail,xtail,1,1,1,2,732 124094,732,3,2
+cluttered,T,tail,,,tail,1,0,0,1,173152,173152,2,1
+coerced,,,T,tail,tail,0,1,1,1,225312,225312,3,1
+coexisted,I,xtail,I,xtail,xtail,1,1,1,3,1028 716 14090,1028,3,3
+cohabited,I,xtail,,,xtail,1,0,0,3,1028 7722 1552,1028,3,3
+colluded,I,tail,I,tail,tail,1,1,1,2,3995 30589,3995,2,2
+commemorated,,,T,tail,tail,0,1,1,1,220351,220351,2,1
+commented,I,head,,,head,1,0,0,1,32561,32561,1,1
+commiserated,I,xtail,I,xtail,xtail,1,1,1,3,1103 7648 774,1103,3,3
+competed,I,head,I,head,head,1,1,1,1,59816,59816,1,1
+complained,I,head,I,head,head,1,1,1,1,40182,40182,1,1
+concurred,I,tail,I,tail,tail,1,1,1,1,199091,199091,2,1
+condoned,T,tail,,,tail,1,0,0,2,1910 23446,1910,2,2
+confronted,,,T,head,head,0,1,1,1,52362,52362,1,1
+congregated,I,tail,,,tail,1,0,0,2,25882 65252,25882,2,2
+consented,I,tail,,,tail,1,0,0,1,120076,120076,1,1
+consisted,I,head,,,head,1,0,0,1,31590,31590,1,1
+conspired,I,tail,I,tail,tail,1,1,1,1,215300,215300,2,1
+convalesced,I,xtail,,,xtail,1,0,0,3,152602 507 1465,152602,4,3
+converged,I,tail,,,tail,1,0,0,1,98258,98258,2,1
+cooperated,I,tail,I,tail,tail,1,1,1,1,188359,188359,2,1
+coped,I,tail,,,tail,1,0,0,2,7030 524,7030,2,2
+corresponded,I,tail,I,tail,tail,1,1,1,1,120264,120264,1,1
+corroborated,T,tail,,,tail,1,0,0,1,169721,169721,1,1
+counteracted,T,xtail,,,xtail,1,0,0,2,6651 70485,6651,2,2
+counterfeited,T,xtail,,,xtail,1,0,0,2,191854 1552,191854,3,2
+crackled,I,xtail,I,xtail,xtail,1,1,1,2,11890 991,11890,2,2
+crated,T,xtail,T,xtail,xtail,1,1,1,2,1976 774,1976,2,2
+craved,T,tail,,,tail,1,0,0,2,12783 1872,12783,2,2
+crept,I,tail,I,tail,tail,1,1,1,1,154563,154563,1,1
+cringed,I,tail,,,tail,1,0,0,3,505 851 524,505,3,3
+crowed,I,tail,,,tail,1,0,0,2,10102 524,10102,2,2
+crowned,,,T,head,head,0,1,1,1,75216,75216,1,1
+dammed,T,tail,,,tail,1,0,0,2,3882 1992,3882,2,2
+daubed,T,xtail,T,xtail,xtail,1,1,1,3,1776 709 524,1776,3,3
+dawned,I,tail,I,tail,tail,1,1,1,1,211476,211476,2,1
+debugged,T,xtail,T,xtail,xtail,1,1,1,2,15862 3701,15862,2,2
+decamped,I,xtail,I,xtail,xtail,1,1,1,2,1521 59034,1521,2,2
+decayed,I,tail,,,tail,1,0,0,1,180367,180367,2,1
+decimated,T,tail,,,tail,1,0,0,1,212141,212141,2,1
+decoded,T,tail,,,tail,1,0,0,1,64686,64686,1,1
+decontaminated,T,xtail,,,xtail,1,0,0,2,569 203680,569,3,2
+deducted,T,tail,,,tail,1,0,0,1,84596,84596,2,1
+defaced,T,tail,,,tail,1,0,0,2,1096 3776,1096,2,2
+defecated,I,xtail,I,xtail,xtail,1,1,1,2,181120 774,181120,3,2
+defected,I,tail,,,tail,1,0,0,2,11507 524,11507,2,2
+defended,T,head,T,head,head,1,1,1,1,52688,52688,1,1
+defined,T,head,,,head,1,0,0,1,5221,5221,1,1
+deforested,T,xtail,,,xtail,1,0,0,3,1096 663 15096,1096,3,3
+defrauded,T,tail,,,tail,1,0,0,2,204462 30589,204462,3,2
+deliberated,I,tail,,,tail,1,0,0,2,21985 774,21985,2,2
+demeaned,T,xtail,,,xtail,1,0,0,2,98161 524,98161,3,2
+departed,I,head,,,head,1,0,0,1,67325,67325,1,1
+desisted,I,xtail,I,xtail,xtail,1,1,1,2,853 14090,853,2,2
+despoiled,T,xtail,,,xtail,1,0,0,3,853 2661 3002,853,3,3
+deterred,T,tail,T,tail,tail,1,1,1,1,188128,188128,2,1
+detested,T,tail,,,tail,1,0,0,2,1290 12320,1290,2,2
+diced,,,T,tail,tail,0,1,1,1,138748,138748,1,1
+died,I,head,I,head,head,1,1,1,1,8390,8390,1,1
+dined,I,tail,,,tail,1,0,0,1,201835,201835,2,1
+disabused,T,xtail,T,xtail,xtail,1,1,1,3,864 596 3456,864,3,3
+disappeared,I,head,,,head,1,0,0,1,32704,32704,1,1
+disapproved,I,tail,,,tail,1,0,0,1,235821,235821,2,1
+disavowed,T,tail,,,tail,1,0,0,3,864 737 21093,864,3,3
+disembarked,I,tail,,,tail,1,0,0,3,864 7231 78399,864,4,3
+disembowelled,T,xtail,,,xtail,1,0,0,4,864 7231 572 16853,864,4,4
+disgorged,T,xtail,T,xtail,xtail,1,1,1,3,122880 2187 524,122880,3,3
+dislodged,T,tail,,,tail,1,0,0,3,864 52917 3701,864,3,3
+disquieted,T,xtail,T,xtail,xtail,1,1,1,3,864 53586 524,864,3,3
+disregarded,T,tail,,,tail,1,0,0,1,114223,114223,2,1
+dissented,I,tail,,,tail,1,0,0,2,10197 16764,10197,2,2
+dissuaded,T,tail,,,tail,1,0,0,2,148029 13496,148029,3,2
+distrusted,T,tail,,,tail,1,0,0,2,93833 524,93833,3,2
+dived,I,tail,,,tail,1,0,0,2,513 2476,513,2,2
+diverged,I,tail,I,tail,tail,1,1,1,2,18393 3701,18393,2,2
+divested,T,tail,,,tail,1,0,0,2,3542 12320,3542,2,2
+divulged,T,tail,,,tail,1,0,0,2,76731 3701,76731,3,2
+doffed,T,xtail,T,xtail,xtail,1,1,1,3,776 736 524,776,3,3
+doped,T,tail,T,tail,tail,1,1,1,1,115938,115938,1,1
+dreamed,I,head,,,head,1,0,0,1,68121,68121,1,1
+drooled,I,xtail,I,xtail,xtail,1,1,1,2,5083 24493,5083,3,2
+ducked,,,T,tail,tail,0,1,1,2,29989 524,29989,2,2
+duplicated,T,tail,,,tail,1,0,0,1,80254,80254,1,1
+dwelt,I,tail,,,tail,1,0,0,1,188173,188173,2,1
+dwindled,I,tail,I,tail,tail,1,1,1,2,108046 991,108046,3,2
+earned,,,T,head,head,0,1,1,1,15575,15575,1,1
+eavesdropped,I,xtail,I,xtail,xtail,1,1,1,2,126889 179470,126889,4,2
+edified,T,xtail,T,xtail,xtail,1,1,1,2,1511 2093,1511,2,2
+effaced,T,xtail,,,xtail,1,0,0,2,1320 3776,1320,2,2
+elapsed,I,tail,,,tail,1,0,0,1,34384,34384,1,1
+elbowed,T,tail,,,tail,1,0,0,2,39609 524,39609,2,2
+eliminated,T,head,,,head,1,0,0,1,29988,29988,1,1
+eloped,I,tail,,,tail,1,0,0,2,862 21382,862,2,2
+elucidated,T,tail,,,tail,1,0,0,1,148118,148118,1,1
+emerged,I,head,I,head,head,1,1,1,1,25091,25091,1,1
+emigrated,I,tail,I,tail,tail,1,1,1,1,176727,176727,2,1
+empathized,I,xtail,,,xtail,1,0,0,2,130064 1662,130064,3,2
+emulsified,T,xtail,,,xtail,1,0,0,2,120126 2093,120126,3,2
+encompassed,T,tail,,,tail,1,0,0,1,173505,173505,2,1
+encroached,I,tail,,,tail,1,0,0,2,86931 4261,86931,3,2
+enunciated,T,xtail,,,xtail,1,0,0,2,93892 774,93892,3,2
+envisaged,T,tail,,,tail,1,0,0,1,99237,99237,2,1
+equivocated,I,xtail,,,xtail,1,0,0,2,216502 774,216502,2,2
+eradicated,T,tail,,,tail,1,0,0,1,203327,203327,2,1
+erred,I,tail,,,tail,1,0,0,1,102012,102012,1,1
+eschewed,,,T,tail,tail,0,1,1,2,159955 25325,159955,3,2
+espied,T,xtail,T,xtail,xtail,1,1,1,2,8263 1178,8263,2,2
+eulogized,T,xtail,,,xtail,1,0,0,3,150259 679 1662,150259,4,3
+evacuated,T,head,,,head,1,0,0,1,85149,85149,1,1
+evaded,T,tail,T,tail,tail,1,1,1,1,233379,233379,2,1
+eventuated,I,xtail,I,xtail,xtail,1,1,1,2,2460 42490,2460,2,2
+excelled,I,tail,,,tail,1,0,0,1,128222,128222,2,1
+excised,T,tail,,,tail,1,0,0,1,183981,183981,1,1
+exerted,,,T,tail,tail,0,1,1,1,59481,59481,1,1
+exhibited,,,T,head,head,0,1,1,1,31272,31272,1,1
+existed,I,head,I,head,head,1,1,1,1,26077,26077,1,1
+expelled,T,head,,,head,1,0,0,1,87520,87520,1,1
+explicated,T,xtail,,,xtail,1,0,0,2,2049 8547,2049,2,2
+exterminated,T,tail,,,tail,1,0,0,2,104248 774,104248,3,2
+extirpated,T,xtail,T,xtail,xtail,1,1,1,3,1449 143632 774,1449,4,3
+exulted,I,xtail,I,xtail,xtail,1,1,1,3,652 745 524,652,3,3
+fainted,I,tail,,,tail,1,0,0,2,517 25197,517,2,2
+farted,I,tail,,,tail,1,0,0,2,84764 524,84764,2,2
+fawned,I,xtail,I,xtail,xtail,1,1,1,2,177950 524,177950,3,2
+feasted,I,tail,,,tail,1,0,0,2,1127 21068,1127,2,2
+feigned,T,tail,,,tail,1,0,0,2,1127 2930,1127,2,2
+feuded,I,xtail,,,xtail,1,0,0,2,1127 30589,1127,2,2
+filched,T,xtail,T,xtail,xtail,1,1,1,2,1597 3059,1597,2,2
+fizzed,I,xtail,I,xtail,xtail,1,1,1,2,142747 524,142747,3,2
+fleeced,T,tail,T,tail,tail,1,1,1,2,11737 224484,11737,2,2
+flinched,I,tail,,,tail,1,0,0,3,1378 495 3059,1378,2,3
+flirted,I,tail,I,tail,tail,1,1,1,2,105988 524,105988,3,2
+flopped,I,tail,,,tail,1,0,0,2,2851 2560,2851,2,2
+flounced,I,xtail,,,xtail,1,0,0,2,1378 6406,1378,2,2
+fluctuated,I,tail,I,tail,tail,1,1,1,2,24312 774,24312,2,2
+forested,,,T,tail,tail,0,1,1,1,130944,130944,2,1
+fraternized,I,xtail,,,xtail,1,0,0,2,189035 1662,189035,3,2
+fulfilled,T,head,,,head,1,0,0,1,36360,36360,1,1
+functioned,I,tail,I,tail,tail,1,1,1,1,176417,176417,2,1
+furthered,T,tail,,,tail,1,0,0,2,3342 524,3342,3,2
+gagged,T,tail,T,tail,tail,1,1,1,2,71805 3701,71805,2,2
+galvanized,,,T,tail,tail,0,1,1,1,130077,130077,3,1
+gaped,I,xtail,I,xtail,xtail,1,1,1,2,11302 524,11302,2,2
+garlanded,T,xtail,T,xtail,xtail,1,1,1,2,99095 524,99095,3,2
+garnished,,,T,tail,tail,0,1,1,1,151840,151840,2,1
+gasped,I,tail,,,tail,1,0,0,1,186855,186855,1,1
+gassed,T,tail,,,tail,1,0,0,2,549 70058,549,2,2
+gazed,I,tail,,,tail,1,0,0,1,162768,162768,1,1
+giggled,I,tail,,,tail,1,0,0,2,19714 74934,19714,2,2
+glanced,I,tail,,,tail,1,0,0,1,76876,76876,1,1
+glared,I,tail,I,tail,tail,1,1,1,1,228342,228342,1,1
+gloated,I,xtail,I,xtail,xtail,1,1,1,2,11070 774,11070,2,2
+glowed,I,tail,I,tail,tail,1,1,1,2,19462 524,19462,2,2
+goggled,,,I,xtail,xtail,0,1,1,2,549 229099,549,3,2
+greased,T,tail,,,tail,1,0,0,2,2017 1361,2017,2,2
+grinned,I,tail,I,tail,tail,1,1,1,1,135445,135445,1,1
+gripped,T,tail,,,tail,1,0,0,1,161176,161176,1,1
+groaned,I,tail,,,tail,1,0,0,1,233513,233513,1,1
+groused,I,xtail,I,xtail,xtail,1,1,1,2,27176 16872,27176,2,2
+guarded,T,head,,,head,1,0,0,1,92112,92112,1,1
+guided,T,head,,,head,1,0,0,1,28172,28172,1,1
+gulled,T,xtail,T,xtail,xtail,1,1,1,2,78059 991,78059,2,2
+gushed,I,tail,,,tail,1,0,0,2,549 10593,549,2,2
+guzzled,T,xtail,T,xtail,xtail,1,1,1,3,1533 9961 991,1533,3,3
+gyrated,I,xtail,,,xtail,1,0,0,2,139687 774,139687,3,2
+handed,T,head,,,head,1,0,0,1,26249,26249,1,1
+happened,I,head,I,head,head,1,1,1,1,8432,8432,1,1
+hated,T,head,T,head,head,1,1,1,1,52695,52695,1,1
+hazarded,T,xtail,,,xtail,1,0,0,2,13521 19319,13521,2,2
+heaped,T,tail,T,tail,tail,1,1,1,1,213250,213250,2,1
+hefted,T,xtail,T,xtail,xtail,1,1,1,2,123526 524,123526,3,2
+heralded,T,tail,,,tail,1,0,0,1,187939,187939,3,1
+hesitated,I,tail,,,tail,1,0,0,1,114507,114507,1,1
+hibernated,,,I,xtail,xtail,0,1,1,3,44798 1446 774,44798,4,3
+hitchhiked,I,xtail,I,xtail,xtail,1,1,1,3,81725 69467 524,81725,3,3
+hocked,T,xtail,,,xtail,1,0,0,2,534 167899,534,3,2
+hosted,,,T,head,head,0,1,1,1,22889,22889,1,1
+hounded,T,tail,,,tail,1,0,0,2,534 38229,534,2,2
+howled,I,tail,,,tail,1,0,0,2,1217 991,1217,2,2
+husked,T,xtail,,,xtail,1,0,0,2,7597 22329,7597,2,2
+hyperventilated,I,xtail,,,xtail,1,0,0,3,10835 150182 774,10835,3,3
+idolized,T,tail,,,tail,1,0,0,2,51605 1662,51605,2,2
+imitated,,,T,tail,tail,0,1,1,1,173041,173041,2,1
+immolated,T,xtail,T,xtail,xtail,1,1,1,2,4239 22120,4239,2,2
+impinged,I,xtail,,,xtail,1,0,0,2,185914 524,185914,3,2
+imported,T,head,,,head,1,0,0,1,25985,25985,1,1
+imposed,T,head,T,head,head,1,1,1,1,21676,21676,1,1
+impregnated,T,tail,,,tail,1,0,0,1,146980,146980,2,1
+included,,,T,head,head,0,1,1,1,5012,5012,1,1
+incriminated,T,xtail,T,xtail,xtail,1,1,1,3,2494 4966 7413,2494,3,3
+ingested,T,tail,T,tail,tail,1,1,1,1,121113,121113,2,1
+inoculated,T,tail,,,tail,1,0,0,1,103194,103194,1,1
+inquired,I,tail,I,tail,tail,1,1,1,1,107171,107171,1,1
+insured,,,T,head,head,0,1,1,1,44270,44270,1,1
+interacted,I,tail,I,tail,tail,1,1,1,1,118261,118261,2,1
+interceded,I,xtail,,,xtail,1,0,0,2,939 216524,939,3,2
+intermarried,I,xtail,,,xtail,1,0,0,2,939 80987,939,2,2
+introduced,,,T,head,head,0,1,1,1,8314,8314,1,1
+inveighed,I,xtail,,,xtail,1,0,0,2,45219 30033,45219,3,2
+inveigled,T,xtail,,,xtail,1,0,0,3,45219 554 991,45219,4,3
+jested,I,xtail,,,xtail,1,0,0,2,11170 524,11170,2,2
+jigged,I,xtail,,,xtail,1,0,0,2,100189 3701,100189,3,2
+jutted,I,xtail,I,xtail,xtail,1,1,1,2,75929 6968,75929,3,2
+kayaked,I,xtail,,,xtail,1,0,0,2,15931 10487,15931,2,2
+kneaded,T,xtail,,,xtail,1,0,0,2,28193 13496,28193,2,2
+knelt,I,tail,,,tail,1,0,0,1,179360,179360,1,1
+languished,I,tail,I,tail,tail,1,1,1,2,104266 2091,104266,3,2
+lapsed,I,tail,,,tail,1,0,0,1,203052,203052,2,1
+larded,T,xtail,T,xtail,xtail,1,1,1,2,537 19319,537,2,2
+lasted,I,head,,,head,1,0,0,1,38085,38085,1,1
+lathered,,,T,xtail,xtail,0,1,1,2,229243 524,229243,2,2
+laughed,I,head,I,head,head,1,1,1,1,39494,39494,1,1
+leached,T,xtail,,,xtail,1,0,0,2,674 4261,674,2,2
+leased,,,T,head,head,0,1,1,1,64239,64239,1,1
+leashed,T,xtail,,,xtail,1,0,0,2,674 16539,674,2,2
+leered,I,xtail,I,xtail,xtail,1,1,1,2,674 3747,674,2,2
+lent,T,head,T,head,head,1,1,1,1,32658,32658,1,1
+lied,I,head,I,head,head,1,1,1,1,78997,78997,1,1
+limped,I,tail,,,tail,1,0,0,2,2284 10796,2284,2,2
+lingered,I,tail,I,tail,tail,1,1,1,1,206574,206574,2,1
+listened,I,head,I,head,head,1,1,1,1,37570,37570,1,1
+lived,I,head,,,head,1,0,0,1,11742,11742,1,1
+loaded,,,T,head,head,0,1,1,1,15808,15808,1,1
+loathed,T,tail,,,tail,1,0,0,2,1510 89038,1510,2,2
+loitered,I,xtail,,,xtail,1,0,0,3,1510 2598 524,1510,3,3
+lolled,I,xtail,I,xtail,xtail,1,1,1,2,31685 991,31685,2,2
+loomed,I,tail,,,tail,1,0,0,2,1510 28890,1510,2,2
+lopped,T,xtail,,,xtail,1,0,0,2,1510 2560,1510,2,2
+lounged,I,xtail,,,xtail,1,0,0,2,85447 524,85447,3,2
+lugged,T,xtail,T,xtail,xtail,1,1,1,2,20668 3701,20668,2,2
+lumbered,I,xtail,I,xtail,xtail,1,1,1,2,35400 524,35400,2,2
+lurked,I,tail,I,tail,tail,1,1,1,2,61501 22329,61501,2,2
+luxuriated,I,xtail,,,xtail,1,0,0,2,181195 774,181195,3,2
+lynched,T,tail,,,tail,1,0,0,2,112208 3059,112208,2,2
+majored,I,tail,,,tail,1,0,0,2,2938 2926,2938,2,2
+malfunctioned,I,tail,,,tail,1,0,0,2,81993 524,81993,2,2
+maligned,T,tail,,,tail,1,0,0,2,4405 2930,4405,2,2
+manipulated,T,head,,,head,1,0,0,1,68333,68333,1,1
+materialized,I,tail,,,tail,1,0,0,1,178957,178957,2,1
+mattered,I,head,I,head,head,1,1,1,1,134655,134655,1,1
+measured,,,T,head,head,0,1,1,1,8434,8434,1,1
+meditated,I,tail,,,tail,1,0,0,2,1470 27904,1470,2,2
+menstruated,I,xtail,,,xtail,1,0,0,2,45470 774,45470,2,2
+metered,T,tail,,,tail,1,0,0,2,1645 3747,1645,2,2
+mistrusted,T,xtail,T,xtail,xtail,1,1,1,2,8442 164670,8442,3,2
+molted,I,xtail,,,xtail,1,0,0,2,8627 6968,8627,3,2
+moonlighted,I,xtail,,,xtail,1,0,0,2,134351 524,134351,2,2
+moralized,I,xtail,,,xtail,1,0,0,2,16643 1662,16643,2,2
+mulched,T,xtail,T,xtail,xtail,1,1,1,2,13430 3059,13430,2,2
+mused,I,tail,I,tail,tail,1,1,1,2,2431 524,2431,2,2
+nabbed,T,tail,T,tail,tail,1,1,1,2,39310 4250,39310,3,2
+numbered,T,head,,,head,1,0,0,1,49597,49597,1,1
+objected,I,head,I,head,head,1,1,1,1,75941,75941,1,1
+obviated,T,xtail,T,xtail,xtail,1,1,1,2,140353 774,140353,3,2
+occurred,I,head,I,head,head,1,1,1,1,10997,10997,1,1
+officiated,I,tail,,,tail,1,0,0,2,53881 774,53881,2,2
+ogled,T,xtail,T,xtail,xtail,1,1,1,2,4370 991,4370,2,2
+opted,I,head,I,head,head,1,1,1,1,51140,51140,1,1
+orphaned,T,tail,T,tail,tail,1,1,1,1,209017,209017,2,1
+oscillated,I,xtail,,,xtail,1,0,0,2,14925 774,14925,2,2
+outdone,,,T,tail,tail,0,1,1,2,855 18450,855,2,2
+outshone,T,xtail,T,xtail,xtail,1,1,1,3,855 1179 811,855,3,3
+outweighed,T,tail,,,tail,1,0,0,1,224982,224982,2,1
+overcharged,T,tail,,,tail,1,0,0,2,1024 52989,1024,2,2
+overemphasized,T,xtail,,,xtail,1,0,0,3,1024 139020 1662,1024,5,3
+overestimated,T,tail,T,tail,tail,1,1,1,1,226862,226862,2,1
+overloaded,T,tail,,,tail,1,0,0,1,135417,135417,2,1
+overreached,I,xtail,,,xtail,1,0,0,2,1024 172217,1024,3,2
+overreacted,I,tail,,,tail,1,0,0,2,1024 205773,1024,3,2
+panted,I,xtail,I,xtail,xtail,1,1,1,2,510 17084,510,2,2
+parboiled,T,xtail,,,xtail,1,0,0,2,944 156760,944,3,2
+pardoned,T,tail,,,tail,1,0,0,2,89912 23446,89912,3,2
+participated,I,head,I,head,head,1,1,1,1,26695,26695,1,1
+partied,I,tail,,,tail,1,0,0,2,912 1178,912,2,2
+pastured,T,xtail,,,xtail,1,0,0,2,3068 2600,3068,2,2
+patronized,T,tail,,,tail,1,0,0,2,32994 1662,32994,2,2
+pawed,T,xtail,,,xtail,1,0,0,2,54381 524,54381,2,2
+pawned,T,tail,,,tail,1,0,0,2,126693 524,126693,2,2
+peed,I,tail,I,tail,tail,1,1,1,2,1022 524,1022,2,2
+peeked,I,tail,,,tail,1,0,0,2,64943 524,64943,2,2
+peered,I,tail,,,tail,1,0,0,1,236497,236497,1,1
+perfumed,T,tail,T,tail,tail,1,1,1,2,18307 35245,18307,2,2
+permed,T,xtail,T,xtail,xtail,1,1,1,2,810 1992,810,2,2
+persevered,I,tail,I,tail,tail,1,1,1,2,62212 524,62212,3,2
+petted,T,tail,,,tail,1,0,0,2,510 77558,510,2,2
+picnicked,I,xtail,,,xtail,1,0,0,3,10464 236749 29969,10464,3,3
+pigeonholed,T,xtail,T,xtail,xtail,1,1,1,3,85173 1506 991,85173,4,3
+pilfered,T,xtail,,,xtail,1,0,0,3,9682 821 524,9682,2,3
+pillaged,T,tail,,,tail,1,0,0,2,13736 4130,13736,2,2
+piloted,T,tail,,,tail,1,0,0,1,210149,210149,2,1
+pitied,T,tail,,,tail,1,0,0,2,13122 1178,13122,2,2
+placated,T,xtail,T,xtail,xtail,1,1,1,2,20830 774,20830,2,2
+placed,T,head,,,head,1,0,0,1,7006,7006,1,1
+plied,T,tail,,,tail,1,0,0,2,729 1178,729,2,2
+plundered,T,tail,,,tail,1,0,0,2,729 179870,729,3,2
+poisoned,T,head,,,head,1,0,0,1,113122,113122,1,1
+policed,T,tail,,,tail,1,0,0,2,1268 7701,1268,2,2
+ported,T,tail,,,tail,1,0,0,1,146992,146992,2,1
+praised,T,head,,,head,1,0,0,1,43605,43605,1,1
+prayed,I,head,,,head,1,0,0,1,67383,67383,1,1
+precluded,T,tail,T,tail,tail,1,1,1,1,117891,117891,1,1
+prepared,T,head,,,head,1,0,0,1,7759,7759,1,1
+prevaricated,I,xtail,,,xtail,1,0,0,3,877 1967 8547,877,3,3
+prised,T,xtail,T,xtail,xtail,1,1,1,2,865 2470,865,2,2
+probed,T,tail,,,tail,1,0,0,1,127941,127941,1,1
+proceeded,I,head,I,head,head,1,1,1,1,41684,41684,1,1
+procreated,I,xtail,,,xtail,1,0,0,2,608 17138,608,2,2
+professed,T,tail,,,tail,1,0,0,1,172735,172735,2,1
+proffered,T,tail,,,tail,1,0,0,1,234232,234232,1,1
+progressed,I,head,,,head,1,0,0,1,65426,65426,1,1
+proliferated,I,tail,,,tail,1,0,0,2,25182 774,25182,2,2
+prospered,I,tail,,,tail,1,0,0,2,24243 524,24243,2,2
+protruded,I,xtail,,,xtail,1,0,0,2,59199 30589,59199,2,2
+pulped,T,xtail,,,xtail,1,0,0,2,5372 10796,5372,2,2
+pulsated,I,xtail,,,xtail,1,0,0,2,42766 774,42766,2,2
+putrefied,I,xtail,,,xtail,1,0,0,3,2247 1811 1178,2247,3,3
+puttered,I,xtail,I,xtail,xtail,1,1,1,2,2247 58120,2247,2,2
+quacked,I,xtail,I,xtail,xtail,1,1,1,2,690 39779,690,2,2
+quantified,T,tail,,,tail,1,0,0,1,71378,71378,1,1
+quarried,T,tail,T,tail,tail,1,1,1,2,56666 3610,56666,2,2
+quelled,T,tail,T,tail,tail,1,1,1,2,11391 991,11391,2,2
+quivered,,,I,xtail,xtail,0,1,1,2,690 98030,690,2,2
+racked,T,tail,,,tail,1,0,0,1,163179,163179,2,1
+raged,I,tail,,,tail,1,0,0,1,198929,198929,2,1
+ranted,I,tail,,,tail,1,0,0,2,637 17084,637,2,2
+rated,T,head,T,head,head,1,1,1,1,25118,25118,1,1
+rationed,T,tail,,,tail,1,0,0,2,30416 524,30416,2,2
+raved,I,tail,I,tail,tail,1,1,1,2,1459 1872,1459,2,2
+ravished,T,xtail,,,xtail,1,0,0,2,42600 2091,42600,2,2
+reacted,I,head,,,head,1,0,0,1,53618,53618,1,1
+readjusted,T,xtail,,,xtail,1,0,0,2,149755 524,149755,3,2
+reappeared,I,tail,I,tail,tail,1,1,1,2,73301 28556,73301,2,2
+reappraised,T,xtail,,,xtail,1,0,0,2,73301 86798,73301,3,2
+reared,T,tail,T,tail,tail,1,1,1,1,119532,119532,2,1
+rearmed,T,xtail,T,xtail,xtail,1,1,1,2,544 59478,544,2,2
+rebelled,I,tail,,,tail,1,0,0,2,49791 991,49791,2,2
+recast,,,T,tail,tail,0,1,1,1,190759,190759,2,1
+receded,I,tail,I,tail,tail,1,1,1,2,1125 57644,1125,3,2
+received,T,head,,,head,1,0,0,1,4461,4461,1,1
+recited,T,tail,,,tail,1,0,0,1,119360,119360,1,1
+recoded,T,xtail,,,xtail,1,0,0,2,1125 10243,1125,2,2
+recollected,T,xtail,,,xtail,1,0,0,2,44582 2785,44582,2,2
+recompensed,T,xtail,T,xtail,xtail,1,1,1,2,135540 13220,135540,3,2
+recovered,T,head,,,head,1,0,0,1,21919,21919,1,1
+redressed,T,xtail,T,xtail,xtail,1,1,1,2,2604 7461,2604,2,2
+reelected,T,tail,,,tail,1,0,0,2,544 92617,544,2,2
+reeled,,,I,tail,tail,0,1,1,2,544 19583,544,2,2
+reemerged,I,xtail,,,xtail,1,0,0,3,544 30131 3701,544,3,3
+refunded,T,tail,T,tail,tail,1,1,1,1,98240,98240,2,1
+regaled,T,xtail,T,xtail,xtail,1,1,1,2,1157 5444,1157,2,2
+regarded,T,head,,,head,1,0,0,1,18793,18793,1,1
+reigned,I,tail,,,tail,1,0,0,1,163879,163879,2,1
+reinstalled,T,tail,T,tail,tail,1,1,1,2,544 63007,544,2,2
+relapsed,I,tail,,,tail,1,0,0,2,1151 15591,1151,2,2
+relented,I,tail,,,tail,1,0,0,2,1151 16764,1151,2,2
+relied,I,head,,,head,1,0,0,1,38586,38586,1,1
+relished,T,tail,,,tail,1,0,0,2,1151 2091,1151,2,2
+remained,,,I,head,head,0,1,1,1,12800,12800,1,1
+remonstrated,I,xtail,I,xtail,xtail,1,1,1,2,223006 178787,223006,3,2
+reoccurred,I,xtail,,,xtail,1,0,0,3,544 73561 1192,544,3,3
+replied,I,head,I,head,head,1,1,1,1,24406,24406,1,1
+reproached,T,xtail,T,xtail,xtail,1,1,1,2,10903 4261,10903,2,2
+reproved,T,xtail,T,xtail,xtail,1,1,1,2,10903 1872,10903,2,2
+requisitioned,T,tail,,,tail,1,0,0,2,202512 524,202512,3,2
+reserved,T,head,,,head,1,0,0,1,14512,14512,1,1
+resonated,I,tail,,,tail,1,0,0,1,166152,166152,2,1
+resounded,I,xtail,I,xtail,xtail,1,1,1,2,766 38229,766,2,2
+responded,I,head,I,head,head,1,1,1,1,21889,21889,1,1
+resulted,I,head,I,head,head,1,1,1,1,15116,15116,1,1
+resupplied,T,xtail,T,xtail,xtail,1,1,1,3,766 14021 4607,766,3,3
+retaliated,I,tail,I,tail,tail,1,1,1,2,62784 774,62784,2,2
+reverted,I,tail,,,tail,1,0,0,1,152574,152574,2,1
+reviewed,T,head,,,head,1,0,0,1,20301,20301,1,1
+rinsed,T,tail,,,tail,1,0,0,1,123017,123017,1,1
+robbed,T,head,T,head,head,1,1,1,1,83946,83946,1,1
+roused,T,tail,T,tail,tail,1,1,1,1,223157,223157,2,1
+rued,T,xtail,,,xtail,1,0,0,1,87166,87166,2,1
+ruined,T,head,,,head,1,0,0,1,57717,57717,1,1
+ruled,T,head,,,head,1,0,0,1,26668,26668,1,1
+ruminated,I,xtail,,,xtail,1,0,0,2,163090 774,163090,2,2
+rummaged,I,xtail,,,xtail,1,0,0,3,12202 236757 4130,12202,3,3
+sabotaged,T,tail,,,tail,1,0,0,2,82414 4130,82414,2,2
+safeguarded,T,tail,T,tail,tail,1,1,1,2,32755 19319,32755,3,2
+salivated,I,xtail,I,xtail,xtail,1,1,1,2,2095 41300,2095,2,2
+salved,T,xtail,,,xtail,1,0,0,2,2095 1872,2095,2,2
+sated,T,tail,,,tail,1,0,0,2,503 774,503,2,2
+satirized,T,xtail,,,xtail,1,0,0,2,187794 1662,187794,3,2
+sauntered,I,xtail,,,xtail,1,0,0,3,890 14863 524,890,3,3
+scooped,T,tail,,,tail,1,0,0,1,177837,177837,2,1
+scooted,I,xtail,,,xtail,1,0,0,2,108478 524,108478,3,2
+scored,,,T,head,head,0,1,1,1,15568,15568,1,1
+scrammed,,,I,xtail,xtail,0,1,1,2,44126 1992,44126,3,2
+scrubbed,,,T,tail,tail,0,1,1,2,42866 4250,42866,2,2
+secreted,T,tail,,,tail,1,0,0,1,95187,95187,1,1
+seeped,I,tail,I,tail,tail,1,1,1,2,105455 524,105455,3,2
+seethed,I,xtail,I,xtail,xtail,1,1,1,3,636 536 1371,636,3,3
+sent,T,head,T,head,head,1,1,1,1,3265,3265,1,1
+shampooed,T,xtail,,,xtail,1,0,0,2,48791 524,48791,4,2
+shellacked,T,xtail,,,xtail,1,0,0,2,11411 39779,11411,2,2
+shimmered,I,xtail,I,xtail,xtail,1,1,1,2,97467 524,97467,3,2
+shivered,I,tail,,,tail,1,0,0,2,704 98030,704,2,2
+shooed,T,xtail,T,xtail,xtail,1,1,1,3,704 5008 524,704,3,3
+shoplifted,T,xtail,T,xtail,xtail,1,1,1,3,7805 52046 524,7805,4,3
+shopped,I,tail,,,tail,1,0,0,2,5665 2560,5665,2,2
+shuddered,I,tail,I,tail,tail,1,1,1,2,155587 524,155587,2,2
+sided,I,head,,,head,1,0,0,1,77831,77831,2,1
+sidled,I,xtail,I,xtail,xtail,1,1,1,2,18996 991,18996,2,2
+sighed,I,tail,,,tail,1,0,0,1,73302,73302,1,1
+signaled,T,tail,,,tail,1,0,0,1,132661,132661,1,1
+sinned,I,tail,I,tail,tail,1,1,1,1,220701,220701,2,1
+skimmed,T,tail,,,tail,1,0,0,2,98292 1992,98292,2,2
+skinned,T,head,,,head,1,0,0,1,194710,194710,2,1
+skulked,I,xtail,,,xtail,1,0,0,2,186773 22329,186773,3,2
+slaked,T,xtail,,,xtail,1,0,0,2,1924 10487,1924,2,2
+slandered,T,tail,T,tail,tail,1,1,1,3,503 1591 3747,503,3,3
+slaughtered,T,head,,,head,1,0,0,1,129627,129627,3,1
+sleepwalked,I,xtail,,,xtail,1,0,0,3,6745 20723 524,6745,3,3
+slept,I,head,,,head,1,0,0,1,57120,57120,1,1
+slobbered,I,xtail,,,xtail,1,0,0,2,116060 213991,116060,3,2
+slogged,I,xtail,I,xtail,xtail,1,1,1,2,43771 3701,43771,2,2
+slouched,I,xtail,I,xtail,xtail,1,1,1,2,1924 66329,1924,2,2
+slumped,I,tail,I,tail,tail,1,1,1,1,203925,203925,2,1
+slunk,I,xtail,,,xtail,1,0,0,2,1924 4984,1924,2,2
+smoldered,I,xtail,I,xtail,xtail,1,1,1,3,1406 947 3747,1406,3,3
+smothered,T,tail,T,tail,tail,1,1,1,1,231795,231795,2,1
+sneezed,I,tail,,,tail,1,0,0,3,20059 6461 524,20059,3,3
+sobbed,I,tail,,,tail,1,0,0,2,32702 4250,32702,2,2
+sodded,T,xtail,,,xtail,1,0,0,2,13081 7156,13081,2,2
+sojourned,I,xtail,,,xtail,1,0,0,3,834 15654 12313,834,3,3
+sorted,T,head,,,head,1,0,0,1,19372,19372,1,1
+spared,T,head,,,head,1,0,0,1,87235,87235,1,1
+spiced,T,tail,T,tail,tail,1,1,1,1,140778,140778,2,1
+spiraled,I,tail,,,tail,1,0,0,2,21079 5444,21079,2,2
+sprawled,I,tail,,,tail,1,0,0,2,30163 991,30163,2,2
+sprinted,I,tail,,,tail,1,0,0,2,29991 524,29991,2,2
+squandered,T,tail,,,tail,1,0,0,2,4112 232807,4112,3,2
+stacked,T,head,,,head,1,0,0,1,45844,45844,1,1
+stagnated,I,tail,I,tail,tail,1,1,1,2,54611 774,54611,2,2
+stared,I,head,,,head,1,0,0,1,64752,64752,1,1
+stepped,I,head,,,head,1,0,0,1,28888,28888,1,1
+stockpiled,T,tail,T,tail,tail,1,1,1,2,168383 3002,168383,3,2
+stoppered,T,xtail,T,xtail,xtail,1,1,1,2,109315 524,109315,2,2
+stowed,T,tail,T,tail,tail,1,1,1,2,579 21093,579,2,2
+striven,I,xtail,,,xtail,1,0,0,2,579 22644,579,3,2
+strolled,I,tail,,,tail,1,0,0,1,234447,234447,2,1
+struggled,I,head,I,head,head,1,1,1,1,34554,34554,1,1
+stumbled,I,head,,,head,1,0,0,1,82043,82043,1,1
+stupefied,T,xtail,,,xtail,1,0,0,3,222187 236760 1178,222187,4,3
+subjugated,,,T,tail,tail,0,1,1,2,177713 774,177713,3,2
+suborned,T,xtail,,,xtail,1,0,0,3,1159 2163 524,1159,2,3
+subscribed,I,head,,,head,1,0,0,1,83029,83029,2,1
+subsided,I,tail,I,tail,tail,1,1,1,1,164698,164698,2,1
+subtracted,T,tail,,,tail,1,0,0,1,92773,92773,1,1
+subverted,T,tail,T,tail,tail,1,1,1,2,1159 21489,1159,2,2
+succumbed,I,tail,,,tail,1,0,0,1,133466,133466,3,1
+suckled,T,xtail,T,xtail,xtail,1,1,1,2,35897 991,35897,2,2
+suctioned,T,xtail,,,xtail,1,0,0,2,60062 524,60062,2,2
+sulked,I,xtail,I,xtail,xtail,1,1,1,2,11617 22329,11617,2,2
+sullied,T,tail,,,tail,1,0,0,2,61862 1178,61862,3,2
+summed,,,T,head,head,0,1,1,1,75768,75768,1,1
+sunbathed,I,xtail,,,xtail,1,0,0,3,3768 12511 1371,3768,3,3
+sundered,T,xtail,T,xtail,xtail,1,1,1,3,664 2771 524,664,2,3
+superintended,T,xtail,,,xtail,1,0,0,2,2393 153642,2393,3,2
+supplied,T,head,,,head,1,0,0,1,17686,17686,1,1
+swaddled,T,xtail,T,xtail,xtail,1,1,1,3,2353 1282 991,2353,3,3
+swaggered,I,xtail,,,xtail,1,0,0,2,97626 524,97626,3,2
+symbolized,T,tail,,,tail,1,0,0,1,196075,196075,2,1
+sympathized,I,tail,I,tail,tail,1,1,1,2,49444 1662,49444,2,2
+tagged,T,head,,,head,1,0,0,1,56188,56188,1,1
+tamed,T,tail,T,tail,tail,1,1,1,2,11583 524,11583,2,2
+tampered,I,tail,,,tail,1,0,0,2,11583 37197,11583,2,2
+tantalized,T,xtail,,,xtail,1,0,0,2,170587 1662,170587,3,2
+taped,T,head,,,head,1,0,0,1,119596,119596,2,1
+targeted,T,head,T,head,head,1,1,1,1,20054,20054,1,1
+tarried,I,xtail,,,xtail,1,0,0,2,10584 3610,10584,2,2
+taunted,T,tail,,,tail,1,0,0,2,5787 38677,5787,2,2
+taxed,T,head,,,head,1,0,0,1,87778,87778,1,1
+teemed,I,xtail,I,xtail,xtail,1,1,1,2,926 18392,926,2,2
+tenderized,T,xtail,,,xtail,1,0,0,2,21870 1662,21870,2,2
+testified,I,head,I,head,head,1,1,1,1,37709,37709,1,1
+thanked,T,head,T,head,head,1,1,1,1,56190,56190,1,1
+thrived,I,tail,I,tail,tail,1,1,1,1,188061,188061,2,1
+throbbed,I,xtail,,,xtail,1,0,0,3,541 19889 4250,541,3,3
+tingled,I,xtail,I,xtail,xtail,1,1,1,2,19457 991,19457,2,2
+tipped,T,head,,,head,1,0,0,1,89100,89100,1,1
+tiptoed,I,xtail,,,xtail,1,0,0,3,3163 45706 524,3163,4,3
+tithed,,,T,xtail,xtail,0,1,1,2,6456 1371,6456,2,2
+titillated,T,xtail,,,xtail,1,0,0,3,6456 644 774,6456,3,3
+toddled,I,xtail,I,xtail,xtail,1,1,1,2,39781 991,39781,2,2
+toiled,I,tail,I,tail,tail,1,1,1,2,531 3002,531,2,2
+tottered,I,xtail,I,xtail,xtail,1,1,1,2,2210 58120,2210,2,2
+towered,I,tail,,,tail,1,0,0,2,14734 3747,14734,2,2
+trademarked,,,T,tail,tail,0,1,1,2,27644 524,27644,2,2
+transcended,T,tail,T,tail,tail,1,1,1,2,35584 2577,35584,2,2
+transpired,I,tail,I,tail,tail,1,1,1,1,163038,163038,2,1
+transplanted,T,tail,,,tail,1,0,0,1,121079,121079,1,1
+traveled,I,head,,,head,1,0,0,1,33402,33402,1,1
+treasured,T,tail,,,tail,1,0,0,1,136577,136577,2,1
+trembled,I,tail,,,tail,1,0,0,1,183029,183029,3,1
+triumphed,I,tail,,,tail,1,0,0,2,2077 227672,2077,3,2
+trolled,T,tail,,,tail,1,0,0,2,494 24388,494,2,2
+unlaced,T,xtail,,,xtail,1,0,0,3,723 236752 3776,723,2,3
+unlatched,T,xtail,T,xtail,xtail,1,1,1,3,723 8938 3059,723,3,3
+unpinned,T,xtail,,,xtail,1,0,0,2,723 89691,723,3,2
+upbraided,T,xtail,,,xtail,1,0,0,3,872 5256 2410,872,3,3
+upgraded,,,T,head,head,0,1,1,1,40269,40269,1,1
+usurped,T,tail,,,tail,1,0,0,2,166486 10796,166486,3,2
+uttered,T,tail,T,tail,tail,1,1,1,1,110018,110018,1,1
+vacillated,I,xtail,I,xtail,xtail,1,1,1,3,5828 644 774,5828,3,3
+vanished,I,head,I,head,head,1,1,1,1,87326,87326,1,1
+veered,I,tail,,,tail,1,0,0,2,1381 3747,1381,2,2
+vegetated,I,xtail,I,xtail,xtail,1,1,1,2,8125 774,8125,2,2
+venerated,T,tail,,,tail,1,0,0,2,69136 774,69136,2,2
+vied,I,tail,I,tail,tail,1,1,1,2,566 1178,566,2,2
+vilified,T,tail,,,tail,1,0,0,2,19028 2093,19028,2,2
+visualized,T,tail,,,tail,1,0,0,1,88308,88308,1,1
+voided,T,tail,,,tail,1,0,0,2,2325 524,2325,2,2
+wadded,T,xtail,T,xtail,xtail,1,1,1,2,515 21934,515,2,2
+waddled,I,xtail,,,xtail,1,0,0,3,515 1282 991,515,3,3
+wagged,,,T,xtail,xtail,0,1,1,2,50403 3701,50403,2,2
+waited,I,head,,,head,1,0,0,1,35033,35033,1,1
+walloped,T,xtail,T,xtail,xtail,1,1,1,2,3549 21382,3549,2,2
+wallowed,I,xtail,I,xtail,xtail,1,1,1,2,3549 21093,3549,2,2
+waned,I,tail,I,tail,tail,1,1,1,2,34713 524,34713,2,2
+wavered,I,tail,,,tail,1,0,0,2,6153 207287,6153,2,2
+waylaid,T,xtail,,,xtail,1,0,0,2,1595 75908,1595,2,2
+weighed,T,head,,,head,1,0,0,1,45035,45035,1,1
+wheedled,T,xtail,,,xtail,1,0,0,3,2615 524 991,2615,3,3
+whined,I,tail,,,tail,1,0,0,2,615 1718,615,2,2
+whitewashed,,,T,tail,tail,0,1,1,2,171605 16539,171605,2,2
+whizzed,I,xtail,I,xtail,xtail,1,1,1,3,615 8285 524,615,3,3
+wielded,T,tail,,,tail,1,0,0,2,77020 524,77020,2,2
+writhed,I,xtail,I,xtail,xtail,1,1,1,2,3528 1371,3528,2,2
+yearned,I,tail,,,tail,1,0,0,2,1051 12313,1051,2,2
+yielded,T,head,,,head,1,0,0,1,44423,44423,1,1
+zigzagged,I,xtail,,,xtail,1,0,0,2,102559 3701,102559,3,2

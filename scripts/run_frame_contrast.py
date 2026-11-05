@@ -15,6 +15,11 @@ Checks (fail-fast):
 - h . u_t - LSE reproduces every verb's first-subtoken log-prob to 1e-3 nats;
 - the A2 identity L1 = (h_was - h_has) . (u_T1 - u_I1) on every curated pair and prefix to 1e-3 nats.
 
+Gemma replication (opt-in flags; the defaults reproduce the Pythia runs): --bos prepends the BOS id to every
+prefix (the tokenization checks are unchanged, without BOS); --dtype loads the model in another dtype;
+--fp32-unembed computes logits in fp32 from the final-norm output (gemma_utils.fp32_unembed); --next-token " by"
+adds lp_next_by = log P(" by") after the full participle (the position after its last subtoken).
+
 Output (--out-dir): frame_scores.parquet (one row per set x context x frame x verb), frame_h.npz, frame_meta.json.
 """
 
@@ -55,12 +60,23 @@ def main(args):
         assert not missing, f"{len(missing)} pair verbs not scored in the cur prefixes (use --cur-all?): {sorted(missing)[:5]}"
     rev = {"revision": args.revision} if args.revision else {}
     tok = AutoTokenizer.from_pretrained(args.model, local_files_only=not args.allow_download, **rev)
-    model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=torch.float32,
+    from gemma_utils import check_no_softcap, final_norm, fp32_unembed
+
+    model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=getattr(torch, args.dtype),
                                                  local_files_only=not args.allow_download, **rev).to(dev).eval()
-    W = model.embed_out.weight  # [vocab, H]; GPT-NeoX unembedding has no bias
-    assert getattr(model.embed_out, "bias", None) is None
+    check_no_softcap(model)
+    if args.fp32_unembed:
+        fp32_unembed(model)
+    W = model.get_output_embeddings().weight  # [vocab, H]; GPT-NeoX (embed_out) / Gemma (lm_head): no bias
+    assert getattr(model.get_output_embeddings(), "bias", None) is None
     cap = {}
-    model.gpt_neox.final_layer_norm.register_forward_hook(lambda m, i, o: cap.__setitem__("h", o))
+    final_norm(model).register_forward_hook(lambda m, i, o: cap.__setitem__("h", o))
+    bos = [tok.bos_token_id] if args.bos else []
+    nxt = None
+    if args.next_token:
+        nxt_ids = tok.encode(args.next_token, add_special_tokens=False)
+        assert len(nxt_ids) == 1, (args.next_token, nxt_ids)
+        nxt = nxt_ids[0]
 
     for p in list(pre.pass_prefix) + list(pre.act_prefix):
         pid = tok.encode(p, add_special_tokens=False)
@@ -77,7 +93,7 @@ def main(args):
             vi = cur_idx if pr["set"] == "cur" and not args.cur_all else all_idx
             for frame in FRAMES:
                 prefix = pr[f"{frame}_prefix"]
-                pid = tok.encode(prefix, add_special_tokens=False)
+                pid = bos + tok.encode(prefix, add_special_tokens=False)
                 n = len(pid)
                 hs, ls = [], []
                 for s in range(0, len(vi), args.batch):
@@ -99,8 +115,11 @@ def main(args):
                     for r, j in enumerate(b):
                         t = torch.tensor(vids[j], device=dev)
                         sub = lp[r, n - 1:n - 1 + len(vids[j])].gather(-1, t[:, None]).squeeze(-1).double().cpu().numpy()
-                        rows.append((pr["set"], pr["context_id"], frame, V.verb[j], float(sub.sum()), float(sub[0]),
-                                     len(vids[j]), " ".join(f"{v:.6f}" for v in sub)))
+                        row = (pr["set"], pr["context_id"], frame, V.verb[j], float(sub.sum()), float(sub[0]),
+                               len(vids[j]), " ".join(f"{v:.6f}" for v in sub))
+                        if nxt is not None:  # log P(next token) after the participle's last subtoken
+                            row = row + (float(lp[r, n - 1 + len(vids[j]), nxt]),)
+                        rows.append(row)
                 h = torch.cat(hs)
                 max_h_dev = max(max_h_dev, float((h - h[0]).abs().max()))
                 lse = torch.cat(ls)
@@ -117,7 +136,8 @@ def main(args):
         assert max_h_dev <= args.h_tol, max_h_dev
         assert max_first_err <= args.tol, max_first_err
 
-        S = pd.DataFrame(rows, columns=["set", "context_id", "frame", "verb", "lp", "lp1", "n_tok", "lp_sub"])
+        S = pd.DataFrame(rows, columns=["set", "context_id", "frame", "verb", "lp", "lp1", "n_tok", "lp_sub"]
+                         + (["lp_next_by" if args.next_token == " by" else "lp_next"] if nxt is not None else []))
         assert np.isfinite(S.lp).all() and np.isfinite(S.lp1).all(), "non-finite log-probs"
         H = np.stack(H).astype(np.float32)
         kidx = {k: i for i, k in enumerate(keys)}
@@ -144,7 +164,8 @@ def main(args):
     np.savez(out / "frame_h.npz", H=H, LSE=np.array(LSE), keys=np.array(["|".join(k) for k in keys]),
              U=U, U_ids=np.array(uniq))
     meta = {"model": args.model, "revision": args.revision or "main",
-            "resolved_commit": getattr(model.config, "_commit_hash", None), "dtype": "float32", "tf32": False, "n_rows": len(S),
+            "resolved_commit": getattr(model.config, "_commit_hash", None), "dtype": args.dtype, "tf32": False, "n_rows": len(S),
+            "bos": bool(args.bos), "fp32_unembed": bool(args.fp32_unembed), "next_token": args.next_token,
             "cur_all": bool(args.cur_all),
             "inputs": {f: sha(data / f) for f in ("prefixes.csv", "verbs.csv", "pairs.csv")},
             "checks": {"max_h_deviation": max_h_dev, "h_tol": args.h_tol, "max_first_subtoken_error": max_first_err,
@@ -168,4 +189,8 @@ if __name__ == "__main__":
                     help="tolerance of the shared-prefix h check (round 6 A2 clarification: 1e-2 for the suite models)")
     ap.add_argument("--tol", type=float, default=1e-3,
                     help="tolerance of the reconstruction and identity checks (1e-3 for 1.4B; 1e-2 for the D10b suite)")
+    ap.add_argument("--dtype", default="float32", choices=("float32", "bfloat16"), help="Gemma replication: bfloat16")
+    ap.add_argument("--bos", action="store_true", help="Gemma replication: prepend BOS to every prefix")
+    ap.add_argument("--fp32-unembed", action="store_true", help="Gemma replication: fp32 logits from the final norm")
+    ap.add_argument("--next-token", default="", help='Gemma replication: also store log P(token) after the participle (" by")')
     main(ap.parse_args())

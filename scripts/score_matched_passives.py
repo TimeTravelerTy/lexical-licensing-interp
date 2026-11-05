@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Score matched FreqBLiMP passive sentences with an autoregressive LM."""
+"""Score matched FreqBLiMP passive sentences with an autoregressive LM.
+
+Gemma replication (opt-in; defaults unchanged): --bos prepends the BOS id (offset (0, 0), so it is never scored
+and the first real token is); padding is right-sided (asserted); --fp32-unembed as in run_next_token_readout.py.
+"""
 
 from __future__ import annotations
 
@@ -9,7 +13,7 @@ import json
 from pathlib import Path
 
 
-def score_batch(model, tokenizer, device, examples):
+def score_batch(model, tokenizer, device, examples, bos=False):
     import torch
     import torch.nn.functional as F
 
@@ -17,6 +21,12 @@ def score_batch(model, tokenizer, device, examples):
     encoded = tokenizer(texts, padding=True, return_tensors="pt", return_offsets_mapping=True,
                         add_special_tokens=False)
     offsets = encoded.pop("offset_mapping").tolist()
+    if bos:
+        n_b = encoded.input_ids.shape[0]
+        encoded["input_ids"] = torch.cat([torch.full((n_b, 1), tokenizer.bos_token_id), encoded.input_ids], 1)
+        encoded["attention_mask"] = torch.cat([torch.ones((n_b, 1), dtype=encoded.attention_mask.dtype),
+                                               encoded.attention_mask], 1)
+        offsets = [[(0, 0)] + o for o in offsets]
     encoded = encoded.to(device)
     with torch.inference_mode():
         logits = model(**encoded, use_cache=False).logits[:, :-1, :].float()
@@ -58,9 +68,15 @@ def run(args):
         raise SystemExit("A fast tokenizer is required for verb/suffix offsets")
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
+    if args.bos:
+        tokenizer.padding_side = "right"
+    assert tokenizer.padding_side == "right", "score_batch assumes right padding"
     dtype = getattr(torch, args.dtype) if args.dtype != "auto" else "auto"
     model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=dtype,
                                                  local_files_only=not args.allow_download)
+    if args.fp32_unembed:
+        from gemma_utils import fp32_unembed
+        fp32_unembed(model)
     device = torch.device(args.device)
     model.to(device).eval()
     model.config.use_cache = False
@@ -73,8 +89,8 @@ def run(args):
             def examples(side):
                 return [{"sentence": row[f"sentence_{side}"], "prefix": row["prefix"],
                          "verb": row[f"{side}_verb"], "paradigm": row["paradigm"]} for row in batch]
-            good = score_batch(model, tokenizer, device, examples("good"))
-            bad = score_batch(model, tokenizer, device, examples("bad"))
+            good = score_batch(model, tokenizer, device, examples("good"), bos=args.bos)
+            bad = score_batch(model, tokenizer, device, examples("bad"), bos=args.bos)
             for row, g, b in zip(batch, good, bad):
                 result = dict(row)
                 for key, value in g.items():
@@ -100,5 +116,7 @@ if __name__ == "__main__":
     ap.add_argument("--dtype", default="bfloat16", choices=("auto", "float16", "bfloat16", "float32"))
     ap.add_argument("--batch-size", type=int, default=16)
     ap.add_argument("--allow-download", action="store_true")
+    ap.add_argument("--bos", action="store_true", help="Gemma replication: prepend BOS (scores the first token)")
+    ap.add_argument("--fp32-unembed", action="store_true", help="Gemma replication: fp32 logits from the final norm")
     ap.add_argument("--out", default="results/matched_passives/pythia14b_scores.csv")
     run(ap.parse_args())

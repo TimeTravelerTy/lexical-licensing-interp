@@ -4,6 +4,10 @@
 Tokenization matches `score_matched_passives.py` (no special tokens), so
 log P(" by" | prefix) here equals the `by_lp` of the full-sentence scores up
 to kernel noise.
+
+Gemma replication (opt-in; defaults unchanged): --bos prepends the BOS id to every prompt (right padding kept,
+so the readout position is still attention_mask.sum - 1); --fp32-unembed computes logits in fp32 from the
+final-norm output (gemma_utils.fp32_unembed).
 """
 
 from __future__ import annotations
@@ -38,6 +42,9 @@ def run(args):
     dtype = getattr(torch, args.dtype)
     model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=dtype,
                                                  local_files_only=not args.allow_download)
+    if args.fp32_unembed:
+        from gemma_utils import fp32_unembed
+        fp32_unembed(model)
     device = torch.device(args.device)
     model.to(device).eval()
     ids_t = torch.tensor(list(tracked.values()), device=device)
@@ -53,7 +60,13 @@ def run(args):
         for start in range(0, len(order), args.batch_size):
             idx = order[start:start + args.batch_size]
             enc = tokenizer([rows[i]["prompt"] for i in idx], padding=True, return_tensors="pt",
-                            add_special_tokens=False).to(device)
+                            add_special_tokens=False)
+            if args.bos:
+                n_b = enc.input_ids.shape[0]
+                enc["input_ids"] = torch.cat([torch.full((n_b, 1), tokenizer.bos_token_id), enc.input_ids], 1)
+                enc["attention_mask"] = torch.cat([torch.ones((n_b, 1), dtype=enc.attention_mask.dtype),
+                                                   enc.attention_mask], 1)
+            enc = enc.to(device)
             last = enc.attention_mask.sum(1) - 1
             with torch.inference_mode():
                 logits = model(**enc, use_cache=False).logits
@@ -81,5 +94,7 @@ if __name__ == "__main__":
     ap.add_argument("--top-k", type=int, default=10)
     ap.add_argument("--extra-tokens", default="", help="JSON list of tokens tracked on top of TRACKED")
     ap.add_argument("--allow-download", action="store_true")
+    ap.add_argument("--bos", action="store_true", help="Gemma replication: prepend BOS")
+    ap.add_argument("--fp32-unembed", action="store_true", help="Gemma replication: fp32 logits from the final norm")
     ap.add_argument("--out", default="results/passive_das_prep/pythia14b_readout.csv")
     run(ap.parse_args())

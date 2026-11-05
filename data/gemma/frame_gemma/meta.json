@@ -1,0 +1,25 @@
+{
+ "model": "google/gemma-3-1b-pt",
+ "versions": {
+  "transformers": "4.57.3",
+  "tokenizers": "0.22.1"
+ },
+ "inputs": {
+  "../data/round6/frame_d11/verbs.csv": "ed5b04cdfad28caba5d80e98761829d68e6860d70015a952ec80d55c1173efed",
+  "../data/round5/frame/verbs.csv": "cd6d3dca4ca42ff3581d4a052983eed2048688a8c441459394a18a633eacf658",
+  "../data/round6/frame_d11/prefixes.csv": "220049609373f9ed8958e0fd0f976c2323c0bec681deac2b7edd44d9e20dfe40",
+  "../data/round6/frame_d11/pairs.csv": "11d15d27d8179cdfaf27ff0ed1208eb607b584d98ce8e7299ad6c307118706b1",
+  "../data/round5/frame/pairs.csv": "a5c92f97b8f87f337102b8522d55ed194d06d656de3299f7215021cbd8a46a3d"
+ },
+ "joined_tokenization_checks": 29184,
+ "n_verbs": 608,
+ "n_prefixes": 24,
+ "outputs": {
+  "prefixes.csv": "9452a8a210de0df701864e7322be12842d7f9ce7dfb5f6b8f64dd0544bbd784a",
+  "verbs.csv": "023a9775d59bf88869d664a7a95670d777954b93816c4e98d37f9d17aa9dcfb1",
+  "pairs.csv": "5d720c58e62f1cad839ea3c6b4d5d7fc2e1fcecbe9e543d68051756fff0f3201"
+ },
+ "role_conflicts": [
+  "blasphemed"
+ ]
+}
