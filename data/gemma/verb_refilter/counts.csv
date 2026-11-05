@@ -1,0 +1,13 @@
+inventory,class,band,all_verbs,pythia_single,gemma_single,intersection
+d11,T,head,47,44,47,44
+d11,T,tail,132,24,60,24
+d11,T,xtail,102,1,2,1
+d11,I,head,47,45,47,45
+d11,I,tail,132,20,53,20
+d11,I,xtail,102,0,0,0
+curated,T,head,26,26,26,26
+curated,T,tail,50,6,25,6
+curated,T,xtail,50,0,0,0
+curated,I,head,26,26,26,26
+curated,I,tail,50,7,23,7
+curated,I,xtail,50,0,0,0

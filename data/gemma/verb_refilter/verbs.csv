@@ -1,0 +1,815 @@
+inventory,verb,role,band,verb_pair,zipf,pythia_ntok,pythia_ids,gemma_ntok,gemma_ids,gemma_tokens,gemma_join_ok,gemma_past_ntok,pythia_single,gemma_single,both_single
+d11,guarded,T,head,head/guard/progress,3.63,1,39824,1,92112,▁guarded,True,1,1,1,1
+d11,progressed,I,head,head/guard/progress,3.63,1,33127,1,65426,▁progressed,True,1,1,1,1
+d11,manipulated,T,head,head/manipulate/stare,3.6,1,32494,1,68333,▁manipulated,True,1,1,1,1
+d11,stared,I,head,head/manipulate/stare,3.6,1,15014,1,64752,▁stared,True,1,1,1,1
+d11,poisoned,T,head,head/poison/behave,3.58,1,47494,1,113122,▁poisoned,True,1,1,1,1
+d11,behaved,I,head,head/poison/behave,3.59,1,44944,1,99389,▁behaved,True,1,1,1,1
+d11,tagged,T,head,head/tag/rely,3.82,1,31480,1,56188,▁tagged,True,1,1,1,1
+d11,relied,I,head,head/tag/rely,3.82,1,15494,1,38586,▁relied,True,1,1,1,1
+d11,aided,T,head,head/aid/dream,3.74,1,35479,1,65343,▁aided,True,1,1,1,1
+d11,dreamed,I,head,head/aid/dream,3.75,1,33305,1,68121,▁dreamed,True,1,1,1,1
+d11,avoided,T,head,head/avoid/comment,4.07,1,16371,1,28717,▁avoided,True,1,1,1,1
+d11,commented,I,head,head/avoid/comment,4.07,1,20503,1,32561,▁commented,True,1,1,1,1
+d11,borrowed,T,head,head/borrow/consist,3.91,1,29563,1,46439,▁borrowed,True,1,1,1,1
+d11,consisted,I,head,head/borrow/consist,3.91,1,14278,1,31590,▁consisted,True,1,1,1,1
+d11,celebrated,T,head,head/celebrate/laugh,4.24,1,19651,1,23101,▁celebrated,True,1,1,1,1
+d11,laughed,I,head,head/celebrate/laugh,4.24,1,12918,1,39494,▁laughed,True,1,1,1,1
+d11,defended,T,head,head/defend/struggle,4.0,1,25860,1,52688,▁defended,True,1,1,1,1
+d11,struggled,I,head,head/defend/struggle,4.01,1,19460,1,34554,▁struggled,True,1,1,1,1
+d11,defined,T,head,head/define/occur,4.56,1,2931,1,5221,▁defined,True,1,1,1,1
+d11,occurred,I,head,head/define/occur,4.57,1,5866,1,10997,▁occurred,True,1,1,1,1
+d11,eliminated,T,head,head/eliminate/belong,4.05,1,17527,1,29988,▁eliminated,True,1,1,1,1
+d11,belonged,I,head,head/eliminate/belong,4.01,1,20651,1,44619,▁belonged,True,1,1,1,1
+d11,evacuated,T,head,head/evacuate/stumble,3.66,1,44543,1,85149,▁evacuated,True,1,1,1,1
+d11,stumbled,I,head,head/evacuate/stumble,3.66,1,30773,1,82043,▁stumbled,True,1,1,1,1
+d11,expelled,T,head,head/expel/vanish,3.7,1,39372,1,87520,▁expelled,True,1,1,1,1
+d11,vanished,I,head,head/expel/vanish,3.72,1,30117,1,87326,▁vanished,True,1,1,1,1
+d11,fulfilled,T,head,head/fulfill/depart,3.77,1,25146,1,36360,▁fulfilled,True,1,1,1,1
+d11,departed,I,head,head/fulfill/depart,3.78,1,29115,1,67325,▁departed,True,1,1,1,1
+d11,guided,T,head,head/guide/travel,4.06,1,18107,1,28172,▁guided,True,1,1,1,1
+d11,traveled,I,head,head/guide/travel,4.06,1,19624,1,33402,▁traveled,True,1,1,1,1
+d11,handed,T,head,head/hand/care,4.42,1,14048,1,26249,▁handed,True,1,1,1,1
+d11,cared,I,head,head/hand/care,4.11,1,24782,1,47694,▁cared,True,1,1,1,1
+d11,hated,T,head,head/hate/step,4.2,1,21023,1,52695,▁hated,True,1,1,1,1
+d11,stepped,I,head,head/hate/step,4.2,1,12293,1,28888,▁stepped,True,1,1,1,1
+d11,imported,T,head,head/import/complain,3.95,1,21117,1,25985,▁imported,True,1,1,1,1
+d11,complained,I,head,head/import/complain,3.99,1,19375,1,40182,▁complained,True,1,1,1,1
+d11,imposed,T,head,head/impose/emerge,4.16,1,11295,1,21676,▁imposed,True,1,1,1,1
+d11,emerged,I,head,head/impose/emerge,4.16,1,13082,1,25091,▁emerged,True,1,1,1,1
+d11,lent,T,head,head/lend/opt,3.75,1,21685,1,32658,▁lent,True,1,1,1,1
+d11,opted,I,head,head/lend/opt,3.75,1,33549,1,51140,▁opted,True,1,1,1,1
+d11,numbered,T,head,head/number/last,3.82,1,31050,1,49597,▁numbered,True,1,1,1,1
+d11,lasted,I,head,head/number/last,4.09,1,20578,1,38085,▁lasted,True,1,1,1,1
+d11,placed,T,head,head/place/live,4.85,1,4845,1,7006,▁placed,True,1,1,1,1
+d11,lived,I,head,head/place/live,4.88,1,6940,1,11742,▁lived,True,1,1,1,1
+d11,praised,T,head,head/praise/participate,4.02,1,26108,1,43605,▁praised,True,1,1,1,1
+d11,participated,I,head,head/praise/participate,4.01,1,13640,1,26695,▁participated,True,1,1,1,1
+d11,prepared,T,head,head/prepare/arrive,4.74,1,5480,1,7759,▁prepared,True,1,1,1,1
+d11,arrived,I,head,head/prepare/arrive,4.79,1,7244,1,12208,▁arrived,True,1,1,1,1
+d11,rated,T,head,head/rate/result,4.3,1,20139,1,25118,▁rated,True,1,1,1,1
+d11,resulted,I,head,head/rate/result,4.37,1,7369,1,15116,▁resulted,True,1,1,1,1
+d11,received,T,head,head/receive/die,5.16,1,2959,1,4461,▁received,True,1,1,1,1
+d11,died,I,head,head/receive/die,5.2,1,4962,1,8390,▁died,True,1,1,1,1
+d11,recovered,T,head,head/recover/disappear,4.25,1,12372,1,21919,▁recovered,True,1,1,1,1
+d11,disappeared,I,head,head/recover/disappear,4.26,1,15159,1,32704,▁disappeared,True,1,1,1,1
+d11,regarded,T,head,head/regard/reply,4.29,1,12258,1,18793,▁regarded,True,1,1,1,1
+d11,replied,I,head,head/regard/reply,4.28,1,10017,1,24406,▁replied,True,1,1,1,1
+d11,reserved,T,head,head/reserve/lie,4.18,1,10827,1,14512,▁reserved,True,1,1,1,1
+d11,lied,I,head,head/reserve/lie,4.21,1,27786,1,78997,▁lied,True,1,1,1,1
+d11,reviewed,T,head,head/review/wait,4.23,1,9814,1,20301,▁reviewed,True,1,1,1,1
+d11,waited,I,head,head/review/wait,4.26,1,13308,1,35033,▁waited,True,1,1,1,1
+d11,robbed,T,head,head/rob/proceed,3.88,1,38208,1,83946,▁robbed,True,1,1,1,1
+d11,proceeded,I,head,head/rob/proceed,3.87,1,20311,1,41684,▁proceeded,True,1,1,1,1
+d11,ruined,T,head,head/ruin/respond,4.26,1,27826,1,57717,▁ruined,True,1,1,1,1
+d11,responded,I,head,head/ruin/respond,4.26,1,10974,1,21889,▁responded,True,1,1,1,1
+d11,ruled,T,head,head/rule/exist,4.3,1,12969,1,26668,▁ruled,True,1,1,1,1
+d11,existed,I,head,head/rule/exist,4.29,1,13164,1,26077,▁existed,True,1,1,1,1
+d11,sent,T,head,head/send/happen,5.16,1,2197,1,3265,▁sent,True,1,1,1,1
+d11,happened,I,head,head/send/happen,5.2,1,4592,1,8432,▁happened,True,1,1,1,1
+d11,skinned,T,head,head/skin/amount,3.54,2,1629 13172,1,194710,▁skinned,True,1,0,1,0
+d11,amounted,I,head,head/skin/amount,3.53,1,37752,1,49273,▁amounted,True,1,1,1,1
+d11,slaughtered,T,head,head/slaughter/subscribe,3.53,3,1499 4551 2122,1,129627,▁slaughtered,True,1,0,1,0
+d11,subscribed,I,head,head/slaughter/subscribe,3.53,2,20404 264,1,83029,▁subscribed,True,1,0,1,0
+d11,sorted,T,head,head/sort/account,3.83,1,20045,1,19372,▁sorted,True,1,1,1,1
+d11,accounted,I,head,head/sort/account,3.82,1,20184,1,36020,▁accounted,True,1,1,1,1
+d11,spared,T,head,head/spare/react,3.64,1,40335,1,87235,▁spared,True,1,1,1,1
+d11,reacted,I,head,head/spare/react,3.64,1,29771,1,53618,▁reacted,True,1,1,1,1
+d11,stacked,T,head,head/stack/apologize,3.63,1,24982,1,45844,▁stacked,True,1,1,1,1
+d11,apologized,I,head,head/stack/apologize,3.63,1,46446,1,110784,▁apologized,True,1,1,1,1
+d11,supplied,T,head,head/supply/listen,4.24,1,12164,1,17686,▁supplied,True,1,1,1,1
+d11,listened,I,head,head/supply/listen,4.21,1,18029,1,37570,▁listened,True,1,1,1,1
+d11,taped,T,head,head/tape/object,3.5,2,246 7760,1,119596,▁taped,True,1,0,1,0
+d11,objected,I,head,head/tape/object,3.5,1,27511,1,75941,▁objected,True,1,1,1,1
+d11,targeted,T,head,head/target/sleep,4.22,1,10522,1,20054,▁targeted,True,1,1,1,1
+d11,slept,I,head,head/target/sleep,4.18,1,21567,1,57120,▁slept,True,1,1,1,1
+d11,taxed,T,head,head/tax/matter,3.52,1,48715,1,87778,▁taxed,True,1,1,1,1
+d11,mattered,I,head,head/tax/matter,3.53,1,43074,1,134655,▁mattered,True,1,1,1,1
+d11,thanked,T,head,head/thank/side,3.64,1,35891,1,56190,▁thanked,True,1,1,1,1
+d11,sided,I,head,head/thank/side,3.94,2,256 1356,1,77831,▁sided,True,1,0,1,0
+d11,tipped,T,head,head/tip/pray,3.67,1,40414,1,89100,▁tipped,True,1,1,1,1
+d11,prayed,I,head,head/tip/pray,3.67,1,34469,1,67383,▁prayed,True,1,1,1,1
+d11,weighed,T,head,head/weigh/testify,3.81,1,24398,1,45035,▁weighed,True,1,1,1,1
+d11,testified,I,head,head/weigh/testify,3.82,1,7859,1,37709,▁testified,True,1,1,1,1
+d11,yielded,T,head,head/yield/compete,3.51,1,20714,1,44423,▁yielded,True,1,1,1,1
+d11,competed,I,head,head/yield/compete,3.51,1,29177,1,59816,▁competed,True,1,1,1,1
+d11,approximated,T,tail,tail/approximate/muse,2.68,1,34930,1,70034,▁approximated,True,1,1,1,1
+d11,mused,I,tail,tail/approximate/muse,2.67,2,1948 264,2,2431 524,▁mus|ed,True,2,0,0,0
+d11,audited,T,tail,tail/audit/sigh,3.13,2,3820 959,1,121541,▁audited,True,1,0,1,0
+d11,sighed,I,tail,tail/audit/sigh,3.13,1,21374,1,73302,▁sighed,True,1,1,1,1
+d11,condoned,T,tail,tail/condone/glare,2.64,2,6882 11406,2,1910 23446,▁cond|oned,True,2,0,0,0
+d11,glared,I,tail,tail/condone/glare,2.59,1,47278,1,228342,▁glared,True,1,1,1,1
+d11,defrauded,T,tail,tail/defraud/waver,2.67,3,809 376 21015,2,204462 30589,▁defra|uded,True,2,0,0,0
+d11,wavered,I,tail,tail/defraud/waver,2.67,2,5149 433,2,6153 207287,▁wa|vered,True,2,0,0,0
+d11,distrusted,T,tail,tail/distrust/howl,2.48,3,940 83 15172,2,93833 524,▁distrust|ed,True,2,0,0,0
+d11,howled,I,tail,tail/distrust/howl,2.48,2,849 1070,2,1217 991,▁how|led,True,2,0,0,0
+d11,encompassed,T,tail,tail/encompass/lapse,2.94,2,18387 264,1,173505,▁encompassed,True,1,0,1,0
+d11,lapsed,I,tail,tail/encompass/lapse,2.94,2,298 13395,1,203052,▁lapsed,True,1,0,1,0
+d11,eradicated,T,tail,tail/eradicate/slump,3.03,2,31559 6857,1,203327,▁eradicated,True,1,0,1,0
+d11,slumped,I,tail,tail/eradicate/slump,3.03,2,1499 26515,1,203925,▁slumped,True,1,0,1,0
+d11,excised,T,tail,tail/excise/whine,2.58,1,48448,1,183981,▁excised,True,1,1,1,1
+d11,whined,I,tail,tail/excise/whine,2.58,2,364 967,2,615 1718,▁wh|ined,True,2,0,0,0
+d11,fleeced,T,tail,tail/fleece/abound,2.41,2,32645 758,2,11737 224484,▁fle|eced,True,2,0,0,0
+d11,abounded,I,tail,tail/fleece/abound,2.41,2,490 8055,2,763 38229,▁ab|ounded,True,2,0,0,0
+d11,furthered,T,tail,tail/further/major,2.62,3,11829 783 433,2,3342 524,▁further|ed,True,2,0,0,0
+d11,majored,I,tail,tail/further/major,2.79,2,19684 2149,2,2938 2926,▁maj|ored,True,2,0,0,0
+d11,gassed,T,tail,tail/gas/shop,3.01,2,305 39479,2,549 70058,▁g|assed,True,2,0,0,0
+d11,shopped,I,tail,tail/gas/shop,3.01,2,6738 1882,2,5665 2560,▁sho|pped,True,2,0,0,0
+d11,greased,T,tail,tail/grease/decay,2.88,2,13738 833,2,2017 1361,▁gre|ased,True,2,0,0,0
+d11,decayed,I,tail,tail/grease/decay,2.84,2,10027 264,1,180367,▁decayed,True,1,0,1,0
+d11,heaped,T,tail,tail/heap/grin,2.87,2,344 7760,1,213250,▁heaped,True,1,0,1,0
+d11,grinned,I,tail,tail/heap/grin,2.87,1,30443,1,135445,▁grinned,True,1,1,1,1
+d11,impregnated,T,tail,tail/impregnate/dwindle,2.92,2,45286 456,1,146980,▁impregnated,True,1,0,1,0
+d11,dwindled,I,tail,tail/impregnate/dwindle,2.92,3,277 16668 1070,2,108046 991,▁dwind|led,True,2,0,0,0
+d11,metered,T,tail,tail/meter/glow,2.63,2,1313 2122,2,1645 3747,▁met|ered,True,2,0,0,0
+d11,glowed,I,tail,tail/meter/glow,2.63,2,15795 264,2,19462 524,▁glow|ed,True,2,0,0,0
+d11,outweighed,T,tail,tail/outweigh/linger,2.9,2,32180 18201,1,224982,▁outweighed,True,1,0,1,0
+d11,lingered,I,tail,tail/outweigh/linger,2.9,2,23614 2122,1,206574,▁lingered,True,1,0,1,0
+d11,overestimated,T,tail,tail/overestimate/diverge,2.76,2,35039 18280,1,226862,▁overestimated,True,1,0,1,0
+d11,diverged,I,tail,tail/overestimate/diverge,2.76,2,11711 2400,2,18393 3701,▁diver|ged,True,2,0,0,0
+d11,pillaged,T,tail,tail/pillage/balk,2.53,2,12575 2961,2,13736 4130,▁pill|aged,True,2,0,0,0
+d11,balked,I,tail,tail/pillage/balk,2.53,3,270 1278 264,2,90256 524,▁balk|ed,True,2,0,0,0
+d11,proffered,T,tail,tail/proffer/acquiesce,2.42,1,47356,1,234232,▁proffered,True,1,1,1,1
+d11,acquiesced,I,tail,tail/proffer/acquiesce,2.42,3,4171 447 758,2,132530 1465,▁acquies|ced,True,2,0,0,0
+d11,rationed,T,tail,tail/ration/shudder,2.48,2,42904 264,2,30416 524,▁ration|ed,True,2,0,0,0
+d11,shuddered,I,tail,tail/ration/shudder,2.47,2,35928 3466,2,155587 524,▁shudder|ed,True,2,0,0,0
+d11,reared,T,tail,tail/rear/sin,3.07,2,294 1096,1,119532,▁reared,True,1,0,1,0
+d11,sinned,I,tail,tail/rear/sin,3.05,2,256 13172,1,220701,▁sinned,True,1,0,1,0
+d11,smothered,T,tail,tail/smother/subside,3.02,2,924 25688,1,231795,▁smothered,True,1,0,1,0
+d11,subsided,I,tail,tail/smother/subside,3.01,2,8790 1356,1,164698,▁subsided,True,1,0,1,0
+d11,spiced,T,tail,tail/spice/rage,3.02,2,653 5491,1,140778,▁spiced,True,1,0,1,0
+d11,raged,I,tail,tail/spice/rage,3.06,2,391 2961,1,198929,▁raged,True,1,0,1,0
+d11,stockpiled,T,tail,tail/stockpile/vie,2.49,3,5739 81 4206,2,168383 3002,▁stockp|iled,True,2,0,0,0
+d11,vied,I,tail,tail/stockpile/vie,2.45,2,362 728,2,566 1178,▁v|ied,True,2,0,0,0
+d11,symbolized,T,tail,tail/symbolize/wane,2.85,2,9484 1025,1,196075,▁symbolized,True,1,0,1,0
+d11,waned,I,tail,tail/symbolize/wane,2.87,2,259 20625,2,34713 524,▁wan|ed,True,2,0,0,0
+d11,treasured,T,tail,tail/treasure/clash,3.12,2,2578 47845,1,136577,▁treasured,True,1,0,1,0
+d11,clashed,I,tail,tail/treasure/clash,3.12,2,502 6948,1,171049,▁clashed,True,1,0,1,0
+d11,venerated,T,tail,tail/venerate/relent,2.71,2,49110 456,2,69136 774,▁vener|ated,True,2,0,0,0
+d11,relented,I,tail,tail/venerate/relent,2.71,2,774 8006,2,1151 16764,▁rel|ented,True,2,0,0,0
+d11,vilified,T,tail,tail/vilify/officiate,2.7,2,20442 1245,2,19028 2093,▁vil|ified,True,2,0,0,0
+d11,officiated,I,tail,tail/vilify/officiate,2.72,2,2039 4215,2,53881 774,▁offici|ated,True,2,0,0,0
+d11,wielded,T,tail,tail/wield/inquire,2.97,2,37214 264,2,77020 524,▁wield|ed,True,2,0,0,0
+d11,inquired,I,tail,tail/wield/inquire,2.97,1,39257,1,107171,▁inquired,True,1,1,1,1
+d11,abstracted,T,tail,tail/abstract/bargain,2.84,2,12002 264,1,149656,▁abstracted,True,1,0,1,0
+d11,bargained,I,tail,tail/abstract/bargain,2.85,2,14862 1243,2,25877 3836,▁barg|ained,True,2,0,0,0
+d11,accommodated,T,tail,tail/accommodate/creep,3.16,2,10085 456,1,98509,▁accommodated,True,1,0,1,0
+d11,crept,I,tail,tail/accommodate/creep,3.15,1,43801,1,154563,▁crept,True,1,1,1,1
+d11,appropriated,T,tail,tail/appropriate/branch,3.14,2,3991 456,1,79248,▁appropriated,True,1,0,1,0
+d11,branched,I,tail,tail/appropriate/branch,3.18,1,36690,1,91637,▁branched,True,1,1,1,1
+d11,ascertained,T,tail,tail/ascertain/err,2.79,1,46494,1,77833,▁ascertained,True,1,1,1,1
+d11,erred,I,tail,tail/ascertain/err,2.81,1,14416,1,102012,▁erred,True,1,1,1,1
+d11,awed,T,tail,tail/awe/cope,2.63,2,3768 264,2,1764 524,▁aw|ed,True,2,0,0,0
+d11,coped,I,tail,tail/awe/cope,2.63,2,5440 264,2,7030 524,▁cop|ed,True,2,0,0,0
+d11,bared,T,tail,tail/bare/bloom,2.64,2,270 1096,2,518 1792,▁b|ared,True,2,0,0,0
+d11,bloomed,I,tail,tail/bare/bloom,2.66,2,30601 264,2,3839 28890,▁blo|omed,True,2,0,0,0
+d11,beheld,T,tail,tail/behold/rave,2.51,2,320 13028,1,231670,▁beheld,True,1,0,1,0
+d11,raved,I,tail,tail/behold/rave,2.5,2,1218 1272,2,1459 1872,▁ra|ved,True,2,0,0,0
+d11,blackmailed,T,tail,tail/blackmail/flirt,2.87,3,2806 5719 264,2,2764 192387,▁black|mailed,True,2,0,0,0
+d11,flirted,I,tail,tail/blackmail/flirt,2.84,3,892 4580 264,2,105988 524,▁flirt|ed,True,2,0,0,0
+d11,blockaded,T,tail,tail/blockade/cringe,2.61,2,2972 7917,2,3355 13496,▁block|aded,True,2,0,0,0
+d11,cringed,I,tail,tail/blockade/cringe,2.57,3,260 804 264,3,505 851 524,▁c|ring|ed,True,3,0,0,0
+d11,braved,T,tail,tail/brave/peer,2.63,2,6513 1272,2,8518 1872,▁bra|ved,True,2,0,0,0
+d11,peered,I,tail,tail/brave/peer,2.66,1,43517,1,236497,▁peered,True,1,1,1,1
+d11,bribed,T,tail,tail/bribe/chuckle,3.05,2,49364 264,2,122577 524,▁brib|ed,True,2,0,0,0
+d11,chuckled,I,tail,tail/bribe/chuckle,3.05,1,43637,1,142272,▁chuckled,True,1,1,1,1
+d11,buffed,T,tail,tail/buff/crow,2.43,2,14664 264,2,8190 524,▁buff|ed,True,2,0,0,0
+d11,crowed,I,tail,tail/buff/crow,2.4,2,6207 264,2,10102 524,▁crow|ed,True,2,0,0,0
+d11,burdened,T,tail,tail/burden/consent,3.13,3,3600 69 2348,1,148364,▁burdened,True,1,0,1,0
+d11,consented,I,tail,tail/burden/consent,3.12,1,42243,1,120076,▁consented,True,1,1,1,1
+d11,cached,T,tail,tail/cache/limp,2.6,1,37164,1,62873,▁cached,True,1,1,1,1
+d11,limped,I,tail,tail/cache/limp,2.6,2,1579 9357,2,2284 10796,▁lim|ped,True,2,0,0,0
+d11,circumvented,T,tail,tail/circumvent/meditate,2.53,2,39256 264,2,101148 524,▁circumvent|ed,True,2,0,0,0
+d11,meditated,I,tail,tail/circumvent/meditate,2.55,2,1129 15281,2,1470 27904,▁med|itated,True,2,0,0,0
+d11,cleansed,T,tail,tail/cleanse/flop,2.97,2,30671 264,1,214566,▁cleansed,True,1,0,1,0
+d11,flopped,I,tail,tail/cleanse/flop,2.98,2,9071 1882,2,2851 2560,▁flo|pped,True,2,0,0,0
+d11,cloned,T,tail,tail/clone/cooperate,3.07,1,26877,1,84447,▁cloned,True,1,1,1,1
+d11,cooperated,I,tail,tail/clone/cooperate,3.08,2,10239 456,1,188359,▁cooperated,True,1,0,1,0
+d11,cluttered,T,tail,tail/clutter/gasp,2.94,2,26986 3606,1,173152,▁cluttered,True,1,0,1,0
+d11,gasped,I,tail,tail/clutter/gasp,2.94,1,39787,1,186855,▁gasped,True,1,1,1,1
+d11,corroborated,T,tail,tail/corroborate/reappear,2.92,1,47790,1,169721,▁corroborated,True,1,1,1,1
+d11,reappeared,I,tail,tail/corroborate/reappear,2.92,2,43482 1096,2,73301 28556,▁reapp|eared,True,2,0,0,0
+d11,craved,T,tail,tail/crave/blossom,2.9,2,8034 1272,2,12783 1872,▁cra|ved,True,2,0,0,0
+d11,blossomed,I,tail,tail/crave/blossom,2.9,2,33620 14944,1,190088,▁blossomed,True,1,0,1,0
+d11,dammed,T,tail,tail/dam/feast,2.5,2,2687 1314,2,3882 1992,▁dam|med,True,2,0,0,0
+d11,feasted,I,tail,tail/dam/feast,2.4,2,704 12457,2,1127 21068,▁fe|asted,True,2,0,0,0
+d11,decimated,T,tail,tail/decimate/transpire,3.07,2,1086 18280,1,212141,▁decimated,True,1,0,1,0
+d11,transpired,I,tail,tail/decimate/transpire,3.06,2,811 24875,1,163038,▁transpired,True,1,0,1,0
+d11,decoded,T,tail,tail/decode/abstain,2.78,1,45775,1,64686,▁decoded,True,1,1,1,1
+d11,abstained,I,tail,tail/decode/abstain,2.78,2,20965 1243,2,34751 3836,▁abst|ained,True,2,0,0,0
+d11,deducted,T,tail,tail/deduct/succumb,3.16,2,31363 2356,1,84596,▁deducted,True,1,0,1,0
+d11,succumbed,I,tail,tail/deduct/succumb,3.16,3,18382 360 3026,1,133466,▁succumbed,True,1,0,1,0
+d11,defaced,T,tail,tail/deface/collude,2.74,2,809 2575,2,1096 3776,▁def|aced,True,2,0,0,0
+d11,colluded,I,tail,tail/deface/collude,2.74,2,3007 21015,2,3995 30589,▁coll|uded,True,2,0,0,0
+d11,deterred,T,tail,tail/deter/giggle,2.9,2,843 13004,1,188128,▁deterred,True,1,0,1,0
+d11,giggled,I,tail,tail/deter/giggle,2.89,2,41542 1070,2,19714 74934,▁gig|gled,True,2,0,0,0
+d11,detested,T,tail,tail/detest/lurk,2.56,2,843 7250,2,1290 12320,▁det|ested,True,2,0,0,0
+d11,lurked,I,tail,tail/detest/lurk,2.57,2,29661 16386,2,61501 22329,▁lur|ked,True,2,0,0,0
+d11,disavowed,T,tail,tail/disavow/seep,2.56,3,557 580 12997,3,864 737 21093,▁dis|av|owed,True,3,0,0,0
+d11,seeped,I,tail,tail/disavow/seep,2.56,3,396 554 264,2,105455 524,▁seep|ed,True,2,0,0,0
+d11,dislodged,T,tail,tail/dislodge/fluctuate,2.7,3,557 39079 2400,3,864 52917 3701,▁dis|lod|ged,True,3,0,0,0
+d11,fluctuated,I,tail,tail/dislodge/fluctuate,2.71,2,10920 11634,2,24312 774,▁fluctu|ated,True,2,0,0,0
+d11,disregarded,T,tail,tail/disregard/faint,3.09,2,20398 13073,1,114223,▁disregarded,True,1,0,1,0
+d11,fainted,I,tail,tail/disregard/faint,3.12,2,16487 264,2,517 25197,▁f|ainted,True,2,0,0,0
+d11,dissuaded,T,tail,tail/dissuade/tremble,2.56,3,557 3467 7917,2,148029 13496,▁dissu|aded,True,2,0,0,0
+d11,trembled,I,tail,tail/dissuade/tremble,2.55,3,2578 1814 1070,1,183029,▁trembled,True,1,0,1,0
+d11,divested,T,tail,tail/divest/toil,2.62,2,2017 7250,2,3542 12320,▁div|ested,True,2,0,0,0
+d11,toiled,I,tail,tail/divest/toil,2.61,2,281 4206,2,531 3002,▁to|iled,True,2,0,0,0
+d11,divulged,T,tail,tail/divulge/flinch,2.52,3,2017 335 2400,2,76731 3701,▁divul|ged,True,2,0,0,0
+d11,flinched,I,tail,tail/divulge/flinch,2.52,2,892 39012,3,1378 495 3059,▁fl|in|ched,True,3,0,0,0
+d11,doped,T,tail,tail/dope/rebel,2.94,1,39986,1,115938,▁doped,True,1,1,1,1
+d11,rebelled,I,tail,tail/dope/rebel,2.95,2,6142 5911,2,49791 991,▁rebel|led,True,2,0,0,0
+d11,duplicated,T,tail,tail/duplicate/hesitate,3.08,1,44223,1,80254,▁duplicated,True,1,1,1,1
+d11,hesitated,I,tail,tail/duplicate/hesitate,3.08,1,32360,1,114507,▁hesitated,True,1,1,1,1
+d11,elbowed,T,tail,tail/elbow/rant,2.45,2,24784 264,2,39609 524,▁elbow|ed,True,2,0,0,0
+d11,ranted,I,tail,tail/elbow/rant,2.46,2,391 9581,2,637 17084,▁r|anted,True,2,0,0,0
+d11,elucidated,T,tail,tail/elucidate/gush,2.5,1,41167,1,148118,▁elucidated,True,1,1,1,1
+d11,gushed,I,tail,tail/elucidate/gush,2.51,2,305 6093,2,549 10593,▁g|ushed,True,2,0,0,0
+d11,envisaged,T,tail,tail/envisage/allude,3.11,2,47335 2961,1,99237,▁envisaged,True,1,0,1,0
+d11,alluded,I,tail,tail/envisage/allude,3.11,2,512 21015,1,104539,▁alluded,True,1,0,1,0
+d11,evaded,T,tail,tail/evade/converge,2.91,2,612 7917,1,233379,▁evaded,True,1,0,1,0
+d11,converged,I,tail,tail/evade/converge,2.91,2,5975 2400,1,98258,▁converged,True,1,0,1,0
+d11,exterminated,T,tail,tail/exterminate/retaliate,2.81,3,385 20792 456,2,104248 774,▁extermin|ated,True,2,0,0,0
+d11,retaliated,I,tail,tail/exterminate/retaliate,2.8,2,24998 4215,2,62784 774,▁retali|ated,True,2,0,0,0
+d11,feigned,T,tail,tail/feign/stagnate,2.65,2,704 1300,2,1127 2930,▁fe|igned,True,2,0,0,0
+d11,stagnated,I,tail,tail/feign/stagnate,2.65,2,36879 456,2,54611 774,▁stagn|ated,True,2,0,0,0
+d11,gagged,T,tail,tail/gag/prosper,2.9,2,305 37522,2,71805 3701,▁gag|ged,True,2,0,0,0
+d11,prospered,I,tail,tail/gag/prosper,2.9,2,5847 11712,2,24243 524,▁prosper|ed,True,2,0,0,0
+d11,gripped,T,tail,tail/grip/reign,3.14,1,43176,1,161176,▁gripped,True,1,1,1,1
+d11,reigned,I,tail,tail/grip/reign,3.15,2,294 1300,1,163879,▁reigned,True,1,0,1,0
+d11,heralded,T,tail,tail/herald/dive,3.0,3,617 267 4861,1,187939,▁heralded,True,1,0,1,0
+d11,dived,I,tail,tail/herald/dive,2.97,2,277 1567,2,513 2476,▁d|ived,True,2,0,0,0
+d11,hounded,T,tail,tail/hound/sneeze,2.7,2,288 8055,2,534 38229,▁h|ounded,True,2,0,0,0
+d11,sneezed,I,tail,tail/hound/sneeze,2.68,3,16037 70 4337,3,20059 6461 524,▁sne|ez|ed,True,3,0,0,0
+d11,idolized,T,tail,tail/idolize/disembark,2.55,2,36123 1025,2,51605 1662,▁idol|ized,True,2,0,0,0
+d11,disembarked,I,tail,tail/idolize/disembark,2.56,4,557 16697 782 264,3,864 7231 78399,▁dis|emb|arked,True,3,0,0,0
+d11,ingested,T,tail,tail/ingest/conspire,3.11,2,6446 7250,1,121113,▁ingested,True,1,0,1,0
+d11,conspired,I,tail,tail/ingest/conspire,3.11,2,772 24875,1,215300,▁conspired,True,1,0,1,0
+d11,inoculated,T,tail,tail/inoculate/accede,2.57,1,33599,1,103194,▁inoculated,True,1,1,1,1
+d11,acceded,I,tail,tail/inoculate/accede,2.58,2,756 16533,2,1055 57644,▁acc|eded,True,2,0,0,0
+d11,loathed,T,tail,tail/loathe/groan,2.72,2,2343 41746,2,1510 89038,▁lo|athed,True,2,0,0,0
+d11,groaned,I,tail,tail/loathe/groan,2.69,1,50206,1,233513,▁groaned,True,1,1,1,1
+d11,lynched,T,tail,tail/lynch/gaze,2.83,2,50117 2147,2,112208 3059,▁lyn|ched,True,2,0,0,0
+d11,gazed,I,tail,tail/lynch/gaze,2.83,1,37432,1,162768,▁gazed,True,1,1,1,1
+d11,maligned,T,tail,tail/malign/overreact,2.69,2,278 2132,2,4405 2930,▁mal|igned,True,2,0,0,0
+d11,overreacted,I,tail,tail/malign/overreact,2.69,3,689 22312 264,2,1024 205773,▁over|reacted,True,2,0,0,0
+d11,nabbed,T,tail,tail/nab/loom,2.79,3,295 357 3026,2,39310 4250,▁nab|bed,True,2,0,0,0
+d11,loomed,I,tail,tail/nab/loom,2.8,2,2343 14944,2,1510 28890,▁lo|omed,True,2,0,0,0
+d11,orphaned,T,tail,tail/orphan/excel,3.17,2,33260 264,1,209017,▁orphaned,True,1,0,1,0
+d11,excelled,I,tail,tail/orphan/excel,3.19,2,2507 5911,1,128222,▁excelled,True,1,0,1,0
+d11,overcharged,T,tail,tail/overcharge/elope,2.52,2,689 31094,2,1024 52989,▁over|charged,True,2,0,0,0
+d11,eloped,I,tail,tail/overcharge/elope,2.52,2,1045 11802,2,862 21382,▁el|oped,True,2,0,0,0
+d11,overloaded,T,tail,tail/overload/adhere,3.13,2,689 19052,1,135417,▁overloaded,True,1,0,1,0
+d11,adhered,I,tail,tail/overload/adhere,3.12,1,42159,1,95023,▁adhered,True,1,1,1,1
+d11,pardoned,T,tail,tail/pardon/interact,3.11,3,268 472 11406,2,89912 23446,▁pard|oned,True,2,0,0,0
+d11,interacted,I,tail,tail/pardon/interact,3.11,2,8008 264,1,118261,▁interacted,True,1,0,1,0
+d11,patronized,T,tail,tail/patronize/congregate,2.46,2,24081 1025,2,32994 1662,▁patron|ized,True,2,0,0,0
+d11,congregated,I,tail,tail/patronize/congregate,2.45,2,44615 456,2,25882 65252,▁cong|regated,True,2,0,0,0
+d11,pawned,T,tail,tail/pawn/ache,2.41,2,43392 264,2,126693 524,▁pawn|ed,True,2,0,0,0
+d11,ached,I,tail,tail/pawn/ache,2.41,2,913 742,2,496 3059,▁a|ched,True,2,0,0,0
+d11,perfumed,T,tail,tail/perfume/blush,2.64,2,20403 21625,2,18307 35245,▁perf|umed,True,2,0,0,0
+d11,blushed,I,tail,tail/perfume/blush,2.64,2,787 6093,1,234622,▁blushed,True,1,0,1,0
+d11,petted,T,tail,tail/pet/tower,2.43,2,268 37883,2,510 77558,▁p|etted,True,2,0,0,0
+d11,towered,I,tail,tail/pet/tower,2.42,2,281 8736,2,14734 3747,▁tow|ered,True,2,0,0,0
+d11,piloted,T,tail,tail/pilot/dawn,3.03,2,7861 4225,1,210149,▁piloted,True,1,0,1,0
+d11,dawned,I,tail,tail/pilot/dawn,3.03,2,20632 264,1,211476,▁dawned,True,1,0,1,0
+d11,pitied,T,tail,tail/pity/deliberate,2.51,2,8483 728,2,13122 1178,▁pit|ied,True,2,0,0,0
+d11,deliberated,I,tail,tail/pity/deliberate,2.49,2,12465 456,2,21985 774,▁deliber|ated,True,2,0,0,0
+d11,plundered,T,tail,tail/plunder/resonate,2.95,3,499 328 3466,2,729 179870,▁pl|undered,True,2,0,0,0
+d11,resonated,I,tail,tail/plunder/resonate,2.95,2,8146 456,1,166152,▁resonated,True,1,0,1,0
+d11,plied,T,tail,tail/ply/malfunction,2.56,2,499 728,2,729 1178,▁pl|ied,True,2,0,0,0
+d11,malfunctioned,I,tail,tail/ply/malfunction,2.57,2,43280 264,2,81993 524,▁malfunction|ed,True,2,0,0,0
+d11,policed,T,tail,tail/police/party,2.54,2,877 5491,2,1268 7701,▁pol|iced,True,2,0,0,0
+d11,partied,I,tail,tail/police/party,2.8,2,629 728,2,912 1178,▁part|ied,True,2,0,0,0
+d11,ported,T,tail,tail/port/function,3.04,2,2245 264,1,146992,▁ported,True,1,0,1,0
+d11,functioned,I,tail,tail/port/function,3.07,2,1159 264,1,176417,▁functioned,True,1,0,1,0
+d11,precluded,T,tail,tail/preclude/sprawl,2.68,1,38932,1,117891,▁precluded,True,1,1,1,1
+d11,sprawled,I,tail,tail/preclude/sprawl,2.68,2,30108 1070,2,30163 991,▁spraw|led,True,2,0,0,0
+d11,probed,T,tail,tail/probe/triumph,2.88,1,39039,1,127941,▁probed,True,1,1,1,1
+d11,triumphed,I,tail,tail/probe/triumph,2.91,3,1195 1765 742,2,2077 227672,▁tri|umphed,True,2,0,0,0
+d11,professed,T,tail,tail/profess/emigrate,3.12,2,4180 264,1,172735,▁professed,True,1,0,1,0
+d11,emigrated,I,tail,tail/profess/emigrate,3.12,2,37797 14092,1,176727,▁emigrated,True,1,0,1,0
+d11,quantified,T,tail,tail/quantify/dine,2.97,1,18755,1,71378,▁quantified,True,1,1,1,1
+d11,dined,I,tail,tail/quantify/dine,2.98,2,277 967,1,201835,▁dined,True,1,0,1,0
+d11,quarried,T,tail,tail/quarry/spiral,2.49,2,25721 2200,2,56666 3610,▁quar|ried,True,2,0,0,0
+d11,spiraled,I,tail,tail/quarry/spiral,2.46,2,15009 3256,2,21079 5444,▁spir|aled,True,2,0,0,0
+d11,quelled,T,tail,tail/quell/sympathize,2.46,2,572 5911,2,11391 991,▁quel|led,True,2,0,0,0
+d11,sympathized,I,tail,tail/quell/sympathize,2.46,2,34144 1025,2,49444 1662,▁sympath|ized,True,2,0,0,0
+d11,racked,T,tail,tail/rack/defect,3.03,2,391 16970,1,163179,▁racked,True,1,0,1,0
+d11,defected,I,tail,tail/rack/defect,3.03,2,372 5925,2,11507 524,▁defect|ed,True,2,0,0,0
+d11,recited,T,tail,tail/recite/revert,3.14,1,49064,1,119360,▁recited,True,1,1,1,1
+d11,reverted,I,tail,tail/recite/revert,3.14,2,294 13083,1,152574,▁reverted,True,1,0,1,0
+d11,reelected,T,tail,tail/reelect/elapse,2.95,2,294 43514,2,544 92617,▁re|elected,True,2,0,0,0
+d11,elapsed,I,tail,tail/reelect/elapse,2.95,1,38667,1,34384,▁elapsed,True,1,1,1,1
+d11,refunded,T,tail,tail/refund/arise,3.18,2,23005 264,1,98240,▁refunded,True,1,0,1,0
+d11,arisen,I,tail,tail/refund/arise,3.2,1,45764,1,84921,▁arisen,True,1,1,1,1
+d11,reinstalled,T,tail,tail/reinstall/proliferate,2.54,2,294 40539,2,544 63007,▁re|installed,True,2,0,0,0
+d11,proliferated,I,tail,tail/reinstall/proliferate,2.53,2,7987 12072,2,25182 774,▁prolifer|ated,True,2,0,0,0
+d11,relished,T,tail,tail/relish/dwell,2.65,2,774 1428,2,1151 2091,▁rel|ished,True,2,0,0,0
+d11,dwelt,I,tail,tail/relish/dwell,2.65,2,19858 2585,1,188173,▁dwelt,True,1,0,1,0
+d11,requisitioned,T,tail,tail/requisition/languish,2.52,3,997 10293 264,2,202512 524,▁requisition|ed,True,2,0,0,0
+d11,languished,I,tail,tail/requisition/languish,2.52,3,298 2435 1428,2,104266 2091,▁langu|ished,True,2,0,0,0
+d11,rinsed,T,tail,tail/rinse/fart,2.77,1,41502,1,123017,▁rinsed,True,1,1,1,1
+d11,farted,I,tail,tail/rinse/fart,2.78,2,18337 264,2,84764 524,▁fart|ed,True,2,0,0,0
+d11,roused,T,tail,tail/rouse/yearn,2.62,2,391 24695,1,223157,▁roused,True,1,0,1,0
+d11,yearned,I,tail,tail/rouse/yearn,2.58,2,807 9306,2,1051 12313,▁year|ned,True,2,0,0,0
+d11,sabotaged,T,tail,tail/sabotage/brag,2.92,2,45608 2961,2,82414 4130,▁sabot|aged,True,2,0,0,0
+d11,bragged,I,tail,tail/sabotage/brag,2.93,2,1308 37522,2,91932 3701,▁brag|ged,True,2,0,0,0
+d11,safeguarded,T,tail,tail/safeguard/peek,2.62,3,4999 4297 13073,2,32755 19319,▁safegu|arded,True,2,0,0,0
+d11,peeked,I,tail,tail/safeguard/peek,2.64,2,36811 264,2,64943 524,▁peek|ed,True,2,0,0,0
+d11,sated,T,tail,tail/sate/encroach,2.43,2,256 456,2,503 774,▁s|ated,True,2,0,0,0
+d11,encroached,I,tail,tail/sate/encroach,2.43,3,2349 287 2729,2,86931 4261,▁encro|ached,True,2,0,0,0
+d11,scooped,T,tail,tail/scoop/correspond,3.04,2,46254 11802,1,177837,▁scooped,True,1,0,1,0
+d11,corresponded,I,tail,tail/scoop/correspond,3.04,1,40575,1,120264,▁corresponded,True,1,1,1,1
+d11,secreted,T,tail,tail/secrete/tamper,2.95,1,27668,1,95187,▁secreted,True,1,1,1,1
+d11,tampered,I,tail,tail/secrete/tamper,2.95,2,21526 11712,2,11583 37197,▁tam|pered,True,2,0,0,0
+d11,signaled,T,tail,tail/signal/chat,3.1,1,49908,1,132661,▁signaled,True,1,1,1,1
+d11,chatted,I,tail,tail/signal/chat,3.17,2,448 19822,1,146109,▁chatted,True,1,0,1,0
+d11,skimmed,T,tail,tail/skim/disapprove,2.94,2,43816 1314,2,98292 1992,▁skim|med,True,2,0,0,0
+d11,disapproved,I,tail,tail/skim/disapprove,2.94,2,31521 1272,1,235821,▁disapproved,True,1,0,1,0
+d11,slandered,T,tail,tail/slander/dissent,2.53,3,256 1373 2122,3,503 1591 3747,▁s|land|ered,True,3,0,0,0
+d11,dissented,I,tail,tail/slander/dissent,2.56,2,5408 8006,2,10197 16764,▁diss|ented,True,2,0,0,0
+d11,squandered,T,tail,tail/squander/materialize,2.89,3,3896 395 2122,2,4112 232807,▁squ|andered,True,2,0,0,0
+d11,materialized,I,tail,tail/squander/materialize,2.9,2,2144 1025,1,178957,▁materialized,True,1,0,1,0
+d11,stowed,T,tail,tail/stow/kneel,2.79,2,331 12997,2,579 21093,▁st|owed,True,2,0,0,0
+d11,knelt,I,tail,tail/stow/kneel,2.8,1,47511,1,179360,▁knelt,True,1,1,1,1
+d11,subtracted,T,tail,tail/subtract/relapse,2.71,1,42426,1,92773,▁subtracted,True,1,1,1,1
+d11,relapsed,I,tail,tail/subtract/relapse,2.71,2,774 13395,2,1151 15591,▁rel|apsed,True,2,0,0,0
+d11,subverted,T,tail,tail/subvert/persevere,2.64,2,749 13083,2,1159 21489,▁sub|verted,True,2,0,0,0
+d11,persevered,I,tail,tail/subvert/persevere,2.63,3,591 339 29558,2,62212 524,▁persever|ed,True,2,0,0,0
+d11,sullied,T,tail,tail/sully/shiver,2.4,3,256 962 728,2,61862 1178,▁sull|ied,True,2,0,0,0
+d11,shivered,I,tail,tail/sully/shiver,2.4,2,439 7782,2,704 98030,▁sh|ivered,True,2,0,0,0
+d11,tamed,T,tail,tail/tame/thrive,3.01,2,246 3163,2,11583 524,▁tam|ed,True,2,0,0,0
+d11,thrived,I,tail,tail/tame/thrive,3.01,2,289 30487,1,188061,▁thrived,True,1,0,1,0
+d11,taunted,T,tail,tail/taunt/concur,2.74,2,15307 16218,2,5787 38677,▁ta|unted,True,2,0,0,0
+d11,concurred,I,tail,tail/taunt/concur,2.74,2,15038 433,1,199091,▁concurred,True,1,0,1,0
+d11,transcended,T,tail,tail/transcend/veer,2.74,2,21427 1834,2,35584 2577,▁transc|ended,True,2,0,0,0
+d11,veered,I,tail,tail/transcend/veer,2.73,2,1670 2122,2,1381 3747,▁ve|ered,True,2,0,0,0
+d11,transplanted,T,tail,tail/transplant/pee,3.06,1,38887,1,121079,▁transplanted,True,1,1,1,1
+d11,peed,I,tail,tail/transplant/pee,3.1,2,759 264,2,1022 524,▁pe|ed,True,2,0,0,0
+d11,trolled,T,tail,tail/troll/stroll,2.88,2,246 9095,2,494 24388,▁t|rolled,True,2,0,0,0
+d11,strolled,I,tail,tail/troll/stroll,2.85,2,331 9095,1,234447,▁strolled,True,1,0,1,0
+d11,usurped,T,tail,tail/usurp/recede,2.78,3,441 321 9357,2,166486 10796,▁usur|ped,True,2,0,0,0
+d11,receded,I,tail,tail/usurp/recede,2.78,3,294 758 264,2,1125 57644,▁rec|eded,True,2,0,0,0
+d11,uttered,T,tail,tail/utter/glance,3.18,1,41856,1,110018,▁uttered,True,1,1,1,1
+d11,glanced,I,tail,tail/utter/glance,3.17,1,17377,1,76876,▁glanced,True,1,1,1,1
+d11,visualized,T,tail,tail/visualize/sob,2.8,1,27130,1,88308,▁visualized,True,1,1,1,1
+d11,sobbed,I,tail,tail/visualize/sob,2.8,2,30323 3026,2,32702 4250,▁sob|bed,True,2,0,0,0
+d11,voided,T,tail,tail/void/sprint,2.72,2,2991 264,2,2325 524,▁void|ed,True,2,0,0,0
+d11,sprinted,I,tail,tail/void/sprint,2.69,2,8689 26082,2,29991 524,▁sprint|ed,True,2,0,0,0
+d11,besmirched,T,xtail,xtail/besmirch/blaspheme,1.91,4,6290 78 1426 742,3,5426 18570 3059,▁bes|mir|ched,True,3,0,0,0
+d11,blasphemed,I,xtail,xtail/besmirch/blaspheme,1.91,4,787 4938 248 1314,3,149050 499 1992,▁blasp|he|med,True,3,0,0,0
+d11,cajoled,T,xtail,xtail/cajole/decamp,2.19,4,260 1432 311 264,3,505 9368 991,▁c|ajo|led,True,3,0,0,0
+d11,decamped,I,xtail,xtail/cajole/decamp,2.08,2,1086 17263,2,1521 59034,▁dec|amped,True,2,0,0,0
+d11,decontaminated,T,xtail,xtail/decontaminate/eventuate,2.1,3,372 1987 22315,2,569 203680,▁de|contaminated,True,2,0,0,0
+d11,eventuated,I,xtail,xtail/decontaminate/eventuate,1.93,2,2362 11634,2,2460 42490,▁event|uated,True,2,0,0,0
+d11,deforested,T,xtail,xtail/deforest/impinge,2.03,3,809 27764 264,3,1096 663 15096,▁def|ore|sted,True,3,0,0,0
+d11,impinged,I,xtail,xtail/deforest/impinge,1.85,3,1607 272 264,2,185914 524,▁imping|ed,True,2,0,0,0
+d11,despoiled,T,xtail,xtail/despoil/fraternize,1.82,3,711 5367 4206,3,853 2661 3002,▁des|po|iled,True,3,0,0,0
+d11,fraternized,I,xtail,xtail/despoil/fraternize,1.51,3,1315 17752 1025,2,189035 1662,▁fratern|ized,True,2,0,0,0
+d11,espied,T,xtail,xtail/espy/luxuriate,1.38,2,17985 728,2,8263 1178,▁esp|ied,True,2,0,0,0
+d11,luxuriated,I,xtail,xtail/espy/luxuriate,1.36,3,14093 321 4215,2,181195 774,▁luxuri|ated,True,2,0,0,0
+d11,eulogized,T,xtail,xtail/eulogize/remonstrate,2.04,4,299 335 462 1025,3,150259 679 1662,▁eul|og|ized,True,3,0,0,0
+d11,remonstrated,I,xtail,xtail/eulogize/remonstrate,1.89,3,867 26739 456,2,223006 178787,▁remon|strated,True,2,0,0,0
+d11,hazarded,T,xtail,xtail/hazard/picnic,1.29,2,12052 13073,2,13521 19319,▁haz|arded,True,2,0,0,0
+d11,picnicked,I,xtail,xtail/hazard/picnic,1.4,3,14402 79 14050,3,10464 236749 29969,▁pic|n|icked,True,3,0,0,0
+d11,hefted,T,xtail,xtail/heft/fizz,1.54,3,344 649 264,2,123526 524,▁heft|ed,True,2,0,0,0
+d11,fizzed,I,xtail,xtail/heft/fizz,1.55,3,269 478 4337,2,142747 524,▁fizz|ed,True,2,0,0,0
+d11,husked,T,xtail,xtail/husk/desist,1.47,2,5424 16386,2,7597 22329,▁hus|ked,True,2,0,0,0
+d11,desisted,I,xtail,xtail/husk/desist,1.54,2,711 6136,2,853 14090,▁des|isted,True,2,0,0,0
+d11,lopped,T,xtail,xtail/lop/scoot,2.19,2,2343 1882,2,1510 2560,▁lo|pped,True,2,0,0,0
+d11,scooted,I,xtail,xtail/lop/scoot,2.2,3,660 1412 264,2,108478 524,▁scoot|ed,True,2,0,0,0
+d11,mistrusted,T,xtail,xtail/mistrust/bask,2.1,3,5384 83 15172,2,8442 164670,▁mist|rusted,True,2,0,0,0
+d11,basked,I,xtail,xtail/mistrust/bask,2.08,2,1666 16386,2,41665 524,▁bask|ed,True,2,0,0,0
+d11,mulched,T,xtail,xtail/mulch/tingle,1.84,2,22871 2147,2,13430 3059,▁mul|ched,True,2,0,0,0
+d11,tingled,I,xtail,xtail/mulch/tingle,1.79,2,39838 1070,2,19457 991,▁ting|led,True,2,0,0,0
+d11,obviated,T,xtail,xtail/obviate/loll,1.79,3,691 87 4215,2,140353 774,▁obvi|ated,True,2,0,0,0
+d11,lolled,I,xtail,xtail/obviate/loll,1.74,2,23385 1070,2,31685 991,▁lol|led,True,2,0,0,0
+d11,ogled,T,xtail,xtail/ogle/overreach,1.88,2,9040 1070,2,4370 991,▁og|led,True,2,0,0,0
+d11,overreached,I,xtail,xtail/ogle/overreach,1.95,3,689 250 2729,2,1024 172217,▁over|reached,True,2,0,0,0
+d11,reappraised,T,xtail,xtail/reappraise/menstruate,1.49,3,294 1212 42750,2,73301 86798,▁reapp|raised,True,2,0,0,0
+d11,menstruated,I,xtail,xtail/reappraise/menstruate,1.44,2,36513 456,2,45470 774,▁menstru|ated,True,2,0,0,0
+d11,reproved,T,xtail,xtail/reprove/smolder,1.82,2,294 27369,2,10903 1872,▁repro|ved,True,2,0,0,0
+d11,smoldered,I,xtail,xtail/reprove/smolder,1.61,3,924 311 3466,3,1406 947 3747,▁sm|old|ered,True,3,0,0,0
+d11,resupplied,T,xtail,xtail/resupply/slog,1.88,3,501 1135 16283,3,766 14021 4607,▁res|upp|lied,True,3,0,0,0
+d11,slogged,I,xtail,xtail/resupply/slog,1.93,2,44216 2400,2,43771 3701,▁slog|ged,True,2,0,0,0
+d11,rued,T,xtail,xtail/rue/moonlight,1.7,2,391 2107,1,87166,▁rued,True,1,0,1,0
+d11,moonlighted,I,xtail,xtail/rue/moonlight,1.6,2,46826 264,2,134351 524,▁moonlight|ed,True,2,0,0,0
+d11,shampooed,T,xtail,xtail/shampoo/banter,1.86,4,439 1301 3288 264,2,48791 524,▁shampoo|ed,True,2,0,0,0
+d11,bantered,I,xtail,xtail/shampoo/banter,1.8,3,270 386 2122,2,8418 58120,▁ban|tered,True,2,0,0,0
+d11,stupefied,T,xtail,xtail/stupefy/vacillate,2.14,4,331 48772 71 728,3,222187 236760 1178,▁stupe|f|ied,True,3,0,0,0
+d11,vacillated,I,xtail,xtail/stupefy/vacillate,1.9,3,5809 408 456,3,5828 644 774,▁vac|ill|ated,True,3,0,0,0
+d11,suborned,T,xtail,xtail/suborn/equivocate,1.5,2,749 39737,3,1159 2163 524,▁sub|orn|ed,True,3,0,0,0
+d11,equivocated,I,xtail,xtail/suborn/equivocate,1.43,2,32270 30510,2,216502 774,▁equivoc|ated,True,2,0,0,0
+d11,suckled,T,xtail,xtail/suckle/eavesdrop,1.94,2,15327 1070,2,35897 991,▁suck|led,True,2,0,0,0
+d11,eavesdropped,I,xtail,xtail/suckle/eavesdrop,1.96,4,299 3465 3002 1882,2,126889 179470,▁eaves|dropped,True,2,0,0,0
+d11,superintended,T,xtail,xtail/superintend/toddle,1.7,3,2221 565 1834,2,2393 153642,▁super|intended,True,2,0,0,0
+d11,toddled,I,xtail,xtail/superintend/toddle,1.56,2,35130 1070,2,39781 991,▁todd|led,True,2,0,0,0
+d11,swaddled,T,xtail,xtail/swaddle/writhe,2.1,3,1863 1911 1070,3,2353 1282 991,▁sw|add|led,True,3,0,0,0
+d11,writhed,I,xtail,xtail/swaddle/writhe,2.09,2,2416 742,2,3528 1371,▁writ|hed,True,2,0,0,0
+d11,tantalized,T,xtail,xtail/tantalize/skulk,1.54,3,22602 267 1025,2,170587 1662,▁tantal|ized,True,2,0,0,0
+d11,skulked,I,xtail,xtail/tantalize/skulk,1.42,3,1629 335 16386,2,186773 22329,▁skul|ked,True,2,0,0,0
+d11,tenderized,T,xtail,xtail/tenderize/pulsate,1.48,2,14510 1025,2,21870 1662,▁tender|ized,True,2,0,0,0
+d11,pulsated,I,xtail,xtail/tenderize/pulsate,1.38,2,24295 456,2,42766 774,▁puls|ated,True,2,0,0,0
+d11,unlatched,T,xtail,xtail/unlatch/moralize,1.79,3,440 13324 2147,3,723 8938 3059,▁un|lat|ched,True,3,0,0,0
+d11,moralized,I,xtail,xtail/unlatch/moralize,1.52,2,9447 1025,2,16643 1662,▁moral|ized,True,2,0,0,0
+d11,unpinned,T,xtail,xtail/unpin/prevaricate,1.45,3,440 81 13172,2,723 89691,▁un|pinned,True,2,0,0,0
+d11,prevaricated,I,xtail,xtail/unpin/prevaricate,1.45,3,1404 274 6857,3,877 1967 8547,▁pre|var|icated,True,3,0,0,0
+d11,abased,T,xtail,xtail/abase/cavort,1.54,2,490 833,2,763 1361,▁ab|ased,True,2,0,0,0
+d11,cavorted,I,xtail,xtail/abase/cavort,1.36,2,9605 7551,2,14681 19798,▁cav|orted,True,2,0,0,0
+d11,billeted,T,xtail,xtail/billet/clatter,2.18,2,10370 24894,2,8039 28974,▁bil|leted,True,2,0,0,0
+d11,clattered,I,xtail,xtail/billet/clatter,2.17,2,502 12376,2,732 42790,▁cl|attered,True,2,0,0,0
+d11,browbeaten,T,xtail,xtail/browbeat/cohabit,1.65,3,6479 1257 15030,3,69135 1553 6793,▁brow|be|aten,True,2,0,0,0
+d11,cohabited,I,xtail,xtail/browbeat/cohabit,1.63,3,8126 357 959,3,1028 7722 1552,▁co|hab|ited,True,3,0,0,0
+d11,carjacked,T,xtail,xtail/carjack/sidle,2.1,3,1113 75 16970,3,1295 21591 524,▁car|jack|ed,True,3,0,0,0
+d11,sidled,I,xtail,xtail/carjack/sidle,1.77,2,25549 1070,2,18996 991,▁sid|led,True,2,0,0,0
+d11,centrifuged,T,xtail,xtail/centrifuge/gloat,2.08,1,29881,1,111412,▁centrifuged,True,1,1,1,1
+d11,gloated,I,xtail,xtail/centrifuge/gloat,1.98,2,43976 456,2,11070 774,▁glo|ated,True,2,0,0,0
+d11,clouted,T,xtail,xtail/clout/grouse,1.46,3,502 483 264,2,732 124094,▁cl|outed,True,2,0,0,0
+d11,groused,I,xtail,xtail/clout/grouse,1.52,2,650 24695,2,27176 16872,▁grou|sed,True,2,0,0,0
+d11,counteracted,T,xtail,xtail/counteract/coexist,2.17,2,4828 33019,2,6651 70485,▁counter|acted,True,2,0,0,0
+d11,coexisted,I,xtail,xtail/counteract/coexist,2.19,3,820 911 6136,3,1028 716 14090,▁co|ex|isted,True,3,0,0,0
+d11,counterfeited,T,xtail,xtail/counterfeit/swagger,1.96,3,4828 453 959,2,191854 1552,▁counterfe|ited,True,2,0,0,0
+d11,swaggered,I,xtail,xtail/counterfeit/swagger,1.67,3,1863 356 12466,2,97626 524,▁swagger|ed,True,2,0,0,0
+d11,crated,T,xtail,xtail/crate/lumber,2.18,2,1531 456,2,1976 774,▁cr|ated,True,2,0,0,0
+d11,lumbered,I,xtail,xtail/crate/lumber,2.18,2,13053 7455,2,35400 524,▁lumber|ed,True,2,0,0,0
+d11,daubed,T,xtail,xtail/daub/defecate,2.0,3,4204 538 264,3,1776 709 524,▁da|ub|ed,True,3,0,0,0
+d11,defecated,I,xtail,xtail/daub/defecate,1.94,3,7965 68 456,2,181120 774,▁defec|ated,True,2,0,0,0
+d11,debugged,T,xtail,xtail/debug/empathize,1.75,2,13844 2400,2,15862 3701,▁debug|ged,True,2,0,0,0
+d11,empathized,I,xtail,xtail/debug/empathize,1.75,3,802 3967 1025,2,130064 1662,▁empath|ized,True,2,0,0,0
+d11,demeaned,T,xtail,xtail/demean/crackle,2.17,3,1471 15719 264,2,98161 524,▁demean|ed,True,2,0,0,0
+d11,crackled,I,xtail,xtail/demean/crackle,2.17,2,9370 1070,2,11890 991,▁crack|led,True,2,0,0,0
+d11,disabused,T,xtail,xtail/disabuse/commiserate,1.77,3,557 357 3197,3,864 596 3456,▁dis|ab|used,True,3,0,0,0
+d11,commiserated,I,xtail,xtail/disabuse/commiserate,1.65,3,764 9141 456,3,1103 7648 774,▁comm|iser|ated,True,3,0,0,0
+d11,disembowelled,T,xtail,xtail/disembowel/hyperventilate,1.66,4,557 358 11939 5911,4,864 7231 572 16853,▁dis|emb|ow|elled,True,4,0,0,0
+d11,hyperventilated,I,xtail,xtail/disembowel/hyperventilate,1.45,3,4373 2254 31718,3,10835 150182 774,▁hyper|ventil|ated,True,3,0,0,0
+d11,disgorged,T,xtail,xtail/disgorge/gyrate,1.7,3,20538 2061 264,3,122880 2187 524,▁disg|org|ed,True,3,0,0,0
+d11,gyrated,I,xtail,xtail/disgorge/gyrate,1.4,3,305 6147 456,2,139687 774,▁gyr|ated,True,2,0,0,0
+d11,disquieted,T,xtail,xtail/disquiet/procreate,1.53,3,557 40748 264,3,864 53586 524,▁dis|quiet|ed,True,3,0,0,0
+d11,procreated,I,xtail,xtail/disquiet/procreate,1.5,2,354 22337,2,608 17138,▁pro|created,True,2,0,0,0
+d11,doffed,T,xtail,xtail/doff/sunbathe,1.44,3,513 567 264,3,776 736 524,▁do|ff|ed,True,3,0,0,0
+d11,sunbathed,I,xtail,xtail/doff/sunbathe,1.41,3,5101 13419 742,3,3768 12511 1371,▁sun|bat|hed,True,3,0,0,0
+d11,edified,T,xtail,xtail/edify/salivate,1.55,2,1407 1245,2,1511 2093,▁ed|ified,True,2,0,0,0
+d11,salivated,I,xtail,xtail/edify/salivate,1.5,2,3779 8550,2,2095 41300,▁sal|ivated,True,2,0,0,0
+d11,effaced,T,xtail,xtail/efface/exult,1.91,2,3098 2575,2,1320 3776,▁eff|aced,True,2,0,0,0
+d11,exulted,I,xtail,xtail/efface/exult,1.71,3,385 503 264,3,652 745 524,▁ex|ult|ed,True,3,0,0,0
+d11,emulsified,T,xtail,xtail/emulsify/reemerge,2.07,3,802 7228 1245,2,120126 2093,▁emuls|ified,True,2,0,0,0
+d11,reemerged,I,xtail,xtail/emulsify/reemerge,2.02,3,294 37114 264,3,544 30131 3701,▁re|emer|ged,True,3,0,0,0
+d11,enunciated,T,xtail,xtail/enunciate/saunter,2.19,3,546 7157 4215,2,93892 774,▁enunci|ated,True,2,0,0,0
+d11,sauntered,I,xtail,xtail/enunciate/saunter,2.2,3,618 328 3606,3,890 14863 524,▁sa|unter|ed,True,3,0,0,0
+d11,explicated,T,xtail,xtail/explicate/sleepwalk,1.68,2,1414 6857,2,2049 8547,▁expl|icated,True,2,0,0,0
+d11,sleepwalked,I,xtail,xtail/explicate/sleepwalk,1.53,3,4600 13678 264,3,6745 20723 524,▁sleep|walk|ed,True,3,0,0,0
+d11,extirpated,T,xtail,xtail/extirpate/intermarry,2.14,4,1021 343 81 456,3,1449 143632 774,▁ext|irp|ated,True,3,0,0,0
+d11,intermarried,I,xtail,xtail/extirpate/intermarry,2.14,2,734 38982,2,939 80987,▁inter|married,True,2,0,0,0
+d11,filched,T,xtail,xtail/filch/ruminate,1.6,2,1193 2147,2,1597 3059,▁fil|ched,True,2,0,0,0
+d11,ruminated,I,xtail,xtail/filch/ruminate,1.6,2,11267 3901,2,163090 774,▁rumin|ated,True,2,0,0,0
+d11,garlanded,T,xtail,xtail/garland/clam,1.9,3,6746 1373 264,2,99095 524,▁garland|ed,True,2,0,0,0
+d11,clammed,I,xtail,xtail/garland/clam,1.68,2,502 15416,2,732 30884,▁cl|ammed,True,2,0,0,0
+d11,gulled,T,xtail,xtail/gull/jig,1.5,2,305 49277,2,78059 991,▁gul|led,True,2,0,0,0
+d11,jigged,I,xtail,xtail/gull/jig,1.55,3,480 304 2400,2,100189 3701,▁jig|ged,True,2,0,0,0
+d11,guzzled,T,xtail,xtail/guzzle/loiter,1.75,3,1149 4396 1070,3,1533 9961 991,▁gu|zz|led,True,3,0,0,0
+d11,loitered,I,xtail,xtail/guzzle/loiter,1.72,3,2343 614 433,3,1510 2598 524,▁lo|iter|ed,True,3,0,0,0
+d11,hocked,T,xtail,xtail/hock/jest,1.44,3,288 825 264,2,534 167899,▁h|ocked,True,2,0,0,0
+d11,jested,I,xtail,xtail/hock/jest,1.42,2,480 7250,2,11170 524,▁jest|ed,True,2,0,0,0
+d11,immolated,T,xtail,xtail/immolate/calve,1.95,2,4293 35631,2,4239 22120,▁imm|olated,True,2,0,0,0
+d11,calved,I,xtail,xtail/immolate/calve,1.66,2,1724 1272,2,1421 1872,▁cal|ved,True,2,0,0,0
+d11,incriminated,T,xtail,xtail/incriminate/gape,2.07,3,1485 3428 3901,3,2494 4966 7413,▁inc|rim|inated,True,3,0,0,0
+d11,gaped,I,xtail,xtail/incriminate/gape,2.03,2,305 7760,2,11302 524,▁gap|ed,True,2,0,0,0
+d11,inveigled,T,xtail,xtail/inveigle/convalesce,1.44,4,275 306 304 1070,3,45219 554 991,▁inve|ig|led,True,3,0,0,0
+d11,convalesced,I,xtail,xtail/inveigle/convalesce,1.35,4,345 1208 265 758,3,152602 507 1465,▁conval|es|ced,True,3,0,0,0
+d11,kneaded,T,xtail,xtail/knead/intercede,2.17,2,7725 7917,2,28193 13496,▁kne|aded,True,2,0,0,0
+d11,interceded,I,xtail,xtail/knead/intercede,2.08,3,734 758 264,2,939 216524,▁inter|ceded,True,2,0,0,0
+d11,larded,T,xtail,xtail/lard/sojourn,1.56,2,298 13073,2,537 19319,▁l|arded,True,2,0,0,0
+d11,sojourned,I,xtail,xtail/lard/sojourn,1.57,3,594 19923 9306,3,834 15654 12313,▁so|jour|ned,True,3,0,0,0
+d11,leached,T,xtail,xtail/leach/drool,2.17,2,458 2729,2,674 4261,▁le|ached,True,2,0,0,0
+d11,drooled,I,xtail,xtail/leach/drool,2.15,3,3926 311 264,2,5083 24493,▁dro|oled,True,2,0,0,0
+d11,leashed,T,xtail,xtail/leash/strive,2.11,2,458 6948,2,674 16539,▁le|ashed,True,2,0,0,0
+d11,striven,I,xtail,xtail/leash/strive,2.12,3,331 1069 257,2,579 22644,▁st|riven,True,2,0,0,0
+d11,lugged,T,xtail,xtail/lug/assent,2.13,2,26285 2400,2,20668 3701,▁lug|ged,True,2,0,0,0
+d11,assented,I,xtail,xtail/lug/assent,2.11,2,718 8006,2,1188 16764,▁ass|ented,True,2,0,0,0
+d11,outshone,T,xtail,xtail/outshine/slouch,2.08,3,562 1200 531,3,855 1179 811,▁out|sh|one,True,3,0,0,0
+d11,slouched,I,xtail,xtail/outshine/slouch,2.04,2,1499 27151,2,1924 66329,▁sl|ouched,True,2,0,0,0
+d11,overemphasized,T,xtail,xtail/overemphasize/flounce,1.84,5,25732 2013 545 284 1025,3,1024 139020 1662,▁over|emphas|ized,True,3,0,0,0
+d11,flounced,I,xtail,xtail/overemphasize/flounce,1.56,2,892 11493,2,1378 6406,▁fl|ounced,True,2,0,0,0
+d11,parboiled,T,xtail,xtail/parboil/putrefy,1.65,3,1061 2399 4206,2,944 156760,▁par|boiled,True,2,0,0,0
+d11,putrefied,I,xtail,xtail/parboil/putrefy,1.49,3,1691 709 728,3,2247 1811 1178,▁put|ref|ied,True,3,0,0,0
+d11,pastured,T,xtail,xtail/pasture/pant,2.06,2,2469 1520,2,3068 2600,▁past|ured,True,2,0,0,0
+d11,panted,I,xtail,xtail/pasture/pant,1.93,2,268 9581,2,510 17084,▁p|anted,True,2,0,0,0
+d11,pawed,T,xtail,xtail/paw/feud,1.99,2,1349 7184,2,54381 524,▁paw|ed,True,2,0,0,0
+d11,feuded,I,xtail,xtail/paw/feud,2.01,2,704 21015,2,1127 30589,▁fe|uded,True,2,0,0,0
+d11,permed,T,xtail,xtail/perm/fawn,1.88,2,591 1314,2,810 1992,▁per|med,True,2,0,0,0
+d11,fawned,I,xtail,xtail/perm/fawn,1.88,3,4195 939 264,2,177950 524,▁fawn|ed,True,2,0,0,0
+d11,pigeonholed,T,xtail,xtail/pigeonhole/oscillate,2.14,4,8393 33453 11171 264,3,85173 1506 991,▁pigeon|ho|led,True,3,0,0,0
+d11,oscillated,I,xtail,xtail/pigeonhole/oscillate,2.04,2,9774 456,2,14925 774,▁oscill|ated,True,2,0,0,0
+d11,pilfered,T,xtail,xtail/pilfer/hitchhike,2.12,2,7861 3850,3,9682 821 524,▁pil|fer|ed,True,3,0,0,0
+d11,hitchhiked,I,xtail,xtail/pilfer/hitchhike,2.12,3,47826 73 33457,3,81725 69467 524,▁hitch|hik|ed,True,3,0,0,0
+d11,placated,T,xtail,xtail/placate/rummage,2.14,2,21927 456,2,20830 774,▁plac|ated,True,2,0,0,0
+d11,rummaged,I,xtail,xtail/placate/rummage,2.1,3,11267 78 2961,3,12202 236757 4130,▁rum|m|aged,True,3,0,0,0
+d11,prised,T,xtail,xtail/prise/jut,1.84,2,819 1701,2,865 2470,▁pr|ised,True,2,0,0,0
+d11,jutted,I,xtail,xtail/prise/jut,1.8,3,480 307 8659,2,75929 6968,▁jut|ted,True,2,0,0,0
+d11,pulped,T,xtail,xtail/pulp/lounge,1.9,2,4734 9357,2,5372 10796,▁pul|ped,True,2,0,0,0
+d11,lounged,I,xtail,xtail/pulp/lounge,1.97,3,298 415 2400,2,85447 524,▁loung|ed,True,2,0,0,0
+d11,ravished,T,xtail,xtail/ravish/slink,2.09,2,37952 1428,2,42600 2091,▁rav|ished,True,2,0,0,0
+d11,slunk,I,xtail,xtail/ravish/slink,1.97,2,1499 3938,2,1924 4984,▁sl|unk,True,2,0,0,0
+d11,readjusted,T,xtail,xtail/readjust/sulk,2.14,3,1239 6309 264,2,149755 524,▁readjust|ed,True,2,0,0,0
+d11,sulked,I,xtail,xtail/readjust/sulk,1.98,2,18253 16386,2,11617 22329,▁sul|ked,True,2,0,0,0
+d11,rearmed,T,xtail,xtail/rearm/slobber,1.75,2,10581 1314,2,544 59478,▁re|armed,True,2,0,0,0
+d11,slobbered,I,xtail,xtail/rearm/slobber,1.49,3,1499 706 7455,2,116060 213991,▁slob|bered,True,2,0,0,0
+d11,recoded,T,xtail,xtail/recode/molt,1.89,2,761 7459,2,1125 10243,▁rec|oded,True,2,0,0,0
+d11,molted,I,xtail,xtail/recode/molt,1.68,3,278 7391 264,2,8627 6968,▁mol|ted,True,2,0,0,0
+d11,recollected,T,xtail,xtail/recollect/waddle,2.1,2,28433 2231,2,44582 2785,▁recol|lected,True,2,0,0,0
+d11,waddled,I,xtail,xtail/recollect/waddle,2.1,3,259 1911 1070,3,515 1282 991,▁w|add|led,True,3,0,0,0
+d11,recompensed,T,xtail,xtail/recompense/leer,1.67,3,294 3118 8821,2,135540 13220,▁recomp|ensed,True,2,0,0,0
+d11,leered,I,xtail,xtail/recompense/leer,1.67,2,458 2122,2,674 3747,▁le|ered,True,2,0,0,0
+d11,redressed,T,xtail,xtail/redress/shimmer,2.01,2,2502 2079,2,2604 7461,▁red|ressed,True,2,0,0,0
+d11,shimmered,I,xtail,xtail/redress/shimmer,1.89,3,439 303 38086,2,97467 524,▁shimmer|ed,True,2,0,0,0
+d11,regaled,T,xtail,xtail/regale/protrude,2.14,2,810 3256,2,1157 5444,▁reg|aled,True,2,0,0,0
+d11,protruded,I,xtail,xtail/regale/protrude,2.13,2,26322 21015,2,59199 30589,▁protr|uded,True,2,0,0,0
+d11,reproached,T,xtail,xtail/reproach/whiz,2.16,2,41543 2729,2,10903 4261,▁repro|ached,True,2,0,0,0
+d11,whizzed,I,xtail,xtail/reproach/whiz,2.15,3,364 478 4337,3,615 8285 524,▁wh|izz|ed,True,3,0,0,0
+d11,salved,T,xtail,xtail/salve/bluster,1.34,2,3779 1272,2,2095 1872,▁sal|ved,True,2,0,0,0
+d11,blustered,I,xtail,xtail/salve/bluster,1.42,3,787 461 2122,3,1105 707 3747,▁bl|ust|ered,True,3,0,0,0
+d11,satirized,T,xtail,xtail/satirize/resound,2.11,3,2206 343 1025,2,187794 1662,▁satir|ized,True,2,0,0,0
+d11,resounded,I,xtail,xtail/satirize/resound,2.01,2,501 8055,2,766 38229,▁res|ounded,True,2,0,0,0
+d11,shellacked,T,xtail,xtail/shellac/tarry,1.56,2,8135 16970,2,11411 39779,▁shell|acked,True,2,0,0,0
+d11,tarried,I,xtail,xtail/shellac/tarry,1.55,2,13586 2200,2,10584 3610,▁tar|ried,True,2,0,0,0
+d11,shooed,T,xtail,xtail/shoo/tiptoe,2.03,3,439 3288 264,3,704 5008 524,▁sh|oo|ed,True,3,0,0,0
+d11,tiptoed,I,xtail,xtail/shoo/tiptoe,2.03,4,246 9155 80 264,3,3163 45706 524,▁ti|pto|ed,True,3,0,0,0
+d11,shoplifted,T,xtail,xtail/shoplift/seethe,1.92,4,439 4488 2094 264,3,7805 52046 524,▁shop|lift|ed,True,3,0,0,0
+d11,seethed,I,xtail,xtail/shoplift/seethe,1.92,3,396 292 742,3,636 536 1371,▁se|et|hed,True,3,0,0,0
+d11,slaked,T,xtail,xtail/slake/teem,1.78,2,1499 6840,2,1924 10487,▁sl|aked,True,2,0,0,0
+d11,teemed,I,xtail,xtail/slake/teem,1.71,2,716 11574,2,926 18392,▁te|emed,True,2,0,0,0
+d11,sodded,T,xtail,xtail/sod/quack,1.3,2,9359 4861,2,13081 7156,▁sod|ded,True,2,0,0,0
+d11,quacked,I,xtail,xtail/sod/quack,1.39,2,572 16970,2,690 39779,▁qu|acked,True,2,0,0,0
+d11,stoppered,T,xtail,xtail/stopper/putter,1.32,2,3523 11712,2,109315 524,▁stopper|ed,True,2,0,0,0
+d11,puttered,I,xtail,xtail/stopper/putter,1.36,2,1691 3606,2,2247 58120,▁put|tered,True,2,0,0,0
+d11,suctioned,T,xtail,xtail/suction/kayak,1.56,2,34907 264,2,60062 524,▁suction|ed,True,2,0,0,0
+d11,kayaked,I,xtail,xtail/suction/kayak,1.6,2,41885 6840,2,15931 10487,▁kay|aked,True,2,0,0,0
+d11,sundered,T,xtail,xtail/sunder/throb,1.9,2,5101 3466,3,664 2771 524,▁su|nder|ed,True,3,0,0,0
+d11,throbbed,I,xtail,xtail/sunder/throb,1.91,3,10218 67 3026,3,541 19889 4250,▁th|rob|bed,True,3,0,0,0
+d11,titillated,T,xtail,xtail/titillate/totter,1.69,3,8225 408 456,3,6456 644 774,▁tit|ill|ated,True,3,0,0,0
+d11,tottered,I,xtail,xtail/titillate/totter,1.59,2,1931 3606,2,2210 58120,▁tot|tered,True,2,0,0,0
+d11,unlaced,T,xtail,xtail/unlace/inveigh,1.42,2,46144 2575,3,723 236752 3776,▁un|l|aced,True,3,0,0,0
+d11,inveighed,I,xtail,xtail/unlace/inveigh,1.43,3,275 306 18201,2,45219 30033,▁inve|ighed,True,2,0,0,0
+d11,upbraided,T,xtail,xtail/upbraid/burgeon,1.82,3,598 4946 1356,3,872 5256 2410,▁up|bra|ided,True,3,0,0,0
+d11,burgeoned,I,xtail,xtail/upbraid/burgeon,1.74,3,3600 463 11406,3,5717 787 23446,▁bur|ge|oned,True,3,0,0,0
+d11,wadded,T,xtail,xtail/wad/zigzag,1.85,2,259 22566,2,515 21934,▁w|added,True,2,0,0,0
+d11,zigzagged,I,xtail,xtail/wad/zigzag,1.78,3,48567 91 37522,2,102559 3701,▁zigzag|ged,True,2,0,0,0
+d11,walloped,T,xtail,xtail/wallop/wallow,1.86,2,3402 11802,2,3549 21382,▁wall|oped,True,2,0,0,0
+d11,wallowed,I,xtail,xtail/wallop/wallow,1.84,2,3402 12997,2,3549 21093,▁wall|owed,True,2,0,0,0
+d11,waylaid,T,xtail,xtail/waylay/vegetate,2.18,2,1039 37712,2,1595 75908,▁way|laid,True,2,0,0,0
+d11,vegetated,I,xtail,xtail/waylay/vegetate,2.19,2,8466 456,2,8125 774,▁veget|ated,True,2,0,0,0
+d11,wheedled,T,xtail,xtail/wheedle/reoccur,1.21,3,488 264 1070,3,2615 524 991,▁whe|ed|led,True,3,0,0,0
+d11,reoccurred,I,xtail,xtail/wheedle/reoccur,1.28,3,294 30714 433,3,544 73561 1192,▁re|occur|red,True,3,0,0,0
+curated,abstained,I,tail,tail/stow/abstain,2.78,2,20965 1243,2,34751 3836,▁abst|ained,True,2,0,0,0
+curated,adhered,I,tail,tail/orphan/adhere,3.12,1,42159,1,95023,▁adhered,True,1,1,1,1
+curated,apologized,I,head,head/lease/apologize,3.63,1,46446,1,110784,▁apologized,True,1,1,1,1
+curated,appeared,I,head,head/bet/appear,4.83,1,5420,1,9177,▁appeared,True,1,1,1,1
+curated,approximated,T,tail,tail/approximate/muse,2.68,1,34930,1,70034,▁approximated,True,1,1,1,1
+curated,arrived,I,head,head/introduce/arrive,4.79,1,7244,1,12208,▁arrived,True,1,1,1,1
+curated,audited,T,tail,tail/audit/interact,3.13,2,3820 959,1,121541,▁audited,True,1,0,1,0
+curated,awed,T,tail,tail/awe/glow,2.63,2,3768 264,2,1764 524,▁aw|ed,True,2,0,0,0
+curated,bantered,I,xtail,xtail/garland/banter,1.8,3,270 386 2122,2,8418 58120,▁ban|tered,True,2,0,0,0
+curated,bargained,I,tail,tail/dope/bargain,2.85,2,14862 1243,2,25877 3836,▁barg|ained,True,2,0,0,0
+curated,basked,I,xtail,xtail/wag/bask,2.08,2,1666 16386,2,41665 524,▁bask|ed,True,2,0,0,0
+curated,belonged,I,head,head/rob/belong,4.01,1,20651,1,44619,▁belonged,True,1,1,1,1
+curated,bet,T,head,head/bet/appear,4.79,1,701,1,1146,▁bet,True,1,1,1,1
+curated,blabbed,T,xtail,xtail/blab/loll,1.74,3,787 357 3026,3,1105 596 4250,▁bl|ab|bed,True,3,0,0,0
+curated,blamed,T,head,head/blame/struggle,3.9,1,27137,1,57396,▁blamed,True,1,1,1,1
+curated,blasphemed,T,xtail,xtail/blaspheme/seethe,1.91,4,787 4938 248 1314,3,149050 499 1992,▁blasp|he|med,True,3,0,0,0
+curated,bloomed,I,tail,tail/trademark/bloom,2.66,2,30601 264,2,3839 28890,▁blo|omed,True,2,0,0,0
+curated,blossomed,I,tail,tail/gag/blossom,2.9,2,33620 14944,1,190088,▁blossomed,True,1,0,1,0
+curated,blurted,T,tail,tail/blurt/stagnate,2.62,3,787 4405 264,3,1105 5337 524,▁bl|urt|ed,True,3,0,0,0
+curated,blushed,I,tail,tail/safeguard/blush,2.64,2,787 6093,1,234622,▁blushed,True,1,0,1,0
+curated,bragged,I,tail,tail/commemorate/brag,2.93,2,1308 37522,2,91932 3701,▁brag|ged,True,2,0,0,0
+curated,bribed,T,tail,tail/bribe/correspond,3.05,2,49364 264,2,122577 524,▁brib|ed,True,2,0,0,0
+curated,burgeoned,I,xtail,xtail/unlatch/burgeon,1.74,3,3600 463 11406,3,5717 787 23446,▁bur|ge|oned,True,3,0,0,0
+curated,bustled,I,xtail,xtail/mulch/bustle,1.83,2,21501 1070,2,27002 991,▁bust|led,True,2,0,0,0
+curated,celebrated,T,head,head/celebrate/reply,4.24,1,19651,1,23101,▁celebrated,True,1,1,1,1
+curated,christened,T,tail,tail/christen/dwindle,2.92,2,37622 2348,2,32943 4027,▁christ|ened,True,2,0,0,0
+curated,chuckled,I,tail,tail/tame/chuckle,3.05,1,43637,1,142272,▁chuckled,True,1,1,1,1
+curated,clashed,I,tail,tail/refund/clash,3.12,2,502 6948,1,171049,▁clashed,True,1,0,1,0
+curated,clouted,T,xtail,xtail/clout/grouse,1.46,3,502 483 264,2,732 124094,▁cl|outed,True,2,0,0,0
+curated,coerced,T,tail,tail/coerce/emigrate,3.11,3,820 254 758,1,225312,▁coerced,True,1,0,1,0
+curated,coexisted,I,xtail,xtail/mistrust/coexist,2.19,3,820 911 6136,3,1028 716 14090,▁co|ex|isted,True,3,0,0,0
+curated,colluded,I,tail,tail/subjugate/collude,2.74,2,3007 21015,2,3995 30589,▁coll|uded,True,2,0,0,0
+curated,commemorated,T,tail,tail/commemorate/brag,2.91,2,42628 456,1,220351,▁commemorated,True,1,0,1,0
+curated,commiserated,I,xtail,xtail/guzzle/commiserate,1.65,3,764 9141 456,3,1103 7648 774,▁comm|iser|ated,True,3,0,0,0
+curated,competed,I,head,head/sum/compete,3.51,1,29177,1,59816,▁competed,True,1,1,1,1
+curated,complained,I,head,head/upgrade/complain,3.99,1,19375,1,40182,▁complained,True,1,1,1,1
+curated,concurred,I,tail,tail/transcend/concur,2.74,2,15038 433,1,199091,▁concurred,True,1,0,1,0
+curated,confronted,T,head,head/confront/testify,3.84,1,25394,1,52362,▁confronted,True,1,1,1,1
+curated,conspired,I,tail,tail/ingest/conspire,3.11,2,772 24875,1,215300,▁conspired,True,1,0,1,0
+curated,cooperated,I,tail,tail/dice/cooperate,3.08,2,10239 456,1,188359,▁cooperated,True,1,0,1,0
+curated,corresponded,I,tail,tail/bribe/correspond,3.04,1,40575,1,120264,▁corresponded,True,1,1,1,1
+curated,crackled,I,xtail,xtail/placate/crackle,2.17,2,9370 1070,2,11890 991,▁crack|led,True,2,0,0,0
+curated,crated,T,xtail,xtail/crate/lumber,2.18,2,1531 456,2,1976 774,▁cr|ated,True,2,0,0,0
+curated,crept,I,tail,tail/utter/creep,3.15,1,43801,1,154563,▁crept,True,1,1,1,1
+curated,crowned,T,head,head/crown/object,3.65,1,47376,1,75216,▁crowned,True,1,1,1,1
+curated,daubed,T,xtail,xtail/daub/resound,2.0,3,4204 538 264,3,1776 709 524,▁da|ub|ed,True,3,0,0,0
+curated,dawned,I,tail,tail/duck/dawn,3.03,2,20632 264,1,211476,▁dawned,True,1,0,1,0
+curated,debugged,T,xtail,xtail/debug/tingle,1.75,2,13844 2400,2,15862 3701,▁debug|ged,True,2,0,0,0
+curated,decamped,I,xtail,xtail/swaddle/decamp,2.08,2,1086 17263,2,1521 59034,▁dec|amped,True,2,0,0,0
+curated,defecated,I,xtail,xtail/suckle/defecate,1.94,3,7965 68 456,2,181120 774,▁defec|ated,True,2,0,0,0
+curated,defended,T,head,head/defend/participate,4.0,1,25860,1,52688,▁defended,True,1,1,1,1
+curated,desisted,I,xtail,xtail/gull/desist,1.54,2,711 6136,2,853 14090,▁des|isted,True,2,0,0,0
+curated,deterred,T,tail,tail/deter/flirt,2.9,2,843 13004,1,188128,▁deterred,True,1,0,1,0
+curated,diced,T,tail,tail/dice/cooperate,3.04,1,49441,1,138748,▁diced,True,1,1,1,1
+curated,died,I,head,head/send/die,5.2,1,4962,1,8390,▁died,True,1,1,1,1
+curated,disabused,T,xtail,xtail/disabuse/sidle,1.77,3,557 357 3197,3,864 596 3456,▁dis|ab|used,True,3,0,0,0
+curated,disgorged,T,xtail,xtail/disgorge/exult,1.7000000000000002,3,20538 2061 264,3,122880 2187 524,▁disg|org|ed,True,3,0,0,0
+curated,disquieted,T,xtail,xtail/disquiet/goggle,1.53,3,557 40748 264,3,864 53586 524,▁dis|quiet|ed,True,3,0,0,0
+curated,diverged,I,tail,tail/overestimate/diverge,2.76,2,11711 2400,2,18393 3701,▁diver|ged,True,2,0,0,0
+curated,doffed,T,xtail,xtail/doff/salivate,1.44,3,513 567 264,3,776 736 524,▁do|ff|ed,True,3,0,0,0
+curated,doped,T,tail,tail/dope/bargain,2.94,1,39986,1,115938,▁doped,True,1,1,1,1
+curated,drooled,I,xtail,xtail/lug/drool,2.15,3,3926 311 264,2,5083 24493,▁dro|oled,True,2,0,0,0
+curated,ducked,T,tail,tail/duck/dawn,3.01,2,277 20044,2,29989 524,▁duck|ed,True,2,0,0,0
+curated,dwindled,I,tail,tail/christen/dwindle,2.92,3,277 16668 1070,2,108046 991,▁dwind|led,True,2,0,0,0
+curated,earned,T,head,head/earn/occur,4.55,1,12431,1,15575,▁earned,True,1,1,1,1
+curated,eavesdropped,I,xtail,xtail/sunder/eavesdrop,1.96,4,299 3465 3002 1882,2,126889 179470,▁eaves|dropped,True,2,0,0,0
+curated,edified,T,xtail,xtail/edify/toddle,1.55,2,1407 1245,2,1511 2093,▁ed|ified,True,2,0,0,0
+curated,emerged,I,head,head/impose/emerge,4.16,1,13082,1,25091,▁emerged,True,1,1,1,1
+curated,emigrated,I,tail,tail/coerce/emigrate,3.12,2,37797 14092,1,176727,▁emigrated,True,1,0,1,0
+curated,eschewed,T,tail,tail/eschew/languish,2.49,3,1578 1962 7184,2,159955 25325,▁esche|wed,True,2,0,0,0
+curated,espied,T,xtail,xtail/espy/scram,1.38,2,17985 728,2,8263 1178,▁esp|ied,True,2,0,0,0
+curated,evaded,T,tail,tail/evade/inquire,2.91,2,612 7917,1,233379,▁evaded,True,1,0,1,0
+curated,eventuated,I,xtail,xtail/shoplift/eventuate,1.93,2,2362 11634,2,2460 42490,▁event|uated,True,2,0,0,0
+curated,exerted,T,tail,tail/exert/slump,3.09,1,33916,1,59481,▁exerted,True,1,1,1,1
+curated,exhibited,T,head,head/exhibit/proceed,3.86,1,12322,1,31272,▁exhibited,True,1,1,1,1
+curated,existed,I,head,head/host/exist,4.29,1,13164,1,26077,▁existed,True,1,1,1,1
+curated,extirpated,T,xtail,xtail/extirpate/vegetate,2.14,4,1021 343 81 456,3,1449 143632 774,▁ext|irp|ated,True,3,0,0,0
+curated,exulted,I,xtail,xtail/disgorge/exult,1.71,3,385 503 264,3,652 745 524,▁ex|ult|ed,True,3,0,0,0
+curated,fawned,I,xtail,xtail/perm/fawn,1.88,3,4195 939 264,2,177950 524,▁fawn|ed,True,2,0,0,0
+curated,filched,T,xtail,xtail/filch/smolder,1.6,2,1193 2147,2,1597 3059,▁fil|ched,True,2,0,0,0
+curated,fizzed,I,xtail,xtail/lard/fizz,1.55,3,269 478 4337,2,142747 524,▁fizz|ed,True,2,0,0,0
+curated,fleeced,T,tail,tail/fleece/vie,2.41,2,32645 758,2,11737 224484,▁fle|eced,True,2,0,0,0
+curated,flirted,I,tail,tail/deter/flirt,2.84,3,892 4580 264,2,105988 524,▁flirt|ed,True,2,0,0,0
+curated,fluctuated,I,tail,tail/preclude/fluctuate,2.71,2,10920 11634,2,24312 774,▁fluctu|ated,True,2,0,0,0
+curated,forested,T,tail,tail/forest/function,3.03,2,9741 264,1,130944,▁forested,True,1,0,1,0
+curated,functioned,I,tail,tail/forest/function,3.07,2,1159 264,1,176417,▁functioned,True,1,0,1,0
+curated,gagged,T,tail,tail/gag/blossom,2.9,2,305 37522,2,71805 3701,▁gag|ged,True,2,0,0,0
+curated,galvanized,T,tail,tail/galvanize/transpire,3.02,3,5918 6148 1025,1,130077,▁galvanized,True,1,0,1,0
+curated,gaped,I,xtail,xtail/outshine/gape,2.03,2,305 7760,2,11302 524,▁gap|ed,True,2,0,0,0
+curated,garlanded,T,xtail,xtail/garland/banter,1.9,3,6746 1373 264,2,99095 524,▁garland|ed,True,2,0,0,0
+curated,garnished,T,tail,tail/garnish/toil,2.64,2,34226 1428,1,151840,▁garnished,True,1,0,1,0
+curated,glared,I,tail,tail/slander/glare,2.59,1,47278,1,228342,▁glared,True,1,1,1,1
+curated,gloated,I,xtail,xtail/wallop/gloat,1.98,2,43976 456,2,11070 774,▁glo|ated,True,2,0,0,0
+curated,glowed,I,tail,tail/awe/glow,2.63,2,15795 264,2,19462 524,▁glow|ed,True,2,0,0,0
+curated,goggled,I,xtail,xtail/disquiet/goggle,1.59,3,305 19613 1070,2,549 229099,▁g|oggled,True,2,0,0,0
+curated,grinned,I,tail,tail/heap/grin,2.87,1,30443,1,135445,▁grinned,True,1,1,1,1
+curated,groused,I,xtail,xtail/clout/grouse,1.52,2,650 24695,2,27176 16872,▁grou|sed,True,2,0,0,0
+curated,gulled,T,xtail,xtail/gull/desist,1.5,2,305 49277,2,78059 991,▁gul|led,True,2,0,0,0
+curated,guzzled,T,xtail,xtail/guzzle/commiserate,1.75,3,1149 4396 1070,3,1533 9961 991,▁gu|zz|led,True,3,0,0,0
+curated,happened,I,head,head/include/happen,5.2,1,4592,1,8432,▁happened,True,1,1,1,1
+curated,hated,T,head,head/hate/listen,4.2,1,21023,1,52695,▁hated,True,1,1,1,1
+curated,heaped,T,tail,tail/heap/grin,2.87,2,344 7760,1,213250,▁heaped,True,1,0,1,0
+curated,hefted,T,xtail,xtail/heft/hibernate,1.54,3,344 649 264,2,123526 524,▁heft|ed,True,2,0,0,0
+curated,hibernated,I,xtail,xtail/heft/hibernate,1.63,4,288 487 1808 456,3,44798 1446 774,▁hib|ern|ated,True,3,0,0,0
+curated,hitchhiked,I,xtail,xtail/pigeonhole/hitchhike,2.12,3,47826 73 33457,3,81725 69467 524,▁hitch|hik|ed,True,3,0,0,0
+curated,hosted,T,head,head/host/exist,4.25,1,17386,1,22889,▁hosted,True,1,1,1,1
+curated,imitated,T,tail,tail/imitate/linger,2.92,2,516 15281,1,173041,▁imitated,True,1,0,1,0
+curated,immolated,T,xtail,xtail/immolate/vacillate,1.95,2,4293 35631,2,4239 22120,▁imm|olated,True,2,0,0,0
+curated,imposed,T,head,head/impose/emerge,4.16,1,11295,1,21676,▁imposed,True,1,1,1,1
+curated,included,T,head,head/include/happen,5.03,1,2908,1,5012,▁included,True,1,1,1,1
+curated,incriminated,T,xtail,xtail/incriminate/sulk,2.07,3,1485 3428 3901,3,2494 4966 7413,▁inc|rim|inated,True,3,0,0,0
+curated,ingested,T,tail,tail/ingest/conspire,3.11,2,6446 7250,1,121113,▁ingested,True,1,0,1,0
+curated,inquired,I,tail,tail/evade/inquire,2.97,1,39257,1,107171,▁inquired,True,1,1,1,1
+curated,insured,T,head,head/insure/vanish,3.69,1,19420,1,44270,▁insured,True,1,1,1,1
+curated,interacted,I,tail,tail/audit/interact,3.11,2,8008 264,1,118261,▁interacted,True,1,0,1,0
+curated,introduced,T,head,head/introduce/arrive,4.72,1,5611,1,8314,▁introduced,True,1,1,1,1
+curated,jutted,I,xtail,xtail/prise/jut,1.8,3,480 307 8659,2,75929 6968,▁jut|ted,True,2,0,0,0
+curated,languished,I,tail,tail/eschew/languish,2.52,3,298 2435 1428,2,104266 2091,▁langu|ished,True,2,0,0,0
+curated,larded,T,xtail,xtail/lard/fizz,1.56,2,298 13073,2,537 19319,▁l|arded,True,2,0,0,0
+curated,lathered,T,xtail,xtail/lather/slouch,2.04,2,4329 23258,2,229243 524,▁lather|ed,True,2,0,0,0
+curated,laughed,I,head,head/measure/laugh,4.24,1,12918,1,39494,▁laughed,True,1,1,1,1
+curated,leased,T,head,head/lease/apologize,3.62,1,44955,1,64239,▁leased,True,1,1,1,1
+curated,leered,I,xtail,xtail/recompense/leer,1.67,2,458 2122,2,674 3747,▁le|ered,True,2,0,0,0
+curated,lent,T,head,head/lend/opt,3.75,1,21685,1,32658,▁lent,True,1,1,1,1
+curated,lied,I,head,head/target/lie,4.21,1,27786,1,78997,▁lied,True,1,1,1,1
+curated,lingered,I,tail,tail/imitate/linger,2.9,2,23614 2122,1,206574,▁lingered,True,1,0,1,0
+curated,listened,I,head,head/hate/listen,4.21,1,18029,1,37570,▁listened,True,1,1,1,1
+curated,loaded,T,head,head/load/respond,4.25,1,10607,1,15808,▁loaded,True,1,1,1,1
+curated,lolled,I,xtail,xtail/blab/loll,1.74,2,23385 1070,2,31685 991,▁lol|led,True,2,0,0,0
+curated,lugged,T,xtail,xtail/lug/drool,2.13,2,26285 2400,2,20668 3701,▁lug|ged,True,2,0,0,0
+curated,lumbered,I,xtail,xtail/crate/lumber,2.18,2,13053 7455,2,35400 524,▁lumber|ed,True,2,0,0,0
+curated,lurked,I,tail,tail/rouse/lurk,2.5700000000000003,2,29661 16386,2,61501 22329,▁lur|ked,True,2,0,0,0
+curated,mattered,I,head,head/thank/matter,3.53,1,43074,1,134655,▁mattered,True,1,1,1,1
+curated,measured,T,head,head/measure/laugh,4.25,1,4080,1,8434,▁measured,True,1,1,1,1
+curated,mistrusted,T,xtail,xtail/mistrust/coexist,2.1,3,5384 83 15172,2,8442 164670,▁mist|rusted,True,2,0,0,0
+curated,mulched,T,xtail,xtail/mulch/bustle,1.84,2,22871 2147,2,13430 3059,▁mul|ched,True,2,0,0,0
+curated,mused,I,tail,tail/approximate/muse,2.67,2,1948 264,2,2431 524,▁mus|ed,True,2,0,0,0
+curated,nabbed,T,tail,tail/nab/retaliate,2.79,3,295 357 3026,2,39310 4250,▁nab|bed,True,2,0,0,0
+curated,objected,I,head,head/crown/object,3.5,1,27511,1,75941,▁objected,True,1,1,1,1
+curated,obviated,T,xtail,xtail/obviate/teem,1.79,3,691 87 4215,2,140353 774,▁obvi|ated,True,2,0,0,0
+curated,occurred,I,head,head/earn/occur,4.57,1,5866,1,10997,▁occurred,True,1,1,1,1
+curated,ogled,T,xtail,xtail/ogle/wallow,1.88,2,9040 1070,2,4370 991,▁og|led,True,2,0,0,0
+curated,opted,I,head,head/lend/opt,3.75,1,33549,1,51140,▁opted,True,1,1,1,1
+curated,orphaned,T,tail,tail/orphan/adhere,3.17,2,33260 264,1,209017,▁orphaned,True,1,0,1,0
+curated,outdone,T,tail,tail/outdo/recede,2.8,2,562 17506,2,855 18450,▁out|done,True,2,0,0,0
+curated,outshone,T,xtail,xtail/outshine/gape,2.08,3,562 1200 531,3,855 1179 811,▁out|sh|one,True,3,0,0,0
+curated,overestimated,T,tail,tail/overestimate/diverge,2.76,2,35039 18280,1,226862,▁overestimated,True,1,0,1,0
+curated,panted,I,xtail,xtail/redress/pant,1.93,2,268 9581,2,510 17084,▁p|anted,True,2,0,0,0
+curated,participated,I,head,head/defend/participate,4.01,1,13640,1,26695,▁participated,True,1,1,1,1
+curated,peed,I,tail,tail/spice/pee,3.1,2,759 264,2,1022 524,▁pe|ed,True,2,0,0,0
+curated,perfumed,T,tail,tail/perfume/reel,2.64,2,20403 21625,2,18307 35245,▁perf|umed,True,2,0,0,0
+curated,permed,T,xtail,xtail/perm/fawn,1.88,2,591 1314,2,810 1992,▁per|med,True,2,0,0,0
+curated,persevered,I,tail,tail/subvert/persevere,2.63,3,591 339 29558,2,62212 524,▁persever|ed,True,2,0,0,0
+curated,pigeonholed,T,xtail,xtail/pigeonhole/hitchhike,2.14,4,8393 33453 11171 264,3,85173 1506 991,▁pigeon|ho|led,True,3,0,0,0
+curated,placated,T,xtail,xtail/placate/crackle,2.14,2,21927 456,2,20830 774,▁plac|ated,True,2,0,0,0
+curated,precluded,T,tail,tail/preclude/fluctuate,2.68,1,38932,1,117891,▁precluded,True,1,1,1,1
+curated,prised,T,xtail,xtail/prise/jut,1.84,2,819 1701,2,865 2470,▁pr|ised,True,2,0,0,0
+curated,proceeded,I,head,head/exhibit/proceed,3.87,1,20311,1,41684,▁proceeded,True,1,1,1,1
+curated,puttered,I,xtail,xtail/tithe/putter,1.36,2,1691 3606,2,2247 58120,▁put|tered,True,2,0,0,0
+curated,quacked,I,xtail,xtail/stopper/quack,1.39,2,572 16970,2,690 39779,▁qu|acked,True,2,0,0,0
+curated,quarried,T,tail,tail/quarry/rave,2.49,2,25721 2200,2,56666 3610,▁quar|ried,True,2,0,0,0
+curated,quelled,T,tail,tail/quell/sympathize,2.46,2,572 5911,2,11391 991,▁quel|led,True,2,0,0,0
+curated,quivered,I,xtail,xtail/shoo/quiver,1.96,2,572 7782,2,690 98030,▁qu|ivered,True,2,0,0,0
+curated,rated,T,head,head/rate/result,4.3,1,20139,1,25118,▁rated,True,1,1,1,1
+curated,raved,I,tail,tail/quarry/rave,2.5,2,1218 1272,2,1459 1872,▁ra|ved,True,2,0,0,0
+curated,reappeared,I,tail,tail/recast/reappear,2.92,2,43482 1096,2,73301 28556,▁reapp|eared,True,2,0,0,0
+curated,reared,T,tail,tail/rear/sin,3.07,2,294 1096,1,119532,▁reared,True,1,0,1,0
+curated,rearmed,T,xtail,xtail/rearm/totter,1.75,2,10581 1314,2,544 59478,▁re|armed,True,2,0,0,0
+curated,recast,T,tail,tail/recast/reappear,2.94,2,761 505,1,190759,▁recast,True,1,0,1,0
+curated,receded,I,tail,tail/outdo/recede,2.78,3,294 758 264,2,1125 57644,▁rec|eded,True,2,0,0,0
+curated,recompensed,T,xtail,xtail/recompense/leer,1.67,3,294 3118 8821,2,135540 13220,▁recomp|ensed,True,2,0,0,0
+curated,redressed,T,xtail,xtail/redress/pant,2.01,2,2502 2079,2,2604 7461,▁red|ressed,True,2,0,0,0
+curated,reeled,I,tail,tail/perfume/reel,2.61,2,294 17371,2,544 19583,▁re|eled,True,2,0,0,0
+curated,refunded,T,tail,tail/refund/clash,3.18,2,23005 264,1,98240,▁refunded,True,1,0,1,0
+curated,regaled,T,xtail,xtail/regale/writhe,2.14,2,810 3256,2,1157 5444,▁reg|aled,True,2,0,0,0
+curated,reinstalled,T,tail,tail/reinstall/seep,2.54,2,294 40539,2,544 63007,▁re|installed,True,2,0,0,0
+curated,remained,I,head,head/score/remain,4.62,1,6376,1,12800,▁remained,True,1,1,1,1
+curated,remonstrated,I,xtail,xtail/reprove/remonstrate,1.89,3,867 26739 456,2,223006 178787,▁remon|strated,True,2,0,0,0
+curated,replied,I,head,head/celebrate/reply,4.28,1,10017,1,24406,▁replied,True,1,1,1,1
+curated,reproached,T,xtail,xtail/reproach/whiz,2.16,2,41543 2729,2,10903 4261,▁repro|ached,True,2,0,0,0
+curated,reproved,T,xtail,xtail/reprove/remonstrate,1.82,2,294 27369,2,10903 1872,▁repro|ved,True,2,0,0,0
+curated,resounded,I,xtail,xtail/daub/resound,2.01,2,501 8055,2,766 38229,▁res|ounded,True,2,0,0,0
+curated,responded,I,head,head/load/respond,4.26,1,10974,1,21889,▁responded,True,1,1,1,1
+curated,resulted,I,head,head/rate/result,4.37,1,7369,1,15116,▁resulted,True,1,1,1,1
+curated,resupplied,T,xtail,xtail/resupply/slog,1.88,3,501 1135 16283,3,766 14021 4607,▁res|upp|lied,True,3,0,0,0
+curated,retaliated,I,tail,tail/nab/retaliate,2.8,2,24998 4215,2,62784 774,▁retali|ated,True,2,0,0,0
+curated,robbed,T,head,head/rob/belong,3.88,1,38208,1,83946,▁robbed,True,1,1,1,1
+curated,roused,T,tail,tail/rouse/lurk,2.62,2,391 24695,1,223157,▁roused,True,1,0,1,0
+curated,safeguarded,T,tail,tail/safeguard/blush,2.62,3,4999 4297 13073,2,32755 19319,▁safegu|arded,True,2,0,0,0
+curated,salivated,I,xtail,xtail/doff/salivate,1.5,2,3779 8550,2,2095 41300,▁sal|ivated,True,2,0,0,0
+curated,scored,T,head,head/score/remain,4.63,1,11691,1,15568,▁scored,True,1,1,1,1
+curated,scrammed,I,xtail,xtail/espy/scram,1.23,3,660 3358 1314,2,44126 1992,▁scram|med,True,2,0,0,0
+curated,scrubbed,T,tail,tail/scrub/thrive,3.01,2,28990 3026,2,42866 4250,▁scrub|bed,True,2,0,0,0
+curated,seeped,I,tail,tail/reinstall/seep,2.56,3,396 554 264,2,105455 524,▁seep|ed,True,2,0,0,0
+curated,seethed,I,xtail,xtail/blaspheme/seethe,1.92,3,396 292 742,3,636 536 1371,▁se|et|hed,True,3,0,0,0
+curated,sent,T,head,head/send/die,5.16,1,2197,1,3265,▁sent,True,1,1,1,1
+curated,shimmered,I,xtail,xtail/wad/shimmer,1.89,3,439 303 38086,2,97467 524,▁shimmer|ed,True,2,0,0,0
+curated,shooed,T,xtail,xtail/shoo/quiver,2.03,3,439 3288 264,3,704 5008 524,▁sh|oo|ed,True,3,0,0,0
+curated,shoplifted,T,xtail,xtail/shoplift/eventuate,1.92,4,439 4488 2094 264,3,7805 52046 524,▁shop|lift|ed,True,3,0,0,0
+curated,shuddered,I,tail,tail/stockpile/shudder,2.47,2,35928 3466,2,155587 524,▁shudder|ed,True,2,0,0,0
+curated,sidled,I,xtail,xtail/disabuse/sidle,1.77,2,25549 1070,2,18996 991,▁sid|led,True,2,0,0,0
+curated,sinned,I,tail,tail/rear/sin,3.05,2,256 13172,1,220701,▁sinned,True,1,0,1,0
+curated,slandered,T,tail,tail/slander/glare,2.53,3,256 1373 2122,3,503 1591 3747,▁s|land|ered,True,3,0,0,0
+curated,slogged,I,xtail,xtail/resupply/slog,1.93,2,44216 2400,2,43771 3701,▁slog|ged,True,2,0,0,0
+curated,slouched,I,xtail,xtail/lather/slouch,2.04,2,1499 27151,2,1924 66329,▁sl|ouched,True,2,0,0,0
+curated,slumped,I,tail,tail/exert/slump,3.03,2,1499 26515,1,203925,▁slumped,True,1,0,1,0
+curated,smoldered,I,xtail,xtail/filch/smolder,1.61,3,924 311 3466,3,1406 947 3747,▁sm|old|ered,True,3,0,0,0
+curated,smothered,T,tail,tail/smother/subside,3.02,2,924 25688,1,231795,▁smothered,True,1,0,1,0
+curated,spiced,T,tail,tail/spice/pee,3.02,2,653 5491,1,140778,▁spiced,True,1,0,1,0
+curated,stagnated,I,tail,tail/blurt/stagnate,2.65,2,36879 456,2,54611 774,▁stagn|ated,True,2,0,0,0
+curated,stockpiled,T,tail,tail/stockpile/shudder,2.49,3,5739 81 4206,2,168383 3002,▁stockp|iled,True,2,0,0,0
+curated,stoppered,T,xtail,xtail/stopper/quack,1.32,2,3523 11712,2,109315 524,▁stopper|ed,True,2,0,0,0
+curated,stowed,T,tail,tail/stow/abstain,2.79,2,331 12997,2,579 21093,▁st|owed,True,2,0,0,0
+curated,struggled,I,head,head/blame/struggle,4.01,1,19460,1,34554,▁struggled,True,1,1,1,1
+curated,subjugated,T,tail,tail/subjugate/collude,2.69,3,749 18936 456,2,177713 774,▁subjug|ated,True,2,0,0,0
+curated,subsided,I,tail,tail/smother/subside,3.01,2,8790 1356,1,164698,▁subsided,True,1,0,1,0
+curated,subverted,T,tail,tail/subvert/persevere,2.64,2,749 13083,2,1159 21489,▁sub|verted,True,2,0,0,0
+curated,suckled,T,xtail,xtail/suckle/defecate,1.94,2,15327 1070,2,35897 991,▁suck|led,True,2,0,0,0
+curated,sulked,I,xtail,xtail/incriminate/sulk,1.98,2,18253 16386,2,11617 22329,▁sul|ked,True,2,0,0,0
+curated,summed,T,head,head/sum/compete,3.5700000000000003,1,37254,1,75768,▁summed,True,1,1,1,1
+curated,sundered,T,xtail,xtail/sunder/eavesdrop,1.9,2,5101 3466,3,664 2771 524,▁su|nder|ed,True,3,0,0,0
+curated,swaddled,T,xtail,xtail/swaddle/decamp,2.1,3,1863 1911 1070,3,2353 1282 991,▁sw|add|led,True,3,0,0,0
+curated,sympathized,I,tail,tail/quell/sympathize,2.46,2,34144 1025,2,49444 1662,▁sympath|ized,True,2,0,0,0
+curated,tamed,T,tail,tail/tame/chuckle,3.01,2,246 3163,2,11583 524,▁tam|ed,True,2,0,0,0
+curated,targeted,T,head,head/target/lie,4.22,1,10522,1,20054,▁targeted,True,1,1,1,1
+curated,teemed,I,xtail,xtail/obviate/teem,1.71,2,716 11574,2,926 18392,▁te|emed,True,2,0,0,0
+curated,testified,I,head,head/confront/testify,3.82,1,7859,1,37709,▁testified,True,1,1,1,1
+curated,thanked,T,head,head/thank/matter,3.64,1,35891,1,56190,▁thanked,True,1,1,1,1
+curated,thrived,I,tail,tail/scrub/thrive,3.01,2,289 30487,1,188061,▁thrived,True,1,0,1,0
+curated,tingled,I,xtail,xtail/debug/tingle,1.79,2,39838 1070,2,19457 991,▁ting|led,True,2,0,0,0
+curated,tithed,T,xtail,xtail/tithe/putter,1.34,2,8225 742,2,6456 1371,▁tit|hed,True,2,0,0,0
+curated,toddled,I,xtail,xtail/edify/toddle,1.56,2,35130 1070,2,39781 991,▁todd|led,True,2,0,0,0
+curated,toiled,I,tail,tail/garnish/toil,2.61,2,281 4206,2,531 3002,▁to|iled,True,2,0,0,0
+curated,tottered,I,xtail,xtail/rearm/totter,1.59,2,1931 3606,2,2210 58120,▁tot|tered,True,2,0,0,0
+curated,trademarked,T,tail,tail/trademark/bloom,2.74,2,26014 264,2,27644 524,▁trademark|ed,True,2,0,0,0
+curated,transcended,T,tail,tail/transcend/concur,2.74,2,21427 1834,2,35584 2577,▁transc|ended,True,2,0,0,0
+curated,transpired,I,tail,tail/galvanize/transpire,3.06,2,811 24875,1,163038,▁transpired,True,1,0,1,0
+curated,unlatched,T,xtail,xtail/unlatch/burgeon,1.79,3,440 13324 2147,3,723 8938 3059,▁un|lat|ched,True,3,0,0,0
+curated,upgraded,T,head,head/upgrade/complain,3.93,1,29101,1,40269,▁upgraded,True,1,1,1,1
+curated,uttered,T,tail,tail/utter/creep,3.18,1,41856,1,110018,▁uttered,True,1,1,1,1
+curated,vacillated,I,xtail,xtail/immolate/vacillate,1.9,3,5809 408 456,3,5828 644 774,▁vac|ill|ated,True,3,0,0,0
+curated,vanished,I,head,head/insure/vanish,3.72,1,30117,1,87326,▁vanished,True,1,1,1,1
+curated,vegetated,I,xtail,xtail/extirpate/vegetate,2.19,2,8466 456,2,8125 774,▁veget|ated,True,2,0,0,0
+curated,vied,I,tail,tail/fleece/vie,2.45,2,362 728,2,566 1178,▁v|ied,True,2,0,0,0
+curated,wadded,T,xtail,xtail/wad/shimmer,1.85,2,259 22566,2,515 21934,▁w|added,True,2,0,0,0
+curated,wagged,T,xtail,xtail/wag/bask,2.09,2,259 37522,2,50403 3701,▁wag|ged,True,2,0,0,0
+curated,walloped,T,xtail,xtail/wallop/gloat,1.86,2,3402 11802,2,3549 21382,▁wall|oped,True,2,0,0,0
+curated,wallowed,I,xtail,xtail/ogle/wallow,1.84,2,3402 12997,2,3549 21093,▁wall|owed,True,2,0,0,0
+curated,waned,I,tail,tail/whitewash/wane,2.87,2,259 20625,2,34713 524,▁wan|ed,True,2,0,0,0
+curated,whitewashed,T,tail,tail/whitewash/wane,2.81,2,3168 47690,2,171605 16539,▁whitew|ashed,True,2,0,0,0
+curated,whizzed,I,xtail,xtail/reproach/whiz,2.15,3,364 478 4337,3,615 8285 524,▁wh|izz|ed,True,3,0,0,0
+curated,writhed,I,xtail,xtail/regale/writhe,2.09,2,2416 742,2,3528 1371,▁writ|hed,True,2,0,0,0

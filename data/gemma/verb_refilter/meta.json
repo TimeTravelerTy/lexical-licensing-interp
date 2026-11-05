@@ -1,0 +1,31 @@
+{
+ "gemma_tokenizer": "google/gemma-3-1b-pt",
+ "pythia_tokenizer": "EleutherAI/pythia-1.4b",
+ "versions": {
+  "transformers": "4.57.3",
+  "tokenizers": "0.22.1"
+ },
+ "inputs": {
+  "../data/round6/frame_d11/verbs.csv": "ed5b04cdfad28caba5d80e98761829d68e6860d70015a952ec80d55c1173efed",
+  "../data/round5/frame/verbs.csv": "cd6d3dca4ca42ff3581d4a052983eed2048688a8c441459394a18a633eacf658",
+  "../data/round6/frame_d11/prefixes.csv": "220049609373f9ed8958e0fd0f976c2323c0bec681deac2b7edd44d9e20dfe40"
+ },
+ "joined_prefixes_checked": 48,
+ "n_join_failures_among_gemma_1tok": 0,
+ "min_cell": 15,
+ "flag_I_xtail_below_min": [
+  {
+   "inventory": "d11",
+   "intersection": 0
+  },
+  {
+   "inventory": "curated",
+   "intersection": 0
+  }
+ ],
+ "outputs": {
+  "verbs.csv": "b1427b770e158315bb81456067f51d848eccfc996de286a84c23214f1b17411a",
+  "counts.csv": "a71fa7edf7ee72d9eb89f529fb7963370c8e19337f32f3fb243a1c184594b7d8",
+  "pair_counts.csv": "75e40ef1dbfe4552a418fe16decd3655a624ff25e169bdb9e96f4c711dc7914c"
+ }
+}
