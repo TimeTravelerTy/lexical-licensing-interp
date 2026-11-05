@@ -104,7 +104,7 @@ BOS-conditioned first-token log-prob cancels in the margin.
 ## Runs
 
 TSUBAME `gpu_h`, branch `gemma-replication`, commit f046899. Check job 9269789; full job 9269848 (the fp32
-batched-vs-single gate passed before the full runs). The logs are in `results/gemma/`. Gemma-3-1B-pt resolved
+batched-vs-single gate passed before the full runs). The logs are in `results/gemma/logs/`. Gemma-3-1B-pt resolved
 commit fcf18a2a879aab110ca39f8bffbccd5d49d8eb29; transformers 4.57.6. Output sha256 (first 16 hex digits):
 - Gemma frame `a1bf8c5e5fa06e1d`
 - Pythia frame `6d849bc7952fb33d`

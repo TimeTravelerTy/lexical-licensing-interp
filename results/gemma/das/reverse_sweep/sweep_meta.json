@@ -1,0 +1,33 @@
+{
+  "args": {
+    "mode": "sweep",
+    "folds": "../results/das_round2/final_strict/pairs_folds.csv",
+    "passives": "../data/passive_das/passives.jsonl",
+    "out_dir": "../results/gemma/das/reverse_sweep",
+    "sites": "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26",
+    "site": 8,
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01,
+    "min_wins": 8,
+    "seed": 17,
+    "bos": null,
+    "fp32_unembed": null
+  },
+  "kept_pairs": 24,
+  "dropped": [
+    "include/happen",
+    "infer/err",
+    "repeal/defect",
+    "send/die",
+    "transplant/ensue"
+  ]
+}

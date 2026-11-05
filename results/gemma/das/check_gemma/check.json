@@ -1,0 +1,63 @@
+{
+ "model": "google/gemma-3-1b-pt",
+ "dtype": "bfloat16",
+ "bos": true,
+ "fp32_unembed": true,
+ "n_sites": 27,
+ "n_items": 406,
+ "dropped_pairs": [
+  "transplant/ensue"
+ ],
+ "verbs_below_4_of_7": {
+  "ensue": 2
+ },
+ "item_accuracy_by_class": {
+  "0": 0.966,
+  "1": 1.0
+ },
+ "M_nat_mean_by_class": {
+  "0": -2.7980000972747803,
+  "1": 2.069000005722046
+ },
+ "model_token_pattern_counts": {
+  "T1-I1": 16,
+  "T1-I2": 9,
+  "T1-I3": 2,
+  "T2-I2": 1,
+  "T2-I1": 1
+ },
+ "self_patch_max_abs_dM_by_site": {
+  "0": 0.0,
+  "1": 0.0,
+  "2": 0.0,
+  "3": 0.0,
+  "4": 0.0,
+  "5": 0.0,
+  "6": 0.0,
+  "7": 0.0,
+  "8": 0.0,
+  "9": 0.0,
+  "10": 0.0,
+  "11": 0.0,
+  "12": 0.0,
+  "13": 0.0,
+  "14": 0.0,
+  "15": 0.0,
+  "16": 0.0,
+  "17": 0.0,
+  "18": 0.0,
+  "19": 0.0,
+  "20": 0.0,
+  "21": 0.0,
+  "22": 0.0,
+  "23": 0.0,
+  "24": 0.0,
+  "25": 0.0,
+  "26": 0.9622764587402344
+ },
+ "natural_batched_vs_single_max_abs": 0.03815460205078125,
+ "patched_batched_vs_single_max_abs": {
+  "site": 9,
+  "max_abs": 0.05269622802734375
+ }
+}
