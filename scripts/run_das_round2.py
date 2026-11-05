@@ -97,7 +97,7 @@ class Runner:
             self.ids[name] = torch.tensor(ids, device=self.device)
         self.n_sites = self.model.config.num_hidden_layers + 1
         assert self.n_sites == len(self.layers) + 1
-        enc = self.encode(["She has arrived", "They have seen the man"])
+        enc, _ = self.encode(["She has arrived", "They have seen the man"])
         inner, last = ma.check_sites(self.model, enc.input_ids, enc.attention_mask)
         assert inner == 0.0, f"hooked site outputs differ from output_hidden_states (max {inner})"
         self.settings.update({"site_check_max_abs_sites_0_to_L-1": inner, "site_check_last_site": last})

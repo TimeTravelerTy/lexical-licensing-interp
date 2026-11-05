@@ -260,5 +260,8 @@ if __name__ == "__main__":
     ap.add_argument("--lr", type=float, default=1e-2)
     ap.add_argument("--min-wins", type=int, default=8)
     ap.add_argument("--seed", type=int, default=17)
+    ap.add_argument("--bos", action=argparse.BooleanOptionalAction, default=None, help="default: model_arch.ARCH")
+    ap.add_argument("--fp32-unembed", action=argparse.BooleanOptionalAction, default=None,
+                    help="default: model_arch.ARCH")
     args = ap.parse_args()
     run_sweep(args) if args.mode == "sweep" else run_final(args)

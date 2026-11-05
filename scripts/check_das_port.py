@@ -104,8 +104,13 @@ def main(args):
         j = new.merge(sd[["base", "src", "M_patched"]], on=["base", "src"])
         assert len(j) == len(new) == len(sd), (len(j), len(new), len(sd))
         res["reproduce_patched_site8_s0f0"] = {"n_swaps": len(j), "max_abs": float((j.M_new - j.M_patched).abs().max())}
+        bad = not (res["reproduce_M_nat_max_abs"] <= args.tol and res["reproduce_patched_site8_s0f0"]["max_abs"] <= args.tol)
+    inner = max(v for s, v in self_patch.items() if s < runner.n_sites - 1)
+    res["self_patch_ok_sites_0_to_L-1"] = inner == 0.0
     (out / "check.json").write_text(json.dumps(res, indent=1))
     print(json.dumps(res, indent=1))
+    if inner != 0.0 or (args.reproduce and bad):
+        raise SystemExit("PORT CHECK FAIL")
 
 
 if __name__ == "__main__":
@@ -120,5 +125,6 @@ if __name__ == "__main__":
     ap.add_argument("--stored", default="results/das_round2/final_strict_site8")
     ap.add_argument("--n-check", type=int, default=20)
     ap.add_argument("--check-site", type=int, default=8)
+    ap.add_argument("--tol", type=float, default=1e-3, help="reproduction tolerance (--reproduce)")
     ap.add_argument("--out-dir", required=True)
     main(ap.parse_args())
