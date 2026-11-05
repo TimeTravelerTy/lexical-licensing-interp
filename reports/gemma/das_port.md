@@ -1,7 +1,7 @@
 # Gemma replication: DAS runner port and Gemma-3-1B layer sweeps
 
 Per-site tables: `das_sweeps.md` (script `scripts/analyze_gemma_das_sweeps.py`; CSV
-`../../results/gemma/das/sweep_by_site.csv`). Runs on TSUBAME `gpu_h`, branch `gemma-replication`:
+`../../results/gemma/das/sweep_summary_by_site.csv`). Runs on TSUBAME `gpu_h`, branch `gemma-replication`:
 - job 9270204: port checks (pre-map version) and the Gemma active sweep;
 - job 9270266: port checks with the map, Pythia regressions, Gemma passive sweep;
 - job 9270291: the pre-port code (commit 79ab4bf) on the same regressions.

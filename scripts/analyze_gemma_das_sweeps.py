@@ -10,7 +10,7 @@ task, held-out-context IIA. Site picks:
 - best site: the highest best-epoch IIA (excluding the last site, whose source states are post-final-norm).
 Pythia's stored sweeps are listed beside Gemma's by relative depth (site / number of layers).
 
-Writes reports/gemma/das_sweeps.md and results/gemma/das/sweep_by_site.csv.
+Writes reports/gemma/das_sweeps.md and results/gemma/das/sweep_summary_by_site.csv.
 """
 
 from __future__ import annotations
@@ -79,6 +79,6 @@ def main(args):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--csv", default="results/gemma/das/sweep_by_site.csv")
+    ap.add_argument("--csv", default="results/gemma/das/sweep_summary_by_site.csv")
     ap.add_argument("--report", default="reports/gemma/das_sweeps.md")
     main(ap.parse_args())
