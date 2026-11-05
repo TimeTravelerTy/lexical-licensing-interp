@@ -17,6 +17,16 @@ def final_norm(model):
     return model.model.norm
 
 
+def embed_module(model):
+    """Site 0 of the DAS runners: the token-embedding module (Gemma's output includes its sqrt(d) scaling)."""
+    return model.gpt_neox.embed_in if hasattr(model, "gpt_neox") else model.model.embed_tokens
+
+
+def layer_modules(model):
+    """Decoder layers; site s >= 1 = output of layer s - 1."""
+    return model.gpt_neox.layers if hasattr(model, "gpt_neox") else model.model.layers
+
+
 def check_no_softcap(model):
     cap = getattr(model.config, "final_logit_softcapping", None)
     assert cap is None, f"final logit softcapping {cap}: logits are not h W^T"

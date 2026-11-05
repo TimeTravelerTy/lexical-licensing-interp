@@ -20,6 +20,11 @@ Modes
 - final: frozen site and epochs (from `--config`), ranks 1/2/4 on 3 split
   seeds x 5 folds, rank chosen by the prespecified rule, then random-subspace
   and shuffled-label controls for the chosen rank. Saves bases.
+
+Gemma replication (opt-in; defaults reproduce the Pythia runs): --bos prepends the BOS id (right padding kept, so
+the last-token anchor is still attention_mask.sum - 1); --fp32-unembed computes logits in fp32 from the final-norm
+output; hook points come from gemma_utils (GPT-NeoX embed_in / layers, Gemma model.embed_tokens / model.layers).
+Runners that build their own args without these attributes get the Pythia defaults.
 """
 
 from __future__ import annotations
@@ -70,6 +75,12 @@ class Runner:
         self.tok.padding_side = "right"
         self.model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=getattr(torch, args.dtype),
                                                           local_files_only=True).to(self.device).eval()
+        from gemma_utils import embed_module, fp32_unembed, layer_modules
+
+        if getattr(args, "fp32_unembed", False):
+            fp32_unembed(self.model)
+        self.bos = [self.tok.bos_token_id] if getattr(args, "bos", False) else []
+        self.embed, self.layers = embed_module(self.model), layer_modules(self.model)
         for p in self.model.parameters():
             p.requires_grad_(False)
         self.ids = {}
@@ -84,7 +95,13 @@ class Runner:
         self.n_sites = self.model.config.num_hidden_layers + 1
 
     def encode(self, prompts):
-        enc = self.tok(prompts, return_tensors="pt", padding=True, add_special_tokens=False).to(self.device)
+        enc = self.tok(prompts, return_tensors="pt", padding=True, add_special_tokens=False)
+        if self.bos:
+            n = enc.input_ids.shape[0]
+            enc["input_ids"] = self.torch.cat([self.torch.full((n, 1), self.bos[0]), enc.input_ids], 1)
+            enc["attention_mask"] = self.torch.cat([self.torch.ones((n, 1), dtype=enc.attention_mask.dtype),
+                                                    enc.attention_mask], 1)
+        enc = enc.to(self.device)
         anchors = enc.attention_mask.sum(1) - 1
         return enc, anchors
 
@@ -137,9 +154,9 @@ class Runner:
             return h.to(hidden.dtype)
 
         if site == 0:
-            handle = self.model.gpt_neox.embed_in.register_forward_hook(lambda m, i, o: patch(o))
+            handle = self.embed.register_forward_hook(lambda m, i, o: patch(o))
         else:
-            handle = self.model.gpt_neox.layers[site - 1].register_forward_hook(
+            handle = self.layers[site - 1].register_forward_hook(
                 lambda m, i, o: replace_output(o, patch(normalize_output(o))))
         try:
             out = self.model(**enc, use_cache=False)
@@ -408,5 +425,7 @@ if __name__ == "__main__":
     ap.add_argument("--n-same", type=int, default=2)
     ap.add_argument("--batch-size", type=int, default=64)
     ap.add_argument("--lr", type=float, default=1e-2)
+    ap.add_argument("--bos", action="store_true", help="Gemma replication: prepend BOS")
+    ap.add_argument("--fp32-unembed", action="store_true", help="Gemma replication: fp32 logits from the final norm")
     args = ap.parse_args()
     run_sweep(args) if args.mode == "sweep" else run_final(args)
