@@ -1,0 +1,38 @@
+{
+ "task": "passive",
+ "model": "EleutherAI/pythia-1.4b",
+ "settings": {
+  "model_type": "gpt_neox",
+  "bos": false,
+  "fp32_unembed": false,
+  "site_check_max_abs_sites_0_to_L-1": 0.0,
+  "site_check_last_site": 77.1875
+ },
+ "sites": [
+  4,
+  6,
+  8,
+  10,
+  12,
+  14,
+  16,
+  17
+ ],
+ "best_epochs": {
+  "4": 1,
+  "6": 2,
+  "8": 5,
+  "10": 7,
+  "12": 5,
+  "14": 8,
+  "16": 5,
+  "17": 7
+ },
+ "max_abs_diff_vs_sweep": 0.009333333333333305,
+ "n_items": 870,
+ "item_token_counts": {
+  "1": 420,
+  "2": 375,
+  "3": 75
+ }
+}

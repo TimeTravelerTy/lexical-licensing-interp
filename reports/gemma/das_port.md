@@ -74,8 +74,9 @@ Logs are in `../../results/gemma/logs/`. Selection only: no final runs, no passi
     Pythia keeps 26).
 - **Tokenization covariance (Gemma only).** 11 of the 29 training pairs have a one-token transitive and a
   multi-token intransitive participle (T1-I2 9, T1-I3 2; Pythia: none). So at the last-subtoken position,
-  class partly co-varies with "whole word vs word-final piece". Whether this affects DAS is untested: the sweep
-  tables are not split by token pattern (`sweep.csv` keeps fold summaries only).
+  class partly co-varies with "whole word vs word-final piece" (Gemma: 26 of 28 T participles are one token, 16
+  of 28 I; Pythia: 14 of 29 T, 14 of 29 I, so no covariance). Tested in the token-pattern split below: Gemma's
+  advantage survives on swaps with no length difference, so the covariance is not its sole explanation.
 
 ## Gemma-3-1B layer sweeps (rank 1, every site, split 0, 5 folds, round-2 settings)
 
@@ -106,6 +107,41 @@ Descriptively:
 - Same-class IIA on the passive task is about 0.75 in both models.
 - Gemma's passive positive-control fractions are 1.1–2.7 from site 1 (last site excluded). The stored Pythia
   passive fractions use the pre-96bf2b4 definition, so the two are not compared.
+
+### Token-pattern split (does a length cue drive Gemma's early-site IIA?)
+
+`scripts/run_das_token_split.py` retrains every sweep site at its best epoch with the sweep's seeds and
+evaluates each held-out swap. `scripts/analyze_das_token_split.py` splits cross-class IIA by the participles'
+token counts. Full tables: `reports/gemma/das_token_split.md`; data: `results/gemma/das/token_split/`.
+- **Reproduction:** Gemma's retrained fold IIA equals the sweep (max |Δ| 1.1e-16, both tasks). Pythia's is
+  within 0.0099 per fold of the stored October sweeps, the same environment drift as the regression above.
+- **Within Gemma, no length-cue signature.** T1-I1 swaps (both participles one token, so no length cue) are not
+  significantly below T1-I2+ swaps at any site. T1-I1 − T1-I2+ has a CI including 0 everywhere (point estimates
+  down to −0.06, active site 7) except active site 3 (+0.18 [0.00, 0.37], T1-I1 higher). The CIs are too wide to
+  establish equivalence. At site 4, T1-I1 IIA is 0.842 (active) and 0.888 (passive), vs 0.436 / 0.616 for
+  Pythia's T1-I1 swaps.
+- **Same verb pairs in both models.** On common single-token pairs held out in both runs (active: 38 pairs,
+  13 T × 13 I verbs; passive: 48 pairs, 10 × 10), Gemma − Pythia at nearest depth:
+  - active: +0.22 to +0.46 at sites 0–5 (CI excludes 0 except site 2); +0.18 to +0.19 at Pythia sites 6–7
+    (CI lower bound ≤ 0.00). From depth ≈ 0.33 it is ≤ 0.10 with CIs including 0. From depth ≈ 0.75 it is
+    0.01–0.04 with lower bound 0.00, Gemma at ceiling, and −0.004 [−0.02, 0.00] at the last matched site
+    (Pythia 23 / Gemma 25).
+  - passive: +0.28 [0.10, 0.42] at site 4 and +0.25 [0.13, 0.35] at site 6. From site 8 / 9 it is ≤ 0.13, with
+    a CI including 0 except at Pythia 14 / Gemma 15 (+0.06 [0.01, 0.11]; lower bound 0.00 at 17 / 18).
+- **Pythia's own early sites go the other way.** On the active task at sites 0–2, Pythia's T1-I1 swaps beat
+  T1-I2+ (+0.15 to +0.18, CIs exclude 0), the opposite of a length cue helping. Untested explanations: (a) the
+  last subtoken carries less verb identity before mixing; (b) earlier verb pieces stay unpatched and keep the
+  base verb's influence; (c) a cohort confound, since Pythia's multi-token I participles are rarer (mean
+  participle Zipf 2.75 vs 3.87 for single-token ones).
+- **Reading.** Gemma's higher early-site IIA holds on single-token verbs and on the same verb pairs as
+  Pythia. So the length difference in the evaluated swaps is not its sole explanation. Training still uses
+  every token pattern, so a contribution from the training-set covariance is not excluded. Nor does the result
+  say what the early direction encodes. At site 0 the patched state is the contextless token embedding (√d-
+  scaled for Gemma). But IIA is measured through the whole downstream model, so higher IIA can also mean
+  Gemma's later layers respond more to lexical steering (possibly via frequency or morphological correlates),
+  not only that the class is more separable in the patched representation.
+- **Caveats:** small matched sets, wide CIs; one split (split 0); IIA at each site's best epoch, which
+  selects on held-out IIA, the same as the sweep tables.
 
 ## OLMo-2-1B (no runs yet)
 

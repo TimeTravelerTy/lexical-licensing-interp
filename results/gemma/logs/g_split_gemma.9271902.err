@@ -1,0 +1,14 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/run_das_token_split.py:105: Pandas4Warning: Starting with pandas version 4.0 all arguments of mean will be keyword-only.
+  P = P.merge(g.mean(1).rename("iia_fold_mean").reset_index(), on=["site", "pattern"])
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/run_das_token_split.py:106: Pandas4Warning: Starting with pandas version 4.0 all arguments of min will be keyword-only.
+  P = P.merge(g.min(1).rename("iia_fold_min").reset_index(), on=["site", "pattern"])
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/run_das_token_split.py:107: Pandas4Warning: Starting with pandas version 4.0 all arguments of max will be keyword-only.
+  P = P.merge(g.max(1).rename("iia_fold_max").reset_index(), on=["site", "pattern"])
+`torch_dtype` is deprecated! Use `dtype` instead!
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/run_das_token_split.py:105: Pandas4Warning: Starting with pandas version 4.0 all arguments of mean will be keyword-only.
+  P = P.merge(g.mean(1).rename("iia_fold_mean").reset_index(), on=["site", "pattern"])
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/run_das_token_split.py:106: Pandas4Warning: Starting with pandas version 4.0 all arguments of min will be keyword-only.
+  P = P.merge(g.min(1).rename("iia_fold_min").reset_index(), on=["site", "pattern"])
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/run_das_token_split.py:107: Pandas4Warning: Starting with pandas version 4.0 all arguments of max will be keyword-only.
+  P = P.merge(g.max(1).rename("iia_fold_max").reset_index(), on=["site", "pattern"])
