@@ -1,0 +1,29 @@
+{
+ "model": "google/gemma-3-1b-pt",
+ "revision": "main",
+ "resolved_commit": "fcf18a2a879aab110ca39f8bffbccd5d49d8eb29",
+ "dtype": "bfloat16",
+ "tf32": false,
+ "n_rows": 29184,
+ "bos": true,
+ "fp32_unembed": true,
+ "next_token": " by",
+ "cur_all": false,
+ "inputs": {
+  "prefixes.csv": "9452a8a210de0df701864e7322be12842d7f9ce7dfb5f6b8f64dd0544bbd784a",
+  "verbs.csv": "023a9775d59bf88869d664a7a95670d777954b93816c4e98d37f9d17aa9dcfb1",
+  "pairs.csv": "5d720c58e62f1cad839ea3c6b4d5d7fc2e1fcecbe9e543d68051756fff0f3201"
+ },
+ "checks": {
+  "max_h_deviation": 0.0,
+  "h_tol": 0.05,
+  "max_first_subtoken_error": 2.7418136596679688e-05,
+  "max_identity_error": 2.9153656214475632e-05,
+  "max_abs_logit": 27.944169998168945,
+  "tol": 0.001
+ },
+ "outputs": {
+  "frame_scores.parquet": "a1bf8c5e5fa06e1d12eb50aa01f11857539fe784d90765a8199aebebba9894d9",
+  "frame_h.npz": "6f8bd0de2b6f6be2f9c6d3d8c81767452fb82c533f7654f019619b615d74b8a1"
+ }
+}

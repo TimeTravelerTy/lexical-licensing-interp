@@ -1,0 +1,22 @@
+{
+ "inputs": {
+  "../results/round6/frame_d11/pythia-1.4b/frame_scores.parquet": "d034fc3b2ac8997f11866c13b304477d0b19c3d7da82df281fdc2058d58148d0",
+  "../results/round5/frame/frame_scores.parquet": "a7d32baece0640e881fb11a367fde8f61aa978d9f86901076346b0900723c5bf",
+  "../results/passive_das_prep/pythia14b_readout.csv": "3158ed4b04b54a2726c96549328d27f35bd7832827f93ce6e1de1626ae45e142",
+  "../results/gemma/by_readout/gemma-3-1b-pt_readout.csv": "a241a85b7beb9448ef347ceac5722c1bae64efa413d727df23dca4a750a6bb50",
+  "../results/gemma/frame/pythia-1.4b/frame_scores.parquet": "6d849bc7952fb33d092a4526ac17ac6fd24b84043ee0ee85532d24e95ae4eb7e",
+  "../results/gemma/frame/gemma-3-1b-pt/frame_scores.parquet": "a1bf8c5e5fa06e1d12eb50aa01f11857539fe784d90765a8199aebebba9894d9"
+ },
+ "pythia_frame_reproduction": {
+  "n_rows_common": 29184,
+  "n_rows_new": 29184,
+  "max_abs_diff_lp": 0.0
+ },
+ "task1_by_gap_point_estimates": {
+  "head": 0.9395689692307694,
+  "tail": 0.9630344719999999,
+  "xtail": 0.48973789600000006
+ },
+ "n_boot": 2000,
+ "seed": 17
+}

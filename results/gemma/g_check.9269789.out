@@ -1,0 +1,475 @@
+commit f04689978f259f8147050bc22c2299d94da258fb
+name, memory.total [MiB]
+NVIDIA H100, 95830 MiB
+/gs/bs/tga-sip_arase/tyrone/hf_cache/hub/models--google--gemma-3-1b-pt/snapshots/fcf18a2a879aab110ca39f8bffbccd5d49d8eb29
+== A. Pythia reproduction
+forward passes done in 1s; max h deviation 0.00e+00; max first-subtoken reconstruction error 1.05e-05; max |logit| at the slot 15.0
+max A2 identity error 9.13e-06
+{
+ "model": "EleutherAI/pythia-1.4b",
+ "revision": "main",
+ "resolved_commit": "fedc38a16eea3bd36a96b906d78d11d2ce18ed79",
+ "dtype": "float32",
+ "tf32": false,
+ "n_rows": 104,
+ "cur_all": false,
+ "inputs": {
+  "prefixes.csv": "04faf36987f84db172da0443b667df08332b98c415c10a2c8175b7c8a5cf3a72",
+  "verbs.csv": "9c7012728c9faf55e4adb3d6f2425934e1d2d90d37a1f808c1cf0e02bce5e717",
+  "pairs.csv": "fcb5de738d3bc01f3b13fe1a21e3cb783215a98f5743e5ed72424c88c9fe6231"
+ },
+ "checks": {
+  "max_h_deviation": 0.0,
+  "h_tol": 0.0001,
+  "max_first_subtoken_error": 1.049041748046875e-05,
+  "max_identity_error": 9.130682292912695e-06,
+  "max_abs_logit": 15.043294906616211,
+  "tol": 0.001
+ },
+ "outputs": {
+  "frame_scores.parquet": "3e6f68c590aa234e8d8906bbfc7ce38bb3aa1a8de0e295bd5a91034953ef6b67",
+  "frame_h.npz": "fea7e9072a14362100d0fe02e26d14c0450b556014ff05822352d63eeb92f5dc"
+ }
+}
+forward passes done in 1s; max h deviation 0.00e+00; max first-subtoken reconstruction error 1.05e-05; max |logit| at the slot 15.0
+max A2 identity error 9.13e-06
+{
+ "model": "EleutherAI/pythia-1.4b",
+ "revision": "main",
+ "resolved_commit": "fedc38a16eea3bd36a96b906d78d11d2ce18ed79",
+ "dtype": "float32",
+ "tf32": false,
+ "n_rows": 104,
+ "bos": false,
+ "fp32_unembed": false,
+ "next_token": "",
+ "cur_all": false,
+ "inputs": {
+  "prefixes.csv": "04faf36987f84db172da0443b667df08332b98c415c10a2c8175b7c8a5cf3a72",
+  "verbs.csv": "9c7012728c9faf55e4adb3d6f2425934e1d2d90d37a1f808c1cf0e02bce5e717",
+  "pairs.csv": "fcb5de738d3bc01f3b13fe1a21e3cb783215a98f5743e5ed72424c88c9fe6231"
+ },
+ "checks": {
+  "max_h_deviation": 0.0,
+  "h_tol": 0.0001,
+  "max_first_subtoken_error": 1.049041748046875e-05,
+  "max_identity_error": 9.130682292912695e-06,
+  "max_abs_logit": 15.043294906616211,
+  "tol": 0.001
+ },
+ "outputs": {
+  "frame_scores.parquet": "3e6f68c590aa234e8d8906bbfc7ce38bb3aa1a8de0e295bd5a91034953ef6b67",
+  "frame_h.npz": "fea7e9072a14362100d0fe02e26d14c0450b556014ff05822352d63eeb92f5dc"
+ }
+}
+forward passes done in 0s; max h deviation 0.00e+00; max first-subtoken reconstruction error 1.05e-05; max |logit| at the slot 15.0
+max A2 identity error 9.13e-06
+{
+ "model": "EleutherAI/pythia-1.4b",
+ "revision": "main",
+ "resolved_commit": "fedc38a16eea3bd36a96b906d78d11d2ce18ed79",
+ "dtype": "float32",
+ "tf32": false,
+ "n_rows": 104,
+ "bos": false,
+ "fp32_unembed": false,
+ "next_token": " by",
+ "cur_all": false,
+ "inputs": {
+  "prefixes.csv": "04faf36987f84db172da0443b667df08332b98c415c10a2c8175b7c8a5cf3a72",
+  "verbs.csv": "9c7012728c9faf55e4adb3d6f2425934e1d2d90d37a1f808c1cf0e02bce5e717",
+  "pairs.csv": "fcb5de738d3bc01f3b13fe1a21e3cb783215a98f5743e5ed72424c88c9fe6231"
+ },
+ "checks": {
+  "max_h_deviation": 0.0,
+  "h_tol": 0.0001,
+  "max_first_subtoken_error": 1.049041748046875e-05,
+  "max_identity_error": 9.130682292912695e-06,
+  "max_abs_logit": 15.043294906616211,
+  "tol": 0.001
+ },
+ "outputs": {
+  "frame_scores.parquet": "9c12c6db4f415d59d18204f3dfdc5041d9df7fb6a46f65f7164b062d544d85b7",
+  "frame_h.npz": "fea7e9072a14362100d0fe02e26d14c0450b556014ff05822352d63eeb92f5dc"
+ }
+}
+{
+ "mode": "frame",
+ "a": "tmp_gemma_checks/out/p_frame_orig/frame_scores.parquet",
+ "b": "tmp_gemma_checks/out/p_frame_mod/frame_scores.parquet",
+ "n_a": 104,
+ "n_b": 104,
+ "n_common": 104,
+ "max_abs_diff": {
+  "lp": 0.0,
+  "lp1": 0.0
+ },
+ "worst": 0.0
+}
+{
+ "mode": "frame",
+ "a": "tmp_gemma_checks/out/p_frame_mod/frame_scores.parquet",
+ "b": "tmp_gemma_checks/out/p_frame_mod_by/frame_scores.parquet",
+ "n_a": 104,
+ "n_b": 104,
+ "n_common": 104,
+ "max_abs_diff": {
+  "lp": 0.0,
+  "lp1": 0.0
+ },
+ "worst": 0.0
+}
+{
+ "mode": "frame",
+ "a": "tmp_gemma_checks/out/p_frame_mod/frame_scores.parquet",
+ "b": "results/round6/frame_d11/pythia-1.4b/frame_scores.parquet",
+ "n_a": 104,
+ "n_b": 196700,
+ "n_common": 104,
+ "max_abs_diff": {
+  "lp": 0.0,
+  "lp1": 0.0
+ },
+ "worst": 0.0
+}
+{
+ "mode": "frame",
+ "a": "tmp_gemma_checks/out/p_frame_mod/frame_scores.parquet",
+ "b": "results/round5/frame/frame_scores.parquet",
+ "n_a": 104,
+ "n_b": 157780,
+ "n_common": 88,
+ "max_abs_diff": {
+  "lp": 0.0,
+  "lp1": 0.0
+ },
+ "worst": 0.0
+}
+Read 50/50
+Wrote tmp_gemma_checks/out/p_ro_orig.csv
+Read 50/50
+Wrote tmp_gemma_checks/out/p_ro_mod.csv
+{
+ "mode": "readout",
+ "a": "tmp_gemma_checks/out/p_ro_orig.csv",
+ "b": "tmp_gemma_checks/out/p_ro_mod.csv",
+ "n_a": 50,
+ "n_b": 50,
+ "n_common": 50,
+ "max_abs_diff": {
+  "lp[ the]": 0.0,
+  "lp[ a]": 0.0,
+  "lp[ an]": 0.0,
+  "lp[ by]": 0.0,
+  "lp[.]": 0.0,
+  "lp[,]": 0.0,
+  "lp[ his]": 0.0,
+  "lp[ her]": 0.0,
+  "lp[ their]": 0.0,
+  "lp[ its]": 0.0,
+  "lp[ this]": 0.0,
+  "lp[ that]": 0.0,
+  "lp[ some]": 0.0,
+  "lp[ him]": 0.0,
+  "lp[ them]": 0.0,
+  "lp[ it]": 0.0,
+  "lp[ and]": 0.0,
+  "lp[ to]": 0.0,
+  "lp[ in]": 0.0,
+  "lp[ with]": 0.0,
+  "lp[ on]": 0.0,
+  "lp[ at]": 0.0,
+  "lp[ for]": 0.0,
+  "lp[ from]": 0.0,
+  "lp[ as]": 0.0,
+  "lp[ into]": 0.0,
+  "lp[ up]": 0.0,
+  "lp[ out]": 0.0,
+  "lp[ off]": 0.0,
+  "lp[ down]": 0.0,
+  "lp[ over]": 0.0,
+  "lp[\\n]": 0.0,
+  "lp[Yes]": 0.0,
+  "lp[ Yes]": 0.0,
+  "lp[No]": 0.0,
+  "lp[ No]": 0.0
+ },
+ "worst": 0.0
+}
+{
+ "mode": "readout",
+ "a": "tmp_gemma_checks/out/p_ro_mod.csv",
+ "b": "results/passive_das_prep/pythia14b_readout.csv",
+ "n_a": 50,
+ "n_b": 183456,
+ "n_common": 50,
+ "max_abs_diff": {
+  "lp[ the]": 0.31686000000000014,
+  "lp[ a]": 0.19186000000000014,
+  "lp[ an]": 0.21049000000000007,
+  "lp[ by]": 0.18604999999999983,
+  "lp[.]": 0.24712000000000067,
+  "lp[,]": 0.23128999999999955,
+  "lp[ his]": 0.2708200000000005,
+  "lp[ her]": 0.28776000000000046,
+  "lp[ their]": 0.18116999999999983,
+  "lp[ its]": 0.23278,
+  "lp[ this]": 0.23129000000000133,
+  "lp[ that]": 0.16879000000000133,
+  "lp[ some]": 0.25436000000000014,
+  "lp[ him]": 0.31686000000000014,
+  "lp[ them]": 0.26254000000000133,
+  "lp[ it]": 0.27299000000000007,
+  "lp[ and]": 0.16878999999999955,
+  "lp[ to]": 0.13132999999999972,
+  "lp[ in]": 0.18604999999999983,
+  "lp[ with]": 0.27692000000000005,
+  "lp[ on]": 0.16878999999999955,
+  "lp[ at]": 0.23128999999999955,
+  "lp[ for]": 0.14799000000000007,
+  "lp[ from]": 0.28950999999999993,
+  "lp[ as]": 0.16878999999999955,
+  "lp[ into]": 0.5355800000000004,
+  "lp[ up]": 0.3333200000000005,
+  "lp[ out]": 0.3793599999999997,
+  "lp[ off]": 0.23426999999999953,
+  "lp[ down]": 0.24366999999999983,
+  "lp[ over]": 0.25436000000000014,
+  "lp[\\n]": 0.29378999999999955,
+  "lp[Yes]": 0.21565000000000012,
+  "lp[ Yes]": 0.23489000000000004,
+  "lp[No]": 0.42924000000000007,
+  "lp[ No]": 0.30424000000000007
+ },
+ "worst": 0.5355800000000004
+}
+Scored 16/25
+Scored 25/25
+Wrote tmp_gemma_checks/out/p_fb_orig.csv
+Scored 16/25
+Scored 25/25
+Wrote tmp_gemma_checks/out/p_fb_mod.csv
+{
+ "mode": "fb",
+ "a": "tmp_gemma_checks/out/p_fb_orig.csv",
+ "b": "tmp_gemma_checks/out/p_fb_mod.csv",
+ "n_a": 25,
+ "n_b": 25,
+ "n_common": 25,
+ "max_abs_diff": {
+  "good_whole_lp": 0.0,
+  "good_verb_lp": 0.0,
+  "good_suffix_lp": 0.0,
+  "good_by_lp": 0.0,
+  "bad_whole_lp": 0.0,
+  "bad_verb_lp": 0.0,
+  "bad_suffix_lp": 0.0,
+  "bad_by_lp": 0.0
+ },
+ "worst": 0.0
+}
+{
+ "mode": "fb",
+ "a": "tmp_gemma_checks/out/p_fb_mod.csv",
+ "b": "results/freqblimp_original_passives/pythia14b_scores.csv",
+ "n_a": 25,
+ "n_b": 6000,
+ "n_common": 25,
+ "max_abs_diff": {
+  "good_whole_lp": 0.0,
+  "good_verb_lp": 0.0,
+  "good_suffix_lp": 0.0,
+  "good_by_lp": 0.0,
+  "bad_whole_lp": 0.0,
+  "bad_verb_lp": 0.0,
+  "bad_suffix_lp": 0.0,
+  "bad_by_lp": 0.0
+ },
+ "worst": 0.0
+}
+== B. Gemma batched vs one-at-a-time
+forward passes done in 0s; max h deviation 0.00e+00; max first-subtoken reconstruction error 8.11e-06; max |logit| at the slot 26.9
+max A2 identity error 1.11e-05
+{
+ "model": "google/gemma-3-1b-pt",
+ "revision": "main",
+ "resolved_commit": "fcf18a2a879aab110ca39f8bffbccd5d49d8eb29",
+ "dtype": "bfloat16",
+ "tf32": false,
+ "n_rows": 40,
+ "bos": true,
+ "fp32_unembed": true,
+ "next_token": " by",
+ "cur_all": false,
+ "inputs": {
+  "prefixes.csv": "04faf36987f84db172da0443b667df08332b98c415c10a2c8175b7c8a5cf3a72",
+  "verbs.csv": "429d135bec7eaad316d903f9b7744909641a273747944d93d02ad726b6dd8fba",
+  "pairs.csv": "474e5e289f38b443474cb4b6b9c271f6fcb06a02fbe24fd024421103b5d261ae"
+ },
+ "checks": {
+  "max_h_deviation": 0.0,
+  "h_tol": 0.05,
+  "max_first_subtoken_error": 8.106231689453125e-06,
+  "max_identity_error": 1.1148396879434586e-05,
+  "max_abs_logit": 26.85883331298828,
+  "tol": 0.001
+ },
+ "outputs": {
+  "frame_scores.parquet": "09b34e34165f72de1729720d8507bd52a063c50d6066b793849b707c996a6add",
+  "frame_h.npz": "dd2c3b367b3fb6531b85d977ad5aa2d8e11106134a1bae8601b9b0e431ac956d"
+ }
+}
+forward passes done in 1s; max h deviation 0.00e+00; max first-subtoken reconstruction error 7.15e-06; max |logit| at the slot 26.5
+max A2 identity error 5.89e-06
+{
+ "model": "google/gemma-3-1b-pt",
+ "revision": "main",
+ "resolved_commit": "fcf18a2a879aab110ca39f8bffbccd5d49d8eb29",
+ "dtype": "bfloat16",
+ "tf32": false,
+ "n_rows": 40,
+ "bos": true,
+ "fp32_unembed": true,
+ "next_token": " by",
+ "cur_all": false,
+ "inputs": {
+  "prefixes.csv": "04faf36987f84db172da0443b667df08332b98c415c10a2c8175b7c8a5cf3a72",
+  "verbs.csv": "429d135bec7eaad316d903f9b7744909641a273747944d93d02ad726b6dd8fba",
+  "pairs.csv": "474e5e289f38b443474cb4b6b9c271f6fcb06a02fbe24fd024421103b5d261ae"
+ },
+ "checks": {
+  "max_h_deviation": 0.0,
+  "h_tol": 0.0001,
+  "max_first_subtoken_error": 7.152557373046875e-06,
+  "max_identity_error": 5.893060006201267e-06,
+  "max_abs_logit": 26.537052154541016,
+  "tol": 0.001
+ },
+ "outputs": {
+  "frame_scores.parquet": "1d361479ac0e04492fc8e5bdc8f58e36038d0f4cb0f2484c00874234d797cfe6",
+  "frame_h.npz": "658921c73bbbe3bc07766bc275938a7b7a258a05cab40a60bbdc735bc3b05906"
+ }
+}
+{
+ "mode": "frame",
+ "a": "tmp_gemma_checks/out/g_frame_b64/frame_scores.parquet",
+ "b": "tmp_gemma_checks/out/g_frame_b1/frame_scores.parquet",
+ "n_a": 40,
+ "n_b": 40,
+ "n_common": 40,
+ "max_abs_diff": {
+  "lp": 0.11791908740997314,
+  "lp1": 0.1470947265625,
+  "lp_next_by": 0.05511760711669922
+ },
+ "worst": 0.1470947265625
+}
+Read 20/20
+Wrote tmp_gemma_checks/out/g_ro_b64.csv
+Read 1/20
+Wrote tmp_gemma_checks/out/g_ro_b1.csv
+{
+ "mode": "readout",
+ "a": "tmp_gemma_checks/out/g_ro_b64.csv",
+ "b": "tmp_gemma_checks/out/g_ro_b1.csv",
+ "n_a": 20,
+ "n_b": 20,
+ "n_common": 20,
+ "max_abs_diff": {
+  "lp[ the]": 0.0479699999999994,
+  "lp[ a]": 0.04516999999999971,
+  "lp[ an]": 0.03952999999999918,
+  "lp[ by]": 0.02332999999999985,
+  "lp[.]": 0.0439500000000006,
+  "lp[,]": 0.0383300000000002,
+  "lp[ his]": 0.05800999999999945,
+  "lp[ her]": 0.044419999999998794,
+  "lp[ their]": 0.05691000000000024,
+  "lp[ its]": 0.07530000000000037,
+  "lp[ this]": 0.03880999999999979,
+  "lp[ that]": 0.054700000000000415,
+  "lp[ some]": 0.05816000000000088,
+  "lp[ him]": 0.07248999999999839,
+  "lp[ them]": 0.08456999999999937,
+  "lp[ it]": 0.05754000000000126,
+  "lp[ and]": 0.05934999999999935,
+  "lp[ to]": 0.03100000000000014,
+  "lp[ in]": 0.026639999999999997,
+  "lp[ with]": 0.033929999999999794,
+  "lp[ on]": 0.03663000000000016,
+  "lp[ at]": 0.03232999999999997,
+  "lp[ for]": 0.05151000000000039,
+  "lp[ from]": 0.03478000000000003,
+  "lp[ as]": 0.037370000000000125,
+  "lp[ into]": 0.04748999999999981,
+  "lp[ up]": 0.03968000000000016,
+  "lp[ out]": 0.03781000000000034,
+  "lp[ off]": 0.03704000000000107,
+  "lp[ down]": 0.06997999999999927,
+  "lp[ over]": 0.04671999999999965,
+  "lp[\\n]": 0.07434999999999992,
+  "lp[Yes]": 0.20181000000000182,
+  "lp[ Yes]": 0.16071000000000168,
+  "lp[No]": 0.20374999999999943,
+  "lp[ No]": 0.15485999999999933
+ },
+ "worst": 0.20374999999999943
+}
+Scored 10/10
+Wrote tmp_gemma_checks/out/g_fb_b16.csv
+Scored 1/10
+Scored 2/10
+Scored 3/10
+Scored 4/10
+Scored 5/10
+Scored 6/10
+Scored 7/10
+Scored 8/10
+Scored 9/10
+Scored 10/10
+Wrote tmp_gemma_checks/out/g_fb_b1.csv
+{
+ "mode": "fb",
+ "a": "tmp_gemma_checks/out/g_fb_b16.csv",
+ "b": "tmp_gemma_checks/out/g_fb_b1.csv",
+ "n_a": 10,
+ "n_b": 10,
+ "n_common": 10,
+ "max_abs_diff": {
+  "good_whole_lp": 0.1070077412732644,
+  "good_verb_lp": 0.0920982360839826,
+  "good_suffix_lp": 0.09651388821658102,
+  "good_by_lp": 0.025908946990966797,
+  "bad_whole_lp": 0.1253694873303175,
+  "bad_verb_lp": 0.07779502868652699,
+  "bad_suffix_lp": 0.14260184764862416,
+  "bad_by_lp": 0.02906584739685103
+ },
+ "worst": 0.14260184764862416
+}
+    set context_id frame            verb         lp        lp1  n_tok                          lp_sub  lp_next_by
+0  freq   freq/man  pass            died -12.134829 -12.134829      1                      -12.134829   -3.172194
+1  freq   freq/man  pass          feuded -24.577963 -16.733709      2            -16.733709 -7.844254   -2.716002
+2  freq   freq/man  pass        flounced -22.000760 -12.556166      2            -12.556166 -9.444594   -2.475425
+3  freq   freq/man  pass  overemphasized -21.474922  -9.706043      3  -9.706043 -11.098438 -0.670440   -2.047491
+4  freq   freq/man  pass           pawed -19.954251 -18.001972      2            -18.001972 -1.952279   -1.549218
+5  freq   freq/man  pass       proceeded -14.482786 -14.482786      1                      -14.482786   -1.055717
+              prompt_id  n_tokens   last_token  lp[ by]    lp[.]
+0  passive:0abdbed170d4         5        hated -0.92517 -2.23559
+1  passive:2ecb2d77155e         5     deterred -1.02619 -3.65299
+2  passive:9da05d44184c         5     objected -2.82812 -5.42779
+3  passive:0fb76ab41d4b         5     chuckled -2.55836 -2.93062
+4  passive:35c12def7677         5   cooperated -0.59897 -6.67668
+5  passive:b1dcc93760da         5    proceeded -0.43147 -4.89047
+                                       sentence_good  good_verb_tokens  bad_verb_tokens  good_by_lp  bad_by_lp  whole_margin
+0    Every auxiliary wasn't embedded by all cousins.                 1                1   -4.691216  -2.722202      2.299501
+1          Filmmakers weren't barred by some hitter.                 1                1   -3.171053  -2.662132      0.623850
+2  Most cfos weren't wagged by some understatements.                 2                2   -1.743254  -2.355250     -0.462226
+3          Anchorites were hazarded by all exegetes.                 2                2   -2.194511  -3.988924      2.668572
+4                            A tenant wasn't parked.                 1                1    0.000000   0.000000      0.680411
+5                 This requiescat wasn't blasphemed.                 3                2    0.000000   0.000000      4.404464
+6     Some constables weren't lauded by all lackeys.                 1                1   -1.918209  -4.488161      7.152882
+7          That haulier is importuned by this anura.                 2                2   -1.002727  -3.936057      1.151094
+8          This mooch wasn't inundated by Kimberley.                 1                1   -2.030828  -2.424219      0.089889
+9       Archeologists weren't sullied by the quorum.                 2                1   -0.404460  -2.489972     10.352826
+== done Thu Nov  5 03:29:28 PM JST 2026

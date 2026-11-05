@@ -17,6 +17,7 @@ import argparse
 import json
 import sys
 
+import numpy as np
 import pandas as pd
 
 KEYS = {"frame": ["set", "context_id", "frame", "verb"], "readout": ["prompt_id"], "fb": ["pair_id"]}
@@ -35,13 +36,18 @@ def main(args):
         cols = [c for c in a.columns if c.startswith("lp[") and c in b]
     else:
         cols = [f"{s}_{p}_lp" for s in ("good", "bad") for p in ("whole", "verb", "suffix", "by")]
+    assert not a.duplicated(k).any() and not b.duplicated(k).any(), "duplicate keys"
     m = a[k + cols].merge(b[k + cols], on=k, suffixes=("_a", "_b"))
     assert len(m), "no common items"
+    vals = m[[c + s for c in cols for s in ("_a", "_b")]].to_numpy(float)
+    finite = bool(np.isfinite(vals).all())
     diff = {c: float((m[c + "_a"] - m[c + "_b"]).abs().max()) for c in cols}
     worst = max(diff.values())
     out = {"mode": args.mode, "a": args.a, "b": args.b, "n_a": len(a), "n_b": len(b), "n_common": len(m),
-           "max_abs_diff": diff, "worst": worst}
+           "finite": finite, "max_abs_diff": diff, "worst": worst}
     print(json.dumps(out, indent=1))
+    if (args.exact or args.tol is not None) and not (finite and len(m) == len(a) == len(b)):
+        sys.exit(f"FAIL: non-finite scores or incomplete overlap ({len(m)} of {len(a)} / {len(b)})")
     if args.exact and worst != 0.0:
         sys.exit(f"FAIL: not identical (worst {worst:.3g})")
     if args.tol is not None and worst > args.tol:

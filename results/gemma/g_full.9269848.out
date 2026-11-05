@@ -1,0 +1,162 @@
+commit f04689978f259f8147050bc22c2299d94da258fb
+name, memory.total [MiB]
+NVIDIA H100, 95830 MiB
+== gate: Gemma fp32 batched vs one-at-a-time
+{
+ "mode": "frame",
+ "a": "tmp_gemma_checks/out/g32_frame_b64/frame_scores.parquet",
+ "b": "tmp_gemma_checks/out/g32_frame_b1/frame_scores.parquet",
+ "n_a": 40,
+ "n_b": 40,
+ "n_common": 40,
+ "max_abs_diff": {
+  "lp": 1.9431114196777344e-05,
+  "lp1": 1.621246337890625e-05,
+  "lp_next_by": 4.673004150390625e-05
+ },
+ "worst": 4.673004150390625e-05
+}
+{
+ "mode": "readout",
+ "a": "tmp_gemma_checks/out/g32_ro_b64.csv",
+ "b": "tmp_gemma_checks/out/g32_ro_b1.csv",
+ "n_a": 20,
+ "n_b": 20,
+ "n_common": 20,
+ "max_abs_diff": {
+  "lp[ the]": 1.0000000000509601e-05,
+  "lp[ a]": 3.0000000000640625e-05,
+  "lp[ an]": 2.0000000001019203e-05,
+  "lp[ by]": 3.0000000000196536e-05,
+  "lp[.]": 2.0000000000131024e-05,
+  "lp[,]": 2.9999999999752447e-05,
+  "lp[ his]": 3.0000000000640625e-05,
+  "lp[ her]": 2.999999999886427e-05,
+  "lp[ their]": 1.9999999999242846e-05,
+  "lp[ its]": 2.0000000001019203e-05,
+  "lp[ this]": 3.0000000000640625e-05,
+  "lp[ that]": 1.9999999999242846e-05,
+  "lp[ some]": 2.0000000001019203e-05,
+  "lp[ him]": 3.0000000000640625e-05,
+  "lp[ them]": 1.9999999999242846e-05,
+  "lp[ it]": 1.9999999999242846e-05,
+  "lp[ and]": 2.9999999999752447e-05,
+  "lp[ to]": 2.0000000000131024e-05,
+  "lp[ in]": 3.0000000000196536e-05,
+  "lp[ with]": 2.0000000000131024e-05,
+  "lp[ on]": 2.0000000000131024e-05,
+  "lp[ at]": 2.9999999999752447e-05,
+  "lp[ for]": 2.0000000000131024e-05,
+  "lp[ from]": 4.000000000026205e-05,
+  "lp[ as]": 2.9999999999752447e-05,
+  "lp[ into]": 2.0000000000131024e-05,
+  "lp[ up]": 3.0000000000640625e-05,
+  "lp[ out]": 2.999999999886427e-05,
+  "lp[ off]": 2.9999999999752447e-05,
+  "lp[ down]": 2.0000000001019203e-05,
+  "lp[ over]": 2.0000000000131024e-05,
+  "lp[\\n]": 2.0000000001019203e-05,
+  "lp[Yes]": 3.0000000002416982e-05,
+  "lp[ Yes]": 1.9999999999242846e-05,
+  "lp[No]": 2.999999999886427e-05,
+  "lp[ No]": 2.0000000001019203e-05
+ },
+ "worst": 4.000000000026205e-05
+}
+{
+ "mode": "fb",
+ "a": "tmp_gemma_checks/out/g32_fb_b16.csv",
+ "b": "tmp_gemma_checks/out/g32_fb_b1.csv",
+ "n_a": 10,
+ "n_b": 10,
+ "n_common": 10,
+ "max_abs_diff": {
+  "good_whole_lp": 2.7623027563095093e-05,
+  "good_verb_lp": 1.2874603271484375e-05,
+  "good_suffix_lp": 1.9311904907226562e-05,
+  "good_by_lp": 1.5020370483398438e-05,
+  "bad_whole_lp": 3.504753112792969e-05,
+  "bad_verb_lp": 1.4305114742541036e-05,
+  "bad_suffix_lp": 1.9073486328125e-05,
+  "bad_by_lp": 1.0013580322265625e-05
+ },
+ "worst": 3.504753112792969e-05
+}
+== full runs Thu Nov  5 03:32:45 PM JST 2026
+forward passes done in 23s; max h deviation 0.00e+00; max first-subtoken reconstruction error 2.74e-05; max |logit| at the slot 27.9
+max A2 identity error 2.92e-05
+{
+ "model": "google/gemma-3-1b-pt",
+ "revision": "main",
+ "resolved_commit": "fcf18a2a879aab110ca39f8bffbccd5d49d8eb29",
+ "dtype": "bfloat16",
+ "tf32": false,
+ "n_rows": 29184,
+ "bos": true,
+ "fp32_unembed": true,
+ "next_token": " by",
+ "cur_all": false,
+ "inputs": {
+  "prefixes.csv": "9452a8a210de0df701864e7322be12842d7f9ce7dfb5f6b8f64dd0544bbd784a",
+  "verbs.csv": "023a9775d59bf88869d664a7a95670d777954b93816c4e98d37f9d17aa9dcfb1",
+  "pairs.csv": "5d720c58e62f1cad839ea3c6b4d5d7fc2e1fcecbe9e543d68051756fff0f3201"
+ },
+ "checks": {
+  "max_h_deviation": 0.0,
+  "h_tol": 0.05,
+  "max_first_subtoken_error": 2.7418136596679688e-05,
+  "max_identity_error": 2.9153656214475632e-05,
+  "max_abs_logit": 27.944169998168945,
+  "tol": 0.001
+ },
+ "outputs": {
+  "frame_scores.parquet": "a1bf8c5e5fa06e1d12eb50aa01f11857539fe784d90765a8199aebebba9894d9",
+  "frame_h.npz": "6f8bd0de2b6f6be2f9c6d3d8c81767452fb82c533f7654f019619b615d74b8a1"
+ }
+}
+forward passes done in 37s; max h deviation 0.00e+00; max first-subtoken reconstruction error 2.67e-05; max |logit| at the slot 16.1
+max A2 identity error 3.77e-05
+{
+ "model": "EleutherAI/pythia-1.4b",
+ "revision": "main",
+ "resolved_commit": "fedc38a16eea3bd36a96b906d78d11d2ce18ed79",
+ "dtype": "float32",
+ "tf32": false,
+ "n_rows": 29184,
+ "bos": false,
+ "fp32_unembed": false,
+ "next_token": " by",
+ "cur_all": false,
+ "inputs": {
+  "prefixes.csv": "9452a8a210de0df701864e7322be12842d7f9ce7dfb5f6b8f64dd0544bbd784a",
+  "verbs.csv": "c66fdb7cef0d08f468cb87131927f381104d047c6c32593853bfad6e98ba87d6",
+  "pairs.csv": "5d720c58e62f1cad839ea3c6b4d5d7fc2e1fcecbe9e543d68051756fff0f3201"
+ },
+ "checks": {
+  "max_h_deviation": 0.0,
+  "h_tol": 0.0001,
+  "max_first_subtoken_error": 2.6702880859375e-05,
+  "max_identity_error": 3.771181846090599e-05,
+  "max_abs_logit": 16.141653060913086,
+  "tol": 0.001
+ },
+ "outputs": {
+  "frame_scores.parquet": "6d849bc7952fb33d092a4526ac17ac6fd24b84043ee0ee85532d24e95ae4eb7e",
+  "frame_h.npz": "8d502c011ceb4356f3cc62a63b2fa81fff6fa11d383deb83aab16c1b1d92765f"
+ }
+}
+27468 passive prompts
+2b3f8e9f0fba387ac2a5ca301f918252acc16969062c4c680e3096f5401f16a6  data/passive_das_prep/prompts.jsonl
+cf0a99284d6411a954497e5960ebfb76796c991cef943f1f21ef58200e30fe88  data/gemma/by_readout/prompts_passive.jsonl
+Read 128/27468
+Read 6528/27468
+Read 12928/27468
+Read 19328/27468
+Read 25728/27468
+Wrote results/gemma/by_readout/gemma-3-1b-pt_readout.csv
+Wrote results/gemma/freqblimp_passives/gemma-3-1b-pt_scores.csv
+a1bf8c5e5fa06e1d12eb50aa01f11857539fe784d90765a8199aebebba9894d9  results/gemma/frame/gemma-3-1b-pt/frame_scores.parquet
+6d849bc7952fb33d092a4526ac17ac6fd24b84043ee0ee85532d24e95ae4eb7e  results/gemma/frame/pythia-1.4b/frame_scores.parquet
+a241a85b7beb9448ef347ceac5722c1bae64efa413d727df23dca4a750a6bb50  results/gemma/by_readout/gemma-3-1b-pt_readout.csv
+af1b6dbf606e7f6a45b66704293bc8425bdb23bc6acc5f6e92081a55079bafaa  results/gemma/freqblimp_passives/gemma-3-1b-pt_scores.csv
+== done Thu Nov  5 03:35:20 PM JST 2026
