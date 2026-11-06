@@ -159,7 +159,12 @@ def run(args):
             return f"{p[(p.condition == pre + 'single') & (p.site == s)].acc.iloc[0]:.3f}"
         if base == "natural":
             return ""
-        q = p[(p.condition == cond) & p.erased_here]
+        if base.startswith("scrub_0_") and base != "scrub_0_8":
+            # scrub 0..k: its states at sites <= k are scrub_all's (each erased state depends on erasers 0..s only)
+            k = int(base.split("_")[2])
+            q = p[(p.condition == pre + "scrub_all") & (p.site <= k)]
+        else:
+            q = p[(p.condition == cond) & p.erased_here]
         return f"{q.acc.min():.3f}–{q.acc.max():.3f}"
 
     def nat_probe(site, kind):
@@ -285,6 +290,10 @@ def run(args):
             q = ie[ie.probe == kind]
             L += [f"- In-sample erasure, {what}: {q.acc.min():.3f}–{q.acc.max():.3f} over every erased site and "
                   f"condition (chance 0.5)."]
+        L += ["- In-sample verb-held-out probes can fall below chance: the eraser zeroes the class cross-covariance "
+              "over all verbs together, so whatever class signal remains in the probe's training verbs points the "
+              "opposite way in its test verbs (the same effect as the pooled cross-fold probe in the first smoke "
+              "test)."]
     L += [""]
 
     def row(c, label):
