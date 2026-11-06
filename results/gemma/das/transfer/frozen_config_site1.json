@@ -15,5 +15,17 @@
   "pythia_best_epoch_iia": 0.6694444444444445,
   "abs_iia_distance": 0.015253968253968186,
   "runner_up_site": 2,
-  "runner_up_distance": 0.03220634920634924
+  "runner_up_distance": 0.03220634920634924,
+  "tost": {
+    "quantity": "passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching",
+    "active_effect_delta_logP_O": 2.0499,
+    "active_effect_ci95": [
+      1.6735,
+      2.4337
+    ],
+    "n_pairs": 28,
+    "fraction": 0.2,
+    "delta": 0.41,
+    "rule": "equivalence ('no rise') if the 90% CI of D lies within +/- delta"
+  }
 }

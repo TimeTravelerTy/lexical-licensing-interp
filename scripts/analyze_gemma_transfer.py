@@ -29,6 +29,12 @@ from analyze_fillergap import reading
 from analyze_passive_test import outcome
 
 NL = {"Pythia-1.4B": 24, "Gemma-3-1B": 26}
+EXPL = {0: "expl. (IIA ~ Pythia 4)", 1: "expl. (IIA ~ Pythia 6)", 4: "expl. (IIA ~ Pythia 8)"}
+
+
+def role(model, site):
+    """Gemma sites 0 / 1 / 4 are the exploratory IIA-matched sites (reports/gemma/exploratory.md); the rest are declared."""
+    return EXPL.get(int(site), "declared") if model == "Gemma-3-1B" else "stored"
 
 
 def f2(r, k="est"):
@@ -53,7 +59,7 @@ def passive_rows(R):
             for site, g in t.groupby("site"):
                 g = g.set_index("readout")
                 o, b, dt = g.loc["O"], g.loc["by"], g.loc["dot"]
-                out.append({"model": model, "site": int(site), "depth": site / NL[model],
+                out.append({"model": model, "site": int(site), "role": role(model, site), "depth": site / NL[model],
                             "delta": float(deltas[str(site)] if str(site) in deltas else deltas[site]),
                             "O": f"{f2(o)} {o['class']}", "by": f"{f2(b)} {b['class']}", "dot": f"{f2(dt)} {dt['class']}",
                             "frac_natgap_by": b.frac_natgap_est, "outcome": outcome(o["class"], b["class"])})
@@ -68,7 +74,7 @@ def cons_rows(R):
         for (cons, site), g in c.groupby(["construction", "site"]):
             g = g.set_index("readout")
             o, l = g.loc["O"], g.loc["L"]
-            out.append({"construction": cons, "model": model, "site": int(site), "depth": site / NL[model],
+            out.append({"construction": cons, "model": model, "site": int(site), "role": role(model, site), "depth": site / NL[model],
                         "delta_O": o.delta, "delta_L": l.delta_L, "O": f"{f2(o)} {o['class']}",
                         "L": f"{f2(l)} {l['class']}"})
     return pd.DataFrame(out).sort_values(["construction", "depth", "model"])
@@ -83,7 +89,7 @@ def inrange_rows(R):
         s = pd.read_csv(r["inrange"] / "inrange_summary.csv")
         for (cons, site), g in s.groupby(["construction", "site"]):
             g = g.set_index("readout")
-            row = {"construction": cons, "model": model, "site": int(site), "depth": site / NL[model]}
+            row = {"construction": cons, "model": model, "site": int(site), "role": role(model, site), "depth": site / NL[model]}
             for rd in INR[cons]:
                 x = g.loc[rd]
                 row[rd] = f"{f2(x, 'D_in_est')} ({x.ratio_est:.2f})"
@@ -99,7 +105,7 @@ def fg_rows(R, pop):
             g = lambda fr, q, rd: sub[(sub.frame == fr) & (sub.quantity == q) & (sub.readout == rd)].iloc[0]
             for pq, oq, nm in (("D", "T_only", "T − I donors"), ("D_in", "inT_only", "in range")):
                 rd = reading(g, pq, oq)[0]
-                out.append({"exp": exp, "patch": nm, "model": model, "site": int(site), "depth": site / NL[model],
+                out.append({"exp": exp, "patch": nm, "model": model, "site": int(site), "role": role(model, site), "depth": site / NL[model],
                             "n_verbs": int(sub.n_verbs.iloc[0]),
                             "nofill_O": f2(g("nofill", pq, "O")), "fill_L": f2(g("fill", pq, "L")),
                             "fill_O": f2(g("fill", pq, "O")), "fill_minus_nofill_O": f2(g("fill - nofill", pq, "O")),
@@ -122,32 +128,34 @@ def main(args):
     R = runs(args)
     L = ["# Transfer of the active-trained direction: Gemma-3-1B next to Pythia-1.4B", "",
          "Script `scripts/analyze_gemma_transfer.py` (sources and definitions in its docstring). Same runners, "
-         "builders and analyses for both models; Gemma at its rule-picked sites (15: frozen rule; 12: earliest within "
-         "0.05 of the max active IIA; 5 and 8: Pythia's declared secondary-site rule, the first sites whose best active "
-         "IIA reaches 0.8 and 0.9, which gives Pythia's 8 and 12), Pythia at its stored sites. Rows sorted by relative "
+         "builders and analyses for both models; Gemma at its rule-picked declared sites (15: frozen rule; 12: earliest "
+         "within 0.05 of the max active IIA; 5 and 8: Pythia's declared secondary-site rule, the first sites whose best "
+         "active IIA reaches 0.8 and 0.9, which gives Pythia's 8 and 12) and, marked **expl.**, the EXPLORATORY "
+         "IIA-matched sites 0 / 1 / 4 (sweep IIA closest to Pythia's abstract-reading sites 4 / 6 / 8; "
+         "`exploratory.md`), Pythia at its stored sites. Rows sorted by relative "
          "depth = site / layers "
          "(Pythia 24, Gemma 26). Estimates in nats with 95% CIs.", ""]
     P = passive_rows(R)
     L += ["## Passive (*by*) test", "",
           "Primary population (plain bad verbs), all bands; D on bad passive bases = after a transitive minus after an "
           "intransitive active donor. Outcome: surface = O RISE and *by* not; abstract = O NO RISE and *by* RISE.", ""]
-    L += table(P, ["model", "site", "depth", "delta", "O", "by", "dot", "frac_natgap_by", "outcome"],
-               ["model", "site", "depth", "δ_s", "D log P(O)", "D log P(\" by\")", "D log P(\".\")",
+    L += table(P, ["model", "site", "role", "depth", "delta", "O", "by", "dot", "frac_natgap_by", "outcome"],
+               ["model", "site", "role", "depth", "δ_s", "D log P(O)", "D log P(\" by\")", "D log P(\".\")",
                 "D(by) / natural gap", "outcome"]) + [""]
     C = cons_rows(R)
     L += ["## Object relatives (OR) and tough constructions (TC): T − I donors", "",
           "D on bad bases. L = MAIN − PREP (OR) or END − PREP (TC). Classes against δ_s (O) and δ_L (L).", ""]
     for cons, g in C.groupby("construction"):
-        L += [f"### {cons}", ""] + table(g, ["model", "site", "depth", "delta_O", "O", "delta_L", "L"],
-                                         ["model", "site", "depth", "δ_s", "D O", "δ_L", "D L"]) + [""]
+        L += [f"### {cons}", ""] + table(g, ["model", "site", "role", "depth", "delta_O", "O", "delta_L", "L"],
+                                         ["model", "site", "role", "depth", "δ_s", "D O", "δ_L", "D L"]) + [""]
     I = inrange_rows(R)
     L += ["## In-range patch (passive, OR, TC)", "",
           "D_in = readout at t_T − at t_I (coordinate set to the construction's own class means), with its ratio to "
           "the natural good − bad gap in parentheses.", ""]
     for cons, g in I.groupby("construction"):
         cols = list(INR[cons])
-        L += [f"### {cons}", ""] + table(g, ["model", "site", "depth"] + cols,
-                                         ["model", "site", "depth"] + [f"D_in {c} (ratio)" for c in cols]) + [""]
+        L += [f"### {cons}", ""] + table(g, ["model", "site", "role", "depth"] + cols,
+                                         ["model", "site", "role", "depth"] + [f"D_in {c} (ratio)" for c in cols]) + [""]
     for pop in (args.fg_population,):
         F = fg_rows(R, pop)
         L += ["## Filler-gap (round-5 C8 protocol, fp32)", "",
@@ -155,9 +163,9 @@ def main(args):
               "\"What AUX NAME V\"). Reading rule as round 4 (licensing-like crossover / surface / mixed).", ""]
         for (exp, patch), g in F.groupby(["exp", "patch"], sort=False):
             L += [f"### {'embedded' if exp == 'emb' else 'matrix'} wh, {patch}", ""]
-            L += table(g, ["model", "site", "depth", "n_verbs", "nofill_O", "fill_L", "fill_O", "fill_minus_nofill_O",
+            L += table(g, ["model", "site", "role", "depth", "n_verbs", "nofill_O", "fill_L", "fill_O", "fill_minus_nofill_O",
                            "O_level", "reading"],
-                       ["model", "site", "depth", "n I verbs", "nofill O", "fill L", "fill O", "fill − nofill O",
+                       ["model", "site", "role", "depth", "n I verbs", "nofill O", "fill L", "fill O", "fill − nofill O",
                         "O level vs T", "reading"]) + [""]
     Path(args.report).write_text("\n".join(L) + "\n")
     print("\n".join(L))

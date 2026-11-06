@@ -1,0 +1,33 @@
+{
+  "final_dir": "../results/das_round2/final_strict_site8",
+  "site": 8,
+  "epochs": 3,
+  "rank": 1,
+  "n_perm": 20,
+  "runner_settings": {
+    "model_type": "gpt_neox",
+    "bos": false,
+    "fp32_unembed": false,
+    "site_check_max_abs_sites_0_to_L-1": 0.0,
+    "site_check_last_site": 77.1875
+  },
+  "dropped_pairs": [],
+  "args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/das_round2/frozen_config_site8.json",
+    "out_dir": "../results/das_round2/final_strict_site8",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01
+  }
+}

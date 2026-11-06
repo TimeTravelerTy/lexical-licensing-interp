@@ -1,0 +1,37 @@
+{
+  "final_dir": "../results/gemma/das/transfer/final_strict_site8",
+  "site": 8,
+  "epochs": 3,
+  "rank": 1,
+  "n_perm": 20,
+  "runner_settings": {
+    "model_type": "gemma3_text",
+    "bos": true,
+    "fp32_unembed": true,
+    "site_check_max_abs_sites_0_to_L-1": 0.0,
+    "site_check_last_site": 57855.87109375
+  },
+  "dropped_pairs": [
+    "transplant/ensue"
+  ],
+  "args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/gemma/das/transfer/frozen_config_site8.json",
+    "out_dir": "../results/gemma/das/transfer/final_strict_site8",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01,
+    "bos": null,
+    "fp32_unembed": null
+  }
+}

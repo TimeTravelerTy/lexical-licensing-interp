@@ -3,12 +3,15 @@
     "prompts": "data/gemma/transfer/passive_test/prompts.csv",
     "plan": "data/gemma/transfer/passive_test/plan.csv.gz",
     "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv",
-    "sites": "15,12,8,5",
+    "sites": "15,12,8,5,4,1,0",
     "site_dirs": {
       "15": "results/gemma/das/transfer/final_strict",
       "12": "results/gemma/das/transfer/final_strict_site12",
       "8": "results/gemma/das/transfer/final_strict_site8",
-      "5": "results/gemma/das/transfer/final_strict_site5"
+      "5": "results/gemma/das/transfer/final_strict_site5",
+      "4": "results/gemma/das/transfer/final_strict_site4",
+      "1": "results/gemma/das/transfer/final_strict_site1",
+      "0": "results/gemma/das/transfer/final_strict_site0"
     },
     "out_dir": "results/gemma/das/transfer/passive_test",
     "model": "google/gemma-3-1b-pt",
@@ -23,7 +26,10 @@
     "15": "8eafdc95dff791fd4dae0f872c633c6b6c802a0b67678e05da7333badd124a03",
     "12": "7d2bedf3df67dd8296bcaaa3a3866e388b8d0d801e0833664312b84fe8a72b5a",
     "8": "c5e30c0476bc25fe503f0055129d6d88ed215dde7ab1cb5ae3832f596241bad7",
-    "5": "3e4101d41353ae12eb9f5ba8aeafe2ab2259f8cbadb1200793b64677adaea61a"
+    "5": "3e4101d41353ae12eb9f5ba8aeafe2ab2259f8cbadb1200793b64677adaea61a",
+    "4": "351e9e27f758388f7a38e6f341d557df4d616b9e13d8d9340c36c15f93cddf2b",
+    "1": "e0cce375386d3a8e00610b2b28f554f751066f455c70048a42d9476b3298bb62",
+    "0": "ab2aab350076a77f37fdd24b72ac7686b68bac4872e1f44926a571b7cc8c2536"
   },
   "checks": {
     "15": {
@@ -44,6 +50,21 @@
     "5": {
       "self_patch_max_abs_dM": 0.0,
       "heldout_recompute_max_abs_dM": 0.09097576141357422,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "4": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.06790924072265625,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "1": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.062427520751953125,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "0": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.05827140808105469,
       "heldout_recompute_median_abs_dM": 0.0
     }
   }

@@ -1,0 +1,18 @@
+commit c0628e006227f25a7eebb19f1c99ef31a944d847
+runner settings {'model_type': 'gpt_neox', 'bos': False, 'fp32_unembed': False, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 77.1875}
+split 0 fold 0: 20 draws, mean iia_cross 0.326 (39s)
+split 0 fold 1: 20 draws, mean iia_cross 0.329 (79s)
+split 0 fold 2: 20 draws, mean iia_cross 0.232 (119s)
+split 0 fold 3: 20 draws, mean iia_cross 0.274 (157s)
+split 0 fold 4: 20 draws, mean iia_cross 0.292 (196s)
+split 1 fold 0: 20 draws, mean iia_cross 0.353 (234s)
+split 1 fold 1: 20 draws, mean iia_cross 0.382 (272s)
+split 1 fold 2: 20 draws, mean iia_cross 0.265 (311s)
+split 1 fold 3: 20 draws, mean iia_cross 0.191 (351s)
+split 1 fold 4: 20 draws, mean iia_cross 0.200 (389s)
+split 2 fold 0: 20 draws, mean iia_cross 0.152 (428s)
+split 2 fold 1: 20 draws, mean iia_cross 0.402 (466s)
+split 2 fold 2: 20 draws, mean iia_cross 0.160 (506s)
+split 2 fold 3: 20 draws, mean iia_cross 0.301 (545s)
+split 2 fold 4: 20 draws, mean iia_cross 0.319 (583s)
+== done Fri Nov  6 11:17:32 PM JST 2026

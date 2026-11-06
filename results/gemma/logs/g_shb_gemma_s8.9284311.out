@@ -1,0 +1,18 @@
+commit c0628e006227f25a7eebb19f1c99ef31a944d847
+runner settings {'model_type': 'gemma3_text', 'bos': True, 'fp32_unembed': True, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 57855.87109375}
+split 0 fold 0: 20 draws, mean iia_cross 0.375 (154s)
+split 0 fold 1: 20 draws, mean iia_cross 0.383 (302s)
+split 0 fold 2: 20 draws, mean iia_cross 0.239 (452s)
+split 0 fold 3: 20 draws, mean iia_cross 0.360 (605s)
+split 0 fold 4: 20 draws, mean iia_cross 0.235 (761s)
+split 1 fold 0: 20 draws, mean iia_cross 0.255 (913s)
+split 1 fold 1: 20 draws, mean iia_cross 0.323 (1056s)
+split 1 fold 2: 20 draws, mean iia_cross 0.386 (1204s)
+split 1 fold 3: 20 draws, mean iia_cross 0.214 (1357s)
+split 1 fold 4: 20 draws, mean iia_cross 0.444 (1512s)
+split 2 fold 0: 20 draws, mean iia_cross 0.259 (1663s)
+split 2 fold 1: 20 draws, mean iia_cross 0.340 (1810s)
+split 2 fold 2: 20 draws, mean iia_cross 0.294 (1961s)
+split 2 fold 3: 20 draws, mean iia_cross 0.266 (2117s)
+split 2 fold 4: 20 draws, mean iia_cross 0.270 (2275s)
+== done Fri Nov  6 11:44:38 PM JST 2026

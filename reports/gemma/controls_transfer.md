@@ -166,7 +166,7 @@ and every gate passes.
   - Matched by IIA rather than depth, the two models agree on the passive outcome. Even so, Gemma's O fraction
     (0.52–0.56) exceeds Pythia's at those sites (0.28 / 0.44).
   - Gemma sites with Pythia's abstract-range IIA exist only at depth ≤ 0.15 (sweep IIA 0.64–0.79 at sites 1–4).
-    No declared rule picks them, and they were not run.
+    No declared rule picks them. They were run afterwards as exploratory IIA-matched sites 0 / 1 / 4 (`exploratory.md`), which does not change this declared reading.
   - So the data do not say whether Gemma has an abstract stage at all, or has one only before its class
     direction becomes high-IIA.
 - **The O rise depends on the donor values.** The declared passive outcome is defined on active-donor patches,

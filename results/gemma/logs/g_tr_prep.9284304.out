@@ -1,0 +1,146 @@
+commit c0628e006227f25a7eebb19f1c99ef31a944d847
+== 23:31:33 python3 scripts/export_bases.py --root results/gemma/das/transfer --out results/gemma/das/transfer/bases_rank1.npz
+105 bases from {'15': 'results/gemma/das/transfer/final_strict', '0': 'results/gemma/das/transfer/final_strict_site0', '1': 'results/gemma/das/transfer/final_strict_site1', '12': 'results/gemma/das/transfer/final_strict_site12', '4': 'results/gemma/das/transfer/final_strict_site4', '5': 'results/gemma/das/transfer/final_strict_site5', '8': 'results/gemma/das/transfer/final_strict_site8'}
+== 23:31:41 python3 -c 
+import json; from pathlib import Path
+T = Path('results/gemma/das/transfer'); m = json.loads((T / 'final_strict/final_meta.json').read_text())
+c = json.loads((T / 'frozen_config.json').read_text()); assert c['site'] == m['site'] == 15
+c['rank'] = int(m['chosen_rank']); c['pc_frac_by_rank'] = m.get('pc_frac_by_rank')
+(T / 'frozen_config_final.json').write_text(json.dumps(c, indent=2) + chr(10)); print(c['site'], c['rank'])
+15 1
+== 23:31:42 python3 scripts/analyze_passive_test.py delta --root results/gemma/das/transfer --delta-sites 15,12,8,5,4,1,0
+15 {'quantity': 'passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching', 'active_effect_delta_logP_O': 2.8792, 'active_effect_ci95': [2.5163, 3.2281], 'n_pairs': 28, 'fraction': 0.2, 'delta': 0.5758, 'rule': "equivalence ('no rise') if the 90% CI of D lies within +/- delta"}
+12 {'quantity': 'passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching', 'active_effect_delta_logP_O': 2.801, 'active_effect_ci95': [2.4355, 3.1468], 'n_pairs': 28, 'fraction': 0.2, 'delta': 0.5602, 'rule': "equivalence ('no rise') if the 90% CI of D lies within +/- delta"}
+8 {'quantity': 'passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching', 'active_effect_delta_logP_O': 2.6537, 'active_effect_ci95': [2.2965, 2.9852], 'n_pairs': 28, 'fraction': 0.2, 'delta': 0.5307, 'rule': "equivalence ('no rise') if the 90% CI of D lies within +/- delta"}
+5 {'quantity': 'passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching', 'active_effect_delta_logP_O': 2.6869, 'active_effect_ci95': [2.3454, 3.0243], 'n_pairs': 28, 'fraction': 0.2, 'delta': 0.5374, 'rule': "equivalence ('no rise') if the 90% CI of D lies within +/- delta"}
+4 {'quantity': 'passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching', 'active_effect_delta_logP_O': 2.5965, 'active_effect_ci95': [2.2638, 2.9368], 'n_pairs': 28, 'fraction': 0.2, 'delta': 0.5193, 'rule': "equivalence ('no rise') if the 90% CI of D lies within +/- delta"}
+1 {'quantity': 'passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching', 'active_effect_delta_logP_O': 2.0499, 'active_effect_ci95': [1.6735, 2.4337], 'n_pairs': 28, 'fraction': 0.2, 'delta': 0.41, 'rule': "equivalence ('no rise') if the 90% CI of D lies within +/- delta"}
+0 {'quantity': 'passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching', 'active_effect_delta_logP_O': 1.4384, 'active_effect_ci95': [1.0449, 1.8045], 'n_pairs': 28, 'fraction': 0.2, 'delta': 0.2877, 'rule': "equivalence ('no rise') if the 90% CI of D lies within +/- delta"}
+== 23:31:44 python3 scripts/build_passive_test.py --das-items results/gemma/das/transfer/final_strict/items.csv --folds results/gemma/das/transfer/final_strict/pairs_folds.csv --out-dir data/gemma/transfer/passive_test
+{
+  "items": 18102,
+  "pairs": 145,
+  "prompts": 33766,
+  "plan_rows": 2357032,
+  "plan_rows_by_cond": {
+    "matched_T": 727682,
+    "T": 602868,
+    "I": 602868,
+    "matched_I": 206390,
+    "same_verb": 108612,
+    "passive_swap": 108612
+  },
+  "primary_pairs_by_band": {
+    "head": 9,
+    "tail": 28,
+    "xtail": 27
+  },
+  "seed": 17,
+  "folds_sha256": "29fbeacf1b8fb0eb86cd20c8457c98721d27e051801714af18e06db6eb6580a8",
+  "plan_sha256": "5932b34d256d1a3b962ae61d3c875bb09fe8bc2b42cced2ac7157562fa65680e"
+}
+== 23:32:35 python3 scripts/build_constructions.py --passive-items data/gemma/transfer/passive_test/items.csv --das-items results/gemma/das/transfer/final_strict/items.csv --folds results/gemma/das/transfer/final_strict/pairs_folds.csv --out-dir data/gemma/transfer/constructions
+{
+  "items": 3072,
+  "items_by_construction": {
+    "OR": 1536,
+    "TC": 1536
+  },
+  "nouns": [
+    [
+      "house",
+      "head"
+    ],
+    [
+      "letter",
+      "head"
+    ],
+    [
+      "suspect",
+      "head"
+    ],
+    [
+      "king",
+      "head"
+    ],
+    [
+      "child",
+      "tail"
+    ],
+    [
+      "horse",
+      "tail"
+    ],
+    [
+      "statue",
+      "tail"
+    ],
+    [
+      "thief",
+      "tail"
+    ],
+    [
+      "baby",
+      "xtail"
+    ],
+    [
+      "ship",
+      "xtail"
+    ],
+    [
+      "suitcase",
+      "xtail"
+    ],
+    [
+      "wallet",
+      "xtail"
+    ]
+  ],
+  "prompts": 7576,
+  "plan_rows": 220992,
+  "plan_rows_by_cond": {
+    "T": 101280,
+    "I": 101280,
+    "cswap": 18432
+  },
+  "seed": 17,
+  "plan_sha256": "80fefb92728ab6a4081304ef71784694cfe232d85194c8fc37ef0cb6fd1d10c6",
+  "examples": [
+    [
+      "The house that John imposed",
+      "The house that John emerged"
+    ],
+    [
+      "The house is easy to impose",
+      "The house is easy to emerge"
+    ]
+  ]
+}
+== 23:32:38 python3 scripts/build_fillergap.py items --das-items results/gemma/das/transfer/final_strict/items.csv --folds results/gemma/das/transfer/final_strict/pairs_folds.csv --out-dir data/gemma/transfer/fillergap
+{
+  "verbs": {
+    "T": 106,
+    "I": 50
+  },
+  "items": 14976,
+  "prompts": 15680,
+  "items_by_exp": {
+    "emb": 7488,
+    "mat": 7488
+  },
+  "contexts": {
+    "emb": 24,
+    "mat": 24
+  },
+  "examples": {
+    "emb/fill/I": "I know what John appeared",
+    "emb/fill/T": "I know what John acquired",
+    "emb/nofill/I": "I know that John appeared",
+    "emb/nofill/T": "I know that John acquired",
+    "mat/fill/I": "What did John appear",
+    "mat/fill/T": "What did John acquire",
+    "mat/nofill/I": "Did John appear",
+    "mat/nofill/T": "Did John acquire"
+  }
+}
+== stage prep done Fri Nov  6 11:32:39 PM JST 2026
