@@ -246,5 +246,7 @@ if __name__ == "__main__":
     ap.add_argument("--target-pool", choices=("all", "nondas"), default="all",
                     help="in-range target pool (round 5 C8: nondas = verbs in no DAS training pair)")
     ap.add_argument("--suffix", default="", help="output file suffix (round 5: _nondas / _all)")
+    ap.add_argument("--sites", default="4,6,8,10,12,14,16,17", help="sites (default: the Pythia-1.4B sites; Gemma replication passes its own)")
     a = ap.parse_args()
+    SITES = tuple(int(s) for s in a.sites.split(","))
     run_natural(a) if a.mode == "natural" else run_patch(a)

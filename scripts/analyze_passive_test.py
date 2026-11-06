@@ -38,12 +38,13 @@ SUBJ = ["She", "He", "They", "We", "I", "Maria", "David"]
 # ---------------------------------------------------------------- delta mode
 def run_delta(args):
     for site in [int(x) for x in args.delta_sites.split(",")]:
-        d = Path(args.root) / f"final_strict_site{site}"
+        d = site_dir(args.root, site)
         det = pd.read_csv(d / "heldout_swaps.csv.gz")
         pp, _ = per_pair(det, 1)
         intr = pp[pp.base_cls == 0]
         est, lo, hi, n = boot(intr.d_O)
-        cfg_path = Path(args.root) / f"frozen_config_site{site}.json"
+        cfg_path = Path(args.root) / ("frozen_config_final.json" if site == primary_site(args.root)
+                                      else f"frozen_config_site{site}.json")
         cfg = json.loads(cfg_path.read_text())
         cfg["tost"] = {"quantity": "passive contrast D on delta log P(O) (transitive minus intransitive donor), "
                                    "after patching",
@@ -405,7 +406,9 @@ def write_report(args):
     deltas = {int(k): v for k, v in json.loads((out / "deltas.json").read_text()).items()}
     meta = json.loads((out / "run_meta.json").read_text())
     sites = [int(x) for x in args.sites.split(",")]
-    role = {s: ("primary" if s == 17 else "secondary" if s in (8, 12) else "fill-in") for s in sites}
+    prim = primary_site(args.root)
+    role = {s: ("primary" if s == prim else "secondary" if (s in (8, 12) if prim == 17 else True) else "fill-in")
+            for s in sites}
 
     def get(pop, band, cond, rd, site):
         x = tr[(tr.population == pop) & (tr.band == band) & (tr.condition == cond) & (tr.readout == rd)
@@ -519,13 +522,18 @@ def write_report(args):
 
 
 # ---------------------------------------------------------------- passive-side controls (post hoc)
+def primary_site(root):
+    """The primary (frozen-rule) site: the site of root/final_strict (Pythia-1.4B: 17)."""
+    return int(json.loads((Path(root) / "final_strict" / "final_meta.json").read_text())["site"])
+
+
 def site_delta(root, site):
-    f = Path(root) / ("frozen_config_final.json" if site == 17 else f"frozen_config_site{site}.json")
+    f = Path(root) / ("frozen_config_final.json" if site == primary_site(root) else f"frozen_config_site{site}.json")
     return json.loads(f.read_text())["tost"]["delta"]
 
 
 def site_dir(root, site):
-    return Path(root) / ("final_strict" if site == 17 else f"final_strict_site{site}")
+    return Path(root) / ("final_strict" if site == primary_site(root) else f"final_strict_site{site}")
 
 
 def shuffled_cosines(root, site):

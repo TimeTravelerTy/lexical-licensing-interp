@@ -335,7 +335,7 @@ def write_patch(args, res, bg):
                 g = lambda fr, q, r: sub[(sub.frame == fr) & (sub.quantity == q) & (sub.readout == r)].iloc[0]
                 L.append(f"| {pop} | {int(sub.n_verbs.iloc[0])} | {s} | {reading(g, 'D', 'T_only')[0]} | "
                          f"{reading(g, 'D_in', 'inT_only')[0]} |")
-        nat = res[(res.exp == exp) & (res.site == 8) & (res.population == "half B") & (res.quantity == "D")
+        nat = res[(res.exp == exp) & (res.site == DECL[-1]) & (res.population == "half B") & (res.quantity == "D")
                   & res.frame.isin(["nofill", "fill"])].drop_duplicates(["frame", "readout"])
         L += ["", "Natural T − I gaps (half B, kept I verbs): " + "; ".join(
             f"{r.frame} {r.readout} {r.natgap:+.2f}" for r in nat.itertuples() if r.readout in ("O", "PREP", "num", "L")), ""]
@@ -352,7 +352,10 @@ if __name__ == "__main__":
     ap.add_argument("--report", default=None)
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
+    ap.add_argument("--sites", default="4,6,8,10,12,14,16,17", help="sites (default: the Pythia-1.4B sites; Gemma replication passes its own)")
+    ap.add_argument("--decl", default="6,8", help="declared sites")
     a = ap.parse_args()
+    SITES, DECL = tuple(int(s) for s in a.sites.split(",")), tuple(int(s) for s in a.decl.split(","))
     if a.report is None:
         a.report = "reports/round4/b_fillergap_gates.md" if a.mode == "gates" else "reports/round4/b_fillergap.md"
     run_gates(a) if a.mode == "gates" else run_patch(a)

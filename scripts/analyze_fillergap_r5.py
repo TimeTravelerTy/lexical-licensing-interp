@@ -273,7 +273,13 @@ if __name__ == "__main__":
     ap.add_argument("--report", default=None)
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
+    ap.add_argument("--sites", default="4,6,8,10,12,14,16,17", help="sites (default: the Pythia-1.4B sites; Gemma replication passes its own)")
+    ap.add_argument("--decl", default="6,8", help="declared sites")
     a = ap.parse_args()
+    import analyze_fillergap as afg
+
+    SITES = afg.SITES = tuple(int(s) for s in a.sites.split(","))
+    DECL = afg.DECL = tuple(int(s) for s in a.decl.split(","))
     if a.report is None:
         a.report = "reports/round5/c8_fillergap_gates.md" if a.mode == "gates" else "reports/round5/c8_fillergap.md"
     run_gates(a) if a.mode == "gates" else run_patch(a)

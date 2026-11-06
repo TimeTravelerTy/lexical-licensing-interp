@@ -31,6 +31,7 @@ from analyze_nonce_passive import z_table
 BASE = ("M", "O", "I", "det", "pron", "refl", "by", "dot", "the", "him", "PREP", "MAIN", "END", "END_BROAD")
 NUM = {"OR": "MAIN", "TC": "END"}
 SITES = (4, 6, 8, 10, 12, 14, 16, 17)
+TOKEN_SITES = (8, 17)
 
 
 def add_L(df, cons):
@@ -137,7 +138,7 @@ def run(args):
         dg = np.exp(lpi.loc[it.good_prompt.map(pidx)].to_numpy()).mean(0) - np.exp(lpi.loc[it.bad_prompt.map(pidx)].to_numpy()).mean(0)
         for j in np.argsort(-np.abs(dg))[:6]:
             tok_rows.append({"construction": cons, "what": "natural good - bad", "token": toks[j], "dprob": float(dg[j])})
-        for site in (8, 17):
+        for site in TOKEN_SITES:
             ptk = np.load(rdir / f"patch_tokens_site{site}.npz")
             prow = pd.Series(np.arange(len(ptk["rows"])), index=ptk["rows"])
             sub = plan[sel & (plan.side == "bad").to_numpy() & plan.cond.isin(["T", "I"]).to_numpy()]
@@ -216,4 +217,8 @@ if __name__ == "__main__":
     ap.add_argument("--report", default="reports/passive_das_prep/round3_constructions.md")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
-    run(ap.parse_args())
+    ap.add_argument("--sites", default="4,6,8,10,12,14,16,17", help="sites (default: the Pythia-1.4B sites; Gemma replication passes its own)")
+    ap.add_argument("--token-sites", default="8,17", help="sites with saved per-token log-probs")
+    a = ap.parse_args()
+    SITES, TOKEN_SITES = tuple(int(s) for s in a.sites.split(",")), tuple(int(s) for s in a.token_sites.split(","))
+    run(a)

@@ -188,4 +188,7 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--dtype", default="bfloat16")
     ap.add_argument("--batch", type=int, default=1024)
-    run(ap.parse_args())
+    ap.add_argument("--sites", default="4,6,8,10,12,14,16,17", help="sites (default: the Pythia-1.4B sites; Gemma replication passes its own)")
+    a = ap.parse_args()
+    SITES = tuple(int(s) for s in a.sites.split(","))
+    run(a)
