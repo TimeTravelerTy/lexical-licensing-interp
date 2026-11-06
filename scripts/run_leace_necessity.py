@@ -37,6 +37,12 @@ held-out class-mean difference after/before erasure; identity-hook self-patch; e
 untouched; in-model erased states equal the offline erasure of the natural states (single_L); scrub replay: a pass over
 the training items with all 24 erasers reproduces, at each site, the pre-erasure statistics the eraser was fit on.
 
+In-sample variant (--insample): a single eraser set is fit on all items (all verbs, both prompts) and applied to those
+same items, so the evaluated items are the fitting data and the linear erasure is exact on them. The fold structure
+collapses to one "fold" (no cross-fitting); the same conditions, measures and checks are computed. The probes' inner
+split becomes a 5-group verb-held-out split over all pairs (the eraser has seen the test verbs), and a linear probe is
+also trained and scored on all items ("linear_fitset": the fitting distribution, where LEACE's guarantee applies).
+
 Outputs (--out-dir): items.csv.gz (one row per prompt, lp_by and kl per condition), probes.csv, fit_diagnostics.csv,
 pairs_folds.csv, checks.json, meta.json.
 """
@@ -284,11 +290,13 @@ def run(args):
     dev, d, tok = M.dev, M.d, M.R.tok
     pas, P, pairs = load_items(args, tok)
     pairs.to_csv(out / "pairs_folds.csv", index=False)
-    N, F = len(P), args.n_folds
+    # eraser "fold" of each prompt: its outer fold (cross-fitted) or 0 for every prompt (in-sample: one eraser set)
+    fold_np = np.zeros(len(P), dtype=np.int64) if args.insample else P.fold.to_numpy()
+    N, F = len(P), 1 if args.insample else args.n_folds
     sites = list(range(N_SITES))
     order = np.argsort(P.n_tokens.to_numpy(), kind="stable")
     batches = [order[i:i + args.batch_size] for i in range(0, N, args.batch_size)]
-    fold_t = torch.as_tensor(P.fold.to_numpy(), device=dev)
+    fold_t = torch.as_tensor(fold_np, device=dev)
     cls_np = P.cls.to_numpy()
     z_t = torch.as_tensor(cls_np, device=dev, dtype=torch.float64)
     prompts = P.prompt.tolist()
@@ -310,8 +318,11 @@ def run(args):
     log("natural pass done")
 
     diag = []
-    train_idx = {f: np.flatnonzero(P.fold.to_numpy() != f) for f in range(F)}
-    held_idx = {f: np.flatnonzero(P.fold.to_numpy() == f) for f in range(F)}
+    if args.insample:  # fit on everything, evaluate on everything
+        train_idx = held_idx = {0: np.arange(N)}
+    else:
+        train_idx = {f: np.flatnonzero(fold_np != f) for f in range(F)}
+        held_idx = {f: np.flatnonzero(fold_np == f) for f in range(F)}
 
     def held_meandiff(X, idx):
         c = cls_np[idx]
@@ -454,7 +465,8 @@ def run(args):
                              "held_meandiff_post": held_meandiff(X[:, s], h)})
 
     # 5. probes
-    splits = inner_splits(P.fold.to_numpy(), P.verb_pair.to_numpy(), args.n_inner, seed=1)
+    splits = inner_splits(fold_np, P.verb_pair.to_numpy(), args.n_inner, seed=1)
+    fitset = [(0, 0, np.ones(N, bool), np.ones(N, bool))]  # in-sample only: train and score on all items
     prow = []
     for s in sites:
         Xs = {"natural": nat[:, s], "scrub_all": scrub_states["scrub_all"][:, s],
@@ -465,11 +477,15 @@ def run(args):
             er[h] = single[s][f](torch.as_tensor(nat[h, s], device=dev).double()).float().cpu().numpy()
         Xs["single"] = er
         for c, X in Xs.items():
+            here = c == "single" or c == "scrub_all" or (c == "scrub_0_8" and s <= DAS_SITE)
             for kind in ("linear", "mlp"):
-                prow.append({"condition": c, "site": s, "probe": kind,
-                             "erased_here": c == "single" or c == "scrub_all" or (c == "scrub_0_8" and s <= DAS_SITE),
+                prow.append({"condition": c, "site": s, "probe": kind, "erased_here": here,
                              "acc": probe_cv(X, cls_np, splits, kind, torch, dev)})
-        log(f"probes site {s}: " + ", ".join(f"{r['condition']}/{r['probe']} {r['acc']:.3f}" for r in prow[-8:]))
+            if args.insample:
+                prow.append({"condition": c, "site": s, "probe": "linear_fitset", "erased_here": here,
+                             "acc": probe_cv(X, cls_np, fitset, "linear", torch, dev)})
+        k = 12 if args.insample else 8
+        log(f"probes site {s}: " + ", ".join(f"{r['condition']}/{r['probe']} {r['acc']:.3f}" for r in prow[-k:]))
     pd.DataFrame(prow).to_csv(out / "probes.csv", index=False)
     pd.DataFrame(diag).to_csv(out / "fit_diagnostics.csv", index=False)
 
@@ -503,5 +519,6 @@ if __name__ == "__main__":
     ap.add_argument("--n-inner", type=int, default=5, help="inner pair groups per outer fold for the probes")
     ap.add_argument("--max-pairs", type=int, default=0, help="smoke test: pairs per verb band")
     ap.add_argument("--max-contexts", type=int, default=0, help="smoke test: contexts kept")
+    ap.add_argument("--insample", action="store_true", help="one eraser set fit on all items, evaluated on them")
     ap.add_argument("--out-dir", default="results/pythia/leace_necessity")
     run(ap.parse_args())

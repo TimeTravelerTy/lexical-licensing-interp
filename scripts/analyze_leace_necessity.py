@@ -7,6 +7,10 @@ recomputation). 95% CIs: the task-1 two-way cluster bootstrap (verb pairs within
 band; analyze_das_prep.Boot), the same draws for every condition. Fold assignment and erasers are fixed (not
 resampled).
 
+In-sample rows (if --insample exists: run_leace_necessity.py --insample, erasers fit on all verbs and evaluated on
+the same items) are merged as conditions `insample_<condition>`; their natural readout must match the cross-fitted
+run's.
+
 Writes reports/pythia/leace_necessity.md and reports/pythia/leace_necessity_*.csv.
 """
 
@@ -51,6 +55,27 @@ def run(args):
     probes = pd.read_csv(res_dir / "probes.csv")
     diag = pd.read_csv(res_dir / "fit_diagnostics.csv")
     folds = pd.read_csv(res_dir / "pairs_folds.csv")
+    diag["fitting"] = "cross_fit"
+    ins_dir = Path(args.insample) if args.insample else None
+    ins = None
+    if ins_dir and (ins_dir / "items.csv.gz").exists():
+        Q = pd.read_csv(ins_dir / "items.csv.gz")
+        assert (Q[["item", "side", "prompt"]].to_numpy() == P[["item", "side", "prompt"]].to_numpy()).all()
+        ins = {"meta": json.loads((ins_dir / "meta.json").read_text()),
+               "checks": json.loads((ins_dir / "checks.json").read_text()),
+               "natural_vs_crossfit_max_abs": float((Q.lp_by__natural - P.lp_by__natural).abs().max()),
+               "items_sha256": hashlib.sha256((ins_dir / "items.csv.gz").read_bytes()).hexdigest()}
+        assert ins["meta"]["args"]["insample"]
+        for c in Q.columns:
+            if (c.startswith("lp_by__") or c.startswith("kl__")) and not c.endswith("__natural"):
+                pre, cond = c.split("__", 1)
+                P[f"{pre}__insample_{cond}"] = Q[c].to_numpy()
+        qp = pd.read_csv(ins_dir / "probes.csv")
+        qp["condition"] = "insample_" + qp.condition
+        probes = pd.concat([probes, qp], ignore_index=True)
+        qd = pd.read_csv(ins_dir / "fit_diagnostics.csv")
+        qd["fitting"] = "insample"
+        diag = pd.concat([diag, qd], ignore_index=True)
     conds = [c[len("lp_by__"):] for c in P.columns if c.startswith("lp_by__")]
     erased = [c for c in conds if c != "natural"]
 
@@ -113,10 +138,12 @@ def run(args):
     # probe summary at the erased site(s)
     def probe_at(cond, kind):
         p = probes[(probes.probe == kind)]
-        if cond.startswith("single_"):
-            s = int(cond.split("_")[1])
-            return f"{p[(p.condition == 'single') & (p.site == s)].acc.iloc[0]:.3f}"
-        if cond == "natural":
+        pre = "insample_" if cond.startswith("insample_") else ""
+        base = cond[len(pre):]
+        if base.startswith("single_"):
+            s = int(base.split("_")[1])
+            return f"{p[(p.condition == pre + 'single') & (p.site == s)].acc.iloc[0]:.3f}"
+        if base == "natural":
             return ""
         q = p[(p.condition == cond) & p.erased_here]
         return f"{q.acc.min():.3f}–{q.acc.max():.3f}"
@@ -126,7 +153,7 @@ def run(args):
         return f"{p.acc.iloc[0]:.3f}"
 
     A = S[S.subset == "all"].set_index("condition")
-    nd = diag[diag.condition.isin(["single", "scrub"])]
+    nd = diag[diag.condition.isin(["single", "scrub"]) & (diag.fitting == "cross_fit")]
     n_fit = nd.groupby("fold").n_fit.first()
     n_verbs = nd.groupby("fold").n_verbs.first()
     d = 2048
@@ -156,6 +183,11 @@ def run(args):
          "at sites 0..23: per fold, eraser L is fit on the training items' site-L states computed with that "
          "fold's erasers 0..L-1 applied (and L not applied). `scrub_0_8` = erasers 0..8 of `scrub_all` "
          "(the sequential fit makes them identical).",
+         "- In-sample conditions (`insample_*`, rows marked \"in-sample\"): the same three kinds of erasure, but one "
+         "eraser set fit on all items (every verb, both prompts) and applied to those same items, so the evaluated "
+         "items are the fitting data. Their probes: the same nested procedure with one outer fold, i.e. a 5-group "
+         "verb-held-out split over all pairs (the eraser has seen the test verbs), and a linear probe trained and "
+         "scored on all items (fit-set accuracy).",
          "- Probes (nested, verb-held-out): for each outer fold g, the states of fold g's items after erasure by "
          "fold g's erasers (fit on the other folds); the fold's pairs are dealt into 5 inner groups, a probe is "
          "trained on 4 groups and tested on the 5th, accuracy pooled over all test items; chance = 0.5. So neither "
@@ -183,8 +215,8 @@ def run(args):
           f"{int((nd.sv_top <= 0.01).sum())} fits below it, i.e. no erasure); erased rank "
           f"{sorted(nd.erased_rank.unique().tolist())}; trace-constraint branch used in "
           f"{int(nd.trace_branch.sum())} fits; training cross-covariance residual max {nd.train_xcov_resid.max():.2g}."]
-    hd = diag[diag.condition == "single"].assign(r=lambda x: x.held_meandiff_post / x.held_meandiff_pre)
-    hs = diag[diag.condition == "scrub_all_heldout"].assign(r=lambda x: x.held_meandiff_post / x.held_meandiff_pre)
+    hd = diag[(diag.condition == "single") & (diag.fitting == "cross_fit")].assign(r=lambda x: x.held_meandiff_post / x.held_meandiff_pre)
+    hs = diag[(diag.condition == "scrub_all_heldout") & (diag.fitting == "cross_fit")].assign(r=lambda x: x.held_meandiff_post / x.held_meandiff_pre)
     L += [f"- Held-out class-mean difference, erased / natural norm: single_L {hd.r.min():.3f}–{hd.r.max():.3f}; "
           f"scrub_all {hs.r.min():.3f}–{hs.r.max():.3f} (range over sites and folds)."]
     if repro:
@@ -192,9 +224,29 @@ def run(args):
               f"pythia14b_readout.csv`, sha256 {repro['readout_sha256'][:12]}…): median |Δ| {repro['median_abs']:.3f}, "
               f"99th pct {repro['p99_abs']:.3f}, max {repro['max_abs']:.3f}; gap from the stored readout "
               f"{fmt(repro['gap_stored_bf16'])} vs fp32 {fmt(ci(nat['all']))}."]
+    if ins:
+        ic, irp = ins["checks"], ins["checks"]["scrub_replay"]
+        idg = diag[diag.fitting == "insample"]
+        ifit = idg[idg.condition.isin(["single", "scrub"])]
+        ih = {c: idg[idg.condition == c].assign(r=lambda x: x.held_meandiff_post / x.held_meandiff_pre)
+              for c in ("single", "scrub_all_heldout", "scrub_0_8_heldout")}
+        ih["scrub_0_8_heldout"] = ih["scrub_0_8_heldout"][ih["scrub_0_8_heldout"].site <= DAS_SITE]
+        L += [f"- In-sample run ({ins['meta']['minutes']:.0f} min): n = {int(ifit.n_fit.min()):,} fitting states per "
+              f"eraser ({int(ifit.n_verbs.min())} verbs; n/d = {ifit.n_fit.min() / d:.1f}); top singular value min "
+              f"{ifit.sv_top.min():.3f}, erased rank {sorted(ifit.erased_rank.unique().tolist())}, trace branch "
+              f"used in {int(ifit.trace_branch.sum())} fits; same checks as above: identity hook "
+              f"{ic['self_patch_max_abs']:.2g}, non-anchor {ic['outside_anchor_max_abs']:.2g}, in-model vs offline "
+              f"{ic['single_offline_max_abs']:.2g}, scrub replay mean {irp['mean_maxabs']:.2g} / cross-covariance "
+              f"{irp['xcov_rel']:.2g}; natural log P(by) vs the cross-fitted run's max |Δ| "
+              f"{ins['natural_vs_crossfit_max_abs']:.2g}.",
+              f"- In-sample, on the evaluated items (= the fitting items): cross-covariance with class after / before "
+              f"erasure, max over scrub sites {irp['post_xcov_resid_max']:.2g}, single_L max "
+              f"{ifit[ifit.condition == 'single'].train_xcov_resid.max():.2g}; class-mean difference after / before "
+              f"erasure: single_L max {ih['single'].r.max():.2g}, scrub 0–23 max {ih['scrub_all_heldout'].r.max():.2g}, "
+              f"scrub 0–{DAS_SITE} (erased sites) max {ih['scrub_0_8_heldout'].r.max():.2g}."]
     L += [""]
 
-    er = probes[probes.erased_here & (probes.condition != "natural")]
+    er = probes[probes.erased_here & (probes.condition != "natural") & ~probes.condition.str.startswith("insample_")]
     L += ["## Flags", ""]
     for kind in ("linear", "mlp"):
         q = er[er.probe == kind]
@@ -202,6 +254,15 @@ def run(args):
               f"erased site and condition (chance 0.5; natural {probes[(probes.condition == 'natural') & (probes.probe == kind)].acc.min():.3f}–"
               f"{probes[(probes.condition == 'natural') & (probes.probe == kind)].acc.max():.3f})." if q.acc.min() > 0.55 else
               f"- Held-out {kind.replace('mlp', 'MLP')} probe after erasure: {q.acc.min():.3f}–{q.acc.max():.3f} over the erased sites (chance 0.5)."]
+    if ins:
+        ie = probes[probes.erased_here & probes.condition.str.startswith("insample_")
+                    & (probes.condition != "insample_natural")]
+        for kind, what in (("linear_fitset", "linear probe trained and scored on all (= fitting) items"),
+                           ("linear", "verb-held-out linear probe (eraser saw the test verbs)"),
+                           ("mlp", "verb-held-out MLP probe (eraser saw the test verbs)")):
+            q = ie[ie.probe == kind]
+            L += [f"- In-sample erasure, {what}: {q.acc.min():.3f}–{q.acc.max():.3f} over every erased site and "
+                  f"condition (chance 0.5)."]
     L += [""]
 
     def row(c, label):
@@ -213,7 +274,8 @@ def run(args):
     hdr = ["Condition", "*by* gap (nats)", "share of natural gap remaining", "KL (nats)", "linear probe",
            "MLP probe"]
     L += ["## Main table", "",
-          "Probe columns: held-out accuracy at the erased site (scrubbing: range over the erased sites). The B5 "
+          "Probe columns: held-out accuracy at the erased site (scrubbing: range over the erased sites); for the "
+          "in-sample rows the test verbs are held out from the probe but not from the eraser. The B5 "
           "reference rows are from `reports/round5/b5_necessity.md` (frame `hasbeen`, all 64 pairs; different "
           "items and frame: B7 items, \"The N has been V\"), converted to share remaining = 1 − share removed.", ""]
     trs = [row("natural", "natural")]
@@ -221,6 +283,12 @@ def run(args):
     best = A.loc[[c for c in erased if c.startswith("single_")]].share_remaining.idxmin()
     trs += [row(f"single_{DAS_SITE}", f"single site {DAS_SITE} (DAS site)"),
             row(best, f"single site {best.split('_')[1]}: lowest of 24 (post hoc; pointwise CI)")]
+    if ins:
+        ibest = A.loc[[c for c in erased if c.startswith("insample_single_")]].share_remaining.idxmin()
+        trs += [row("insample_scrub_all", "in-sample: scrub, sites 0–23"),
+                row("insample_scrub_0_8", f"in-sample: scrub, sites 0–{DAS_SITE}"),
+                row(f"insample_single_{DAS_SITE}", f"in-sample: single site {DAS_SITE} (DAS site)"),
+                row(ibest, f"in-sample: single site {ibest.split('_')[-1]}: lowest of 24 (post hoc; pointwise CI)")]
     for n, k, e, lo, hi in REFS:
         trs.append([f"ref (B5): {n}", "", f"{1 - e:.2f} [{1 - hi:.2f}, {1 - lo:.2f}]", "", "", ""])
     L += table(hdr, trs) + [""]
@@ -246,11 +314,26 @@ def run(args):
     L += table(["Site", "natural lin", "natural MLP", "scrub 0–23 lin", "scrub 0–23 MLP", "scrub 0–8 lin",
                 "scrub 0–8 MLP"], trs) + [""]
 
+    if ins:
+        L += ["## In-sample erasure, every site", "",
+              "Erasers fit on all items and evaluated on them. Single-site rows: `insample_single_L`; probe columns as "
+              "in the main table, plus the fit-set linear probe. Last three columns: probe accuracy under in-sample "
+              "scrubbing 0–23 at that site.", ""]
+        pv = probes.pivot_table(index="site", columns=["condition", "probe"], values="acc")
+        trs = []
+        for s in range(24):
+            trs.append(row(f"insample_single_{s}", str(s)) +
+                       [f"{pv.loc[s, ('insample_single', 'linear_fitset')]:.3f}"] +
+                       [f"{pv.loc[s, ('insample_scrub_all', k)]:.3f}" for k in ("linear_fitset", "linear", "mlp")])
+        L += table(["Site", "*by* gap", "share remaining", "KL", "linear probe", "MLP probe", "fit-set linear",
+                    "scrub 0–23 fit-set lin", "scrub 0–23 lin", "scrub 0–23 MLP"], trs) + [""]
+
     L += ["## By verb band and token pattern", "",
           "Share of the natural gap remaining (natural gap in parentheses). Pattern: participle token counts "
           "of T and I (2+ = two or more).", ""]
     subsets = [m for m in masks if m != "all"]
-    show = ["scrub_all", "scrub_0_8", f"single_{DAS_SITE}", best]
+    show = ["scrub_all", "scrub_0_8", f"single_{DAS_SITE}", best] + (["insample_scrub_all", "insample_scrub_0_8"]
+                                                                      if ins else [])
     trs = []
     for m in subsets:
         n0 = ci(nat[m])
@@ -259,7 +342,8 @@ def run(args):
                    [fmt(tuple(sub.loc[c, ["share_remaining", "share_remaining_lo", "share_remaining_hi"]]), sign=False)
                     for c in show])
     L += table(["Subset", "pairs", "natural gap", "scrub 0–23", f"scrub 0–{DAS_SITE}", f"single {DAS_SITE}",
-                f"single {best.split('_')[1]} (post hoc)"], trs)
+                f"single {best.split('_')[1]} (post hoc)"] +
+                (["in-sample scrub 0–23", f"in-sample scrub 0–{DAS_SITE}"] if ins else []), trs)
     nv = S[S.subset.isin(subsets)].groupby("subset").n_valid_draws.min()
     short = nv[nv < args.n_boot]
     L += ["", "Bootstrap draws that resample no pair of a subset are dropped: " +
@@ -273,7 +357,11 @@ def run(args):
           "- `reports/pythia/leace_necessity_references.csv`: the B5 reference numbers.",
           f"- `{args.results.lstrip('./')}/`: per-prompt log P(by) and KL per condition (`items.csv.gz`), fold assignment, "
           f"checks, run metadata. `items.csv.gz` is not in git (sha256 {hashlib.sha256((res_dir / 'items.csv.gz').read_bytes()).hexdigest()}); "
-          "it is on TSUBAME at `/gs/fs/tga-sip_arase/tyrone/lli_leace/results/pythia/leace_necessity/`.", ""]
+          "it is on TSUBAME at `/gs/fs/tga-sip_arase/tyrone/lli_leace/results/pythia/leace_necessity/`."]
+    if ins:
+        L += [f"- `{args.insample.lstrip('./')}/`: the same files for the in-sample run (`items.csv.gz` not in git, "
+              f"sha256 {ins['items_sha256']}; on TSUBAME under `lli_leace/{args.insample.lstrip('./')}/`)."]
+    L += [""]
     (out / "leace_necessity.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     print(f"wrote {out / 'leace_necessity.md'}")
 
@@ -281,6 +369,7 @@ def run(args):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--results", default="results/pythia/leace_necessity")
+    ap.add_argument("--insample", default="results/pythia/leace_insample")
     ap.add_argument("--readout", default="results/passive_das_prep/pythia14b_readout.csv")
     ap.add_argument("--report-dir", default="reports/pythia")
     ap.add_argument("--n-boot", type=int, default=1000)
