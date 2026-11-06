@@ -520,5 +520,8 @@ if __name__ == "__main__":
     ap.add_argument("--max-pairs", type=int, default=0, help="smoke test: pairs per verb band")
     ap.add_argument("--max-contexts", type=int, default=0, help="smoke test: contexts kept")
     ap.add_argument("--insample", action="store_true", help="one eraser set fit on all items, evaluated on them")
-    ap.add_argument("--out-dir", default="results/pythia/leace_necessity")
-    run(ap.parse_args())
+    ap.add_argument("--out-dir", default=None,
+                    help="default results/pythia/leace_necessity (results/pythia/leace_insample with --insample)")
+    a = ap.parse_args()
+    a.out_dir = a.out_dir or ("results/pythia/leace_insample" if a.insample else "results/pythia/leace_necessity")
+    run(a)

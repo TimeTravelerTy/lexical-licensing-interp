@@ -55,6 +55,7 @@ def run(args):
     probes = pd.read_csv(res_dir / "probes.csv")
     diag = pd.read_csv(res_dir / "fit_diagnostics.csv")
     folds = pd.read_csv(res_dir / "pairs_folds.csv")
+    assert not meta["args"].get("insample", False), "--results must be the cross-fitted run"
     diag["fitting"] = "cross_fit"
     ins_dir = Path(args.insample) if args.insample else None
     ins = None
@@ -66,6 +67,9 @@ def run(args):
                "natural_vs_crossfit_max_abs": float((Q.lp_by__natural - P.lp_by__natural).abs().max()),
                "items_sha256": hashlib.sha256((ins_dir / "items.csv.gz").read_bytes()).hexdigest()}
         assert ins["meta"]["args"]["insample"]
+        # the in-sample rows are compared against P's natural baseline (and Q's KL used Q's), so they must agree
+        assert np.isfinite(Q.filter(like="lp_by__").to_numpy()).all()
+        assert ins["natural_vs_crossfit_max_abs"] < 1e-3, ins["natural_vs_crossfit_max_abs"]
         for c in Q.columns:
             if (c.startswith("lp_by__") or c.startswith("kl__")) and not c.endswith("__natural"):
                 pre, cond = c.split("__", 1)
