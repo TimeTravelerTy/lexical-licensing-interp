@@ -1,0 +1,11 @@
+{
+  "site": 13,
+  "layer_output": 12,
+  "epochs": 2,
+  "rank": 1,
+  "role": "B5 reverse DAS (round3_plan.md), trained on passives",
+  "epoch_rule": "smallest epoch whose mean held-out cross-class passive IIA is within 0.01 of the site's best",
+  "best_epoch_iia": 0.9211185185185184,
+  "chosen_epoch_iia": 0.9169351851851852,
+  "declared": "written by run_passive_das.py sweep, before any active evaluation"
+}

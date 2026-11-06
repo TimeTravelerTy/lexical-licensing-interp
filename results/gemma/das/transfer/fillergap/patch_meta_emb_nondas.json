@@ -1,0 +1,30 @@
+{
+  "args": {
+    "mode": "patch",
+    "exp": "emb",
+    "data_dir": "data/gemma/transfer/fillergap",
+    "out_dir": "results/gemma/das/transfer/fillergap",
+    "bases": "results/gemma/das/transfer/bases_rank1.npz",
+    "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "float32",
+    "batch": 512,
+    "target_pool": "nondas",
+    "suffix": "_nondas",
+    "sites": "12,15"
+  },
+  "plan_rows": 41340,
+  "bases_sha256": "82d344e51836c5c94d237016332371e295919d0740542cde42d6605adb8fbfaf",
+  "checks": {
+    "12": {
+      "self_set_max_abs_dM": 1.52587890625e-05,
+      "min_eligible_target_verbs": 15
+    },
+    "15": {
+      "self_set_max_abs_dM": 1.52587890625e-05,
+      "min_eligible_target_verbs": 15
+    }
+  },
+  "plan_content_sha256": "4fcd61e68f989fbacf17b43b2282f983f016c89c6e6026cd9b34dc997e8c987c"
+}

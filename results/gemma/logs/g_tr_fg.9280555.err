@@ -1,0 +1,9 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_fillergap.py:119: Pandas4Warning: Starting with pandas version 4.0 all arguments of mean will be keyword-only.
+  pf_ = np.exp(plp.loc[ki[ki.frame == "fill"].pid]).mean(0) - np.exp(plp.loc[ki[ki.frame == "nofill"].pid]).mean(0)
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_fillergap.py:119: Pandas4Warning: Starting with pandas version 4.0 all arguments of mean will be keyword-only.
+  pf_ = np.exp(plp.loc[ki[ki.frame == "fill"].pid]).mean(0) - np.exp(plp.loc[ki[ki.frame == "nofill"].pid]).mean(0)
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!

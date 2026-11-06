@@ -1,0 +1,30 @@
+{
+  "args": {
+    "mode": "patch",
+    "exp": "mat",
+    "data_dir": "data/gemma/transfer/fillergap",
+    "out_dir": "results/gemma/das/transfer/fillergap",
+    "bases": "results/gemma/das/transfer/bases_rank1.npz",
+    "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "float32",
+    "batch": 512,
+    "target_pool": "all",
+    "suffix": "_all",
+    "sites": "12,15"
+  },
+  "plan_rows": 66960,
+  "bases_sha256": "82d344e51836c5c94d237016332371e295919d0740542cde42d6605adb8fbfaf",
+  "checks": {
+    "12": {
+      "self_set_max_abs_dM": 2.09808349609375e-05,
+      "min_eligible_target_verbs": 26
+    },
+    "15": {
+      "self_set_max_abs_dM": 2.09808349609375e-05,
+      "min_eligible_target_verbs": 26
+    }
+  },
+  "plan_content_sha256": "768a1f783c5cf097adc9804d11ceacfdf672ee60813c50e27fab5f20aeeea426"
+}

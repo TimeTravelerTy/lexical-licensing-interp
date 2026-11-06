@@ -1,0 +1,38 @@
+{
+  "exp": "emb",
+  "kept_I_verbs": [
+    "arrive",
+    "blush",
+    "crawl",
+    "cringe",
+    "die",
+    "dine",
+    "emerge",
+    "emigrate",
+    "kneel",
+    "limp",
+    "linger",
+    "perish",
+    "shudder",
+    "sleep",
+    "slog",
+    "slouch",
+    "slump",
+    "sulk",
+    "thrive",
+    "toddle",
+    "totter",
+    "tremble",
+    "waddle"
+  ],
+  "items": 1104,
+  "plan_rows": 41340,
+  "rows_by_cond": {
+    "T": 17358,
+    "I": 17358,
+    "inT": 3312,
+    "inI": 3312
+  },
+  "seed": 17,
+  "plan_sha256": "4dda22a91a909b3f007676eb968fdac49c4c0bc38c7ed4a2505ed58775169d45"
+}

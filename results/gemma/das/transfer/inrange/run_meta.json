@@ -1,0 +1,29 @@
+{
+  "args": {
+    "passive_dir": "data/gemma/transfer/passive_test",
+    "cons_dir": "data/gemma/transfer/constructions",
+    "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv",
+    "bases": "results/gemma/das/transfer/bases_rank1.npz",
+    "out_dir": "results/gemma/das/transfer/inrange",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024,
+    "sites": "12,15"
+  },
+  "prompts": 19978,
+  "items": {
+    "passive": 7983,
+    "OR": 1536,
+    "TC": 1536
+  },
+  "bases_sha256": "82d344e51836c5c94d237016332371e295919d0740542cde42d6605adb8fbfaf",
+  "checks": {
+    "12": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "15": {
+      "self_set_max_abs_dM": 0.0
+    }
+  }
+}

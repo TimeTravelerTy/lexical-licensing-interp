@@ -1,0 +1,35 @@
+{
+  "site": 15,
+  "layer_output": 14,
+  "epochs": 2,
+  "rank": 1,
+  "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+  "selected_metrics": {
+    "site": 15.0,
+    "epoch": 2.0,
+    "iia": 0.9771746031746031,
+    "pc": 1.1993890715472733,
+    "iia_same": 0.9859523809523809,
+    "david": 0.9805555555555555,
+    "rev": 1.2459728057918293
+  },
+  "overall_best_iia": 0.9996031746031747,
+  "sweep_sha256": "d6d4650794a547d88f60dcc9549385d93ad4a03dae70b8d4bd11ccf95a1b39c0",
+  "pc_frac_by_rank": {
+    "1": 1.1843969281244542,
+    "2": 1.1920569243682797,
+    "4": 1.2267509551908993
+  },
+  "tost": {
+    "quantity": "passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching",
+    "active_effect_delta_logP_O": 2.8792,
+    "active_effect_ci95": [
+      2.5163,
+      3.2281
+    ],
+    "n_pairs": 28,
+    "fraction": 0.2,
+    "delta": 0.5758,
+    "rule": "equivalence ('no rise') if the 90% CI of D lies within +/- delta"
+  }
+}

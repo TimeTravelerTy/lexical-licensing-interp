@@ -1,0 +1,36 @@
+{
+  "args": {
+    "prompts": "data/gemma/transfer/passive_test/prompts.csv",
+    "plan": "data/gemma/transfer/passive_test/plan.csv.gz",
+    "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv",
+    "sites": "15,12",
+    "site_dirs": {
+      "15": "results/gemma/das/transfer/final_strict",
+      "12": "results/gemma/das/transfer/final_strict_site12"
+    },
+    "out_dir": "results/gemma/das/transfer/passive_test",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 33766,
+  "plan_rows": 2357032,
+  "plan_sha256": "602bba426fac37462dc4ce0c916a2349d7ec1f305e7cf65c677a6096ba4468a3",
+  "bases_sha256": {
+    "15": "8eafdc95dff791fd4dae0f872c633c6b6c802a0b67678e05da7333badd124a03",
+    "12": "7d2bedf3df67dd8296bcaaa3a3866e388b8d0d801e0833664312b84fe8a72b5a"
+  },
+  "checks": {
+    "15": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.06627273559570312,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "12": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.059413909912109375,
+      "heldout_recompute_median_abs_dM": 0.0
+    }
+  }
+}

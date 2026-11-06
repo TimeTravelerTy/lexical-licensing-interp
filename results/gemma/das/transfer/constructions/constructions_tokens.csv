@@ -1,0 +1,37 @@
+construction,what,token,dprob
+OR,natural good - bad, to,-0.06978574395179749
+OR,natural good - bad, was,0.05620187520980835
+OR,natural good - bad, over,-0.04155152663588524
+OR,natural good - bad, is,0.02788797952234745
+OR,natural good - bad, into,-0.027235832065343857
+OR,natural good - bad, the,0.022132523357868195
+OR,site 12 T - I, to,-0.06549352407455444
+OR,site 12 T - I, the,0.0640554428100586
+OR,site 12 T - I, his,0.06105908378958702
+OR,site 12 T - I, her,0.04973738640546799
+OR,site 12 T - I, in,-0.037717051804065704
+OR,site 12 T - I, over,-0.03651881963014603
+OR,site 15 T - I, to,-0.07712717354297638
+OR,site 15 T - I, the,0.07358242571353912
+OR,site 15 T - I, in,-0.053777702152729034
+OR,site 15 T - I, his,0.04826340824365616
+OR,site 15 T - I, her,0.0449090376496315
+OR,site 15 T - I, over,-0.043691057711839676
+TC,natural good - bad,.,0.041476570069789886
+TC,natural good - bad, in,-0.041468992829322815
+TC,natural good - bad,",",0.02140389382839203
+TC,natural good - bad, around,-0.021321306005120277
+TC,natural good - bad, through,-0.01255116518586874
+TC,natural good - bad, the,0.011257527396082878
+TC,site 12 T - I, the,0.07576777040958405
+TC,site 12 T - I, in,-0.04845094680786133
+TC,site 12 T - I, a,0.02548639476299286
+TC,site 12 T - I, on,-0.02077547460794449
+TC,site 12 T - I, from,-0.014692025259137154
+TC,site 12 T - I, to,-0.014281880110502243
+TC,site 15 T - I, the,0.07843206077814102
+TC,site 15 T - I, in,-0.062357112765312195
+TC,site 15 T - I,.,0.03839994966983795
+TC,site 15 T - I, on,-0.02872706949710846
+TC,site 15 T - I,",",0.02707652747631073
+TC,site 15 T - I, a,0.025162814185023308

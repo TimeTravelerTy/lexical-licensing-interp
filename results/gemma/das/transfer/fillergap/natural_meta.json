@@ -1,0 +1,22 @@
+{
+  "args": {
+    "mode": "natural",
+    "exp": null,
+    "data_dir": "data/gemma/transfer/fillergap",
+    "out_dir": "results/gemma/das/transfer/fillergap",
+    "bases": "results/gemma/das/transfer/bases_rank1.npz",
+    "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "float32",
+    "batch": 512,
+    "target_pool": "all",
+    "suffix": "",
+    "sites": "12,15"
+  },
+  "prompts": 15680,
+  "items": 14976,
+  "token_checks": "passed",
+  "bases_sha256": "82d344e51836c5c94d237016332371e295919d0740542cde42d6605adb8fbfaf",
+  "seconds": 12.0
+}

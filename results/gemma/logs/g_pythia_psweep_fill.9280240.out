@@ -1,0 +1,20 @@
+commit f7c7d060f89ff6087ef552833f4c19d1e7c3f57d
+runner settings {'model_type': 'gpt_neox', 'bos': False, 'fp32_unembed': False, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 77.1875}
+site 0 done in 111s
+site 1 done in 109s
+site 2 done in 108s
+site 3 done in 106s
+site 5 done in 104s
+site 7 done in 100s
+site 9 done in 98s
+site 11 done in 94s
+site 13 done in 92s
+site 15 done in 89s
+site 18 done in 84s
+site 19 done in 83s
+site 20 done in 81s
+site 21 done in 80s
+site 22 done in 78s
+site 23 done in 77s
+site 24 done in 75s
+== done Fri Nov  6 12:51:25 PM JST 2026
