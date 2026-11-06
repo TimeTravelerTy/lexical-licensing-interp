@@ -135,7 +135,8 @@ def run(args):
          f"Run: {meta['minutes']:.0f} min, concept-erasure {meta['concept_erasure_version']}, fp32 (TF32 off).", "",
          "## Setup", "",
          f"- Items: task 1 of `analyze_das_prep.py` (curated `was` prefixes + participle, other verbs' contexts): "
-         f"{meta['n_pairs']} verb pairs x {it.context_id.nunique()} contexts = {meta['n_items']:,} items, a T and an "
+         f"{meta['n_pairs']} verb pairs x 125 contexts each (all of the {it.context_id.nunique()} curated contexts but the "
+         f"pair's own) = {meta['n_items']:,} items, a T and an "
          f"I prompt each ({meta['n_prompts']:,} prompts). Readout: log P(\" by\") at the participle's last token.",
          "- Erasure position: the participle's last subtoken (= last prompt token, the DAS Runner's anchor; the "
          "readout is at the same position). Applied to T and I prompts alike.",
@@ -148,8 +149,8 @@ def run(args):
          "the 126 pairs, strata = verb band x token pattern (both participles single-token or not). Every verb "
          "is in one pair only. Erasers for fold f are fit on the other four folds and applied to fold f "
          "(cross-fitted), so every item is erased by an eraser that never saw its verb.",
-         f"- Fitting samples per eraser (per fold, the same at every site): n = {n_fit.min():,}–{n_fit.max():,} "
-         f"verb-position states ({n_verbs.min()}–{n_verbs.max()} distinct verbs) vs d = {d} (n/d = "
+         f"- Fitting samples per eraser (per fold, the same at every site): n = {int(n_fit.min()):,}–{int(n_fit.max()):,} "
+         f"verb-position states ({int(n_verbs.min())}–{int(n_verbs.max())} distinct verbs) vs d = {d} (n/d = "
          f"{n_fit.min() / d:.1f}–{n_fit.max() / d:.1f}); shrinkage left on (package default).",
          "- Conditions: `single_L` = LEACE at site L only, fit on natural states. `scrub_all` = concept scrubbing "
          "at sites 0..23: per fold, eraser L is fit on the training items' site-L states computed with that "
@@ -191,6 +192,16 @@ def run(args):
               f"pythia14b_readout.csv`, sha256 {repro['readout_sha256'][:12]}…): median |Δ| {repro['median_abs']:.3f}, "
               f"99th pct {repro['p99_abs']:.3f}, max {repro['max_abs']:.3f}; gap from the stored readout "
               f"{fmt(repro['gap_stored_bf16'])} vs fp32 {fmt(ci(nat['all']))}."]
+    L += [""]
+
+    er = probes[probes.erased_here & (probes.condition != "natural")]
+    L += ["## Flags", ""]
+    for kind in ("linear", "mlp"):
+        q = er[er.probe == kind]
+        L += [f"- Held-out {kind.replace('mlp', 'MLP')} probe after erasure is not at chance: {q.acc.min():.3f}–{q.acc.max():.3f} over every "
+              f"erased site and condition (chance 0.5; natural {probes[(probes.condition == 'natural') & (probes.probe == kind)].acc.min():.3f}–"
+              f"{probes[(probes.condition == 'natural') & (probes.probe == kind)].acc.max():.3f})." if q.acc.min() > 0.55 else
+              f"- Held-out {kind.replace('mlp', 'MLP')} probe after erasure: {q.acc.min():.3f}–{q.acc.max():.3f} over the erased sites (chance 0.5)."]
     L += [""]
 
     def row(c, label):
@@ -260,8 +271,9 @@ def run(args):
           "- `reports/pythia/leace_necessity_fit_diagnostics.csv`: per eraser: n, distinct verbs, top singular "
           "value, rank, training cross-covariance residual, held-out class-mean difference before/after.",
           "- `reports/pythia/leace_necessity_references.csv`: the B5 reference numbers.",
-          f"- `{args.results}/`: per-prompt log P(by) and KL per condition (`items.csv.gz`), fold assignment, "
-          "checks, run metadata.", ""]
+          f"- `{args.results.lstrip('./')}/`: per-prompt log P(by) and KL per condition (`items.csv.gz`), fold assignment, "
+          f"checks, run metadata. `items.csv.gz` is not in git (sha256 {hashlib.sha256((res_dir / 'items.csv.gz').read_bytes()).hexdigest()}); "
+          "it is on TSUBAME at `/gs/fs/tga-sip_arase/tyrone/lli_leace/results/pythia/leace_necessity/`.", ""]
     (out / "leace_necessity.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     print(f"wrote {out / 'leace_necessity.md'}")
 

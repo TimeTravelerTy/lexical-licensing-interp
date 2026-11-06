@@ -72,3 +72,6 @@ results/round6/frame_d11_rel/*/frame_h.npz
 
 # Gemma replication raw next-token readout (SHA-256 in reports/gemma/step2_behavior.md)
 results/gemma/by_readout/*.csv
+
+# LEACE necessity per-prompt dump (SHA-256 in reports/pythia/leace_necessity.md)
+results/pythia/leace_necessity/items.csv.gz
