@@ -122,8 +122,10 @@ def main(args):
     R = runs(args)
     L = ["# Transfer of the active-trained direction: Gemma-3-1B next to Pythia-1.4B", "",
          "Script `scripts/analyze_gemma_transfer.py` (sources and definitions in its docstring). Same runners, "
-         "builders and analyses for both models; Gemma at its two rule-picked sites (12: earliest within 0.05 of the "
-         "max active IIA; 15: frozen rule), Pythia at its stored sites. Rows sorted by relative depth = site / layers "
+         "builders and analyses for both models; Gemma at its rule-picked sites (15: frozen rule; 12: earliest within "
+         "0.05 of the max active IIA; 5 and 8: Pythia's declared secondary-site rule, the first sites whose best active "
+         "IIA reaches 0.8 and 0.9, which gives Pythia's 8 and 12), Pythia at its stored sites. Rows sorted by relative "
+         "depth = site / layers "
          "(Pythia 24, Gemma 26). Estimates in nats with 95% CIs.", ""]
     P = passive_rows(R)
     L += ["## Passive (*by*) test", "",
