@@ -32,7 +32,8 @@ REFS = (("d -> I mean (DAS site 8 coordinate)", "d_I", 0.15, 0.09, 0.31),
 
 
 def ci(draws):
-    return draws[0], *np.percentile(draws[1:], [2.5, 97.5])
+    """Estimate and percentile CI; draws whose resample holds no item of the subset (0/0) are dropped."""
+    return draws[0], *np.nanpercentile(draws[1:], [2.5, 97.5])
 
 
 def fmt(t, k=2, sign=True):
@@ -90,7 +91,8 @@ def run(args):
         kl = P[f"kl__{c}"] if c != "natural" else pd.Series(np.zeros(len(P)))
         for m, mk in masks.items():
             g = boot.means(y, mk)
-            r = {"condition": c, "subset": m, "n_items": int(mk.sum()), "n_pairs": int(it.verb_pair[mk].nunique())}
+            r = {"condition": c, "subset": m, "n_items": int(mk.sum()), "n_pairs": int(it.verb_pair[mk].nunique()),
+                 "n_valid_draws": int(np.isfinite(g[1:]).sum())}
             for name, dr in (("gap", g), ("delta_gap", g - nat[m]), ("share_remaining", g / nat[m])):
                 e, lo, hi = ci(dr)
                 r.update({name: e, f"{name}_lo": lo, f"{name}_hi": hi})
@@ -206,7 +208,8 @@ def run(args):
     trs = [row("natural", "natural")]
     trs += [row("scrub_all", "scrub, sites 0–23"), row("scrub_0_8", f"scrub, sites 0–{DAS_SITE}")]
     best = A.loc[[c for c in erased if c.startswith("single_")]].share_remaining.idxmin()
-    trs += [row(best, f"single site, lowest remaining ({best.split('_')[1]})")]
+    trs += [row(f"single_{DAS_SITE}", f"single site {DAS_SITE} (DAS site)"),
+            row(best, f"single site {best.split('_')[1]}: lowest of 24 (post hoc; pointwise CI)")]
     for n, k, e, lo, hi in REFS:
         trs.append([f"ref (B5): {n}", "", f"{1 - e:.2f} [{1 - hi:.2f}, {1 - lo:.2f}]", "", "", ""])
     L += table(hdr, trs) + [""]
@@ -222,7 +225,8 @@ def run(args):
 
     L += ["## Probe accuracy under scrubbing, by site", "",
           f"`scrub_0_8` is erased at sites 0–{DAS_SITE} only; its later sites are unerased (states downstream of "
-          "the erasure).", ""]
+          "the erasure). Probes stop at site 23, the input to the last layer; the state after the last layer "
+          "(which feeds the readout) is not probed.", ""]
     trs = []
     pv = probes.pivot_table(index="site", columns=["condition", "probe"], values="acc")
     for s in range(24):
@@ -235,7 +239,7 @@ def run(args):
           "Share of the natural gap remaining (natural gap in parentheses). Pattern: participle token counts "
           "of T and I (2+ = two or more).", ""]
     subsets = [m for m in masks if m != "all"]
-    show = ["scrub_all", "scrub_0_8", best]
+    show = ["scrub_all", "scrub_0_8", f"single_{DAS_SITE}", best]
     trs = []
     for m in subsets:
         n0 = ci(nat[m])
@@ -243,8 +247,12 @@ def run(args):
         trs.append([m, str(int(sub.loc["natural"].n_pairs)), fmt(n0)] +
                    [fmt(tuple(sub.loc[c, ["share_remaining", "share_remaining_lo", "share_remaining_hi"]]), sign=False)
                     for c in show])
-    L += table(["Subset", "pairs", "natural gap", "scrub 0–23", f"scrub 0–{DAS_SITE}", f"single {best.split('_')[1]}"],
-               trs) + [""]
+    L += table(["Subset", "pairs", "natural gap", "scrub 0–23", f"scrub 0–{DAS_SITE}", f"single {DAS_SITE}",
+                f"single {best.split('_')[1]} (post hoc)"], trs)
+    nv = S[S.subset.isin(subsets)].groupby("subset").n_valid_draws.min()
+    short = nv[nv < args.n_boot]
+    L += ["", "Bootstrap draws that resample no pair of a subset are dropped: " +
+          (", ".join(f"{k} {v}/{args.n_boot} valid" for k, v in short.items()) if len(short) else "none.")] + [""]
     L += ["## Files", "",
           "- `reports/pythia/leace_necessity_gaps.csv`: gap, Δ gap, share remaining (with CIs) per condition and "
           "subset; KL (all-items rows).",

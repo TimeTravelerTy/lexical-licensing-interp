@@ -180,8 +180,8 @@ def compress(E, torch):
     """Store the eraser at its actual rank (the trace-constraint branch returns d x d factors)."""
     from concept_erasure import LeaceEraser
 
-    if E.proj_left.shape[1] <= 4:
-        return E, E.proj_left.shape[1], False
+    if E.proj_left.shape[1] <= 4:  # numerical rank: columns zeroed by svd_tol erase nothing
+        return E, int((E.proj_left.norm(dim=0) > 0).sum()), False
     M = E.proj_left @ E.proj_right
     u, s, vh = torch.linalg.svd(M)
     k = int((s > s[0] * 1e-10).sum()) if s[0] > 0 else 0
@@ -212,14 +212,18 @@ def inner_splits(folds, pairs, n_inner, seed):
     which was fit on the other outer folds only, so neither the probe's training nor its test items were seen by the
     eraser. (Training on other outer folds instead leaks: their erasers were fit on data that include fold g, which
     pushes held-out accuracy below chance.)"""
+    assert n_inner >= 2
     out = []
     for g in np.unique(folds):
         in_g = folds == g
         pg = np.random.default_rng(seed + int(g)).permutation(np.unique(pairs[in_g]))
+        assert len(pg) >= 2, f"outer fold {g} has {len(pg)} pair(s); the nested probe needs at least 2"
         grp = {p: i % n_inner for i, p in enumerate(pg)}
         gi = np.array([grp.get(p, -1) for p in pairs])
         for k in range(min(n_inner, len(pg))):
-            out.append((int(g), k, in_g & (gi != k), in_g & (gi == k)))
+            tr, te = in_g & (gi != k), in_g & (gi == k)
+            if tr.any() and te.any():
+                out.append((int(g), k, tr, te))
     return out
 
 
