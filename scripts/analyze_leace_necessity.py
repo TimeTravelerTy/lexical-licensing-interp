@@ -153,10 +153,12 @@ def run(args):
          "at sites 0..23: per fold, eraser L is fit on the training items' site-L states computed with that "
          "fold's erasers 0..L-1 applied (and L not applied). `scrub_0_8` = erasers 0..8 of `scrub_all` "
          "(the sequential fit makes them identical).",
-         "- Probes: for each condition and site, the erased verb-position states of all items (each erased by its "
-         "own fold's erasers), probe trained on 4 pair folds and tested on the 5th (same folds); chance = 0.5. "
-         "Linear = L2 logistic regression; MLP = one hidden layer of 256 ReLU units. Accuracy pooled over "
-         "test items.",
+         "- Probes (nested, verb-held-out): for each outer fold g, the states of fold g's items after erasure by "
+         "fold g's erasers (fit on the other folds); the fold's pairs are dealt into 5 inner groups, a probe is "
+         "trained on 4 groups and tested on the 5th, accuracy pooled over all test items; chance = 0.5. So neither "
+         "the probe's training nor its test items were seen by the eraser, and probe train and test verbs differ. "
+         "Natural states use the same splits. Linear = L2 logistic regression; MLP = one hidden layer of 256 ReLU "
+         "units.",
          "- KL = mean over prompts (T and I) of KL(P_natural || P_erased) over the full vocabulary at the verb "
          "position, natural recomputed in the same batch.",
          f"- CIs: task-1 two-way cluster bootstrap ({args.n_boot} draws, seed {args.seed}), shared across conditions.",

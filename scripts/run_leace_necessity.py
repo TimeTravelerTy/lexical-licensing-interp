@@ -26,9 +26,10 @@ Conditions (erasure on both T and I prompts, at the verb position only):
 - scrub_0_8: erasers 0..8 of scrub_all only (sequential fitting makes them identical to the first nine).
 
 Measures per item (written per condition): log P(" by"), KL(P_natural || P_erased) over the full vocabulary at the
-verb position; the natural readout is recomputed in the same batch. Probes (held-out by verb pair, the same 5 folds):
-for each condition and site, the erased verb-position states of all items (each item erased by its own fold's
-erasers) -> logistic regression and a 1-hidden-layer MLP trained on 4 folds, tested on the 5th.
+verb position; the natural readout is recomputed in the same batch. Probes (nested, see inner_splits): for each
+condition, site and outer fold g, the erased verb-position states of fold g's items (erased by fold g's erasers, fit
+on the other folds) -> logistic regression and a 1-hidden-layer MLP trained on the fold-g items of 4 of 5 inner pair
+groups and tested on the 5th; accuracy pooled over all test items. Natural states get the same splits.
 
 Checks (fit_diagnostics.csv, checks.json): fitting n and distinct verbs; top singular value of W Sigma_xz (erasure is
 skipped where it is below svd_tol); eraser rank; training cross-covariance residual ||P Sigma_xz|| / ||Sigma_xz||;
@@ -205,18 +206,34 @@ def fit_stats(fitter, torch):
 
 # ---------------------------------------------------------------- probes
 
-def probe_cv(X, y, folds, kind, torch, dev, seed=0):
-    """Accuracy of a probe trained on 4 folds and tested on the 5th, pooled over test items."""
-    correct, n = 0, 0
+def inner_splits(folds, pairs, n_inner, seed):
+    """Nested probe splits: within each outer fold g, its pairs are dealt into n_inner groups; a probe is trained on
+    the fold-g items of n_inner - 1 groups and tested on the last. All items involved were erased by fold g's eraser,
+    which was fit on the other outer folds only, so neither the probe's training nor its test items were seen by the
+    eraser. (Training on other outer folds instead leaks: their erasers were fit on data that include fold g, which
+    pushes held-out accuracy below chance.)"""
+    out = []
     for g in np.unique(folds):
-        tr, te = folds != g, folds == g
+        in_g = folds == g
+        pg = np.random.default_rng(seed + int(g)).permutation(np.unique(pairs[in_g]))
+        grp = {p: i % n_inner for i, p in enumerate(pg)}
+        gi = np.array([grp.get(p, -1) for p in pairs])
+        for k in range(min(n_inner, len(pg))):
+            out.append((int(g), k, in_g & (gi != k), in_g & (gi == k)))
+    return out
+
+
+def probe_cv(X, y, splits, kind, torch, dev, seed=0):
+    """Accuracy of a probe over the nested splits, pooled over test items."""
+    correct, n = 0, 0
+    for g, k, tr, te in splits:
         Xtr = torch.as_tensor(X[tr], device=dev)
         mu, sd = Xtr.mean(0), Xtr.std(0).clamp_min(1e-6)
         Xtr = (Xtr - mu) / sd
         Xte = (torch.as_tensor(X[te], device=dev) - mu) / sd
         ytr = torch.as_tensor(y[tr], device=dev, dtype=torch.float32)
         yte = torch.as_tensor(y[te], device=dev)
-        torch.manual_seed(seed + int(g))
+        torch.manual_seed(seed + 10 * g + k)
         if kind == "linear":
             net = torch.nn.Linear(X.shape[1], 1).to(dev)
             opt = torch.optim.LBFGS(net.parameters(), max_iter=200, line_search_fn="strong_wolfe")
@@ -224,7 +241,7 @@ def probe_cv(X, y, folds, kind, torch, dev, seed=0):
             def closure():
                 opt.zero_grad()
                 loss = torch.nn.functional.binary_cross_entropy_with_logits(net(Xtr)[:, 0], ytr) \
-                    + 1e-4 * net.weight.pow(2).sum()
+                    + 1e-3 * net.weight.pow(2).sum()
                 loss.backward()
                 return loss
             opt.step(closure)
@@ -232,7 +249,7 @@ def probe_cv(X, y, folds, kind, torch, dev, seed=0):
             net = torch.nn.Sequential(torch.nn.Linear(X.shape[1], 256), torch.nn.ReLU(),
                                       torch.nn.Linear(256, 1)).to(dev)
             opt = torch.optim.AdamW(net.parameters(), lr=1e-3, weight_decay=1e-2)
-            gen = torch.Generator(device="cpu").manual_seed(seed + int(g))
+            gen = torch.Generator(device="cpu").manual_seed(seed + 10 * g + k)
             for _ in range(10):
                 perm = torch.randperm(len(Xtr), generator=gen).to(dev)
                 for i in range(0, len(Xtr), 512):
@@ -433,7 +450,7 @@ def run(args):
                              "held_meandiff_post": held_meandiff(X[:, s], h)})
 
     # 5. probes
-    folds_np = P.fold.to_numpy()
+    splits = inner_splits(P.fold.to_numpy(), P.verb_pair.to_numpy(), args.n_inner, seed=1)
     prow = []
     for s in sites:
         Xs = {"natural": nat[:, s], "scrub_all": scrub_states["scrub_all"][:, s],
@@ -447,7 +464,7 @@ def run(args):
             for kind in ("linear", "mlp"):
                 prow.append({"condition": c, "site": s, "probe": kind,
                              "erased_here": c == "single" or c == "scrub_all" or (c == "scrub_0_8" and s <= DAS_SITE),
-                             "acc": probe_cv(X, cls_np, folds_np, kind, torch, dev)})
+                             "acc": probe_cv(X, cls_np, splits, kind, torch, dev)})
         log(f"probes site {s}: " + ", ".join(f"{r['condition']}/{r['probe']} {r['acc']:.3f}" for r in prow[-8:]))
     pd.DataFrame(prow).to_csv(out / "probes.csv", index=False)
     pd.DataFrame(diag).to_csv(out / "fit_diagnostics.csv", index=False)
@@ -479,6 +496,7 @@ if __name__ == "__main__":
     ap.add_argument("--batch-size", type=int, default=256)
     ap.add_argument("--n-folds", type=int, default=5)
     ap.add_argument("--split-seed", type=int, default=0)
+    ap.add_argument("--n-inner", type=int, default=5, help="inner pair groups per outer fold for the probes")
     ap.add_argument("--max-pairs", type=int, default=0, help="smoke test: pairs per verb band")
     ap.add_argument("--max-contexts", type=int, default=0, help="smoke test: contexts kept")
     ap.add_argument("--out-dir", default="results/pythia/leace_necessity")
