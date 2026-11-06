@@ -1,0 +1,19 @@
+{
+  "site": 1,
+  "layer_output": 0,
+  "epochs": 1,
+  "rank": 1,
+  "role": "Gemma transfer, EXPLORATORY / secondary: IIA-matched to Pythia site 6 (one of Pythia's abstract-reading sites 4 / 6 / 8)",
+  "declared": "2026-11-06, before any Gemma transfer evaluation at this site",
+  "site_rule": "for each of Pythia's abstract-reading sites 4 / 6 / 8, the Gemma site (0..25; the last site 26 excluded) whose sweep best-epoch fold-mean held-out active cross IIA is closest to that Pythia site's (the same quantity on results/das_round2/sweep_strict/sweep.csv); ties -> earlier site",
+  "epoch_rule": "the frozen rule applied to this site's sweep curve: smallest epoch whose mean held-out cross-class IIA is within 0.01 of the site's best (sweep_strict/sweep.csv)",
+  "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+  "best_epoch_iia": 0.6846984126984127,
+  "chosen_epoch_iia": 0.6846984126984127,
+  "sweep_sha256": "d6d4650794a547d88f60dcc9549385d93ad4a03dae70b8d4bd11ccf95a1b39c0",
+  "matched_pythia_site": 6,
+  "pythia_best_epoch_iia": 0.6694444444444445,
+  "abs_iia_distance": 0.015253968253968186,
+  "runner_up_site": 2,
+  "runner_up_distance": 0.03220634920634924
+}
