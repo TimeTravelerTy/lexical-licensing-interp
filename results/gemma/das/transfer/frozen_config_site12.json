@@ -1,0 +1,14 @@
+{
+  "site": 12,
+  "layer_output": 11,
+  "epochs": 3,
+  "rank": 1,
+  "role": "Gemma transfer: second site = earliest site whose best active IIA is within 0.05 of the max (last site excluded)",
+  "declared": "2026-11-06, before any Gemma transfer evaluation",
+  "site_rule": "best-epoch fold-mean held-out cross IIA >= max (0.9996, site 20) - 0.05",
+  "epoch_rule": "the frozen rule applied to this site's sweep curve: smallest epoch whose mean held-out cross-class IIA is within 0.01 of the site's best (sweep_strict/sweep.csv)",
+  "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+  "best_epoch_iia": 0.9553650793650794,
+  "chosen_epoch_iia": 0.9493333333333333,
+  "sweep_sha256": "d6d4650794a547d88f60dcc9549385d93ad4a03dae70b8d4bd11ccf95a1b39c0"
+}
