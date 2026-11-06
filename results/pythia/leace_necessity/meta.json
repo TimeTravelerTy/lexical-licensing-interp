@@ -10,7 +10,9 @@
     "n_inner": 5,
     "max_pairs": 0,
     "max_contexts": 0,
-    "out_dir": "../results/pythia/leace_necessity",
+    "cumulative": true,
+    "insample": false,
+    "out_dir": "../results/pythia/leace_necessity_v2",
     "dtype": "float32"
   },
   "runner_settings": {
@@ -51,6 +53,6 @@
   ],
   "das_site": 8,
   "scores_sha256": "0cca37eeaf4a5181c70963dd903734662ba7fdc6acabe172b2a02c53c8a05b48",
-  "minutes": 44.34876398245493,
+  "minutes": 58.607146525382994,
   "concept_erasure_version": "0.2.4 (wheel)"
 }

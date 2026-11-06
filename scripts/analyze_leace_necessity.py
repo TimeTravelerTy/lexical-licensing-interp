@@ -414,6 +414,16 @@ def run(args):
         L += [f"Site {ref} (the post hoc single-site minimum; share remaining single {A.loc[best].share_remaining:.2f}"
               + (f", scrub 0–{ref} {sc.share_remaining:.2f}" if sc is not None else "")
               + f", scrub 0–23 {A.loc['scrub_all'].share_remaining:.2f}): |cos| " + "; ".join(sent) + ".", ""]
+        if sc is not None and "cross_fit" in cos:
+            e = cos["cross_fit"]["edit"][:, ref].mean()
+            L += [f"So the scrub eraser at site {ref} removes a direction nearly orthogonal to the one the single-site "
+                  f"eraser removes (edit |cos| {e:.3f}): after erasure at sites 0..{ref - 1}, the class-correlated "
+                  f"direction in the fitting states at site {ref} is a different one, and the single-site direction is "
+                  f"left in place. Of the gap between scrub 0–23 ({A.loc['scrub_all'].share_remaining:.2f}) and single "
+                  f"site {ref} ({A.loc[best].share_remaining:.2f}), the cumulative curve puts "
+                  f"{sc.share_remaining - A.loc[best].share_remaining:.2f} before site {ref + 1} (scrub 0–{ref} "
+                  f"{sc.share_remaining:.2f}) and {A.loc['scrub_all'].share_remaining - sc.share_remaining:+.2f} in "
+                  f"sites {ref + 1}–23.", ""]
         trs, crow = [], []
         for s_ in range(24):
             r = [str(s_)]
@@ -458,7 +468,7 @@ def run(args):
           "- `reports/pythia/leace_necessity_eraser_cosines.csv`: single-site vs scrub eraser |cos| per site.",
           f"- `{args.results.lstrip('./')}/`: per-prompt log P(by) and KL per condition (`items.csv.gz`), fold assignment, "
           f"checks, run metadata. `items.csv.gz` is not in git (sha256 {hashlib.sha256((res_dir / 'items.csv.gz').read_bytes()).hexdigest()}); "
-          "it is on TSUBAME at `/gs/fs/tga-sip_arase/tyrone/lli_leace/results/pythia/leace_necessity/`."]
+          "it is on TSUBAME at `/gs/fs/tga-sip_arase/tyrone/lli_leace/results/pythia/leace_necessity/` (the first run's file next to it as `items_run1.csv.gz`)."]
     if ins:
         L += [f"- `{args.insample.lstrip('./')}/`: the same files for the in-sample run (`items.csv.gz` not in git, "
               f"sha256 {ins['items_sha256']}; on TSUBAME under `lli_leace/{args.insample.lstrip('./')}/`)."]

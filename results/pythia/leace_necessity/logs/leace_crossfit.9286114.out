@@ -1,0 +1,45 @@
+commit 7763018e6d374db2bb153c9a702ce303a63fda15
+runner settings {'model_type': 'gpt_neox', 'bos': False, 'fp32_unembed': False, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 76.90739440917969}
+[     57s] 31500 prompts, 126 pairs, 126 contexts, folds [26, 25, 25, 25, 25]
+[     85s] natural pass done
+[    113s] single-layer erasers fit
+[    377s] scrub fold 0 fit
+[    643s] scrub fold 1 fit
+[    909s] scrub fold 2 fit
+[   1177s] scrub fold 3 fit
+[   1445s] scrub fold 4 fit
+[   1604s] scrub replay {'mean_maxabs': 1.1368683772161603e-13, 'xcov_rel': 1.8260852055245102e-15, 'post_xcov_resid_max': 7.481755393529675e-08}
+[   1615s] eval batch 1/124
+[   1809s] eval batch 21/124
+[   2020s] eval batch 41/124
+[   2246s] eval batch 61/124
+[   2472s] eval batch 81/124
+[   2716s] eval batch 101/124
+[   2984s] eval batch 121/124
+[   3018s] checks {'self_patch_max_abs': 0.0, 'outside_anchor_max_abs': 0.0, 'single_offline_max_abs': 0.0, 'natural_vs_pass_max_abs': 0.0}
+[   3063s] probes site 0: natural/linear 0.615, natural/mlp 0.615, scrub_all/linear 0.619, scrub_all/mlp 0.607, scrub_0_8/linear 0.619, scrub_0_8/mlp 0.607, single/linear 0.619, single/mlp 0.607
+[   3083s] probes site 1: natural/linear 0.645, natural/mlp 0.647, scrub_all/linear 0.590, scrub_all/mlp 0.596, scrub_0_8/linear 0.590, scrub_0_8/mlp 0.596, single/linear 0.594, single/mlp 0.591
+[   3100s] probes site 2: natural/linear 0.689, natural/mlp 0.688, scrub_all/linear 0.599, scrub_all/mlp 0.620, scrub_0_8/linear 0.599, scrub_0_8/mlp 0.620, single/linear 0.587, single/mlp 0.614
+[   3117s] probes site 3: natural/linear 0.771, natural/mlp 0.754, scrub_all/linear 0.640, scrub_all/mlp 0.629, scrub_0_8/linear 0.640, scrub_0_8/mlp 0.629, single/linear 0.628, single/mlp 0.620
+[   3134s] probes site 4: natural/linear 0.851, natural/mlp 0.829, scrub_all/linear 0.683, scrub_all/mlp 0.668, scrub_0_8/linear 0.683, scrub_0_8/mlp 0.668, single/linear 0.668, single/mlp 0.655
+[   3152s] probes site 5: natural/linear 0.886, natural/mlp 0.872, scrub_all/linear 0.690, scrub_all/mlp 0.690, scrub_0_8/linear 0.690, scrub_0_8/mlp 0.690, single/linear 0.681, single/mlp 0.684
+[   3170s] probes site 6: natural/linear 0.901, natural/mlp 0.894, scrub_all/linear 0.693, scrub_all/mlp 0.710, scrub_0_8/linear 0.693, scrub_0_8/mlp 0.710, single/linear 0.653, single/mlp 0.679
+[   3187s] probes site 7: natural/linear 0.896, natural/mlp 0.882, scrub_all/linear 0.717, scrub_all/mlp 0.715, scrub_0_8/linear 0.717, scrub_0_8/mlp 0.715, single/linear 0.661, single/mlp 0.665
+[   3206s] probes site 8: natural/linear 0.913, natural/mlp 0.895, scrub_all/linear 0.738, scrub_all/mlp 0.739, scrub_0_8/linear 0.738, scrub_0_8/mlp 0.739, single/linear 0.674, single/mlp 0.681
+[   3225s] probes site 9: natural/linear 0.924, natural/mlp 0.913, scrub_all/linear 0.761, scrub_all/mlp 0.763, scrub_0_8/linear 0.779, scrub_0_8/mlp 0.777, single/linear 0.677, single/mlp 0.697
+[   3243s] probes site 10: natural/linear 0.928, natural/mlp 0.920, scrub_all/linear 0.769, scrub_all/mlp 0.774, scrub_0_8/linear 0.790, scrub_0_8/mlp 0.790, single/linear 0.677, single/mlp 0.703
+[   3263s] probes site 11: natural/linear 0.925, natural/mlp 0.912, scrub_all/linear 0.771, scrub_all/mlp 0.761, scrub_0_8/linear 0.798, scrub_0_8/mlp 0.782, single/linear 0.682, single/mlp 0.700
+[   3282s] probes site 12: natural/linear 0.932, natural/mlp 0.922, scrub_all/linear 0.784, scrub_all/mlp 0.773, scrub_0_8/linear 0.819, scrub_0_8/mlp 0.803, single/linear 0.676, single/mlp 0.698
+[   3302s] probes site 13: natural/linear 0.931, natural/mlp 0.915, scrub_all/linear 0.787, scrub_all/mlp 0.771, scrub_0_8/linear 0.825, scrub_0_8/mlp 0.803, single/linear 0.689, single/mlp 0.707
+[   3321s] probes site 14: natural/linear 0.926, natural/mlp 0.908, scrub_all/linear 0.793, scrub_all/mlp 0.778, scrub_0_8/linear 0.828, scrub_0_8/mlp 0.809, single/linear 0.690, single/mlp 0.708
+[   3341s] probes site 15: natural/linear 0.923, natural/mlp 0.906, scrub_all/linear 0.792, scrub_all/mlp 0.775, scrub_0_8/linear 0.832, scrub_0_8/mlp 0.808, single/linear 0.685, single/mlp 0.701
+[   3361s] probes site 16: natural/linear 0.916, natural/mlp 0.903, scrub_all/linear 0.793, scrub_all/mlp 0.776, scrub_0_8/linear 0.830, scrub_0_8/mlp 0.813, single/linear 0.688, single/mlp 0.704
+[   3381s] probes site 17: natural/linear 0.909, natural/mlp 0.893, scrub_all/linear 0.787, scrub_all/mlp 0.769, scrub_0_8/linear 0.828, scrub_0_8/mlp 0.808, single/linear 0.677, single/mlp 0.701
+[   3401s] probes site 18: natural/linear 0.902, natural/mlp 0.888, scrub_all/linear 0.780, scrub_all/mlp 0.767, scrub_0_8/linear 0.820, scrub_0_8/mlp 0.806, single/linear 0.660, single/mlp 0.690
+[   3422s] probes site 19: natural/linear 0.900, natural/mlp 0.884, scrub_all/linear 0.777, scrub_all/mlp 0.766, scrub_0_8/linear 0.817, scrub_0_8/mlp 0.803, single/linear 0.666, single/mlp 0.689
+[   3442s] probes site 20: natural/linear 0.898, natural/mlp 0.883, scrub_all/linear 0.771, scrub_all/mlp 0.763, scrub_0_8/linear 0.814, scrub_0_8/mlp 0.798, single/linear 0.663, single/mlp 0.687
+[   3463s] probes site 21: natural/linear 0.896, natural/mlp 0.880, scrub_all/linear 0.770, scrub_all/mlp 0.762, scrub_0_8/linear 0.813, scrub_0_8/mlp 0.798, single/linear 0.662, single/mlp 0.684
+[   3484s] probes site 22: natural/linear 0.894, natural/mlp 0.876, scrub_all/linear 0.766, scrub_all/mlp 0.759, scrub_0_8/linear 0.810, scrub_0_8/mlp 0.794, single/linear 0.661, single/mlp 0.686
+[   3504s] probes site 23: natural/linear 0.889, natural/mlp 0.876, scrub_all/linear 0.759, scrub_all/mlp 0.756, scrub_0_8/linear 0.806, scrub_0_8/mlp 0.792, single/linear 0.663, single/mlp 0.687
+[   3516s] wrote ../results/pythia/leace_necessity_v2
+== done Sat Nov  7 12:18:33 AM JST 2026
