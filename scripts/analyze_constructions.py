@@ -180,12 +180,13 @@ def write_report(args, res, pj, gt, tk):
     gate_tc = dict(zip(gt.site, gt["pass"]))
     for cons, name in (("OR", "Object relatives (\"The house that John destroyed\")"),
                        ("TC", "Tough constructions (\"The house is easy to destroy\")")):
-        ng = g(cons, 8, "nat_gap", "L")
+        ns = 8 if 8 in SITES else SITES[0]  # natural gaps do not depend on the site
+        ng = g(cons, ns, "nat_gap", "L")
         natok = ng.lo95 > 0
         L += [f"## {name}", "",
               f"Natural gate: good − bad L = {f3(ng)} → **{'passes' if natok else 'fails'}**; numerator "
-              f"{f3(g(cons, 8, 'nat_gap', NUM[cons]))}, PREP {f3(g(cons, 8, 'nat_gap', 'PREP'))}, O "
-              f"{f3(g(cons, 8, 'nat_gap', 'O'))}.", "",
+              f"{f3(g(cons, ns, 'nat_gap', NUM[cons]))}, PREP {f3(g(cons, ns, 'nat_gap', 'PREP'))}, O "
+              f"{f3(g(cons, ns, 'nat_gap', 'O'))}.", "",
               "| Site | δ / δ_L | D(O) | D(L) | D(numerator) | D(PREP) | D(\" by\") | swap good→bad: L | z gap / active | Reading |",
               "|---:|---|---|---|---|---|---|---|---|---|"]
         for s in SITES:
