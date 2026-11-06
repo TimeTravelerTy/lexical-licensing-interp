@@ -28,6 +28,7 @@ from analyze_das_prep import BANDS, Boot, load_readout, table
 from build_das_prep_prompts import pid
 
 DAS_SITE = 8
+NEC_TOP = 12  # sites 0..~12: the necessity-relevant range (later sites sit next to the readout)
 # Round 5, B5 (reports/round5/b5_necessity.md), frame `hasbeen`, all 64 pairs: share of the natural good - bad
 # " by" gap removed, with 95% CIs. Different items (B7 items, "The N has been V"), fp32.
 REFS = (("d -> I mean (DAS site 8 coordinate)", "d_I", 0.15, 0.09, 0.31),
@@ -57,6 +58,14 @@ def run(args):
     folds = pd.read_csv(res_dir / "pairs_folds.csv")
     assert not meta["args"].get("insample", False), "--results must be the cross-fitted run"
     diag["fitting"] = "cross_fit"
+    erasers = {"cross_fit": np.load(res_dir / "erasers.npz") if (res_dir / "erasers.npz").exists() else None}
+    prev = None
+    if args.previous and Path(args.previous).exists():  # an earlier run of the same cross-fitted job
+        R = pd.read_csv(args.previous)
+        assert (R[["item", "side"]].to_numpy() == P[["item", "side"]].to_numpy()).all()
+        common = [c for c in R.columns if (c.startswith("lp_by__") or c.startswith("kl__")) and c in P.columns]
+        prev = {"n_columns": len(common), "max_abs": float(max((R[c] - P[c]).abs().max() for c in common)),
+                "sha256": hashlib.sha256(Path(args.previous).read_bytes()).hexdigest()}
     ins_dir = Path(args.insample) if args.insample else None
     ins = None
     if ins_dir and (ins_dir / "items.csv.gz").exists():
@@ -80,6 +89,7 @@ def run(args):
         qd = pd.read_csv(ins_dir / "fit_diagnostics.csv")
         qd["fitting"] = "insample"
         diag = pd.concat([diag, qd], ignore_index=True)
+        erasers["insample"] = np.load(ins_dir / "erasers.npz") if (ins_dir / "erasers.npz").exists() else None
     conds = [c[len("lp_by__"):] for c in P.columns if c.startswith("lp_by__")]
     erased = [c for c in conds if c != "natural"]
 
@@ -228,6 +238,10 @@ def run(args):
               f"pythia14b_readout.csv`, sha256 {repro['readout_sha256'][:12]}…): median |Δ| {repro['median_abs']:.3f}, "
               f"99th pct {repro['p99_abs']:.3f}, max {repro['max_abs']:.3f}; gap from the stored readout "
               f"{fmt(repro['gap_stored_bf16'])} vs fp32 {fmt(ci(nat['all']))}."]
+    if prev:
+        L += [f"- This cross-fitted run vs the first run of the same job (per-prompt log P(by) and KL, "
+              f"{prev['n_columns']} shared columns; first run's items.csv.gz sha256 {prev['sha256'][:12]}…): "
+              f"max |Δ| = {prev['max_abs']:.2g}."]
     if ins:
         ic, irp = ins["checks"], ins["checks"]["scrub_replay"]
         idg = diag[diag.fitting == "insample"]
@@ -258,6 +272,10 @@ def run(args):
               f"erased site and condition (chance 0.5; natural {probes[(probes.condition == 'natural') & (probes.probe == kind)].acc.min():.3f}–"
               f"{probes[(probes.condition == 'natural') & (probes.probe == kind)].acc.max():.3f})." if q.acc.min() > 0.55 else
               f"- Held-out {kind.replace('mlp', 'MLP')} probe after erasure: {q.acc.min():.3f}–{q.acc.max():.3f} over the erased sites (chance 0.5)."]
+    L += [f"- Readout proximity: *by* is predicted at the verb position itself, so late sites sit next to the "
+          f"readout, and erasure there partly removes the readout computation itself rather than only verb-class "
+          f"information the readout uses. Sites 0–~{NEC_TOP} are the necessity-relevant range; rows for later sites "
+          f"(including the post hoc single-site minimum) do not test necessity in that sense."]
     if ins:
         ie = probes[probes.erased_here & probes.condition.str.startswith("insample_")
                     & (probes.condition != "insample_natural")]
@@ -279,18 +297,25 @@ def run(args):
            "MLP probe"]
     L += ["## Main table", "",
           "Probe columns: held-out accuracy at the erased site (scrubbing: range over the erased sites); for the "
-          "in-sample rows the test verbs are held out from the probe but not from the eraser. The B5 "
+          "in-sample rows the test verbs are held out from the probe but not from the eraser. Rows for sites "
+          f"after ~{NEC_TOP} (scrub 0–23, the post hoc single-site minimum) include erasure next to the readout "
+          "(see Flags). The B5 "
           "reference rows are from `reports/round5/b5_necessity.md` (frame `hasbeen`, all 64 pairs; different "
           "items and frame: B7 items, \"The N has been V\"), converted to share remaining = 1 − share removed.", ""]
     trs = [row("natural", "natural")]
-    trs += [row("scrub_all", "scrub, sites 0–23"), row("scrub_0_8", f"scrub, sites 0–{DAS_SITE}")]
+    trs += [row("scrub_all", "scrub, sites 0–23")]
+    if f"scrub_0_{NEC_TOP}" in A.index:
+        trs += [row(f"scrub_0_{NEC_TOP}", f"scrub, sites 0–{NEC_TOP}")]
+    trs += [row("scrub_0_8", f"scrub, sites 0–{DAS_SITE}")]
     best = A.loc[[c for c in erased if c.startswith("single_")]].share_remaining.idxmin()
     trs += [row(f"single_{DAS_SITE}", f"single site {DAS_SITE} (DAS site)"),
             row(best, f"single site {best.split('_')[1]}: lowest of 24 (post hoc; pointwise CI)")]
     if ins:
         ibest = A.loc[[c for c in erased if c.startswith("insample_single_")]].share_remaining.idxmin()
-        trs += [row("insample_scrub_all", "in-sample: scrub, sites 0–23"),
-                row("insample_scrub_0_8", f"in-sample: scrub, sites 0–{DAS_SITE}"),
+        trs += [row("insample_scrub_all", "in-sample: scrub, sites 0–23")]
+        if f"insample_scrub_0_{NEC_TOP}" in A.index:
+            trs += [row(f"insample_scrub_0_{NEC_TOP}", f"in-sample: scrub, sites 0–{NEC_TOP}")]
+        trs += [row("insample_scrub_0_8", f"in-sample: scrub, sites 0–{DAS_SITE}"),
                 row(f"insample_single_{DAS_SITE}", f"in-sample: single site {DAS_SITE} (DAS site)"),
                 row(ibest, f"in-sample: single site {ibest.split('_')[-1]}: lowest of 24 (post hoc; pointwise CI)")]
     for n, k, e, lo, hi in REFS:
@@ -332,6 +357,67 @@ def run(args):
         L += table(["Site", "*by* gap", "share remaining", "KL", "linear probe", "MLP probe", "fit-set linear",
                     "scrub 0–23 fit-set lin", "scrub 0–23 lin", "scrub 0–23 MLP"], trs) + [""]
 
+    def scrub_name(k, pre=""):
+        return pre + ("scrub_all" if k == 23 else f"scrub_0_{k}")
+
+    curve_runs = [(lab, pre) for lab, pre in (("cross-fitted", ""), ("in-sample", "insample_"))
+                  if all(scrub_name(k, pre) in A.index for k in range(24))]
+    if curve_runs:
+        L += ["## Cumulative scrub curve", "",
+              "Scrubbing sites 0..k (the first k + 1 erasers of the sequential fit), share of the natural gap "
+              f"remaining and KL, k = 0..23. Sites after ~{NEC_TOP} sit next to the readout (see Flags).", ""]
+        trs, cur = [], []
+        for k in range(24):
+            r = [str(k)]
+            for lab, pre in curve_runs:
+                q = A.loc[scrub_name(k, pre)]
+                r += [fmt((q.share_remaining, q.share_remaining_lo, q.share_remaining_hi), sign=False),
+                      f"{q.kl_mean:.3f}"]
+                cur.append({"run": lab, "k": k, "condition": scrub_name(k, pre), "share_remaining": q.share_remaining,
+                            "share_remaining_lo": q.share_remaining_lo, "share_remaining_hi": q.share_remaining_hi,
+                            "kl_mean": q.kl_mean})
+            trs.append(r)
+        L += table(["k"] + [h for lab, _ in curve_runs for h in (f"{lab}: share remaining", f"{lab}: KL")],
+                   trs) + [""]
+        pd.DataFrame(cur).to_csv(out / "leace_necessity_cumulative.csv", index=False)
+
+    def cosines(npz):  # |cos| between single_L and scrub_L eraser vectors, [F, 24] per part
+        res = {}
+        for part in ("edit", "read"):
+            a, b = npz[f"single_{part}"], npz[f"scrub_{part}"]
+            res[part] = np.abs((a * b).sum(-1)) / (np.linalg.norm(a, axis=-1) * np.linalg.norm(b, axis=-1))
+        return res
+
+    cos = {k: cosines(v) for k, v in erasers.items() if v is not None}
+    if cos:
+        ref = int(best.split("_")[1])
+        L += ["## Single-site vs sequential-scrub eraser at the same site", "",
+              "Each rank-1 eraser maps x to x − ⟨r, x − b⟩ e. |cos| between the single-site eraser at site L (fit on "
+              "natural site-L states) and the scrub eraser at site L (fit on site-L states after erasure at sites "
+              "0..L−1), for the edit direction e (what is removed) and the read direction r (what it is keyed on). "
+              "Cross-fitted: mean over the 5 folds [min, max]; in-sample: one eraser pair per site.", ""]
+        sent = []
+        for lab, c in cos.items():
+            e, r_ = c["edit"][:, ref], c["read"][:, ref]
+            sent.append(f"{lab.replace('_', '-')}: edit {e.mean():.3f}" + (f" [{e.min():.3f}, {e.max():.3f}]" if len(e) > 1 else "")
+                        + f", read {r_.mean():.3f}" + (f" [{r_.min():.3f}, {r_.max():.3f}]" if len(r_) > 1 else ""))
+        sc = A.loc[scrub_name(ref)] if scrub_name(ref) in A.index else None
+        L += [f"Site {ref} (the post hoc single-site minimum; share remaining single {A.loc[best].share_remaining:.2f}"
+              + (f", scrub 0–{ref} {sc.share_remaining:.2f}" if sc is not None else "")
+              + f", scrub 0–23 {A.loc['scrub_all'].share_remaining:.2f}): |cos| " + "; ".join(sent) + ".", ""]
+        trs, crow = [], []
+        for s_ in range(24):
+            r = [str(s_)]
+            for lab, c in cos.items():
+                for part in ("edit", "read"):
+                    v = c[part][:, s_]
+                    r.append(f"{v.mean():.3f}" + (f" [{v.min():.3f}, {v.max():.3f}]" if len(v) > 1 else ""))
+                    crow.append({"fitting": lab, "site": s_, "direction": part, "abs_cos_mean": v.mean(),
+                                 "abs_cos_min": v.min(), "abs_cos_max": v.max()})
+            trs.append(r)
+        L += table(["Site"] + [f"{lab.replace('_', '-')} {part}" for lab in cos for part in ("edit", "read")], trs) + [""]
+        pd.DataFrame(crow).to_csv(out / "leace_necessity_eraser_cosines.csv", index=False)
+
     L += ["## By verb band and token pattern", "",
           "Share of the natural gap remaining (natural gap in parentheses). Pattern: participle token counts "
           "of T and I (2+ = two or more).", ""]
@@ -359,6 +445,8 @@ def run(args):
           "- `reports/pythia/leace_necessity_fit_diagnostics.csv`: per eraser: n, distinct verbs, top singular "
           "value, rank, training cross-covariance residual, held-out class-mean difference before/after.",
           "- `reports/pythia/leace_necessity_references.csv`: the B5 reference numbers.",
+          "- `reports/pythia/leace_necessity_cumulative.csv`: the cumulative scrub curve.",
+          "- `reports/pythia/leace_necessity_eraser_cosines.csv`: single-site vs scrub eraser |cos| per site.",
           f"- `{args.results.lstrip('./')}/`: per-prompt log P(by) and KL per condition (`items.csv.gz`), fold assignment, "
           f"checks, run metadata. `items.csv.gz` is not in git (sha256 {hashlib.sha256((res_dir / 'items.csv.gz').read_bytes()).hexdigest()}); "
           "it is on TSUBAME at `/gs/fs/tga-sip_arase/tyrone/lli_leace/results/pythia/leace_necessity/`."]
@@ -374,6 +462,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--results", default="results/pythia/leace_necessity")
     ap.add_argument("--insample", default="results/pythia/leace_insample")
+    ap.add_argument("--previous", default="", help="items.csv.gz of an earlier run of the cross-fitted job")
     ap.add_argument("--readout", default="results/passive_das_prep/pythia14b_readout.csv")
     ap.add_argument("--report-dir", default="reports/pythia")
     ap.add_argument("--n-boot", type=int, default=1000)

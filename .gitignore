@@ -75,3 +75,5 @@ results/gemma/by_readout/*.csv
 
 # LEACE necessity per-prompt dump (SHA-256 in reports/pythia/leace_necessity.md)
 results/pythia/leace_necessity/items.csv.gz
+results/pythia/leace_*/erasers.npz
+results/pythia/leace_insample/items.csv.gz

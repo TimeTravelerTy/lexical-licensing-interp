@@ -43,8 +43,12 @@ collapses to one "fold" (no cross-fitting); the same conditions, measures and ch
 split becomes a 5-group verb-held-out split over all pairs (the eraser has seen the test verbs), and a linear probe is
 also trained and scored on all items ("linear_fitset": the fitting distribution, where LEACE's guarantee applies).
 
+--cumulative adds the scrub prefixes scrub_0_k (erasers 0..k of scrub_all, k = 0..23; scrub_0_8 and scrub_all are
+k = 8 and 23), evaluated for log P(by) and KL only.
+
 Outputs (--out-dir): items.csv.gz (one row per prompt, lp_by and kl per condition), probes.csv, fit_diagnostics.csv,
-pairs_folds.csv, checks.json, meta.json.
+pairs_folds.csv, checks.json, meta.json, erasers.npz (per condition, fold and site: the rank-1 eraser's edit
+direction (proj_left column: x' = x - <read, x - bias> edit), read direction (proj_right row) and bias).
 """
 
 from __future__ import annotations
@@ -192,6 +196,14 @@ def compress(E, torch):
     u, s, vh = torch.linalg.svd(M)
     k = int((s > s[0] * 1e-10).sum()) if s[0] > 0 else 0
     return LeaceEraser(u[:, :k] * s[:k], vh[:k], E.bias), k, True
+
+
+def rank1(E):
+    """Edit and read vectors of a rank-1 eraser (x' = x - (read . (x - bias)) edit)."""
+    nl = E.proj_left.norm(dim=0)
+    j = int(nl.argmax())
+    assert int((nl > 0).sum()) == 1, f"eraser rank {int((nl > 0).sum())} != 1"
+    return E.proj_left[:, j], E.proj_right[j], E.bias
 
 
 def fit_stats(fitter, torch):
@@ -402,7 +414,17 @@ def run(args):
     log(f"scrub replay {rep}")
 
     # 4. evaluation: every condition, natural recomputed in the same batch
+    # erasers.npz: rank-1 vectors of every eraser
+    vec = {}
+    for cname, ers in (("single", single), ("scrub", scrub)):
+        for part, i in (("edit", 0), ("read", 1), ("bias", 2)):
+            vec[f"{cname}_{part}"] = np.stack([np.stack([rank1(ers[s][f])[i].double().cpu().numpy() for s in sites])
+                                               for f in range(F)])  # [F, 24, d]
+    np.savez_compressed(out / "erasers.npz", **vec)
+
     conds = [f"single_{s}" for s in sites] + ["scrub_all", "scrub_0_8"]
+    if args.cumulative:
+        conds += [f"scrub_0_{k}" for k in sites if k not in (DAS_SITE, N_SITES - 1)]
     lp_by = {c: np.zeros(N) for c in ["natural"] + conds}
     kl = {c: np.zeros(N) for c in conds}
     scrub_states = {c: np.zeros((N, N_SITES, d), dtype=np.float32) for c in ("scrub_all", "scrub_0_8")}
@@ -429,7 +451,7 @@ def run(args):
                     return new
                 hooks = {s: h1}
             else:
-                top = N_SITES - 1 if c == "scrub_all" else DAS_SITE
+                top = N_SITES - 1 if c == "scrub_all" else int(c.split("_")[2])
 
                 def h2(v, s):
                     new = apply_erasers(scrub[s], ef, v) if s <= top else v
@@ -442,7 +464,7 @@ def run(args):
             if c.startswith("single_"):
                 off = apply_erasers(single[s], ef, torch.as_tensor(nat[b, s], device=dev))
                 chk["single_offline_max_abs"] = max(chk["single_offline_max_abs"], float((cap[s] - off).abs().max()))
-            else:
+            elif c in scrub_states:
                 for s in sites:
                     scrub_states[c][b, s] = cap[s].cpu().numpy()
         if bi == 0:  # non-anchor positions untouched by the erasure hooks (scrub_all, every site)
@@ -519,6 +541,7 @@ if __name__ == "__main__":
     ap.add_argument("--n-inner", type=int, default=5, help="inner pair groups per outer fold for the probes")
     ap.add_argument("--max-pairs", type=int, default=0, help="smoke test: pairs per verb band")
     ap.add_argument("--max-contexts", type=int, default=0, help="smoke test: contexts kept")
+    ap.add_argument("--cumulative", action="store_true", help="also evaluate every scrub prefix 0..k")
     ap.add_argument("--insample", action="store_true", help="one eraser set fit on all items, evaluated on them")
     ap.add_argument("--out-dir", default=None,
                     help="default results/pythia/leace_necessity (results/pythia/leace_insample with --insample)")
