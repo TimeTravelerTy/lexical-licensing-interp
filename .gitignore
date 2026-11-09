@@ -77,3 +77,4 @@ results/gemma/by_readout/*.csv
 results/pythia/leace_necessity/items.csv.gz
 results/pythia/leace_*/erasers.npz
 results/pythia/leace_insample/items.csv.gz
+results/pythia/leace_permutation/*/items.csv.gz
