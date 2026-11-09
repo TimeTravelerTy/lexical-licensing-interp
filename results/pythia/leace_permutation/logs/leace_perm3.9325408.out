@@ -1,0 +1,18 @@
+commit e407b0cee89544c05d83314481f81cc4e5d1267b
+runner settings {'model_type': 'gpt_neox', 'bos': False, 'fp32_unembed': False, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 76.90739440917969}
+[     40s] 31500 prompts; natural site-8 states captured
+[    351s] p15: erasers fit (label corr +0.000)
+[    660s] p16: erasers fit (label corr +0.000)
+[    970s] p17: erasers fit (label corr +0.000)
+[   1279s] p18: erasers fit (label corr +0.000)
+[   1589s] p19: erasers fit (label corr +0.000)
+[   1593s] eval batch 1/124
+[   1670s] eval batch 21/124
+[   1754s] eval batch 41/124
+[   1845s] eval batch 61/124
+[   1935s] eval batch 81/124
+[   2034s] eval batch 101/124
+[   2142s] eval batch 121/124
+[   2161s] checks {'label_corr': {'p15': 0.0, 'p16': 0.0, 'p17': 0.0, 'p18': 0.0, 'p19': 0.0}, 'natural_vs_reference_max_abs': 8.881784197001252e-16, 'reference_items_sha256': '4a0eb9bfb82e7e96150c1a5802b9f782324ea83c2c75478163fcc88d94fc775d'}
+[   2161s] wrote ../results/pythia/leace_permutation/part3
+== done Mon Nov  9 04:41:32 PM JST 2026
