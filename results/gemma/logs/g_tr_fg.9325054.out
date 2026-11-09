@@ -1,0 +1,460 @@
+commit 386177512d99d81d4715caf0d25e9707255b60b5
+== 16:11:07 python3 scripts/run_fillergap.py natural --data-dir data/gemma/transfer/fillergap --out-dir results/gemma/das/transfer/fillergap --bases results/gemma/das/transfer/bases_rank1.npz --folds results/gemma/das/transfer/final_strict/pairs_folds.csv --model google/gemma-3-1b-pt --device cuda --dtype float32 --batch 512 --sites 0,1,2,3,4,5,8,12,15
+runner settings {'model_type': 'gemma3_text', 'bos': True, 'fp32_unembed': True, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 58233.734375}
+{"args": {"mode": "natural", "exp": null, "data_dir": "data/gemma/transfer/fillergap", "out_dir": "results/gemma/das/transfer/fillergap", "bases": "results/gemma/das/transfer/bases_rank1.npz", "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv", "model": "google/gemma-3-1b-pt", "device": "cuda", "dtype": "float32", "batch": 512, "target_pool": "all", "suffix": "", "sites": "0,1,2,3,4,5,8,12,15"}, "prompts": 15680, "items": 14976, "token_checks": "passed", "bases_sha256": "bf1d31f30fb0cf4a52333f7d8bb8f5feffce02a1b9a2486d0ba93e0d52f9f033", "seconds": 12.7}
+== 16:11:43 python3 scripts/analyze_fillergap.py gates --root results/gemma/das/transfer --data-dir data/gemma/transfer/fillergap --out-dir results/gemma/das/transfer/fillergap --report reports/gemma/transfer/fillergap_gates_r4.md --sites 0,1,2,3,4,5,8,12,15 --decl 0,1,2,3,4,5,8,12,15
+# Round 4, Part B stage 1: natural gates
+
+Spec: `plan.md`, B6/B7. Run: `run_fillergap.py natural`; analysis: `analyze_fillergap.py gates`. fill = with the wh filler, nofill = without. L = log P(".") − log P(PREP) (B6) or log P("?") − log P(PREP) (B7). Half A (12 contexts) selects I verbs; half B (12 contexts) tests. CIs: T and I verbs resampled independently, contexts jointly (2,000 draws, seed 17).
+
+## B6 embedded wh ("I know that / what NAME V-ed")
+
+**I-verb gate (half A):** 23 of 50 I verbs kept (filler raises PREP, CI above 0). Dropped: appear, camp, creep, decamp, defect, faint, frolic, hitchhike, languish, loiter, lounge, lumber, lurk, mosey, nap, reappear, reemerge, remain, saunter, skulk, sneeze, tarry, tiptoe, toil, vanish, whiz, writhe.
+
+| Contexts, I set | n I | interaction on L | interaction on O |
+|---|---:|---|---|
+| half B, kept I | 23 | +1.09 [+0.72, +1.43] | +0.71 [+0.39, +1.03] |
+| all contexts, kept I | 23 | +1.11 [+0.78, +1.41] | +0.69 [+0.39, +1.01] |
+| half B, all I | 50 | +0.53 [+0.19, +0.85] | +0.96 [+0.69, +1.20] |
+
+**Natural gate (half B, kept I verbs): passes.**
+
+Per matrix verb / auxiliary (half B, kept I): forgot: L +1.31 [+0.97, +1.65], O +0.64 [+0.32, +0.95]; heard: L +0.65 [+0.25, +1.01], O +0.76 [+0.37, +1.19]; know: L +1.30 [+0.95, +1.64], O +0.52 [+0.16, +0.84]; remember: L +1.10 [+0.70, +1.47], O +0.91 [+0.53, +1.32]
+
+Prepositions the filler raises most after kept I verbs (half B, probability change): ' on' +0.077, ' about' +0.037, ' for' +0.029, ' over' +0.027, ' through' +0.018, ' from' +0.013, ' of' +0.008, ' at' +0.005
+
+Class × frame means (half B, log-probs):
+
+| class | frame | O | PREP | . or ? | L | END |
+|---|---|---:|---:|---:|---:|---:|
+| I | fill | -3.88 | -0.52 | -3.58 | -3.05 | -2.88 |
+| I | nofill | -3.02 | -0.62 | -4.36 | -3.73 | -3.52 |
+| T | fill | -2.13 | -1.09 | -2.60 | -1.51 | -1.92 |
+| T | nofill | -0.32 | -3.73 | -6.45 | -2.72 | -5.26 |
+
+Natural z along d_s (all contexts; 0 = active intransitive, 1 = transitive level):
+
+| site | T nofill | T fill | I nofill | I fill |
+|---:|---:|---:|---:|---:|
+| 0 | 0.92 | 0.92 | 0.05 | 0.05 |
+| 1 | 0.89 | 0.89 | 0.00 | 0.00 |
+| 2 | 0.94 | 0.93 | 0.09 | 0.09 |
+| 3 | 0.92 | 0.92 | 0.06 | 0.07 |
+| 4 | 0.89 | 0.81 | 0.07 | 0.02 |
+| 5 | 0.92 | 0.84 | 0.03 | -0.01 |
+| 8 | 0.98 | 0.76 | 0.06 | -0.07 |
+| 12 | 0.97 | 0.68 | 0.04 | -0.04 |
+| 15 | 1.05 | 0.68 | 0.10 | 0.11 |
+
+## B7 matrix wh ("AUX NAME V" / "What aux NAME V")
+
+**I-verb gate (half A):** 37 of 50 I verbs kept (filler raises PREP, CI above 0). Dropped: appear, camp, creep, decamp, frolic, lounge, lumber, lurk, remain, skulk, waddle, whiz, writhe.
+
+| Contexts, I set | n I | interaction on L | interaction on O |
+|---|---:|---|---|
+| half B, kept I | 37 | +1.26 [+0.88, +1.63] | +1.72 [+1.42, +2.01] |
+| all contexts, kept I | 37 | +1.25 [+0.90, +1.63] | +1.70 [+1.44, +1.98] |
+| half B, all I | 50 | +0.83 [+0.45, +1.23] | +1.68 [+1.39, +1.98] |
+
+**Natural gate (half B, kept I verbs): passes.**
+
+Per matrix verb / auxiliary (half B, kept I): Can: L +1.41 [+1.06, +1.79], O +2.07 [+1.69, +2.45]; Did: L +1.49 [+1.04, +1.93], O +1.88 [+1.57, +2.20]; Will: L +1.21 [+0.76, +1.65], O +1.53 [+1.22, +1.82]; Would: L +0.92 [+0.58, +1.26], O +1.39 [+1.06, +1.72]
+
+Prepositions the filler raises most after kept I verbs (half B, probability change): ' on' +0.063, ' for' +0.060, ' about' +0.035, ' at' +0.031, ' over' +0.025, ' to' +0.020, ' through' +0.011, ' into' +0.007
+
+Class × frame means (half B, log-probs):
+
+| class | frame | O | PREP | . or ? | L | END |
+|---|---|---:|---:|---:|---:|---:|
+| I | fill | -4.29 | -0.58 | -3.26 | -2.68 | -2.98 |
+| I | nofill | -3.55 | -0.79 | -3.04 | -2.25 | -2.69 |
+| T | fill | -2.83 | -1.02 | -1.71 | -0.70 | -1.60 |
+| T | nofill | -0.41 | -4.04 | -5.14 | -1.10 | -4.59 |
+
+Natural z along d_s (all contexts; 0 = active intransitive, 1 = transitive level):
+
+| site | T nofill | T fill | I nofill | I fill |
+|---:|---:|---:|---:|---:|
+| 0 | 0.76 | 0.76 | 0.37 | 0.37 |
+| 1 | 0.98 | 0.98 | 0.25 | 0.25 |
+| 2 | 0.91 | 0.92 | 0.17 | 0.17 |
+| 3 | 0.93 | 0.95 | 0.14 | 0.15 |
+| 4 | 0.91 | 0.85 | 0.10 | 0.07 |
+| 5 | 0.83 | 0.77 | -0.01 | -0.04 |
+| 8 | 0.90 | 0.70 | 0.00 | -0.10 |
+| 12 | 0.95 | 0.64 | 0.03 | -0.03 |
+| 15 | 1.03 | 0.62 | 0.14 | 0.17 |
+
+B7 base-form gate ("NAME can V", T vs I verbs, AUC over verb means along d_s): site 0 0.87, site 1 0.85, site 2 0.93, site 3 0.97, site 4 0.99, site 5 1.00, site 8 1.00, site 12 1.00, site 15 1.00
+
+== 16:11:47 python3 scripts/build_fillergap.py plan --exp emb --kept data/gemma/transfer/fillergap/kept_I_emb.csv --das-items results/gemma/das/transfer/final_strict/items.csv --folds results/gemma/das/transfer/final_strict/pairs_folds.csv --out-dir data/gemma/transfer/fillergap
+{
+  "exp": "emb",
+  "items": 1104,
+  "plan_rows": 41340,
+  "rows_by_cond": {
+    "T": 17358,
+    "I": 17358,
+    "inT": 3312,
+    "inI": 3312
+  },
+  "seed": 17,
+  "plan_sha256": "4dda22a91a909b3f007676eb968fdac49c4c0bc38c7ed4a2505ed58775169d45"
+}
+== 16:11:49 python3 scripts/build_fillergap.py plan --exp mat --kept data/gemma/transfer/fillergap/kept_I_mat.csv --das-items results/gemma/das/transfer/final_strict/items.csv --folds results/gemma/das/transfer/final_strict/pairs_folds.csv --out-dir data/gemma/transfer/fillergap
+{
+  "exp": "mat",
+  "items": 1776,
+  "plan_rows": 66960,
+  "rows_by_cond": {
+    "T": 28152,
+    "I": 28152,
+    "inT": 5328,
+    "inI": 5328
+  },
+  "seed": 17,
+  "plan_sha256": "c40976edb36d8c6d654eb8796cc348c74e85d288ee8b8686cf1726a39b6a0522"
+}
+== 16:11:52 python3 scripts/analyze_fillergap_r5.py gates --root results/gemma/das/transfer --data-dir data/gemma/transfer/fillergap --out-dir results/gemma/das/transfer/fillergap --report reports/gemma/transfer/fillergap_gates.md --sites 0,1,2,3,4,5,8,12,15 --decl 0,1,2,3,4,5,8,12,15
+# Round 5, C8: filler-gap natural gates (fp32, non-DAS primary)
+
+Spec: `plan.md`, C8. Run: `run_fillergap.py natural --dtype float32` (job 9007314); analysis: `analyze_fillergap_r5.py gates`. Interaction on L = [T − I]_what − [T − I]_that of L; on O = [T − I]_that − [T − I]_what of O. T and I verbs resampled independently, contexts jointly (2,000 draws, seed 17). Kept I verbs: round 4's half-A lists.
+
+## B6 embedded wh ("I know that / what NAME V-ed")
+
+Kept I verbs (round 4): 23 (16 non-DAS, 7 DAS). An fp32 half-A I gate would drop none and add none.
+
+| Population | contexts | n T | n I | interaction on L | interaction on O | passes |
+|---|---|---:|---:|---|---|---|
+| primary: non-DAS | half B | 97 | 16 | +1.10 [+0.71, +1.46] | +0.71 [+0.30, +1.11] | yes |
+| primary: non-DAS | all contexts | 97 | 16 | +1.12 [+0.77, +1.45] | +0.70 [+0.31, +1.09] | yes |
+| DAS bases, pooled | half B | 106 | 7 | +1.14 [+0.52, +1.62] | +0.68 [+0.37, +1.06] | yes |
+| DAS bases, pooled | all contexts | 106 | 7 | +1.15 [+0.59, +1.61] | +0.66 [+0.35, +1.01] | yes |
+| DAS bases, non-DAS T | half B | 97 | 7 | +1.18 [+0.58, +1.67] | +0.67 [+0.35, +1.04] | yes |
+| DAS bases, non-DAS T | all contexts | 97 | 7 | +1.18 [+0.60, +1.64] | +0.64 [+0.32, +1.00] | yes |
+| round-4 population (all T, kept I) | half B | 106 | 23 | +1.09 [+0.75, +1.41] | +0.71 [+0.39, +1.02] | yes |
+| round-4 population (all T, kept I) | all contexts | 106 | 23 | +1.11 [+0.79, +1.41] | +0.69 [+0.39, +0.99] | yes |
+| non-DAS T, all non-DAS I (sensitivity) | half B | 97 | 38 | +0.48 [+0.14, +0.82] | +0.98 [+0.68, +1.29] | yes |
+| non-DAS T, all non-DAS I (sensitivity) | all contexts | 97 | 38 | +0.50 [+0.19, +0.82] | +0.98 [+0.70, +1.25] | yes |
+
+**Natural gate (primary: non-DAS, half B): passes.**
+
+Strata (primary population):
+
+| Stratum | contexts | interaction on L | interaction on O | passes |
+|---|---|---|---|---|
+| forgot | half B (3) | +1.26 [+0.91, +1.64] | +0.62 [+0.23, +0.99] | yes |
+| forgot | all 6 (6) | +1.29 [+0.96, +1.64] | +0.62 [+0.23, +0.96] | yes |
+| heard | half B (3) | +0.70 [+0.22, +1.13] | +0.78 [+0.30, +1.28] | yes |
+| heard | all 6 (6) | +0.73 [+0.29, +1.13] | +0.77 [+0.29, +1.25] | yes |
+| know | half B (3) | +1.33 [+0.94, +1.72] | +0.48 [+0.08, +0.87] | yes |
+| know | all 6 (6) | +1.36 [+0.99, +1.71] | +0.49 [+0.09, +0.88] | yes |
+| remember | half B (3) | +1.11 [+0.63, +1.61] | +0.95 [+0.46, +1.47] | yes |
+| remember | all 6 (6) | +1.11 [+0.67, +1.61] | +0.92 [+0.48, +1.39] | yes |
+
+## B7 matrix wh ("AUX NAME V" / "What AUX NAME V")
+
+Kept I verbs (round 4): 37 (26 non-DAS, 11 DAS). An fp32 half-A I gate would drop none and add ['writhe'].
+
+| Population | contexts | n T | n I | interaction on L | interaction on O | passes |
+|---|---|---:|---:|---|---|---|
+| primary: non-DAS | half B | 97 | 26 | +1.05 [+0.64, +1.47] | +1.75 [+1.41, +2.07] | yes |
+| primary: non-DAS | all contexts | 97 | 26 | +1.05 [+0.66, +1.46] | +1.73 [+1.43, +2.02] | yes |
+| DAS bases, pooled | half B | 106 | 11 | +1.79 [+1.27, +2.34] | +1.60 [+1.24, +1.95] | yes |
+| DAS bases, pooled | all contexts | 106 | 11 | +1.77 [+1.26, +2.31] | +1.59 [+1.29, +1.95] | yes |
+| DAS bases, non-DAS T | half B | 97 | 11 | +1.81 [+1.28, +2.37] | +1.58 [+1.19, +1.94] | yes |
+| DAS bases, non-DAS T | all contexts | 97 | 11 | +1.79 [+1.31, +2.37] | +1.58 [+1.25, +1.91] | yes |
+| round-4 population (all T, kept I) | half B | 106 | 37 | +1.26 [+0.88, +1.64] | +1.72 [+1.43, +2.01] | yes |
+| round-4 population (all T, kept I) | all contexts | 106 | 37 | +1.25 [+0.89, +1.61] | +1.70 [+1.44, +1.97] | yes |
+| non-DAS T, all non-DAS I (sensitivity) | half B | 97 | 38 | +0.66 [+0.26, +1.06] | +1.70 [+1.37, +2.02] | yes |
+| non-DAS T, all non-DAS I (sensitivity) | all contexts | 97 | 38 | +0.64 [+0.27, +1.01] | +1.69 [+1.41, +1.98] | yes |
+
+**Natural gate (primary: non-DAS, half B): passes.**
+
+Strata (primary population):
+
+| Stratum | contexts | interaction on L | interaction on O | passes |
+|---|---|---|---|---|
+| Can | half B (3) | +1.25 [+0.86, +1.63] | +2.10 [+1.66, +2.52] | yes |
+| Can | all 6 (6) | +1.19 [+0.79, +1.60] | +2.09 [+1.71, +2.45] | yes |
+| Did | half B (3) | +1.26 [+0.71, +1.78] | +1.91 [+1.51, +2.27] | yes |
+| Did | all 6 (6) | +1.24 [+0.76, +1.74] | +1.85 [+1.45, +2.24] | yes |
+| Will | half B (3) | +0.95 [+0.46, +1.46] | +1.54 [+1.24, +1.86] | yes |
+| Will | all 6 (6) | +0.98 [+0.50, +1.47] | +1.50 [+1.19, +1.80] | yes |
+| Would | half B (3) | +0.74 [+0.40, +1.11] | +1.45 [+1.09, +1.81] | yes |
+| Would | all 6 (6) | +0.79 [+0.45, +1.12] | +1.49 [+1.18, +1.81] | yes |
+
+B7 base-form gate ("NAME can V", AUC over verb means along d_s): site 0 0.87, site 1 0.85, site 2 0.93, site 3 0.97, site 4 0.99, site 5 1.00, site 8 1.00, site 12 1.00, site 15 1.00
+
+runner settings {'model_type': 'gemma3_text', 'bos': True, 'fp32_unembed': True, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 58233.734375}
+emb site 0: 41340 rows in 32s; {'self_set_max_abs_dM': 2.002716064453125e-05, 'min_eligible_target_verbs': 15}
+emb site 1: 41340 rows in 32s; {'self_set_max_abs_dM': 1.71661376953125e-05, 'min_eligible_target_verbs': 15}
+emb site 2: 41340 rows in 32s; {'self_set_max_abs_dM': 1.9073486328125e-05, 'min_eligible_target_verbs': 15}
+emb site 3: 41340 rows in 32s; {'self_set_max_abs_dM': 2.765655517578125e-05, 'min_eligible_target_verbs': 15}
+emb site 4: 41340 rows in 32s; {'self_set_max_abs_dM': 1.811981201171875e-05, 'min_eligible_target_verbs': 15}
+emb site 5: 41340 rows in 32s; {'self_set_max_abs_dM': 2.193450927734375e-05, 'min_eligible_target_verbs': 15}
+emb site 8: 41340 rows in 33s; {'self_set_max_abs_dM': 2.288818359375e-05, 'min_eligible_target_verbs': 15}
+emb site 12: 41340 rows in 32s; {'self_set_max_abs_dM': 1.52587890625e-05, 'min_eligible_target_verbs': 15}
+emb site 15: 41340 rows in 32s; {'self_set_max_abs_dM': 1.52587890625e-05, 'min_eligible_target_verbs': 15}
+runner settings {'model_type': 'gemma3_text', 'bos': True, 'fp32_unembed': True, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 58233.734375}
+emb site 0: 41340 rows in 32s; {'self_set_max_abs_dM': 2.002716064453125e-05, 'min_eligible_target_verbs': 15}
+emb site 1: 41340 rows in 32s; {'self_set_max_abs_dM': 1.71661376953125e-05, 'min_eligible_target_verbs': 15}
+emb site 2: 41340 rows in 33s; {'self_set_max_abs_dM': 1.9073486328125e-05, 'min_eligible_target_verbs': 15}
+emb site 3: 41340 rows in 32s; {'self_set_max_abs_dM': 2.765655517578125e-05, 'min_eligible_target_verbs': 15}
+emb site 4: 41340 rows in 32s; {'self_set_max_abs_dM': 1.811981201171875e-05, 'min_eligible_target_verbs': 15}
+emb site 5: 41340 rows in 33s; {'self_set_max_abs_dM': 2.193450927734375e-05, 'min_eligible_target_verbs': 15}
+emb site 8: 41340 rows in 32s; {'self_set_max_abs_dM': 2.288818359375e-05, 'min_eligible_target_verbs': 15}
+emb site 12: 41340 rows in 32s; {'self_set_max_abs_dM': 1.52587890625e-05, 'min_eligible_target_verbs': 15}
+emb site 15: 41340 rows in 32s; {'self_set_max_abs_dM': 1.52587890625e-05, 'min_eligible_target_verbs': 15}
+runner settings {'model_type': 'gemma3_text', 'bos': True, 'fp32_unembed': True, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 58233.734375}
+mat site 0: 66960 rows in 47s; {'self_set_max_abs_dM': 2.09808349609375e-05, 'min_eligible_target_verbs': 25}
+mat site 1: 66960 rows in 48s; {'self_set_max_abs_dM': 2.288818359375e-05, 'min_eligible_target_verbs': 25}
+mat site 2: 66960 rows in 47s; {'self_set_max_abs_dM': 2.09808349609375e-05, 'min_eligible_target_verbs': 25}
+mat site 3: 66960 rows in 47s; {'self_set_max_abs_dM': 1.811981201171875e-05, 'min_eligible_target_verbs': 25}
+mat site 4: 66960 rows in 47s; {'self_set_max_abs_dM': 2.09808349609375e-05, 'min_eligible_target_verbs': 25}
+mat site 5: 66960 rows in 47s; {'self_set_max_abs_dM': 2.193450927734375e-05, 'min_eligible_target_verbs': 25}
+mat site 8: 66960 rows in 47s; {'self_set_max_abs_dM': 1.811981201171875e-05, 'min_eligible_target_verbs': 25}
+mat site 12: 66960 rows in 47s; {'self_set_max_abs_dM': 2.09808349609375e-05, 'min_eligible_target_verbs': 25}
+mat site 15: 66960 rows in 47s; {'self_set_max_abs_dM': 2.09808349609375e-05, 'min_eligible_target_verbs': 25}
+runner settings {'model_type': 'gemma3_text', 'bos': True, 'fp32_unembed': True, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 58233.734375}
+mat site 0: 66960 rows in 47s; {'self_set_max_abs_dM': 2.09808349609375e-05, 'min_eligible_target_verbs': 26}
+mat site 1: 66960 rows in 47s; {'self_set_max_abs_dM': 2.288818359375e-05, 'min_eligible_target_verbs': 26}
+mat site 2: 66960 rows in 47s; {'self_set_max_abs_dM': 2.09808349609375e-05, 'min_eligible_target_verbs': 26}
+mat site 3: 66960 rows in 47s; {'self_set_max_abs_dM': 1.811981201171875e-05, 'min_eligible_target_verbs': 26}
+mat site 4: 66960 rows in 48s; {'self_set_max_abs_dM': 2.09808349609375e-05, 'min_eligible_target_verbs': 26}
+mat site 5: 66960 rows in 47s; {'self_set_max_abs_dM': 2.193450927734375e-05, 'min_eligible_target_verbs': 26}
+mat site 8: 66960 rows in 48s; {'self_set_max_abs_dM': 1.811981201171875e-05, 'min_eligible_target_verbs': 26}
+mat site 12: 66960 rows in 47s; {'self_set_max_abs_dM': 2.09808349609375e-05, 'min_eligible_target_verbs': 26}
+mat site 15: 66960 rows in 47s; {'self_set_max_abs_dM': 2.09808349609375e-05, 'min_eligible_target_verbs': 26}
+== 16:37:14 python3 scripts/analyze_fillergap_r5.py patch --root results/gemma/das/transfer --data-dir data/gemma/transfer/fillergap --out-dir results/gemma/das/transfer/fillergap --report reports/gemma/transfer/fillergap.md --sites 0,1,2,3,4,5,8,12,15 --decl 0,1,2,3,4,5,8,12,15
+emb site 0 done
+emb site 1 done
+emb site 2 done
+emb site 3 done
+emb site 4 done
+emb site 5 done
+emb site 8 done
+emb site 12 done
+emb site 15 done
+mat site 0 done
+mat site 1 done
+mat site 2 done
+mat site 3 done
+mat site 4 done
+mat site 5 done
+mat site 8 done
+mat site 12 done
+mat site 15 done
+# Round 5, C8: filler-gap patches with non-DAS verbs as the primary set (fp32)
+
+Spec: `plan.md`, C8. Runs: `run_fillergap.py patch --dtype float32 --target-pool {nondas, all}`; analysis: `analyze_fillergap_r5.py patch` (round-4 statistics and reading rule). D = after T − after I active donors; D_in = coordinate at t_T − at t_I. nofill = "that" / no wh; fill = "what". Primary: kept non-DAS I bases, non-DAS targets, natural gaps and T reference from non-DAS verbs, half-B contexts.
+
+## B6 embedded wh ("I know that / what NAME V-ed")
+
+### Primary, T − I donors (half B)
+
+| Site | nofill: . or ? | nofill: O | fill: L | fill: . or ? | fill: PREP | fill: O | fill: O level vs T | fill − nofill: O | Reading |
+|---:|---|---|---|---|---|---|---|---|---|
+| 0 | -0.09 [-0.25, +0.05] NO RISE | +0.93 [+0.53, +1.42] RISE | +0.69 [+0.40, +1.03] RISE | +0.54 [+0.28, +0.84] RISE | -0.16 [-0.22, -0.11] FALL | +1.13 [+0.70, +1.61] RISE | -0.92 [-1.32, -0.51] not above | +0.19 [+0.03, +0.37] | **mixed / unresolved** |
+| 1 | -0.50 [-0.83, -0.18] FALL | +1.45 [+1.02, +1.94] RISE | +1.23 [+0.85, +1.69] RISE | +0.72 [+0.39, +1.11] RISE | -0.52 [-0.69, -0.36] FALL | +1.67 [+1.24, +2.14] RISE | -0.11 [-0.63, +0.37] not above | +0.22 [+0.03, +0.44] | **licensing-like crossover** |
+| 2 | -1.03 [-1.53, -0.54] FALL | +1.70 [+1.31, +2.15] RISE | +1.33 [+0.98, +1.73] RISE | +0.66 [+0.31, +1.05] RISE | -0.67 [-0.88, -0.47] FALL | +2.07 [+1.69, +2.49] RISE | +0.14 [-0.42, +0.65] unresolved | +0.38 [+0.16, +0.60] | **mixed / unresolved** |
+| 3 | -0.94 [-1.42, -0.42] FALL | +1.77 [+1.36, +2.24] RISE | +1.36 [+1.01, +1.78] RISE | +0.72 [+0.36, +1.14] RISE | -0.64 [-0.83, -0.46] FALL | +2.09 [+1.71, +2.49] RISE | +0.20 [-0.32, +0.68] unresolved | +0.31 [+0.07, +0.55] | **mixed / unresolved** |
+| 4 | -1.28 [-1.81, -0.71] FALL | +2.13 [+1.73, +2.60] RISE | +1.59 [+1.17, +2.06] RISE | +0.62 [+0.17, +1.10] RISE | -0.97 [-1.22, -0.75] FALL | +2.70 [+2.24, +3.16] RISE | +0.84 [+0.46, +1.19] above | +0.58 [+0.26, +0.87] | **surface (object next)** |
+| 5 | -1.82 [-2.37, -1.28] FALL | +2.34 [+1.91, +2.84] RISE | +1.44 [+1.03, +1.93] RISE | +0.13 [-0.31, +0.61] unresolved | -1.31 [-1.59, -1.04] FALL | +3.09 [+2.64, +3.59] RISE | +1.26 [+0.90, +1.61] above | +0.76 [+0.47, +1.03] | **surface (object next)** |
+| 8 | -1.59 [-1.94, -1.20] FALL | +2.38 [+1.95, +2.84] RISE | +1.44 [+1.04, +1.89] RISE | +0.71 [+0.34, +1.15] RISE | -0.73 [-0.87, -0.60] FALL | +2.52 [+2.07, +3.00] RISE | +0.85 [+0.57, +1.13] above | +0.14 [-0.20, +0.47] | **surface (object next)** |
+| 12 | -2.53 [-2.94, -2.06] FALL | +2.57 [+2.14, +3.06] RISE | +1.48 [+1.10, +1.90] RISE | +0.43 [+0.05, +0.85] RISE | -1.05 [-1.27, -0.85] FALL | +2.98 [+2.50, +3.47] RISE | +1.19 [+0.89, +1.49] above | +0.40 [+0.10, +0.70] | **surface (object next)** |
+| 15 | -2.63 [-3.06, -2.16] FALL | +2.78 [+2.31, +3.28] RISE | +2.41 [+1.97, +2.89] RISE | +1.03 [+0.50, +1.60] RISE | -1.38 [-1.63, -1.14] FALL | +3.55 [+3.06, +4.06] RISE | +1.32 [+1.02, +1.61] above | +0.77 [+0.51, +1.05] | **surface (object next)** |
+
+### Primary, in range (half B)
+
+| Site | nofill: . or ? | nofill: O | fill: L | fill: . or ? | fill: PREP | fill: O | fill: O level vs T | fill − nofill: O | Reading |
+|---:|---|---|---|---|---|---|---|---|---|
+| 0 | -0.05 [-0.15, +0.05] NO RISE | +0.67 [+0.38, +1.00] RISE | +0.47 [+0.29, +0.68] RISE | +0.38 [+0.21, +0.57] RISE | -0.09 [-0.13, -0.07] NO RISE | +0.77 [+0.50, +1.07] RISE | -1.15 [-1.55, -0.74] not above | +0.11 [-0.03, +0.26] | **mixed / unresolved** |
+| 1 | -0.30 [-0.53, -0.05] unresolved | +1.16 [+0.82, +1.55] RISE | +1.03 [+0.74, +1.37] RISE | +0.66 [+0.39, +0.96] RISE | -0.37 [-0.50, -0.27] FALL | +1.38 [+1.14, +1.68] RISE | -0.40 [-0.94, +0.11] not above | +0.22 [+0.03, +0.41] | **mixed / unresolved** |
+| 2 | -0.69 [-1.05, -0.33] FALL | +1.48 [+1.11, +1.89] RISE | +1.18 [+0.88, +1.55] RISE | +0.67 [+0.36, +1.02] RISE | -0.52 [-0.69, -0.36] FALL | +1.79 [+1.52, +2.11] RISE | -0.04 [-0.65, +0.52] not above | +0.31 [+0.09, +0.51] | **licensing-like crossover** |
+| 3 | -0.69 [-1.09, -0.28] FALL | +1.55 [+1.17, +1.95] RISE | +1.25 [+0.94, +1.63] RISE | +0.72 [+0.40, +1.10] RISE | -0.53 [-0.71, -0.39] FALL | +1.87 [+1.56, +2.22] RISE | +0.05 [-0.55, +0.60] unresolved | +0.32 [+0.08, +0.55] | **mixed / unresolved** |
+| 4 | -0.77 [-1.19, -0.35] FALL | +1.85 [+1.53, +2.24] RISE | +1.35 [+0.97, +1.80] RISE | +0.75 [+0.34, +1.20] RISE | -0.60 [-0.74, -0.47] FALL | +2.31 [+1.97, +2.68] RISE | +0.43 [+0.07, +0.78] unresolved | +0.46 [+0.15, +0.75] | **mixed / unresolved** |
+| 5 | -1.37 [-1.83, -0.88] FALL | +2.31 [+1.91, +2.78] RISE | +1.37 [+0.98, +1.83] RISE | +0.47 [+0.07, +0.91] RISE | -0.91 [-1.08, -0.73] FALL | +2.87 [+2.48, +3.32] RISE | +0.98 [+0.59, +1.37] above | +0.56 [+0.29, +0.82] | **surface (object next)** |
+| 8 | -1.41 [-1.71, -1.09] FALL | +2.34 [+1.94, +2.77] RISE | +1.42 [+1.06, +1.84] RISE | +0.85 [+0.48, +1.26] RISE | -0.58 [-0.70, -0.48] FALL | +2.37 [+1.98, +2.82] RISE | +0.48 [+0.16, +0.81] unresolved | +0.03 [-0.24, +0.30] | **mixed / unresolved** |
+| 12 | -2.37 [-2.76, -1.95] FALL | +2.56 [+2.12, +3.04] RISE | +1.20 [+0.93, +1.46] RISE | +0.62 [+0.33, +0.92] RISE | -0.58 [-0.73, -0.44] FALL | +2.39 [+2.08, +2.74] RISE | +0.49 [+0.04, +0.91] unresolved | -0.17 [-0.47, +0.12] | **mixed / unresolved** |
+| 15 | -2.87 [-3.26, -2.51] FALL | +2.70 [+2.23, +3.21] RISE | +1.49 [+1.23, +1.76] RISE | +0.91 [+0.56, +1.27] RISE | -0.58 [-0.72, -0.45] FALL | +2.39 [+2.08, +2.74] RISE | +0.48 [+0.11, +0.87] unresolved | -0.31 [-0.61, -0.03] | **mixed / unresolved** |
+
+### Readings by population (sites 6 and 8; strata at every site below)
+
+| Population | verbs | contexts | site | T − I donors | in range |
+|---|---:|---:|---:|---|---|
+| primary: non-DAS, half B | 16 | 12 | 0 | mixed / unresolved | mixed / unresolved |
+| primary: non-DAS, half B | 16 | 12 | 1 | licensing-like crossover | mixed / unresolved |
+| primary: non-DAS, half B | 16 | 12 | 2 | mixed / unresolved | licensing-like crossover |
+| primary: non-DAS, half B | 16 | 12 | 3 | mixed / unresolved | mixed / unresolved |
+| primary: non-DAS, half B | 16 | 12 | 4 | surface (object next) | mixed / unresolved |
+| primary: non-DAS, half B | 16 | 12 | 5 | surface (object next) | surface (object next) |
+| primary: non-DAS, half B | 16 | 12 | 8 | surface (object next) | mixed / unresolved |
+| primary: non-DAS, half B | 16 | 12 | 12 | surface (object next) | mixed / unresolved |
+| primary: non-DAS, half B | 16 | 12 | 15 | surface (object next) | mixed / unresolved |
+| primary: non-DAS, all contexts | 16 | 24 | 0 | mixed / unresolved | mixed / unresolved |
+| primary: non-DAS, all contexts | 16 | 24 | 1 | licensing-like crossover | mixed / unresolved |
+| primary: non-DAS, all contexts | 16 | 24 | 2 | mixed / unresolved | licensing-like crossover |
+| primary: non-DAS, all contexts | 16 | 24 | 3 | mixed / unresolved | mixed / unresolved |
+| primary: non-DAS, all contexts | 16 | 24 | 4 | surface (object next) | mixed / unresolved |
+| primary: non-DAS, all contexts | 16 | 24 | 5 | surface (object next) | surface (object next) |
+| primary: non-DAS, all contexts | 16 | 24 | 8 | surface (object next) | mixed / unresolved |
+| primary: non-DAS, all contexts | 16 | 24 | 12 | surface (object next) | mixed / unresolved |
+| primary: non-DAS, all contexts | 16 | 24 | 15 | surface (object next) | mixed / unresolved |
+| DAS bases, pooled targets | 7 | 12 | 0 | mixed / unresolved | mixed / unresolved |
+| DAS bases, pooled targets | 7 | 12 | 1 | licensing-like crossover | mixed / unresolved |
+| DAS bases, pooled targets | 7 | 12 | 2 | mixed / unresolved | mixed / unresolved |
+| DAS bases, pooled targets | 7 | 12 | 3 | mixed / unresolved | mixed / unresolved |
+| DAS bases, pooled targets | 7 | 12 | 4 | mixed / unresolved | mixed / unresolved |
+| DAS bases, pooled targets | 7 | 12 | 5 | surface (object next) | surface (object next) |
+| DAS bases, pooled targets | 7 | 12 | 8 | surface (object next) | mixed / unresolved |
+| DAS bases, pooled targets | 7 | 12 | 12 | surface (object next) | surface (object next) |
+| DAS bases, pooled targets | 7 | 12 | 15 | surface (object next) | mixed / unresolved |
+| DAS bases, non-DAS targets | 7 | 12 | 0 | mixed / unresolved | mixed / unresolved |
+| DAS bases, non-DAS targets | 7 | 12 | 1 | licensing-like crossover | mixed / unresolved |
+| DAS bases, non-DAS targets | 7 | 12 | 2 | mixed / unresolved | mixed / unresolved |
+| DAS bases, non-DAS targets | 7 | 12 | 3 | mixed / unresolved | mixed / unresolved |
+| DAS bases, non-DAS targets | 7 | 12 | 4 | mixed / unresolved | mixed / unresolved |
+| DAS bases, non-DAS targets | 7 | 12 | 5 | surface (object next) | surface (object next) |
+| DAS bases, non-DAS targets | 7 | 12 | 8 | surface (object next) | mixed / unresolved |
+| DAS bases, non-DAS targets | 7 | 12 | 12 | surface (object next) | mixed / unresolved |
+| DAS bases, non-DAS targets | 7 | 12 | 15 | surface (object next) | mixed / unresolved |
+| round-4 population (fp32) | 23 | 12 | 0 | mixed / unresolved | mixed / unresolved |
+| round-4 population (fp32) | 23 | 12 | 1 | licensing-like crossover | mixed / unresolved |
+| round-4 population (fp32) | 23 | 12 | 2 | mixed / unresolved | licensing-like crossover |
+| round-4 population (fp32) | 23 | 12 | 3 | mixed / unresolved | licensing-like crossover |
+| round-4 population (fp32) | 23 | 12 | 4 | surface (object next) | mixed / unresolved |
+| round-4 population (fp32) | 23 | 12 | 5 | surface (object next) | surface (object next) |
+| round-4 population (fp32) | 23 | 12 | 8 | surface (object next) | mixed / unresolved |
+| round-4 population (fp32) | 23 | 12 | 12 | surface (object next) | mixed / unresolved |
+| round-4 population (fp32) | 23 | 12 | 15 | surface (object next) | mixed / unresolved |
+| multi-token, non-DAS | 7 | 12 | 0 | mixed / unresolved | mixed / unresolved |
+| multi-token, non-DAS | 7 | 12 | 1 | mixed / unresolved | mixed / unresolved |
+| multi-token, non-DAS | 7 | 12 | 2 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 7 | 12 | 3 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 7 | 12 | 4 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 7 | 12 | 5 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 7 | 12 | 8 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 7 | 12 | 12 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 7 | 12 | 15 | surface (object next) | surface (object next) |
+
+### Frame strata (primary population; in range / T − I donors per site)
+
+| Stratum | contexts | site 0 | site 1 | site 2 | site 3 | site 4 | site 5 | site 8 | site 12 | site 15 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| forgot | all 6 | mix / mix | mix / LIC | LIC / LIC | LIC / mix | mix / surf | surf / surf | mix / surf | mix / surf | mix / surf |
+| forgot | half B | mix / mix | mix / LIC | LIC / LIC | LIC / mix | mix / surf | surf / surf | mix / surf | mix / surf | mix / surf |
+| heard | all 6 | mix / mix | mix / LIC | LIC / mix | LIC / mix | mix / surf | surf / surf | mix / surf | mix / surf | surf / surf |
+| heard | half B | mix / mix | mix / LIC | LIC / mix | LIC / mix | mix / surf | surf / surf | mix / surf | mix / surf | mix / surf |
+| know | all 6 | mix / mix | mix / LIC | LIC / mix | mix / mix | mix / surf | surf / surf | mix / surf | mix / surf | surf / surf |
+| know | half B | mix / mix | mix / LIC | LIC / mix | mix / mix | mix / surf | surf / surf | mix / surf | mix / surf | surf / surf |
+| remember | all 6 | mix / mix | mix / mix | mix / mix | mix / mix | surf / surf | surf / surf | surf / surf | surf / surf | mix / surf |
+| remember | half B | mix / mix | mix / mix | mix / mix | mix / mix | surf / surf | surf / surf | surf / surf | surf / surf | mix / surf |
+
+LIC = licensing-like crossover, surf = surface (object next), mix = mixed / unresolved.
+
+## B7 matrix wh ("AUX NAME V" / "What AUX NAME V")
+
+### Primary, T − I donors (half B)
+
+| Site | nofill: . or ? | nofill: O | fill: L | fill: . or ? | fill: PREP | fill: O | fill: O level vs T | fill − nofill: O | Reading |
+|---:|---|---|---|---|---|---|---|---|---|
+| 0 | -0.06 [-0.17, +0.03] NO RISE | +1.04 [+0.70, +1.41] RISE | +0.61 [+0.38, +0.86] RISE | +0.49 [+0.28, +0.71] RISE | -0.12 [-0.19, -0.06] unresolved | +0.90 [+0.59, +1.24] RISE | -0.80 [-1.22, -0.38] not above | -0.14 [-0.30, +0.00] | **mixed / unresolved** |
+| 1 | -0.60 [-0.87, -0.35] FALL | +1.49 [+1.09, +1.95] RISE | +1.00 [+0.67, +1.36] RISE | +0.48 [+0.19, +0.80] RISE | -0.52 [-0.74, -0.33] FALL | +1.13 [+0.79, +1.49] RISE | -0.35 [-0.79, +0.11] not above | -0.37 [-0.58, -0.19] | **licensing-like crossover** |
+| 2 | -1.04 [-1.50, -0.66] FALL | +2.01 [+1.60, +2.44] RISE | +1.25 [+0.88, +1.64] RISE | +0.70 [+0.41, +1.01] RISE | -0.55 [-0.76, -0.36] FALL | +1.69 [+1.35, +2.03] RISE | +0.19 [-0.28, +0.65] unresolved | -0.32 [-0.52, -0.14] | **mixed / unresolved** |
+| 3 | -1.07 [-1.54, -0.68] FALL | +2.24 [+1.84, +2.67] RISE | +1.41 [+1.13, +1.71] RISE | +0.85 [+0.60, +1.12] RISE | -0.55 [-0.74, -0.40] FALL | +1.74 [+1.40, +2.06] RISE | +0.27 [-0.15, +0.67] unresolved | -0.51 [-0.76, -0.29] | **mixed / unresolved** |
+| 4 | -1.67 [-2.23, -1.19] FALL | +2.69 [+2.30, +3.08] RISE | +1.74 [+1.45, +2.06] RISE | +0.85 [+0.57, +1.14] RISE | -0.89 [-1.09, -0.71] FALL | +2.53 [+2.12, +2.94] RISE | +1.10 [+0.73, +1.47] above | -0.16 [-0.44, +0.09] | **surface (object next)** |
+| 5 | -3.01 [-3.69, -2.38] FALL | +2.86 [+2.46, +3.26] RISE | +1.67 [+1.36, +2.03] RISE | +0.40 [+0.07, +0.73] RISE | -1.28 [-1.50, -1.06] FALL | +2.99 [+2.60, +3.39] RISE | +1.81 [+1.49, +2.12] above | +0.13 [-0.09, +0.34] | **surface (object next)** |
+| 8 | -1.96 [-2.36, -1.59] FALL | +2.89 [+2.53, +3.23] RISE | +1.52 [+1.24, +1.81] RISE | +0.87 [+0.62, +1.14] RISE | -0.65 [-0.76, -0.54] FALL | +2.19 [+1.85, +2.53] RISE | +1.14 [+0.87, +1.40] above | -0.69 [-0.95, -0.46] | **surface (object next)** |
+| 12 | -2.61 [-3.06, -2.19] FALL | +3.13 [+2.77, +3.48] RISE | +1.70 [+1.43, +2.00] RISE | +0.67 [+0.38, +0.96] RISE | -1.03 [-1.25, -0.85] FALL | +2.96 [+2.60, +3.31] RISE | +1.70 [+1.43, +1.97] above | -0.17 [-0.36, +0.01] | **surface (object next)** |
+| 15 | -2.93 [-3.35, -2.52] FALL | +3.69 [+3.36, +4.00] RISE | +2.72 [+2.39, +3.06] RISE | +1.35 [+0.98, +1.72] RISE | -1.37 [-1.58, -1.17] FALL | +3.82 [+3.47, +4.15] RISE | +1.85 [+1.59, +2.12] above | +0.13 [-0.05, +0.30] | **surface (object next)** |
+
+### Primary, in range (half B)
+
+| Site | nofill: . or ? | nofill: O | fill: L | fill: . or ? | fill: PREP | fill: O | fill: O level vs T | fill − nofill: O | Reading |
+|---:|---|---|---|---|---|---|---|---|---|
+| 0 | -0.02 [-0.06, +0.02] NO RISE | +0.42 [+0.29, +0.56] RISE | +0.24 [+0.15, +0.32] NO RISE | +0.20 [+0.11, +0.27] NO RISE | -0.04 [-0.06, -0.02] NO RISE | +0.35 [+0.25, +0.46] RISE | -1.12 [-1.52, -0.71] not above | -0.07 [-0.13, -0.01] | **mixed / unresolved** |
+| 1 | -0.38 [-0.59, -0.17] unresolved | +1.05 [+0.80, +1.34] RISE | +0.75 [+0.48, +1.04] RISE | +0.36 [+0.04, +0.65] RISE | -0.39 [-0.60, -0.23] FALL | +0.79 [+0.55, +1.05] RISE | -0.54 [-0.98, -0.10] not above | -0.25 [-0.45, -0.10] | **mixed / unresolved** |
+| 2 | -0.63 [-0.97, -0.34] FALL | +1.52 [+1.25, +1.81] RISE | +0.98 [+0.71, +1.29] RISE | +0.51 [+0.23, +0.80] RISE | -0.47 [-0.69, -0.29] FALL | +1.29 [+1.06, +1.53] RISE | -0.03 [-0.53, +0.44] not above | -0.23 [-0.40, -0.07] | **licensing-like crossover** |
+| 3 | -0.86 [-1.31, -0.51] FALL | +2.00 [+1.69, +2.35] RISE | +1.29 [+1.08, +1.55] RISE | +0.78 [+0.52, +1.03] RISE | -0.52 [-0.71, -0.37] FALL | +1.58 [+1.32, +1.85] RISE | +0.22 [-0.19, +0.62] unresolved | -0.42 [-0.66, -0.19] | **mixed / unresolved** |
+| 4 | -1.23 [-1.74, -0.82] FALL | +2.50 [+2.17, +2.83] RISE | +1.52 [+1.28, +1.80] RISE | +0.84 [+0.57, +1.13] RISE | -0.68 [-0.83, -0.54] FALL | +2.23 [+1.88, +2.57] RISE | +0.84 [+0.49, +1.21] above | -0.27 [-0.55, -0.02] | **surface (object next)** |
+| 5 | -2.32 [-3.00, -1.73] FALL | +2.89 [+2.53, +3.24] RISE | +1.64 [+1.38, +1.95] RISE | +0.64 [+0.33, +0.97] RISE | -1.00 [-1.22, -0.81] FALL | +2.84 [+2.48, +3.20] RISE | +1.44 [+1.10, +1.80] above | -0.05 [-0.30, +0.20] | **surface (object next)** |
+| 8 | -1.54 [-1.86, -1.26] FALL | +2.93 [+2.61, +3.26] RISE | +1.55 [+1.32, +1.81] RISE | +1.01 [+0.77, +1.26] RISE | -0.55 [-0.64, -0.46] FALL | +2.26 [+1.96, +2.55] RISE | +0.82 [+0.52, +1.11] above | -0.67 [-0.92, -0.45] | **surface (object next)** |
+| 12 | -2.36 [-2.78, -1.98] FALL | +3.16 [+2.82, +3.51] RISE | +1.27 [+1.10, +1.46] RISE | +0.73 [+0.53, +0.94] RISE | -0.54 [-0.66, -0.44] FALL | +2.41 [+2.17, +2.64] RISE | +0.95 [+0.64, +1.29] above | -0.76 [-0.98, -0.52] | **surface (object next)** |
+| 15 | -3.07 [-3.40, -2.80] FALL | +3.35 [+3.02, +3.67] RISE | +1.42 [+1.27, +1.59] RISE | +0.97 [+0.78, +1.17] RISE | -0.45 [-0.53, -0.37] FALL | +2.16 [+1.96, +2.37] RISE | +0.73 [+0.44, +1.03] above | -1.19 [-1.42, -0.96] | **surface (object next)** |
+
+### Readings by population (sites 6 and 8; strata at every site below)
+
+| Population | verbs | contexts | site | T − I donors | in range |
+|---|---:|---:|---:|---|---|
+| primary: non-DAS, half B | 26 | 12 | 0 | mixed / unresolved | mixed / unresolved |
+| primary: non-DAS, half B | 26 | 12 | 1 | licensing-like crossover | mixed / unresolved |
+| primary: non-DAS, half B | 26 | 12 | 2 | mixed / unresolved | licensing-like crossover |
+| primary: non-DAS, half B | 26 | 12 | 3 | mixed / unresolved | mixed / unresolved |
+| primary: non-DAS, half B | 26 | 12 | 4 | surface (object next) | surface (object next) |
+| primary: non-DAS, half B | 26 | 12 | 5 | surface (object next) | surface (object next) |
+| primary: non-DAS, half B | 26 | 12 | 8 | surface (object next) | surface (object next) |
+| primary: non-DAS, half B | 26 | 12 | 12 | surface (object next) | surface (object next) |
+| primary: non-DAS, half B | 26 | 12 | 15 | surface (object next) | surface (object next) |
+| primary: non-DAS, all contexts | 26 | 24 | 0 | mixed / unresolved | mixed / unresolved |
+| primary: non-DAS, all contexts | 26 | 24 | 1 | licensing-like crossover | mixed / unresolved |
+| primary: non-DAS, all contexts | 26 | 24 | 2 | mixed / unresolved | licensing-like crossover |
+| primary: non-DAS, all contexts | 26 | 24 | 3 | mixed / unresolved | mixed / unresolved |
+| primary: non-DAS, all contexts | 26 | 24 | 4 | surface (object next) | surface (object next) |
+| primary: non-DAS, all contexts | 26 | 24 | 5 | surface (object next) | surface (object next) |
+| primary: non-DAS, all contexts | 26 | 24 | 8 | surface (object next) | surface (object next) |
+| primary: non-DAS, all contexts | 26 | 24 | 12 | surface (object next) | surface (object next) |
+| primary: non-DAS, all contexts | 26 | 24 | 15 | surface (object next) | surface (object next) |
+| DAS bases, pooled targets | 11 | 12 | 0 | mixed / unresolved | mixed / unresolved |
+| DAS bases, pooled targets | 11 | 12 | 1 | licensing-like crossover | licensing-like crossover |
+| DAS bases, pooled targets | 11 | 12 | 2 | mixed / unresolved | licensing-like crossover |
+| DAS bases, pooled targets | 11 | 12 | 3 | licensing-like crossover | licensing-like crossover |
+| DAS bases, pooled targets | 11 | 12 | 4 | mixed / unresolved | mixed / unresolved |
+| DAS bases, pooled targets | 11 | 12 | 5 | surface (object next) | surface (object next) |
+| DAS bases, pooled targets | 11 | 12 | 8 | surface (object next) | surface (object next) |
+| DAS bases, pooled targets | 11 | 12 | 12 | surface (object next) | surface (object next) |
+| DAS bases, pooled targets | 11 | 12 | 15 | surface (object next) | mixed / unresolved |
+| DAS bases, non-DAS targets | 11 | 12 | 0 | mixed / unresolved | mixed / unresolved |
+| DAS bases, non-DAS targets | 11 | 12 | 1 | licensing-like crossover | licensing-like crossover |
+| DAS bases, non-DAS targets | 11 | 12 | 2 | mixed / unresolved | licensing-like crossover |
+| DAS bases, non-DAS targets | 11 | 12 | 3 | licensing-like crossover | licensing-like crossover |
+| DAS bases, non-DAS targets | 11 | 12 | 4 | mixed / unresolved | mixed / unresolved |
+| DAS bases, non-DAS targets | 11 | 12 | 5 | surface (object next) | surface (object next) |
+| DAS bases, non-DAS targets | 11 | 12 | 8 | surface (object next) | surface (object next) |
+| DAS bases, non-DAS targets | 11 | 12 | 12 | surface (object next) | mixed / unresolved |
+| DAS bases, non-DAS targets | 11 | 12 | 15 | surface (object next) | mixed / unresolved |
+| round-4 population (fp32) | 37 | 12 | 0 | mixed / unresolved | mixed / unresolved |
+| round-4 population (fp32) | 37 | 12 | 1 | licensing-like crossover | licensing-like crossover |
+| round-4 population (fp32) | 37 | 12 | 2 | mixed / unresolved | licensing-like crossover |
+| round-4 population (fp32) | 37 | 12 | 3 | mixed / unresolved | licensing-like crossover |
+| round-4 population (fp32) | 37 | 12 | 4 | surface (object next) | surface (object next) |
+| round-4 population (fp32) | 37 | 12 | 5 | surface (object next) | surface (object next) |
+| round-4 population (fp32) | 37 | 12 | 8 | surface (object next) | surface (object next) |
+| round-4 population (fp32) | 37 | 12 | 12 | surface (object next) | surface (object next) |
+| round-4 population (fp32) | 37 | 12 | 15 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 12 | 12 | 0 | mixed / unresolved | mixed / unresolved |
+| multi-token, non-DAS | 12 | 12 | 1 | mixed / unresolved | mixed / unresolved |
+| multi-token, non-DAS | 12 | 12 | 2 | mixed / unresolved | mixed / unresolved |
+| multi-token, non-DAS | 12 | 12 | 3 | mixed / unresolved | mixed / unresolved |
+| multi-token, non-DAS | 12 | 12 | 4 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 12 | 12 | 5 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 12 | 12 | 8 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 12 | 12 | 12 | surface (object next) | surface (object next) |
+| multi-token, non-DAS | 12 | 12 | 15 | surface (object next) | surface (object next) |
+
+### Frame strata (primary population; in range / T − I donors per site)
+
+| Stratum | contexts | site 0 | site 1 | site 2 | site 3 | site 4 | site 5 | site 8 | site 12 | site 15 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Can | all 6 | mix / mix | mix / mix | mix / surf | surf / surf | surf / surf | surf / surf | surf / surf | surf / surf | surf / surf |
+| Can | half B | mix / mix | mix / mix | mix / surf | surf / surf | surf / surf | surf / surf | surf / surf | surf / surf | surf / surf |
+| Did | all 6 | mix / mix | mix / LIC | mix / mix | mix / mix | surf / surf | surf / surf | surf / surf | surf / surf | surf / surf |
+| Did | half B | mix / mix | mix / LIC | mix / mix | mix / mix | surf / surf | surf / surf | surf / surf | surf / surf | surf / surf |
+| Will | all 6 | mix / mix | mix / LIC | LIC / mix | mix / mix | surf / surf | surf / surf | surf / surf | surf / surf | surf / surf |
+| Will | half B | mix / mix | LIC / LIC | LIC / mix | mix / mix | surf / surf | surf / surf | surf / surf | surf / surf | surf / surf |
+| Would | all 6 | mix / mix | mix / LIC | LIC / LIC | LIC / LIC | mix / surf | surf / surf | surf / surf | surf / surf | surf / surf |
+| Would | half B | mix / mix | mix / LIC | LIC / LIC | LIC / LIC | mix / surf | surf / surf | surf / surf | surf / surf | surf / surf |
+
+LIC = licensing-like crossover, surf = surface (object next), mix = mixed / unresolved.
+
+== stage fg done Mon Nov  9 04:38:06 PM JST 2026

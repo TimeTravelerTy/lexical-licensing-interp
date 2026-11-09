@@ -7,8 +7,8 @@
     "device": "cuda",
     "dtype": "bfloat16",
     "batch": 1024,
-    "sites": "0,1,4,5,8,12,15",
-    "token_sites": "0,1,4,5,8,12,15"
+    "sites": "0,1,2,3,4,5,8,12,15",
+    "token_sites": "0,1,2,3,4,5,8,12,15"
   },
   "prompts": 7576,
   "plan_rows": 220992,
@@ -98,6 +98,12 @@
     "1": {
       "self_patch_max_abs_dM": 0.0
     },
+    "2": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "3": {
+      "self_patch_max_abs_dM": 0.0
+    },
     "4": {
       "self_patch_max_abs_dM": 0.0
     },
@@ -114,6 +120,6 @@
       "self_patch_max_abs_dM": 0.0
     }
   },
-  "bases_sha256": "715fb073a754eb392aa69d7e18236eddfbe869d0b295b236a02955016ec3dadb",
+  "bases_sha256": "bf1d31f30fb0cf4a52333f7d8bb8f5feffce02a1b9a2486d0ba93e0d52f9f033",
   "plan_sha256": "be74e99d10986a544167c2042768e6cbb162d1d84da7c909b4b842b3ec07cf7b"
 }

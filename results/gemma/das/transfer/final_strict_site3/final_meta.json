@@ -1,0 +1,51 @@
+{
+  "site": 3,
+  "epochs": 1,
+  "ranks_trained": [
+    1
+  ],
+  "chosen_rank": 1,
+  "rank_rule": "rank 1 unless a larger rank raises mean held-out median pc_frac by > 0.1",
+  "pc_frac_by_rank": {
+    "1": 0.8858203682059779
+  },
+  "pairs": 28,
+  "dropped_pairs": [
+    "transplant/ensue"
+  ],
+  "items": 392,
+  "config": {
+    "site": 3,
+    "layer_output": 2,
+    "epochs": 1,
+    "rank": 1,
+    "role": "Gemma transfer, EXPLORATORY / secondary: completes the early span 0-4 (sites 0 / 1 / 4 run as IIA-matched sites)",
+    "declared": "2026-11-09, before any Gemma transfer evaluation at this site",
+    "site_rule": "user request 2026-11-09: run the full chain at Gemma sites 2 and 3 so that sites 0-4 are all run",
+    "epoch_rule": "the frozen rule applied to this site's sweep curve: smallest epoch whose mean held-out cross-class IIA is within 0.01 of the site's best (sweep_strict/sweep.csv)",
+    "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+    "best_epoch_iia": 0.761031746031746,
+    "chosen_epoch_iia": 0.761031746031746,
+    "sweep_sha256": "d6d4650794a547d88f60dcc9549385d93ad4a03dae70b8d4bd11ccf95a1b39c0"
+  },
+  "args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/gemma/das/transfer/frozen_config_site3.json",
+    "out_dir": "../results/gemma/das/transfer/final_strict_site3",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01,
+    "bos": null,
+    "fp32_unembed": null
+  }
+}

@@ -10,6 +10,8 @@ D_in = R(t_T) − R(t_I) on bad passive items, nats, 95% CI / 90% CI (two-way bo
 |---|---|---|---|---|---|---|---|---|
 | Gemma-3-1B | 0 | 0.000 | exploratory (IIA-matched to Pythia 4) | 0.288 | +0.02 [+0.00, +0.03] / 90% [+0.00, +0.03] NO RISE | +0.07 [+0.05, +0.09] / 90% [+0.05, +0.08] NO RISE | nothing moves (active-specific) | unresolved |
 | Gemma-3-1B | 1 | 0.038 | exploratory (IIA-matched to Pythia 6) | 0.410 | +0.01 [-0.01, +0.03] / 90% [-0.01, +0.03] NO RISE | +0.09 [+0.06, +0.12] / 90% [+0.07, +0.12] NO RISE | nothing moves (active-specific) | abstract (takes an object) |
+| Gemma-3-1B | 2 | 0.077 | exploratory (early span) | 0.486 | +0.05 [+0.02, +0.09] / 90% [+0.02, +0.08] NO RISE | +0.13 [+0.08, +0.17] / 90% [+0.09, +0.16] NO RISE | nothing moves (active-specific) | unresolved |
+| Gemma-3-1B | 3 | 0.115 | exploratory (early span) | 0.489 | +0.06 [+0.03, +0.10] / 90% [+0.03, +0.09] NO RISE | +0.17 [+0.12, +0.23] / 90% [+0.12, +0.22] NO RISE | nothing moves (active-specific) | abstract (takes an object) |
 | Gemma-3-1B | 4 | 0.154 | exploratory (IIA-matched to Pythia 8) | 0.519 | +0.10 [+0.07, +0.13] / 90% [+0.07, +0.13] NO RISE | +0.24 [+0.18, +0.30] / 90% [+0.19, +0.29] NO RISE | nothing moves (active-specific) | mixed |
 | Pythia-1.4B | 4 | 0.167 | stored | 0.418 | +0.04 [+0.01, +0.07] / 90% [+0.01, +0.06] NO RISE | +0.37 [+0.33, +0.41] / 90% [+0.33, +0.41] NO RISE | nothing moves (active-specific) | abstract (takes an object) |
 | Gemma-3-1B | 5 | 0.192 | declared (Pythia 0.8 rule) | 0.537 | +0.27 [+0.21, +0.33] / 90% [+0.22, +0.32] NO RISE | +0.31 [+0.24, +0.39] / 90% [+0.25, +0.37] NO RISE | nothing moves (active-specific) | mixed |

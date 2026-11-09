@@ -1,6 +1,6 @@
 # Transfer of the active-trained direction: Gemma-3-1B next to Pythia-1.4B
 
-Script `scripts/analyze_gemma_transfer.py` (sources and definitions in its docstring). Same runners, builders and analyses for both models; Gemma at its rule-picked declared sites (15: frozen rule; 12: earliest within 0.05 of the max active IIA; 5 and 8: Pythia's declared secondary-site rule, the first sites whose best active IIA reaches 0.8 and 0.9, which gives Pythia's 8 and 12) and, marked **expl.**, the EXPLORATORY IIA-matched sites 0 / 1 / 4 (sweep IIA closest to Pythia's abstract-reading sites 4 / 6 / 8; `exploratory.md`), Pythia at its stored sites. Rows sorted by relative depth = site / layers (Pythia 24, Gemma 26). Estimates in nats with 95% CIs.
+Script `scripts/analyze_gemma_transfer.py` (sources and definitions in its docstring). Same runners, builders and analyses for both models; Gemma at its rule-picked declared sites (15: frozen rule; 12: earliest within 0.05 of the max active IIA; 5 and 8: Pythia's declared secondary-site rule, the first sites whose best active IIA reaches 0.8 and 0.9, which gives Pythia's 8 and 12) and, marked **expl.**, the EXPLORATORY IIA-matched sites 0 / 1 / 4 (sweep IIA closest to Pythia's abstract-reading sites 4 / 6 / 8) and sites 2 / 3 (completing the early span 0-4; `exploratory.md`), Pythia at its stored sites. Rows sorted by relative depth = site / layers (Pythia 24, Gemma 26). Estimates in nats with 95% CIs.
 
 ## Passive (*by*) test
 
@@ -10,6 +10,8 @@ Primary population (plain bad verbs), all bands; D on bad passive bases = after 
 |---|---|---|---|---|---|---|---|---|---|
 | Gemma-3-1B | 0 | expl. (IIA ~ Pythia 4) | 0.00 | 0.29 | +0.10 [+0.04, +0.16] NO RISE | +0.26 [+0.18, +0.35] unresolved | +0.01 [-0.05, +0.06] NO RISE | 0.64 | unresolved |
 | Gemma-3-1B | 1 | expl. (IIA ~ Pythia 6) | 0.04 | 0.41 | +0.29 [+0.18, +0.40] NO RISE | +0.43 [+0.30, +0.58] RISE | +0.27 [+0.16, +0.40] NO RISE | 1.05 | abstract (takes an object) |
+| Gemma-3-1B | 2 | expl. (early span) | 0.08 | 0.49 | +0.37 [+0.24, +0.51] unresolved | +0.61 [+0.47, +0.76] RISE | +0.45 [+0.31, +0.60] unresolved | 1.48 | unresolved |
+| Gemma-3-1B | 3 | expl. (early span) | 0.12 | 0.49 | +0.31 [+0.22, +0.42] NO RISE | +0.60 [+0.46, +0.75] RISE | +0.29 [+0.17, +0.41] NO RISE | 1.46 | abstract (takes an object) |
 | Gemma-3-1B | 4 | expl. (IIA ~ Pythia 8) | 0.15 | 0.52 | +0.80 [+0.61, +0.98] RISE | +0.63 [+0.49, +0.77] RISE | +0.34 [+0.24, +0.47] NO RISE | 1.53 | mixed |
 | Pythia-1.4B | 4 | stored | 0.17 | 0.42 | +0.10 [+0.06, +0.15] NO RISE | +0.58 [+0.50, +0.66] RISE | +0.12 [+0.07, +0.19] NO RISE | 0.81 | abstract (takes an object) |
 | Gemma-3-1B | 5 | declared | 0.19 | 0.54 | +1.50 [+1.29, +1.72] RISE | +0.56 [+0.44, +0.67] RISE | -0.01 [-0.10, +0.09] NO RISE | 1.36 | mixed |
@@ -34,6 +36,8 @@ D on bad bases. L = MAIN − PREP (OR) or END − PREP (TC). Classes against δ_
 |---|---|---|---|---|---|---|---|
 | Gemma-3-1B | 0 | expl. (IIA ~ Pythia 4) | 0.00 | 0.29 | +0.78 [+0.60, +0.98] RISE | 0.36 | +0.79 [+0.61, +0.97] RISE |
 | Gemma-3-1B | 1 | expl. (IIA ~ Pythia 6) | 0.04 | 0.41 | +0.99 [+0.72, +1.26] RISE | 0.36 | +1.46 [+1.10, +1.80] RISE |
+| Gemma-3-1B | 2 | expl. (early span) | 0.08 | 0.49 | +1.40 [+1.12, +1.67] RISE | 0.36 | +1.80 [+1.48, +2.12] RISE |
+| Gemma-3-1B | 3 | expl. (early span) | 0.12 | 0.49 | +1.24 [+0.98, +1.49] RISE | 0.36 | +1.71 [+1.42, +2.00] RISE |
 | Gemma-3-1B | 4 | expl. (IIA ~ Pythia 8) | 0.15 | 0.52 | +1.55 [+1.25, +1.86] RISE | 0.36 | +1.57 [+1.33, +1.81] RISE |
 | Pythia-1.4B | 4 | stored | 0.17 | 0.42 | +1.05 [+0.88, +1.21] RISE | 0.45 | +1.91 [+1.71, +2.12] RISE |
 | Gemma-3-1B | 5 | declared | 0.19 | 0.54 | +2.27 [+1.94, +2.59] RISE | 0.36 | +1.17 [+0.95, +1.38] RISE |
@@ -54,6 +58,8 @@ D on bad bases. L = MAIN − PREP (OR) or END − PREP (TC). Classes against δ_
 |---|---|---|---|---|---|---|---|
 | Gemma-3-1B | 0 | expl. (IIA ~ Pythia 4) | 0.00 | 0.29 | +0.40 [+0.29, +0.52] RISE | 0.13 | +0.32 [+0.24, +0.41] RISE |
 | Gemma-3-1B | 1 | expl. (IIA ~ Pythia 6) | 0.04 | 0.41 | +0.38 [+0.25, +0.52] unresolved | 0.13 | +0.56 [+0.40, +0.72] RISE |
+| Gemma-3-1B | 2 | expl. (early span) | 0.08 | 0.49 | +0.43 [+0.29, +0.58] unresolved | 0.13 | +0.75 [+0.59, +0.92] RISE |
+| Gemma-3-1B | 3 | expl. (early span) | 0.12 | 0.49 | +0.38 [+0.26, +0.50] NO RISE | 0.13 | +0.71 [+0.58, +0.85] RISE |
 | Gemma-3-1B | 4 | expl. (IIA ~ Pythia 8) | 0.15 | 0.52 | +0.65 [+0.50, +0.81] RISE | 0.13 | +0.65 [+0.52, +0.79] RISE |
 | Pythia-1.4B | 4 | stored | 0.17 | 0.42 | +0.30 [+0.18, +0.42] NO RISE | 0.30 | +1.41 [+1.22, +1.61] RISE |
 | Gemma-3-1B | 5 | declared | 0.19 | 0.54 | +1.14 [+0.96, +1.32] RISE | 0.13 | +0.69 [+0.57, +0.82] RISE |
@@ -78,6 +84,8 @@ D_in = readout at t_T − at t_I (coordinate set to the construction's own class
 |---|---|---|---|---|---|---|
 | Gemma-3-1B | 0 | expl. (IIA ~ Pythia 4) | 0.00 | +0.14 [+0.11, +0.17] (0.11) | -0.04 [-0.05, -0.02] (0.07) | +0.20 [+0.16, +0.24] (0.18) |
 | Gemma-3-1B | 1 | expl. (IIA ~ Pythia 6) | 0.04 | +0.25 [+0.19, +0.32] (0.19) | -0.06 [-0.08, -0.04] (0.12) | +0.26 [+0.21, +0.31] (0.23) |
+| Gemma-3-1B | 2 | expl. (early span) | 0.08 | +0.40 [+0.32, +0.49] (0.31) | -0.10 [-0.12, -0.07] (0.19) | +0.46 [+0.39, +0.53] (0.40) |
+| Gemma-3-1B | 3 | expl. (early span) | 0.12 | +0.70 [+0.58, +0.83] (0.54) | -0.18 [-0.22, -0.13] (0.35) | +0.72 [+0.60, +0.85] (0.63) |
 | Gemma-3-1B | 4 | expl. (IIA ~ Pythia 8) | 0.15 | +0.80 [+0.68, +0.92] (0.62) | -0.24 [-0.28, -0.18] (0.47) | +0.89 [+0.73, +1.05] (0.78) |
 | Pythia-1.4B | 4 | stored | 0.17 | +1.16 [+1.03, +1.29] (0.79) | -0.46 [-0.53, -0.39] (0.57) | +0.87 [+0.75, +0.99] (0.58) |
 | Gemma-3-1B | 5 | declared | 0.19 | +0.84 [+0.72, +0.97] (0.65) | -0.28 [-0.34, -0.22] (0.55) | +1.30 [+1.11, +1.50] (1.14) |
@@ -98,6 +106,8 @@ D_in = readout at t_T − at t_I (coordinate set to the construction's own class
 |---|---|---|---|---|---|---|
 | Gemma-3-1B | 0 | expl. (IIA ~ Pythia 4) | 0.00 | +0.03 [+0.02, +0.04] (0.13) | -0.05 [-0.07, -0.04] (0.12) | +0.11 [+0.09, +0.14] (0.24) |
 | Gemma-3-1B | 1 | expl. (IIA ~ Pythia 6) | 0.04 | +0.10 [+0.06, +0.14] (0.45) | -0.13 [-0.16, -0.10] (0.27) | +0.18 [+0.13, +0.23] (0.39) |
+| Gemma-3-1B | 2 | expl. (early span) | 0.08 | +0.15 [+0.10, +0.20] (0.67) | -0.17 [-0.21, -0.12] (0.37) | +0.17 [+0.11, +0.23] (0.37) |
+| Gemma-3-1B | 3 | expl. (early span) | 0.12 | +0.18 [+0.13, +0.24] (0.85) | -0.24 [-0.29, -0.19] (0.53) | +0.20 [+0.13, +0.28] (0.45) |
 | Gemma-3-1B | 4 | expl. (IIA ~ Pythia 8) | 0.15 | +0.20 [+0.15, +0.26] (0.91) | -0.23 [-0.29, -0.18] (0.51) | +0.35 [+0.27, +0.44] (0.78) |
 | Pythia-1.4B | 4 | stored | 0.17 | +0.55 [+0.45, +0.66] (0.96) | -0.50 [-0.58, -0.42] (0.55) | +0.25 [+0.16, +0.34] (0.44) |
 | Gemma-3-1B | 5 | declared | 0.19 | +0.20 [+0.15, +0.26] (0.93) | -0.37 [-0.42, -0.32] (0.81) | +0.76 [+0.66, +0.87] (1.67) |
@@ -118,6 +128,8 @@ D_in = readout at t_T − at t_I (coordinate set to the construction's own class
 |---|---|---|---|---|---|
 | Gemma-3-1B | 0 | expl. (IIA ~ Pythia 4) | 0.00 | +0.07 [+0.05, +0.09] (0.17) | +0.02 [+0.00, +0.03] (-0.09) |
 | Gemma-3-1B | 1 | expl. (IIA ~ Pythia 6) | 0.04 | +0.09 [+0.06, +0.12] (0.22) | +0.01 [-0.01, +0.03] (-0.06) |
+| Gemma-3-1B | 2 | expl. (early span) | 0.08 | +0.13 [+0.08, +0.17] (0.31) | +0.05 [+0.02, +0.09] (-0.26) |
+| Gemma-3-1B | 3 | expl. (early span) | 0.12 | +0.17 [+0.12, +0.23] (0.41) | +0.06 [+0.03, +0.10] (-0.32) |
 | Gemma-3-1B | 4 | expl. (IIA ~ Pythia 8) | 0.15 | +0.24 [+0.18, +0.30] (0.59) | +0.10 [+0.07, +0.13] (-0.50) |
 | Pythia-1.4B | 4 | stored | 0.17 | +0.37 [+0.33, +0.41] (0.52) | +0.04 [+0.01, +0.07] (-0.17) |
 | Gemma-3-1B | 5 | declared | 0.19 | +0.31 [+0.24, +0.39] (0.76) | +0.27 [+0.21, +0.33] (-1.38) |
@@ -142,6 +154,8 @@ Population: primary: non-DAS, half B. B6 embedded wh ("I know that / what NAME V
 |---|---|---|---|---|---|---|---|---|---|---|
 | Gemma-3-1B | 0 | expl. (IIA ~ Pythia 4) | 0.00 | 16 | +0.93 [+0.53, +1.42] | +0.69 [+0.40, +1.03] | +1.13 [+0.70, +1.61] | +0.19 [+0.03, +0.37] | -0.92 [-1.32, -0.51] | mixed / unresolved |
 | Gemma-3-1B | 1 | expl. (IIA ~ Pythia 6) | 0.04 | 16 | +1.45 [+1.02, +1.94] | +1.23 [+0.85, +1.69] | +1.67 [+1.24, +2.14] | +0.22 [+0.03, +0.44] | -0.11 [-0.63, +0.37] | licensing-like crossover |
+| Gemma-3-1B | 2 | expl. (early span) | 0.08 | 16 | +1.70 [+1.31, +2.15] | +1.33 [+0.98, +1.73] | +2.07 [+1.69, +2.49] | +0.38 [+0.16, +0.60] | +0.14 [-0.42, +0.65] | mixed / unresolved |
+| Gemma-3-1B | 3 | expl. (early span) | 0.12 | 16 | +1.77 [+1.36, +2.24] | +1.36 [+1.01, +1.78] | +2.09 [+1.71, +2.49] | +0.31 [+0.07, +0.55] | +0.20 [-0.32, +0.68] | mixed / unresolved |
 | Gemma-3-1B | 4 | expl. (IIA ~ Pythia 8) | 0.15 | 16 | +2.13 [+1.73, +2.60] | +1.59 [+1.17, +2.06] | +2.70 [+2.24, +3.16] | +0.58 [+0.26, +0.87] | +0.84 [+0.46, +1.19] | surface (object next) |
 | Pythia-1.4B | 4 | stored | 0.17 | 28 | +1.74 [+1.43, +2.05] | +1.61 [+1.34, +1.91] | +2.52 [+2.14, +2.92] | +0.78 [+0.53, +1.07] | +0.51 [+0.09, +0.92] | surface (object next) |
 | Gemma-3-1B | 5 | declared | 0.19 | 16 | +2.34 [+1.91, +2.84] | +1.44 [+1.03, +1.93] | +3.09 [+2.64, +3.59] | +0.76 [+0.47, +1.03] | +1.26 [+0.90, +1.61] | surface (object next) |
@@ -162,6 +176,8 @@ Population: primary: non-DAS, half B. B6 embedded wh ("I know that / what NAME V
 |---|---|---|---|---|---|---|---|---|---|---|
 | Gemma-3-1B | 0 | expl. (IIA ~ Pythia 4) | 0.00 | 16 | +0.67 [+0.38, +1.00] | +0.47 [+0.29, +0.68] | +0.77 [+0.50, +1.07] | +0.11 [-0.03, +0.26] | -1.15 [-1.55, -0.74] | mixed / unresolved |
 | Gemma-3-1B | 1 | expl. (IIA ~ Pythia 6) | 0.04 | 16 | +1.16 [+0.82, +1.55] | +1.03 [+0.74, +1.37] | +1.38 [+1.14, +1.68] | +0.22 [+0.03, +0.41] | -0.40 [-0.94, +0.11] | mixed / unresolved |
+| Gemma-3-1B | 2 | expl. (early span) | 0.08 | 16 | +1.48 [+1.11, +1.89] | +1.18 [+0.88, +1.55] | +1.79 [+1.52, +2.11] | +0.31 [+0.09, +0.51] | -0.04 [-0.65, +0.52] | licensing-like crossover |
+| Gemma-3-1B | 3 | expl. (early span) | 0.12 | 16 | +1.55 [+1.17, +1.95] | +1.25 [+0.94, +1.63] | +1.87 [+1.56, +2.22] | +0.32 [+0.08, +0.55] | +0.05 [-0.55, +0.60] | mixed / unresolved |
 | Gemma-3-1B | 4 | expl. (IIA ~ Pythia 8) | 0.15 | 16 | +1.85 [+1.53, +2.24] | +1.35 [+0.97, +1.80] | +2.31 [+1.97, +2.68] | +0.46 [+0.15, +0.75] | +0.43 [+0.07, +0.78] | mixed / unresolved |
 | Pythia-1.4B | 4 | stored | 0.17 | 28 | +1.71 [+1.41, +2.00] | +1.44 [+1.21, +1.68] | +2.34 [+1.98, +2.71] | +0.63 [+0.37, +0.91] | +0.33 [-0.11, +0.75] | mixed / unresolved |
 | Gemma-3-1B | 5 | declared | 0.19 | 16 | +2.31 [+1.91, +2.78] | +1.37 [+0.98, +1.83] | +2.87 [+2.48, +3.32] | +0.56 [+0.29, +0.82] | +0.98 [+0.59, +1.37] | surface (object next) |
@@ -182,6 +198,8 @@ Population: primary: non-DAS, half B. B6 embedded wh ("I know that / what NAME V
 |---|---|---|---|---|---|---|---|---|---|---|
 | Gemma-3-1B | 0 | expl. (IIA ~ Pythia 4) | 0.00 | 26 | +1.04 [+0.70, +1.41] | +0.61 [+0.38, +0.86] | +0.90 [+0.59, +1.24] | -0.14 [-0.30, +0.00] | -0.80 [-1.22, -0.38] | mixed / unresolved |
 | Gemma-3-1B | 1 | expl. (IIA ~ Pythia 6) | 0.04 | 26 | +1.49 [+1.09, +1.95] | +1.00 [+0.67, +1.36] | +1.13 [+0.79, +1.49] | -0.37 [-0.58, -0.19] | -0.35 [-0.79, +0.11] | licensing-like crossover |
+| Gemma-3-1B | 2 | expl. (early span) | 0.08 | 26 | +2.01 [+1.60, +2.44] | +1.25 [+0.88, +1.64] | +1.69 [+1.35, +2.03] | -0.32 [-0.52, -0.14] | +0.19 [-0.28, +0.65] | mixed / unresolved |
+| Gemma-3-1B | 3 | expl. (early span) | 0.12 | 26 | +2.24 [+1.84, +2.67] | +1.41 [+1.13, +1.71] | +1.74 [+1.40, +2.06] | -0.51 [-0.76, -0.29] | +0.27 [-0.15, +0.67] | mixed / unresolved |
 | Gemma-3-1B | 4 | expl. (IIA ~ Pythia 8) | 0.15 | 26 | +2.69 [+2.30, +3.08] | +1.74 [+1.45, +2.06] | +2.53 [+2.12, +2.94] | -0.16 [-0.44, +0.09] | +1.10 [+0.73, +1.47] | surface (object next) |
 | Pythia-1.4B | 4 | stored | 0.17 | 34 | +2.28 [+2.00, +2.56] | +1.75 [+1.50, +2.01] | +2.31 [+1.98, +2.69] | +0.02 [-0.20, +0.28] | +0.27 [-0.12, +0.72] | mixed / unresolved |
 | Gemma-3-1B | 5 | declared | 0.19 | 26 | +2.86 [+2.46, +3.26] | +1.67 [+1.36, +2.03] | +2.99 [+2.60, +3.39] | +0.13 [-0.09, +0.34] | +1.81 [+1.49, +2.12] | surface (object next) |
@@ -202,6 +220,8 @@ Population: primary: non-DAS, half B. B6 embedded wh ("I know that / what NAME V
 |---|---|---|---|---|---|---|---|---|---|---|
 | Gemma-3-1B | 0 | expl. (IIA ~ Pythia 4) | 0.00 | 26 | +0.42 [+0.29, +0.56] | +0.24 [+0.15, +0.32] | +0.35 [+0.25, +0.46] | -0.07 [-0.13, -0.01] | -1.12 [-1.52, -0.71] | mixed / unresolved |
 | Gemma-3-1B | 1 | expl. (IIA ~ Pythia 6) | 0.04 | 26 | +1.05 [+0.80, +1.34] | +0.75 [+0.48, +1.04] | +0.79 [+0.55, +1.05] | -0.25 [-0.45, -0.10] | -0.54 [-0.98, -0.10] | mixed / unresolved |
+| Gemma-3-1B | 2 | expl. (early span) | 0.08 | 26 | +1.52 [+1.25, +1.81] | +0.98 [+0.71, +1.29] | +1.29 [+1.06, +1.53] | -0.23 [-0.40, -0.07] | -0.03 [-0.53, +0.44] | licensing-like crossover |
+| Gemma-3-1B | 3 | expl. (early span) | 0.12 | 26 | +2.00 [+1.69, +2.35] | +1.29 [+1.08, +1.55] | +1.58 [+1.32, +1.85] | -0.42 [-0.66, -0.19] | +0.22 [-0.19, +0.62] | mixed / unresolved |
 | Gemma-3-1B | 4 | expl. (IIA ~ Pythia 8) | 0.15 | 26 | +2.50 [+2.17, +2.83] | +1.52 [+1.28, +1.80] | +2.23 [+1.88, +2.57] | -0.27 [-0.55, -0.02] | +0.84 [+0.49, +1.21] | surface (object next) |
 | Pythia-1.4B | 4 | stored | 0.17 | 34 | +1.95 [+1.69, +2.22] | +1.49 [+1.29, +1.71] | +2.02 [+1.73, +2.37] | +0.07 [-0.13, +0.31] | -0.06 [-0.46, +0.42] | licensing-like crossover |
 | Gemma-3-1B | 5 | declared | 0.19 | 26 | +2.89 [+2.53, +3.24] | +1.64 [+1.38, +1.95] | +2.84 [+2.48, +3.20] | -0.05 [-0.30, +0.20] | +1.44 [+1.10, +1.80] | surface (object next) |

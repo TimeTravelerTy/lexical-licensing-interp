@@ -226,6 +226,8 @@ Passive D_in(O) is near zero in both: +0.02 / +0.01 / +0.10 against +0.04 / +0.0
   not over a span like Pythia's sites 4–8. Matching by IIA does not show how much IIA contributes to the
   declared depth difference. Gemma sites 2 / 3 (sweep IIA 0.64 / 0.76) were not run through the transfer chain.
   Three exploratory comparisons, not corrected for multiplicity.
+  (Written before sites 2 / 3 were run. Their results, in the second batch below, revise the "one site" part:
+  site 3 also reads abstract, and site 2 misses it on the O bound by 0.004.)
 - The declared reading ("on the declared test, Gemma does not show Pythia's early abstract profile at the
   tested sites") is unchanged. It concerned the rule-picked sites.
 
@@ -290,5 +292,175 @@ classes < 0.044 in every fold (max 0.0435). Held-out cross-class IIA:
     which permutations the unconstrained control drew. It is not established: the unconstrained control is one
     permutation per fold, so it gives no permutation distribution to compare against. Under the balanced control
     the two models are close at matched IIA.
+
+No nonce runs.
+
+## Results, second batch (run 2026-11-09; tables: `transfer.md`, `exploratory_tables.md`, `embedding_axis.md`)
+
+**Exploratory.** Numbers only. Rules: sections 4 and 5 above.
+
+**Reproduction:** rerunning the chain at nine sites left every output of the seven sites run before unchanged.
+- All summary CSVs match row for row (max diff 0), and the earlier base vectors are bit-identical.
+- Run checks at the new sites: self-patch / self-set max |dM| 0 in bf16 and ≤ 2.8e-5 in fp32 (filler-gap); held-out
+  recompute max 0.053 / 0.074, median 0.
+  The earlier sites range 0.057–0.091.
+
+### 4. Gemma sites 2 and 3 through the full chain
+
+**Final-run held-out cross-class IIA** (15 folds, rank 1):
+
+| Gemma site | 0 | 1 | 2 | 3 | 4 | 5 |
+|---|---:|---:|---:|---:|---:|---:|
+| DAS IIA | 0.34 | 0.63 | 0.74 | 0.75 | 0.81 | 0.85 |
+
+- Unconstrained shuffled labels: 0.30 / 0.24 at sites 2 / 3.
+- Norm-matched random: 0.02 / 0.01.
+- Site 2's final IIA (0.74) is above its sweep IIA (0.64, split 0 only).
+- Pythia 4 / 6 / 8: 0.45 / 0.66 / 0.78.
+
+**Passive (*by*), primary population, active donors** (declared rule):
+
+| Gemma site | δ_s | D log P(O) | D log P(" by") | D log P(".") | outcome |
+|---:|---:|---|---|---|---|
+| 0 | 0.29 | +0.10 [+0.04, +0.16] NO RISE | +0.26 [+0.18, +0.35] unresolved | +0.01 NO RISE | unresolved |
+| 1 | 0.41 | +0.29 [+0.18, +0.40] NO RISE | +0.43 [+0.30, +0.58] RISE | +0.27 NO RISE | abstract |
+| **2** | 0.49 | +0.37 [+0.24, +0.51] unresolved | +0.61 [+0.47, +0.76] RISE | +0.45 unresolved | unresolved |
+| **3** | 0.49 | +0.31 [+0.22, +0.42] NO RISE | +0.60 [+0.46, +0.75] RISE | +0.29 NO RISE | **abstract** |
+| 4 | 0.52 | +0.80 [+0.61, +0.98] RISE | +0.63 [+0.49, +0.77] RISE | +0.34 NO RISE | mixed |
+| 5 | 0.54 | +1.50 [+1.29, +1.72] RISE | +0.56 [+0.44, +0.67] RISE | −0.01 NO RISE | mixed |
+
+- Site 2: O's 90% CI is [+0.26, +0.490] against δ_s 0.486, so it misses NO RISE by 0.004.
+- Site 3: O's 90% CI upper bound is 0.40 < 0.49, and *by* clears δ_s by 0.11.
+- O as a fraction of the active effect (δ_s / 0.2), sites 0–5: 0.07 / 0.14 / 0.15 / 0.13 / 0.31 / 0.56.
+  Pythia 4 / 6 / 8: 0.05 / 0.10 / 0.15.
+- D(*by*) / natural *by* gap, sites 0–5: 0.64 / 1.05 / 1.48 / 1.46 / 1.53 / 1.36.
+  Pythia 4 / 6 / 8: 0.81 / 0.96 / 1.01.
+
+**OR / TC (T − I donors):**
+- OR: D(O) and D(L) RISE at sites 2 and 3:
+  - O +1.40 / +1.24;
+  - L +1.80 / +1.71.
+- TC D(L) RISE at both: +0.75 / +0.71.
+- TC D(O) is unresolved at site 2 (+0.43) and NO RISE at site 3 (+0.38 [+0.26, +0.50], δ_s 0.49).
+  - Over sites 0–5 TC D(O) reads RISE / unresolved / unresolved / NO RISE / RISE / RISE.
+  - Pythia 4 / 6 / 8: NO RISE / unresolved / RISE.
+- Licensed continuation and PREP, sites 2 / 3:
+  - OR MAIN +1.33 / +1.33, against Pythia 4 / 6 / 8 +1.34 / +1.49 / +1.47;
+  - TC END +0.35 / +0.32, against +0.72 / +0.80 / +0.75;
+  - PREP: OR −0.47 / −0.37, TC −0.40 / −0.39, against Pythia OR −0.57 to −0.64 and TC −0.69 to −0.80.
+
+**In range** (ratio to the natural gap), sites 0–5:
+
+| readout | 0 | 1 | 2 | 3 | 4 | 5 | Pythia 4 / 6 / 8 |
+|---|---:|---:|---:|---:|---:|---:|---|
+| OR MAIN | 0.11 | 0.19 | 0.31 | 0.54 | 0.62 | 0.65 | 0.79 / 0.93 / 0.89 |
+| TC END | 0.13 | 0.45 | 0.67 | 0.85 | 0.91 | 0.93 | 0.96 / 1.10 / 0.91 |
+| passive *by* | 0.17 | 0.22 | 0.31 | 0.41 | 0.59 | 0.76 | 0.52 / 0.52 / 0.44 |
+
+Passive D_in(O), sites 0–5: +0.02 / +0.01 / +0.05 / +0.06 / +0.10 / +0.27.
+
+**In-range equivalence test** (section 2's rule):
+- Sites 2 and 3 are both NO RISE on D_in(O): +0.05 [90% +0.02, +0.08] and +0.06 [+0.03, +0.09].
+- D_in(*by*) is NO RISE at both (+0.13 / +0.17), so the in-range outcome is "nothing moves" at both, as at
+  every other Gemma site except 8 (unresolved).
+- Gemma is now NO RISE at eight of nine sites; site 8 stays unresolved.
+
+**Filler-gap** (round-5 C8, non-DAS primary, half B; Gemma has 16 embedded / 26 matrix I verbs):
+
+| | Gemma 0 | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|---|
+| embedded, T − I donors | mixed | **licensing-like** | mixed | mixed | surface | surface |
+| embedded, in range | mixed | mixed | **licensing-like** | mixed | mixed | surface |
+| matrix, T − I donors | mixed | **licensing-like** | mixed | mixed | surface | surface |
+| matrix, in range | mixed | mixed | **licensing-like** | mixed | surface | surface |
+
+At sites 2 and 3, every directional condition of the reading rule holds in all four cells: nofill "." / "?"
+FALL, nofill O RISE, fill L RISE, fill "." / "?" lo95 > 0, fill PREP FALL.
+- The "mixed" cells fail only the O-level condition (90% CI upper < δ_s).
+- O level (fill, patched minus T verbs' natural level), estimate and 90% upper against δ_s 0.49:
+
+  | cell | site 2 | site 3 |
+  |---|---|---|
+  | embedded, donors | +0.14, 0.58 | +0.20, 0.60 |
+  | matrix, donors | +0.19, 0.60 | +0.27, 0.61 |
+  | embedded, in range | (passes) | +0.05, 0.51 |
+  | matrix, in range | (passes) | +0.22, 0.56 |
+
+- The site-1 in-range cells fail on nofill "." / "?" (unresolved), not on the O level.
+
+### 5. Embedding-level class axis, both models
+
+26 verbs (13 T, 13 I) are DAS verbs in both models' final runs and have a single-token participle in both
+tokenizers.
+
+**(a) Verb-held-out T vs I probe on the embedding rows** (each model's own DAS folds; mean over 3 splits):
+
+| model | matrix | classifier | accuracy | per split | 95% CI (verb bootstrap) | Clopper-Pearson 95% | label-shuffled null mean / p95 |
+|---|---|---|---:|---|---|---|---|
+| Gemma | tied embedding | logistic | 1.000 | 1.00 / 1.00 / 1.00 | [1.000, 1.000] | [0.868, 1.000] | 0.43 / 0.62 |
+| Gemma | tied embedding | mean-diff | 0.923 | 0.92 / 0.92 / 0.92 | [0.808, 1.000] | [0.749, 0.991] | 0.45 / 0.65 |
+| Pythia | embed_in | logistic | 0.987 | 1.00 / 1.00 / 0.96 | [0.962, 1.000] | [0.868, 1.000] | 0.41 / 0.60 |
+| Pythia | embed_in | mean-diff | 0.987 | 1.00 / 1.00 / 0.96 | [0.962, 1.000] | [0.868, 1.000] | 0.42 / 0.62 |
+| Pythia | embed_out | logistic | 0.936 | 0.96 / 0.96 / 0.88 | [0.846, 1.000] | [0.749, 0.991] | 0.43 / 0.59 |
+| Pythia | embed_out | mean-diff | 0.936 | 0.96 / 0.96 / 0.88 | [0.846, 1.000] | [0.749, 0.991] | 0.44 / 0.63 |
+
+Majority baseline is 0.50.
+
+**Disclosure.** The Clopper-Pearson column was added after a test run (job 9325042, same code and verbs)
+showed the verb bootstrap collapsing to [1, 1] at 26 / 26 correct.
+- It uses k = round(mean accuracy × 26). So Pythia embed_in's 0.987 (26 / 26 / 25 per split) counts as 26 / 26,
+  and embed_out's 0.936 counts as 24 / 26.
+- The bootstrap CI is the declared one.
+
+**(b) |cos| between the class mean-difference axis and each rank-1 DAS direction** (15 folds per site):
+- The random and shuffled-label reference columns are per direction, comparable to a single fold's |cos|, not
+  to the fold mean.
+- Random: 10,000 unit directions. Expected mean √(2/(πd)) = 0.024 for Gemma (d = 1152) and 0.018 for Pythia
+  (d = 2048).
+- Shuffled-label axis: 1,000 label permutations.
+
+| model / matrix | site | \|cos\| mean (min–max) | random mean / p95 | shuffled-label axis mean / p95 |
+|---|---:|---|---|---|
+| Gemma tied | 0 | 0.617 (0.601–0.649) | 0.024 / 0.058 | 0.153 / 0.348 |
+| Gemma tied | 1 | 0.261 (0.107–0.316) | 0.023 / 0.058 | 0.069 / 0.163 |
+| Gemma tied | 2 | 0.193 (0.139–0.249) | 0.024 / 0.057 | 0.052 / 0.123 |
+| Gemma tied | 3 | 0.163 (0.103–0.200) | 0.024 / 0.058 | 0.048 / 0.111 |
+| Gemma tied | 4 | 0.095 (0.069–0.117) | 0.024 / 0.058 | 0.033 / 0.077 |
+| Gemma tied | 5 | 0.090 (0.060–0.119) | 0.023 / 0.058 | 0.035 / 0.082 |
+| Pythia embed_in | 0 | 0.677 (0.639–0.726) | 0.018 / 0.043 | 0.136 / 0.331 |
+| Pythia embed_in | 1 | 0.106 (0.095–0.124) | 0.017 / 0.043 | 0.029 / 0.069 |
+| Pythia embed_in | 2 | 0.097 (0.076–0.116) | 0.018 / 0.043 | 0.027 / 0.066 |
+| Pythia embed_in | 3 | 0.085 (0.076–0.096) | 0.017 / 0.043 | 0.026 / 0.064 |
+| Pythia embed_in | 4 | 0.093 (0.085–0.101) | 0.018 / 0.043 | 0.028 / 0.068 |
+| Pythia embed_in | 5 | 0.094 (0.086–0.101) | 0.018 / 0.043 | 0.027 / 0.066 |
+| Pythia embed_in | 6 | 0.072 (0.067–0.079) | 0.018 / 0.043 | 0.023 / 0.055 |
+| Pythia embed_in | 7 | 0.078 (0.072–0.085) | 0.018 / 0.043 | 0.025 / 0.060 |
+| Pythia embed_in | 8 | 0.073 (0.068–0.077) | 0.018 / 0.043 | 0.023 / 0.056 |
+| Pythia embed_out | 0 | 0.007 (0.000–0.020) | 0.018 / 0.044 | 0.017 / 0.041 |
+| Pythia embed_out | 1 | 0.048 (0.032–0.062) | 0.018 / 0.044 | 0.019 / 0.045 |
+| Pythia embed_out | 2 | 0.053 (0.041–0.069) | 0.018 / 0.044 | 0.019 / 0.045 |
+| Pythia embed_out | 3 | 0.055 (0.048–0.062) | 0.018 / 0.043 | 0.019 / 0.047 |
+| Pythia embed_out | 4 | 0.044 (0.040–0.051) | 0.018 / 0.043 | 0.020 / 0.047 |
+| Pythia embed_out | 5 | 0.039 (0.033–0.044) | 0.018 / 0.044 | 0.021 / 0.051 |
+| Pythia embed_out | 6 | 0.035 (0.029–0.042) | 0.018 / 0.044 | 0.021 / 0.050 |
+| Pythia embed_out | 7 | 0.025 (0.019–0.031) | 0.018 / 0.044 | 0.019 / 0.046 |
+| Pythia embed_out | 8 | 0.029 (0.023–0.038) | 0.018 / 0.043 | 0.019 / 0.046 |
+
+Pythia's site 0 is `embed_in`'s output, and Gemma's site 0 is the √d-scaled embedding; |cos| is unaffected by
+scale.
+
+- **Gemma tied, and Pythia embed_in:**
+  - Every fold's |cos| is above the random p95 at every site.
+  - It is above the shuffled-label p95 at every fold of Gemma 0, 2 and Pythia embed_in 0–8.
+  - At Gemma 1 (min 0.107), 3 (0.103), 4 (0.069) and 5 (0.060), the fold minimum is below the shuffled-label
+    p95.
+- **Pythia embed_out:**
+  - The fold mean is above the shuffled-label p95 at sites 1–3 only (0.048–0.055 against 0.045–0.047).
+  - It is below that p95 at 4–8.
+  - At site 0 it is below the random mean (0.007 against 0.018).
+- Pythia's stored-run sites 4 / 6 / 8 match the test run to the three decimals its log shows. The new exploratory Pythia final runs at
+  0–3, 5, 7 have held-out DAS IIA 0.07 / 0.10 / 0.13 / 0.28 / 0.55 / 0.71 (norm-matched random 0.02).
+
+Not run in this batch: the balanced shuffled-label control at Gemma 2 / 3, and anything with nonces.
 
 No nonce runs.

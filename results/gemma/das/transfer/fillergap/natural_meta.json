@@ -12,11 +12,11 @@
     "batch": 512,
     "target_pool": "all",
     "suffix": "",
-    "sites": "0,1,4,5,8,12,15"
+    "sites": "0,1,2,3,4,5,8,12,15"
   },
   "prompts": 15680,
   "items": 14976,
   "token_checks": "passed",
-  "bases_sha256": "715fb073a754eb392aa69d7e18236eddfbe869d0b295b236a02955016ec3dadb",
-  "seconds": 12.5
+  "bases_sha256": "bf1d31f30fb0cf4a52333f7d8bb8f5feffce02a1b9a2486d0ba93e0d52f9f033",
+  "seconds": 12.7
 }

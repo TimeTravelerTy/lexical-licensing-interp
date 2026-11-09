@@ -12,10 +12,10 @@
     "batch": 512,
     "target_pool": "all",
     "suffix": "_all",
-    "sites": "0,1,4,5,8,12,15"
+    "sites": "0,1,2,3,4,5,8,12,15"
   },
   "plan_rows": 66960,
-  "bases_sha256": "715fb073a754eb392aa69d7e18236eddfbe869d0b295b236a02955016ec3dadb",
+  "bases_sha256": "bf1d31f30fb0cf4a52333f7d8bb8f5feffce02a1b9a2486d0ba93e0d52f9f033",
   "checks": {
     "0": {
       "self_set_max_abs_dM": 2.09808349609375e-05,
@@ -23,6 +23,14 @@
     },
     "1": {
       "self_set_max_abs_dM": 2.288818359375e-05,
+      "min_eligible_target_verbs": 26
+    },
+    "2": {
+      "self_set_max_abs_dM": 2.09808349609375e-05,
+      "min_eligible_target_verbs": 26
+    },
+    "3": {
+      "self_set_max_abs_dM": 1.811981201171875e-05,
       "min_eligible_target_verbs": 26
     },
     "4": {

@@ -1,0 +1,41 @@
+{
+  "n_verbs_both_das": 56,
+  "n_single_both": 26,
+  "verbs": [
+    "arise",
+    "assess",
+    "die",
+    "earn",
+    "emerge",
+    "err",
+    "exist",
+    "happen",
+    "host",
+    "impose",
+    "include",
+    "infer",
+    "insure",
+    "kneel",
+    "matter",
+    "occur",
+    "persist",
+    "probe",
+    "recite",
+    "remain",
+    "reside",
+    "score",
+    "send",
+    "snatch",
+    "thank",
+    "vanish"
+  ],
+  "args": {
+    "gemma_final": "results/gemma/das/transfer/final_strict",
+    "pythia_final": "results/das_round2/final_strict",
+    "gemma_root": "results/gemma/das/transfer",
+    "pythia_root": "results/das_round2",
+    "pythia_early": "results/gemma/das/pythia_early",
+    "out_dir": "results/gemma/das/embedding_axis",
+    "report": "reports/gemma/embedding_axis.md"
+  }
+}

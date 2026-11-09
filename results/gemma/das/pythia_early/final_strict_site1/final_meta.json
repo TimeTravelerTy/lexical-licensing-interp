@@ -1,0 +1,48 @@
+{
+  "site": 1,
+  "epochs": 1,
+  "ranks_trained": [
+    1
+  ],
+  "chosen_rank": 1,
+  "rank_rule": "rank 1 unless a larger rank raises mean held-out median pc_frac by > 0.1",
+  "pc_frac_by_rank": {
+    "1": 0.11797150191821544
+  },
+  "pairs": 29,
+  "dropped_pairs": [],
+  "items": 406,
+  "config": {
+    "site": 1,
+    "layer_output": 0,
+    "epochs": 1,
+    "rank": 1,
+    "role": "EXPLORATORY (Gemma replication, embedding class-axis analysis): Pythia-1.4B early-site final run, for cosines between the embedding class axis and the DAS direction at sites 0-8; not part of the stored Pythia results",
+    "declared": "2026-11-09",
+    "epoch_rule": "the frozen rule applied to this site's sweep curve: smallest epoch whose mean held-out cross-class IIA is within 0.01 of the site's best (sweep_strict/sweep.csv)",
+    "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+    "best_epoch_iia": 0.10093650793650791,
+    "chosen_epoch_iia": 0.097063492063492,
+    "sweep_sha256": "3fdec90711941233f0193234b7f8b6f3df914996be11ad35587bfc079fb2f9e8"
+  },
+  "args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/gemma/das/pythia_early/frozen_config_site1.json",
+    "out_dir": "../results/gemma/das/pythia_early/final_strict_site1",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01,
+    "bos": null,
+    "fp32_unembed": null
+  }
+}

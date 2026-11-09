@@ -3,13 +3,15 @@
     "prompts": "data/gemma/transfer/passive_test/prompts.csv",
     "plan": "data/gemma/transfer/passive_test/plan.csv.gz",
     "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv",
-    "sites": "15,12,8,5,4,1,0",
+    "sites": "15,12,8,5,4,3,2,1,0",
     "site_dirs": {
       "15": "results/gemma/das/transfer/final_strict",
       "12": "results/gemma/das/transfer/final_strict_site12",
       "8": "results/gemma/das/transfer/final_strict_site8",
       "5": "results/gemma/das/transfer/final_strict_site5",
       "4": "results/gemma/das/transfer/final_strict_site4",
+      "3": "results/gemma/das/transfer/final_strict_site3",
+      "2": "results/gemma/das/transfer/final_strict_site2",
       "1": "results/gemma/das/transfer/final_strict_site1",
       "0": "results/gemma/das/transfer/final_strict_site0"
     },
@@ -28,6 +30,8 @@
     "8": "c5e30c0476bc25fe503f0055129d6d88ed215dde7ab1cb5ae3832f596241bad7",
     "5": "3e4101d41353ae12eb9f5ba8aeafe2ab2259f8cbadb1200793b64677adaea61a",
     "4": "351e9e27f758388f7a38e6f341d557df4d616b9e13d8d9340c36c15f93cddf2b",
+    "3": "0a3fb7e5b0e609f18c4dcc3d8879156efc99895e2e2f1438f8e5a25fd6bd5af5",
+    "2": "a91252f4afd38b5b230c43835ee9090eeef21dfd1689e4094c59625c12ebccd0",
     "1": "e0cce375386d3a8e00610b2b28f554f751066f455c70048a42d9476b3298bb62",
     "0": "ab2aab350076a77f37fdd24b72ac7686b68bac4872e1f44926a571b7cc8c2536"
   },
@@ -55,6 +59,16 @@
     "4": {
       "self_patch_max_abs_dM": 0.0,
       "heldout_recompute_max_abs_dM": 0.06790924072265625,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "3": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.0742340087890625,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "2": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.052768707275390625,
       "heldout_recompute_median_abs_dM": 0.0
     },
     "1": {

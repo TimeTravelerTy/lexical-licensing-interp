@@ -76,6 +76,7 @@ results/gemma/by_readout/*.csv
 # Gemma replication transfer: regenerable plans and raw per-row dumps (as the Pythia runs)
 data/gemma/transfer/**/plan*.csv.gz
 results/gemma/das/transfer/**/heldout_swaps.csv.gz
+results/gemma/das/pythia_early/**/heldout_swaps.csv.gz
 results/gemma/das/transfer/**/patches_*.parquet
 results/gemma/das/transfer/**/patch_tokens_site*.npz
 results/gemma/das/transfer/inrange/rows.parquet
