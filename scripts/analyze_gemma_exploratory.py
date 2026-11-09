@@ -105,6 +105,7 @@ def table(df, cols, heads):
 def main(a):
     roles_g = {15: "declared (frozen rule)", 12: "declared (within 0.05 of max)", 8: "declared (Pythia 0.9 rule)",
                5: "declared (Pythia 0.8 rule)", 4: "exploratory (IIA-matched to Pythia 8)",
+               3: "exploratory (early span)", 2: "exploratory (early span)",
                1: "exploratory (IIA-matched to Pythia 6)", 0: "exploratory (IIA-matched to Pythia 4)"}
     roles_p = {s: "stored" for s in (4, 6, 8, 10, 12, 14, 16, 17)}
     cfg = {"Pythia-1.4B": {"inrange": a.pythia_inrange, "passive": a.pythia_passive.split(","),
@@ -115,7 +116,7 @@ def main(a):
            "Gemma-3-1B": {"inrange": f"{a.gemma}/inrange", "passive": [f"{a.gemma}/passive_test"],
                           "deltas": [f"{a.gemma}/passive_test/deltas.json"], "roles": roles_g, "shb_prefix": "gemma",
                           "final_dirs": {15: f"{a.gemma}/final_strict",
-                                         **{s: f"{a.gemma}/final_strict_site{s}" for s in (0, 1, 4, 5, 8, 12)}}}}
+                                         **{s: f"{a.gemma}/final_strict_site{s}" for s in (0, 1, 2, 3, 4, 5, 8, 12)}}}}
     out = Path(a.csv_dir)
     out.mkdir(parents=True, exist_ok=True)
     f2 = lambda r, k: f"{r[k + '_est']:+.2f} [{r[k + '_lo95']:+.2f}, {r[k + '_hi95']:+.2f}] / 90% [{r[k + '_lo90']:+.2f}, {r[k + '_hi90']:+.2f}]"

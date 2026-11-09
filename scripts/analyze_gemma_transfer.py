@@ -29,11 +29,12 @@ from analyze_fillergap import reading
 from analyze_passive_test import outcome
 
 NL = {"Pythia-1.4B": 24, "Gemma-3-1B": 26}
-EXPL = {0: "expl. (IIA ~ Pythia 4)", 1: "expl. (IIA ~ Pythia 6)", 4: "expl. (IIA ~ Pythia 8)"}
+EXPL = {0: "expl. (IIA ~ Pythia 4)", 1: "expl. (IIA ~ Pythia 6)", 2: "expl. (early span)", 3: "expl. (early span)",
+        4: "expl. (IIA ~ Pythia 8)"}
 
 
 def role(model, site):
-    """Gemma sites 0 / 1 / 4 are the exploratory IIA-matched sites (reports/gemma/exploratory.md); the rest are declared."""
+    """Gemma sites 0 / 1 / 4 (IIA-matched) and 2 / 3 (early span) are exploratory (reports/gemma/exploratory.md); the rest are declared."""
     return EXPL.get(int(site), "declared") if model == "Gemma-3-1B" else "stored"
 
 
@@ -131,8 +132,8 @@ def main(args):
          "builders and analyses for both models; Gemma at its rule-picked declared sites (15: frozen rule; 12: earliest "
          "within 0.05 of the max active IIA; 5 and 8: Pythia's declared secondary-site rule, the first sites whose best "
          "active IIA reaches 0.8 and 0.9, which gives Pythia's 8 and 12) and, marked **expl.**, the EXPLORATORY "
-         "IIA-matched sites 0 / 1 / 4 (sweep IIA closest to Pythia's abstract-reading sites 4 / 6 / 8; "
-         "`exploratory.md`), Pythia at its stored sites. Rows sorted by relative "
+         "IIA-matched sites 0 / 1 / 4 (sweep IIA closest to Pythia's abstract-reading sites 4 / 6 / 8) and sites 2 / 3 "
+         "(completing the early span 0-4; `exploratory.md`), Pythia at its stored sites. Rows sorted by relative "
          "depth = site / layers "
          "(Pythia 24, Gemma 26). Estimates in nats with 95% CIs.", ""]
     P = passive_rows(R)

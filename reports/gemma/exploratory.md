@@ -31,6 +31,15 @@
 
 Two flags:
 - Gemma site 0 is the embedding output; a rank-1 patch there acts on the participle's input embedding alone.
+  Exactly (checked 2026-11-09):
+  - It is the output of a forward hook on `model.embed_tokens` (`model_arch.ARCH`, `Runner.patched`).
+  - That module is `Gemma3TextScaledWordEmbedding` (transformers 4.57.6), whose forward returns the embedding
+    row times `embed_scale` cast to the weight dtype: √1152 = 33.94, which is 34.0 in bf16.
+  - So site 0 is the scaled token embedding entering block 0, not the output of block 0. Gemma adds no
+    positional embedding there (rotary), so the state is the same in every context.
+  - At start-up the runner asserts that the hooked output equals `output_hidden_states[0]`
+    (`site_check_max_abs_sites_0_to_L-1` = 0.0 in every run).
+  - Pythia's site 0 is the same, `gpt_neox.embed_in`, with no scaling.
 - Its match is loose: 0.097, against 0.015 and 0.009 for the other two. Gemma has no site between 0.36
   (site 0) and 0.64 (site 2).
 
@@ -84,6 +93,51 @@ Details:
   go under `results/gemma/das/shuffle_balanced/`; the Pythia results are untouched.
 
 No nonce runs.
+
+## Rules for the second batch, stated before running (2026-11-09)
+
+### 4. Gemma sites 2 and 3 through the full chain
+
+These complete the early span: sites 0–4 are then all run.
+- Configs: `results/gemma/das/transfer/frozen_config_site{2,3}.json`.
+  - Epochs come from the frozen epoch rule on Gemma's sweep: 2 at site 2 (sweep IIA 0.637) and 1 at site 3
+    (0.761). Rank 1.
+  - The same rule reproduces the stored epochs at Gemma 0 / 1 / 4 / 5 / 8 and Pythia 4 / 6 / 8.
+- Pipeline as for the matched sites:
+  - final runs, 3 splits × 5 folds;
+  - the full chain at sites 0, 1, 2, 3, 4, 5, 8, 12, 15.
+- Every site run before must reproduce its committed numbers exactly.
+
+### 5. Embedding-level class axis, both models
+
+Script: `scripts/analyze_embedding_axis.py`, with every definition in its docstring.
+
+**Verbs:** the DAS verbs in both models' final runs (after each model's behaviour filter) whose participle is one
+token in both tokenizers, in the DAS prompt context. That gives 26 verbs: 13 T, 13 I.
+
+**Vectors:**
+- Gemma: rows of the tied embedding matrix.
+- Pythia: rows of `embed_in` and of `embed_out`, separately.
+- All in fp32.
+
+**(a) Probe:** T vs I, verb-held-out, on each model's own DAS folds (3 splits × 5 folds; a verb is held out with
+its pair).
+- Classifiers: L2 logistic regression (C = 1, features standardized on the training verbs), and the
+  mean-difference classifier.
+- Accuracy is the mean over the 3 splits.
+- 95% CI: a verb bootstrap (2,000 draws).
+- Null: 200 label permutations through the same procedure.
+
+**(b) Cosines:** |cos| between the class mean-difference axis (all 26 verbs) and the rank-1 DAS direction of
+every split × fold (15).
+- Sites: Gemma 0–5 and Pythia 0–8.
+- Pythia's stored final runs exist only at 4 / 6 / 8. For 0–3, 5 and 7, new exploratory Pythia final runs use
+  the frozen epoch rule on Pythia's sweep (epochs 1 / 1 / 1 / 2 / 2 / 2).
+  - Configs: `results/gemma/das/pythia_early/frozen_config_site*.json`.
+  - Outputs go under `results/gemma/das/pythia_early/`; the stored Pythia results are not touched.
+- References:
+  - 10,000 random unit directions (mean |cos|, 95th pct; expected mean √(2/(πd)), rms 1/√d);
+  - the mean-difference axis under 1,000 label permutations of the same verbs, a reference for anisotropy.
 
 ## Results (run 2026-11-06/07; tables: `exploratory_tables.md`, `transfer.md`)
 
