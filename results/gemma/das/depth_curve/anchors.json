@@ -1,0 +1,20 @@
+{
+  "Gemma-3-1B": {
+    "site": 5,
+    "rows_stored": 7320,
+    "rows_new": 7320,
+    "unmatched": 0,
+    "max_abs_diff": 0.0,
+    "max_abs_diff_nats": 0.0,
+    "max_abs_diff_natgap_ratio": 0.0
+  },
+  "Pythia-1.4B": {
+    "site": 4,
+    "rows_stored": 7320,
+    "rows_new": 7320,
+    "unmatched": 0,
+    "max_abs_diff": 0.09304111003875803,
+    "max_abs_diff_nats": 0.001635888218879722,
+    "max_abs_diff_natgap_ratio": 0.09304111003875803
+  }
+}

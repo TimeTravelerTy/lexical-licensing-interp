@@ -1,0 +1,51 @@
+{
+  "site": 10,
+  "epochs": 3,
+  "ranks_trained": [
+    1
+  ],
+  "chosen_rank": 1,
+  "rank_rule": "rank 1 unless a larger rank raises mean held-out median pc_frac by > 0.1",
+  "pc_frac_by_rank": {
+    "1": 0.956303162822547
+  },
+  "pairs": 28,
+  "dropped_pairs": [
+    "transplant/ensue"
+  ],
+  "items": 392,
+  "config": {
+    "site": 10,
+    "layer_output": 9,
+    "epochs": 3,
+    "rank": 1,
+    "role": "Gemma, EXPLORATORY passive-only depth curve (passive test only; not run through the rest of the chain)",
+    "declared": "2026-11-10, before any evaluation at this site",
+    "site_rule": "user request 2026-11-10: passive test at every not-yet-run site from 0 to ~60% depth (Gemma 0-15)",
+    "epoch_rule": "the frozen rule applied to this site's sweep curve: smallest epoch whose mean held-out cross-class IIA is within 0.01 of the site's best (sweep_strict/sweep.csv)",
+    "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+    "best_epoch_iia": 0.9435873015873015,
+    "chosen_epoch_iia": 0.9351746031746032,
+    "sweep_sha256": "d6d4650794a547d88f60dcc9549385d93ad4a03dae70b8d4bd11ccf95a1b39c0"
+  },
+  "args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/gemma/das/transfer/frozen_config_site10.json",
+    "out_dir": "../results/gemma/das/transfer/final_strict_site10",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01,
+    "bos": null,
+    "fp32_unembed": null
+  }
+}

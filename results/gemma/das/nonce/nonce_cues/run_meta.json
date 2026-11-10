@@ -1,0 +1,39 @@
+{
+  "args": {
+    "data_dir": "data/gemma/nonce/nonce_cues",
+    "bases": "results/gemma/das/nonce/bases_rank1.npz",
+    "out_dir": "results/gemma/das/nonce/nonce_cues",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 64,
+    "sites": "0,1,3,5,7,8,12,15"
+  },
+  "prompts": 7432,
+  "token_suffix_check": "passed",
+  "final_token_in_context": {
+    "adj_I": 80,
+    "ed_AB": 80,
+    "ed_BA": 80,
+    "ed_I": 80,
+    "ed_T": 80,
+    "ing_AB": 0,
+    "ing_BA": 0,
+    "ing_I": 0,
+    "ing_T": 0,
+    "ing_mI": 0,
+    "ing_mT": 0,
+    "pp_I": 80,
+    "q_I": 0,
+    "q_T": 0,
+    "rel_I": 80,
+    "rel_T": 80,
+    "s_AB": 0,
+    "s_BA": 0,
+    "s_I": 0,
+    "s_T": 0,
+    "s_mI": 0,
+    "s_mT": 0
+  },
+  "bases_sha256": "3fb7d059810e9ce1f08265830b04da7f5be19ffa66ca2ea751d640f4c242cae5"
+}

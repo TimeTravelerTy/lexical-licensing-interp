@@ -1,0 +1,16 @@
+{
+  "args": {
+    "data_dir": "data/gemma/nonce/nonce_passive",
+    "bases": "results/gemma/das/nonce/bases_rank1.npz",
+    "out_dir": "results/gemma/das/nonce/nonce_passive",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 256,
+    "sites": "0,1,3,5,7,8,12,15",
+    "causal_sites": "1,3,5"
+  },
+  "prompts": 7176,
+  "token_suffix_check": "passed",
+  "bases_sha256": "3fb7d059810e9ce1f08265830b04da7f5be19ffa66ca2ea751d640f4c242cae5"
+}

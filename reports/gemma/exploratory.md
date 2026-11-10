@@ -607,3 +607,204 @@ Outputs:
 - Gemma runs: `results/gemma/das/nonce/{nonce_passive,nonce_cues}`;
 - split summaries: `results/gemma/das/nonce/splits/`;
 - generated reports: `reports/gemma/nonce/`.
+
+## Results, third batch and nonce run (run 2026-11-10; tables: `depth_curve.md`, `exploratory_tables.md`, `nonce_tokenization.md`, `nonce/summary.md`)
+
+**Exploratory.** Numbers only. Rules: sections 6–9 above.
+
+### 6. Passive-only depth curve
+
+![depth curve](figures/depth_curve_passive.png)
+
+Full table: `depth_curve.md`, 16 Gemma sites (0–15) and 15 Pythia sites (0–14). Generated passive-test reports:
+`depth_curve/{gemma,pythia}_passive_test.md`.
+
+**Checks:**
+- Before each run the plan was rebuilt in scratch, and its hash equals the committed `plan_meta.json` in both models.
+- Every self-patch max |dM| is 0.
+- Held-out recompute max:
+  - Gemma's new sites 0.058–0.10, and 0.29 at site 7, median 0 everywhere;
+  - Pythia's new sites 0.25–0.39, against 0.27–0.43 in Pythia's stored runs.
+- The stored Pythia results are untouched (the job's git status of `results/das_round2` and `data/das_round2` is
+  empty).
+
+**Reproduction anchors:**
+- Gemma site 5 reproduces every `transfer_summary.csv` row exactly.
+- Pythia site 4 does not reproduce exactly:
+  - every row matches on its keys and class, and the unpatched readouts (`natural.parquet`) are bit-identical;
+  - the patched effects and CIs differ by at most 0.00164 nats (median 2e-5);
+  - ratios to the natural gap differ by at most 0.0930, at a 95% CI endpoint (−10.6) of a 3-pair population's
+    " him" ratio.
+  - So the new patched pass differs from the October run; the unpatched pass does not. The tables use the stored
+    Pythia numbers wherever they exist.
+
+**Final-run held-out IIA at the new sites** (rank 1; norm-matched random ≤ 0.02):
+- Gemma 6 / 7 / 9 / 10 / 11 / 13 / 14: 0.84 / 0.83 / 0.89 / 0.93 / 0.93 / 0.95 / 0.96.
+- Pythia 9 / 11 / 13: 0.79 / 0.86 / 0.93.
+- Pythia 0–3, 5, 7 (batch 2): 0.07 / 0.10 / 0.13 / 0.28 / 0.55 / 0.71.
+
+**Outcome by site** (declared rule; "new" sites run in this batch):
+
+| | sites: outcome |
+|---|---|
+| Gemma 0–15 | 0 unresolved; **1 abstract**; 2 unresolved; **3 abstract**; 4–15 mixed |
+| Pythia 0–14 | 0 unresolved; **1–8 abstract**; 9–13 mixed; 14 surface |
+
+**O as a fraction of the active effect** (δ_s is 0.2 on this scale):
+
+| depth | Gemma site: O fraction | Pythia site: O fraction |
+|---|---|---|
+| 0.00 | 0: +0.07 | 0: −0.03 |
+| 0.04 | 1: +0.14 | 1: −0.05 |
+| 0.08 | 2: +0.15 | 2: −0.03 |
+| 0.12 | 3: +0.13 | 3: +0.01 |
+| 0.15–0.17 | 4: +0.31 | 4: +0.05 |
+| 0.19–0.21 | 5: +0.56 | 5: +0.08 |
+| 0.23–0.25 | 6: +0.50 | 6: +0.10 |
+| 0.27–0.29 | 7: +0.56 | 7: +0.15 |
+| 0.31–0.33 | 8: +0.52 | 8: +0.15 |
+| 0.35–0.38 | 9: +0.58 | 9: +0.20 |
+| 0.38–0.42 | 10: +0.62 | 10: +0.28 |
+| 0.42–0.46 | 11: +0.65 | 11: +0.38 |
+| 0.46–0.50 | 12: +0.70 | 12: +0.44 |
+| 0.50–0.54 | 13: +0.75 | 13: +0.65 |
+| 0.54–0.58 | 14: +0.87 | 14: +0.87 |
+| 0.58 | 15: +1.02 | |
+
+- **O classes:**
+  - Gemma: NO RISE at 0, 1, 3; unresolved at 2; RISE from site 4 (depth 0.15) on.
+  - Pythia: NO RISE at 0–8; RISE from site 9 (depth 0.38) on.
+- **The O fraction first exceeds 0.2:** Gemma at site 4 (0.31); Pythia at site 9 (0.20, CI [0.17, 0.23]), then
+  10 (0.28).
+
+**D(*by*)** (nats):
+- Gemma: +0.26 at site 0 (unresolved), then +0.43 to +0.95 at 1–15, all RISE.
+- Pythia:
+  - +0.10 at site 0 (unresolved);
+  - +0.24 / +0.37 / +0.46 at 1–3, RISE against δ_s 0.17 / 0.21 / 0.35;
+  - +0.58 to +0.81 at 4–13, RISE;
+  - +0.46 at 14, NO RISE.
+
+**The new Pythia sites 0–3:** active effects 0.64 / 0.83 / 1.07 / 1.74 nats (δ_s 0.13 / 0.17 / 0.21 / 0.35),
+final-run IIA 0.07 / 0.10 / 0.13 / 0.28. The abstract readings at 1–3 are against these δ_s.
+
+### 7. Balanced shuffled-label control at Gemma sites 2 and 3
+
+20 permutations, each over the final run's 15 folds; max |phi| 0.043, as at the other sites. Held-out cross-class IIA:
+
+| Gemma site | balanced mean | balanced p95 | balanced max | unconstrained (final run) | trained DAS |
+|---:|---:|---:|---:|---:|---:|
+| 2 | 0.26 | 0.33 | 0.33 | 0.30 | 0.74 |
+| 3 | 0.23 | 0.27 | 0.30 | 0.24 | 0.75 |
+
+Trained DAS exceeds the balanced p95 by 0.41 (site 2) and 0.48 (site 3). It also exceeds the balanced maximum at
+both sites.
+
+### 8. Nonce tokenization (tokenizers only)
+
+Report: `nonce_tokenization.md`. Both stimulus sets, 80 lemmas.
+
+**Checks:** all pass in both tokenizers.
+- Token-suffix check: 0 failures out of 7,190 and 7,446 prompts.
+- Probe frame: the -ed pieces are the same in every frame as in isolation (0 lemmas flagged).
+- Context: 0 of 52,416 form occurrences flagged.
+
+**Token counts** (Gemma / Pythia mean):
+- -ed: 2.62 / 2.76. The count is the same for 67 lemmas; Gemma's is lower for 12 and higher for 1.
+- bare: 2.25 / 2.25.
+- No lemma's count differs by 2 or more in any form.
+
+**Flagged lemmas:** 13 of 80, all by the last-piece rule.
+- In 11, Pythia's last -ed piece is "ed" and Gemma's carries stem letters ("iped" / "ved").
+- In 2 it is the reverse (tekom, kloozen).
+- The last piece is inflection-only for 18 lemmas in Gemma and 27 in Pythia.
+
+The TSUBAME run (`AutoTokenizer`) gives the same per-form pieces as the local dry run.
+
+### 9. Nonce pipeline on Gemma-3-1B
+
+Reports: `nonce/round3_nonce.md`, `nonce/round4_nonce_cues.md`, and `nonce/summary.md`, which has both models and
+the splits.
+
+**Run:**
+- The bases at the eight Gemma sites: the 105 bases already in `transfer/bases_rank1.npz` are bit-identical, and
+  site 7's 15 bases are new.
+- The token-suffix check passed in both runners.
+- Round 3 ran at batch 256, as Pythia's run did.
+- The round-4 job ran out of GPU memory at batch 256 (job 9341211: Gemma's 262k vocabulary, and the GPU was
+  shared). It was rerun at batch 64 (job 9341852), with the round-3 outputs reused. So round 4 differs from
+  Pythia's run in batch size (64 against 256).
+
+**Pythia reproduction (same code, stored runs):**
+- The round-4 summary is byte-identical to the stored one.
+- In the round-3 summary, the estimates are identical; the bootstrap percentiles differ by ≤ 1.7e-7 (also on
+  TSUBAME).
+- The generated reports are identical to the stored ones, apart from the provenance line added at the top.
+
+**Round-3 C8, passive probe, z along d** (Δ_matched = matched T − I, Δ_balanced = AB − BA; 95% CIs in
+`nonce/round3_nonce.md`):
+
+| Gemma site (Pythia site) | Δ_matched z | Δ_balanced z | Pythia Δ_matched / Δ_balanced |
+|---|---:|---:|---|
+| 0 (4) | +0.000 | +0.000 | +0.05 / +0.02 |
+| **1 (6)** | +0.003 | −0.001 | +0.13 / +0.12 |
+| **3** (abstract span) | +0.001 | +0.000 | — |
+| **5 (8)** | −0.003 | +0.001 | +0.15 / +0.11 |
+| 7 (10) | +0.17 | +0.18 | +0.16 / +0.14 |
+| 8 (12) | +0.18 | +0.22 | +0.27 / +0.21 |
+| 12 (14) | +0.19 | +0.16 | +0.25 / +0.20 |
+| 15 (16, 17) | +0.10 | +0.09 | +0.26 / +0.20 (16), +0.24 / +0.18 (17) |
+
+**At Gemma 0, 1, 3, 5**, the matched and balanced nonce contrasts on d are ≤ 0.003 z, and the mismatched ones ≤ 0.005.
+- Site 0 is the token embedding, identical in every context: exactly 0.
+- At 1 / 3 / 5 the context moves the raw coordinate:
+  - Raw Δ_matched is +0.05 / +0.06 / −0.21, against a real-verb good − bad gap of +9 / +20 / +40 in the same raw
+    units.
+  - The active probe's Δ_matched is also ≤ 0.003.
+- The causal swap at 1 / 3 / 5: every readout's estimate is within ±0.0013 nats, with 95% CI bounds within ±0.003.
+- The real-verb good − bad reference is z +0.38 / +0.44 / +0.52.
+
+**Declared decisions:**
+
+| Decision site | (a) context-sensitive | (b) verb-specific | (c) *by* verb-specific |
+|---|---|---|---|
+| Gemma 1, 3, 5 | no | no | yes |
+| Pythia 6, 8 | yes | yes | yes |
+
+(c) depends on no site.
+
+**Log-probabilities at the passive probe** (nats, Gemma / Pythia):
+
+| contrast | *by* | O | PREP without *by* |
+|---|---|---|---|
+| matched T − I | +0.75 / +1.44 | +1.07 / +2.14 | |
+| balanced AB − BA | +0.17 / +0.56 | +0.65 / +1.34 | +0.04 / +0.18 |
+
+**Round-4 C8 / C9** (decision sites Gemma 1 / 3 / 5, Pythia 6 / 8):
+- **C8, inflection mismatch:**
+  - The d shift survives in -ing / -s: Gemma no at every decision site (T − I z ≤ 0.003); Pythia yes at both.
+  - *by* survives: yes in both models (Gemma +0.49 / +0.49, Pythia +0.60 / +0.59).
+  - The object rise mostly disappears: Gemma no (O +0.88 / +0.67 against +1.07 for -ed); Pythia yes (+0.99 /
+    +0.70 against +2.14).
+  - Verb-specific (balanced): Gemma no for z and for *by* (−0.05 / −0.06 nats); Pythia yes for both.
+- **C9, primary contrasts** (transitivity rel_T − rel_I, adjacent NP adj_I − pp_I):
+  - z: Gemma "neither" at 1 / 3 / 5 (all |z| ≤ 0.002); Pythia "NP-driven" at 6 / 8.
+  - *by*: "both" in both models (Gemma +0.21 / +1.63, Pythia +0.20 / +2.00).
+  - O: "both" in both models.
+  - At Gemma site 8 (not a decision site), C9 z: adj_I − pp_I +0.21, transitivity +0.06.
+
+**Sensitivity splits** (`nonce/summary.md`, every metric above):
+- (a) the 67 same-count lemmas;
+- (b) last piece "ed" against stem letters: Gemma 18 / 62, Pythia 27 / 53.
+
+Of the 249 declared decision values (generated reports, both rounds, all splits), one changes:
+- Pythia, last_bare_ed (27 lemmas), round 4: -s at site 6, verb-specific (balanced) z goes yes → no.
+  - It is +0.045 [+0.041, +0.050] against the 0.05 minimum; on all lemmas it is +0.052.
+- Every other decision value is the same in every split, in both models (`nonce/summary.md`).
+
+Other split numbers:
+- Gemma's Δ_matched z at 1 / 3 / 5 is at most +0.013 (last_bare_ed, site 1).
+- Pythia's Δ_matched z at 6 / 8 stays within 0.124–0.158.
+- Gemma's balanced *by* is +0.16 to +0.22; Pythia's is +0.55 to +0.56.
+
+No nonce runs beyond section 9.

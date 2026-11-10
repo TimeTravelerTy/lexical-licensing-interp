@@ -1,0 +1,23 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/run_passive_test.py:159: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  states[torch.as_tensor(donor[sl], device=runner.device), si],
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_passive_test.py:126: RuntimeWarning: invalid value encountered in divide
+  return np.nansum(a * wp[..., None], 1) / w.sum(1)
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_passive_test.py:126: RuntimeWarning: invalid value encountered in divide
+  return np.nansum(a * wp[..., None], 1) / w.sum(1)
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_passive_test.py:126: RuntimeWarning: invalid value encountered in divide
+  return np.nansum(a * wp[..., None], 1) / w.sum(1)
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_passive_test.py:126: RuntimeWarning: invalid value encountered in divide
+  return np.nansum(a * wp[..., None], 1) / w.sum(1)
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_passive_test.py:126: RuntimeWarning: invalid value encountered in divide
+  return np.nansum(a * wp[..., None], 1) / w.sum(1)
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_passive_test.py:126: RuntimeWarning: invalid value encountered in divide
+  return np.nansum(a * wp[..., None], 1) / w.sum(1)
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_passive_test.py:126: RuntimeWarning: invalid value encountered in divide
+  return np.nansum(a * wp[..., None], 1) / w.sum(1)
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_passive_test.py:126: RuntimeWarning: invalid value encountered in divide
+  return np.nansum(a * wp[..., None], 1) / w.sum(1)
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_passive_test.py:126: RuntimeWarning: invalid value encountered in divide
+  return np.nansum(a * wp[..., None], 1) / w.sum(1)
+/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/scripts/analyze_passive_test.py:126: RuntimeWarning: invalid value encountered in divide
+  return np.nansum(a * wp[..., None], 1) / w.sum(1)

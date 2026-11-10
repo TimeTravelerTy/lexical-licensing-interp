@@ -82,9 +82,11 @@ def anchor(stored, new, site):
     keys = [c for c in a.columns if not pd.api.types.is_float_dtype(a[c])]
     m = a.merge(b, on=keys, how="outer", suffixes=("_a", "_b"), indicator=True)
     num = [c for c in a.columns if c not in keys]
-    md = max(float(np.nanmax(np.abs(m[c + "_a"] - m[c + "_b"]))) for c in num)
+    md = lambda cs: max([float(np.nanmax(np.abs(m[c + "_a"] - m[c + "_b"]))) for c in cs] or [0.0])
+    nats = [c for c in num if not c.startswith("frac_natgap")]
+    # keys include the class column, so a class change shows up as unmatched rows
     return {"site": site, "rows_stored": len(a), "rows_new": len(b), "unmatched": int((m._merge != "both").sum()),
-            "max_abs_diff": md}
+            "max_abs_diff": md(num), "max_abs_diff_nats": md(nats), "max_abs_diff_natgap_ratio": md([c for c in num if c not in nats])}
 
 
 def plot(R, path):
@@ -158,8 +160,9 @@ def main(a):
          "T − I donors), 95% CIs. O fraction = D(O) / the site's held-out active effect; δ_s is 0.2 on that scale. "
          "\"new\" = run in this batch (results/gemma/das/depth_curve).", "",
          f"Reproduction anchors (rerun in the new directories, all transfer_summary rows at the site): "
-         + "; ".join(f"{m} site {v['site']}: {v['rows_new']} / {v['rows_stored']} rows, unmatched {v['unmatched']}, "
-                     f"max |diff| {v['max_abs_diff']:.3g}" for m, v in anc.items()) + ".", "",
+         + "; ".join(f"{m} site {v['site']}: {v['rows_new']} / {v['rows_stored']} rows, unmatched (incl. class changes) "
+                     f"{v['unmatched']}, max |diff| {v['max_abs_diff_nats']:.3g} on the effects and CIs (nats), "
+                     f"{v['max_abs_diff_natgap_ratio']:.3g} on the ratios to the natural gap" for m, v in anc.items()) + ".", "",
          f"![depth curve]({Path(a.figure).name}.png)".replace("](", "](figures/"), "",
          "| model | site | depth | run | active effect | δ_s | D log P(O) | class | O fraction [95% CI] | "
          "D log P(\" by\") | class | D(by) / natural gap | outcome |",
