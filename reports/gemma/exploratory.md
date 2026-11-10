@@ -536,3 +536,74 @@ the probe form; its last piece is the measured position.
 run is on TSUBAME with `AutoTokenizer`.
 
 No nonce model runs.
+
+## Rules for the nonce run on Gemma, stated before running (2026-11-10)
+
+### 9. Nonce pipeline on Gemma-3-1B (exploratory)
+
+**Pipeline:** Pythia's two nonce analyses, unchanged, on all 80 lemmas with the same metrics, the same bootstrap
+(lemma bootstrap, 2,000 draws, seed 17) and the same decision rules.
+- **Round-3 C8** (`run_nonce_passive.py`, `analyze_nonce_passive.py`): z along d per site; matched / mismatched /
+  balanced contrasts; log P(" by"), PREP without *by*, O, "."; the causal swap; the declared decisions.
+- **Round-4 C8 / C9** (`run_nonce_cues.py`, `analyze_nonce_cues.py`): inflection mismatch (ed / ing / s) and the
+  cue contrasts, with their declared decisions.
+
+**Code changes (none in what is computed):**
+- The runners' site lists (`SITES`, `CAUSAL`) and the analyses' decision / table sites (`DECL`, `ZS`) become
+  arguments whose defaults are Pythia's values.
+- The analyses get `--lemma-subset` and `--summary-dir` for the sensitivity splits.
+- Check: rerunning both Pythia analyses with the defaults on the stored Pythia runs reproduces the stored reports
+  byte for byte, and the round-4 summary CSV byte for byte.
+  - The round-3 summary CSV matches the original code's local output byte for byte. It differs from the stored
+    (TSUBAME) file only in bootstrap percentiles, by ≤ 1.7e-7 (platform float noise; estimates identical).
+
+**Stimuli:** rebuilt with the unchanged builders into `data/gemma/nonce/{nonce_passive,nonce_cues}`, with Gemma's
+own DAS items (the z ruler) and Gemma's own passive-test items (the real-verb reference).
+- The nonce rows and the real-verb rows are identical to Pythia's.
+- Only the DAS ruler rows differ: Gemma's 392 against Pythia's 406.
+
+**Site mapping.** For each site Pythia's nonce analyses used, the Gemma site picked by the rule that picked it:
+
+| Pythia site | why Pythia used it | rule | Gemma site |
+|---:|---|---|---:|
+| 17 | primary | frozen rule | 15 |
+| 12 | declared secondary | first site with best active IIA ≈ 0.9 | 8 |
+| 8 | declared secondary, decision site, causal swap | first site with best active IIA ≈ 0.8 | 5 |
+| 6 | fill-in, decision site, causal swap | IIA-matched (section 1) | 1 |
+| 4 | fill-in | IIA-matched (section 1) | 0 |
+| 10 | fill-in | IIA-matched, same rule: 0.843 → Gemma 7 (0.850, distance 0.007) | 7 |
+| 14 | fill-in | IIA-matched: 0.959 → Gemma 12 (0.955, 0.003) | 12 |
+| 16 | fill-in | IIA-matched: 0.975 → Gemma 15 (0.984, 0.00848; Gemma 14 is 0.00849) | 15 |
+
+Notes on the mapping:
+- The fill-in sites (4, 6, 10, 14, 16) were picked for Pythia by layer spacing, not by a selection rule. So they
+  are mapped with the IIA-matching rule of section 1.
+- Gemma 12 is also Gemma's earliest-within-0.05-of-max site.
+- Pythia 8 maps to Gemma 5 by its own rule. Its IIA match would be Gemma 4; Pythia 12's would be Gemma 9.
+
+Gemma sites used:
+- **Projection sites:** 0, 1, 3, 5, 7, 8, 12, 15. Site 3 is added (with 1, the abstract-reading span).
+- **Decision and causal-swap sites:** Pythia's 6 / 8 map to Gemma 1 / 5, plus 3. So decisions and swaps are at
+  Gemma 1, 3 and 5.
+- **Round-4 table z columns:** Pythia's 4 / 6 / 8 / 12 / 17 map to Gemma 0 / 1 / 5 / 8 / 15, plus 3.
+
+**Bases:** `results/gemma/das/nonce/bases_rank1.npz`.
+- Built from the final runs at those sites with `export_bases.py`'s exact conversion.
+- Bases already in `results/gemma/das/transfer/bases_rank1.npz` must be bit-identical.
+- Site 7's final run is the one queued for the depth curve; the nonce job waits for it.
+
+**Sensitivity splits**, reported next to the main result for both models. The same analyses run on lemma subsets
+(`results/gemma/das/nonce/subsets/`, from `results/gemma/nonce_tokenization/forms.csv`):
+- (a) the 67 lemmas whose -ed form has the same token count in both tokenizers;
+- (b) per model, the -ed form's last piece is inflection-only ("ed"; no lemma ends in a bare "d") or carries stem
+  letters:
+  - Gemma: 18 / 62 lemmas;
+  - Pythia: 27 / 53 lemmas.
+
+Pythia's main result is the stored one. Its splits rerun the analyses on the stored Pythia runs, with no new model
+run.
+
+Outputs:
+- Gemma runs: `results/gemma/das/nonce/{nonce_passive,nonce_cues}`;
+- split summaries: `results/gemma/das/nonce/splits/`;
+- generated reports: `reports/gemma/nonce/`.

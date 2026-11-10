@@ -78,6 +78,9 @@ def run(args):
     cols = {**{f"z{s}": Z[:, i] for i, s in enumerate(sites)}, **{f"raw{s}": R[:, i] for i, s in enumerate(sites)},
             **{k: nat[k].to_numpy() for k in RD}}
     T = P.assign(**cols)
+    if args.lemma_subset:
+        keep = set(pd.read_csv(args.lemma_subset).lemma)
+        T = T[(T.kind != "nonce") | T.lemma.isin(keep)]
     rng = np.random.default_rng(args.seed)
     measures = [f"z{s}" for s in sites] + [f"raw{s}" for s in sites] + list(RD)
     rows = []
@@ -110,6 +113,8 @@ def run(args):
             rows.append({"probe": "real", "contrast": f"good - bad ({cond})", "measure": m, "est": e, "lo95": lo, "hi95": hi})
     # causal swap
     cs = pd.read_parquet(rdir / "causal_swap.parquet")
+    if args.lemma_subset:
+        cs = cs[cs.lemma.isin(keep)]
     natb = nat.loc[cs.base_pid.to_numpy()]
     for k in RD:
         cs[f"d_{k}"] = cs[k].to_numpy() - natb[k].to_numpy()
@@ -120,7 +125,9 @@ def run(args):
             rows.append({"probe": "passive", "contrast": f"causal swap site {site}: {bc} base <- other", "measure": k,
                          "est": e, "lo95": lo, "hi95": hi})
     res = pd.DataFrame(rows)
-    res.to_csv(rdir / "nonce_summary.csv", index=False)
+    sdir = Path(args.summary_dir or rdir)
+    sdir.mkdir(parents=True, exist_ok=True)
+    res.to_csv(sdir / "nonce_summary.csv", index=False)
     write_report(args, res, sites)
 
 
@@ -150,13 +157,13 @@ def write_report(args, res, sites):
              f"{f3(g('real', 'good - bad (neutral)', 'dot'))} |")
     L += ["", "Causal check (d_s coordinate of the matched-T probe into the matched-I probe; Δ from unpatched):", "",
           "| Site | base | Δ log P(\" by\") | Δ log P(PREP\\by) | Δ log P(O) |", "|---:|---|---|---|---|"]
-    for s in DECL:
+    for s in DECL if args.decl_sites is None else [int(x) for x in args.decl_sites.split(",")]:
         for bc in ("matched_I", "matched_T"):
             c = f"causal swap site {s}: {bc} base <- other"
             L.append(f"| {s} | {bc} | {f3(g('passive', c, 'by'))} | {f3(g('passive', c, 'prep_noby'))} | "
                      f"{f3(g('passive', c, 'O'))} |")
     L += ["", "## Declared decisions (passive probe)", ""]
-    for s in DECL:
+    for s in DECL if args.decl_sites is None else [int(x) for x in args.decl_sites.split(",")]:
         m = f"z{s}"
         dm, db = g("passive", "matched T - I", m), g("passive", "balanced AB - BA", m)
         bby, bpp = g("passive", "balanced AB - BA", "by"), g("passive", "balanced AB - BA", "prep_noby")
@@ -182,4 +189,8 @@ if __name__ == "__main__":
     ap.add_argument("--report", default="reports/passive_das_prep/round3_nonce.md")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
+    ap.add_argument("--decl-sites", default=None, help="decision / causal-swap sites (default: Pythia's 6, 8)")
+    ap.add_argument("--lemma-subset", default=None,
+                    help="CSV with a `lemma` column: restrict the nonce lemmas (sensitivity splits; default: all)")
+    ap.add_argument("--summary-dir", default=None, help="where to write the summary CSV (default: --out-dir)")
     run(ap.parse_args())

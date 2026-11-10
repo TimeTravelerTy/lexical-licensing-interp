@@ -101,7 +101,7 @@ def plot(R, path):
         a_.grid(axis="y", color="#e6e5e0", lw=0.6)
         a_.axhline(0, color="#52514e", lw=0.8)
     ax[0].axhline(0.2, color="#52514e", lw=0.8, ls="--")
-    ax[0].text(0.605, 0.2, "δ_s (NO RISE bound)", va="bottom", ha="right", fontsize=8, color="#52514e")
+    ax[0].text(0.605, 0.2, r"$\delta_s$ (NO RISE bound)", va="bottom", ha="right", fontsize=8, color="#52514e")
     for m, g in R.groupby("model"):
         g = g.sort_values("depth")
         for a_, y, lo, hi in ((ax[0], "O_frac", "O_frac_lo95", "O_frac_hi95"), (ax[1], "by_est", "by_lo95", "by_hi95")):
@@ -111,8 +111,8 @@ def plot(R, path):
             ab = g.outcome.str.startswith("abstract")
             a_.scatter(g.depth[~ab], g[y][~ab], s=30, marker=MK[m], facecolor="#fcfcfb", edgecolor=COL[m], lw=1.5,
                        zorder=3)
-            a_.scatter(g.depth[ab], g[y][ab], s=36, marker=MK[m], facecolor=COL[m], edgecolor="#fcfcfb", lw=1.5,
-                       zorder=4, label=None)
+            a_.scatter(g.depth[ab], g[y][ab], s=30, marker=MK[m], facecolor=COL[m], edgecolor=COL[m], lw=1.5,
+                       zorder=4)
         ax[1].plot(g.depth, g.delta, color=COL[m], lw=1, ls=":", zorder=1)
         last = g.iloc[-1]
         ax[0].annotate(m, (last.depth, last.O_frac), xytext=(4, 0), textcoords="offset points", fontsize=8,
@@ -120,7 +120,7 @@ def plot(R, path):
     ax[0].set_ylabel("D log P(O) / active effect")
     ax[0].set_title("Object continuation, fraction of the active effect", fontsize=9, loc="left")
     ax[1].set_ylabel("D log P(\" by\")  (nats)")
-    ax[1].set_title("*by* effect (dotted: each model's δ_s)", fontsize=9, loc="left")
+    ax[1].set_title(r"$by$ effect (dotted: each model's $\delta_s$)", fontsize=9, loc="left")
     for a_ in ax:
         a_.set_xlabel("relative depth (site / layers)")
         a_.set_xlim(-0.02, 0.62)

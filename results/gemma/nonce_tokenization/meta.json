@@ -1,0 +1,38 @@
+{
+  "models": {
+    "Gemma-3-1B": "google/gemma-3-1b-pt",
+    "Pythia-1.4B": "EleutherAI/pythia-1.4b"
+  },
+  "tokenizer_classes": {
+    "Gemma-3-1B": "GemmaTokenizerFast",
+    "Pythia-1.4B": "GPTNeoXTokenizerFast"
+  },
+  "n_lemmas": 80,
+  "prompts": {
+    "round-3 C8 (data/nonce_passive)": 7190,
+    "round-4 C8 / C9 (data/round4/nonce_cues)": 7446
+  },
+  "suffix_check_failures": {
+    "Gemma-3-1B": {
+      "round-3 C8 (data/nonce_passive)": 0,
+      "round-4 C8 / C9 (data/round4/nonce_cues)": 0
+    },
+    "Pythia-1.4B": {
+      "round-3 C8 (data/nonce_passive)": 0,
+      "round-4 C8 / C9 (data/round4/nonce_cues)": 0
+    }
+  },
+  "probe_frame_flagged_lemmas": {
+    "Gemma-3-1B": [],
+    "Pythia-1.4B": []
+  },
+  "context_occurrences": {
+    "Gemma-3-1B": 52416,
+    "Pythia-1.4B": 52416
+  },
+  "context_occurrences_flagged": {
+    "Gemma-3-1B": 0,
+    "Pythia-1.4B": 0
+  },
+  "flagged_lemmas": 13
+}

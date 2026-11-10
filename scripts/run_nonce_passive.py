@@ -58,6 +58,8 @@ KEYS = [(k, f) for k in range(3) for f in range(5)]
 def run(args):
     import torch
 
+    SITES = tuple(int(s) for s in args.sites.split(","))
+    CAUSAL = tuple(int(s) for s in args.causal_sites.split(","))
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     runner = NonceRunner(args)
@@ -131,4 +133,6 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--dtype", default="bfloat16")
     ap.add_argument("--batch", type=int, default=256)
+    ap.add_argument("--sites", default=",".join(map(str, SITES)), help="projection sites (default: Pythia's)")
+    ap.add_argument("--causal-sites", default=",".join(map(str, CAUSAL)), help="causal-swap sites (default: Pythia's)")
     run(ap.parse_args())

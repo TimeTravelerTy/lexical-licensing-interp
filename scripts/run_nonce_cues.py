@@ -21,11 +21,13 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from run_nonce_passive import KEYS, READ, SITES, NonceRunner
+from run_nonce_passive import KEYS, READ, SITES as PYTHIA_SITES, NonceRunner
 
 
 def run(args):
     import torch
+
+    SITES = tuple(int(s) for s in args.sites.split(","))
 
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -82,4 +84,5 @@ if __name__ == "__main__":
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--dtype", default="bfloat16")
     ap.add_argument("--batch", type=int, default=256)
+    ap.add_argument("--sites", default=",".join(map(str, PYTHIA_SITES)), help="projection sites (default: Pythia's)")
     run(ap.parse_args())

@@ -52,9 +52,14 @@ def run(args):
     pf = pd.read_csv(Path(args.root) / "final_strict" / "pairs_folds.csv")
     Z, _ = z_table(P, pz["proj"], sites, keys, das, pf)
     T = P.assign(**{f"z{s}": Z[:, i] for i, s in enumerate(sites)}, **{k: nat[k].to_numpy() for k in RD})
+    if args.lemma_subset:
+        keep_l = set(pd.read_csv(args.lemma_subset).lemma)
+        T = T[(T.kind != "nonce") | T.lemma.isin(keep_l)]
     meas = [f"z{s}" for s in sites] + list(RD)
     lem = T[T.kind == "nonce"].groupby(["lemma", "cond"])[meas].mean()
     tc = pd.read_csv(rdir / "token_check.csv")
+    if args.lemma_subset:
+        tc = tc[tc.lemma.isin(keep_l)]
     lemmas = sorted(T[T.kind == "nonce"].lemma.unique())
     drop = {form: sorted(tc[tc.cond.str.startswith(form + "_") & tc.in_context].lemma.unique()) for form in ("ing", "s")}
     keep = {"ed": lemmas, **{f: [l for l in lemmas if l not in drop[f]] for f in ("ing", "s")}}
@@ -94,17 +99,21 @@ def run(args):
     add("C9", "2x2 transitivity main effect (relative)", 0.5 * ((TNP + cond("rel_T")) - (cond("adj_I") + Ib)), lemmas)
     add("C9", "2x2 NP main effect (relative)", 0.5 * ((TNP + cond("adj_I")) - (cond("rel_T") + Ib)), lemmas)
     res = pd.DataFrame(rows)
-    res.to_csv(rdir / "nonce_cues_summary.csv", index=False)
+    sdir = Path(args.summary_dir or rdir)
+    sdir.mkdir(parents=True, exist_ok=True)
+    res.to_csv(sdir / "nonce_cues_summary.csv", index=False)
     write_report(args, res, drop)
 
 
 def write_report(args, res, drop):
+    ZS = tuple(int(x) for x in args.z_sites.split(","))
+    DS = tuple(int(x) for x in args.decl_sites.split(","))
     g = lambda a, c, m: res[(res.analysis == a) & (res.contrast == c) & (res.measure == m)].iloc[0]
     f = lambda r: "n/a" if np.isnan(r.est) else f"{r.est:+.3f} [{r.lo95:+.3f}, {r.hi95:+.3f}]"
     up = lambda r, m: (not np.isnan(r.est)) and r.lo95 > 0 and r.est >= MIN["z" if m.startswith("z") else m]
     hdr = "| Contrast | lemmas | " + " | ".join(f"z{s}" for s in ZS) + " | \" by\" | O | PREP\\by | \".\" |"
     sep = "|---|---:|" + "---|" * (len(ZS) + 4)
-    row = lambda a, c: (f"| {c} | {int(g(a, c, 'z8').n_lemmas)} | " + " | ".join(f(g(a, c, f"z{s}")) for s in ZS) + " | "
+    row = lambda a, c: (f"| {c} | {int(g(a, c, 'by').n_lemmas)} | " + " | ".join(f(g(a, c, f"z{s}")) for s in ZS) + " | "
                         + " | ".join(f(g(a, c, m)) for m in RD) + " |")
     L = ["# Round 4, Part C. Nonce cue tests", "",
          "Spec: `plan.md`, C8/C9. Run: `run_nonce_cues.py`; analysis: `analyze_nonce_cues.py`. 80 nonce lemmas × 4 "
@@ -119,7 +128,7 @@ def write_report(args, res, drop):
     L += [row("C8", c) for c in order]
     L += ["", "**Declared decisions (C8):**", ""]
     for form in ("ing", "s"):
-        for s in (6, 8):
+        for s in DS:
             c = f"{form}: T - I"
             zs, by, o = g("C8", c, f"z{s}"), g("C8", c, "by"), g("C8", c, "O")
             if np.isnan(zs.est):
@@ -142,7 +151,7 @@ def write_report(args, res, drop):
               "adj_I − bare):**", ""]
     for tr, np_, tag in (("transitivity, relative: rel_T - rel_I", "adjacent NP: adj_I - pp_I", "primary"),
                          ("transitivity, question: q_T - q_I", "adjacent NP: adj_I - bare", "secondary")):
-        for m, lab in (("z6", "z, site 6"), ("z8", "z, site 8"), ("by", "\" by\""), ("O", "O")):
+        for m, lab in tuple((f"z{s}", f"z, site {s}") for s in DS) + (("by", "\" by\""), ("O", "O")):
             t, n = g("C9", tr, m), g("C9", np_, m)
             a, b = up(t, m), up(n, m)
             rd = "both" if a and b else "transitivity-driven" if a else "NP-driven" if b else "neither"
@@ -160,4 +169,9 @@ if __name__ == "__main__":
     ap.add_argument("--report", default="reports/round4/c_nonce_cues.md")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
+    ap.add_argument("--z-sites", default=",".join(map(str, ZS)), help="z columns of the tables (default: Pythia's)")
+    ap.add_argument("--decl-sites", default="6,8", help="decision sites (default: Pythia's 6, 8)")
+    ap.add_argument("--lemma-subset", default=None,
+                    help="CSV with a `lemma` column: restrict the nonce lemmas (sensitivity splits; default: all)")
+    ap.add_argument("--summary-dir", default=None, help="where to write the summary CSV (default: --out-dir)")
     run(ap.parse_args())
