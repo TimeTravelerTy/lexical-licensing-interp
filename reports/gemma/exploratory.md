@@ -464,3 +464,75 @@ scale.
 Not run in this batch: the balanced shuffled-label control at Gemma 2 / 3, and anything with nonces.
 
 No nonce runs.
+
+## Rules for the third batch, stated before running (2026-11-10)
+
+### 6. Passive-only depth curve, both models
+
+**Sites:** every site from 0 to ~60% relative depth that has no passive test yet.
+- Gemma 0–15 (15 / 26 = 0.58). New: 6, 7, 9, 10, 11, 13, 14.
+- Pythia 0–14 (14 / 24 = 0.58). New: 0, 1, 2, 3, 5, 7, 9, 11, 13.
+
+**Final runs:** `run_das_round2.py final`, 3 splits × 5 folds, rank 1. Epochs come from the frozen epoch rule on
+each model's sweep, which reproduces every stored epoch count in both models.
+- Gemma configs: `results/gemma/das/transfer/frozen_config_site{6,7,9,10,11,13,14}.json`, epochs
+  2 / 2 / 3 / 3 / 3 / 3 / 3.
+- Pythia 0–3, 5, 7: the batch-2 exploratory final runs (`results/gemma/das/pythia_early`).
+- Pythia 9, 11, 13: new final runs there, epochs 2 / 2 / 2.
+- The stored Pythia results are not touched.
+
+**Passive test only** (the rest of the chain is not run at these sites). Unchanged scripts:
+- `analyze_passive_test.py delta` gives each new site's δ_s = 0.2 × the held-out active ΔlogP(O).
+- `run_passive_test.py` (bf16, as every stored run) on each model's existing passive-test data.
+  - Before running, each job rebuilds the plan into a scratch directory, and the plan hash must equal the
+    committed `plan_meta.json`.
+- `analyze_passive_test.py passive`: primary population, active donors, the declared TOST classes and outcome.
+- Outputs: `results/gemma/das/depth_curve/{gemma,pythia}_passive`; generated reports under
+  `reports/gemma/depth_curve/`.
+- Pythia's analysis root is `results/gemma/das/pythia_early`. It holds read-only copies of the stored primary run's
+  `final_meta.json`, `pairs_folds.csv` and `items.csv`, which the scripts read from `<root>/final_strict`, and of
+  `frozen_config_site4.json`.
+
+**Reproduction anchors:**
+- Gemma site 5 and Pythia site 4 are rerun in the new directories.
+- Every `transfer_summary.csv` row at the anchor must equal the stored one.
+
+**Table and plot** (`scripts/analyze_depth_curve.py`): all sites in range, stored and new, of both models.
+- Columns: site, relative depth (site / layers), active effect, δ_s, D(O) with class, O fraction = D(O) / active
+  effect (95% CI = D(O)'s CI / active effect), D(*by*) in nats with class, D(*by*) / natural gap, outcome.
+- Plot: two panels on a shared relative-depth axis, both models on each:
+  - O fraction, with δ_s's fraction (0.2);
+  - D(*by*), with each model's δ_s.
+
+### 7. Balanced shuffled-label control at Gemma sites 2 and 3
+
+Same protocol as section 3 (`scripts/run_das_shuffle_balanced.py`; 20 permutations over the final run's 15 folds),
+on `results/gemma/das/transfer/final_strict_site{2,3}`. Outputs: `results/gemma/das/shuffle_balanced/gemma_site{2,3}`.
+
+### 8. Nonce prep: tokenization only (no nonce run)
+
+Script: `scripts/report_nonce_tokenization.py`, with every definition in its docstring. It loads tokenizers only,
+no model.
+
+**Stimuli:** both existing nonce sets, `data/nonce_passive` (round-3 C8) and `data/round4/nonce_cues`
+(round-4 C8 / C9). They use the same 80 lemmas.
+
+**Per lemma, under each tokenizer:** the pieces and count of " <form>" for bare, -s, -ing and -ed. The -ed form is
+the probe form; its last piece is the measured position.
+
+**Checks:**
+- **Token suffix:** the probe is a token-level suffix of every prompt, as `run_nonce_passive.py` requires.
+- **Probe frame:** the -ed pieces are the same in every probe frame as in isolation.
+- **Context:** every form occurrence in the contexts, located with the offsets, has no token straddling the word and
+  the same pieces as in isolation.
+
+**"Splits very differently" flag**, per lemma:
+- a count difference of ≥ 2 for any form; or
+- the -ed form's last piece is inflection-only ("ed" / "d") in one tokenizer and not in the other; or
+- any probe-frame or context flag.
+
+**Disclosure:** a local dry run of the script used the cached `tokenizer.json` files through
+`PreTrainedTokenizerFast`, to check the code. The flag definitions above were written before that run. The reported
+run is on TSUBAME with `AutoTokenizer`.
+
+No nonce model runs.

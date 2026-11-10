@@ -1,0 +1,55 @@
+{
+  "site": 17,
+  "epochs": 1,
+  "ranks_trained": [
+    1,
+    2,
+    4
+  ],
+  "chosen_rank": 1,
+  "rank_rule": "rank 1 unless a larger rank raises mean held-out median pc_frac by > 0.1",
+  "pc_frac_by_rank": {
+    "1": 1.067025079583239,
+    "2": 1.0873501819266507,
+    "4": 1.0981330222063583
+  },
+  "pairs": 29,
+  "dropped_pairs": [],
+  "items": 406,
+  "config": {
+    "site": 17,
+    "layer_output": 16,
+    "epochs": 1,
+    "rank": null,
+    "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+    "selected_metrics": {
+      "site": 17.0,
+      "epoch": 1.0,
+      "iia": 0.9789682539682539,
+      "pc": 1.0586585434729479,
+      "iia_same": 0.9866666666666666,
+      "david": 0.9666666666666666,
+      "rev": 0.9299707358208155
+    },
+    "overall_best_iia": 0.9972222222222221,
+    "sweep_sha256": "3fdec90711941233f0193234b7f8b6f3df914996be11ad35587bfc079fb2f9e8"
+  },
+  "args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/das_round2/frozen_config.json",
+    "out_dir": "../results/das_round2/final_strict",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01
+  }
+}
