@@ -8,6 +8,8 @@ task, held-out-context IIA. Site picks:
   and whose positive-control fraction is >= 0.5 (the active task's declared rule; applied descriptively to the
   passive task);
 - best site: the highest best-epoch IIA (excluding the last site, whose source states are post-final-norm).
+  Here the last site is also left out of the frozen rule's overall best; select_das_config.py keeps it, and its pick
+  is printed too where the two differ (OLMo active: 12 here, 13 there).
 Pythia's stored sweeps are listed beside Gemma's by relative depth (site / number of layers).
 
 Writes reports/gemma/das_sweeps.md and results/gemma/das/sweep_summary_by_site.csv. --sweep model:task:path:n_layers
@@ -43,8 +45,10 @@ def picks(b, n_layers, tol=0.02, min_pc=0.5):
     inner = b[b.site < n_layers]  # last site (n_layers) excluded: post-final-norm source states
     top = inner.iia.max()
     ok = inner[(inner.iia >= top - tol) & (inner.pc >= min_pc)]
+    ok_all = b[(b.iia >= b.iia.max() - tol) & (b.pc >= min_pc)]  # select_das_config.py: last site kept in the top
     return {"best_site": int(inner.loc[inner.iia.idxmax(), "site"]), "best_iia": float(top),
-            "frozen_rule_site": int(ok.site.min()) if len(ok) else None}
+            "frozen_rule_site": int(ok.site.min()) if len(ok) else None,
+            "select_das_config_site": int(ok_all.site.min()) if len(ok_all) else None}
 
 
 def main(args):
@@ -63,7 +67,9 @@ def main(args):
         pk = picks(b, L)
         lines += [f"## {model}, {task} task", "",
                   f"Best site {pk['best_site']} (IIA {pk['best_iia']:.3f}); frozen-rule site "
-                  f"{pk['frozen_rule_site']}.", "",
+                  f"{pk['frozen_rule_site']}" + ("." if pk["select_das_config_site"] == pk["frozen_rule_site"] else
+                  f" (`select_das_config.py`, which keeps the last site in the overall best, picks "
+                  f"{pk['select_das_config_site']}).") , "",
                   "| site | depth | epoch | IIA cross [min, max] | IIA same | pc frac | " +
                   ("IIA held-out ctx | pc ΔM |" if task == "passive" else ""),
                   "|---:|---:|---:|---|---:|---:|" + ("---:|---:|" if task == "passive" else "")]

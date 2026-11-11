@@ -1,0 +1,54 @@
+{
+ "model": "allenai/OLMo-2-0425-1B",
+ "dtype": "bfloat16",
+ "model_type": "olmo2",
+ "bos": false,
+ "fp32_unembed": true,
+ "site_check_max_abs_sites_0_to_L-1": 0.0,
+ "site_check_last_site": 45.875,
+ "n_sites": 17,
+ "n_items": 406,
+ "dropped_pairs": [],
+ "verbs_below_4_of_7": {},
+ "item_accuracy_by_class": {
+  "0": 0.985,
+  "1": 0.985
+ },
+ "M_nat_mean_by_class": {
+  "0": -3.121000051498413,
+  "1": 1.7419999837875366
+ },
+ "model_token_pattern_counts": {
+  "T1-I2": 9,
+  "T1-I1": 9,
+  "T2-I2": 8,
+  "T1-I3": 1,
+  "T2-I1": 1,
+  "T3-I1": 1
+ },
+ "self_patch_max_abs_dM_by_site": {
+  "0": 0.0,
+  "1": 0.0,
+  "2": 0.0,
+  "3": 0.0,
+  "4": 0.0,
+  "5": 0.0,
+  "6": 0.0,
+  "7": 0.0,
+  "8": 0.0,
+  "9": 0.0,
+  "10": 0.0,
+  "11": 0.0,
+  "12": 0.0,
+  "13": 0.0,
+  "14": 0.0,
+  "15": 0.0,
+  "16": 0.04178667068481445
+ },
+ "natural_batched_vs_single_max_abs": 0.050028324127197266,
+ "patched_batched_vs_single_max_abs": {
+  "site": 8,
+  "max_abs": 0.03983259201049805
+ },
+ "self_patch_ok_sites_0_to_L-1": true
+}

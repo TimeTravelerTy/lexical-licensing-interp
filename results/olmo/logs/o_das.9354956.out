@@ -1,0 +1,119 @@
+commit 580906637935d4b721d71b332a943343905817be
+name, memory.total [MiB]
+NVIDIA H100, 95830 MiB
+runner settings {'model_type': 'olmo2', 'bos': False, 'fp32_unembed': True, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 45.875}
+{
+ "model": "allenai/OLMo-2-0425-1B",
+ "dtype": "bfloat16",
+ "model_type": "olmo2",
+ "bos": false,
+ "fp32_unembed": true,
+ "site_check_max_abs_sites_0_to_L-1": 0.0,
+ "site_check_last_site": 45.875,
+ "n_sites": 17,
+ "n_items": 406,
+ "dropped_pairs": [],
+ "verbs_below_4_of_7": {},
+ "item_accuracy_by_class": {
+  "0": 0.985,
+  "1": 0.985
+ },
+ "M_nat_mean_by_class": {
+  "0": -3.121000051498413,
+  "1": 1.7419999837875366
+ },
+ "model_token_pattern_counts": {
+  "T1-I2": 9,
+  "T1-I1": 9,
+  "T2-I2": 8,
+  "T1-I3": 1,
+  "T2-I1": 1,
+  "T3-I1": 1
+ },
+ "self_patch_max_abs_dM_by_site": {
+  "0": 0.0,
+  "1": 0.0,
+  "2": 0.0,
+  "3": 0.0,
+  "4": 0.0,
+  "5": 0.0,
+  "6": 0.0,
+  "7": 0.0,
+  "8": 0.0,
+  "9": 0.0,
+  "10": 0.0,
+  "11": 0.0,
+  "12": 0.0,
+  "13": 0.0,
+  "14": 0.0,
+  "15": 0.0,
+  "16": 0.04178667068481445
+ },
+ "natural_batched_vs_single_max_abs": 0.050028324127197266,
+ "patched_batched_vs_single_max_abs": {
+  "site": 8,
+  "max_abs": 0.03983259201049805
+ },
+ "self_patch_ok_sites_0_to_L-1": true
+}
+bos False fp32_unembed True n_sites 17
+self-patch max over sites 0..n-2 0.0 last site 0.04178667068481445
+GATE PASS
+== sweep Wed Nov 11 08:35:21 PM JST 2026
+runner settings {'model_type': 'olmo2', 'bos': False, 'fp32_unembed': True, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 45.875}
+site 0 done in 66s
+site 1 done in 65s
+site 2 done in 64s
+site 3 done in 63s
+site 4 done in 62s
+site 5 done in 61s
+site 6 done in 60s
+site 7 done in 58s
+site 8 done in 57s
+site 9 done in 56s
+site 10 done in 55s
+site 11 done in 54s
+site 12 done in 53s
+site 13 done in 52s
+site 14 done in 51s
+site 15 done in 49s
+site 16 done in 48s
+      epoch    iia     pc  iia_same  david    rev
+site                                             
+0         2  0.129  0.197     0.966  0.119  0.049
+1         5  0.205  0.379     0.974  0.178  0.150
+2         4  0.290  0.472     0.980  0.268  0.212
+3         7  0.434  0.568     0.983  0.390  0.305
+4         4  0.575  0.644     0.986  0.543  0.425
+5         7  0.653  0.697     0.991  0.615  0.478
+6         4  0.712  0.739     0.991  0.672  0.558
+7         8  0.734  0.733     0.992  0.696  0.620
+8         8  0.794  0.769     0.993  0.762  0.680
+9         5  0.818  0.806     0.995  0.792  0.677
+10        8  0.873  0.835     0.993  0.873  0.743
+11        6  0.940  0.959     0.993  0.947  0.878
+12        6  0.978  1.077     0.993  0.977  1.027
+13        7  0.993  1.208     0.991  0.997  1.022
+14        8  0.993  1.455     0.988  0.997  1.075
+15        8  0.997  1.668     0.983  1.000  1.130
+16        1  0.998  1.869     0.982  1.000  1.864
+{
+  "site": 13,
+  "layer_output": 12,
+  "epochs": 3,
+  "rank": null,
+  "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+  "selected_metrics": {
+    "site": 13.0,
+    "epoch": 3.0,
+    "iia": 0.9848412698412699,
+    "pc": 1.1202024026602262,
+    "iia_same": 0.9897619047619047,
+    "david": 0.9808888888888889,
+    "rev": 0.9369770256849452
+  },
+  "overall_best_iia": 0.9984126984126984,
+  "sweep_sha256": "f81e60bc0efb26ff17aee9c8aef3b3fc6aa4130ca6be7abd0211984b75001ecb"
+}
+f81e60bc0efb26ff17aee9c8aef3b3fc6aa4130ca6be7abd0211984b75001ecb  ../results/olmo/das/sweep_strict/sweep.csv
+== done Wed Nov 11 08:51:52 PM JST 2026
