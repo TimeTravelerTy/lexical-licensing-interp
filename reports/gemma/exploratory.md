@@ -808,3 +808,47 @@ Other split numbers:
 - Gemma's balanced *by* is +0.16 to +0.22; Pythia's is +0.55 to +0.56.
 
 No nonce runs beyond section 9.
+
+## Rules for the nonce follow-ups, stated before running (2026-11-11)
+
+### 10. Nonce follow-ups (exploratory)
+
+**(a) Where the round-3 separation tests turn "yes", by depth.** The round-3 C8 pipeline (`run_nonce_passive.py`,
+`analyze_nonce_passive.py`; unchanged code, the same stimuli per model as section 9, batch 256), with decisions
+and the causal swap at every site run:
+- **Pythia sites 1, 2, 3**, with the batch-2 exploratory final runs (`results/gemma/das/pythia_early`).
+  - Pythia's site 4 is rerun in the same job as an anchor. Its passive and active contrast rows (z4, raw4) must
+    equal the stored run's (`results/das_round2/nonce_passive`).
+  - The table reports the stored site-4 numbers.
+  - Bases: `results/gemma/das/nonce/pythia_r3_early/bases_rank1.npz`, with sites 1–3 by `export_bases.py`'s
+    conversion of the final runs and site 4 copied from `results/das_round2/bases_rank1.npz`.
+- **Gemma sites 4 and 6.** Gemma's site 5 is rerun in the same job as an anchor; its rows must equal the
+  section-9 run's.
+  - Bases: by the same conversion, and must be bit-identical to `transfer/bases_rank1.npz` where present.
+- The z ruler and folds are each model's own (`--root`), as in section 9.
+- **First "yes" site:** the earliest site, by relative depth, where (a) context-sensitive separation (Δ_matched z
+  lo95 > 0 and ≥ 0.05) and (b) verb-specific separation (Δ_balanced z, same rule) are "yes".
+  - Reported per model and per test, over every site with a round-3 run:
+    - Gemma 0, 1, 3, 4, 5, 6, 7, 8, 12, 15;
+    - Pythia 1, 2, 3, 4, 6, 8, 10, 12, 14, 16, 17.
+  - The later sites' values come from their existing runs. Their tests are computed with the same rule; they were
+    not decision sites before.
+  - Pythia 0 and 5 have no round-3 run (not requested). So a Pythia first "yes" at site 6 would be bounded only to
+    5–6.
+
+**(b) Round-4 cue test and -ing / -s robustness at Gemma 7, 8, 12.**
+- `analyze_nonce_cues.py` on the existing section-9 Gemma round-4 run, which already projected at these sites:
+  `--decl-sites 7,8,12`, z columns 0, 1, 3, 5, 7, 8, 12, 15. No model run.
+- The decisions are unchanged: C8 (d shift and *by* survive in -ing / -s, object rise, verb-specific) and C9
+  (both / transitivity-driven / NP-driven / neither).
+- For comparison, Pythia's stored round-4 run is analysed at its sites mapped to Gemma 7 / 8 / 12, namely 10 / 12 /
+  14 (section 9's mapping), with `--decl-sites 10,12,14`. No model run.
+- Outputs: `results/gemma/das/nonce/r4_late/`, reports `reports/gemma/nonce/{gemma,pythia}_round4_late.md`.
+
+**(c) Plot** (`scripts/analyze_depth_curve.py`): a third panel, round-3 Δ_matched z (95% CI) by relative depth,
+both models, over the sites listed in (a).
+- Markers are filled where test (a) is "yes", and a dashed line marks the 0.05 minimum.
+- Every panel shades, per model, the depth span of sites whose final-run held-out DAS IIA is < 0.5:
+  - Gemma 0 (0.34);
+  - Pythia 0–4 (0.07–0.45).
+- The plot's depth axis stays 0–0.6 (Pythia 16 / 17 are in the table only).
