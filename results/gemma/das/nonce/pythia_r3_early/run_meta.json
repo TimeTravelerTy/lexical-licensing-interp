@@ -1,0 +1,16 @@
+{
+  "args": {
+    "data_dir": "data/nonce_passive",
+    "bases": "results/gemma/das/nonce/pythia_r3_early/bases_rank1.npz",
+    "out_dir": "results/gemma/das/nonce/pythia_r3_early",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 256,
+    "sites": "1,2,3,4",
+    "causal_sites": "1,2,3,4"
+  },
+  "prompts": 7190,
+  "token_suffix_check": "passed",
+  "bases_sha256": "adde88810349f9d92e09e3370cbc35cb60bf0172907b84758097bfbe33d400d4"
+}

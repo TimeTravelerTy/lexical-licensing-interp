@@ -852,3 +852,115 @@ both models, over the sites listed in (a).
   - Gemma 0 (0.34);
   - Pythia 0–4 (0.07–0.45).
 - The plot's depth axis stays 0–0.6 (Pythia 16 / 17 are in the table only).
+
+## Results, nonce follow-ups (run 2026-11-11; tables: `depth_curve.md`, `nonce/gemma_round3_456.md`, `nonce/pythia_round3_early.md`, `nonce/{gemma,pythia}_round4_late.md`)
+
+Section 10's rules, unchanged. Effects: per-lemma means, 95% lemma-bootstrap CIs (2,000 draws, seed 17), z on each site's own
+ruler. Depth = site / layers (Gemma 26, Pythia 24).
+
+**Reproduction anchors** (jobs 9352771 Pythia, 9352772 Gemma; logs in `results/gemma/logs/g5_r3_*`):
+- Pythia site 4: the 40 site-4 z / raw summary rows (passive and active) and `natural.parquet` identical to the stored
+  `results/das_round2/nonce_passive` run (max abs diff 0.0).
+- Gemma site 5: the 40 site-5 z / raw summary rows identical to the section-9 run (max abs diff 0.0). The 8 site-5
+  causal-swap rows have identical estimates. Their CIs differ by ≤ 0.00015, because the bootstrap draws depend on
+  the set of sites run; the raw swap outputs are identical.
+- Other rows shared with the earlier runs (log-prob contrasts; real-verb reference rows) have identical estimates in
+  both models. Their CIs differ: real-verb rows by bootstrap draw order (z ≤ 0.005 in both models; log-prob
+  measures ≤ 0.024 nats; Gemma raw projection ≤ 0.48, Pythia ≤ 0.017);
+  Pythia log-prob rows by ≤ 2e-7 (platform, as in section 9); Gemma log-prob rows have identical CIs.
+- Gemma bases: 45 (sites 4–6 × 15 folds); the 30 at sites 4 / 5 are bit-identical to `transfer/bases_rank1.npz` (site 6 has no transfer basis).
+- No traceback in either job.
+
+### 10a. Round-3 separation tests by depth
+
+| model | site | depth | final IIA | Δ_matched z | (a) | Δ_balanced z | (b) | run |
+|---|---:|---:|---:|---|---|---|---|---|
+| Gemma-3-1B | 3 | 0.12 | 0.75 | +0.001 [-0.001, +0.003] | no | +0.000 [-0.000, +0.001] | no | section 9 |
+| Gemma-3-1B | 4 | 0.15 | 0.81 | +0.002 [-0.000, +0.004] | no | -0.001 [-0.002, -0.000] | no | new |
+| Gemma-3-1B | 5 | 0.19 | 0.85 | -0.003 [-0.005, -0.001] | no | +0.001 [-0.001, +0.002] | no | section 9 |
+| Gemma-3-1B | 6 | 0.23 | 0.84 | +0.147 [+0.137, +0.157] | yes | +0.165 [+0.156, +0.173] | yes | new |
+| Gemma-3-1B | 7 | 0.27 | 0.83 | +0.168 [+0.153, +0.183] | yes | +0.185 [+0.170, +0.199] | yes | section 9 |
+| Pythia-1.4B | 1 | 0.04 | 0.10 | -0.005 [-0.006, -0.004] | no | -0.000 [-0.001, +0.000] | no | new |
+| Pythia-1.4B | 2 | 0.08 | 0.13 | +0.003 [+0.002, +0.005] | no | -0.001 [-0.002, -0.001] | no | new |
+| Pythia-1.4B | 3 | 0.12 | 0.28 | +0.051 [+0.049, +0.053] | yes | +0.023 [+0.021, +0.025] | no | new |
+| Pythia-1.4B | 4 | 0.17 | 0.45 | +0.045 [+0.042, +0.049] | no | +0.023 [+0.020, +0.025] | no | stored |
+| Pythia-1.4B | 6 | 0.25 | 0.66 | +0.129 [+0.123, +0.134] | yes | +0.122 [+0.117, +0.128] | yes | stored |
+
+All tested sites (Gemma 0, 1, 3–8, 12, 15; Pythia 1–4, 6, 8, 10, 12, 14, 16, 17) are in `depth_curve.md`, "Nonce separation by depth", and
+`results/gemma/das/depth_curve/nonce_depth.csv`.
+
+First "yes" site:
+
+| model | test | first yes | previous run site | later run sites |
+|---|---|---|---|---|
+| Gemma-3-1B | (a) context-sensitive | 6 (0.23) | 5 (0.19), no | all yes (7, 8, 12, 15) |
+| Gemma-3-1B | (b) verb-specific | 6 (0.23) | 5 (0.19), no | all yes |
+| Pythia-1.4B | (a) context-sensitive | 3 (0.12) | 2 (0.08), no | 4 no (+0.045); 6 onward all yes |
+| Pythia-1.4B | (b) verb-specific | 6 (0.25) | 4 (0.17), no | all yes (8–17) |
+
+- Pythia site 3's (a) "yes": the estimate is +0.0513 against the 0.05 minimum (lo95 +0.0492). Site 4's +0.0452 is below it.
+  From site 6 onward, every Pythia run site is yes on both tests.
+- Pythia 5 (0.21) has no round-3 run; Pythia's (b) is no at site 4 (0.17) and yes at site 6 (0.25).
+- Gemma: no at site 5 (0.19), yes at site 6 (0.23), for both tests; every Gemma site 0–6 was run.
+- Pythia sites 1–4 have final IIA 0.10 / 0.13 / 0.28 / 0.45 (all < 0.5). Gemma sites 1–15 are all ≥ 0.63.
+- (c) *by* raised verb-specifically: yes at every site in both runs (log-prob measure, the same at every site). Gemma
+  Δ_balanced *by* +0.17 vs PREP\by +0.04; Pythia +0.56 vs +0.18.
+- Causal swap (d_s coordinate of the matched-T probe into the matched-I probe):
+  - Pythia sites 1–4: every Δ estimate rounds to within ±0.01 nats.
+  - Gemma sites 4 and 5: every Δ within ±0.005 (shown as ±0.00).
+  - Gemma site 6:
+    - matched_I base: *by* +0.03 [+0.02, +0.04], PREP\by −0.01 [−0.01, −0.01], O +0.07 [+0.06, +0.08];
+    - matched_T base: *by* +0.03 [+0.02, +0.04], PREP\by +0.02 [+0.01, +0.03], O −0.16 [−0.18, −0.14].
+
+### 10b. Round-4 cue test at Gemma 7, 8, 12 (Pythia 10, 12, 14 for comparison)
+
+C8, -ing / -s robustness. The " by", O and balanced-*by* measures are log-prob measures, the same at every site.
+
+| | Gemma 7 / 8 / 12 | Pythia 10 / 12 / 14 |
+|---|---|---|
+| -ing d shift survives | yes: +0.090 / +0.095 / +0.132 | yes: +0.088 / +0.157 / +0.147 |
+| -s d shift survives | yes: +0.063 / +0.067 / +0.093 | yes: +0.050 / +0.128 / +0.074 |
+| " by" survives (-ing; -s) | yes (+0.49; +0.49) | yes (+0.60; +0.59) |
+| object rise mostly disappears (-ing; -s; -ed on the same lemmas) | **no** (O +0.88; +0.67; +1.07) | **yes** (O +0.99; +0.70; +2.14) |
+| verb-specific balanced z | yes at all three, both forms | yes at all three, both forms |
+| verb-specific balanced " by" (-ing; -s; vs PREP\by) | **no** (−0.05; −0.06; vs +0.03) | **yes** (+0.18; +0.18; vs +0.01 / −0.02) |
+
+C9 primary contrasts (z, 95% CIs in the reports):
+
+| contrast | Gemma 7 | Gemma 8 | Gemma 12 | Pythia 10 | Pythia 12 | Pythia 14 |
+|---|---|---|---|---|---|---|
+| transitivity: rel_T − rel_I | +0.058 | +0.060 | +0.051 | +0.047 | +0.052 | +0.051 |
+| adjacent NP: adj_I − pp_I | +0.206 | +0.212 | +0.220 | +0.139 | +0.266 | +0.294 |
+| decision | **both** | **both** | **both** | **NP-driven** | **both** | **both** |
+
+C9 secondary contrasts:
+
+| contrast | Gemma 7 | Gemma 8 | Gemma 12 | Pythia 10 | Pythia 12 | Pythia 14 |
+|---|---|---|---|---|---|---|
+| transitivity: q_T − q_I | +0.033 | +0.037 | +0.025 | +0.010 | +0.010 | +0.019 |
+| adjacent NP: adj_I − bare | +0.200 | +0.213 | +0.248 | +0.136 | +0.268 | +0.255 |
+| decision | NP-driven | NP-driven | NP-driven | NP-driven | NP-driven | NP-driven |
+
+Log-prob measures, both models:
+- Primary: " by" both (Gemma transitivity +0.206, NP +1.634; Pythia +0.204, +1.999); O both (Gemma +0.518, +1.086;
+  Pythia +0.272, +1.836).
+- Secondary: " by" both (Gemma +0.409, +0.775; Pythia +0.172, +1.141); O NP-driven (Gemma −0.194, +1.659; Pythia
+  −0.088, +3.026).
+
+On the primary z contrasts, the transitivity value is 0.051–0.060 at the three Gemma sites and 0.047–0.052 at the three
+Pythia sites, against the 0.05 minimum:
+- the Gemma 7 / 8 / 12 "both" calls clear it by 0.001–0.010 z;
+- Pythia 10's "NP-driven" call misses it by 0.003 z.
+The adjacent-NP contrast is 3.6–4.3× the transitivity contrast at the Gemma sites and 2.9–5.8× at the Pythia sites (full-precision estimates).
+
+### 10c. Plot
+
+`reports/gemma/figures/depth_curve_passive.{png,svg}` now has three panels:
+- O fraction and *by* effect, as before;
+- round-3 Δ_matched z by relative depth, both models, markers filled where (a) is yes, dashed line at the 0.05 minimum.
+
+Every panel shades each model's final-IIA < 0.5 span: Gemma site 0; Pythia sites 0–4. The plotted sites are those at depth
+≤ 0.6, so Pythia 16 / 17 (0.67 / 0.71) appear in the table only.
+
+The passive table in `depth_curve.md` gains a final-IIA column; its other values are unchanged. The csv `source`
+column now gives paths relative to the repository root (it previously had a leading `../`).
