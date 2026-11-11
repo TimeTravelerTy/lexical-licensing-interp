@@ -1,0 +1,29 @@
+{
+ "model": "allenai/OLMo-2-0425-1B",
+ "revision": "main",
+ "resolved_commit": "a1847dff35000b4271fa70afc5db10fd29fedbdf",
+ "dtype": "bfloat16",
+ "tf32": false,
+ "n_rows": 29184,
+ "bos": false,
+ "fp32_unembed": true,
+ "next_token": " by",
+ "cur_all": false,
+ "inputs": {
+  "prefixes.csv": "9452a8a210de0df701864e7322be12842d7f9ce7dfb5f6b8f64dd0544bbd784a",
+  "verbs.csv": "28a0e501d0cb9b42f754e3ce2d1628233c47fa0f8d763f924992bf9ee49d1dea",
+  "pairs.csv": "5d720c58e62f1cad839ea3c6b4d5d7fc2e1fcecbe9e543d68051756fff0f3201"
+ },
+ "checks": {
+  "max_h_deviation": 0.0,
+  "h_tol": 0.05,
+  "max_first_subtoken_error": 3.0517578125e-05,
+  "max_identity_error": 4.8612942919135094e-05,
+  "max_abs_logit": 29.788963317871094,
+  "tol": 0.001
+ },
+ "outputs": {
+  "frame_scores.parquet": "725a82f73b6cc6133d8124fa403f3a5e2997fa3bd83ac18cc11fa2adb799efde",
+  "frame_h.npz": "6e751c93e144dc3ec8f783ab3c94745f7268ae1648a9675300a27ea81455814b"
+ }
+}

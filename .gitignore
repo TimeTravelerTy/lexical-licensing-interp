@@ -83,3 +83,6 @@ results/gemma/das/transfer/inrange/rows.parquet
 results/gemma/das/transfer/inrange/projections.npz
 results/gemma/das/transfer/fillergap/projections.npz
 results/gemma/das/depth_curve/**/patches_*.parquet
+
+# OLMo replication raw next-token readouts (SHA-256 in reports/olmo/behavior.md)
+results/olmo/by_readout/*.csv

@@ -1,0 +1,25 @@
+set,context_id,context_band,noun,animacy,noun_zipf,pass_prefix,act_prefix
+freq,freq/man,,man,animate,5.82,The man was,The man has
+freq,freq/woman,,woman,animate,5.35,The woman was,The woman has
+freq,freq/child,,child,animate,5.3,The child was,The child has
+freq,freq/boy,,boy,animate,5.17,The boy was,The boy has
+freq,freq/girl,,girl,animate,5.38,The girl was,The girl has
+freq,freq/student,,student,animate,5.02,The student was,The student has
+freq,freq/teacher,,teacher,animate,4.88,The teacher was,The teacher has
+freq,freq/doctor,,doctor,animate,4.9,The doctor was,The doctor has
+freq,freq/officer,,officer,animate,5.03,The officer was,The officer has
+freq,freq/player,,player,animate,5.19,The player was,The player has
+freq,freq/friend,,friend,animate,5.37,The friend was,The friend has
+freq,freq/father,,father,animate,5.26,The father was,The father has
+freq,freq/house,,house,inanimate,5.71,The house was,The house has
+freq,freq/car,,car,inanimate,5.45,The car was,The car has
+freq,freq/book,,book,inanimate,5.43,The book was,The book has
+freq,freq/door,,door,inanimate,5.08,The door was,The door has
+freq,freq/letter,,letter,inanimate,4.95,The letter was,The letter has
+freq,freq/report,,report,inanimate,5.32,The report was,The report has
+freq,freq/plan,,plan,inanimate,5.29,The plan was,The plan has
+freq,freq/system,,system,inanimate,5.56,The system was,The system has
+freq,freq/building,,building,inanimate,5.29,The building was,The building has
+freq,freq/window,,window,inanimate,4.8,The window was,The window has
+freq,freq/road,,road,inanimate,5.24,The road was,The road has
+freq,freq/project,,project,inanimate,5.22,The project was,The project has

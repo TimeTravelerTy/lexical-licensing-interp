@@ -1,0 +1,46 @@
+{
+ "inputs": {
+  "results/olmo/frame/olmo-2-1b/frame_scores.parquet": "725a82f73b6cc6133d8124fa403f3a5e2997fa3bd83ac18cc11fa2adb799efde",
+  "results/olmo/by_readout/olmo-2-1b_readout.csv": "8195b9101b2cbdfbc6615f845d96f0be2d6058b58d95cd45b2ad63419b92c560",
+  "results/olmo/frame/olmo-2-1b_eos/frame_scores.parquet": "a29a6954d1a7431bbabac92a15e150b17c1c6238ecf6d23ad8d3a1a86726958b",
+  "results/olmo/by_readout/olmo-2-1b_eos_readout.csv": "bbd8cd16f239602bbc7d6524fc80cfadb876de52aac97dc30dc1e76e969ba34e",
+  "results/olmo/freqblimp_passives/olmo-2-1b_scores.csv": "8b46e550fd85910c369e503511e2b8eda066a146d15eb54eddb6be609e771758",
+  "results/olmo/freqblimp_passives/olmo-2-1b_eos_scores.csv": "e15b5e07bd7531d55b2190f02b824bc2a2965652d8639ccc514eb1d72cdee6b5",
+  "results/gemma/behavior/verb_scores.csv": "a7d9667a4c8d42355bfe6fd04873c409b80aa1f61befe85c2e4178f73af42cfc",
+  "results/passive_band_cross/pythia14b_scores.csv": "0cca37eeaf4a5181c70963dd903734662ba7fdc6acabe172b2a02c53c8a05b48"
+ },
+ "stored_step2_reproduction_max_abs": {
+  "cells": 8.881784197001252e-16,
+  "gaps": 8.881784197001252e-16
+ },
+ "by_gap_rule": {
+  "olmo-2-1b": {
+   "d11": {
+    "est": 0.7470262972240298,
+    "lo": 0.5896762995485471,
+    "hi": 0.9109283143354517
+   },
+   "curated": {
+    "est": 0.6038027269841271,
+    "lo": 0.37299598720635063,
+    "hi": 0.8301641470634912
+   },
+   "holds": true
+  },
+  "olmo-2-1b+eos": {
+   "d11": {
+    "est": 0.643792021715812,
+    "lo": 0.4965072781398276,
+    "hi": 0.7853215925546563
+   },
+   "curated": {
+    "est": 0.5132614628571432,
+    "lo": 0.30350414787301533,
+    "hi": 0.7189119631428573
+   },
+   "holds": true
+  }
+ },
+ "n_boot": 2000,
+ "seed": 17
+}
