@@ -42,9 +42,11 @@ ARCH = {
                         embed_scale="sqrt(hidden_size), inside embed_tokens (Gemma3TextScaledWordEmbedding)",
                         notes="Gemma-3 text models (1B). Tied lm_head (fp32_unembed unties it). No final-logit softcap."),
     "olmo2": Arch(embed="model.embed_tokens", layers="model.layers", final_norm="model.norm",
-                  bos=None, fp32_unembed=True, embed_scale="none",
-                  notes="OLMo-2 (e.g. allenai/OLMo-2-0425-1B). Untied lm_head. The tokenizer adds no BOS and its "
-                        "bos_token is <|endoftext|> (= EOS); whether to prepend it is undecided."),
+                  bos=False, fp32_unembed=True, embed_scale="none",
+                  notes="OLMo-2 (allenai/OLMo-2-0425-1B). Untied lm_head. The tokenizer adds no BOS (add_bos_token "
+                        "False, config bos_token_id None) and its bos_token is <|endoftext|> (= EOS). No BOS by the "
+                        "rule in reports/olmo/rules.md (Pythia's convention; same EOS-delimited training format); "
+                        "--bos prepends <|endoftext|> (the behavioural sensitivity run)."),
 }
 
 

@@ -10,7 +10,8 @@ task, held-out-context IIA. Site picks:
 - best site: the highest best-epoch IIA (excluding the last site, whose source states are post-final-norm).
 Pythia's stored sweeps are listed beside Gemma's by relative depth (site / number of layers).
 
-Writes reports/gemma/das_sweeps.md and results/gemma/das/sweep_summary_by_site.csv.
+Writes reports/gemma/das_sweeps.md and results/gemma/das/sweep_summary_by_site.csv. --sweep model:task:path:n_layers
+(repeatable) replaces the default list and --title the heading (OLMo replication: reports/olmo/das_sweep.md).
 """
 
 from __future__ import annotations
@@ -47,12 +48,13 @@ def picks(b, n_layers, tol=0.02, min_pc=0.5):
 
 
 def main(args):
-    rows, lines = [], ["# Rank-1 DAS sweeps: Gemma-3-1B-pt vs Pythia-1.4B", "",
+    sweeps = [(m, t, p, int(n)) for m, t, p, n in (x.split(":") for x in args.sweep)] if args.sweep else SWEEPS
+    rows, lines = [], [f"# {args.title}", "",
                        "Script `scripts/analyze_gemma_das_sweeps.py` (definitions in its docstring). Held-out "
                        "cross-class IIA at the participle's last subtoken, best epoch per site, mean over 5 folds "
                        "(split 0); [min, max] over folds. Site s = residual output of layer s − 1; relative depth = "
                        "s / number of layers. Last site excluded from the picks (post-final-norm source states).", ""]
-    for model, task, path, L in SWEEPS:
+    for model, task, path, L in sweeps:
         if not Path(path).exists():
             lines += [f"## {model}, {task}: not run yet", ""]
             continue
@@ -81,4 +83,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--csv", default="results/gemma/das/sweep_summary_by_site.csv")
     ap.add_argument("--report", default="reports/gemma/das_sweeps.md")
+    ap.add_argument("--sweep", action="append", default=[], help="model:task:path:n_layers (replaces the default list)")
+    ap.add_argument("--title", default="Rank-1 DAS sweeps: Gemma-3-1B-pt vs Pythia-1.4B")
     main(ap.parse_args())
