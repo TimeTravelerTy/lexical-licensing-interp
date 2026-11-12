@@ -1,0 +1,49 @@
+commit 4e17a02ce153d04f68eb0f8caa65bbdfeaaee8a0
+== 19:13:28 python3 -
+45 bases; 30 bit-identical to transfer/bases_rank1.npz
+== 19:13:39 python3 scripts/run_nonce_passive.py --data-dir data/gemma/nonce/nonce_passive --bases results/gemma/das/nonce/gemma_r3_456/bases_rank1.npz --out-dir results/gemma/das/nonce/gemma_r3_456 --model google/gemma-3-1b-pt --sites 4,5,6 --causal-sites 4,5,6
+runner settings {'model_type': 'gemma3_text', 'bos': True, 'fp32_unembed': True, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 57855.87109375}
+== 19:14:49 python3 scripts/analyze_nonce_passive.py --root results/gemma/das/transfer --data-dir data/gemma/nonce/nonce_passive --out-dir results/gemma/das/nonce/gemma_r3_456 --report reports/gemma/nonce/gemma_round3_456.md --decl-sites 4,5,6
+# C8. Nonce verbs: context-sensitive separation along d in passives
+
+Spec: `round3_plan.md`, C8. Run: `run_nonce_passive.py`; analysis: `analyze_nonce_passive.py`. 80 nonce lemmas × 4 slots; per-lemma means; 95% CIs: lemma bootstrap (2,000 draws, seed 17). z: 0 = held-out active intransitive, 1 = transitive level of each site's d (a fixed ruler).
+
+## Passive probe ("The house was dakked")
+
+| Site | matched T − I | mismatched1 | mismatched2 | balanced AB − BA | matched − mismatched | real good − bad (neutral ctx) | active probe: matched |
+|---:|---|---|---|---|---|---|---|
+| 4 | +0.00 [-0.00, +0.00] | -0.00 [-0.00, -0.00] | -0.00 [-0.01, -0.00] | -0.00 [-0.00, -0.00] | +0.00 [+0.00, +0.01] | +0.48 [+0.40, +0.56] | +0.00 [+0.00, +0.01] |
+| 5 | -0.00 [-0.00, -0.00] | -0.01 [-0.01, -0.00] | -0.00 [-0.01, -0.00] | +0.00 [-0.00, +0.00] | +0.00 [-0.00, +0.00] | +0.52 [+0.46, +0.59] | +0.00 [+0.00, +0.01] |
+| 6 | +0.15 [+0.14, +0.16] | +0.02 [+0.01, +0.03] | +0.02 [+0.02, +0.03] | +0.16 [+0.16, +0.17] | +0.13 [+0.11, +0.14] | +0.48 [+0.42, +0.55] | +0.23 [+0.22, +0.24] |
+
+Log-probabilities at the passive probe (nats):
+
+| Contrast | log P(" by") | log P(PREP without by) | log P(O) | log P(".") |
+|---|---|---|---|---|
+| matched T - I | +0.75 [+0.70, +0.81] | +0.45 [+0.40, +0.49] | +1.07 [+0.96, +1.17] | -1.63 [-1.72, -1.54] |
+| mismatched1 T - I | +0.59 [+0.52, +0.64] | +0.47 [+0.43, +0.51] | +0.79 [+0.70, +0.88] | -1.02 [-1.09, -0.95] |
+| mismatched2 T - I | +0.60 [+0.54, +0.66] | +0.47 [+0.43, +0.50] | +0.80 [+0.71, +0.89] | -1.03 [-1.10, -0.96] |
+| balanced AB - BA | +0.17 [+0.14, +0.20] | +0.04 [+0.02, +0.06] | +0.65 [+0.56, +0.74] | -0.48 [-0.55, -0.41] |
+| matched - mismatched | +0.16 [+0.10, +0.22] | -0.02 [-0.07, +0.03] | +0.27 [+0.15, +0.39] | -0.60 [-0.70, -0.52] |
+| real good − bad (neutral ctx) | +0.14 [-0.10, +0.41] | -0.14 [-0.30, +0.01] | -0.01 [-0.21, +0.19] | -0.14 [-0.28, -0.01] |
+
+Causal check (d_s coordinate of the matched-T probe into the matched-I probe; Δ from unpatched):
+
+| Site | base | Δ log P(" by") | Δ log P(PREP\by) | Δ log P(O) |
+|---:|---|---|---|---|
+| 4 | matched_I | -0.00 [-0.00, +0.00] | +0.00 [-0.00, +0.00] | -0.00 [-0.00, +0.00] |
+| 4 | matched_T | +0.00 [-0.00, +0.00] | -0.00 [-0.00, +0.00] | -0.00 [-0.00, +0.00] |
+| 5 | matched_I | -0.00 [-0.00, +0.00] | -0.00 [-0.00, +0.00] | -0.00 [-0.00, +0.00] |
+| 5 | matched_T | -0.00 [-0.00, +0.00] | -0.00 [-0.00, +0.00] | +0.00 [-0.00, +0.00] |
+| 6 | matched_I | +0.03 [+0.02, +0.04] | -0.01 [-0.01, -0.01] | +0.07 [+0.06, +0.08] |
+| 6 | matched_T | +0.03 [+0.02, +0.04] | +0.02 [+0.01, +0.03] | -0.16 [-0.18, -0.14] |
+
+## Declared decisions (passive probe)
+
+- Site 4: context-sensitive separation along d: **no** (Δ_matched +0.002); verb-specific: **no** (Δ_balanced -0.001); raises *by* verb-specifically: **yes** (Δ_balanced by +0.17 vs PREP\by +0.04). Scale: Δ_matched / real-verb gap = 0.00; passive / active Δ_matched = 0.41.
+- Site 5: context-sensitive separation along d: **no** (Δ_matched -0.003); verb-specific: **no** (Δ_balanced +0.001); raises *by* verb-specifically: **yes** (Δ_balanced by +0.17 vs PREP\by +0.04). Scale: Δ_matched / real-verb gap = -0.00; passive / active Δ_matched = -0.85.
+- Site 6: context-sensitive separation along d: **yes** (Δ_matched +0.147); verb-specific: **yes** (Δ_balanced +0.165); raises *by* verb-specifically: **yes** (Δ_balanced by +0.17 vs PREP\by +0.04). Scale: Δ_matched / real-verb gap = 0.31; passive / active Δ_matched = 0.63.
+== 19:14:50 python3 -
+anchor site 5 rows 40 of 40 max abs diff 0.0
+anchor causal site 5 rows 8 max abs diff 0.0
+== done Wed Nov 11 07:14:52 PM JST 2026
