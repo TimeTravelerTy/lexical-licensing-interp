@@ -1,0 +1,26 @@
+commit bf7e1d59cf03fbb45be6b9066ff95e72e63e6ad9
+runner settings {'model_type': 'gpt_neox', 'bos': False, 'fp32_unembed': False, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 76.90739440917969}
+[     78s] 31500 prompts, 126 pairs; natural site 8 / 12 states captured
+[    174s] loo_63 (tail/scrub/thrive) done
+[    271s] loo_64 (tail/slander/glare) done
+[    367s] loo_65 (tail/smother/subside) done
+[    464s] loo_66 (tail/spice/pee) done
+[    561s] loo_67 (tail/stockpile/shudder) done
+[    659s] loo_68 (tail/stow/abstain) done
+[    756s] loo_69 (tail/subjugate/collude) done
+[    853s] loo_70 (tail/subvert/persevere) done
+[    950s] loo_71 (tail/tame/chuckle) done
+[   1047s] loo_72 (tail/trademark/bloom) done
+[   1143s] loo_73 (tail/transcend/concur) done
+[   1240s] loo_74 (tail/utter/creep) done
+[   1336s] loo_75 (tail/whitewash/wane) done
+[   1432s] loo_76 (xtail/blab/loll) done
+[   1529s] loo_77 (xtail/blaspheme/seethe) done
+[   1624s] loo_78 (xtail/clout/grouse) done
+[   1722s] loo_79 (xtail/crate/lumber) done
+[   1824s] loo_80 (xtail/daub/resound) done
+[   1923s] loo_81 (xtail/debug/tingle) done
+[   2025s] loo_82 (xtail/disabuse/sidle) done
+[   2124s] loo_83 (xtail/disgorge/exult) done
+[   2125s] wrote ../results/pythia/leace_learning_curve/loo_part3
+== done Thu Nov 12 07:47:10 PM JST 2026

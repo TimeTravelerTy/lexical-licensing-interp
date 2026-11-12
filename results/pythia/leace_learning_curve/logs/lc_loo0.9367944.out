@@ -1,0 +1,26 @@
+commit bf7e1d59cf03fbb45be6b9066ff95e72e63e6ad9
+runner settings {'model_type': 'gpt_neox', 'bos': False, 'fp32_unembed': False, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 76.90739440917969}
+[     83s] 31500 prompts, 126 pairs; natural site 8 / 12 states captured
+[    179s] loo_0 (head/bet/appear) done
+[    275s] loo_1 (head/blame/struggle) done
+[    371s] loo_2 (head/celebrate/reply) done
+[    466s] loo_3 (head/confront/testify) done
+[    562s] loo_4 (head/crown/object) done
+[    657s] loo_5 (head/defend/participate) done
+[    753s] loo_6 (head/earn/occur) done
+[    848s] loo_7 (head/exhibit/proceed) done
+[    943s] loo_8 (head/hate/listen) done
+[   1038s] loo_9 (head/host/exist) done
+[   1134s] loo_10 (head/impose/emerge) done
+[   1229s] loo_11 (head/include/happen) done
+[   1324s] loo_12 (head/insure/vanish) done
+[   1420s] loo_13 (head/introduce/arrive) done
+[   1515s] loo_14 (head/lease/apologize) done
+[   1610s] loo_15 (head/lend/opt) done
+[   1705s] loo_16 (head/load/respond) done
+[   1800s] loo_17 (head/measure/laugh) done
+[   1895s] loo_18 (head/rate/result) done
+[   1990s] loo_19 (head/rob/belong) done
+[   2085s] loo_20 (head/score/remain) done
+[   2086s] wrote ../results/pythia/leace_learning_curve/loo_part0
+== done Thu Nov 12 07:46:22 PM JST 2026

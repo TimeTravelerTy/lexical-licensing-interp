@@ -1,0 +1,27 @@
+commit bf7e1d59cf03fbb45be6b9066ff95e72e63e6ad9
+runner settings {'model_type': 'gpt_neox', 'bos': False, 'fp32_unembed': False, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 76.90739440917969}
+[     91s] 31500 prompts, 126 pairs; natural site 8 / 12 states captured
+[    268s] full: share remaining (held-out) single_8 0.339, scrub_0_12 0.039
+[    357s] n25_r0: share remaining (held-out) single_8 0.751, scrub_0_12 0.811; probe acc single_8@8 0.846, scrub@12 0.895, natural@8 0.935
+[    446s] n25_r1: share remaining (held-out) single_8 0.538, scrub_0_12 0.791; probe acc single_8@8 0.926, scrub@12 0.957, natural@8 0.950
+[    534s] n25_r2: share remaining (held-out) single_8 0.755, scrub_0_12 0.750; probe acc single_8@8 0.912, scrub@12 0.942, natural@8 0.946
+[    622s] n25_r3: share remaining (held-out) single_8 0.661, scrub_0_12 0.740; probe acc single_8@8 0.906, scrub@12 0.944, natural@8 0.955
+[    710s] n25_r4: share remaining (held-out) single_8 0.609, scrub_0_12 0.729; probe acc single_8@8 0.902, scrub@12 0.947, natural@8 0.950
+[    801s] n50_r0: share remaining (held-out) single_8 0.740, scrub_0_12 0.733; probe acc single_8@8 0.868, scrub@12 0.880, natural@8 0.938
+[    891s] n50_r1: share remaining (held-out) single_8 0.745, scrub_0_12 0.786; probe acc single_8@8 0.845, scrub@12 0.913, natural@8 0.947
+[    980s] n50_r2: share remaining (held-out) single_8 0.505, scrub_0_12 0.585; probe acc single_8@8 0.821, scrub@12 0.909, natural@8 0.949
+[   1070s] n50_r3: share remaining (held-out) single_8 0.629, scrub_0_12 0.700; probe acc single_8@8 0.876, scrub@12 0.936, natural@8 0.941
+[   1160s] n50_r4: share remaining (held-out) single_8 0.808, scrub_0_12 0.831; probe acc single_8@8 0.827, scrub@12 0.882, natural@8 0.940
+[   1253s] n75_r0: share remaining (held-out) single_8 0.742, scrub_0_12 0.707; probe acc single_8@8 0.642, scrub@12 0.802, natural@8 0.916
+[   1345s] n75_r1: share remaining (held-out) single_8 0.711, scrub_0_12 0.696; probe acc single_8@8 0.788, scrub@12 0.872, natural@8 0.951
+[   1438s] n75_r2: share remaining (held-out) single_8 0.362, scrub_0_12 0.429; probe acc single_8@8 0.697, scrub@12 0.868, natural@8 0.915
+[   1530s] n75_r3: share remaining (held-out) single_8 0.593, scrub_0_12 0.567; probe acc single_8@8 0.808, scrub@12 0.889, natural@8 0.942
+[   1622s] n75_r4: share remaining (held-out) single_8 0.566, scrub_0_12 0.559; probe acc single_8@8 0.766, scrub@12 0.867, natural@8 0.916
+[   1717s] n100_r0: share remaining (held-out) single_8 0.351, scrub_0_12 0.409; probe acc single_8@8 0.630, scrub@12 0.656, natural@8 0.854
+[   1812s] n100_r1: share remaining (held-out) single_8 0.486, scrub_0_12 0.540; probe acc single_8@8 0.680, scrub@12 0.766, natural@8 0.866
+[   1907s] n100_r2: share remaining (held-out) single_8 0.699, scrub_0_12 0.677; probe acc single_8@8 0.716, scrub@12 0.793, natural@8 0.930
+[   2002s] n100_r3: share remaining (held-out) single_8 0.736, scrub_0_12 0.695; probe acc single_8@8 0.717, scrub@12 0.769, natural@8 0.918
+[   2098s] n100_r4: share remaining (held-out) single_8 0.593, scrub_0_12 0.590; probe acc single_8@8 0.762, scrub@12 0.880, natural@8 0.937
+[   2108s] checks {'probe_pred_vs_probe_cv': {'probe_cv': 0.9351287128712872, 'probe_pred': 0.9351287128712872}, 'reference_items_sha256': '4a0eb9bfb82e7e96150c1a5802b9f782324ea83c2c75478163fcc88d94fc775d', 'full_vs_insample_max_abs': {'natural': 8.881784197001252e-16, 'single_8': 1.7763568394002505e-15, 'scrub_0_12': 1.7763568394002505e-15}, 'natural_vs_reference_max_abs': 8.881784197001252e-16, 'erased_rank': [1]}
+[   2108s] wrote ../results/pythia/leace_learning_curve/subsets
+== done Thu Nov 12 07:45:59 PM JST 2026
