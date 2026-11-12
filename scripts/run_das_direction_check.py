@@ -134,6 +134,15 @@ def run(args):
         m, parts = runner.patched(prompts, src, site, basis, full=True)
         return {"M": m.cpu().numpy(), **{k: parts[k].cpu().numpy() for k in READ}}
 
+    ZERO = torch.zeros(d, 1, device=dev)  # zero basis: patched() then leaves the state unchanged
+
+    def hook_states(prompts, site):
+        """Anchor states at `site` as the hook sees them in this exact batch (fp32)."""
+        enc, anchors = runner.encode(prompts)
+        with torch.no_grad():
+            o = runner.model(**enc, output_hidden_states=True, use_cache=False)
+        return o.hidden_states[site][torch.arange(len(anchors), device=dev), anchors].float()
+
     cos_rows, act_summ, act_swaps, act_abl = [], [], [], []
     for si, site in enumerate(sites):
         ts = time.time()
@@ -187,11 +196,16 @@ def run(args):
             rand_np.append(rc.astype(np.float32))
 
             # ---- 2. active component patching (held-out swaps of this basis)
-            with torch.no_grad():
+            with torch.no_grad():  # self-patch vs an unpatched forward of the same batch (zero basis)
                 pick = te[:64]
-                m, _ = runner.patched([prompts_a[j] for j in pick], X[pick], site, U[(k, f)])
+                pp_ = [prompts_a[j] for j in pick]
+                hb = hook_states(pp_, site)
+                m0, _ = runner.patched(pp_, hb, site, ZERO)
+                m, _ = runner.patched(pp_, hb, site, U[(k, f)])
                 sc["u_md_self_patch_max_abs_dM"] = max(sc["u_md_self_patch_max_abs_dM"],
-                                                       float(np.abs(m.cpu().numpy() - nat["M"][pick]).max()))
+                                                       float((m - m0).abs().max()))
+                sc["batch_effect_max_abs_dM"] = max(sc.get("batch_effect_max_abs_dM", 0.0),
+                                                    float(np.abs(m0.cpu().numpy() - nat["M"][pick]).max()))
             for name, basis in (("v", B[(k, f)]), ("u_md", U[(k, f)])):
                 df = r2.evaluate(runner, items, reps, nat, te, site, basis, detail=True)
                 df["rank"], df["split"], df["fold"], df["direction"], df["site"] = 1, k, f, name, site
@@ -206,7 +220,9 @@ def run(args):
         gen = torch.Generator(device="cpu").manual_seed(args.seed)
         RND = {(k, f): [torch.nn.functional.normalize(torch.randn(d, generator=gen), dim=0).to(dev)[:, None]
                         for _ in range(args.n_rand_abl)] for (k, f) in keys}
-        dirs = {"v": B, "u_md": U, **{f"rand{j}": {kk: RND[kk][j] for kk in keys} for j in range(args.n_rand_abl)}}
+        # "none": zero basis, i.e. the natural readout computed in the same batches as the ablations
+        dirs = {"none": {kk: ZERO for kk in keys}, "v": B, "u_md": U,
+                **{f"rand{j}": {kk: RND[kk][j] for kk in keys} for j in range(args.n_rand_abl)}}
         mu_a = {}
         with torch.no_grad():
             for name, D in dirs.items():
@@ -219,12 +235,14 @@ def run(args):
                     res = patch([prompts_a[j] for j in te], src, site, u)
                     act_abl.append(pd.DataFrame({"site": site, "direction": name, "split": k, "fold": f, "item": te,
                                                  "mu": mu, **res}))
-            # identity ablation: mu replaced by each item's own projection
+            # identity ablation: mu replaced by each item's own (in-batch) projection; reference = same batch, zero basis
             u = B[keys[0]]
             _, te = r2.fold_indices(items, assigns[keys[0][0]], keys[0][1])
-            src = (X[te] @ u) * u[:, 0][None]
-            res = patch([prompts_a[j] for j in te], src, site, u)
-            sc["identity_ablation_active_max_abs_dM"] = float(np.abs(res["M"] - nat["M"][te]).max())
+            pp_ = [prompts_a[j] for j in te]
+            hb = hook_states(pp_, site)
+            res = patch(pp_, (hb @ u) * u[:, 0][None], site, u)
+            ref = patch(pp_, hb, site, ZERO)
+            sc["identity_ablation_active_max_abs_dM"] = float(np.abs(res["M"] - ref["M"]).max())
         log(f"site {site}: active ablation done")
 
         # ---- 2b / 3b. passives
@@ -271,9 +289,11 @@ def run(args):
                 g = abl_plan.iloc[:512]
                 u = B[(int(g.split.iloc[0]), int(g.fold.iloc[0]))]
                 g = g[(g.split == g.split.iloc[0]) & (g.fold == g.fold.iloc[0])]
-                hb = S[torch.as_tensor(g.base.to_numpy(), device=dev)]
-                r = patch([prompts_p[j] for j in g.base], (hb @ u) * u[:, 0][None], site, u)
-                sc["identity_ablation_passive_max_abs_dM"] = float(np.abs(r["M"] - pnat["M"][g.base]).max())
+                pp_ = [prompts_p[j] for j in g.base]
+                hb = hook_states(pp_, site)
+                r = patch(pp_, (hb @ u) * u[:, 0][None], site, u)
+                ref = patch(pp_, hb, site, ZERO)
+                sc["identity_ablation_passive_max_abs_dM"] = float(np.abs(r["M"] - ref["M"]).max())
             pd.concat(pa, ignore_index=True).to_parquet(out / f"ablation_passive_site{site}.parquet", index=False)
             log(f"site {site}: passive ablation done ({len(abl_plan)} rows x {len(dirs)})")
         checks["sites"][str(site)] = sc

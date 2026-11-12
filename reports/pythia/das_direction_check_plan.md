@@ -197,3 +197,17 @@ to them. They are not dropped.
 
 Report: `reports/pythia/das_direction_check.md`, tables for items 1-3 and
 the checks.
+
+## Addendum (2026-11-12, after a smoke run at site 8 on a 256-item passive subset, before the full run)
+
+The rules above are unchanged. Two implementation details are fixed now.
+- **Checks 4 and 5:** the reference is an unpatched forward of the same
+  batch (zero basis), not the separate natural pass. Against the natural
+  pass, the smoke run showed max |ΔM| 0.42 (self-patch) and 0.06 (identity
+  ablation). That is bf16 batch-composition noise, the same size as the
+  stored passive test's held-out recompute (max 0.41). The difference from
+  the natural pass is reported as its own column.
+- **Natural gaps in item 3** come from unpatched readouts run in the same
+  batches as the ablations (a zero-basis "none" condition). The gap from the
+  separate natural pass is written alongside. Bootstrap percentiles drop
+  NaN draws and count them.

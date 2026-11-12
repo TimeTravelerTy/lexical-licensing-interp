@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 
 from analyze_das_round2_results import per_pair
-from analyze_passive_test import Boot, cells, ci, classify, pair_values, populations, summarize
+from analyze_passive_test import Boot, cells, classify, pair_values, populations, summarize
 
 SITE_DIRS = {4: "final_strict_site4", 6: "final_strict_site6", 8: "final_strict_site8",
              12: "final_strict_site12", 17: "final_strict"}
@@ -43,7 +43,20 @@ def pboot(x, B, seed):
 
 
 def q(a):
-    return {"est": float(a[0]), "lo95": float(np.percentile(a[1:], 2.5)), "hi95": float(np.percentile(a[1:], 97.5))}
+    """Point estimate (row 0) and 95% percentile CI over the draws; NaN draws dropped and counted."""
+    d = np.asarray(a[1:], float)
+    ok = d[~np.isnan(d)]
+    return {"est": float(a[0]), "lo95": float(np.percentile(ok, 2.5)) if len(ok) else np.nan,
+            "hi95": float(np.percentile(ok, 97.5)) if len(ok) else np.nan, "nan_draws": int(len(d) - len(ok))}
+
+
+def ci(a):
+    """As analyze_passive_test.ci (95% and 90% percentile CIs), NaN draws dropped and counted."""
+    d = np.asarray(a[1:], float)
+    ok = d[~np.isnan(d)]
+    pc = lambda p: float(np.percentile(ok, p)) if len(ok) else np.nan
+    return {"est": float(a[0]), "lo95": pc(2.5), "hi95": pc(97.5), "lo90": pc(5), "hi90": pc(95),
+            "nan_draws": int(len(d) - len(ok))}
 
 
 def f3(s, k=3):
@@ -178,51 +191,59 @@ def main(args):
         g = df.groupby(["pair_id", "cls"])[col].mean().unstack("cls")
         return (g[1] - g[0]).reindex(pairs).to_numpy()
 
-    nat_gap = {c: pair_gap(an, c) for c in ("O", "M")}
+    # natural = the "none" (zero-basis) rows, run in the same batches as the ablations; the separate natural pass
+    # is reported alongside (gap_nat_pass) as a batch-effect check
+    nat_pass_gap = {c: pair_gap(an, c) for c in ("O", "M")}
     ab_rows = []
     for s in sites:
         x = ab[ab.site == s]
+        gaps = {}
         for name, g in x.groupby("direction"):
             per_item = g.groupby(["item", "pair_id", "cls"])[["O", "M"]].mean().reset_index()
             assert len(per_item) == len(an) and (g.groupby("item").size() == 3).all(), "cross-fitting incomplete"
+            gaps[name] = {c: pair_gap(per_item, c) for c in ("O", "M")}
+        for name in gaps:
+            if name == "none":
+                continue
             for c in ("O", "M"):
-                ga = pair_gap(per_item, c)
-                nb, abl = nat_gap[c][ixb].mean(1), ga[ixb].mean(1)
+                nb, abl = gaps["none"][c][ixb].mean(1), gaps[name][c][ixb].mean(1)
                 ab_rows.append({"site": s, "frame": "active", "direction": name, "readout": c,
-                                "gap_nat": nb[0], "gap_abl": abl[0], **{f"share_{k}": v for k, v in
-                                                                        q(1 - abl / nb).items()}})
+                                "gap_nat": nb[0], "gap_nat_pass": float(nat_pass_gap[c].mean()), "gap_abl": abl[0],
+                                **{f"share_{k}": v for k, v in q(1 - abl / nb).items()}})
     # ---------------------------------------------------------------- 3b. passive ablation
     if have_passive:
         for s in sites:
             x = pd.read_parquet(res / f"ablation_passive_site{s}.parquet")
+            x["item_id"] = x.item_id.astype(str)
             bt = Boot(len(ctx_ix), args.n_boot, args.seed)
-            first = x[x.direction == "v"]
-            nat_side = first.drop_duplicates(["item_id", "side"])[["item_id", "side", "base"]]
-            nv = nat.loc[nat_side.base.to_numpy(), list(RD)].to_numpy()
-            ng = pd.DataFrame(nv, columns=list(RD)).assign(item_id=nat_side.item_id.to_numpy(),
-                                                           side=nat_side.side.to_numpy())
-            ng = ng.pivot_table(index="item_id", columns="side", values=list(RD))
-            ngap = pd.DataFrame({c: ng[(c, "good")] - ng[(c, "bad")] for c in RD}).join(item_pair)
-            pix = np.array(sorted({pair_ix[p] for p in ngap.pair_id.unique()}))
-            wp = bt.pair_weights(pr.band.to_numpy()[pix])
             one = np.ones((bt.B + 1, 1), np.float32)
+            pix = np.array(sorted({pair_ix[p] for p in item_pair.loc[x.item_id.unique(), "pair_id"].unique()}))
+            wp = bt.pair_weights(pr.band.to_numpy()[pix])
 
             def boot_gap(df):
                 v, m = cells(df.assign(dq=0), pair_ix, ctx_ix, {0: 0}, 1, RD)
                 return summarize(pair_values(v, m, bt.wc, one), wp, pix)
 
-            Snat = boot_gap(ngap)
+            # separate natural pass (batch-effect check)
+            ns = x[x.direction == "none"].drop_duplicates(["item_id", "side"])[["item_id", "side", "base"]]
+            ng = pd.DataFrame(nat.loc[ns.base.to_numpy(), list(RD)].to_numpy(), columns=list(RD)) \
+                .assign(item_id=ns.item_id.to_numpy(), side=ns.side.to_numpy()) \
+                .pivot_table(index="item_id", columns="side", values=list(RD))
+            Spass = boot_gap(pd.DataFrame({c: ng[(c, "good")] - ng[(c, "bad")] for c in RD}).join(item_pair))
+            S = {}
             for name, g in x.groupby("direction"):
                 assert (g.groupby(["item_id", "side"]).size() == 3).all(), "passive cross-fitting incomplete"
                 m = g.groupby(["item_id", "side"])[list(RD)].mean().unstack("side")
-                agap = pd.DataFrame({c: m[(c, "good")] - m[(c, "bad")] for c in RD}).join(item_pair)
-                Sab = boot_gap(agap)
+                S[name] = boot_gap(pd.DataFrame({c: m[(c, "good")] - m[(c, "bad")] for c in RD}).join(item_pair))
+            for name, Sab in S.items():
+                if name == "none":
+                    continue
                 for r, rd in enumerate(RD):
                     with np.errstate(divide="ignore", invalid="ignore"):
-                        sh = 1 - Sab[:, r] / Snat[:, r]
+                        sh = 1 - Sab[:, r] / S["none"][:, r]
                     ab_rows.append({"site": s, "frame": "passive", "direction": name, "readout": rd,
-                                    "gap_nat": float(Snat[0, r]), "gap_abl": float(Sab[0, r]),
-                                    **{f"share_{k}": v for k, v in q(sh).items()}})
+                                    "gap_nat": float(S["none"][0, r]), "gap_nat_pass": float(Spass[0, r]),
+                                    "gap_abl": float(Sab[0, r]), **{f"share_{k}": v for k, v in q(sh).items()}})
     AB = pd.DataFrame(ab_rows)
     AB.to_csv(res / "summary_ablation.csv", index=False)
     (res / "gates.json").write_text(json.dumps(gate, indent=2) + "\n")
@@ -237,7 +258,8 @@ def main(args):
          "## Checks", "",
          "| Site | v held-out IIA vs stored (max abs diff per basis) | v active Δ log P(O) vs δ_s/0.2 | "
          "v passive D(O) vs stored | v passive D(by) vs stored | u_md self-patch max abs dM | identity ablation "
-         "max abs dM (active / passive) | unit-norm max dev |", "|---:|---|---|---|---|---:|---|---:|"]
+         "max abs dM (active / passive) | unit-norm max dev | batch effect max abs dM |",
+         "|---:|---|---|---|---|---:|---|---:|---:|"]
     for s in sites:
         ck = checks["sites"][str(s)]
         gi, ge = gate["active_iia"][str(s)], gate["active_effect"][str(s)]
@@ -247,8 +269,11 @@ def main(args):
         L.append(f"| {s} | {gi['max_abs_diff']:.4f} ({'pass' if gi['pass'] else 'FAIL'}) | {ge['v']:.3f} vs "
                  f"{ge['stored']:.3f} ({'pass' if ge['pass'] else 'FAIL'}) | {pd_('O')} | {pd_('by')} | "
                  f"{ck['u_md_self_patch_max_abs_dM']:.2g} | {ck['identity_ablation_active_max_abs_dM']:.2g} / "
-                 f"{ck.get('identity_ablation_passive_max_abs_dM', float('nan')):.2g} | {ck['unit_norm_max_dev']:.1e} |")
-    L += ["", "Thresholds (declared): IIA 0.01, active effect 0.05, passive D 0.02 nats.", "",
+                 f"{ck.get('identity_ablation_passive_max_abs_dM', float('nan')):.2g} | {ck['unit_norm_max_dev']:.1e} | "
+                 f"{ck.get('batch_effect_max_abs_dM', float('nan')):.2g} |")
+    L += ["", "Thresholds (declared): IIA 0.01, active effect 0.05, passive D 0.02 nats. Self-patch and identity "
+          "ablation are compared with an unpatched forward of the same batch (zero basis); the batch-effect column "
+          "is the max |dM| between that and the separate natural pass (bf16 batch composition).", "",
           "## 1. Natural class axis", "",
           "|cos| over the 15 bases: mean [min, max]. u_leace = in-sample single-site LEACE eraser (fit on passive "
           "`was` items), edit and read vectors; cross-fitted = mean over the 5 cross-fitted erasers. References "
@@ -292,6 +317,8 @@ def main(args):
                      f"{r['class_umd']} | {f3(pick('ratio'), 2)} | {r['stored_v_est']:.3f} |")
     L += ["", "## 3. Mean ablation in natural runs", "",
           "h ← h + (μ − h·u) u at the verb's last token, μ = grand mean of h·u over the frame's items (per basis). "
+          "Natural = unpatched readouts computed in the same batches as the ablations (zero basis); the gap from "
+          "the separate natural pass is in `summary_ablation.csv` (gap_nat_pass). "
           "Actives: T − I gap over the 29 pairs (each item averaged over the 3 bases holding its pair out); 95% CI "
           "over pairs. Passives: good − bad gap over the 64 primary pairs (each item averaged over its 3 plan "
           "bases); 95% CI two-way (pairs within band, contexts). Random: 10 random unit directions per basis, mean "
