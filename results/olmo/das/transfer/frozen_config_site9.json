@@ -1,0 +1,12 @@
+{
+  "site": 9,
+  "layer_output": 8,
+  "epochs": 4,
+  "rank": 1,
+  "role": "OLMo transfer, declared secondary: first site whose best active IIA reaches 0.8",
+  "declared": "2026-11-16, reports/olmo/finals_rules.md, before any OLMo final run",
+  "epoch_rule": "smallest epoch whose mean held-out cross-class IIA is within 0.01 of the site's best (sweep.csv)",
+  "best_epoch_iia": 0.8176507936507937,
+  "chosen_epoch_iia": 0.8117619047619048,
+  "sweep_sha256": "f81e60bc0efb26ff17aee9c8aef3b3fc6aa4130ca6be7abd0211984b75001ecb"
+}

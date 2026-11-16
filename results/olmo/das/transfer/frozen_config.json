@@ -1,0 +1,18 @@
+{
+  "site": 13,
+  "layer_output": 12,
+  "epochs": 3,
+  "rank": null,
+  "rule": "- For each site take its best epoch by mean held-out cross-class IIA (folds\n  pooled). Late sites control the readout almost linearly, so the highest\n  IIA alone would favour them; the rule instead takes the **earliest** site\n  whose best IIA is within 0.02 of the overall best and whose median\n  positive-control fraction at that epoch is >= 0.5.\n- Epochs: the smallest epoch at that site whose IIA is within 0.01 of the\n  site's best.\nRank is chosen later, in `run_das_round2.py final`, by its own rule.",
+  "selected_metrics": {
+    "site": 13.0,
+    "epoch": 3.0,
+    "iia": 0.9848412698412699,
+    "pc": 1.1202024026602262,
+    "iia_same": 0.9897619047619047,
+    "david": 0.9808888888888889,
+    "rev": 0.9369770256849452
+  },
+  "overall_best_iia": 0.9984126984126984,
+  "sweep_sha256": "f81e60bc0efb26ff17aee9c8aef3b3fc6aa4130ca6be7abd0211984b75001ecb"
+}
