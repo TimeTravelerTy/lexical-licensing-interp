@@ -166,7 +166,7 @@ pair means, with the ratio of means over a pair bootstrap (2,000 draws, seed 17)
 4. a·u + w = v to 1e-6; w·u < 1e-6.
 5. B0 above.
 6. C: the fit sets exclude the listed verbs (asserted); at least 40 pairs per fit.
-7. LEACE items: 126 pairs, 125 contexts, 31,500 prompts. Natural log P(by) in the runner (bf16) is not compared;
+7. LEACE items: 126 pairs, 125 contexts per verb (its own context left out; 126 contexts in all), 31,500 prompts. Natural log P(by) in the runner (bf16) is not compared;
    only states are used.
 
 If a check fails, the affected rows are reported with the failure next to them. They are not dropped.

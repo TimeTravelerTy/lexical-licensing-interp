@@ -119,7 +119,7 @@ def run(args):
     checks["leace_items"] = {"prompts": len(P), "pairs": int(P.verb_pair.nunique()),
                              "contexts": int(P.context_id.nunique()), "prompts_per_verb": sorted(set(cnt.tolist()))}
     if not smoke:
-        assert len(P) == 31500 and P.verb_pair.nunique() == 126 and P.context_id.nunique() == 125, checks["leace_items"]
+        assert len(P) == 31500 and P.verb_pair.nunique() == 126 and set(cnt) == {125}, checks["leace_items"]  # 125 other-verb contexts per verb
     sums = torch.zeros(len(pverbs), N_SITES_B, d, dtype=torch.float64, device=dev)
     vidx = torch.as_tensor(P.verb.map(vix).to_numpy(), device=dev)
     pl = P.prompt.tolist()
