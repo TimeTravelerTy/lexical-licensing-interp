@@ -100,3 +100,9 @@ results/pythia/leace_learning_curve/*/prompts.csv.gz
 results/pythia/leace_learning_curve/*/loo_probes.csv.gz
 results/pythia/leace_learning_curve/*/states.npz
 results/pythia/leace_postscrub/preds.csv.gz
+# Split edit (Pythia): per-row patches, active swaps and per-verb class states stay on TSUBAME (lli_paper);
+# SHA-256 in results/pythia/split_edit/large_files_sha256.txt
+results/pythia/split_edit/*_patches_site*.parquet
+results/pythia/split_edit/active_swaps.csv.gz
+results/pythia/split_edit/class_states.npz
+results/pythia/split_edit_smoke/

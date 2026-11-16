@@ -1,0 +1,46 @@
+{
+  "A1": {
+    "off_share_O_12": 0.6695101857185364,
+    "class_on_O_12": "NO RISE",
+    "held": true,
+    "on_share_O_12": 0.0917530357837677
+  },
+  "decision": "redraw staging with the on-axis piece / u_md; v as upper bound",
+  "A2": {
+    "on_share_by": {
+      "4": 0.6577816009521484,
+      "6": 0.7584556341171265,
+      "8": 0.7067690491676331,
+      "12": 0.7965239882469177
+    },
+    "held": true
+  },
+  "B1": {
+    "held": true,
+    "sites_failing": []
+  },
+  "B2": {
+    "8": {
+      "cos": 0.3714612013535896,
+      "split_half_pas": 0.7545076266605574,
+      "below": true
+    },
+    "12": {
+      "cos": 0.37306706527292055,
+      "split_half_pas": 0.8214733809008372,
+      "below": true
+    }
+  },
+  "FI": {
+    "values": {
+      "8": 0.5430892480438548,
+      "12": 0.4973147106608002
+    },
+    "decision": "mixed: decide in the write-up"
+  },
+  "D1": {
+    "LEACE in-sample": 0.791661553367405,
+    "LEACE cross-fitted": 0.8857911760484056,
+    "held": true
+  }
+}

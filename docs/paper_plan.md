@@ -25,37 +25,54 @@ Evidence is on branch `paper` (merged Nov 16 from `olmo-replication`, `leace-nec
 | --- | --- | --- | --- | --- | --- |
 | Shared direction transfers across 5 constructions (passive, OR, TC, embedded and matrix wh) | done | done | sweep only (frozen site 13) | R2-ptest, R4-A2, R4-B, R5-C8 / `gemma/transfer.md` | OLMo final DAS + transfer; u_md transfer next to v in all three |
 | Shallow, context-derived class (nonce onset ~site 6, NP-driven) | done | done | not run | R4-C8/C9, round 3 nonce / `gemma/nonce/summary.md` | OLMo nonce, sites 0–8 |
-| Abstract → surface staging | **at risk**, likely survives with u_md (see Settled 2) | **at risk** | not run | R2-depth, `pythia/das_direction_check.md` | Split-edit test, redraw with u_md |
+| Abstract → surface staging | done, redrawn with the on-axis piece: abstract 6–12, surface 17 (Settled 2) | **at risk** (v mixed at every declared site) | not run | R2-depth, `pythia/split_edit.md` | Split-edit on Gemma, OLMo |
 | Necessity: shared + lexical (LEACE) | done | not run | not run | `pythia/leace_necessity.md`, `leace_permutation.md`, `leace_learning_curve.md`; R5-B5 | Rank-k erasure (Pythia); LEACE on Gemma, OLMo |
 | Construction-specific readers | done | appendix if time | no | R3-B7, R4-D10/D11, R5-B6, R5-C9, R5-B7 | Writing only ("components", not "circuit") |
 | Rare verbs: feature right, output-side deficit + edit | done | not run | not run | R6-C4 (31/32 rare singletons classified from z), R5-A1/A2, R5-A4 | Second model, or scope it to Pythia |
 | *by* transfer passes the illusion check | done | not run | not run | `pythia/das_direction_check.md` | Rerun the direction check per model |
 | Training dynamics (emergence order) | behavior done (R6-A6, R7-A8: 16 checkpoints); verb-site measures not run | n/a (no public checkpoints) | not run | `round6/a6_checkpoints*.md`, `round7/a8_trajectories.md` | Prediction, then 16 checkpoints per model |
 
-Not committed anywhere: the one-off v / u_md side split ("about three-quarters of the v mean-ablation effect on the *by* gap comes from bad passives gaining *by*").
+Side splits: committed in `pythia/split_edit.md` §D (Settled 8).
 
 ## Settled (Nov 16)
 
 1. **The necessity numbers hold up, with wide CIs.** Cross-fitted (5-fold) scrub 0–12 leaves 0.59 [0.35, 0.70] of the natural *by* gap. LOO leaves 0.55 [0.29, 0.67], and the learning curve is flat from n = 75 to 125 by point estimate. The CIs at n = 75 and 100 are wide ([0.03, 0.72]), so quote LOO and cross-fitted, not the curve, for the shared share. In-sample scrub 0–12 leaves 0.04 [−0.46, 0.28]. That result is credible because of the permutation control: all 20 label permutations leave 0.96–1.00, and the true-label CI lies below their 5th percentile. Always print the CI next to 0.04.
-2. **The direction check previews the split-edit outcome (Pythia).** On passives, u_md keeps most of v's *by* effect but little of its O effect:
-   - D(by) ratio u_md/v: 0.88–0.93 at sites 6 and 8, 1.12 at site 12.
-   - D(O) ratio: 0.34–0.36 at sites 6 and 8, 0.15 at site 12 (v +1.17 RISE, u_md +0.17 NO RISE).
-
-   The off-axis part of v probably carries the passive O rise. If so, staging survives redrawn with u_md, with the abstract range running through site 12 and the surface stage at 17. The split-edit test still has to confirm it, with the prediction written down first.
+2. **Split edit (Pythia, `reports/pythia/split_edit.md`): staging survives, redrawn with the on-axis piece.** v's patch splits exactly into an on-axis part (along u_md) and an off-axis part. All checks pass, the stored v numbers reproduce exactly, and A1 and A2 held.
+   - The off-axis part carries the O rise. At site 12 it carries 0.67 [0.64, 0.70] of v's passive D(O). The on-axis part's D(O) is +0.11 (NO RISE).
+   - The on-axis part carries most of the *by* effect: 0.66–0.80 of v's at sites 4–12.
+   - On-axis classes: abstract (O NO RISE, *by* RISE) at sites 6, 8 and 12, with *by* unresolved at 4. Surface (O RISE, *by* NO RISE) at 17. v alone gave mixed at 10 and 12.
+   - The off-axis push is 2–4 natural sd along ŵ, and T and I barely separate along ŵ in actives (standardized difference ≤ 0.22). That is the illusion pattern: the O rise rides on a direction the classes do not use.
+   - Decision rule fired: Figure 1 draws staging with the on-axis piece (u_md), with v as an upper bound. The same test is needed on Gemma (v mixed at every declared site) and OLMo.
 3. **u_md is the weaker causal instrument on actives.** Its held-out active IIA is 0.30–0.41 of v's at sites 4–12, and its Δ log P(O) is 0.59–0.70 of v's. Use u_md as co-primary for *direction* claims (passive *by* transfer, staging) and report ratios to v; do not present its IIA as a replacement for v's. Mean ablation: v removes 0.37–0.41 of the passive *by* gap at sites 4–12, u_md 0.27–0.37, random directions about 0.
 4. **Gemma ties input and output embeddings** (`scripts/model_arch.py`; `--fp32-unembed` unties the head). In Gemma, "the deficit lives in the output rows" means editing rows that are also input embeddings. Port the output-side edit on the untied head only, and say so.
-5. **The LEACE / u_md cosine gap is probably a frame difference, not a puzzle.** For a binary label, a rank-1 LEACE edit vector is proportional to Cov(x, z), the class mean difference on its fit items. Those items were passive `was` prompts, while v and u_md come from actives. So |cos(u_md, edit)| of 0.29–0.49 (|cos(v, edit)| 0.19–0.56) mostly measures cos(u_md in passives, u_md in actives). This turns a loose end into a question for the "one shared feature" claim (task 3 below).
+5. **The LEACE / u_md cosine gap was a frame difference, and the class axis becomes frame-specific with depth.**
+   - B0: the LEACE in-sample edit vector is the passive class mean difference (|cos| ≥ 0.998 at every site).
+   - cos(u_act, u_pas) is 0.24–0.51 at every site, always above the sign-flip reference (B1 held).
+   - Against the split-half ceilings, FI ≈ 1 at sites 0–4, 0.78 at 6, 0.54 at 8, 0.50 at 12, 0.37 at 17 and 0.30 at 23.
+   - The declared decision is "mixed" (site 12 is 0.497).
+   - Reading for the paper: the class axis is shared across frames at the early (abstract) sites and becomes increasingly frame-specific with depth. Say "one direction every construction reads, frame-invariant early". Do not say "one class axis everywhere".
+   - Patching along the passive axis (C) moves *by* by +0.23–0.33 with no O effect at any site, but it never reaches RISE, and it is weak on actives. The causal transfer evidence stays with v and u_md.
 6. **Single-token and multi-token verbs separate sharply at site 20** (cross-fitted edit |cos| 0.69 vs 0.03). So the single-token × frequency confound is a concrete limitation, not a hypothetical one.
+7. **TSUBAME:** `gpu_h` (half a GPU) is enough for every 1B-scale job and starts much sooner than `gpu_1`. Paper runs use the `lli_paper` checkout (branch `paper`).
+8. **Suppression framing holds (D1).** Bad passives gaining *by* account for most of every gap closure:
+   - 0.71–0.84 of the v and u_md mean ablation at sites 4–12;
+   - 0.71–0.81 of in-sample LEACE;
+   - 0.78–0.89 of cross-fitted LEACE (0.89 [0.83, 0.94] for scrub 0–12).
+
+   So class information mainly suppresses *by* after intransitives, and this goes in the paper as the reading of the necessity result.
 
 ## Work, ordered by risk
 
 Run whatever could break the claim first, then polish.
 
 1. **Split-edit test, then the u_md staging curve.** For each v patch, δ = v·h_s − v·h_b. Run the full edit (δv), the on-axis piece (δa·u_md) and the off-axis piece (δb·ŵ), and report D(by), D(O) and Δ log P(O) for each. Compare the size of the ŵ push with the natural spread of ŵ coordinates. Pythia first, building on `scripts/run_das_direction_check.py`; then Gemma and OLMo. The prediction to declare is Settled 2.
+   - *Nov 16:* Pythia done (Settled 2). Next: Gemma and OLMo (OLMo after its finals).
 2. **OLMo final runs.** Run final DAS, the passive test at all 16 sites, nonce at sites 0–8 and transfer at the rule-picked sites. This fills the empty column and settles relative depth vs absolute layer. Queue early, because the bottleneck is queue time, not code.
-3. **Frame invariance of the class axis** (cheap; it bears on "one shared feature"). Per site: cos(u_md^active, u_md^passive); a one-line check that the LEACE edit vector equals the passive mean difference; transfer with u_md^passive vs u_md^active. A high cosine supports one feature. A low cosine combined with good transfer means the frames share a readable direction but not the class mean, which needs to be said in the paper.
+   - *Nov 16:* rules `reports/olmo/finals_rules.md`. Primary site 13; declared secondaries 9 (IIA ≥ 0.8), 11 (≥ 0.9) and 12 (within 0.05 of max). Finals at all sites 0–15, then the transfer chain and the passive depth curve, are queued. Nonce and controls get their own rules after the finals.
+3. **Frame invariance of the class axis** (Pythia done, Settled 5; rerun per model with the split edit). Per site: cos(u_md^active, u_md^passive); a one-line check that the LEACE edit vector equals the passive mean difference; transfer with u_md^passive vs u_md^active. A high cosine supports one feature. A low cosine combined with good transfer means the frames share a readable direction but not the class mean, which needs to be said in the paper.
 4. **Rank-k erasure** (closes the main objection to "lexical"). Rank-1 LEACE removes one direction per site by construction. A reviewer can read the ~0.55 residue as shared class information in a few more directions rather than verb-specific information. The held-out probe still reads class at 0.67–0.78 after cross-fitted erasure, so the residue is real. Run cross-fitted rank-k erasure (iterated LEACE or INLP, k = 1…8) at site 8 and for scrub 0–12, with a random-direction reference.
 5. **Replication criteria, declared once per claim.** State what counts as replicated in Gemma and OLMo before their remaining runs: sign, CI excluding 0, the site the declared rule picks, and whether depth is mapped by relative depth or absolute layer. The three-model table then reads as pass/fail against stated criteria.
+   - *Nov 16, drafted:* criteria for transfer (T1 passive *by*, T2 OR/TC, T3 filler-gap) and staging (S1), applied to all three models, in `reports/olmo/finals_rules.md` §3. Still to declare: necessity (for the Gemma/OLMo LEACE runs) and nonce.
 6. **Training dynamics on 16 checkpoints per model.**
    - Write the prediction first (candidates below).
    - Pythia: the same 16 checkpoints as R6-A6 (step 64 to 143000, already used for behavior). Run u_md, the held-out probe and the passive *by* readout at the verb at all 16, plus DAS at all 16. DAS is about 1 min per site for 5 folds, so 16 checkpoints × a few sites is cheap.
@@ -63,7 +80,7 @@ Run whatever could break the claim first, then polish.
    - OLMo: 16 checkpoints matched to Pythia's by tokens seen, drawn from the 37 early-training checkpoints and the 195 stage-1 branches.
    - Check the TSUBAME HDD cache before downloading anything.
 7. **LEACE on Gemma and OLMo.** In-sample, cross-fitted and the permutation control, reusing the Pythia pipeline. "Shared + lexical" is too central to rest on one model.
-8. **Side splits.** Commit the v / u_md side split, then run the same split on the LEACE outputs. This tests the suppression framing below.
+8. **Side splits.** Pythia done (Settled 8). Add to the Gemma / OLMo LEACE runs.
 9. **Robustness.** DAS seed variance and random-subspace baselines for every reported number, plus the single-token × frequency confound (Settled 6). Pythia-6.9B transfer goes last.
 10. **Writing, starting now.** Write the outline, figure list and methods now; results go in as each piece lands.
 11. **Embedded wh in Pythia.** Pythia embedded wh is mixed at site 8 and surface at site 6 (R5-C8); Gemma's in-range result is mixed or unresolved. Hard stop Nov 18, then it goes to limitations.
@@ -76,7 +93,7 @@ Run whatever could break the claim first, then polish.
 
 ## Possible framing: class information suppresses *by*
 
-About three-quarters of the v mean-ablation effect on the passive *by* gap comes from bad passives gaining *by* (uncommitted one-off). If the LEACE gap also closes mostly from the bad side, class information mainly suppresses *by* after intransitives, and the default after a passive participle is to expect *by*. That ties into the output-side result: rare intransitives being under-rejected is weaker suppression. The test is task 8.
+Confirmed in Pythia (Settled 8): the gap closes mostly from the bad side under mean ablation and both LEACE fittings. Class information mainly suppresses *by* after intransitives, and the default after a passive participle is to expect *by*. That ties into the output-side result: rare intransitives being under-rejected is weaker suppression.
 
 ## Paper shape
 
@@ -88,7 +105,7 @@ Eight pages for six claims plus dynamics is tight. The main-text spine is one fi
 4. Rare verbs: feature right (classify-from-z), output side wrong (restoration).
 5. Emergence order.
 
-Staging and the construction-specific readers get a paragraph each, with figures in the appendix, unless the split-edit test is clean enough for staging to carry Figure 1. If more has to shrink, shrink the edit section (sensei asked for dynamics).
+Staging now has a clean Pythia result (on-axis piece: abstract 6–12, surface 17), so it can carry Figure 1 if Gemma's split edit agrees. The construction-specific readers get a paragraph, with figures in the appendix. If more has to shrink, shrink the edit section (sensei asked for dynamics).
 
 ## Related work that shapes the framing
 

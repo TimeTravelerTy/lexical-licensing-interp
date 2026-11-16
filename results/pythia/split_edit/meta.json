@@ -1,0 +1,44 @@
+{
+  "args": {
+    "sites": "4,6,8,12,17",
+    "root": "../results/das_round2",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "items": "../data/das_round2/passive_test/items.csv",
+    "prompts": "../data/das_round2/passive_test/prompts.csv",
+    "plan": "../data/das_round2/passive_test/plan.csv.gz",
+    "scores": "/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/results/passive_band_cross/pythia14b_scores.csv",
+    "v2_pairs": "../data/matched_passives_v2/pairs.jsonl",
+    "leace_insample": "/gs/fs/tga-sip_arase/tyrone/lli_leace/results/pythia/leace_insample/erasers.npz",
+    "dirchk_dir": "/gs/fs/tga-sip_arase/tyrone/lli_dirchk/results/pythia/das_direction_check",
+    "out_dir": "../results/pythia/split_edit",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "n_folds": 5,
+    "batch": 1024,
+    "max_items": 0,
+    "max_pairs": 0,
+    "max_contexts": 0,
+    "bos": null,
+    "fp32_unembed": null
+  },
+  "runner_settings": {
+    "model_type": "gpt_neox",
+    "bos": false,
+    "fp32_unembed": false,
+    "site_check_max_abs_sites_0_to_L-1": 0.0,
+    "site_check_last_site": 77.1875
+  },
+  "bases_sha256": {
+    "4": "d4beabce8ff099fdbe65020b2b0309928486613df34fa483446c6ffd8270f5e1",
+    "6": "8f89f054354cb1d2afcf4b83291f65573b7c7efaffd01e51a93fed1694439d36",
+    "8": "4425f0b09a59361dcf6effa4ad8798c8e6282035267104de97ce4ac410f78d70",
+    "12": "5b2a7744415a956db330fc8bb38e3d3277fdd05dc740be2c3e4c3d67422ec8ad",
+    "17": "cd888872d2a3ee81cb7b9897b8977fc2b93098a2b4f1a56cc8e8ddbb5613e080"
+  },
+  "leace_insample_sha256": "ccca270b4cf2251951ae186f67830033a9530fc88534860047b3bd9f945b2775",
+  "plan_sha256": "77d0ab379fbc338bfeb00b45c06f1663e07eefaa4b437ef49433233afd5f821f",
+  "passive_patch_rows": 272142,
+  "passive_items": 7983,
+  "minutes": 13.616953043142955
+}

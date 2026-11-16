@@ -1,0 +1,71 @@
+{
+  "items": 406,
+  "pairs": 29,
+  "dropped_pairs": [],
+  "smoke": false,
+  "sites": {
+    "4": {
+      "decomp_max_err": 3.469446951953614e-18,
+      "w_dot_u_max": 3.0184188481996443e-16,
+      "write_eq_read_max_abs_dM": 0.0,
+      "u_vs_dirchk_max_abs": 0.0
+    },
+    "6": {
+      "decomp_max_err": 3.469446951953614e-18,
+      "w_dot_u_max": 2.1337098754514727e-16,
+      "write_eq_read_max_abs_dM": 0.0,
+      "u_vs_dirchk_max_abs": 0.0
+    },
+    "8": {
+      "decomp_max_err": 3.469446951953614e-18,
+      "w_dot_u_max": 2.1206994493816467e-16,
+      "write_eq_read_max_abs_dM": 0.0,
+      "u_vs_dirchk_max_abs": 0.0
+    },
+    "12": {
+      "decomp_max_err": 3.469446951953614e-18,
+      "w_dot_u_max": 2.671474153004283e-16,
+      "write_eq_read_max_abs_dM": 0.0,
+      "u_vs_dirchk_max_abs": 0.0
+    },
+    "17": {
+      "decomp_max_err": 3.469446951953614e-18,
+      "w_dot_u_max": 2.0469737016526324e-16,
+      "write_eq_read_max_abs_dM": 0.0,
+      "u_vs_dirchk_max_abs": 0.0
+    }
+  },
+  "leace_items": {
+    "prompts": 31500,
+    "pairs": 126,
+    "contexts": 126,
+    "prompts_per_verb": [
+      125
+    ]
+  },
+  "c_fit": {
+    "0": {
+      "pairs_kept": 107,
+      "pairs_excluded": 19
+    },
+    "1": {
+      "pairs_kept": 108,
+      "pairs_excluded": 18
+    },
+    "2": {
+      "pairs_kept": 109,
+      "pairs_excluded": 17
+    },
+    "3": {
+      "pairs_kept": 106,
+      "pairs_excluded": 20
+    },
+    "4": {
+      "pairs_kept": 109,
+      "pairs_excluded": 17
+    },
+    "active": {
+      "pairs_kept": 118
+    }
+  }
+}
