@@ -3,6 +3,9 @@
 Each stage was declared (plan, predictions, decision rules) and committed
 before its runs. Read the plan, then its results file.
 
+Paper-level plan (claims, status, priorities, deadlines):
+`../docs/paper_plan.md`.
+
 | Stage | Question | Plan | Results |
 |---|---|---|---|
 | v1 (June) | Behavioural gate, attribution / exact patching, first DAS on aligned templates | `pythia_attribution_next_steps_20260617.md` | `v1_*`, `pythia_behavior_gate_20260617.md` |
@@ -13,10 +16,15 @@ before its runs. Read the plan, then its results file.
 | Round 3 | Reliability, late projection, dose decomposition; reverse DAS, get-passives, path patching; nonce verbs, gap constructions | `passive_das_prep/round3_plan.md` | `passive_das_prep/round3_results.md` (generated: `round3_*.md`) |
 | Round 4 | Confirm current claims; filler-gap test; nonce cues; translation stage; restoration | `round4/plan.md` | `round4/results.md` (generated: `round4/*.md`) |
 | Round 5 | Locate the rare-verb deficit (prediction side); finish mechanism tests; generalization; scale-up prep | `round5/plan.md` | `round5/results.md` (generated: `round5/*.md`) |
+| Round 6 | Paper 1: where the rare-verb deficit is, what exposure explains it, passive specificity, restoration / preemption | `round6/plan.md` | `round6/results.md` (generated: `round6/*.md`) |
+| Round 7 | Paper 1 follow-ups: per-verb training trajectories (A8) | `round7/plan.md` | `round7/a8_trajectories.md` |
+| Gemma replication | Port the pipeline to `google/gemma-3-1b-pt`: refilter, behaviour, DAS port / sweeps, transfer, depth curve, nonce | `gemma/step1_refilter.md` (each step states its rules) | `gemma/*.md`, `gemma/transfer/`, `gemma/depth_curve/`, `gemma/nonce/summary.md` |
+| OLMo replication | Third model, `allenai/OLMo-2-0425-1B`: behaviour, DAS sweep | `olmo/rules.md` | `olmo/behavior.md`, `olmo/das_sweep.md` |
+| Pythia necessity and direction check | LEACE necessity (in-sample, cross-fitted, permutation control, learning curve); DAS direction v vs u_md, mean ablation | `pythia/leace_learning_curve_rules.md`, `pythia/das_direction_check_plan.md` | `pythia/leace_*.md`, `pythia/das_direction_check.md` |
 
-`results_index.md` lists every experiment of rounds 1–5 with its key number, declared
+`results_index.md` lists every experiment of rounds 1–7 with its key number, declared
 outcome, report and figure, tagged main / appendix / drop (suggestions for the paper).
 
-Outputs live under `../results/` (round 2–3: `das_round2/`; round 4:
-`round4/`; round 5: `round5/`); regenerable inputs under `../data/`. Large raw dumps are
+Outputs live under `../results/` (round 2–3: `das_round2/`; rounds 4–7:
+`round4/` … `round7/`; replications: `gemma/`, `olmo/`); regenerable inputs under `../data/`. Large raw dumps are
 gitignored; their hashes are in the run metadata.

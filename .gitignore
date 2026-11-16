@@ -1,3 +1,4 @@
+# Passive band cross: regenerable pairs and raw scores
 data/passive_band_cross/pairs.jsonl
 results/passive_band_cross/pythia14b_scores.csv
 
@@ -66,7 +67,8 @@ results/round6/checkpoints/*/*/frame_scores.parquet
 results/round6/checkpoints/*/*/frame_h.npz
 results/round6/preempt/preempt_scores.parquet
 results/round6/classify/restore_freqblimp.parquet
-# Round 6 count fetch partials (merged into pile_counts.csv)
+# Round 5 / 6 count fetch partials (merged into pile_counts.csv)
+data/round5/counts/pile_counts.partial*.jsonl
 data/round6/counts/pile_counts.partial*.jsonl
 results/round6/frame_d11_rel/*/frame_h.npz
 
