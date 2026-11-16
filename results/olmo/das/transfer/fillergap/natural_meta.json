@@ -1,0 +1,22 @@
+{
+  "args": {
+    "mode": "natural",
+    "exp": null,
+    "data_dir": "data/olmo/transfer/fillergap",
+    "out_dir": "results/olmo/das/transfer/fillergap",
+    "bases": "results/olmo/das/transfer/bases_rank1.npz",
+    "folds": "results/olmo/das/transfer/final_strict/pairs_folds.csv",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "dtype": "float32",
+    "batch": 1024,
+    "target_pool": "all",
+    "suffix": "",
+    "sites": "9,11,12,13"
+  },
+  "prompts": 15694,
+  "items": 14976,
+  "token_checks": "passed",
+  "bases_sha256": "c19677bfeb3ddde181914f19f615226f268c9506040d61332a8688d1f518b607",
+  "seconds": 15.8
+}

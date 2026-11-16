@@ -1,0 +1,33 @@
+{
+  "exp": "emb",
+  "kept_I_verbs": [
+    "appear",
+    "arrive",
+    "blush",
+    "cringe",
+    "decamp",
+    "defect",
+    "die",
+    "dine",
+    "emerge",
+    "faint",
+    "kneel",
+    "limp",
+    "shudder",
+    "slog",
+    "sulk",
+    "thrive",
+    "totter",
+    "vanish"
+  ],
+  "items": 864,
+  "plan_rows": 32920,
+  "rows_by_cond": {
+    "T": 13868,
+    "I": 13868,
+    "inT": 2592,
+    "inI": 2592
+  },
+  "seed": 17,
+  "plan_sha256": "863473235e10e65f8bd357dcf2e46ebee2e308f3bde91d96506c36d28062732a"
+}

@@ -23,9 +23,9 @@ Evidence is on branch `paper` (merged Nov 16 from `olmo-replication`, `leace-nec
 
 | Claim | Pythia-1.4B | Gemma-3-1B | OLMo-2-1B | Evidence (Pythia / Gemma) | Left to do |
 | --- | --- | --- | --- | --- | --- |
-| Shared direction transfers across 5 constructions (passive, OR, TC, embedded and matrix wh) | done | done | sweep only (frozen site 13) | R2-ptest, R4-A2, R4-B, R5-C8 / `gemma/transfer.md` | OLMo final DAS + transfer; u_md transfer next to v in all three |
+| Shared direction transfers across 5 constructions (passive, OR, TC, embedded and matrix wh) | done | done | done: OR/TC and both wh transfer, passive *by* does not (T1 fails; Settled 9) | R2-ptest, R4-A2, R4-B, R5-C8 / `gemma/transfer.md`; criteria `replication_criteria.md` | OLMo split edit (does the on-axis piece carry *by*?); u_md transfer next to v in all three |
 | Shallow, context-derived class (nonce onset ~site 6, NP-driven) | done | done | not run | R4-C8/C9, round 3 nonce / `gemma/nonce/summary.md` | OLMo nonce, sites 0–8 |
-| Abstract → surface staging | done, redrawn with the on-axis piece: abstract 6–12, surface 17 (Settled 2) | **at risk** (v mixed at every declared site) | not run | R2-depth, `pythia/split_edit.md` | Split-edit on Gemma, OLMo |
+| Abstract → surface staging | done, redrawn with the on-axis piece: abstract 6–12, surface 17 (Settled 2) | **at risk** (v mixed at every site 4–15) | v: abstract 0 and 4, surface from 7 (S1 pass) | R2-depth, `pythia/split_edit.md`; `olmo/depth_curve/` | Split-edit on Gemma, OLMo |
 | Necessity: shared + lexical (LEACE) | done | not run | not run | `pythia/leace_necessity.md`, `leace_permutation.md`, `leace_learning_curve.md`; R5-B5 | Rank-k erasure (Pythia); LEACE on Gemma, OLMo |
 | Construction-specific readers | done | appendix if time | no | R3-B7, R4-D10/D11, R5-B6, R5-C9, R5-B7 | Writing only ("components", not "circuit") |
 | Rare verbs: feature right, output-side deficit + edit | done | not run | not run | R6-C4 (31/32 rare singletons classified from z), R5-A1/A2, R5-A4 | Second model, or scope it to Pythia |
@@ -53,13 +53,20 @@ Side splits: committed in `pythia/split_edit.md` §D (Settled 8).
    - Reading for the paper: the class axis is shared across frames at the early (abstract) sites and becomes increasingly frame-specific with depth. Say "one direction every construction reads, frame-invariant early". Do not say "one class axis everywhere".
    - Patching along the passive axis (C) moves *by* by +0.23–0.33 with no O effect at any site, but it never reaches RISE, and it is weak on actives. The causal transfer evidence stays with v and u_md.
 6. **Single-token and multi-token verbs separate sharply at site 20** (cross-fitted edit |cos| 0.69 vs 0.03). So the single-token × frequency confound is a concrete limitation, not a hypothetical one.
-7. **TSUBAME:** `gpu_h` (half a GPU) is enough for every 1B-scale job and starts much sooner than `gpu_1`. Paper runs use the `lli_paper` checkout (branch `paper`).
+7. **TSUBAME:** `gpu_h` (half a GPU) is enough for every 1B-scale job and starts much sooner than `gpu_1`. Paper runs use the `lli_paper` checkout (branch `paper`). The group's /gs/fs share (3 TB) filled on Nov 16 (other members' data; ours is 69 GB), so new runs use `/gs/bs/tga-sip_arase/tyrone/lli_paper` (HDD, ~4.5 TB free).
 8. **Suppression framing holds (D1).** Bad passives gaining *by* account for most of every gap closure:
    - 0.71–0.84 of the v and u_md mean ablation at sites 4–12;
    - 0.71–0.81 of in-sample LEACE;
    - 0.78–0.89 of cross-fitted LEACE (0.89 [0.83, 0.94] for scrub 0–12).
 
    So class information mainly suppresses *by* after intransitives, and this goes in the paper as the reading of the necessity result.
+9. **Replication criteria applied (`reports/replication_criteria.md`): OLMo does not replicate passive *by* transfer.**
+   - Pythia passes T1, T2, T3 and S1. Gemma passes T1, T2 and S1 (trivially: abstract at 1 and 3, no surface site) and fails T3.
+   - OLMo (all 16 finals within 0.03 of the sweep) passes T2, T3 and S1 and fails T1. D(*by*) is +0.43 [0.37, 0.49] at site 9 (NO RISE against δ = 0.53; 0.90 of the natural gap) and +0.14 at 11; it FALLs at 12 and 13. *by* is RISE only at sites 0 and 4–6.
+   - From site 7 on, the OLMo passive outcome is surface: the v patch's O push dominates early (abstract at 0 and 4, surface from relative depth 0.44, vs 0.58 in Pythia).
+   - Declared fallback fires: the transfer claim is "Pythia and Gemma, with a partial third-family check" (OLMo: OR, TC and both wh transfer; passive *by* does not).
+   - Embedded wh is licensing-like in range at a declared site only in OLMo (site 9, matrix too). So the embedded-wh failure is not consistent across models.
+   - Open, needs its own declared rule before running: the OLMo split edit. If the off-axis piece carries the early O push there too, the on-axis piece may carry *by* at 9; T1 itself stays as declared (v).
 
 ## Work, ordered by risk
 
@@ -69,10 +76,12 @@ Run whatever could break the claim first, then polish.
    - *Nov 16:* Pythia done (Settled 2). Next: Gemma and OLMo (OLMo after its finals).
 2. **OLMo final runs.** Run final DAS, the passive test at all 16 sites, nonce at sites 0–8 and transfer at the rule-picked sites. This fills the empty column and settles relative depth vs absolute layer. Queue early, because the bottleneck is queue time, not code.
    - *Nov 16:* rules `reports/olmo/finals_rules.md`. Primary site 13; declared secondaries 9 (IIA ≥ 0.8), 11 (≥ 0.9) and 12 (within 0.05 of max). Finals at all sites 0–15, then the transfer chain and the passive depth curve, are queued. Nonce and controls get their own rules after the finals.
+   - *Nov 16, done:* finals, transfer chain and depth curve (Settled 9). Left: nonce at sites 0–8, controls, split edit, LEACE.
 3. **Frame invariance of the class axis** (Pythia done, Settled 5; rerun per model with the split edit). Per site: cos(u_md^active, u_md^passive); a one-line check that the LEACE edit vector equals the passive mean difference; transfer with u_md^passive vs u_md^active. A high cosine supports one feature. A low cosine combined with good transfer means the frames share a readable direction but not the class mean, which needs to be said in the paper.
 4. **Rank-k erasure** (closes the main objection to "lexical"). Rank-1 LEACE removes one direction per site by construction. A reviewer can read the ~0.55 residue as shared class information in a few more directions rather than verb-specific information. The held-out probe still reads class at 0.67–0.78 after cross-fitted erasure, so the residue is real. Run cross-fitted rank-k erasure (iterated LEACE or INLP, k = 1…8) at site 8 and for scrub 0–12, with a random-direction reference.
 5. **Replication criteria, declared once per claim.** State what counts as replicated in Gemma and OLMo before their remaining runs: sign, CI excluding 0, the site the declared rule picks, and whether depth is mapped by relative depth or absolute layer. The three-model table then reads as pass/fail against stated criteria.
    - *Nov 16, drafted:* criteria for transfer (T1 passive *by*, T2 OR/TC, T3 filler-gap) and staging (S1), applied to all three models, in `reports/olmo/finals_rules.md` §3. Still to declare: necessity (for the Gemma/OLMo LEACE runs) and nonce.
+   - *Nov 16, applied:* `reports/replication_criteria.md` (Settled 9).
 6. **Training dynamics on 16 checkpoints per model.**
    - Write the prediction first (candidates below).
    - Pythia: the same 16 checkpoints as R6-A6 (step 64 to 143000, already used for behavior). Run u_md, the held-out probe and the passive *by* readout at the verb at all 16, plus DAS at all 16. DAS is about 1 min per site for 5 folds, so 16 checkpoints × a few sites is cheap.
@@ -83,7 +92,7 @@ Run whatever could break the claim first, then polish.
 8. **Side splits.** Pythia done (Settled 8). Add to the Gemma / OLMo LEACE runs.
 9. **Robustness.** DAS seed variance and random-subspace baselines for every reported number, plus the single-token × frequency confound (Settled 6). Pythia-6.9B transfer goes last.
 10. **Writing, starting now.** Write the outline, figure list and methods now; results go in as each piece lands.
-11. **Embedded wh in Pythia.** Pythia embedded wh is mixed at site 8 and surface at site 6 (R5-C8); Gemma's in-range result is mixed or unresolved. Hard stop Nov 18, then it goes to limitations.
+11. **Embedded wh in Pythia.** Pythia embedded wh is mixed at site 8 and surface at site 6 (R5-C8); Gemma's in-range result is mixed or unresolved. Hard stop Nov 18, then it goes to limitations. OLMo's is licensing-like at site 9 (Settled 9), so the paper can report it as model-dependent rather than as a uniform failure.
 
 ### Dynamics prediction candidates (pick before running)
 
@@ -138,7 +147,7 @@ The week rows are a proposal; the original timeline chart did not survive the ex
 
 - **Off-axis piece carries the passive O rise:** redraw staging with u_md (or the on-axis piece) in every model, and report v as an upper bound.
 - **On-axis piece carries it too:** keep staging as drawn with v, and note u_md's later boundary.
-- **OLMo transfer fails:** the paper becomes "Pythia and Gemma, with a partial third-family check".
+- **OLMo transfer fails:** the paper becomes "Pythia and Gemma, with a partial third-family check". *Fired Nov 16 (T1 fails; T2 passes).*
 - **Rank-k residue keeps falling with k:** reword "lexical" as "shared, low-rank plus verb-specific", and report where it plateaus.
 - **cos(u_md^active, u_md^passive) is low:** drop "one feature" in favor of "one direction every construction reads", and keep transfer as the evidence.
 - **Training dynamics not clean by Dec 4:** report emergence order for the measures that are in, on one model if needed.

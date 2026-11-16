@@ -1,0 +1,35 @@
+{
+  "args": {
+    "passive_dir": "data/olmo/transfer/passive_test",
+    "cons_dir": "data/olmo/transfer/constructions",
+    "folds": "results/olmo/das/transfer/final_strict/pairs_folds.csv",
+    "bases": "results/olmo/das/transfer/bases_rank1.npz",
+    "out_dir": "results/olmo/das/transfer/inrange",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024,
+    "sites": "9,11,12,13"
+  },
+  "prompts": 19978,
+  "items": {
+    "passive": 7983,
+    "OR": 1536,
+    "TC": 1536
+  },
+  "bases_sha256": "c19677bfeb3ddde181914f19f615226f268c9506040d61332a8688d1f518b607",
+  "checks": {
+    "9": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "11": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "12": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "13": {
+      "self_set_max_abs_dM": 0.0
+    }
+  }
+}

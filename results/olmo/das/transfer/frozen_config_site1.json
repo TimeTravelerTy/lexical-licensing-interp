@@ -8,5 +8,17 @@
   "epoch_rule": "smallest epoch whose mean held-out cross-class IIA is within 0.01 of the site's best (sweep.csv)",
   "best_epoch_iia": 0.20547619047619045,
   "chosen_epoch_iia": 0.20146031746031742,
-  "sweep_sha256": "f81e60bc0efb26ff17aee9c8aef3b3fc6aa4130ca6be7abd0211984b75001ecb"
+  "sweep_sha256": "f81e60bc0efb26ff17aee9c8aef3b3fc6aa4130ca6be7abd0211984b75001ecb",
+  "tost": {
+    "quantity": "passive contrast D on delta log P(O) (transitive minus intransitive donor), after patching",
+    "active_effect_delta_logP_O": 1.6838,
+    "active_effect_ci95": [
+      1.3891,
+      1.9752
+    ],
+    "n_pairs": 29,
+    "fraction": 0.2,
+    "delta": 0.3368,
+    "rule": "equivalence ('no rise') if the 90% CI of D lies within +/- delta"
+  }
 }

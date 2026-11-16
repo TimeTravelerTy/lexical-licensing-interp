@@ -1,0 +1,26 @@
+{
+  "verbs": {
+    "T": 106,
+    "I": 50
+  },
+  "items": 14976,
+  "prompts": 15694,
+  "items_by_exp": {
+    "emb": 7488,
+    "mat": 7488
+  },
+  "contexts": {
+    "emb": 24,
+    "mat": 24
+  },
+  "examples": {
+    "emb/fill/I": "I know what John appeared",
+    "emb/fill/T": "I know what John acquired",
+    "emb/nofill/I": "I know that John appeared",
+    "emb/nofill/T": "I know that John acquired",
+    "mat/fill/I": "What did John appear",
+    "mat/fill/T": "What did John acquire",
+    "mat/nofill/I": "Did John appear",
+    "mat/nofill/T": "Did John acquire"
+  }
+}

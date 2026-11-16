@@ -1,0 +1,50 @@
+{
+  "args": {
+    "prompts": "data/olmo/transfer/passive_test/prompts.csv",
+    "plan": "data/olmo/transfer/passive_test/plan.csv.gz",
+    "folds": "results/olmo/das/transfer/final_strict/pairs_folds.csv",
+    "sites": "13,12,11,9",
+    "site_dirs": {
+      "13": "results/olmo/das/transfer/final_strict",
+      "12": "results/olmo/das/transfer/final_strict_site12",
+      "11": "results/olmo/das/transfer/final_strict_site11",
+      "9": "results/olmo/das/transfer/final_strict_site9"
+    },
+    "out_dir": "results/olmo/das/transfer/passive_test",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 33773,
+  "plan_rows": 2355945,
+  "plan_sha256": "6e07aa9d058f0e35284266c4932f2c8a13c8b3e0500195453f773164005f176d",
+  "bases_sha256": {
+    "13": "036780ba8e18eef540d5b178714362206290fafa6803316be607928375adbec2",
+    "12": "f33197dba462d6dae74853b334b7a3f590c1623cba65d809fa0f2d989f0dc9a5",
+    "11": "6fcd0f97065a2cde09732e95d5e4ac03b259005a90b326714b21b38fce2beb31",
+    "9": "c9bc1fbe0293e5ef61c556807060bbf87de17a2d11e234d1fb3f5357cc80d368"
+  },
+  "checks": {
+    "13": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.028995037078857866,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "12": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.038712978363038,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "11": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.0375523567199707,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "9": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.03632831573486328,
+      "heldout_recompute_median_abs_dM": 0.0
+    }
+  }
+}

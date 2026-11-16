@@ -1,0 +1,47 @@
+{
+  "site": 7,
+  "epochs": 3,
+  "ranks_trained": [
+    1
+  ],
+  "chosen_rank": 1,
+  "rank_rule": "rank 1 unless a larger rank raises mean held-out median pc_frac by > 0.1",
+  "pc_frac_by_rank": {
+    "1": 0.7280388325630506
+  },
+  "pairs": 29,
+  "dropped_pairs": [],
+  "items": 406,
+  "config": {
+    "site": 7,
+    "layer_output": 6,
+    "epochs": 3,
+    "rank": 1,
+    "role": "OLMo passive depth curve (passive test only)",
+    "declared": "2026-11-16, reports/olmo/finals_rules.md, before any OLMo final run",
+    "epoch_rule": "smallest epoch whose mean held-out cross-class IIA is within 0.01 of the site's best (sweep.csv)",
+    "best_epoch_iia": 0.7337936507936508,
+    "chosen_epoch_iia": 0.7254285714285714,
+    "sweep_sha256": "f81e60bc0efb26ff17aee9c8aef3b3fc6aa4130ca6be7abd0211984b75001ecb"
+  },
+  "args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/olmo/das/transfer/frozen_config_site7.json",
+    "out_dir": "../results/olmo/das/transfer/final_strict_site7",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01,
+    "bos": null,
+    "fp32_unembed": null
+  }
+}

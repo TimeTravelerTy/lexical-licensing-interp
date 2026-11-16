@@ -1,0 +1,106 @@
+{
+  "args": {
+    "prompts": "data/olmo/transfer/passive_test/prompts.csv",
+    "plan": "data/olmo/transfer/passive_test/plan.csv.gz",
+    "folds": "results/olmo/das/transfer/final_strict/pairs_folds.csv",
+    "sites": "15,14,10,8,7,6,5,4,3,2,1,0",
+    "site_dirs": {
+      "15": "results/olmo/das/transfer/final_strict_site15",
+      "14": "results/olmo/das/transfer/final_strict_site14",
+      "10": "results/olmo/das/transfer/final_strict_site10",
+      "8": "results/olmo/das/transfer/final_strict_site8",
+      "7": "results/olmo/das/transfer/final_strict_site7",
+      "6": "results/olmo/das/transfer/final_strict_site6",
+      "5": "results/olmo/das/transfer/final_strict_site5",
+      "4": "results/olmo/das/transfer/final_strict_site4",
+      "3": "results/olmo/das/transfer/final_strict_site3",
+      "2": "results/olmo/das/transfer/final_strict_site2",
+      "1": "results/olmo/das/transfer/final_strict_site1",
+      "0": "results/olmo/das/transfer/final_strict_site0"
+    },
+    "out_dir": "results/olmo/das/depth_curve/olmo_passive",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 33773,
+  "plan_rows": 2355945,
+  "plan_sha256": "6e07aa9d058f0e35284266c4932f2c8a13c8b3e0500195453f773164005f176d",
+  "bases_sha256": {
+    "15": "2451d77ceb095b61b566f2a24381df9e535e58bf8a576f5feb522de9cf358133",
+    "14": "12fafcc770ef0339e6c4b5567b868de7e9652e15606ded4cb51a39bceb2825a2",
+    "10": "93a73fa2d6b34f8cfc27eb3541937e67cfbeadefc2d0f74873a1af39fecd4161",
+    "8": "14ae4adc76d57e69b02c2d40e08bf01deb8791feb566b7cf6c1fb2334ea17d77",
+    "7": "0c8754608d90c9292229ba6b2340e3cb351c29b4811cb08784d3ec3fda69d4e7",
+    "6": "afc35a012a7badb616e36bbab05a2a0e81a6dbc28ee7686d24852f839816699e",
+    "5": "dd60ead89e752eee31a561a55a672920d6c0450c406654fa9d42a368ba394f4a",
+    "4": "64bf5dbb8ab55d814bfa48bec41d228da302d503950953f2cf57be6c94ce4fa1",
+    "3": "f18105881c2744c55f62bf594aa9bc3fa1a12d981a6583ef5056a10b02c2adea",
+    "2": "d6f5b5bf1ae7386484c7f77d0386120e25a7ec7738cd9056f5566b7d57321f46",
+    "1": "0dd4c0141497e82481dee8ca437433b7a074f45dffec9f3ffe916cecc3f0147e",
+    "0": "5aa933f7c153c3bc678d15153a3cd052b651df8d0273773ae327494b43100b80"
+  },
+  "checks": {
+    "15": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.04444408416748047,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "14": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.042634010314941406,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "10": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.040728092193603516,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "8": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.037518501281738725,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "7": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.035834550857543945,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "6": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.02369976043701172,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "5": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.049402713775634766,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "4": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.03089427947998047,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "3": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.02959156036376953,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "2": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.03195762634277344,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "1": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.023848533630371094,
+      "heldout_recompute_median_abs_dM": 0.0
+    },
+    "0": {
+      "self_patch_max_abs_dM": 0.0,
+      "heldout_recompute_max_abs_dM": 0.03940773010253906,
+      "heldout_recompute_median_abs_dM": 0.0
+    }
+  }
+}
