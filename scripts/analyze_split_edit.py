@@ -202,7 +202,7 @@ def main(args):
                        "split_half_act_lo": np.percentile(r_act[:, s], 2.5),
                        "split_half_act_hi": np.percentile(r_act[:, s], 97.5),
                        "flip_mean": flips[:, s].mean(), "flip_p975": np.percentile(flips[:, s], 97.5),
-                       "FI": cos_ap[s] / np.sqrt(max(ra, 1e-9) * max(rp, 1e-9))})
+                       "FI": cos_ap[s] / np.sqrt(ra * rp) if ra > 0 and rp > 0 else np.nan})  # n/a if r <= 0
     BS = pd.DataFrame(B_rows)
     for s in sites:
         dz = np.load(res / f"directions_site{s}.npz")
