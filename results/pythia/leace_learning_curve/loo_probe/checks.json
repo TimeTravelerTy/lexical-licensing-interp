@@ -1,0 +1,10 @@
+{
+  "loo_dirs": [
+    "../results/pythia/leace_learning_curve/loo_part0",
+    "../results/pythia/leace_learning_curve/loo_part1",
+    "../results/pythia/leace_learning_curve/loo_part2",
+    "../results/pythia/leace_learning_curve/loo_part3",
+    "../results/pythia/leace_learning_curve/loo_part4",
+    "../results/pythia/leace_learning_curve/loo_part5"
+  ]
+}

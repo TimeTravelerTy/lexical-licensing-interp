@@ -1,0 +1,26 @@
+commit bf7e1d59cf03fbb45be6b9066ff95e72e63e6ad9
+runner settings {'model_type': 'gpt_neox', 'bos': False, 'fp32_unembed': False, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 76.90739440917969}
+[     73s] 31500 prompts, 126 pairs; natural site 8 / 12 states captured
+[    165s] loo_42 (tail/forest/function) done
+[    257s] loo_43 (tail/gag/blossom) done
+[    349s] loo_44 (tail/galvanize/transpire) done
+[    441s] loo_45 (tail/garnish/toil) done
+[    533s] loo_46 (tail/heap/grin) done
+[    625s] loo_47 (tail/imitate/linger) done
+[    717s] loo_48 (tail/ingest/conspire) done
+[    809s] loo_49 (tail/nab/retaliate) done
+[    901s] loo_50 (tail/orphan/adhere) done
+[    993s] loo_51 (tail/outdo/recede) done
+[   1085s] loo_52 (tail/overestimate/diverge) done
+[   1177s] loo_53 (tail/perfume/reel) done
+[   1269s] loo_54 (tail/preclude/fluctuate) done
+[   1361s] loo_55 (tail/quarry/rave) done
+[   1453s] loo_56 (tail/quell/sympathize) done
+[   1545s] loo_57 (tail/rear/sin) done
+[   1636s] loo_58 (tail/recast/reappear) done
+[   1728s] loo_59 (tail/refund/clash) done
+[   1820s] loo_60 (tail/reinstall/seep) done
+[   1912s] loo_61 (tail/rouse/lurk) done
+[   2004s] loo_62 (tail/safeguard/blush) done
+[   2005s] wrote ../results/pythia/leace_learning_curve/loo_part2
+== done Thu Nov 12 07:45:09 PM JST 2026

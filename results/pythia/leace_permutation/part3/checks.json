@@ -1,0 +1,11 @@
+{
+  "label_corr": {
+    "p15": 0.0,
+    "p16": 0.0,
+    "p17": 0.0,
+    "p18": 0.0,
+    "p19": 0.0
+  },
+  "natural_vs_reference_max_abs": 8.881784197001252e-16,
+  "reference_items_sha256": "4a0eb9bfb82e7e96150c1a5802b9f782324ea83c2c75478163fcc88d94fc775d"
+}

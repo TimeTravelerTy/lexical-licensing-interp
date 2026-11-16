@@ -1,0 +1,16 @@
+{
+  "probe_pred_vs_probe_cv": {
+    "probe_cv": 0.9351287128712872,
+    "probe_pred": 0.9351287128712872
+  },
+  "reference_items_sha256": "4a0eb9bfb82e7e96150c1a5802b9f782324ea83c2c75478163fcc88d94fc775d",
+  "full_vs_insample_max_abs": {
+    "natural": 8.881784197001252e-16,
+    "single_8": 1.7763568394002505e-15,
+    "scrub_0_12": 1.7763568394002505e-15
+  },
+  "natural_vs_reference_max_abs": 8.881784197001252e-16,
+  "erased_rank": [
+    1
+  ]
+}

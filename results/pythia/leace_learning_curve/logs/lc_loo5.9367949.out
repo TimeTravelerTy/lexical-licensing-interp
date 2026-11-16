@@ -1,0 +1,26 @@
+commit bf7e1d59cf03fbb45be6b9066ff95e72e63e6ad9
+runner settings {'model_type': 'gpt_neox', 'bos': False, 'fp32_unembed': False, 'site_check_max_abs_sites_0_to_L-1': 0.0, 'site_check_last_site': 76.90739440917969}
+[     87s] 31500 prompts, 126 pairs; natural site 8 / 12 states captured
+[    185s] loo_105 (xtail/pigeonhole/hitchhike) done
+[    283s] loo_106 (xtail/placate/crackle) done
+[    382s] loo_107 (xtail/prise/jut) done
+[    475s] loo_108 (xtail/rearm/totter) done
+[    573s] loo_109 (xtail/recompense/leer) done
+[    671s] loo_110 (xtail/redress/pant) done
+[    769s] loo_111 (xtail/regale/writhe) done
+[    867s] loo_112 (xtail/reproach/whiz) done
+[    964s] loo_113 (xtail/reprove/remonstrate) done
+[   1062s] loo_114 (xtail/resupply/slog) done
+[   1160s] loo_115 (xtail/shoo/quiver) done
+[   1258s] loo_116 (xtail/shoplift/eventuate) done
+[   1356s] loo_117 (xtail/stopper/quack) done
+[   1453s] loo_118 (xtail/suckle/defecate) done
+[   1551s] loo_119 (xtail/sunder/eavesdrop) done
+[   1649s] loo_120 (xtail/swaddle/decamp) done
+[   1746s] loo_121 (xtail/tithe/putter) done
+[   1844s] loo_122 (xtail/unlatch/burgeon) done
+[   1942s] loo_123 (xtail/wad/shimmer) done
+[   2040s] loo_124 (xtail/wag/bask) done
+[   2137s] loo_125 (xtail/wallop/gloat) done
+[   2138s] wrote ../results/pythia/leace_learning_curve/loo_part5
+== done Thu Nov 12 07:47:56 PM JST 2026
