@@ -89,6 +89,17 @@ results/gemma/das/depth_curve/**/patches_*.parquet
 # OLMo replication raw next-token readouts (SHA-256 in reports/olmo/behavior.md)
 results/olmo/by_readout/*.csv
 
+# OLMo replication transfer and depth curve: regenerable plans and raw per-row dumps (as Gemma; SHA-256 in
+# results/olmo/das/large_files_sha256.txt)
+data/olmo/transfer/**/plan*.csv.gz
+results/olmo/das/transfer/**/heldout_swaps.csv.gz
+results/olmo/das/transfer/**/patches_*.parquet
+results/olmo/das/transfer/**/patch_tokens_site*.npz
+results/olmo/das/transfer/inrange/rows.parquet
+results/olmo/das/transfer/inrange/projections.npz
+results/olmo/das/transfer/fillergap/projections.npz
+results/olmo/das/depth_curve/**/patches_*.parquet
+
 # LEACE necessity per-prompt dump (SHA-256 in reports/pythia/leace_necessity.md)
 results/pythia/leace_necessity/items.csv.gz
 results/pythia/leace_*/erasers.npz
