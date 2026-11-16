@@ -20,7 +20,7 @@ Paper-level plan (claims, status, priorities, deadlines):
 | Round 7 | Paper 1 follow-ups: per-verb training trajectories (A8) | `round7/plan.md` | `round7/a8_trajectories.md` |
 | Gemma replication | Port the pipeline to `google/gemma-3-1b-pt`: refilter, behaviour, DAS port / sweeps, transfer, depth curve, nonce | `gemma/step1_refilter.md` (each step states its rules) | `gemma/*.md`, `gemma/transfer/`, `gemma/depth_curve/`, `gemma/nonce/summary.md` |
 | OLMo replication | Third model, `allenai/OLMo-2-0425-1B`: behaviour, DAS sweep, finals at sites 0–15, transfer, passive depth curve | `olmo/rules.md`, `olmo/finals_rules.md` | `olmo/behavior.md`, `olmo/das_sweep.md`, `olmo/transfer/`, `olmo/depth_curve/` |
-| Replication criteria | T1–T3 and S1 applied to Pythia, Gemma and OLMo | `olmo/finals_rules.md` §3 | `replication_criteria.md` |
+| Replication criteria | T1–T3 and S1 applied to Pythia, Gemma and OLMo; split edit + u_md readings (R-A1, R-A2, S1/T1 per instrument, FI) | `olmo/finals_rules.md` §3; `split_edit_replication_rules.md` | `replication_criteria.md`; `gemma/split_edit.md`, `olmo/split_edit.md`; `selfscaled_passive_classes.md` (exploratory) |
 | Pythia necessity and direction check | LEACE necessity (in-sample, cross-fitted, permutation control, learning curve); DAS direction v vs u_md, mean ablation | `pythia/leace_learning_curve_rules.md`, `pythia/das_direction_check_plan.md` | `pythia/leace_*.md`, `pythia/das_direction_check.md` |
 
 `results_index.md` lists every experiment of rounds 1–7 with its key number, declared

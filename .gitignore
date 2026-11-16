@@ -117,3 +117,11 @@ results/pythia/split_edit/*_patches_site*.parquet
 results/pythia/split_edit/active_swaps.csv.gz
 results/pythia/split_edit/class_states.npz
 results/pythia/split_edit_smoke/
+# Split edit (Gemma, OLMo): same large dumps stay on TSUBAME (/gs/bs lli_paper);
+# SHA-256 in results/{gemma,olmo}/split_edit/large_files_sha256.txt
+results/gemma/split_edit/*_patches_site*.parquet
+results/gemma/split_edit/active_swaps.csv.gz
+results/gemma/split_edit/class_states.npz
+results/olmo/split_edit/*_patches_site*.parquet
+results/olmo/split_edit/active_swaps.csv.gz
+results/olmo/split_edit/class_states.npz

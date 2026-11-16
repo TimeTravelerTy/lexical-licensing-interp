@@ -16,10 +16,18 @@ sites never count.
 | T2 OR and TC D(O) RISE at both rule sites | **pass** | **pass** | **pass** |
 | T3 filler-gap licensing-like, in range, at a declared site | **pass** (matrix, 8) | **fail** | **pass** (embedded and matrix, 9) |
 | S1 staging with v | **pass** | **pass** (no surface site to 58% depth) | **pass** |
-| S1 staging with the split-edit on-axis piece | **pass** | not run | not run |
+| S1 staging with the split-edit on-axis piece | **pass** (abstract 6, 8, 12; surface 17) | **fail** (no abstract site) | **fail** (no abstract site) |
+| S1 staging with u_md | **pass** (abstract 4–12; surface 17) | **pass** (abstract 0; surface 6–10, 13) | **fail** (no abstract site) |
+| T1 with the on-axis piece | **pass** | **fail** (NO RISE at 5 and 8) | **fail** (NO RISE at 9 and 11) |
+| T1 with u_md | **pass** | **fail** (unresolved at 5 and 8) | **fail** (NO RISE at 9 and 11) |
+| R-A1 off-axis carries v's object push (rule sites) | held (Pythia A1) | **held** (10 / 12 RISE sites) | **not held** (2 / 11) |
+| R-A2 on-axis carries v's *by* (rule sites) | held (Pythia A2) | **not held** (5 / 15) | n/a at rule sites; 3 / 4 elsewhere |
+| FI decision at the rule sites | mixed (0.54 / 0.50) | mixed (0.17 / 0.70) | low (0.34 / 0.33) |
 
 Paper rule: a model "replicates" the transfer claim if T1 and T2 pass. Pythia and Gemma do. OLMo does not (T1 fails),
-so the declared fallback applies: "Pythia and Gemma, with a partial third-family check".
+so the declared fallback applies: "Pythia and Gemma, with a partial third-family check". The secondary T1 instruments
+(on-axis, u_md) do not rescue OLMo under the declared margin, so the paper sentence reserved for that case ("passive *by*
+transfer holds along the class axis…") is not used. See "Split edit and u_md" below for what the curves show.
 
 ## Evidence
 
@@ -90,3 +98,55 @@ Depth (site / layers): Pythia abstract to 0.33, surface from 0.58 (24 layers); G
 Runs: TSUBAME jobs 9415867–9, 9417175–9 (finals), 9417181 (prep), 9417183 (main), 9417187 (fg), 9417188 (depth
 curve); checkout on /gs/bs after the /gs/fs group quota filled. Finals gate: all 16 sites within 0.03 of the sweep
 (max 0.019, site 8; `results/olmo/das/transfer/finals_gate.json`).
+
+## Split edit and u_md (rules: `reports/split_edit_replication_rules.md`, declared before the run)
+
+Reports: `reports/gemma/split_edit.md`, `reports/olmo/split_edit.md` (Pythia: `reports/pythia/split_edit.md` and
+`results/pythia/das_direction_check`). TSUBAME jobs 9420462 (Gemma), 9420463 (OLMo); sites 0–15. Every check
+passes in both models: held-out active IIA reproduces the stored finals exactly (max diff 0.0000), passive D(O) and
+D(by) with full v match the stored values (all within 0.001 nats), write = read is bitwise, a·u + w = v to 1e-17.
+Gemma's run drops one pair (transplant/ensue), as in its stored passive test.
+
+### Passive D per condition at the rule sites (nats, 95% CI, declared class against δ_s = 0.2 × v's active O effect)
+
+| Model | Site | δ_s | D(by) v | on | u_md | D(O) v | on | u_md |
+|---|---:|---:|---|---|---|---|---|---|
+| Gemma | 5 | 0.54 | +0.56 RISE | +0.18 NO RISE | +0.49 [+0.31, +0.69] unres. | +1.50 RISE | +0.09 NO RISE | +0.43 unres. |
+| Gemma | 8 | 0.53 | +0.63 RISE | +0.38 NO RISE | +0.44 [+0.31, +0.57] unres. | +1.38 RISE | +0.40 NO RISE | +0.73 RISE |
+| OLMo | 9 | 0.53 | +0.43 NO RISE | +0.32 NO RISE | +0.41 [+0.36, +0.47] NO RISE | +1.71 RISE | +0.73 RISE | +1.04 RISE |
+| OLMo | 11 | 0.58 | +0.14 NO RISE | +0.31 NO RISE | +0.43 [+0.37, +0.50] NO RISE | +2.40 RISE | +0.80 RISE | +1.22 RISE |
+
+### What the curves show
+
+- **Gemma: the object push rides on w, as in Pythia (R-A1 held).** The off-axis share of v's D(O) is 0.72–0.84 at
+  every RISE site, and on-axis O is NO RISE through site 11. Unlike Pythia, w also carries much of *by*: the on-axis
+  share of D(by) is 0.16–0.54 (R-A2 not held). Gemma's v is less aligned with u (|a| ≈ 0.4–0.7), so the on-axis piece
+  is small. u_md moves *by* by +0.36 to +0.50 at every site 1–10 (0.65–0.96 of v's), but straddles δ at the rule sites.
+- **OLMo: the class axis itself predicts the object from site 7–8 (R-A1 not held).** On-axis and u_md D(O) are RISE
+  from 8 and 7, and the off-axis share of O is only ≈ 0.5. So OLMo's surface behaviour is not mainly an off-axis
+  artefact, unlike Pythia's. What is off-axis is v's deep *by* FALL: v's D(by) drops from +0.43 (9) to +0.14 (11) and
+  FALL at 12–15, while u_md stays at +0.41 / +0.43 at 9 / 11 (3× v's at 11) and on-axis stays positive to 15. The
+  off-axis piece alone is −0.32 to −0.79 at 12–15.
+- **OLMo early sites (1–6): *by* leads O along the class axis.** u_md D(by) +0.22 to +0.49 vs D(O) +0.01 to +0.40, and
+  on-axis D(by) exceeds D(O) at every site 0–6. But D(by) stays under v's δ, so the declared class is NO RISE /
+  unresolved.
+- **FI.** OLMo falls from ≈ 1 at 0–3 to 0.33 at 11 and 0.10 at 15: the same shape as Pythia (≈ 1 at 0–4, 0.54 / 0.50
+  at 8 / 12), lower at the rule sites (decision "low": the paper says "one direction that every construction reads").
+  Gemma is not monotone: FI 0.17 at 5 but 0.70–0.87 at 6–9, ≈ 0 at 14–15. B1 (cos above sign-flip 97.5th pct) fails
+  at 14 / 26 Gemma sites and at 13–15 in OLMo.
+
+### Exploratory: a margin scaled to each condition (`reports/selfscaled_passive_classes.md`)
+
+Chosen after seeing the results, so labelled exploratory. The declared δ holds the on-axis piece and u_md to v's active
+O effect, although they push less on actives too (u_md's active D(O) is 0.35–0.76 of v's). Re-classing with
+δ_c = 0.2 × the condition's own active D(O), same classifier, stored CIs (full v reproduces the declared outcomes):
+
+| Model | on-axis | u_md |
+|---|---|---|
+| Pythia | abstract 4–12, mixed 17 | abstract 4–12, surface 17 |
+| Gemma | abstract 0–4, mixed 5–15 | abstract 0, mixed 2–15 |
+| OLMo | abstract 1–5, mixed 6–10, surface 11–15 | abstract 1–4, mixed 6–11, surface 12–15 |
+
+Under this margin, OLMo's class axis stages the way Pythia's does (abstract → mixed → surface), at shallower relative
+depth (abstract to 0.25–0.31, surface from 0.69–0.75 of depth; Pythia abstract to 0.50). u_md's *by* is RISE at both
+OLMo rule sites. This is reported as a description of OLMo's class axis, not as T1 passing.
