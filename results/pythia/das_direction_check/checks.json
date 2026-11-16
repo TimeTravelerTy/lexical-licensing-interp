@@ -1,0 +1,42 @@
+{
+  "items": 406,
+  "pairs": 29,
+  "dropped_pairs": [],
+  "sites": {
+    "4": {
+      "unit_norm_max_dev": 1.38998268117696e-07,
+      "u_md_self_patch_max_abs_dM": 0.0,
+      "batch_effect_max_abs_dM": 0.4225940704345703,
+      "identity_ablation_active_max_abs_dM": 0.0,
+      "identity_ablation_passive_max_abs_dM": 0.0
+    },
+    "6": {
+      "unit_norm_max_dev": 1.9391226258047567e-07,
+      "u_md_self_patch_max_abs_dM": 0.0,
+      "batch_effect_max_abs_dM": 0.4225940704345703,
+      "identity_ablation_active_max_abs_dM": 0.0,
+      "identity_ablation_passive_max_abs_dM": 0.0
+    },
+    "8": {
+      "unit_norm_max_dev": 1.336243993232955e-07,
+      "u_md_self_patch_max_abs_dM": 0.0,
+      "batch_effect_max_abs_dM": 0.4225940704345703,
+      "identity_ablation_active_max_abs_dM": 0.0,
+      "identity_ablation_passive_max_abs_dM": 0.0
+    },
+    "12": {
+      "unit_norm_max_dev": 1.037599548503465e-07,
+      "u_md_self_patch_max_abs_dM": 0.0,
+      "batch_effect_max_abs_dM": 0.4225940704345703,
+      "identity_ablation_active_max_abs_dM": 0.0,
+      "identity_ablation_passive_max_abs_dM": 0.0
+    },
+    "17": {
+      "unit_norm_max_dev": 9.771954401216476e-08,
+      "u_md_self_patch_max_abs_dM": 0.0,
+      "batch_effect_max_abs_dM": 0.4225940704345703,
+      "identity_ablation_active_max_abs_dM": 0.0,
+      "identity_ablation_passive_max_abs_dM": 0.0
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "args": {
+    "sites": "4,6,8,12,17",
+    "root": "../results/das_round2",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "items": "../data/das_round2/passive_test/items.csv",
+    "prompts": "../data/das_round2/passive_test/prompts.csv",
+    "plan": "../data/das_round2/passive_test/plan.csv.gz",
+    "leace_insample": "/gs/fs/tga-sip_arase/tyrone/lli_leace/results/pythia/leace_insample/erasers.npz",
+    "leace_crossfit": "/gs/fs/tga-sip_arase/tyrone/lli_leace/results/pythia/leace_necessity/erasers.npz",
+    "out_dir": "../results/pythia/das_direction_check",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "n_folds": 5,
+    "n_perm": 100,
+    "n_rand_cos": 10000,
+    "n_rand_abl": 10,
+    "seed": 11,
+    "batch": 1024,
+    "max_items": 0,
+    "skip_passive": false,
+    "bos": null,
+    "fp32_unembed": null
+  },
+  "runner_settings": {
+    "model_type": "gpt_neox",
+    "bos": false,
+    "fp32_unembed": false,
+    "site_check_max_abs_sites_0_to_L-1": 0.0,
+    "site_check_last_site": 75.4375
+  },
+  "bases_sha256": {
+    "4": "d4beabce8ff099fdbe65020b2b0309928486613df34fa483446c6ffd8270f5e1",
+    "6": "8f89f054354cb1d2afcf4b83291f65573b7c7efaffd01e51a93fed1694439d36",
+    "8": "4425f0b09a59361dcf6effa4ad8798c8e6282035267104de97ce4ac410f78d70",
+    "12": "5b2a7744415a956db330fc8bb38e3d3277fdd05dc740be2c3e4c3d67422ec8ad",
+    "17": "cd888872d2a3ee81cb7b9897b8977fc2b93098a2b4f1a56cc8e8ddbb5613e080"
+  },
+  "leace_insample_sha256": "ccca270b4cf2251951ae186f67830033a9530fc88534860047b3bd9f945b2775",
+  "leace_crossfit_sha256": "4c34d30f0107062fd63a3e5196b536994d678e245e667034f0d7eb938c865e4e",
+  "plan_rows_total": 2355945,
+  "passive_patch_rows": 272142,
+  "passive_ablation_rows": 47898,
+  "passive_items": 7983,
+  "passive_prompts_needed": 14240,
+  "minutes": 9.502580984433491
+}
