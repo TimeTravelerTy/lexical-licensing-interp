@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Split-edit test, frame invariance and passive-axis patching (Pythia-1.4B; rules: reports/pythia/split_edit_plan.md).
+"""Split-edit test, frame invariance and passive-axis patching (rules: reports/pythia/split_edit_plan.md; Gemma and OLMo:
+reports/split_edit_replication_rules.md).
 
-A. Per site (4, 6, 8, 12, 17) and final-run basis: v = a u + w (u = u_md of the basis's training items, w ⊥ u).
+A. Per site (Pythia default 4, 6, 8, 12, 17) and final-run basis: v = a u + w (u = u_md of the basis's training items, w ⊥ u).
    The v interchange h <- h + delta v (delta = v.(h_src - h_base), in-batch) is split into its on-axis piece
    (write a u) and off-axis piece (write w); conditions full / on / off on the direction check's passive plan rows
-   and on the held-out active swaps. Push sizes against the natural spread along u and w-hat.
-B. Per-verb mean verb-position states at sites 0-23 for the LEACE items (passive `was` frame) and the active DAS
+   and on the held-out active swaps. Push sizes against the natural spread along u and w-hat. With --umd, also the
+   u_md interchange (read and write u), as the direction check's u_md patch.
+B. Per-verb mean verb-position states at sites 0 to n_layers - 1 for the LEACE items (passive `was` frame) and the active DAS
    items (class_states.npz; cosines are computed in the analysis).
 C. Interchange along the passive class axis u_pas, cross-fitted (passives: 5 groups of primary pairs, each direction
    fit without the group's verbs and without the DAS verbs; actives: fit without the DAS verbs).
@@ -24,12 +26,11 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+import run_das_direction_check as dc
 import run_das_round2 as r2
 from run_das_direction_check import FOLD_COLS, load_bases
 from run_passive_controls import upgrade
 from run_passive_test import READ
-
-N_SITES_B = 24
 
 
 def sha(path):
@@ -92,10 +93,12 @@ def run(args):
     sites = [int(s) for s in args.sites.split(",")]
     root = Path(args.root)
     smoke = bool(args.max_items or args.max_pairs or args.max_contexts)
+    dc.SITE_DIRS = {s: ("final_strict" if s == args.primary_site else f"final_strict_site{s}") for s in sites}
 
     runner, pairs, items, reps, nat, dropped = r2.setup(args)
     runner = upgrade(runner)
     dev, d = runner.device, reps.shape[-1]
+    N_SITES_B = len(runner.layers)  # sites 0 .. n_layers - 1 (Pythia: 0-23)
     stored_items = pd.read_csv(root / "final_strict" / "items.csv")
     assert stored_items.prompt.tolist() == items.prompt.tolist(), "active items differ from the final runs'"
     labels = items.cls.to_numpy()
@@ -108,8 +111,9 @@ def run(args):
     all_pairs = pd.read_csv(args.pairs)  # every DAS pair, including any dropped by the behaviour filter
     das_parts = set(all_pairs.trans_part) | set(all_pairs.intrans_part)
     checks = {"items": len(items), "pairs": len(pairs), "dropped_pairs": dropped, "smoke": smoke, "sites": {}}
-    meta = {"args": vars(args), "runner_settings": runner.settings, "bases_sha256": {},
-            "leace_insample_sha256": sha(args.leace_insample), "plan_sha256": sha(args.plan)}
+    meta = {"args": vars(args), "runner_settings": runner.settings, "bases_sha256": {}, "n_sites_b": N_SITES_B,
+            "site_dirs": dc.SITE_DIRS, "plan_sha256": sha(args.plan),
+            "leace_insample_sha256": sha(args.leace_insample) if args.leace_insample else None}
 
     # ---------------------------------------------------------------- B. per-verb mean states, both frames
     P, lpairs = leace_items(args, runner.tok)
@@ -235,7 +239,7 @@ def run(args):
             b = float(np.linalg.norm(w))
             wh = w / b
             T = lambda x: torch.as_tensor(x, dtype=torch.float32, device=dev)[:, None]
-            W[(k, f)] = {"full": B[(k, f)], "on": T(a * u), "off": T(w)}
+            W[(k, f)] = {"full": B[(k, f)], "on": T(a * u), "off": T(w), "u": T(u)}
             for n, x in (("v", v), ("u", u), ("a", a), ("w", w)):
                 dirs[n].append(x)
             # push sizes and class separation
@@ -286,16 +290,22 @@ def run(args):
                 act_swaps.append(df)
                 act_summ.append({"site": site, "condition": cond, "split": k, "fold": f,
                                  **r2.summarize(df, items)})
-            up = torch.as_tensor(u_pas_act[site], dtype=torch.float32, device=dev)[:, None]
-            df = r2.evaluate(runner, items, reps, nat, te, site, up, detail=True)
-            df["rank"], df["split"], df["fold"], df["condition"], df["site"] = 1, k, f, "u_pas", site
-            act_swaps.append(df)
-            act_summ.append({"site": site, "condition": "u_pas", "split": k, "fold": f, **r2.summarize(df, items)})
+            extra = [("u_pas", torch.as_tensor(u_pas_act[site], dtype=torch.float32, device=dev)[:, None])]
+            if args.umd:
+                extra.append(("umd", W[(k, f)]["u"]))
+            for cname, up in extra:
+                df = r2.evaluate(runner, items, reps, nat, te, site, up, detail=True)
+                df["rank"], df["split"], df["fold"], df["condition"], df["site"] = 1, k, f, cname, site
+                act_swaps.append(df)
+                act_summ.append({"site": site, "condition": cname, "split": k, "fold": f,
+                                 **r2.summarize(df, items)})
         log(f"site {site}: actives done")
 
         # ---- A. passives: full / on / off; C: u_pas (group-cross-fitted)
-        res = {c: {kk: np.empty(len(pat_plan), np.float32) for kk in ("M",) + READ} for c in ("full", "on", "off")}
+        pconds = ("full", "on", "off") + (("umd",) if args.umd else ())
+        res = {c: {kk: np.empty(len(pat_plan), np.float32) for kk in ("M",) + READ} for c in pconds}
         delta = np.empty(len(pat_plan), np.float32)
+        delta_u = np.full(len(pat_plan), np.nan, np.float32)
         for key, g in pat_plan.groupby(["split", "fold"]):
             ix = g.index.to_numpy()
             base, donor = g.base.to_numpy(), g.donor.to_numpy()
@@ -305,15 +315,20 @@ def run(args):
                 src = S[torch.as_tensor(donor[sl], device=dev)]
                 pr = [prompts_p[j] for j in base[sl]]
                 delta[ix[sl]] = ((src - S[torch.as_tensor(base[sl], device=dev)]) @ v_t)[:, 0].cpu().numpy()
-                for cond in ("full", "on", "off"):
-                    m, parts = patched_rw(runner, pr, src, site, v_t, W[key][cond])
+                for cond in pconds:
+                    rd_ = W[key]["u"] if cond == "umd" else v_t
+                    wr_ = W[key]["u"] if cond == "umd" else W[key][cond]
+                    m, parts = patched_rw(runner, pr, src, site, rd_, wr_)
                     res[cond]["M"][ix[sl]] = m.cpu().numpy()
                     for kk in READ:
                         res[cond][kk][ix[sl]] = parts[kk].cpu().numpy()
-        pd.concat([pd.DataFrame({"row": pat_plan.row, "condition": c, "delta": delta, **res[c]})
-                   for c in ("full", "on", "off")], ignore_index=True) \
+                if args.umd:
+                    delta_u[ix[sl]] = ((src - S[torch.as_tensor(base[sl], device=dev)]) @ W[key]["u"])[:, 0] \
+                        .cpu().numpy()
+        pd.concat([pd.DataFrame({"row": pat_plan.row, "condition": c, "delta": delta_u if c == "umd" else delta,
+                                 **res[c]}) for c in pconds], ignore_index=True) \
             .to_parquet(out / f"split_patches_site{site}.parquet", index=False)
-        log(f"site {site}: passive split edit done ({len(pat_plan)} rows x 3)")
+        log(f"site {site}: passive split edit done ({len(pat_plan)} rows x {len(pconds)})")
         res_c = {kk: np.empty(len(pat_plan), np.float32) for kk in ("M",) + READ}
         grp = pat_plan.item_id.map(item_group).to_numpy()
         assert not np.isnan(grp.astype(float)).any(), "plan item without a C group"
@@ -360,7 +375,11 @@ if __name__ == "__main__":
     ap.add_argument("--plan", default="../data/das_round2/passive_test/plan.csv.gz")
     ap.add_argument("--scores", default="../results/passive_band_cross/pythia14b_scores.csv")
     ap.add_argument("--v2-pairs", default="../data/matched_passives_v2/pairs.jsonl")
-    ap.add_argument("--leace-insample", default="../results/pythia/leace_insample/erasers.npz")
+    ap.add_argument("--leace-insample", default="../results/pythia/leace_insample/erasers.npz",
+                    help="'' when the model has no LEACE run (only its SHA-256 is recorded here)")
+    ap.add_argument("--primary-site", type=int, default=17, help="site whose final run is in final_strict/")
+    ap.add_argument("--umd", action=argparse.BooleanOptionalAction, default=False,
+                    help="also the u_md interchange (read and write u) on actives and passives")
     ap.add_argument("--dirchk-dir", default="", help="direction-check outputs (stored u_md, for check 3)")
     ap.add_argument("--out-dir", default="../results/pythia/split_edit")
     ap.add_argument("--model", default="EleutherAI/pythia-1.4b")

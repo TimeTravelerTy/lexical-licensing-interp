@@ -143,11 +143,15 @@ Freeze experiments on **Dec 4** and send the full draft to sensei by **Dec 11**.
 
 The week rows are a proposal; the original timeline chart did not survive the export. Fixed dates: Nov 18, Dec 4, Dec 11, Jan 4.
 
+**How declared rules are used**
+
+The declared criteria are a confirmatory floor, not the whole report. Each claim is shown as curves over all sites and instruments (v, on-axis, u_md), with CIs and the rule sites marked. Each model's mechanism is described as it is, and model differences are a finding, not a failure. Anything chosen after seeing the data is labelled exploratory. Nothing is dropped for failing a rule. What would count against the claims is counter-evidence in the curves (for example *by* falling where the class says it should rise), not a single class flip at one threshold.
+
 **Decision rules**
 
 - **Off-axis piece carries the passive O rise:** redraw staging with u_md (or the on-axis piece) in every model, and report v as an upper bound.
 - **On-axis piece carries it too:** keep staging as drawn with v, and note u_md's later boundary.
-- **OLMo transfer fails:** the paper becomes "Pythia and Gemma, with a partial third-family check". *Fired Nov 16 (T1 fails; T2 passes).*
+- **OLMo transfer fails:** the paper becomes "Pythia and Gemma, with a partial third-family check". *Fired Nov 16 (T1 fails; T2 passes).* Read with the curves: OLMo's *by* effect is positive at every site 0–11 (0.5–1.2 of the natural gap) but clears δ only at 0 and 4–6; the split edit and u_md runs (`reports/split_edit_replication_rules.md`) test whether the object push hides it.
 - **Rank-k residue keeps falling with k:** reword "lexical" as "shared, low-rank plus verb-specific", and report where it plateaus.
 - **cos(u_md^active, u_md^passive) is low:** drop "one feature" in favor of "one direction every construction reads", and keep transfer as the evidence.
 - **Training dynamics not clean by Dec 4:** report emergence order for the measures that are in, on one model if needed.

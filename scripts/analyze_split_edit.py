@@ -14,9 +14,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from analyze_das_direction_check import LAB, RD, SITE_DIRS, STORED_PASSIVE, ci, delta_s, f3, pboot, q
+from analyze_das_direction_check import LAB, RD, ci, f3, pboot, q
 from analyze_das_round2_results import per_pair
-from analyze_passive_test import Boot, cells, classify, pair_values, populations, summarize
+from analyze_passive_test import Boot, cells, classify, outcome, pair_values, populations, summarize
 
 CONDS = ("full", "on", "off")
 
@@ -43,6 +43,41 @@ def side_share(good_nat, bad_nat, good_after, bad_after, n_boot, seed):
             "d_bad": float(db[0]), **{f"bad_share_{k}": v for k, v in q(share).items()}}
 
 
+def site_dir(root, s, primary):
+    return Path(root) / ("final_strict" if s == primary else f"final_strict_site{s}")
+
+
+def stored_dirs(root, spec):
+    return [Path(x) if Path(x).is_absolute() else Path(root) / x for x in spec.split(",") if x]
+
+
+def delta_for(root, s, primary, dirs):
+    """delta_s: the site's frozen config TOST block, else the first deltas.json listing the site."""
+    cfg = json.loads((Path(root) / ("frozen_config_final.json" if s == primary else
+                                    f"frozen_config_site{s}.json")).read_text())
+    if "tost" in cfg:
+        return cfg["tost"]["delta"]
+    for d in dirs:
+        p = d / "deltas.json"
+        if p.exists():
+            js = json.loads(p.read_text())
+            if str(s) in js:
+                v = js[str(s)]
+                return v["delta"] if isinstance(v, dict) else v
+    raise SystemExit(f"no delta_s for site {s}")
+
+
+def stored_summary(s, dirs):
+    for d in dirs:
+        p = d / "transfer_summary.csv"
+        if p.exists():
+            x = pd.read_csv(p)
+            x = x[(x.site == s) & (x.population == "primary (plain)") & (x.band == "all") & (x.condition == "D_bad")]
+            if len(x):
+                return x.set_index("readout")
+    return None
+
+
 def main(args):
     res = Path(args.results)
     root = Path(args.root)
@@ -50,6 +85,9 @@ def main(args):
     meta = json.loads((res / "meta.json").read_text())
     sites = [int(s) for s in meta["args"]["sites"].split(",")]
     smoke = bool(checks.get("smoke"))
+    umd = bool(meta["args"].get("umd"))
+    PCONDS = CONDS + (("umd",) if umd else ())
+    sdirs = stored_dirs(root, args.stored_passive)
     gate = {}
 
     # ================================================================ A. actives
@@ -57,13 +95,13 @@ def main(args):
     det = pd.read_csv(res / "active_swaps.csv.gz")
     a_rows, gate["active_iia_full"] = [], {}
     for s in sites:
-        stored = pd.read_csv(root / SITE_DIRS[s] / "summary.csv")
+        stored = pd.read_csv(site_dir(root, s, args.primary_site) / "summary.csv")
         stored = stored[(stored.control == "das") & (stored["rank"] == 1)].set_index(["split", "fold"])
         mine = A[(A.site == s) & (A.condition == "full")].set_index(["split", "fold"])
         diff = (mine.iia_cross - stored.iia_cross.reindex(mine.index)).abs()
         gate["active_iia_full"][str(s)] = {"max_abs_diff": float(diff.max()), "pass": bool(diff.max() <= 0.01)}
         pp = {}
-        for c in CONDS + ("u_pas",):
+        for c in PCONDS + ("u_pas",):
             p, _ = per_pair(det[(det.site == s) & (det.condition == c)], 1)
             pp[c] = p[p.base_cls == 0].set_index("base_pair_id").d_O
         common = pp["full"].index
@@ -76,7 +114,8 @@ def main(args):
             a_rows.append({"site": s, "condition": c, "iia_cross": g.iia_cross.mean(), "iia_cross_min": g.iia_cross.min(),
                            "iia_cross_max": g.iia_cross.max(), "iia_same": g.iia_same.mean(),
                            **{f"dO_{k}": v for k, v in q(E[c]).items()},
-                           **({f"share_{k}": v for k, v in q(E[c] / E["full"]).items()} if c in ("on", "off") else {}),
+                           **({f"share_{k}": v for k, v in q(E[c] / E["full"]).items()}
+                              if c in ("on", "off", "umd") else {}),
                            "n_pairs": len(common)})
         add = E["full"] - E["on"] - E["off"]
         a_rows.append({"site": s, "condition": "additivity full-on-off", **{f"dO_{k}": v for k, v in q(add).items()}})
@@ -99,14 +138,14 @@ def main(args):
         ax = pd.read_parquet(res / f"axis_patches_site{s}.parquet").assign(condition="u_pas")
         bt = Boot(len(ctx_ix), args.n_boot, args.seed)
         rows0 = sp[sp.condition == "full"].row.to_numpy()
-        for c in CONDS:
+        for c in PCONDS:
             assert (sp[sp.condition == c].row.to_numpy() == rows0).all()
         assert (ax.row.to_numpy() == rows0).all()
         pids = item_pair.loc[plan_i.loc[rows0, "item_id"].astype(str).unique(), "pair_id"].unique()
         pix = np.array(sorted({pair_ix[p] for p in pids} & set(pix0)))
         wp = bt.pair_weights(pr.band.to_numpy()[pix])
         S = {}
-        for c, x in [(c, sp[sp.condition == c]) for c in CONDS] + [("u_pas", ax)]:
+        for c, x in [(c, sp[sp.condition == c]) for c in PCONDS] + [("u_pas", ax)]:
             x = x.reset_index(drop=True)
             dd = plan_i.loc[x.row.to_numpy(), ["item_id", "cond", "base", "donor_pair"]].reset_index(drop=True)
             for col in ("item_id", "cond", "donor_pair"):
@@ -120,10 +159,8 @@ def main(args):
             vI, mI = cells(dd[dd.cond == "I"], pair_ix, ctx_ix, qix, len(qs), RD)
             assert (mT == mI).all(), "T and I cells not paired"
             S[c] = summarize(pair_values(vT - vI, mT, bt.wc, bt.donor_weights("das", len(qs))), wp, pix)
-        dl = delta_s(root, s)
-        stored = pd.read_csv(root / STORED_PASSIVE[s] / "transfer_summary.csv")
-        stored = stored[(stored.site == s) & (stored.population == "primary (plain)") & (stored.band == "all")
-                        & (stored.condition == "D_bad")].set_index("readout")
+        dl = delta_for(root, s, args.primary_site, sdirs)
+        stored = stored_summary(s, sdirs)
         gate["passive_D_full"][str(s)] = {}
         for r, rd in enumerate(RD):
             row = {"site": s, "readout": rd, "delta_s": dl}
@@ -132,11 +169,11 @@ def main(args):
                 row.update({f"{c}_{k}": v for k, v in cc.items()})
                 row[f"class_{c}"] = classify(cc, dl) if rd in ("O", "by", "dot") else ""
             with np.errstate(divide="ignore", invalid="ignore"):
-                for c in ("on", "off", "u_pas"):
+                for c in ("on", "off", "u_pas") + (("umd",) if umd else ()):
                     row.update({f"share_{c}_{k}": v for k, v in ci(S[c][:, r] / S["full"][:, r]).items()})
             row.update({f"additivity_{k}": v for k, v in ci(S["full"][:, r] - S["on"][:, r] - S["off"][:, r]).items()})
             P_rows.append(row)
-            if rd in ("O", "by") and not smoke:
+            if rd in ("O", "by") and not smoke and stored is not None:
                 dv = abs(row["full_est"] - stored.loc[rd, "est"])
                 gate["passive_D_full"][str(s)][rd] = {"full": row["full_est"], "stored": float(stored.loc[rd, "est"]),
                                                       "abs_diff": float(dv), "pass": bool(dv <= 0.02)}
@@ -148,7 +185,41 @@ def main(args):
 
     # declared readings, A
     reading = {}
-    if 12 in sites:
+    # generic readings (reports/split_edit_replication_rules.md): outcome per site and condition, R-A1 / R-A2, S1, T1
+    oc = {}
+    for c in ("full", "on") + (("umd",) if umd else ()) + ("u_pas",):
+        oc[c] = {}
+        for s in sites:
+            r_o = PS[(PS.site == s) & (PS.readout == "O")].iloc[0]
+            r_b = PS[(PS.site == s) & (PS.readout == "by")].iloc[0]
+            oc[c][s] = outcome(r_o[f"class_{c}"], r_b[f"class_{c}"])
+    reading["outcomes"] = {c: {str(s): v for s, v in d_.items()} for c, d_ in oc.items()}
+    ra1, ra2 = {}, {}
+    for s in sites:
+        r_o = PS[(PS.site == s) & (PS.readout == "O")].iloc[0]
+        r_b = PS[(PS.site == s) & (PS.readout == "by")].iloc[0]
+        if r_o.class_full == "RISE":
+            ra1[str(s)] = {"off_share_O": float(r_o.share_off_est), "class_on_O": r_o.class_on,
+                           "held": bool(r_o.share_off_est >= 0.5 and r_o.class_on != "RISE")}
+        if r_b.class_full == "RISE":
+            ra2[str(s)] = {"on_share_by": float(r_b.share_on_est), "held": bool(r_b.share_on_est >= 0.5)}
+    reading["R-A1"] = {"sites": ra1, "held_all": bool(ra1) and all(v["held"] for v in ra1.values()),
+                       "held_n": f"{sum(v['held'] for v in ra1.values())} / {len(ra1)}"}
+    reading["R-A2"] = {"sites": ra2, "held_all": bool(ra2) and all(v["held"] for v in ra2.values()),
+                       "held_n": f"{sum(v['held'] for v in ra2.values())} / {len(ra2)}"}
+    s1 = {}
+    for c, d_ in oc.items():
+        ab = [s for s, v in d_.items() if v.startswith("abstract")]
+        su = [s for s, v in d_.items() if v.startswith("surface")]
+        s1[c] = {"abstract": ab, "surface": su, "pass": bool(ab) and (not su or max(ab) < min(su))}
+    reading["S1"] = s1
+    if args.rule_sites:
+        rs = [int(x) for x in args.rule_sites.split(",")]
+        reading["T1"] = {c: {"by_class": {str(s): PS[(PS.site == s) & (PS.readout == "by")].iloc[0][f"class_{c}"]
+                                          for s in rs if s in sites}} for c in oc}
+        for c in oc:
+            reading["T1"][c]["pass"] = all(v == "RISE" for v in reading["T1"][c]["by_class"].values())
+    if args.legacy_readings and 12 in sites:
         o12 = PS[(PS.site == 12) & (PS.readout == "O")].iloc[0]
         reading["A1"] = {"off_share_O_12": o12.share_off_est, "class_on_O_12": o12.class_on,
                          "held": bool(o12.share_off_est >= 0.5 and o12.class_on != "RISE"),
@@ -156,8 +227,9 @@ def main(args):
         reading["decision"] = ("redraw staging with the on-axis piece / u_md; v as upper bound" if reading["A1"]["held"]
                                else "keep staging drawn with v" if o12.share_on_est >= 0.5 else
                                "between: report both curves")
-    a2 = {int(s): float(PS[(PS.site == s) & (PS.readout == "by")].share_on_est.iloc[0]) for s in sites if s <= 12}
-    reading["A2"] = {"on_share_by": a2, "held": bool(all(v >= 0.5 for v in a2.values()))}
+    if args.legacy_readings:
+        a2 = {int(s): float(PS[(PS.site == s) & (PS.readout == "by")].share_on_est.iloc[0]) for s in sites if s <= 12}
+        reading["A2"] = {"on_share_by": a2, "held": bool(all(v >= 0.5 for v in a2.values()))}
 
     # ================================================================ B. frame invariance
     z = np.load(res / "class_states.npz", allow_pickle=True)
@@ -166,10 +238,13 @@ def main(args):
     nS = pm.shape[1]
     u_pas, u_act = md(pm, pc), md(am, ac)
     cos_ap = (u_pas * u_act).sum(-1)
-    lin = np.load(args.leace_insample)
-    edit = unit_rows(lin["single_edit"][0].astype(np.float64))
-    b0 = np.abs((edit[:nS] * u_pas).sum(-1))
-    gate["B0"] = {"min_abs_cos": float(b0.min()), "pass": bool(b0.min() >= 0.98)}
+    if args.leace_insample and Path(args.leace_insample).exists():
+        lin = np.load(args.leace_insample)
+        edit = unit_rows(lin["single_edit"][0].astype(np.float64))
+        b0 = np.abs((edit[:nS] * u_pas).sum(-1))
+        gate["B0"] = {"min_abs_cos": float(b0.min()), "pass": bool(b0.min() >= 0.98)}
+    else:
+        b0 = np.full(nS, np.nan)
 
     def halves(pair, cls, mean, n_draw, seed):
         ps = np.array(sorted(set(pair)))
@@ -215,9 +290,11 @@ def main(args):
     BS.to_csv(res / "summary_frame.csv", index=False)
     reading["B1"] = {"held": bool((BS.cos_act_pas > BS.flip_p975).all()),
                      "sites_failing": BS[~(BS.cos_act_pas > BS.flip_p975)].site.tolist()}
+    fis = [int(x) for x in args.fi_sites.split(",")]
     reading["B2"] = {str(s): {"cos": float(BS.cos_act_pas[s]), "split_half_pas": float(BS.split_half_pas[s]),
-                              "below": bool(BS.cos_act_pas[s] < BS.split_half_pas[s])} for s in (8, 12) if s < nS}
-    fi = {s: float(BS.FI[s]) for s in (8, 12) if s < nS}
+                              "below": bool(BS.cos_act_pas[s] < BS.split_half_pas[s])} for s in fis if s < nS}
+    reading["FI_all"] = {str(s): (None if np.isnan(BS.FI[s]) else round(float(BS.FI[s]), 3)) for s in range(nS)}
+    fi = {s: float(BS.FI[s]) for s in fis if s < nS}
     reading["FI"] = {"values": fi, "decision": ("low: 'one direction every construction reads'"
                                                 if all(v < 0.5 for v in fi.values()) else
                                                 "'one feature' stands" if all(v >= 0.5 for v in fi.values())
@@ -263,9 +340,9 @@ def main(args):
 
     # ================================================================ report
     yn = lambda b: "pass" if b else "FAIL"
-    Lr = ["# Split-edit test, frame invariance and side splits (Pythia-1.4B)", "",
-          "Rules, declared and committed before running: `split_edit_plan.md`. Run: `run_split_edit.py` "
-          f"({args.run_label}); tables: `analyze_split_edit.py`; outputs `results/pythia/split_edit/`." +
+    Lr = [f"# Split-edit test, frame invariance and side splits ({args.model_label})", "",
+          f"Rules, declared and committed before running: `{args.rules}`. Run: `run_split_edit.py` "
+          f"({args.run_label}); tables: `analyze_split_edit.py`; outputs `{args.results.replace('../', '')}/`." +
           (" **Smoke run: numbers are not the declared ones.**" if smoke else ""), "", "## Checks", "",
           "| Site | full: active IIA vs stored (max abs diff) | full: passive D(O) / D(by) vs stored | write = read "
           "max abs dM | a·u + w = v max err | max abs w·u | u vs direction check max abs |", "|---:|---|---|---:|---:|---:|---:|"]
@@ -277,18 +354,25 @@ def main(args):
                          if r in gp) or "n/a"
         Lr.append(f"| {s} | {gi['max_abs_diff']:.4f} ({yn(gi['pass'])}) | {pdx} | {ck['write_eq_read_max_abs_dM']:.2g} | "
                   f"{ck['decomp_max_err']:.1e} | {ck['w_dot_u_max']:.1e} | {ck.get('u_vs_dirchk_max_abs', float('nan')):.1e} |")
-    Lr += ["", f"B0: min over sites 0–{nS - 1} of |cos(u_pas, LEACE in-sample edit)| = {gate['B0']['min_abs_cos']:.4f} "
-           f"({yn(gate['B0']['pass'])}; threshold 0.98). LEACE items: {checks['leace_items']}. C fits: {checks['c_fit']}.",
+    b0s = (f"B0: min over sites 0–{nS - 1} of |cos(u_pas, LEACE in-sample edit)| = {gate['B0']['min_abs_cos']:.4f} "
+           f"({yn(gate['B0']['pass'])}; threshold 0.98)." if "B0" in gate else "B0: no LEACE run for this model.")
+    Lr += ["", f"{b0s} LEACE items: {checks['leace_items']}. C fits: {checks['c_fit']}.",
            "", "## A. Split edit", "", "### Passives (primary population, bad bases, D = T donor − I donor)", "",
            "95% CI: three-way cluster bootstrap (2,000 draws, seed 17); shares per draw on shared draws. Class: the "
            "declared passive-test rule with the site's δ_s.", "",
-           "| Site | Readout | D full | class | D on | class | D off | class | on / full | off / full | full − on − off |",
-           "|---:|---|---|---|---|---|---|---|---|---|---|"]
+           "| Site | Readout | D full | class | D on | class | D off | class | on / full | off / full | full − on − off |"
+           + (" D u_md | class | u_md / full |" if umd else ""),
+           "|---:|---|---|---|---|---|---|---|---|---|---|" + ("---|---|---|" if umd else "")]
     pick = lambda r, p: {"est": r[f"{p}_est"], "lo95": r[f"{p}_lo95"], "hi95": r[f"{p}_hi95"]}
     for r in PS.to_dict("records"):
         Lr.append(f"| {r['site']} | {LAB[r['readout']]} | {f3(pick(r, 'full'))} | {r['class_full']} | "
                   f"{f3(pick(r, 'on'))} | {r['class_on']} | {f3(pick(r, 'off'))} | {r['class_off']} | "
-                  f"{f3(pick(r, 'share_on'), 2)} | {f3(pick(r, 'share_off'), 2)} | {f3(pick(r, 'additivity'))} |")
+                  f"{f3(pick(r, 'share_on'), 2)} | {f3(pick(r, 'share_off'), 2)} | {f3(pick(r, 'additivity'))} |"
+                  + (f" {f3(pick(r, 'umd'))} | {r['class_umd']} | {f3(pick(r, 'share_umd'), 2)} |" if umd else ""))
+    Lr += ["", "### Passive outcome per site and condition", "",
+           "| Site | " + " | ".join(oc) + " |", "|---:|" + "---|" * len(oc)]
+    for s in sites:
+        Lr.append(f"| {s} | " + " | ".join(oc[c][s] for c in oc) + " |")
     Lr += ["", "### Held-out actives", "", "IIA: cross-class held-out IIA, mean [min, max] over the 15 bases. Δ log P(O): "
            "I base ← T source, mean over pairs, 95% CI over pairs (2,000 draws, seed 0); share = condition / full per draw.",
            "", "| Site | Condition | IIA | same-class IIA | Δ log P(O) | share of full |", "|---:|---|---|---:|---|---|"]
@@ -366,4 +450,14 @@ if __name__ == "__main__":
     ap.add_argument("--n-flip", type=int, default=1000)
     ap.add_argument("--seed", type=int, default=17)
     ap.add_argument("--run-label", default="TSUBAME")
+    ap.add_argument("--model-label", default="Pythia-1.4B")
+    ap.add_argument("--rules", default="split_edit_plan.md")
+    ap.add_argument("--primary-site", type=int, default=17)
+    ap.add_argument("--stored-passive", default="passive_test,passive_test_fill",
+                    help="comma list of dirs (relative to --root unless absolute) holding transfer_summary.csv "
+                         "and deltas.json for the stored v passive test")
+    ap.add_argument("--rule-sites", default="", help="declared 0.8 / 0.9 rule sites, for the T1 reading per condition")
+    ap.add_argument("--fi-sites", default="8,12", help="sites of the FI decision")
+    ap.add_argument("--legacy-readings", action=argparse.BooleanOptionalAction, default=True,
+                    help="Pythia's A1 (site 12) and A2 (sites <= 12) readings")
     main(ap.parse_args())
