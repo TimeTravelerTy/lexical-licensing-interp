@@ -41,6 +41,11 @@ Pythia's v transfer also has sites 10, 14 and 16. u was not stored there, so the
   `results/pythia/das_direction_check/summary_active_patching.csv` (u_md). Same classifier, stored CIs. L margins are
   natural-gap based and do not change. Reason: u_md pushes less than v on actives (0.35–0.76 of v's D(O)), so the
   primary margin holds it to v's effect size. This reading is now declared, not post hoc.
+- **Amendment (2026-11-17, after the Codex review of the split edit, before any full run or reading of smoke
+  numbers):** the own-effect margin treats u_md's active effect as exact, which made one split-edit reading hinge on
+  0.0004 nats. So an own-effect RISE counts only if it holds with δ_u taken from the upper 95% bound of u_md's active
+  D(O) (conservative). Classes at the point estimate and at multipliers 0.15 and 0.25 are reported as sensitivity.
+  The primary margin is unchanged.
 
 ## Confirmatory readings
 

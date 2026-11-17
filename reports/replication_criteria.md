@@ -16,8 +16,8 @@ sites never count.
 | T2 OR and TC D(O) RISE at both rule sites | **pass** | **pass** | **pass** |
 | T3 filler-gap licensing-like, in range, at a declared site | **pass** (matrix, 8) | **fail** | **pass** (embedded and matrix, 9) |
 | S1 staging with v | **pass** | **pass** (no surface site to 58% depth) | **pass** |
-| S1 staging with the split-edit on-axis piece | **pass** (abstract 6, 8, 12; surface 17) | **fail** (no abstract site) | **fail** (no abstract site) |
-| S1 staging with u_md | **pass** (abstract 4–12; surface 17) | **pass** (abstract 0; surface 6–10, 13) | **fail** (no abstract site) |
+| S1 staging with the split-edit on-axis piece | **pass** (abstract 6, 8, 12; surface 17; sampled 4, 6, 8, 12, 17) | **fail** (no abstract site) | **fail** (no abstract site) |
+| S1 staging with u_md | **pass** (abstract 4, 6, 8, 12; surface 17) | **pass**, thin (abstract only at 0; surface 6–10, 13) | **fail** (no abstract site) |
 | T1 with the on-axis piece | **pass** | **fail** (NO RISE at 5 and 8) | **fail** (NO RISE at 9 and 11) |
 | T1 with u_md | **pass** | **fail** (unresolved at 5 and 8) | **fail** (NO RISE at 9 and 11) |
 | R-A1 off-axis carries v's object push (rule sites) | held (Pythia A1) | **held** (10 / 12 RISE sites) | **not held** (2 / 11) |
@@ -118,35 +118,56 @@ Gemma's run drops one pair (transplant/ensue), as in its stored passive test.
 
 ### What the curves show
 
-- **Gemma: the object push rides on w, as in Pythia (R-A1 held).** The off-axis share of v's D(O) is 0.72–0.84 at
-  every RISE site, and on-axis O is NO RISE through site 11. Unlike Pythia, w also carries much of *by*: the on-axis
-  share of D(by) is 0.16–0.54 (R-A2 not held). Gemma's v is less aligned with u (|a| ≈ 0.4–0.7), so the on-axis piece
-  is small. u_md moves *by* by +0.36 to +0.50 at every site 1–10 (0.65–0.96 of v's), but straddles δ at the rule sites.
-- **OLMo: the class axis itself predicts the object from site 7–8 (R-A1 not held).** On-axis and u_md D(O) are RISE
-  from 8 and 7, and the off-axis share of O is only ≈ 0.5. So OLMo's surface behaviour is not mainly an off-axis
-  artefact, unlike Pythia's. What is off-axis is v's deep *by* FALL: v's D(by) drops from +0.43 (9) to +0.14 (11) and
-  FALL at 12–15, while u_md stays at +0.41 / +0.43 at 9 / 11 (3× v's at 11) and on-axis stays positive to 15. The
-  off-axis piece alone is −0.32 to −0.79 at 12–15.
-- **OLMo early sites (1–6): *by* leads O along the class axis.** u_md D(by) +0.22 to +0.49 vs D(O) +0.01 to +0.40, and
-  on-axis D(by) exceeds D(O) at every site 0–6. But D(by) stays under v's δ, so the declared class is NO RISE /
-  unresolved.
-- **FI.** OLMo falls from ≈ 1 at 0–3 to 0.33 at 11 and 0.10 at 15: the same shape as Pythia (≈ 1 at 0–4, 0.54 / 0.50
-  at 8 / 12), lower at the rule sites (decision "low": the paper says "one direction that every construction reads").
-  Gemma is not monotone: FI 0.17 at 5 but 0.70–0.87 at 6–9, ≈ 0 at 14–15. B1 (cos above sign-flip 97.5th pct) fails
-  at 14 / 26 Gemma sites and at 13–15 in OLMo.
+Labels: "surface" = O RISE and *by* not RISE, which includes *by* unresolved; "fails T1" means *by* missed the declared
+margin at the rule sites, not that *by* did not move (see the CIs).
+
+- **Gemma: the object push rides mostly on w, as in Pythia (R-A1 held at 5 and 8).** The off-axis share of v's D(O)
+  is 0.72–0.84 at every RISE site, and on-axis O is NO RISE through site 11. Unlike Pythia, w also carries much of
+  *by*: the on-axis share of D(by) is 0.16–0.71 (0.33 at 5, 0.61 at 8; R-A2 not held). Gemma's v is less aligned with
+  u (|a| ≈ 0.4–0.7 from the per-basis |a|), so the on-axis piece is small. u_md moves *by* by +0.36 to +0.50 at every
+  site 1–10 (0.65–0.96 of v's), but straddles δ at the rule sites. Gemma's u_md O is RISE from 6.
+- **OLMo: the object rise is not mainly off-axis (R-A1 not held at 9 and 11).** Writes along u raise O too: u_md O is
+  RISE from 7, on-axis O from 8. The off-axis share of v's O is 0.48–0.60 at 7–11 and grows with depth (0.66 at 12–13,
+  0.84–0.90 at 14–15). So both pieces raise O, with depth-dependent shares; OLMo's surface outcome is not an off-axis
+  artefact the way Pythia's site-12 O rise is. A u_md write is not shown to change only the class variable, so this is
+  a statement about the u direction, not about a pure class feature.
+- **OLMo's deep *by* FALL is mostly non-additive.** v's D(by) drops from +0.43 (9) to +0.14 (11) and FALLs at 12–15.
+  Alone, the on-axis piece stays positive (+0.07 to +0.17 at 12–15) and the off-axis piece is negative (−0.32 to
+  −0.79), but full − on − off is −0.59 to −0.91 [CIs below 0] at 12–15: most of the FALL appears only when both
+  pieces are written together. u_md (read and write u) keeps *by* at +0.41 / +0.43 at 9 / 11 (3× v's at 11) and
+  +0.18 / −0.09 / −0.06 at 12–14 (−0.33 at 15).
+- **OLMo early sites (0–6): *by* exceeds O along the class axis.** u_md D(by) +0.22 to +0.49 vs D(O) +0.01 to +0.40
+  at 1–6, and on-axis D(by) exceeds D(O) at every site 0–6. D(by) stays under v's δ, so the declared class is NO RISE
+  / unresolved.
+- **FI** (an approximate disattenuation; it exceeds 1 where split-half reliability is low, e.g. OLMo 1.51 at 0,
+  Pythia 1.69 / 1.43 at 0 / 1, so it is not a calibrated share; raw cosines and split-half reliabilities are in
+  `summary_frame.csv`). OLMo falls from 0.85–1.5 at 0–3 to 0.33 at 11 and 0.10 at 15, the shape Pythia shows (0.98–1.69 at
+  0–4, 0.54 / 0.50 at 8 / 12). Decision at OLMo's rule sites: "low". Gemma is not monotone: 0.17 at 5, 0.70–0.87 at
+  6–9, ≈ 0 at 14–15. B1 fails at 14 / 26 Gemma sites and at 13–15 in OLMo. Active and passive axes come from
+  different verb sets and frames, so the cosine is not a pure frame comparison; the "one direction every
+  construction reads" wording rests on transfer, not on FI.
 
 ### Exploratory: a margin scaled to each condition (`reports/selfscaled_passive_classes.md`)
 
 Chosen after seeing the results, so labelled exploratory. The declared δ holds the on-axis piece and u_md to v's active
-O effect, although they push less on actives too (u_md's active D(O) is 0.35–0.76 of v's). Re-classing with
-δ_c = 0.2 × the condition's own active D(O), same classifier, stored CIs (full v reproduces the declared outcomes):
+O effect, although they push less on actives too (u_md's active D(O) is 0.38–0.69 of v's in Gemma, 0.37–0.78 in OLMo,
+0.59–0.79 in Pythia). Re-classing with δ_c = 0.2 × the condition's own active D(O), same classifier, stored CIs (full v
+reproduces the declared outcomes). Pythia was sampled at 4, 6, 8, 12, 17 only.
 
 | Model | on-axis | u_md |
 |---|---|---|
-| Pythia | abstract 4–12, mixed 17 | abstract 4–12, surface 17 |
+| Pythia | abstract 4, 6, 8, 12; mixed 17 | abstract 4, 6, 8, 12; surface 17 |
 | Gemma | abstract 0–4, mixed 5–15 | abstract 0, mixed 2–15 |
 | OLMo | abstract 1–5, mixed 6–10, surface 11–15 | abstract 1–4, mixed 6–11, surface 12–15 |
 
-Under this margin, OLMo's class axis stages the way Pythia's does (abstract → mixed → surface), at shallower relative
-depth (abstract to 0.25–0.31, surface from 0.69–0.75 of depth; Pythia abstract to 0.50). u_md's *by* is RISE at both
-OLMo rule sites. This is reported as a description of OLMo's class axis, not as T1 passing.
+Caveats (Codex review, 2026-11-17, checked):
+- δ_c treats the condition's active point estimate as exact. At OLMo u_md site 11, *by* (+0.4349) clears δ_c
+  (0.4345) by 0.0004 nats; a multiplier of 0.201 instead of 0.200 makes it surface. Site 9 clears by 0.023.
+- Where a condition's active effect is tiny, δ_c is tiny (Gemma on-axis at 1: active D(O) 0.09, δ_c 0.019), which
+  makes RISE easy (and NO RISE hard). The Gemma on-axis "abstract 0–4" rests on such margins.
+- The reading is transfer relative to each condition's own active effect, not comparable absolute strength.
+
+So the OLMo statement is limited to: along u, OLMo's passive outcome goes abstract-leaning (1–4) → mixed → surface
+(12–15), losing the abstract reading earlier than Pythia (OLMo after 0.25–0.31 of depth; Pythia abstract at 0.50).
+Its first surface site under this margin (12/16 = 0.75) is not shallower than Pythia's (17/24 = 0.71). u_md *by* at
+OLMo 11 is a margin-edge case, not a RISE to report.

@@ -180,7 +180,14 @@ def main(args):
     PS = pd.DataFrame(P_rows)
     PS.to_csv(res / "summary_passive.csv", index=False)
     push = pd.read_csv(res / "push.csv")
+    # v's sign is arbitrary per basis: v -> -v flips a and w (and the separations along w) but leaves every
+    # patch unchanged. Align each basis to a >= 0 before averaging; u (T - I class mean difference) is fixed.
+    sgn = np.where(push.a < 0, -1.0, 1.0)
+    for c in ("a", "sep_act_w", "sep_pas_w"):
+        push[c] = push[c] * sgn
+    push["abs_sep_act_w"], push["abs_sep_pas_w"] = push.sep_act_w.abs(), push.sep_pas_w.abs()
     PU = push.groupby("site").mean(numeric_only=True).drop(columns=["split", "fold"]).reset_index()
+    PU["n_bases_flipped"] = pd.Series(sgn < 0).groupby(push.site.values).sum().values
     PU.to_csv(res / "summary_push.csv", index=False)
 
     # declared readings, A
@@ -203,20 +210,30 @@ def main(args):
                            "held": bool(r_o.share_off_est >= 0.5 and r_o.class_on != "RISE")}
         if r_b.class_full == "RISE":
             ra2[str(s)] = {"on_share_by": float(r_b.share_on_est), "held": bool(r_b.share_on_est >= 0.5)}
-    reading["R-A1"] = {"sites": ra1, "held_all": bool(ra1) and all(v["held"] for v in ra1.values()),
-                       "held_n": f"{sum(v['held'] for v in ra1.values())} / {len(ra1)}"}
-    reading["R-A2"] = {"sites": ra2, "held_all": bool(ra2) and all(v["held"] for v in ra2.values()),
-                       "held_n": f"{sum(v['held'] for v in ra2.values())} / {len(ra2)}"}
+    rs = [int(x) for x in args.rule_sites.split(",")] if args.rule_sites else []
+    missing = [x for x in rs if x not in sites]
+    if missing:
+        raise SystemExit(f"rule sites {missing} not in the run's sites {sites}")
+
+    def at_rule_sites(d_):
+        # declared: held if true at every rule site where the reading applies (v's class RISE there);
+        # "n/a" if it applies at no rule site
+        app = [str(x) for x in rs if str(x) in d_]
+        return "n/a" if not app else bool(all(d_[x]["held"] for x in app))
+    for name, d_ in (("R-A1", ra1), ("R-A2", ra2)):
+        reading[name] = {"sites": d_, "held_at_rule_sites": at_rule_sites(d_),
+                         "rule_sites_applicable": [x for x in rs if str(x) in d_],
+                         "held_all_applicable_sites": bool(d_) and all(v["held"] for v in d_.values()),
+                         "held_n": f"{sum(v['held'] for v in d_.values())} / {len(d_)}"}
     s1 = {}
     for c, d_ in oc.items():
         ab = [s for s, v in d_.items() if v.startswith("abstract")]
         su = [s for s, v in d_.items() if v.startswith("surface")]
         s1[c] = {"abstract": ab, "surface": su, "pass": bool(ab) and (not su or max(ab) < min(su))}
     reading["S1"] = s1
-    if args.rule_sites:
-        rs = [int(x) for x in args.rule_sites.split(",")]
+    if rs:
         reading["T1"] = {c: {"by_class": {str(s): PS[(PS.site == s) & (PS.readout == "by")].iloc[0][f"class_{c}"]
-                                          for s in rs if s in sites}} for c in oc}
+                                          for s in rs}} for c in oc}
         for c in oc:
             reading["T1"][c]["pass"] = all(v == "RISE" for v in reading["T1"][c]["by_class"].values())
     if args.legacy_readings and 12 in sites:
@@ -291,10 +308,12 @@ def main(args):
     reading["B1"] = {"held": bool((BS.cos_act_pas > BS.flip_p975).all()),
                      "sites_failing": BS[~(BS.cos_act_pas > BS.flip_p975)].site.tolist()}
     fis = [int(x) for x in args.fi_sites.split(",")]
+    if not fis or any(x >= nS or x < 0 or not np.isfinite(BS.FI[x]) for x in fis):
+        raise SystemExit(f"FI sites {fis}: each must be in 0..{nS - 1} with a finite FI")
     reading["B2"] = {str(s): {"cos": float(BS.cos_act_pas[s]), "split_half_pas": float(BS.split_half_pas[s]),
-                              "below": bool(BS.cos_act_pas[s] < BS.split_half_pas[s])} for s in fis if s < nS}
+                              "below": bool(BS.cos_act_pas[s] < BS.split_half_pas[s])} for s in fis}
     reading["FI_all"] = {str(s): (None if np.isnan(BS.FI[s]) else round(float(BS.FI[s]), 3)) for s in range(nS)}
-    fi = {s: float(BS.FI[s]) for s in fis if s < nS}
+    fi = {s: float(BS.FI[s]) for s in fis}
     reading["FI"] = {"values": fi, "decision": ("low: 'one direction every construction reads'"
                                                 if all(v < 0.5 for v in fi.values()) else
                                                 "'one feature' stands" if all(v >= 0.5 for v in fi.values())
