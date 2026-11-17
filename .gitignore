@@ -125,3 +125,14 @@ results/gemma/split_edit/class_states.npz
 results/olmo/split_edit/*_patches_site*.parquet
 results/olmo/split_edit/active_swaps.csv.gz
 results/olmo/split_edit/class_states.npz
+# u_md transfer (reports/umd_transfer_rules.md): per-row dumps stay on TSUBAME (/gs/bs lli_paper);
+# SHA-256 in each {root}/umd/large_files_sha256.txt. Committed: summaries, readings, bases_umd, D_bad draws.
+results/**/umd/**/patches_*.parquet
+results/**/umd/**/patch_tokens_site*.npz
+results/**/umd/**/projections.npz
+results/**/umd/**/natural*.parquet
+results/**/umd/**/natural*_tokens.npz
+results/**/umd/**/targets_*.parquet
+results/**/umd/**/rows.parquet
+results/**/umd/**/.rows.parquet.*
+results/**/umd/inrange/items.csv

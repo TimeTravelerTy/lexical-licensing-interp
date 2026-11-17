@@ -1,0 +1,22 @@
+{
+  "args": {
+    "mode": "natural",
+    "exp": null,
+    "data_dir": "data/round4/fillergap",
+    "out_dir": "results/das_round2/umd/fillergap",
+    "bases": "results/das_round2/umd/bases_umd.npz",
+    "folds": "results/das_round2/final_strict/pairs_folds.csv",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "float32",
+    "batch": 512,
+    "target_pool": "all",
+    "suffix": "",
+    "sites": "4,6,8,12,17"
+  },
+  "prompts": 15694,
+  "items": 14976,
+  "token_checks": "passed",
+  "bases_sha256": "e82a5a1d6bf1cc2babbc29b6760f67aabb963f5211ed71ea1c518df19d8e87cd",
+  "seconds": 15.5
+}

@@ -1,0 +1,38 @@
+{
+  "args": {
+    "passive_dir": "data/das_round2/passive_test",
+    "cons_dir": "data/constructions",
+    "folds": "results/das_round2/final_strict/pairs_folds.csv",
+    "bases": "results/das_round2/umd/bases_umd.npz",
+    "out_dir": "results/das_round2/umd/inrange",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024,
+    "sites": "4,6,8,12,17"
+  },
+  "prompts": 19978,
+  "items": {
+    "passive": 7983,
+    "OR": 1536,
+    "TC": 1536
+  },
+  "bases_sha256": "e82a5a1d6bf1cc2babbc29b6760f67aabb963f5211ed71ea1c518df19d8e87cd",
+  "checks": {
+    "4": {
+      "self_set_max_abs_dM": 0.044994354248046875
+    },
+    "6": {
+      "self_set_max_abs_dM": 0.03304481506347656
+    },
+    "8": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "12": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "17": {
+      "self_set_max_abs_dM": 0.0
+    }
+  }
+}

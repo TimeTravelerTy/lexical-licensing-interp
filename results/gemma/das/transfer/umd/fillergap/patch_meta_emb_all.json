@@ -1,0 +1,58 @@
+{
+  "args": {
+    "mode": "patch",
+    "exp": "emb",
+    "data_dir": "data/gemma/transfer/fillergap",
+    "out_dir": "results/gemma/das/transfer/umd/fillergap",
+    "bases": "results/gemma/das/transfer/umd/bases_umd.npz",
+    "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "float32",
+    "batch": 512,
+    "target_pool": "all",
+    "suffix": "_all",
+    "sites": "0,1,2,3,4,5,8,12,15"
+  },
+  "plan_rows": 41340,
+  "bases_sha256": "ad041966b71fd33039744dea67b30b7ee3a6bcdcf0ea36b0f00004d711b2334c",
+  "checks": {
+    "0": {
+      "self_set_max_abs_dM": 1.52587890625e-05,
+      "min_eligible_target_verbs": 15
+    },
+    "1": {
+      "self_set_max_abs_dM": 1.621246337890625e-05,
+      "min_eligible_target_verbs": 15
+    },
+    "2": {
+      "self_set_max_abs_dM": 1.71661376953125e-05,
+      "min_eligible_target_verbs": 15
+    },
+    "3": {
+      "self_set_max_abs_dM": 1.811981201171875e-05,
+      "min_eligible_target_verbs": 15
+    },
+    "4": {
+      "self_set_max_abs_dM": 1.71661376953125e-05,
+      "min_eligible_target_verbs": 15
+    },
+    "5": {
+      "self_set_max_abs_dM": 2.002716064453125e-05,
+      "min_eligible_target_verbs": 15
+    },
+    "8": {
+      "self_set_max_abs_dM": 2.47955322265625e-05,
+      "min_eligible_target_verbs": 15
+    },
+    "12": {
+      "self_set_max_abs_dM": 2.09808349609375e-05,
+      "min_eligible_target_verbs": 15
+    },
+    "15": {
+      "self_set_max_abs_dM": 1.9073486328125e-05,
+      "min_eligible_target_verbs": 15
+    }
+  },
+  "plan_content_sha256": "4fcd61e68f989fbacf17b43b2282f983f016c89c6e6026cd9b34dc997e8c987c"
+}

@@ -23,6 +23,9 @@ sites never count.
 | R-A1 off-axis carries v's object push (rule sites) | held (Pythia A1) | **held** (10 / 12 RISE sites) | **not held** (2 / 11) |
 | R-A2 on-axis carries v's *by* (rule sites) | held (Pythia A2) | **not held** (5 / 15) | n/a at rule sites; 3 / 4 elsewhere |
 | FI decision at the rule sites | mixed (0.54 / 0.50) | mixed (0.17 / 0.70) | low (0.34 / 0.33) |
+| T2 with u_md: OR and TC D(O) RISE at both rule sites | **pass** | **pass** | **pass** |
+| T2 with u_md, own-effect margin (hi95) | **pass** | **pass** | **pass** |
+| T3 with u_md: in-range licensing-like at a declared site | **fail** (mixed at 8, 12, 17) | **pass** (embedded 12, 15; matrix 15) | **pass** (embedded 9) |
 
 Paper rule: a model "replicates" the transfer claim if T1 and T2 pass. Pythia and Gemma do. OLMo does not (T1 fails),
 so the declared fallback applies: "Pythia and Gemma, with a partial third-family check". The secondary T1 instruments
@@ -171,3 +174,54 @@ So the OLMo statement is limited to: along u, OLMo's passive outcome goes abstra
 (12–15), losing the abstract reading earlier than Pythia (OLMo after 0.25–0.31 of depth; Pythia abstract at 0.50).
 Its first surface site under this margin (12/16 = 0.75) is not shallower than Pythia's (17/24 = 0.71). u_md *by* at
 OLMo 11 is a margin-edge case, not a RISE to report.
+
+## u_md transfer to OR, TC and filler-gap (rules: `reports/umd_transfer_rules.md`, declared before the run)
+
+Reports: `reports/{pythia,gemma,olmo}/umd_transfer/` (`readings.md`, `constructions.md`, `inrange.md`,
+`fillergap.md`). TSUBAME jobs 9429477–80 (runs), 9429530–2 (readings). Every check passes: the u_md bases map onto
+v's bases exactly; the natural passes (constructions, in-range, filler-gap) reproduce v's runs with max difference 0.0;
+the filler-gap `gates.json` equals v's; the re-analysed v patches reproduce the stored v D_bad(O) to 1e-15, so the
+u_md / v ratio is paired on identical bootstrap draws. Pythia was run at 4, 6, 8, 12, 17 (where u was stored).
+
+### T2: OR and TC transfer along u_md
+
+u_md moves O on OR and TC bad bases at every site in all three models (CIs above 0). D(O) is RISE against v's δ at
+both rule sites everywhere, and also against the own-effect margin taken at its upper bound.
+
+| Model | Site | OR: u_md D(O) | u_md / v | TC: u_md D(O) | u_md / v |
+|---|---:|---|---|---|---|
+| Pythia | 8 | +0.93 [+0.78, +1.09] RISE | 0.66 [0.62, 0.70] | +0.52 [+0.41, +0.65] RISE | 0.57 [0.50, 0.62] |
+| Pythia | 12 | +1.38 [+1.21, +1.56] RISE | 0.52 [0.48, 0.56] | +0.81 [+0.68, +0.96] RISE | 0.40 [0.35, 0.44] |
+| Gemma | 5 | +0.68 [+0.37, +0.99] RISE | 0.30 [0.17, 0.42] | +0.56 [+0.35, +0.78] RISE | 0.49 [0.33, 0.65] |
+| Gemma | 8 | +0.78 [+0.56, +1.02] RISE | 0.47 [0.36, 0.58] | +0.70 [+0.52, +0.88] RISE | 0.54 [0.42, 0.66] |
+| OLMo | 9 | +1.34 [+1.17, +1.52] RISE | 0.75 [0.72, 0.79] | +1.17 [+1.03, +1.32] RISE | 0.72 [0.69, 0.76] |
+| OLMo | 11 | +1.66 [+1.48, +1.85] RISE | 0.64 [0.61, 0.66] | +1.43 [+1.28, +1.60] RISE | 0.64 [0.61, 0.67] |
+
+Over all sites the ratio is 0.40–0.84 (Pythia), 0.30–1.10 (Gemma), 0.64–0.82 (OLMo), in the range of u_md's own
+active ratio to v (0.59–0.79, 0.38–0.69, 0.37–0.78). So the training-free class direction carries the OR / TC
+transfer at about the strength it has on actives. Outside the rule sites, TC is weaker: Pythia TC at 4 and 6 and Gemma
+TC at 0–4 are NO RISE / unresolved against v's δ (positive CIs). Against the own-effect margin, Gemma TC at 1–4
+becomes RISE; Pythia TC at 4 (unresolved) and 6 (NO RISE) and Gemma TC at 0 (unresolved) do not.
+
+### T3: filler-gap along u_md
+
+| Model | v (in range, declared sites) | u_md (in range, declared sites) |
+|---|---|---|
+| Pythia | matrix licensing-like at 8 | mixed / unresolved at 8, 12, 17 (both experiments) |
+| Gemma | none | embedded licensing-like at 12, 15; matrix at 15 |
+| OLMo | embedded and matrix at 9 | embedded at 9 |
+
+The flips follow from push size against a two-sided rule, not from a different mechanism. "Licensing-like" needs the
+unfilled frame's end punctuation to FALL against v's δ (a floor) and the filled frame's O level to stay not above T's
+(a ceiling). u_md pushes less than v:
+- Pythia: u_md's unfilled "." drop is −0.17 / −0.20 at 8 (NO RISE; v −0.71 FALL), so the floor fails.
+- Gemma: v's filled O level is above T at 5 (embedded) and at 5 and 8 (matrix), so v reads surface there; u_md
+  stays under the ceiling, and its "." drop is FALL at 12 and 15, so the reading becomes licensing-like.
+Report T3 per instrument, with this explanation, and do not read the u_md flips as evidence for or against licensing.
+
+### In-range profile (passive, OR, TC; `inrange.md`)
+
+u_md mostly does not reproduce the natural good − bad profile in range: signs match almost everywhere, but its
+effects are mostly 0.1–0.7 of the natural gap (outside the declared [0.5, 1.5]). Exceptions that reproduce
+it: Gemma passive at 8 and 12 and TC at 8. OLMo's passive O sign fails at every site (u_md raises O on in-range
+passives), consistent with u_md's passive O RISE from site 7 in the split edit.

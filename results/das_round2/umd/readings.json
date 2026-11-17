@@ -1,0 +1,21 @@
+{
+ "T2_umd_primary": true,
+ "T2_umd_own_hi95": true,
+ "T2_umd_own_point": true,
+ "T2_v": true,
+ "T3_umd": {
+  "in_range": {
+   "emb|8": "mixed / unresolved",
+   "emb|12": "mixed / unresolved",
+   "emb|17": "mixed / unresolved",
+   "mat|8": "mixed / unresolved",
+   "mat|12": "mixed / unresolved",
+   "mat|17": "mixed / unresolved"
+  },
+  "pass": false
+ },
+ "checks": {
+  "max_v_draws_vs_stored": 8.881784197001252e-16,
+  "max_umd_draws_vs_summary": 4.440892098500626e-16
+ }
+}

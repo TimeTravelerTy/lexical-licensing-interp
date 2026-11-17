@@ -1,0 +1,50 @@
+{
+  "args": {
+    "passive_dir": "data/gemma/transfer/passive_test",
+    "cons_dir": "data/gemma/transfer/constructions",
+    "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv",
+    "bases": "results/gemma/das/transfer/umd/bases_umd.npz",
+    "out_dir": "results/gemma/das/transfer/umd/inrange",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 512,
+    "sites": "0,1,2,3,4,5,8,12,15"
+  },
+  "prompts": 19978,
+  "items": {
+    "passive": 7983,
+    "OR": 1536,
+    "TC": 1536
+  },
+  "bases_sha256": "ad041966b71fd33039744dea67b30b7ee3a6bcdcf0ea36b0f00004d711b2334c",
+  "checks": {
+    "0": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "1": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "2": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "3": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "4": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "5": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "8": {
+      "self_set_max_abs_dM": 0.0
+    },
+    "12": {
+      "self_set_max_abs_dM": 0.004799842834472656
+    },
+    "15": {
+      "self_set_max_abs_dM": 0.0
+    }
+  }
+}
