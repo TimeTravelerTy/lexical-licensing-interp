@@ -136,3 +136,4 @@ results/**/umd/**/targets_*.parquet
 results/**/umd/**/rows.parquet
 results/**/umd/**/.rows.parquet.*
 results/**/umd/inrange/items.csv
+results/pythia/leace_crossframe*/items_*.csv.gz
