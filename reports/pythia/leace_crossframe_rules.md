@@ -164,3 +164,7 @@ The sha256 of the new per-prompt files and erasers is recorded.
 - mean edit norm per erased site;
 - the passive class-mean difference per fold (A-cf) and pooled (scrub rows compare with the natural difference at
   the site, not before vs after the local eraser).
+
+## Result (2026-11-18, job 9438425, commit 665dabf)
+
+Report: `reports/pythia/leace_crossframe.md`. All checks pass. Both pairings and both variants read **majority transfer**, with the flag "translation alone removes part of the gap" (shift-only removes 0.02–0.03). A-cf vs P-cf (c): share remaining 0.66 [0.47, 0.76] vs 0.59, ρ 0.81 [0.73, 0.90]. The paper wording and the known centering mismatch of the stored P-cf reference are in `docs/paper_plan.md`, Settled 13.
