@@ -20,8 +20,12 @@ the format of `bases_rank1.npz` and checks that each stored v equals the transfe
 ## Runs
 
 The same runners, items, plans, folds and patch procedure as the v transfer runs, with `--bases bases_umd.npz`.
-Outputs go to `{root}/umd/{constructions,inrange,fillergap}`. The natural passes are recomputed (constructions,
-in-range) or copied from v's run (filler-gap: natural.parquet and the gate files, so the kept verbs are the same).
+Outputs go to `{root}/umd/{constructions,inrange,fillergap}`. The natural passes are recomputed. For filler-gap this
+is needed, not just a check: the in-range targets come from each verb's projection onto the direction, stored by the
+natural stage. The filler-gap gates are recomputed with `analyze_fillergap_r5.py gates`: the natural gate and kept
+verbs depend on readouts only and must equal v's (`gates.json` compared byte for byte); the B7 base-form gate is
+along the direction, so it is read along u. (Procedure corrected 2026-11-17 after the first smoke run, which tried
+to reuse v's projections and stopped at the runner's bases-hash check; no result was read.)
 
 | | Pythia-1.4B | Gemma-3-1B | OLMo-2-1B |
 |---|---|---|---|
@@ -51,7 +55,7 @@ Pythia's v transfer also has sites 10, 14 and 16. u was not stored there, so the
 
 - **T2-umd.** OR and TC D(O) (T − I donors, bad bases) classed RISE at both rule sites, primary margin.
   Also read with the own-effect margin.
-- **T3-umd.** Gates pass (they are v's gates, copied), and the in-range filler-gap patch along u_md is classed
+- **T3-umd.** The natural gate passes (it equals v's), the base-form gate is read along u (as for v, a matrix-wh reading at a site that fails it is "inconclusive"), and the in-range filler-gap patch along u_md is classed
   licensing-like at one or more of the model's declared sites (Pythia 8, 12, 17; Gemma 5, 8, 12, 15; OLMo 9, 11,
   12, 13).
 - **Ratio.** u_md / v for D(O) per construction and site, with a paired bootstrap CI where both are on the same
@@ -66,8 +70,8 @@ Pythia's v transfer also has sites 10, 14 and 16. u was not stored there, so the
 
 - The u_md bases file passes the mapping and unit-norm checks (above). Its SHA-256 is recorded.
 - The natural passes reproduce v's runs exactly (same model, items, dtype): max abs difference of every natural
-  readout ≤ 1e-6 (constructions, in-range).
-- The filler-gap natural files and gates are byte-identical copies of v's.
+  readout ≤ 1e-6 (constructions, in-range, filler-gap).
+- The filler-gap natural readouts reproduce v's (≤ 1e-6) and `gates.json` equals v's byte for byte.
 
 ## Outputs
 

@@ -1,6 +1,6 @@
 # Split-edit test, frame invariance and side splits (Pythia-1.4B)
 
-Rules, declared and committed before running: `split_edit_plan.md`. Run: `run_split_edit.py` (TSUBAME job 9415559, commit fc75e1b); tables: `analyze_split_edit.py`; outputs `results/pythia/split_edit/`.
+Rules, declared and committed before running: `split_edit_plan.md`. Run: `run_split_edit.py` (TSUBAME job 9415559, commit fc75e1b (run); re-analysis job 9429272, commit fb0ea5d); tables: `analyze_split_edit.py`; outputs `results/pythia/split_edit/`.
 
 ## Checks
 
@@ -43,6 +43,16 @@ B0: min over sites 0–23 of |cos(u_pas, LEACE in-sample edit)| = 0.9984 (pass; 
 | 17 | log P(" by") | -0.929 [-1.096, -0.763] | FALL | 0.335 [0.287, 0.385] | NO RISE | -0.403 [-0.471, -0.333] | NO RISE | -0.36 [-0.45, -0.29] | 0.43 [0.38, 0.49] | -0.861 [-0.998, -0.732] |
 | 17 | log P(".") | -1.994 [-2.221, -1.761] | FALL | -0.286 [-0.338, -0.237] | NO RISE | -0.793 [-0.887, -0.698] | FALL | 0.14 [0.12, 0.16] | 0.40 [0.37, 0.42] | -0.915 [-1.055, -0.782] |
 
+### Passive outcome per site and condition
+
+| Site | full | on | u_pas |
+|---:|---|---|---|
+| 4 | abstract (takes an object) | unresolved | nothing moves (active-specific) |
+| 6 | abstract (takes an object) | abstract (takes an object) | nothing moves (active-specific) |
+| 8 | abstract (takes an object) | abstract (takes an object) | nothing moves (active-specific) |
+| 12 | mixed | abstract (takes an object) | nothing moves (active-specific) |
+| 17 | surface (object next) | surface (object next) | nothing moves (active-specific) |
+
 ### Held-out actives
 
 IIA: cross-class held-out IIA, mean [min, max] over the 15 bases. Δ log P(O): I base ← T source, mean over pairs, 95% CI over pairs (2,000 draws, seed 0); share = condition / full per draw.
@@ -84,8 +94,8 @@ a = v·u, b = ‖w‖. Push: median over rows of |δ·a| / sd(h·u) (on) and |δ
 | 4 | 0.830 | 0.558 | 1.00 | 2.23 | 0.68 | 1.18 | 1.52 | 0.46 | 6.24 | 0.22 | 2.45 | 1.06 |
 | 6 | 0.834 | 0.551 | 1.11 | 2.80 | 0.88 | 1.37 | 2.12 | 0.50 | 6.37 | 0.18 | 2.95 | 0.68 |
 | 8 | 0.829 | 0.559 | 1.13 | 2.80 | 0.90 | 1.49 | 2.26 | 0.51 | 6.27 | 0.16 | 2.45 | 0.51 |
-| 12 | 0.271 | 0.584 | 1.14 | 4.09 | 0.99 | 1.49 | 2.92 | 0.58 | 7.47 | 0.03 | 2.75 | 0.05 |
-| 17 | -0.459 | 0.643 | 1.04 | 4.43 | 0.99 | 1.83 | 2.30 | 0.51 | 6.69 | -0.06 | 1.71 | 0.16 |
+| 12 | 0.812 | 0.584 | 1.14 | 4.09 | 0.99 | 1.49 | 2.92 | 0.58 | 7.47 | 0.18 | 2.75 | 0.19 |
+| 17 | 0.766 | 0.643 | 1.04 | 4.43 | 0.99 | 1.83 | 2.30 | 0.51 | 6.69 | 0.12 | 1.71 | -0.28 |
 
 ## B. Frame invariance of the class axis
 
@@ -174,6 +184,128 @@ Gap G = good − bad log P(" by"), pair means. Bad-side share = (bad after − b
 
 ```
 {
+  "outcomes": {
+    "full": {
+      "4": "abstract (takes an object)",
+      "6": "abstract (takes an object)",
+      "8": "abstract (takes an object)",
+      "12": "mixed",
+      "17": "surface (object next)"
+    },
+    "on": {
+      "4": "unresolved",
+      "6": "abstract (takes an object)",
+      "8": "abstract (takes an object)",
+      "12": "abstract (takes an object)",
+      "17": "surface (object next)"
+    },
+    "u_pas": {
+      "4": "nothing moves (active-specific)",
+      "6": "nothing moves (active-specific)",
+      "8": "nothing moves (active-specific)",
+      "12": "nothing moves (active-specific)",
+      "17": "nothing moves (active-specific)"
+    }
+  },
+  "R-A1": {
+    "sites": {
+      "12": {
+        "off_share_O": 0.6695101857185364,
+        "class_on_O": "NO RISE",
+        "held": true
+      },
+      "17": {
+        "off_share_O": 0.652797281742096,
+        "class_on_O": "RISE",
+        "held": false
+      }
+    },
+    "held_at_rule_sites": true,
+    "rule_sites_applicable": [
+      12
+    ],
+    "held_all_applicable_sites": false,
+    "held_n": "1 / 2"
+  },
+  "R-A2": {
+    "sites": {
+      "4": {
+        "on_share_by": 0.6577816009521484,
+        "held": true
+      },
+      "6": {
+        "on_share_by": 0.7584556341171265,
+        "held": true
+      },
+      "8": {
+        "on_share_by": 0.7067690491676331,
+        "held": true
+      },
+      "12": {
+        "on_share_by": 0.7965239882469177,
+        "held": true
+      }
+    },
+    "held_at_rule_sites": true,
+    "rule_sites_applicable": [
+      8,
+      12
+    ],
+    "held_all_applicable_sites": true,
+    "held_n": "4 / 4"
+  },
+  "S1": {
+    "full": {
+      "abstract": [
+        4,
+        6,
+        8
+      ],
+      "surface": [
+        17
+      ],
+      "pass": true
+    },
+    "on": {
+      "abstract": [
+        6,
+        8,
+        12
+      ],
+      "surface": [
+        17
+      ],
+      "pass": true
+    },
+    "u_pas": {
+      "abstract": [],
+      "surface": [],
+      "pass": false
+    }
+  },
+  "T1": {
+    "full": {
+      "by_class": {
+        "8": "RISE",
+        "12": "RISE"
+      },
+      "pass": true
+    },
+    "on": {
+      "by_class": {
+        "8": "RISE",
+        "12": "RISE"
+      },
+      "pass": true
+    },
+    "u_pas": {
+      "by_class": {
+        "8": "NO RISE",
+        "12": "NO RISE"
+      },
+      "pass": false
+    }
+  },
   "A1": {
     "off_share_O_12": 0.6695101857185364,
     "class_on_O_12": "NO RISE",
@@ -205,6 +337,32 @@ Gap G = good − bad log P(" by"), pair means. Bad-side share = (bad after − b
       "split_half_pas": 0.8214733809008372,
       "below": true
     }
+  },
+  "FI_all": {
+    "0": 1.688,
+    "1": 1.432,
+    "2": 1.155,
+    "3": 0.981,
+    "4": 1.01,
+    "5": 0.848,
+    "6": 0.777,
+    "7": 0.684,
+    "8": 0.543,
+    "9": 0.606,
+    "10": 0.54,
+    "11": 0.537,
+    "12": 0.497,
+    "13": 0.485,
+    "14": 0.461,
+    "15": 0.447,
+    "16": 0.419,
+    "17": 0.373,
+    "18": 0.358,
+    "19": 0.343,
+    "20": 0.347,
+    "21": 0.341,
+    "22": 0.317,
+    "23": 0.296
   },
   "FI": {
     "values": {

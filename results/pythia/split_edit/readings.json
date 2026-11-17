@@ -1,4 +1,126 @@
 {
+  "outcomes": {
+    "full": {
+      "4": "abstract (takes an object)",
+      "6": "abstract (takes an object)",
+      "8": "abstract (takes an object)",
+      "12": "mixed",
+      "17": "surface (object next)"
+    },
+    "on": {
+      "4": "unresolved",
+      "6": "abstract (takes an object)",
+      "8": "abstract (takes an object)",
+      "12": "abstract (takes an object)",
+      "17": "surface (object next)"
+    },
+    "u_pas": {
+      "4": "nothing moves (active-specific)",
+      "6": "nothing moves (active-specific)",
+      "8": "nothing moves (active-specific)",
+      "12": "nothing moves (active-specific)",
+      "17": "nothing moves (active-specific)"
+    }
+  },
+  "R-A1": {
+    "sites": {
+      "12": {
+        "off_share_O": 0.6695101857185364,
+        "class_on_O": "NO RISE",
+        "held": true
+      },
+      "17": {
+        "off_share_O": 0.652797281742096,
+        "class_on_O": "RISE",
+        "held": false
+      }
+    },
+    "held_at_rule_sites": true,
+    "rule_sites_applicable": [
+      12
+    ],
+    "held_all_applicable_sites": false,
+    "held_n": "1 / 2"
+  },
+  "R-A2": {
+    "sites": {
+      "4": {
+        "on_share_by": 0.6577816009521484,
+        "held": true
+      },
+      "6": {
+        "on_share_by": 0.7584556341171265,
+        "held": true
+      },
+      "8": {
+        "on_share_by": 0.7067690491676331,
+        "held": true
+      },
+      "12": {
+        "on_share_by": 0.7965239882469177,
+        "held": true
+      }
+    },
+    "held_at_rule_sites": true,
+    "rule_sites_applicable": [
+      8,
+      12
+    ],
+    "held_all_applicable_sites": true,
+    "held_n": "4 / 4"
+  },
+  "S1": {
+    "full": {
+      "abstract": [
+        4,
+        6,
+        8
+      ],
+      "surface": [
+        17
+      ],
+      "pass": true
+    },
+    "on": {
+      "abstract": [
+        6,
+        8,
+        12
+      ],
+      "surface": [
+        17
+      ],
+      "pass": true
+    },
+    "u_pas": {
+      "abstract": [],
+      "surface": [],
+      "pass": false
+    }
+  },
+  "T1": {
+    "full": {
+      "by_class": {
+        "8": "RISE",
+        "12": "RISE"
+      },
+      "pass": true
+    },
+    "on": {
+      "by_class": {
+        "8": "RISE",
+        "12": "RISE"
+      },
+      "pass": true
+    },
+    "u_pas": {
+      "by_class": {
+        "8": "NO RISE",
+        "12": "NO RISE"
+      },
+      "pass": false
+    }
+  },
   "A1": {
     "off_share_O_12": 0.6695101857185364,
     "class_on_O_12": "NO RISE",
@@ -30,6 +152,32 @@
       "split_half_pas": 0.8214733809008372,
       "below": true
     }
+  },
+  "FI_all": {
+    "0": 1.688,
+    "1": 1.432,
+    "2": 1.155,
+    "3": 0.981,
+    "4": 1.01,
+    "5": 0.848,
+    "6": 0.777,
+    "7": 0.684,
+    "8": 0.543,
+    "9": 0.606,
+    "10": 0.54,
+    "11": 0.537,
+    "12": 0.497,
+    "13": 0.485,
+    "14": 0.461,
+    "15": 0.447,
+    "16": 0.419,
+    "17": 0.373,
+    "18": 0.358,
+    "19": 0.343,
+    "20": 0.347,
+    "21": 0.341,
+    "22": 0.317,
+    "23": 0.296
   },
   "FI": {
     "values": {

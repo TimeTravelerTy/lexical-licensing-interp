@@ -131,7 +131,12 @@
         "held": false
       }
     },
-    "held_all": false,
+    "held_at_rule_sites": false,
+    "rule_sites_applicable": [
+      9,
+      11
+    ],
+    "held_all_applicable_sites": false,
     "held_n": "2 / 11"
   },
   "R-A2": {
@@ -153,7 +158,9 @@
         "held": true
       }
     },
-    "held_all": false,
+    "held_at_rule_sites": "n/a",
+    "rule_sites_applicable": [],
+    "held_all_applicable_sites": false,
     "held_n": "3 / 4"
   },
   "S1": {
