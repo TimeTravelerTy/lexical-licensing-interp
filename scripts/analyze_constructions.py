@@ -43,13 +43,16 @@ def add_L(df, cons):
 
 def run(args):
     ddir, rdir = Path(args.data_dir), Path(args.out_dir)
+    idir = Path(args.input_dir) if args.input_dir else rdir  # natural / projections / patches (default: out-dir)
+    rdir.mkdir(parents=True, exist_ok=True)
+    draws = {}
     items = pd.read_csv(ddir / "items.csv")
     P = pd.read_csv(ddir / "prompts.csv")
     plan = pd.read_csv(ddir / "plan.csv.gz", dtype={c: "category" for c in ("item_id", "side", "cond", "donor_pair")})
-    nat = pd.read_parquet(rdir / "natural.parquet").set_index("pid")
+    nat = pd.read_parquet(idir / "natural.parquet").set_index("pid")
     das = pd.read_csv(Path(args.root) / "final_strict" / "items.csv")
     pf = pd.read_csv(Path(args.root) / "final_strict" / "pairs_folds.csv")
-    pz = np.load(rdir / "projections.npz")
+    pz = np.load(idir / "projections.npz")
     keys = [(int(c[1]), int(c.split("_f")[1])) for c in pz["keys"]]
     Pz = P.assign(kind=np.where(P.kind.isin(["OR", "TC", "active", "base_ref"]), "real", P.kind))
     Z, _ = z_table(Pz, pz["proj"], list(pz["sites"]), keys, das, pf)
@@ -72,7 +75,7 @@ def run(args):
             add_L(nat.loc[it.bad_prompt.map(pidx), list(BASE)].reset_index(drop=True), cons).to_numpy()
         g[R] = ng
         for site in SITES:
-            pat = pd.read_parquet(rdir / f"patches_site{site}.parquet")
+            pat = pd.read_parquet(idir / f"patches_site{site}.parquet")
             assert (pat.row.to_numpy() == plan.row.to_numpy()).all()
             pv = add_L(pat.loc[sel, list(BASE)].reset_index(drop=True), cons)
             df = df0.reset_index(drop=True).copy()
@@ -96,6 +99,9 @@ def run(args):
             pix = np.arange(len(pr))
             wp = bt.pair_weights(pr.band.to_numpy())
             S = {k: summarize(a, wp, pix) for k, a in A.items()}
+            # bootstrap draws (row 0 = point estimate) of D_bad for O and L; seeded, so two runs on the same plan
+            # share the draws and a ratio between them is paired
+            draws[f"{cons}_site{site}_D_bad"] = S["D_bad"][:, [R.index("O"), R.index("L")]].astype(np.float32)
             jL = R.index("L")
             dL = 0.2 * float(S["nat_gap"][0, jL])
             for k, s in S.items():
@@ -132,14 +138,14 @@ def run(args):
                                   "pass": auc(vg.to_numpy(), vb.to_numpy()) >= 0.8})
             print(f"{cons} site {site} done", flush=True)
         # tokens driving the natural gap and the patched D (sites 8 and 17)
-        nt = np.load(rdir / "natural_tokens.npz")
+        nt = np.load(idir / "natural_tokens.npz")
         toks = list(nt["tokens"])
         lpi = pd.DataFrame(nt["lp"], index=nt["pid"])
         dg = np.exp(lpi.loc[it.good_prompt.map(pidx)].to_numpy()).mean(0) - np.exp(lpi.loc[it.bad_prompt.map(pidx)].to_numpy()).mean(0)
         for j in np.argsort(-np.abs(dg))[:6]:
             tok_rows.append({"construction": cons, "what": "natural good - bad", "token": toks[j], "dprob": float(dg[j])})
         for site in TOKEN_SITES:
-            ptk = np.load(rdir / f"patch_tokens_site{site}.npz")
+            ptk = np.load(idir / f"patch_tokens_site{site}.npz")
             prow = pd.Series(np.arange(len(ptk["rows"])), index=ptk["rows"])
             sub = plan[sel & (plan.side == "bad").to_numpy() & plan.cond.isin(["T", "I"]).to_numpy()]
             lpT = np.exp(ptk["lp"][prow.loc[sub[sub.cond == "T"].row.to_numpy()].to_numpy()]).mean(0)
@@ -148,6 +154,8 @@ def run(args):
             for j in np.argsort(-np.abs(dd))[:6]:
                 tok_rows.append({"construction": cons, "what": f"site {site} T - I", "token": toks[j], "dprob": float(dd[j])})
     res, pj, gt, tk = pd.DataFrame(rows), pd.DataFrame(proj_rows), pd.DataFrame(gate_rows), pd.DataFrame(tok_rows)
+    if args.draws:
+        np.savez(args.draws, readouts=np.array(["O", "L"]), **draws)
     res.to_csv(rdir / "constructions_summary.csv", index=False)
     pj.to_csv(rdir / "constructions_projection.csv", index=False)
     gt.to_csv(rdir / "tc_baseform_gate.csv", index=False)
@@ -219,7 +227,10 @@ if __name__ == "__main__":
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
     ap.add_argument("--sites", default="4,6,8,10,12,14,16,17", help="sites (default: the Pythia-1.4B sites; Gemma replication passes its own)")
-    ap.add_argument("--token-sites", default="8,17", help="sites with saved per-token log-probs")
+    ap.add_argument("--token-sites", default="8,17", help="sites with saved per-token log-probs ('' for none)")
+    ap.add_argument("--input-dir", default="", help="read natural / projections / patches from here (default: out-dir)")
+    ap.add_argument("--draws", default="", help="save the D_bad bootstrap draws (O, L) to this npz")
     a = ap.parse_args()
-    SITES, TOKEN_SITES = tuple(int(s) for s in a.sites.split(",")), tuple(int(s) for s in a.token_sites.split(","))
+    SITES = tuple(int(s) for s in a.sites.split(","))
+    TOKEN_SITES = tuple(int(s) for s in a.token_sites.split(",")) if a.token_sites else ()
     run(a)
