@@ -47,6 +47,7 @@ def item_table(P, prefix, conds):
 
 def run(a):
     res, out = Path(a.results), Path(a.report_dir)
+    out.mkdir(parents=True, exist_ok=True)
     X = pd.read_csv(res / "items_passive.csv.gz")
     Xa = pd.read_csv(res / "items_active.csv.gz")
     checks = json.loads((res / "checks.json").read_text())
