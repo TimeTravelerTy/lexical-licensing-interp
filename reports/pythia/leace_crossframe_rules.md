@@ -1,4 +1,4 @@
-# Cross-frame LEACE (Pythia-1.4B): rules, declared before running (2026-11-17)
+# Cross-frame LEACE (Pythia-1.4B): rules, declared before running (2026-11-17; amended 2026-11-18, see the end)
 
 Paper plan: Settled 5 (the LEACE edit is the passive class mean difference u_pas; cos(u_act, u_pas) 0.24–0.51) and
 the wording of the necessity claim. Nothing below has been run. Branch `paper`.
@@ -91,3 +91,76 @@ feature" is not used for it.
 `results/pythia/leace_crossframe/` (per-prompt files gitignored, sha256 listed), `reports/pythia/leace_crossframe.md`.
 Scripts: `scripts/run_leace_crossframe.py`, `scripts/analyze_leace_crossframe.py`. Gemma and OLMo get the same test
 inside their LEACE runs (paper plan, item 7).
+
+## Amendment (2026-11-18, after a Codex review and two smoke runs on 9 pairs; no full-run result exists)
+
+Where this section and the text above differ, this section holds.
+
+**Translation confound and variants.** An active-fit eraser is x' = x − e·r(x − μ_A). On passives it also adds the
+constant −e·r(μ_P − μ_A) to every state, which can change log P(by) downstream without touching the class contrast.
+So each eraser is evaluated in three variants:
+- **c (primary): centered.** The bias is replaced by the label-free mean of the passive states it is applied to: all
+  passives for A-in, fold f's passives for A-cf. For scrubbing, it is the mean at site L under the centered erasers
+  0..L−1, computed sequentially on the passives. The edit direction and the read direction are the active fit's.
+- **u: as fit** (the active mean). Reported as secondary.
+- **t: translation only.** The constant shift of u alone (x + E_u(μ_P) − μ_P; for scrubbing, μ_P is taken from the
+  c sequence). This is a control.
+The passive-fit references are centered on passive means by construction, so c is the matched comparison.
+
+**Readings (scrub 0–12, variant c; also reported for u).** For each pairing (A-cf vs P-cf, A-in vs P-in):
+- **invalid:** any check below fails, the passive reference's removed CI does not exclude 0 (lower bound ≤ 0), or ρ
+  is not finite;
+- **gap enhancement:** A's removed CI is entirely below 0 (erasure widens the gap);
+- if A's removed CI is above 0 and its share remaining (upper 95%) is below the **minimum** of the permutation
+  shares:
+  - **majority transfer** if ρ's lower 95% bound ≥ 0.5;
+  - **minority transfer** if ρ's upper bound < 0.5;
+  - **positive transfer, share unresolved** otherwise;
+- **no meaningful transfer:** ρ's upper bound < 0.2 (an equivalence bound; a CI that merely includes 0 is not
+  evidence of frame specificity);
+- **inconclusive:** otherwise.
+
+Flags (reported with the reading; they do not change the label):
+- **eraser inert in its own frame:** the active-side removal CI includes 0;
+- **translation alone removes part of the gap:** the t variant's removed CI excludes 0.
+
+The paper does not use the "shared" wording if either flag is raised.
+
+**Which result governs the paper.**
+- **A-cf vs P-cf governs the shared-feature claim.** It is verb-general class information, and the eraser never saw
+  the evaluated verbs, so token-identity memorization is excluded.
+- A-in vs P-in is secondary: class information for the same verb tokens, shared across frames.
+- If they disagree, the paper reports both and states the claim at the level A-cf supports.
+- "X" in the paper sentence is the absolute removal (share of the natural gap, with CI); ρ is reported next to it,
+  as a ratio to the matched passive intervention, not as a fraction of shared information. The expected ρ(A-cf) ≥
+  ρ(A-in) is replaced by a comparison of absolute removals: ρ has different denominators (P-cf removes ≈ 0.41, P-in
+  ≈ 0.96).
+- A positive result supports "class information that actives carry is needed for the passive *by* preference". It
+  does not identify DAS v. The direction-specific evidence remains the v / u_md ablation (Settled 3). Geometry versus
+  u_md is reported (|cos| of the A-in edit with each u_md basis at 4, 6, 8, 12, 17).
+
+**Permutation control.** 20 permutations (was 10), A-in fitting, variants c and u, scrub 0–12 and single 8. The gate
+is the permutation minimum, not an interpolated 5th percentile. It applies to both pairings: the permuted erasers are
+fit on all actives, which is at least as strong an erasure as A-cf. Permutation KL and edit norms are reported next
+to the true-label ones. This is a label-specificity control (class-orthogonal labels), not a calibrated test.
+
+**Active-side readout.** log P(object start) over the declared 13 tokens (`analyze_das_prep.OBJ`; the first draft's
+code used the DAS runner's 27-token set). Token ids are stored in `meta.json`.
+
+**Checks are enforced.** A full run requires the stored fold file and both references. The reading is "invalid" if:
+- the folds, prompts or in-sample / cross-fit roles of the references differ;
+- the natural log P(by) differs by ≥ 1e-3;
+- the recomputed stored necessity shares differ by > 1e-6;
+- identity hook, non-anchor positions or active repeat exceed 1e-6 / 1e-6 / 1e-5;
+- in-model vs offline erasure exceeds 1e-5;
+- scrub replay mean, cross-covariance or post-erasure residual exceed 1e-6 / 1e-6 / 1e-5;
+- an eraser is not rank 1, or a top singular value is ≤ 0.01;
+- the permutation balance is |r| ≥ 0.05.
+
+The sha256 of the new per-prompt files and erasers is recorded.
+
+**Also reported:**
+- the absolute gap change in nats;
+- mean edit norm per erased site;
+- the passive class-mean difference per fold (A-cf) and pooled (scrub rows compare with the natural difference at
+  the site, not before vs after the local eraser).
