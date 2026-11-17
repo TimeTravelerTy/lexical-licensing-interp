@@ -187,7 +187,8 @@ def run(args):
         fit_single(f"perm{j}", 1, {0: np.arange(N)}, zt, [DAS_SITE])
         fit_scrub(f"perm{j}", 1, {0: np.arange(N)}, zt, NEC_TOP)
     checks["perm_max_abs_r"] = max(perm_r) if perm_r else None
-    assert not perm_r or max(perm_r) < 0.05
+    # with all 126 pairs the flips are exactly balanced (r = 0); smoke subsets have too few verbs per class
+    assert not perm_r or args.max_pairs or max(perm_r) < 0.05
     pd.DataFrame(lab_rows).to_csv(out / "labels_perm.csv", index=False)
 
     # erasers.npz: rank-1 vectors (true-label fittings)

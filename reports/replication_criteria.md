@@ -175,6 +175,37 @@ So the OLMo statement is limited to: along u, OLMo's passive outcome goes abstra
 Its first surface site under this margin (12/16 = 0.75) is not shallower than Pythia's (17/24 = 0.71). u_md *by* at
 OLMo 11 is a margin-edge case, not a RISE to report.
 
+### Exploratory: *by* classed against its own natural gap (`reports/gapscaled_by_classes.md`)
+
+Chosen after OLMo's T1 failed, so labelled exploratory; the declared T1 result stands. The declared δ_s for *by* is
+0.2 × v's active **O** effect, so it is set by the object readout. In OLMo it exceeds the natural *by* gap itself
+(δ_s 0.53 / 0.58 at 9 / 11 against a natural good − bad gap of 0.48 [0.18, 0.77]): to pass, a patch had to move *by*
+more than the full natural difference between transitive and intransitive passives. The declared rules already scale L
+readouts to their natural gap (δ_L = 0.2 × gap). Applying that convention to *by*: δ_g = 0.2 × the natural *by* gap on
+the same pairs, same classifier, O classes unchanged. Because the gap's CI is wide, δ from its upper 95% bound is also
+shown.
+
+| Model | natural *by* gap | δ_g (hi95) | D(*by*) / gap at the rule sites | T1 declared | T1 gap-scaled | T1 gap-scaled (hi95) |
+|---|---|---|---|---|---|---|
+| Pythia (v) | +0.71 [+0.38, +1.04] | 0.14 (0.21) | 1.01 / 1.13 | pass | pass | pass |
+| Gemma (v) | +0.41 [+0.11, +0.72] | 0.08 (0.14) | 1.36 / 1.53 | pass | pass | pass |
+| OLMo (v) | +0.48 [+0.18, +0.77] | 0.10 (0.15) | 0.90 / 0.30 | fail | pass | fail (11 unresolved) |
+| Gemma on / u_md | | | | fail / fail | pass / pass | pass / pass |
+| OLMo on / u_md | | | | fail / fail | pass / pass | pass / pass |
+
+- OLMo v: *by* is RISE at every site 0–11 under δ_g and FALLs from 12. So the OLMo outcome along v reads mixed at 7–11
+  (was surface) and surface from 12. At 11 the effect (+0.14, 0.30 of the gap) is small: RISE at δ_g, unresolved at
+  the hi95 margin.
+- Relative to the natural gap, OLMo's transferred *by* effect at site 9 (0.90) is in the range of Pythia's (1.01 at 8),
+  below Gemma's (1.36–1.53). Site 11 is much weaker (0.30), and *by* reverses one site later.
+- Along u_md, OLMo's *by* effect holds through 11 (0.86 / 0.91 of the gap at 9 / 11; 0.39 at 12, no FALL), and the
+  on-axis piece gives 0.67 / 0.65. So v's weak *by* at 11 and its FALL from 12 come from what v adds off the class
+  axis, which is consistent with the non-additive deep FALL above. Along u, OLMo's O is RISE too, so the outcome is
+  mixed, not abstract.
+- Paper wording: "OLMo misses the declared criterion, whose margin exceeds OLMo's natural *by* gap; measured against
+  that gap, v moves *by* by 0.90 of it at site 9 and 0.30 at 11, and reverses from 12." Report D(*by*) / gap for all
+  three models as the comparable quantity.
+
 ## u_md transfer to OR, TC and filler-gap (rules: `reports/umd_transfer_rules.md`, declared before the run)
 
 Reports: `reports/{pythia,gemma,olmo}/umd_transfer/` (`readings.md`, `constructions.md`, `inrange.md`,
