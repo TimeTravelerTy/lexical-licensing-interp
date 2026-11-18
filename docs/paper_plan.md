@@ -30,6 +30,7 @@ Evidence is on branch `paper` (merged Nov 16 from `olmo-replication`, `leace-nec
 | Construction-specific readers | done | appendix if time | no | R3-B7, R4-D10/D11, R5-B6, R5-C9, R5-B7 | Writing only ("components", not "circuit") |
 | Rare verbs: feature right, output-side deficit + edit | done | not run | not run | R6-C4 (31/32 rare singletons classified from z), R5-A1/A2, R5-A4 | Second model, or scope it to Pythia |
 | *by* transfer passes the illusion check | done | not run | not run | `pythia/das_direction_check.md` | Rerun the direction check per model |
+| Scale (Pythia-6.9B; behavior also 160M–12B) | behavior done: rare-verb deficit ≈ 2 nats at every size, intransitive side (R5-D10b, R6-D11, R6-A6); DAS only timed (R5-D10), never fit | — | — | `round5/d10b_suite.md`, `round5/d10_scaleup.md`, `round6/results.md` (D11) | 6.9B mechanism check before the freeze (work item 12) |
 | Training dynamics (emergence order) | behavior done (R6-A6, R7-A8: 16 checkpoints); verb-site measures not run | n/a (no public checkpoints) | not run | `round6/a6_checkpoints*.md`, `round7/a8_trajectories.md` | Prediction, then 16 checkpoints per model |
 
 Side splits: committed in `pythia/split_edit.md` §D (Settled 8).
@@ -115,9 +116,16 @@ Run whatever could break the claim first, then polish.
    - Check the TSUBAME HDD cache before downloading anything.
 7. **LEACE on Gemma and OLMo.** In-sample, cross-fitted and the permutation control, reusing the Pythia pipeline. "Shared + lexical" is too central to rest on one model.
 8. **Side splits.** Pythia done (Settled 8). Add to the Gemma / OLMo LEACE runs.
-9. **Robustness.** DAS seed variance and random-subspace baselines for every reported number, plus the single-token × frequency confound (Settled 6). Pythia-6.9B transfer goes last.
+9. **Robustness.** DAS seed variance and random-subspace baselines for every reported number, plus the single-token × frequency confound (Settled 6). Pythia-6.9B is work item 12.
 10. **Writing, starting now.** Write the outline, figure list and methods now; results go in as each piece lands.
 11. **Embedded wh in Pythia.** Pythia embedded wh is mixed at site 8 and surface at site 6 (R5-C8); Gemma's in-range result is mixed or unresolved. Hard stop Nov 18, then it goes to limitations. OLMo's is licensing-like at site 9 (Settled 9), so the paper can report it as model-dependent rather than as a uniform failure.
+12. **Pythia-6.9B mechanism check (moved before the freeze, Nov 18).** Behavior is already done at 6.9B (and across 160M–12B): the rare-verb deficit and its intransitive source hold at every size. No mechanism result exists at 6.9B; R5-D10 only timed DAS with random bases. In order, stopping when the time runs out:
+   - **Behavior at the paper's items.** Natural passive *by* gap and OR / TC gaps on the same items as the 1.4B runs (forward passes only).
+   - **u_md transfer** (training-free): passive *by*, OR and TC at the matched-depth sites (R5-D10: 5, 8, 11, 13, 16, 19, 21, 23 of 32), reported as D / natural gap.
+   - **Cross-fitted LEACE** scrub over the matched-depth range plus the permutation control. This tests whether "verb-general + additional in-sample removal" holds at scale.
+   - **DAS** sweep at the matched-depth sites, the final at the rule-picked site, then the transfer chain under T1–T3 / S1 with relative depth.
+   - **Cost:** R5-D10 measured about 3 GPU-hours for the DAS sweep plus final on one H100 in fp32 (DAS peak 27.5 GiB, weights 25.5 GiB). Check whether `gpu_h` fits this; otherwise use `gpu_1`. Keep fp32, as the 1.4B runs do. Weights for 2.8B, 6.9B and 12B are already in the HDD cache.
+   - **Rules:** declare before running, reusing the replication criteria with relative depth. A null at 6.9B is reported, not dropped.
 
 ### Dynamics prediction candidates (pick before running)
 
@@ -162,9 +170,9 @@ Freeze experiments on **Dec 4** and send the full draft to sensei by **Dec 11**.
 | --- | --- | --- |
 | Nov 16–22 | Split-edit + frame invariance (Pythia); side splits; queue OLMo finals; declare replication criteria and the dynamics prediction; embedded wh stop (Nov 18) | Outline, figure list, methods |
 | Nov 23–29 | OLMo transfer / nonce / split-edit; Gemma split-edit; rank-k erasure; LEACE on Gemma, OLMo; checkpoint runs | Results sections as they land |
-| Nov 30–Dec 4 | Dynamics analysis; seeds and random-subspace baselines; **freeze Dec 4** | Intro, related work |
+| Nov 30–Dec 4 | Dynamics analysis; seeds and random-subspace baselines; Pythia-6.9B mechanism check (item 12; rules and behavior can go earlier); **freeze Dec 4** | Intro, related work |
 | Dec 5–11 | — | Full draft to sensei **Dec 11** |
-| Dec 12–Jan 4 | 6.9B transfer only if time | Revisions, appendix, checklist, submit **Jan 4 AoE** |
+| Dec 12–Jan 4 | — | Revisions, appendix, checklist, submit **Jan 4 AoE** |
 
 The week rows are a proposal; the original timeline chart did not survive the export. Fixed dates: Nov 18, Dec 4, Dec 11, Jan 4.
 
