@@ -168,3 +168,19 @@ The sha256 of the new per-prompt files and erasers is recorded.
 ## Result (2026-11-18, job 9438425, commit 665dabf)
 
 Report: `reports/pythia/leace_crossframe.md`. All checks pass. Both pairings and both variants read **majority transfer**, with the flag "translation alone removes part of the gap" (shift-only removes 0.02–0.03). A-cf vs P-cf (c): share remaining 0.66 [0.47, 0.76] vs 0.59, ρ 0.81 [0.73, 0.90]. The paper wording and the known centering mismatch of the stored P-cf reference are in `docs/paper_plan.md`, Settled 13.
+
+## Follow-up declared after the full run (2026-11-18): P-cf re-centered
+
+The Codex review of the result found a centering mismatch in the verb-held-out pairing. A-cf (c) is centered on the evaluated fold's passive mean, but the stored P-cf erasers keep the mean of the passives they were fit on (the training folds). So ρ(cf) compares slightly differently centered interventions. This follow-up was declared after seeing the result above. Nothing in it has been run.
+
+- **Erasers.** The stored P-cf erasers (`lli_leace/results/pythia/leace_necessity/erasers.npz`, rank-1 edit / read / bias per fold and site, single and scrub), rebuilt as LeaceEraser(edit, read, bias).
+- **Variants on the same passive items, folds and readout:**
+  - **u (as stored):** a reproduction check. It must reproduce the stored per-prompt log P(by) for every single site and scrub prefix (max |Δ| < 1e-4 nats).
+  - **c (re-centered):** the bias is replaced by fold f's label-free passive mean. For scrub, this is the mean at site L under the re-centered erasers 0..L−1, computed sequentially, exactly as A-cf (c).
+- **Conditions:** single sites 0–23 and scrub prefixes 0..k, k = 0–23.
+- **Quantities:** the same bootstrap draws (1000, seed 17, task-1 item table). Share remaining for P-cf (c), and ρ(cf, matched) = removed(A-cf c) / removed(P-cf c).
+- **Reading:** the amended rules' A-cf vs P-cf (c) reading recomputed with P-cf (c) as the reference. The permutation gate, flags and A-cf numbers are unchanged.
+  - If the label is the same, the paper keeps it and quotes the matched ρ.
+  - If it changes, the paper uses the matched reading and states that the stored reference was centered differently.
+  - The absolute A-cf removal (0.34) does not depend on this.
+- **Outputs:** `results/pythia/leace_pcf_recentered/`, `reports/pythia/leace_pcf_recentered.md`. Scripts: `scripts/run_leace_pcf_recentered.py`, `scripts/analyze_leace_pcf_recentered.py`.
