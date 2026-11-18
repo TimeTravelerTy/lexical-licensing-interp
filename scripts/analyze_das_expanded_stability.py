@@ -53,7 +53,8 @@ def run(a):
         bt = apt.Boot(items.context_id.nunique(), a.n_boot, a.seed)
         wp = bt.pair_weights(pr.band.to_numpy()[pix])
         D = {}
-        for c, pdir in (("stored", a.stored_passive), ("E", res / "passive_E"), ("S", res / "passive_S")):
+        for c, pdir in (("stored", a.stored_passive), ("P", res / "passive_P"), ("E", res / "passive_E"),
+                        ("S", res / "passive_S")):
             nat = pd.read_parquet(Path(pdir) / "natural.parquet")
             D[c] = apt.summarize(d_bad(pdir, s, plan, items, nat, bt, pair_ix, ctx_ix, das_q), wp, pix)[:, 0]
             rm = Path(pdir) / "run_meta.json"
@@ -71,25 +72,27 @@ def run(a):
         r_ok = checks.get(f"R_median_abs_cos_site{s}", 0) >= 0.99
         cs = C[C.site == s].groupby("cond").abs_cos
         med = cs.median()
-        ratio = {c: apt.ci(D[c] / D["stored"]) for c in ("E", "S")}
-        diff = {c: apt.ci(D[c] - D["stored"]) for c in ("E", "S")}
-        rE = ratio["E"]
-        inside = RATIO_BAND[0] <= rE["lo95"] and rE["hi95"] <= RATIO_BAND[1]
-        outside = rE["hi95"] < RATIO_BAND[0] or rE["lo95"] > RATIO_BAND[1]
-        cos_gap = med["S"] - med["E"]
-        lab = ("stable" if cos_gap <= 0.05 and inside else
-               "changed" if outside or cos_gap > 0.15 else "partly stable")
-        readings[int(s)] = {"reading": lab, "reference": "stored v" if r_ok else "R (reproduction below 0.99)",
+        ratio = {c: apt.ci(D[c] / D["stored"]) for c in ("P", "E", "S")}
+        diff = {c: apt.ci(D[c] - D["stored"]) for c in ("P", "E", "S")}
+
+        def label(c):
+            r = ratio[c]
+            inside = RATIO_BAND[0] <= r["lo95"] and r["hi95"] <= RATIO_BAND[1]
+            outside = r["hi95"] < RATIO_BAND[0] or r["lo95"] > RATIO_BAND[1]
+            gap = med["S"] - med[c]
+            return "stable" if gap <= 0.05 and inside else "changed" if outside or gap > 0.15 else "partly stable"
+        readings[int(s)] = {"reading": label("P"), "reading_E_secondary": label("E"),
+                            "reference": "stored v" if r_ok else "R (reproduction below 0.99)",
                             "median_abs_cos": med.to_dict(), "D": {c: apt.ci(D[c]) for c in D},
                             "ratio": ratio, "diff": diff}
         act = A[A.site == s].groupby("cond")[["iia_cross", "pc_frac_median"]].mean()
-        for c in ("stored", "R", "S", "E"):
+        for c in ("stored", "R", "S", "P", "E"):
             rows.append({"site": s, "cond": c, "median_abs_cos": med.get(c, np.nan),
                          "min_abs_cos": cs.min().get(c, np.nan), "iia_cross": act.loc[c, "iia_cross"],
                          "pc_frac_median": act.loc[c, "pc_frac_median"],
                          **({f"D_{k}": v for k, v in apt.ci(D[c]).items()} if c in D else {}),
                          **({f"ratio_{k}": v for k, v in ratio[c].items()} if c in ratio else {})})
-    labs = [r["reading"] for r in readings.values()]
+    labs = [r["reading"] for r in readings.values()]  # primary: P
     overall = "invalid" if problems else ("stable" if all(l == "stable" for l in labs) else
                                           "changed" if "changed" in labs else "partly stable")
     S = pd.DataFrame(rows)
@@ -102,10 +105,12 @@ def run(a):
          "`scripts/run_passive_test.py`, `scripts/analyze_das_expanded_stability.py`.", "",
          f"**Overall: {overall}.**" + (f" Problems: {'; '.join(problems)}" if problems else ""), ""]
     for s, r in readings.items():
-        L += [f"- **Site {s}: {r['reading']}** (reference: {r['reference']}). Median |cos| with v: "
+        L += [f"- **Site {s}: {r['reading']}** (P, primary; E: {r['reading_E_secondary']}; reference: "
+              f"{r['reference']}). Median |cos| with v: "
               + ", ".join(f"{c} {v:.3f}" for c, v in r["median_abs_cos"].items())
-              + f". D_bad(by): stored {f3(r['D']['stored'])}, E {f3(r['D']['E'])}, S {f3(r['D']['S'])}. "
-              f"E / stored {f3(r['ratio']['E'])}; S / stored {f3(r['ratio']['S'])}."]
+              + f". D_bad(by): stored {f3(r['D']['stored'])}, P {f3(r['D']['P'])}, E {f3(r['D']['E'])}, "
+              f"S {f3(r['D']['S'])}. Ratio to stored: P {f3(r['ratio']['P'])}, E {f3(r['ratio']['E'])}, "
+              f"S {f3(r['ratio']['S'])}."]
     L += ["", "| site | condition | median \\|cos\\| | min \\|cos\\| | held-out IIA (cross) | median pc frac | "
           "D_bad(by) | ratio to stored |", "|---:|---|---|---|---|---|---|---|"]
     for _, q in S.iterrows():

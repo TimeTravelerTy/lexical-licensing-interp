@@ -63,3 +63,14 @@ The stored v stays the paper's instrument whatever the outcome.
 - **Changed:** reported as a finding about how much v depends on its training verbs. It is discussed next to the u_md results, which are computed on all 273 pairs and need no training. v is not swapped.
 
 Active IIA differences are descriptive. Expanded pairs that share a verb with the stored 29 are flagged `das_train_overlap` in `expanded_pairs.csv` and must be excluded wherever v's numbers are computed on the expanded set.
+
+## Amendment (Nov 18, before the full run; after a training-only smoke at site 12, split 0 / fold 0, whose cosines were not read)
+
+v's training set followed the round-2 class rule (`reports/passive_das_prep/round2.md`): only *plain* intransitives, never *prep_object* ones (argument PPs such as *rely on*, *succumb to*). Under that rule 61 of the 123 new intransitives are prep_object. So E changes two things at once: more verbs, and a different intransitive class.
+
+Added condition **P**: as E, but the new pairs are restricted to plain intransitives. That gives 62 pairs, mostly rare: xtail 29, between bands 8, below xtail 6, near-head 13, tail 5, head 1. Classes come from `data/das_round2/intrans_classes_final.csv` where listed; the other 50 verbs were classified by Claude under the same rule, in `data/verb_expansion/expanded_intrans_class.csv`, with 10 prep_object: *resonate with*, *converge on*, *balk at*, *feast on*, *despair of*, *hunger for*, *empathize with*, *ruminate on*, *sorrow over*, *clam up*.
+
+- **P is the primary reading:** more verbs, same definition.
+- **E is secondary:** more verbs plus prep_object intransitives.
+
+Both get the same measures and the same reading rule. The passive test runs for P, E and S.
