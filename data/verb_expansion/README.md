@@ -108,3 +108,13 @@ transitive verbs use the participle form more. 36 pairs are multi-token and
 **Spot-check done (Nov 18).** Claude and Codex (gpt-6.2-sol, same written criteria, independently) each judged every verb. They agreed on 199 of 239. On the 40 disagreements, Codex's call was taken except for 5 verbs where Claude's reason holds (`note`). Most of Codex's extra drops were speech and manner verbs with speech-object or clausal uses (*screeched a warning*, *griped that …*). These are dropped for consistency with the expansion's earlier exclusions. Kept: 163.
 
 **Selection (Nov 18, declared before pairing).** No selectional restrictions are imposed: contexts are written for each transitive and crossed with every verb, so semantic mismatch is shared by both classes. One exclusion rule: drop verbs whose normal subject is expletive *it* or the weather (*gusted*, *sleeted*, *squalled*), since no context's agent can be their subject. Kept: 160 (single-token 25). The `selection` column (Claude's single-annotator judgment) flags kept verbs that prefer inanimate subjects (`inanimate_preferred`, 23, mostly unaccusatives such as *ebbed*, *recurred*, *malfunctioned*) and one non-human-animal verb (*mewed*). These stay in; the training-free analyses report results with and without the flagged pairs as a robustness line.
+
+## Expanded pairs (Nov 18)
+
+`expanded_pairs.csv`: 147 new transitive / intransitive pairs, which with the 126 originals makes 273. Rules (declared before pairing) and the result are in `pairing_rules.md`. They replace the provisional `das_train_pairs.csv` / `eval_pairs.csv`, which were never used. Rebuild from `scripts/`:
+
+```
+python3 pair_verb_expansion.py --tokenizer <pythia-1.4b tokenizer.json> --tok-python <python with tokenizers> \
+  --drop-trans relate adjust adapt frighten deprive ball premise drum bluff overreach thieve supplicate misspend \
+  globalize encrust contort apprise bridle
+```

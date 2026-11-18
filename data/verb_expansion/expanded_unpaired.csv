@@ -1,0 +1,14 @@
+lemma,participle,tag,participle_zipf,lemma_sum_zipf,participle_ntok,homograph
+eddy,eddied,near_head,0.0,3.51,2,True
+weekend,weekended,near_head,0.0,4.98,2,True
+yak,yakked,out,1.04,3.19,3,True
+twinge,twinged,out,1.03,2.62,3,True
+scud,scudded,out,1.02,2.58,3,True
+genuflect,genuflected,out,0.0,1.9,3,True
+dicker,dickered,out,0.0,2.23,2,True
+fluoresce,fluoresced,out,0.0,2.09,2,True
+molder,moldered,out,0.0,2.1,2,True
+scintillate,scintillated,out,0.0,2.63,3,True
+pussyfoot,pussyfooted,out,0.0,2.05,3,True
+quail,quailed,out,0.0,3.19,2,True
+palpitate,palpitated,out,0.0,1.9,2,True
