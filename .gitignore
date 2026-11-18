@@ -138,3 +138,5 @@ results/**/umd/**/.rows.parquet.*
 results/**/umd/inrange/items.csv
 results/pythia/leace_crossframe*/items_*.csv.gz
 results/pythia/leace_pcf_recentered*/items_*.csv.gz
+results/pythia/das_expanded_stability*/passive_*/
+results/pythia/das_expanded_stability*/*_site*/heldout_swaps.csv.gz

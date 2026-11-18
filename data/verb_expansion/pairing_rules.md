@@ -11,7 +11,7 @@ Paper plan, work item 13. Written before `scripts/pair_verb_expansion.py` was ru
 
   The second source is needed because the kept intransitives are mostly rare (tail, xtail and below: 79 of 160) and mostly multi-token, while the reviewed transitives are mostly head or near-head.
 - **Excluded from both classes:** any lemma or participle in the 126 original pairs, and any lemma in the intransitive spot-check list, whether kept or dropped.
-- **Superseded:** the earlier provisional pairs (`das_train_pairs.csv`, `eval_pairs.csv`) were never used. This pairing replaces them.
+- **Superseded:** this pairing replaces the earlier provisional pairs (`das_train_pairs.csv`, `eval_pairs.csv`) for the training-free analyses. *Correction (Nov 18, after pairing):* `das_train_pairs.csv` was not unused. 21 of its pairs, plus 8 original head pairs, are the DAS round-2 training set (`data/das_round2/train_pairs.csv`). Their verbs were not excluded here, so 24 expanded pairs share a verb with v's training set. These are flagged `das_train_overlap`. They are fine for u_md and LEACE, but must be excluded wherever v's numbers are computed on the expanded set (rule in `reports/pythia/das_expanded_stability_rules.md`).
 
 ## Matching
 

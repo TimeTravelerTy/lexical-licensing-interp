@@ -111,7 +111,7 @@ transitive verbs use the participle form more. 36 pairs are multi-token and
 
 ## Expanded pairs (Nov 18)
 
-`expanded_pairs.csv`: 147 new transitive / intransitive pairs, which with the 126 originals makes 273. Rules (declared before pairing) and the result are in `pairing_rules.md`. They replace the provisional `das_train_pairs.csv` / `eval_pairs.csv`, which were never used. Rebuild from `scripts/`:
+`expanded_pairs.csv`: 147 new transitive / intransitive pairs, which with the 126 originals makes 273. Rules (declared before pairing) and the result are in `pairing_rules.md`. They replace the provisional `das_train_pairs.csv` / `eval_pairs.csv` for the training-free analyses. 21 of the provisional DAS pairs are in v's round-2 training set (`data/das_round2/train_pairs.csv`), so 24 expanded pairs that share a verb with it are flagged `das_train_overlap`. Rebuild from `scripts/`:
 
 ```
 python3 pair_verb_expansion.py --tokenizer <pythia-1.4b tokenizer.json> --tok-python <python with tokenizers> \
