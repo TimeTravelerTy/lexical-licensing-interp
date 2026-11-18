@@ -184,3 +184,7 @@ The Codex review of the result found a centering mismatch in the verb-held-out p
   - If it changes, the paper uses the matched reading and states that the stored reference was centered differently.
   - The absolute A-cf removal (0.34) does not depend on this.
 - **Outputs:** `results/pythia/leace_pcf_recentered/`, `reports/pythia/leace_pcf_recentered.md`. Scripts: `scripts/run_leace_pcf_recentered.py`, `scripts/analyze_leace_pcf_recentered.py`.
+
+### Follow-up result (2026-11-18, job 9445093)
+
+Report: `reports/pythia/leace_pcf_recentered.md`. The as-stored erasers reproduce the stored run (max |Δ| 1.8e-15). P-cf re-centered leaves 0.59 [0.36, 0.71]; matched ρ is 0.82 [0.74, 0.91] (stored reference 0.81 [0.73, 0.90]). The label is the same (majority transfer, translation flag), so the paper keeps it and quotes the matched ρ.

@@ -1,0 +1,46 @@
+{
+ "reading": "majority transfer",
+ "flags": [
+  "translation alone removes part of the gap"
+ ],
+ "reading_stored_ref": "majority transfer",
+ "share_A": [
+  0.6632742198995105,
+  0.4683181231415847,
+  0.7576861610658822
+ ],
+ "share_P_matched": [
+  0.590794829778061,
+  0.35961926193799054,
+  0.7068389049550208
+ ],
+ "share_P_stored": [
+  0.5857060203138651,
+  0.3513194718386619,
+  0.7020081469739047
+ ],
+ "rho_matched": [
+  0.8228776286425238,
+  0.7443464558077044,
+  0.9106537694234328
+ ],
+ "rho_stored": [
+  0.8127701502097368,
+  0.7343706245770477,
+  0.9007534436010974
+ ],
+ "perm_min": 0.9208187945441415,
+ "below_perm_min": true,
+ "problems": [],
+ "checks": {
+  "folds_equal_stored": true,
+  "stored_repro_max_abs": 1.7763568394002505e-15,
+  "stored_repro_n": 49,
+  "stored_repro_worst": "Pcf_u_single_0",
+  "natural_vs_crossframe_max_abs": 0.0,
+  "A_share_vs_readings": 0.0
+ },
+ "outputs_sha256": {
+  "items_passive.csv.gz": "dc0a1b321bb62c0633463b424c271f1a79d11e4dae12c3dfe5e557ed3aa32c4d"
+ }
+}
