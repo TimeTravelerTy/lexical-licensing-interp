@@ -90,3 +90,17 @@ match on summed-lemma Zipf (mean gap -0.002). Participle Zipf is not
 matched: transitives average 3.37 and intransitives 2.93, because
 transitive verbs use the participle form more. 36 pairs are multi-token and
 18 single-token. Almost all intransitives are `near_head` (53 of 54).
+
+## Spot-check list for the expansion (paper plan item 13, Nov 18)
+
+`intrans_spotcheck.csv` holds 239 intransitive candidates, none in the 126 original pairs. Built by `scripts/build_intrans_spotcheck.py`.
+
+- **Sources:**
+  - 99 included by the review above (`source = expansion`, with Codex's notes);
+  - 140 FreqBLiMP strict-intransitive participles not used anywhere yet (`source = freqblimp`, unreviewed).
+- **Columns:** Zipf (participle, past, summed lemma), the FreqBLiMP band and tag, Pythia tokens, and Pile counts where round 6 fetched them (125 of 239).
+- **`auto_flags`:**
+  - noun or adjective homographs whose summed-lemma Zipf is ≥ 1.5 above the participle (*tool*, *winter*, *holiday*). Their `near_head` tag comes from the noun, so pair them by participle Zipf;
+  - participles below FreqBLiMP's xtail (Zipf < 1.2);
+  - irregular pasts.
+- **To fill in:** `keep` (y / n) and `note`. Grounds for dropping a verb: an ordinary NP-object or passive use, an adjectival participle (*deceased*), or a clause or speech object.

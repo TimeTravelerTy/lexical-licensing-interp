@@ -141,7 +141,7 @@ Run whatever could break the claim first, then polish.
    - Pool the vetted intransitives from both sources. Pair each with an unused transitive by summed-lemma Zipf (within 0.25) and token count, as `das_train_pairs.csv` did. Aim for about 250 pairs in total (roughly double), with as many single-token pairs as supply allows.
    - Evaluate the new pairs in the existing curated contexts, in the same cross design (each verb in the other pairs' contexts). So no new context curation is needed. The new pairs' own contexts are optional.
    - Use them only for the training-free analyses: behavior, u_md projection and transfer, and LEACE (cross-fitted, learning curve, cross-frame). DAS keeps its 126-pair splits; the reserved near-head pairs may also serve as DAS training data later.
-   - **Spot-check (Tyrone):** a manual pass over the included intransitives before any run. This is the one step that cannot be automated.
+   - **Spot-check (Tyrone):** a manual pass over `data/verb_expansion/intrans_spotcheck.csv` before any run. It lists 239 candidates (99 from the reviewed expansion, 140 from FreqBLiMP), with Zipf, tokens, Pile counts where available and automatic flags. This is the one step that cannot be automated. Pair homograph-flagged verbs by participle Zipf, not summed-lemma Zipf.
 
    **Frequency bands.** For the mechanism paper, drop the three-band split. Treat frequency as a continuous covariate (log participle and summed-lemma Zipf), with matched T / I pairs. Reasons:
    - the mechanism claims are verb-general;
