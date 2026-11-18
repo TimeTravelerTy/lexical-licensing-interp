@@ -69,7 +69,7 @@ Side splits: committed in `pythia/split_edit.md` §D (Settled 8).
    - Embedded wh is licensing-like in range at a declared site only in OLMo (site 9, matrix too). So the embedded-wh failure is not consistent across models.
    - The OLMo split edit was declared (`reports/split_edit_replication_rules.md`) and run: Settled 10.
 10. **Split edit and u_md on Gemma and OLMo (`reports/replication_criteria.md`, "Split edit and u_md"; reviewed by Codex 2026-11-17).** All checks pass in both (stored IIA and passive D reproduce exactly; write = read bitwise).
-   - **Gemma: R-A1 held** at 5 and 8 (off-axis share of v's O 0.72–0.84; on-axis O NO RISE through 11), as in Pythia. **R-A2 not held:** the on-axis share of *by* is 0.16–0.71 (0.33 at 5, 0.61 at 8), so w carries much of *by* too (per-basis |cos(v, u)| ≈ 0.4–0.7). u_md *by* is +0.36 to +0.50 at sites 1–10 (0.65–0.96 of v's), unresolved against δ at 5 and 8. T1-on and T1-umd fail; S1-umd passes thinly (abstract only at 0; surface 6–10, 13); S1-on fails. Gemma staging stays weak with every instrument.
+   - **Gemma: R-A1 held** at 5 and 8 (off-axis share of v's O 0.72–0.84; on-axis O NO RISE through 11), as in Pythia. **R-A2 not held:** the on-axis share of *by* is 0.16–0.71 (0.33 at 5, 0.61 at 8), so w carries much of *by* too (per-basis |cos(v, u)| ≈ 0.4–0.7). u_md *by* is +0.36 to +0.50 at sites 1–10 (0.65–0.96 of v's), unresolved against δ at 5 and 8. T1-on and T1-umd fail; S1-umd passes thinly (abstract only at 0; surface 6–10, 13); S1-on fails. Gemma staging stays weak with every instrument. **Illusion pattern, Gemma (from `gemma/split_edit/summary_push.csv`, Nov 18): only half holds.** T and I separate along ŵ in actives even less than in Pythia (|standardized difference| ≤ 0.11 at every site, against ≤ 0.22). But the off-axis push is not consistently large: the median is 1.7–2.0 natural sd at sites 0–4 and 1.3–2.4 at 12–15, and only 0.6–0.8 at 8–11, where almost no swaps exceed 2 sd. Gemma's ŵ sd is also heavy-tailed, so the sd yardstick is weaker. And the off-axis piece carries much of *by* too (R-A2 not held). Paper wording for Gemma: the O rise rides on a direction the classes do not separate on in actives. Do not call it an off-distribution push. (OLMo: separation ≤ 0.20, push 1.2–6.6 sd, so the push statistics match Pythia's, but R-A1 fails there.)
    - **OLMo: T1 fails with every instrument** (u_md D(by) +0.41 / +0.43 at 9 / 11, CIs above 0, under δ). **R-A1 not held:** writes along u raise O too (u_md O RISE from 7, on-axis from 8). The off-axis share of v's O is 0.48–0.60 at 7–11 and rises to 0.84–0.90 at 14–15. So OLMo's object rise is not mainly off-axis; both pieces raise it, with depth-dependent shares.
    - **OLMo's deep *by* FALL (12–15) is mostly non-additive:** on alone +0.07 to +0.17, off alone −0.32 to −0.79, full − on − off −0.59 to −0.91. Do not attribute the FALL to the off-axis piece. u_md keeps *by* at +0.41 / +0.43 at 9 / 11.
    - FI: OLMo falls from 0.85–1.5 at 0–3 to 0.33 at 11 (decision "low"), the same shape as Pythia. Gemma is non-monotone (0.17 at 5, 0.70–0.87 at 6–9, ≈ 0 at 14–15). FI is approximate (> 1 at some early sites) and compares different verb sets; "one direction every construction reads" rests on transfer.
@@ -119,7 +119,7 @@ Run whatever could break the claim first, then polish.
 9. **Robustness.** DAS seed variance and random-subspace baselines for every reported number, plus the single-token × frequency confound (Settled 6). Pythia-6.9B is work item 12.
 10. **Writing, starting now.** Write the outline, figure list and methods now; results go in as each piece lands.
 11. **Embedded wh in Pythia.** Pythia embedded wh is mixed at site 8 and surface at site 6 (R5-C8); Gemma's in-range result is mixed or unresolved. Hard stop Nov 18, then it goes to limitations. OLMo's is licensing-like at site 9 (Settled 9), so the paper can report it as model-dependent rather than as a uniform failure.
-12. **Pythia-6.9B mechanism check (moved before the freeze, Nov 18).** Behavior is already done at 6.9B (and across 160M–12B): the rare-verb deficit and its intransitive source hold at every size. No mechanism result exists at 6.9B; R5-D10 only timed DAS with random bases. In order, stopping when the time runs out:
+12. **Pythia-6.9B mechanism check (moved before the freeze, Nov 18; freeze now Dec 11).** Behavior is already done at 6.9B (and across 160M–12B): the rare-verb deficit and its intransitive source hold at every size. No mechanism result exists at 6.9B; R5-D10 only timed DAS with random bases. In order, stopping when the time runs out:
    - **Behavior at the paper's items.** Natural passive *by* gap and OR / TC gaps on the same items as the 1.4B runs (forward passes only).
    - **u_md transfer** (training-free): passive *by*, OR and TC at the matched-depth sites (R5-D10: 5, 8, 11, 13, 16, 19, 21, 23 of 32), reported as D / natural gap.
    - **Cross-fitted LEACE** scrub over the matched-depth range plus the permutation control. This tests whether "verb-general + additional in-sample removal" holds at scale.
@@ -151,6 +151,8 @@ Run whatever could break the claim first, then polish.
    The rare-verb claim becomes a regression or binned curve over Zipf. Keep the band labels only to cite the FreqBLiMP behavior results (P1) and as a robustness row.
 
    **Rules:** declare before running, including the pairing calipers, exclusions and which analyses use the expanded set. The 126-pair results stay the primary numbers unless the expanded-set analyses are declared as replacements before running.
+
+14. **DAS stability on the expanded pairs (added Nov 18).** Does v depend on the 126 training verbs? At Pythia's final DAS site, train one DAS on active pairs built from the expanded set (item 13). Use the same recipe and seed as the stored final, and keep the 126-pair test verbs out of training. Compare it with the stored v on three things: the cosine between the directions (and between the subspaces, if rank > 1); held-out active IIA on the original test split; and passive *by* transfer D(by) on the original passive test items. About 1 GPU-hour. Declare before running: the comparison metrics, and that the stored v stays the instrument either way. A different direction is reported as a finding about v's verb dependence, not swapped in. A full DAS retrain on the expanded set is not planned, because staging and transfer lean on u_md and the on-axis piece, which are recomputed on all 273 pairs anyway.
 
 ### Dynamics prediction candidates (pick before running)
 
@@ -189,17 +191,18 @@ Staging now has a clean Pythia result (on-axis piece: abstract 6–12, surface 1
 
 ## Timeline and decision rules
 
-Freeze experiments on **Dec 4** and send the full draft to sensei by **Dec 11**. Coding is fast. Queue time on TSUBAME, reading results and sensei's turnaround are not.
+Freeze experiments on **Dec 11** (moved from Dec 4 on Nov 18; writing runs alongside), then write the full draft quickly; the date it goes to sensei is to be set (about a week after the freeze). Coding is fast. Queue time on TSUBAME, reading results and sensei's turnaround are not.
 
 | Week | Experiments | Writing |
 | --- | --- | --- |
 | Nov 16–22 | Split-edit + frame invariance (Pythia); side splits; queue OLMo finals; declare replication criteria and the dynamics prediction; embedded wh stop (Nov 18) | Outline, figure list, methods |
 | Nov 23–29 | OLMo transfer / nonce / split-edit; Gemma split-edit; rank-k erasure; LEACE on Gemma, OLMo; checkpoint runs; verb expansion: spot-check, pairing, rules (item 13) | Results sections as they land |
-| Nov 30–Dec 4 | Expanded-verb behavior / u_md / LEACE runs (item 13); dynamics analysis; seeds and random-subspace baselines; Pythia-6.9B mechanism check (item 12; rules and behavior can go earlier); **freeze Dec 4** | Intro, related work |
-| Dec 5–11 | — | Full draft to sensei **Dec 11** |
-| Dec 12–Jan 4 | — | Revisions, appendix, checklist, submit **Jan 4 AoE** |
+| Nov 30–Dec 4 | Expanded-verb behavior / u_md / LEACE runs (item 13); DAS stability check on the expanded pairs (item 14); dynamics analysis | Intro, related work |
+| Dec 5–11 | Seeds and random-subspace baselines; Pythia-6.9B mechanism check (item 12; rules and behavior can go earlier); **freeze Dec 11** | Results and discussion |
+| Dec 12–18 | — | Full draft to sensei (date to set) |
+| Dec 19–Jan 4 | — | Revisions, appendix, checklist, submit **Jan 4 AoE** |
 
-The week rows are a proposal; the original timeline chart did not survive the export. Fixed dates: Nov 18, Dec 4, Dec 11, Jan 4.
+The week rows are a proposal; the original timeline chart did not survive the export. Fixed dates: Nov 18, freeze Dec 11, Jan 4.
 
 **How declared rules are used**
 
@@ -214,7 +217,7 @@ In the paper itself the rules are method, not story (decided 2026-11-17). The ma
 - **OLMo transfer fails:** the paper becomes "Pythia and Gemma, with a partial third-family check". *Fired Nov 16 (T1 fails; T2 passes).* Read with the curves: OLMo's *by* effect is positive at every site 0–11 (0.30–1.19 of the natural gap) but clears δ only at 0 and 4–6. The split edit and u_md did not rescue T1 (Settled 10): v's deep *by* FALL is mostly a non-additive on × off interaction, and writes along u raise O from site 7–8.
 - **Rank-k residue keeps falling with k:** reword "lexical" as "shared, low-rank plus verb-specific", and report where it plateaus.
 - **cos(u_md^active, u_md^passive) is low:** drop "one feature" in favor of "one direction every construction reads", and keep transfer as the evidence.
-- **Training dynamics not clean by Dec 4:** report emergence order for the measures that are in, on one model if needed.
+- **Training dynamics not clean by the freeze:** report emergence order for the measures that are in, on one model if needed.
 - **Embedded wh not solved by Nov 18:** it goes in limitations.
 - **New idea after the freeze:** it goes in the thesis file.
 
