@@ -85,7 +85,8 @@ def run(args):
             for f in range(F):
                 psum[f, s] += x[fold_np[b] == f].sum(0)
     recenter = lambda E, mu: LeaceEraser(E.proj_left, E.proj_right, T(mu))
-    ers[("c", "single")] = {s: {f: recenter(ers[("u", "single")][s][f], psum[f, s] / pcnt[f]) for f in range(F)}
+    ers[("c", "single")] = {s: {f: (recenter(ers[("u", "single")][s][f], psum[f, s] / pcnt[f]) if pcnt[f]
+                                 else ers[("u", "single")][s][f]) for f in range(F)}
                             for s in sites}
     # c: scrub, sequential fold means under the re-centered erasers
     sc = ers[("c", "scrub")] = {}
@@ -106,7 +107,8 @@ def run(args):
                 m = fold_np[b] == f
                 msum[f] += x[m].sum(0)
                 mcnt[f] += m.sum()
-        sc[L] = {f: recenter(ers[("u", "scrub")][L][f], msum[f] / mcnt[f]) for f in range(F)}
+        sc[L] = {f: (recenter(ers[("u", "scrub")][L][f], msum[f] / mcnt[f]) if mcnt[f] else ers[("u", "scrub")][L][f])
+                 for f in range(F)}
     log("re-centered erasers built")
 
     conds = [(f"Pcf_{var}_single_{s}", var, "single", s) for var in ("c", "u") for s in sites]
@@ -131,10 +133,12 @@ def run(args):
 
     # reproduction of the stored per-prompt log P(by) by the as-stored (u) erasers
     R = pd.read_csv(ref / "items.csv.gz")
-    assert R.prompt.is_unique and P.prompt.is_unique
-    pos = pd.Series(np.arange(len(R)), index=R.prompt).reindex(P.prompt)
-    assert pos.notna().all(), "passive prompts missing from the stored run"
-    pos = pos.to_numpy().astype(int)
+    kc = ["verb_pair", "context_id", "side"]  # a verb can sit in several pairs, so prompts are not unique
+    rk, pk = pd.MultiIndex.from_frame(R[kc]), pd.MultiIndex.from_frame(P[kc])
+    assert rk.is_unique and pk.is_unique
+    pos = rk.get_indexer(pk)
+    assert (pos >= 0).all(), "passive items missing from the stored run"
+    assert (R.prompt.to_numpy()[pos] == P.prompt.to_numpy()).all()
     rep = {"natural": float(np.abs(R.lp_by__natural.to_numpy()[pos] - lp_by["natural"]).max())}
     for col, var, kind, k in conds:
         if var != "u":
