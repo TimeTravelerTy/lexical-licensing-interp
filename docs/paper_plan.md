@@ -126,6 +126,31 @@ Run whatever could break the claim first, then polish.
    - **DAS** sweep at the matched-depth sites, the final at the rule-picked site, then the transfer chain under T1–T3 / S1 with relative depth.
    - **Cost:** R5-D10 measured about 3 GPU-hours for the DAS sweep plus final on one H100 in fp32 (DAS peak 27.5 GiB, weights 25.5 GiB). Check whether `gpu_h` fits this; otherwise use `gpu_1`. Keep fp32, as the 1.4B runs do. Weights for 2.8B, 6.9B and 12B are already in the HDD cache.
    - **Rules:** declare before running, reusing the replication criteria with relative depth. A null at 6.9B is reported, not dropped.
+13. **More verb pairs (decided Nov 18).** 126 pairs is enough for the transfer and direction claims. It is thin for three things:
+   - the verb-general share (learning-curve CIs at 75 / 100 pairs are [0.03, 0.72]);
+   - the 27 single-token pairs;
+   - per-band splits (head 26 pairs, about 5 per fold).
+
+   **Supply.** The binding class is intransitives, and their scarcity is at the frequent end (Zipf), not the rare end.
+   - The earlier expansion (`data/verb_expansion/`, unused, never spot-checked) found only 7 clean head intransitives, all with prepositional complements. Most clean intransitives sit at participle Zipf 3.2–3.5, between Tail and Head ("near-head").
+   - Included after Codex's adversarial review: 99 intransitives (head 7, near-head 53, tail 9, xtail 30) and 220 transitives. Of these, 54 near-head pairs were reserved for DAS training and 19 for evaluation.
+   - FreqBLiMP's strict-intransitive inventory (`freq-blimp/vocabulary_overlay.csv`, 253 participles) adds about 136 not yet used, mostly rare: 49 xtail, 25 tail, 21 between the bands and 31 below xtail. Only about 10 reach Zipf ≥ 3.2, and several of those are unusable (adjectival or with ordinary objects: *deceased*, *spoken*, *sat*).
+   - Transitives are plentiful.
+
+   **Plan.**
+   - Pool the vetted intransitives from both sources. Pair each with an unused transitive by summed-lemma Zipf (within 0.25) and token count, as `das_train_pairs.csv` did. Aim for about 250 pairs in total (roughly double), with as many single-token pairs as supply allows.
+   - Evaluate the new pairs in the existing curated contexts, in the same cross design (each verb in the other pairs' contexts). So no new context curation is needed. The new pairs' own contexts are optional.
+   - Use them only for the training-free analyses: behavior, u_md projection and transfer, and LEACE (cross-fitted, learning curve, cross-frame). DAS keeps its 126-pair splits; the reserved near-head pairs may also serve as DAS training data later.
+   - **Spot-check (Tyrone):** a manual pass over the included intransitives before any run. This is the one step that cannot be automated.
+
+   **Frequency bands.** For the mechanism paper, drop the three-band split. Treat frequency as a continuous covariate (log participle and summed-lemma Zipf), with matched T / I pairs. Reasons:
+   - the mechanism claims are verb-general;
+   - the near-head verbs fall outside the bands anyway;
+   - the band cells are too small to split.
+
+   The rare-verb claim becomes a regression or binned curve over Zipf. Keep the band labels only to cite the FreqBLiMP behavior results (P1) and as a robustness row.
+
+   **Rules:** declare before running, including the pairing calipers, exclusions and which analyses use the expanded set. The 126-pair results stay the primary numbers unless the expanded-set analyses are declared as replacements before running.
 
 ### Dynamics prediction candidates (pick before running)
 
@@ -160,7 +185,7 @@ Staging now has a clean Pythia result (on-axis piece: abstract 6–12, surface 1
 
 - **Alternating verbs as a graded test.** They were excluded by design. Projecting them onto u_md and correlating with corpus transitivity bias (Pile counts from R6-A1) would show the feature is graded. No training needed.
 - **Gemma Scope 2 lookup.** Take the cosine of u_md with SAE decoder latents at the same sites. This gives unsupervised support without the attribution-graph work saved for the thesis.
-- **More verbs for the training-free analyses.** 126 pairs caps the LEACE learning curve at "flat over the last 50 pairs". u_md, behavior and LEACE don't need the DAS splits.
+- **More verbs for the training-free analyses:** promoted to work item 13 (Nov 18).
 
 ## Timeline and decision rules
 
@@ -169,8 +194,8 @@ Freeze experiments on **Dec 4** and send the full draft to sensei by **Dec 11**.
 | Week | Experiments | Writing |
 | --- | --- | --- |
 | Nov 16–22 | Split-edit + frame invariance (Pythia); side splits; queue OLMo finals; declare replication criteria and the dynamics prediction; embedded wh stop (Nov 18) | Outline, figure list, methods |
-| Nov 23–29 | OLMo transfer / nonce / split-edit; Gemma split-edit; rank-k erasure; LEACE on Gemma, OLMo; checkpoint runs | Results sections as they land |
-| Nov 30–Dec 4 | Dynamics analysis; seeds and random-subspace baselines; Pythia-6.9B mechanism check (item 12; rules and behavior can go earlier); **freeze Dec 4** | Intro, related work |
+| Nov 23–29 | OLMo transfer / nonce / split-edit; Gemma split-edit; rank-k erasure; LEACE on Gemma, OLMo; checkpoint runs; verb expansion: spot-check, pairing, rules (item 13) | Results sections as they land |
+| Nov 30–Dec 4 | Expanded-verb behavior / u_md / LEACE runs (item 13); dynamics analysis; seeds and random-subspace baselines; Pythia-6.9B mechanism check (item 12; rules and behavior can go earlier); **freeze Dec 4** | Intro, related work |
 | Dec 5–11 | — | Full draft to sensei **Dec 11** |
 | Dec 12–Jan 4 | — | Revisions, appendix, checklist, submit **Jan 4 AoE** |
 
