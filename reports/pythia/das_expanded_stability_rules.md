@@ -74,3 +74,25 @@ Added condition **P**: as E, but the new pairs are restricted to plain intransit
 - **E is secondary:** more verbs plus prep_object intransitives.
 
 Both get the same measures and the same reading rule. The passive test runs for P, E and S.
+
+## Result (Nov 18, TSUBAME job 9451215)
+
+**Declared reading: invalid.** The cause is a miscalibrated check, not a pipeline error. I set the held-out recompute tolerance at max |ΔM| < 1e-2, and it fails for every condition: the max is 0.22–0.39 for P, E and S, and 0.09–0.11 for the stored bases in this pipeline. That tolerance was tighter than the stored pipeline's own precision. The stored passive run (`results/das_round2/passive_test/run_meta.json`) had max 0.29 / 0.36 at sites 8 / 12, with median ≈ 0. Here too the median |ΔM| is 0 to 8e-4, so the gap comes from a few swaps whose bf16 batch composition differs. The other checks pass:
+- R reproduces v (median |cos| 1.000 at both sites);
+- self-patch = unpatched (0.0);
+- S / stored D_bad(*by*) is 1.00 [0.99, 1.01] and 0.99 [0.99, 1.00].
+
+**Exploratory reading,** taking the stored run's precision (median |ΔM| < 1e-3) as the check: P is **partly stable** at both sites, and so is E.
+
+| site | median \|cos\| with v: S / P / E | D_bad(*by*) ratio to stored: P / E | held-out IIA: stored / P / E |
+|---|---|---|---|
+| 8 | 0.996 / 0.914 / 0.887 | 1.10 [1.05, 1.17] / 1.11 [1.03, 1.19] | 0.78 / 0.80 / 0.78 |
+| 12 | 0.994 / 0.922 / 0.891 | 1.06 [1.02, 1.11] / 1.02 [0.97, 1.07] | 0.90 / 0.91 / 0.90 |
+
+- **Why "partly":**
+  - P's transfer ratio is inside [0.8, 1.25], so it passes on transfer.
+  - Its cosine is 0.07–0.08 below the seed baseline, which misses the 0.05 cut for "stable" but stays well inside the 0.15 cut for "changed".
+- **What that means:** with twice as many plain training verbs, the direction rotates by about 23° (cos ≈ 0.92), more than seed noise. It does at least as well: held-out active IIA is equal or slightly higher, and passive *by* transfer is 6–10% larger.
+- **E rotates more** (cos ≈ 0.89) without a larger transfer gain, which fits the prepositional intransitives diluting the class.
+
+Outputs are on TSUBAME (`results/pythia/das_expanded_stability/`, hashes in `large_files_sha256.txt`). Report: `reports/pythia/das_expanded_stability.md`.
