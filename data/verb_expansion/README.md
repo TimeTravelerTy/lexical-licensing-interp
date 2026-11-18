@@ -104,3 +104,5 @@ transitive verbs use the participle form more. 36 pairs are multi-token and
   - participles below FreqBLiMP's xtail (Zipf < 1.2);
   - irregular pasts.
 - **To fill in:** `keep` (y / n) and `note`. Grounds for dropping a verb: an ordinary NP-object or passive use, an adjectival participle (*deceased*), or a clause or speech object.
+
+**Spot-check done (Nov 18).** Claude and Codex (gpt-6.2-sol, same written criteria, independently) each judged every verb. They agreed on 199 of 239. On the 40 disagreements, Codex's call was taken except for 5 verbs where Claude's reason holds (`note`). Most of Codex's extra drops were speech and manner verbs with speech-object or clausal uses (*screeched a warning*, *griped that …*). These are dropped for consistency with the expansion's earlier exclusions. Kept: 163.
