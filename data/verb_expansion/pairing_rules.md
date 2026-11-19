@@ -49,3 +49,18 @@ Before any run, every FreqBLiMP transitive that gets selected is screened by Cla
   - Pass 2 re-paired their intransitives and selected 17 new FreqBLiMP transitives; all passed.
   - Dropped lemmas are passed with `--drop-trans`; the command is in the README.
 - **Robustness subsets:** 17 pairs have a `selection`-flagged intransitive (16 inanimate-preferred, 1 animal).
+
+## Addendum (Nov 19): R5-D11 intransitives
+
+Round 5 (R5-D11) built a blind dual-rated T / I list (`data/round5/verbs_expanded/`, κ 0.88) under looser criteria: it allowed rare transitive uses. The 42 accepted intransitives not yet judged anywhere (not in the 126, the first spot-check or v's 29) went through the same spot-check, built by `scripts/build_d11_spotcheck.py` into `intrans_spotcheck_d11.csv`.
+
+- **Spot-check:** Claude and Codex (gpt-6.2-sol) judged them independently, with Claude's calls saved before Codex's were read. They agreed on 31 of 42.
+  - Codex's call was taken for 4 verbs: *consent* and *long* (infinitival clauses, consistent with the clause-verb exclusion), *disappear* (a causative passive exists: "was disappeared by the regime") and *rage* (speech verb).
+  - Claude's call was kept for 7: *behave* and *overreach* (reflexive objects do not passivize), *last* (experiencer object), *stroll* and *kayak* (route objects; path verbs were kept before), *moralize* and *hiccup*.
+  - Kept: 20, including 5 head intransitives (*lasted*, *consisted*, *accounted*, *behaved*, *amounted*), the class that is scarcest.
+- **Pairing:** the same rules, with the 147 existing pairs held fixed and only unused transitives allowed (`--append-to`). 19 new pairs (`batch = d11_nov19`); *hiccupped* is unpaired.
+  - The screen of the new FreqBLiMP transitives dropped *comprised* (stative, no ordinary passive) and *rued* (marginal passive); their intransitives were re-paired.
+- **Totals:** 166 expanded pairs. The eval set (no verb shared with v's 29) has 142 new pairs, 268 with the originals.
+  - Single-token: 24.
+  - Intransitive tags: head 11, near-head 58, tail 13, between bands 8, xtail 46, below xtail 6.
+  - Round-2 class: plain 74, prep_object 68 (`expanded_intrans_class.csv`).

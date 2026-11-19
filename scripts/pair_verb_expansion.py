@@ -31,9 +31,14 @@ def run(a):
 
     v2 = pd.DataFrame([json.loads(l) for l in Path(a.v2_pairs).open(encoding="utf-8")])
     orig = set(v2.good_lemma) | set(v2.bad_lemma) | set(v2.good_verb) | set(v2.bad_verb)
-    S = pd.read_csv(a.spotcheck)
+    S = pd.concat([pd.read_csv(f) for f in [a.spotcheck] + a.extra_spotcheck], ignore_index=True)
     spot_lemmas = set(S.lemma) | set(S.participle)
     I = S[S.keep == "y"].copy()
+    I["source"] = I.source.fillna("d11") if "source" in I else "d11"
+    I["selection"] = I.selection.fillna("") if "selection" in I else ""
+    prev = pd.read_csv(a.append_to) if a.append_to else None
+    if prev is not None:  # keep the existing pairs fixed; pair only intransitives not yet paired, with unused transitives
+        I = I[~I.lemma.isin(set(prev.intrans_lemma))].copy()
 
     V = pd.read_csv(a.expansion)
     tr = V[(V["class"] == "trans") & V.included]
@@ -51,6 +56,8 @@ def run(a):
     T = pd.concat([T1, T2], ignore_index=True).drop_duplicates("lemma")
     bad = T.lemma.isin(orig | spot_lemmas) | T.participle.isin(orig | spot_lemmas) | T.participle.isin(set(I.participle))
     T = T[~bad & ~T.lemma.isin(set(a.drop_trans))].copy()
+    if prev is not None:
+        T = T[~T.lemma.isin(set(prev.trans_lemma))].copy()
     T["participle_zipf"] = [zipf_frequency(p, "en") for p in T.participle]
     T["lemma_sum_zipf"] = [lemma_sum_zipf(l, pa, p) for l, pa, p in zip(T.lemma, T.past, T.participle)]
     T = T[T.participle_zipf > 0]  # not in wordfreq at all
@@ -90,6 +97,10 @@ def run(a):
                       "trans_tokens": y.participle_tokens, "intrans_tokens": x.participle_tokens,
                       "trans_screen": "reviewed" if y.t_source == "reviewed" else ""})
     P = pd.DataFrame(pairs).sort_values(["intrans_participle_zipf"], ascending=False)
+    if prev is not None:
+        P["batch"] = "d11_nov19"
+        prev["batch"] = prev.get("batch", pd.Series("nov18", index=prev.index)).fillna("nov18")
+        P = pd.concat([prev, P], ignore_index=True)
     un = I.loc[sorted(set(I.index) - used_i)]
     out = Path(a.out)
     P.to_csv(out, index=False)
@@ -112,5 +123,7 @@ if __name__ == "__main__":
     ap.add_argument("--tokenizer", required=True)
     ap.add_argument("--tok-python", default="")
     ap.add_argument("--drop-trans", nargs="*", default=[], help="transitive lemmas that failed the screen")
+    ap.add_argument("--extra-spotcheck", nargs="*", default=[], help="further spot-check files (keep == y)")
+    ap.add_argument("--append-to", default="", help="existing pairs: kept fixed, new pairs appended")
     ap.add_argument("--out", default="../data/verb_expansion/expanded_pairs.csv")
     run(ap.parse_args())

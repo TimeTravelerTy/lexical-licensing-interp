@@ -118,3 +118,5 @@ python3 pair_verb_expansion.py --tokenizer <pythia-1.4b tokenizer.json> --tok-py
   --drop-trans relate adjust adapt frighten deprive ball premise drum bluff overreach thieve supplicate misspend \
   globalize encrust contort apprise bridle
 ```
+
+**Nov 19:** 20 more intransitives from the R5-D11 list (`intrans_spotcheck_d11.csv`) were added as 19 pairs. That makes 166 expanded pairs; the eval set without v's training verbs is 142. Details are in `pairing_rules.md` (addendum). The pairing command adds `--extra-spotcheck ../data/verb_expansion/intrans_spotcheck_d11.csv --append-to ../data/verb_expansion/expanded_pairs.csv` and the drops `comprise rue`.
