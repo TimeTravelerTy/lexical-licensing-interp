@@ -33,4 +33,4 @@ Rules: `reports/leace_replication_rules.md` (declared before running). TSUBAME j
 ## What this changes
 
 - The necessity row of the status table moves from "not run" to "done" for Gemma and OLMo; "verb-general + additional in-sample removal" is now a three-model claim, and so is the cross-frame result.
-- The abstract's "one number" was Pythia-only (0.41). With item 5 (expanded verbs, Pythia), the Pythia number rises to 0.53; Gemma and OLMo are reported at 126 pairs (0.76, 0.44). Their expanded-set LEACE runs are in progress.
+- The abstract's "one number" was Pythia-only (0.41). With item 5 (expanded verbs, Pythia), the Pythia number rises to 0.53; With the same expansion, Gemma rises to 0.83 and OLMo to 0.57 (`reports/expanded_eval_rules.md`, Result for Gemma and OLMo).

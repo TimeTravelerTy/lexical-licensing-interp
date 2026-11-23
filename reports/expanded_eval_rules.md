@@ -97,3 +97,42 @@ OR and TC D(O): RISE for original, new and pooled verbs at 8, 12 and 17, with bo
 - (a) Same 126 original items, erasers fit on 268 pairs instead of 126: scrub 0–12 leaves 0.42 [0.12, 0.58] instead of 0.59 [0.35, 0.70]; paired difference −0.16 [−0.26, −0.09]. Plain only: 0.49 vs 0.59, difference −0.10 [−0.24, −0.00]. The same holds at scrub 0–8, scrub 0–23 and single sites 8 / 12 (differences −0.11 to −0.16).
 - (b) Pooled 268 pairs: 0.47 [0.33, 0.56] (removed 0.53); new 142: 0.50 [0.33, 0.61]; plain pooled (133): 0.48 [0.22, 0.62].
 - **Headline (by the declared rule): erasers fit on other verbs remove 0.53 [0.44, 0.67] of a new verb's *by* gap** (pooled, all classes), up from 0.41. The earlier learning curve (flat by point estimate from 75 to 125 pairs) did not predict this; with 214 training pairs per fold the removal is larger. "Verb-general" was underestimated by the small verb set.
+
+## Result, Gemma and OLMo (Nov 23; reports `reports/{gemma,olmo}/expanded_eval_passive.md`, `expanded_eval_leace.md`, `expanded_eval/constructions_*.md`)
+
+**Checks pass in both.** v on the original plain pairs reproduces each model's stored D_bad(*by*) (max |Δ| 1e-16 Gemma, 6e-17 OLMo). LEACE: original items' natural log P(*by*) within 1.9e-5 / 1.5e-5 of the item-6 necessity run; the script recomputes each stored share (Gemma scrub 0–13 0.24, OLMo scrub 0–8 0.56, as in `reports/leace_replication.md`); identity hook, outside anchor, offline replay 0; scrub replay 2.9e-4 (Gemma, bf16; the item-6 run had 4.6e-4) and 1.7e-6 (OLMo). Gemma's passive self-patch differs from unpatched by up to 0.06–0.10 nats (bf16, as in its stored run; not a declared tolerance). Deviation fixed before this write-up: the first analysis pass took the single-token robustness row from Pythia's token counts; it was rerun with each model's tokenizer (amendment 7; new plain single-token pairs: Gemma 6, OLMo 4; this definition reproduces Pythia's stored count exactly), and the LEACE report header showed Pythia's stored 0.59 (the comparisons always used each model's own stored value).
+
+**A. Behavior.** Natural *by* gap, original / new plain: Gemma 0.37 / 0.45, OLMo 0.45 / 0.46 (share of pairs > 0: 0.61 / 0.66 and 0.66 / 0.68); slope on intransitive Zipf flat for pooled plain in both (Gemma +0.14 [−0.09, +0.42], OLMo +0.12 [−0.13, +0.42]).
+
+**B / C. Transfer (declared comparison 1, rule sites):**
+
+| model | instrument | site | new plain | original plain | new / original | D_new − 0.5·D_orig | reading |
+|---|---|---:|---|---|---|---|---|
+| Gemma | v | 5 | 0.46 [0.36, 0.56] | 0.57 [0.45, 0.69] | 0.81 [0.62, 1.05] | 0.17 [0.08, 0.28] | generalizes |
+| Gemma | v | 8 | 0.54 [0.46, 0.62] | 0.63 [0.53, 0.73] | 0.86 [0.72, 1.03] | 0.23 [0.14, 0.31] | generalizes |
+| Gemma | u_md | 5 | 0.38 [0.23, 0.53] | 0.51 [0.32, 0.72] | 0.74 [0.59, 0.91] | 0.12 [0.04, 0.21] | generalizes |
+| Gemma | u_md | 8 | 0.41 [0.30, 0.53] | 0.44 [0.31, 0.58] | 0.95 [0.78, 1.14] | 0.19 [0.12, 0.27] | generalizes |
+| OLMo | v | 9 | 0.37 [0.31, 0.42] | 0.44 [0.38, 0.50] | 0.84 [0.69, 1.01] | 0.15 [0.09, 0.21] | generalizes |
+| OLMo | v | 11 | 0.13 [0.08, 0.18] | 0.15 [0.08, 0.21] | 0.88 [0.49, 1.57] | 0.06 [−0.00, 0.11] | criterion not met: inconclusive |
+| OLMo | u_md | 9 | 0.34 [0.29, 0.40] | 0.42 [0.36, 0.47] | 0.82 [0.69, 0.98] | 0.13 [0.08, 0.19] | generalizes |
+| OLMo | u_md | 11 | 0.36 [0.31, 0.41] | 0.44 [0.38, 0.51] | 0.82 [0.69, 0.98] | 0.14 [0.09, 0.19] | generalizes |
+
+- Transfer generalizes in 7 of 8 declared readings. The exception is v at OLMo site 11, where v's *by* effect is already small on the original verbs (0.15; OLMo's failed T1). There the ratio is 0.88, but the contrast CI touches 0. u_md generalizes at 11.
+- Point ratios are 0.74–0.95, a little below Pythia's 0.96–1.01. The new verbs' D is 0.02–0.13 nats lower while their natural gap is equal or larger, so D / natural gap is lower for the new verbs (v: Gemma site 8, 1.19 vs 1.71; OLMo site 9, 0.79 vs 0.98; wide CIs).
+- **OR / TC D(O):** RISE for original, new and pooled verbs at every site in both models with both instruments, with one exception. Gemma u_md TC at site 5 is unresolved for new verbs (+0.53 against original +0.56, which is RISE). New verbs are within 0.25 nats of the original ones.
+- Prepositional verbs (separate group): v's D_bad(*by*) CI is above 0 at the rule sites in both models, for original and new verbs.
+
+**D. Cross-fitted LEACE (erasers fit on 268 pairs; primary range: Gemma scrub 0–13, OLMo scrub 0–8):**
+
+| | Gemma | OLMo |
+|---|---|---|
+| (a) same 126 original items: stored fit → expanded fit | 0.24 → −0.03; paired −0.27 [−0.64, −0.15] | 0.56 → 0.41; paired −0.16 [−0.30, −0.08] |
+| (a) plain only | 0.25 → −0.02; −0.27 [−1.51, −0.09] | 0.53 → 0.40; −0.13 [−0.56, −0.04] |
+| (b) pooled 268, all classes (share remaining) | 0.17 [−0.22, 0.39] | 0.43 [0.26, 0.55] |
+| (b) new 142 / pooled plain 133 | 0.30 [−0.18, 0.53] / 0.17 [−0.58, 0.44] | 0.45 [0.23, 0.59] / 0.43 [0.00, 0.61] |
+| declared comparison 2 (against the model's stored point) | compatible with the stored point estimate | **lower** |
+| **headline: removed by erasers fit on other verbs** | **0.83 [0.61, 1.22]** (was 0.76) | **0.57 [0.45, 0.74]** (was 0.44) |
+
+- The Pythia result replicates: the same original items lose more of their gap when the erasers are fit on twice the verbs. The paired difference CI is below 0 for both models, at every range and in plain-only (Gemma −0.27, OLMo −0.16; Pythia −0.16). Single sites move less: Gemma site 8 −0.12, OLMo site 8 −0.08. The Gemma and OLMo plain single-site-8 differences include 0.
+- Gemma's pooled CI contains its stored point estimate, because its gap is about half Pythia's and its shares are wide. Its point removal exceeds 0.8, and the upper bound above 1 means erasure overshoots in some draws.
+- **By the declared headline rule**, the three-model "one number" becomes **0.53 (Pythia) / 0.83 (Gemma) / 0.57 (OLMo)** with 268 pairs. In-sample erasers remove nearly all of the gap in all three (item 6; not rerun on the expanded set).
