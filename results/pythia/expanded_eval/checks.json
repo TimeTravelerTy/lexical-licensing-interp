@@ -1,0 +1,32 @@
+{
+ "v_passive_checks": {
+  "8": {
+   "self_patch_max_abs_dM": 0.0,
+   "heldout_recompute_max_abs_dM": 0.2882232666015625,
+   "heldout_recompute_median_abs_dM": 4.440892098500626e-16
+  },
+  "12": {
+   "self_patch_max_abs_dM": 0.0,
+   "heldout_recompute_max_abs_dM": 0.36195945739746094,
+   "heldout_recompute_median_abs_dM": 0.0005016326904296875
+  },
+  "17": {
+   "self_patch_max_abs_dM": 0.0,
+   "heldout_recompute_max_abs_dM": 0.4295167922973633,
+   "heldout_recompute_median_abs_dM": 0.00437307357788097
+  }
+ },
+ "umd_passive_checks": {
+  "8": {
+   "self_patch_max_abs_dM": 0.0
+  },
+  "12": {
+   "self_patch_max_abs_dM": 0.0
+  },
+  "17": {
+   "self_patch_max_abs_dM": 0.0
+  }
+ },
+ "v_original_D_bad_by_vs_stored_max_abs": 1.9311904907226562e-05,
+ "reproduction_ok": true
+}

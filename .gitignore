@@ -161,3 +161,6 @@ results/gemma/leace_*/erasers.npz
 results/olmo/leace_*/items*.csv.gz
 results/olmo/leace_*/erasers.npz
 results/*_leace_smoke/
+results/*/expanded_eval/rebuild_*/
+results/*/expanded_eval/leace_cf_smoke/
+results/*/expanded_eval/cons_view_*/

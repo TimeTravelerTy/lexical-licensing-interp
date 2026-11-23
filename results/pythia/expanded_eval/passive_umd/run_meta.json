@@ -1,0 +1,37 @@
+{
+  "args": {
+    "prompts": "data/verb_expansion/eval/passive_test/prompts.csv",
+    "plan": "data/verb_expansion/eval/passive_test/plan.csv.gz",
+    "folds": "results/das_round2/final_strict/pairs_folds.csv",
+    "sites": "8,12,17",
+    "site_dirs": {
+      "8": "results/pythia/expanded_eval/umd_bases/umd_site8",
+      "12": "results/pythia/expanded_eval/umd_bases/umd_site12",
+      "17": "results/pythia/expanded_eval/umd_bases/umd_site17"
+    },
+    "out_dir": "results/pythia/expanded_eval/passive_umd",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 62288,
+  "plan_rows": 4382878,
+  "plan_sha256": "0c7db54e336ff333166513f9dd62c67d6fc2663b80558bff3eb2681a502cee6f",
+  "bases_sha256": {
+    "8": "73ca528323a9c40eb646d2cbfdbadbcd8da2c0f88bd98a5ef6267153eb3c5c5d",
+    "12": "f27700877d6f6546327c3a09f7ec440b7efe1bd7d2e7aaf2d511a2bc1bfdfac8",
+    "17": "63bfc2534280a5743821760e466dc69f771278065953b3be55a7810a30dfde5d"
+  },
+  "checks": {
+    "8": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "12": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "17": {
+      "self_patch_max_abs_dM": 0.0
+    }
+  }
+}
