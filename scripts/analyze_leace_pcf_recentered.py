@@ -10,6 +10,7 @@ the reference; the permutation gate and flags come from the cross-frame readings
 from __future__ import annotations
 
 import argparse
+import os
 import json
 from pathlib import Path
 
@@ -19,7 +20,7 @@ import pandas as pd
 from analyze_das_prep import Boot
 from analyze_leace_crossframe import ci, item_table, sha
 
-N_SITES, NEC_TOP = 24, 12
+N_SITES, NEC_TOP = int(os.environ.get("LEACE_N_SITES", 24)), int(os.environ.get("LEACE_NEC_TOP", 12))
 REPRO_TOL = 1e-4
 
 

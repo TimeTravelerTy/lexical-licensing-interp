@@ -16,6 +16,7 @@ Writes reports/pythia/leace_permutation.md, leace_permutation_per_perm.csv, leac
 from __future__ import annotations
 
 import argparse
+import os
 import hashlib
 import json
 from pathlib import Path
@@ -25,7 +26,8 @@ import pandas as pd
 
 from analyze_das_prep import table
 
-CONDS = [("scrub_0_8", "scrub, sites 0–8"), ("scrub_0_12", "scrub, sites 0–12"), ("scrub_all", "scrub, sites 0–23"),
+NEC_TOP = int(os.environ.get("LEACE_NEC_TOP", 12))
+CONDS = [("scrub_0_8", "scrub, sites 0–8"), (f"scrub_0_{NEC_TOP}", f"scrub, sites 0–{NEC_TOP}"), ("scrub_all", "scrub, all sites (0–L−1)"),
          ("single_8", "single site 8")]
 
 

@@ -23,7 +23,7 @@ import pandas as pd
 
 import run_leace_necessity as nec
 
-N_SITES = 24
+N_SITES = nec.N_SITES
 
 
 def run(args):

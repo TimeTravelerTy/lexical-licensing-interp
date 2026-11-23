@@ -13,6 +13,7 @@ the amended rules; any failed check makes them "invalid".
 from __future__ import annotations
 
 import argparse
+import os
 import hashlib
 import json
 from pathlib import Path
@@ -22,7 +23,8 @@ import pandas as pd
 
 from analyze_das_prep import Boot
 
-N_SITES, DAS_SITE, NEC_TOP = 24, 8, 12
+N_SITES, DAS_SITE, NEC_TOP = (int(os.environ.get("LEACE_N_SITES", 24)), 8,
+                              int(os.environ.get("LEACE_NEC_TOP", 12)))
 TOL = {"self_patch_max_abs": 1e-6, "outside_anchor_max_abs": 1e-6, "single_offline_max_abs": 1e-5,
        "active_natural_vs_pass_max_abs": 1e-5, "replay_mean_maxabs": 1e-6, "replay_xcov_rel": 1e-6,
        "replay_post_xcov_resid_max": 1e-5, "ref_natural_max_abs": 1e-3, "stored_share_repro": 1e-6,
@@ -263,7 +265,7 @@ def run(a):
          f"Natural *by* gap {ci(nat)[0]:+.2f} [{ci(nat)[1]:+.2f}, {ci(nat)[2]:+.2f}] nats.", ""]
     if problems:
         L += ["**Problems (readings invalid):** " + "; ".join(problems), ""]
-    L += ["## Readings (scrub 0–12)", ""]
+    L += [f"## Readings (scrub 0–{NEC_TOP})", ""]
     for k, r in readings.items():
         if " vs " in k:
             pmin = "n/a" if r["perm_min"] is None else f"{r['perm_min']:.2f}"

@@ -17,6 +17,7 @@ Writes reports/pythia/leace_necessity.md and reports/pythia/leace_necessity_*.cs
 from __future__ import annotations
 
 import argparse
+import os
 import hashlib
 import json
 from pathlib import Path
@@ -28,7 +29,7 @@ from analyze_das_prep import BANDS, Boot, load_readout, table
 from build_das_prep_prompts import pid
 
 DAS_SITE = 8
-NEC_TOP = 12  # sites 0..~12: the necessity-relevant range (later sites sit next to the readout)
+NEC_TOP = int(os.environ.get("LEACE_NEC_TOP", 12))  # sites 0..~12: the necessity-relevant range (later sites sit next to the readout)
 # Round 5, B5 (reports/round5/b5_necessity.md), frame `hasbeen`, all 64 pairs: share of the natural good - bad
 # " by" gap removed, with 95% CIs. Different items (B7 items, "The N has been V"), fp32.
 REFS = (("d -> I mean (DAS site 8 coordinate)", "d_I", 0.15, 0.09, 0.31),
@@ -312,7 +313,7 @@ def run(args):
           "reference rows are from `reports/round5/b5_necessity.md` (frame `hasbeen`, all 64 pairs; different "
           "items and frame: B7 items, \"The N has been V\"), converted to share remaining = 1 − share removed.", ""]
     trs = [row("natural", "natural")]
-    trs += [row("scrub_all", "scrub, sites 0–23")]
+    trs += [row("scrub_all", "scrub, all sites (0–L−1)")]
     if f"scrub_0_{NEC_TOP}" in A.index:
         trs += [row(f"scrub_0_{NEC_TOP}", f"scrub, sites 0–{NEC_TOP}")]
     trs += [row("scrub_0_8", f"scrub, sites 0–{DAS_SITE}")]
@@ -321,7 +322,7 @@ def run(args):
             row(best, f"single site {best.split('_')[1]}: lowest of 24 (post hoc; pointwise CI)")]
     if ins:
         ibest = A.loc[[c for c in erased if c.startswith("insample_single_")]].share_remaining.idxmin()
-        trs += [row("insample_scrub_all", "in-sample: scrub, sites 0–23")]
+        trs += [row("insample_scrub_all", "in-sample: scrub, all sites (0–L−1)")]
         if f"insample_scrub_0_{NEC_TOP}" in A.index:
             trs += [row(f"insample_scrub_0_{NEC_TOP}", f"in-sample: scrub, sites 0–{NEC_TOP}")]
         trs += [row("insample_scrub_0_8", f"in-sample: scrub, sites 0–{DAS_SITE}"),

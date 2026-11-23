@@ -54,6 +54,7 @@ direction (proj_left column: x' = x - <read, x - bias> edit), read direction (pr
 from __future__ import annotations
 
 import argparse
+import os
 import hashlib
 import json
 import time
@@ -65,7 +66,10 @@ import pandas as pd
 import run_das_round2 as r2
 from analyze_das_prep import curated_items
 
-N_SITES = 24
+# Per-model depth (Gemma / OLMo replication, reports/leace_replication_rules.md): LEACE_N_SITES = the model's layer
+# count (sites 0..L-1), LEACE_NEC_TOP = the declared scrub top. Defaults are Pythia-1.4B's.
+N_SITES = int(os.environ.get("LEACE_N_SITES", 24))
+NEC_TOP = int(os.environ.get("LEACE_NEC_TOP", 12))
 DAS_SITE = 8
 
 
@@ -86,6 +90,13 @@ def load_items(args, tok):
     pas = curated_items(scores, v2, "passive_2")
     pas = pas[pas.own_context == 0].reset_index(drop=True)
     pas = pas[["verb_pair", "verb_band", "context_id", "context_band", "prefix", "good_verb", "bad_verb"]].copy()
+    if getattr(args, "extra_pairs", None):  # expanded eval set (reports/expanded_eval_rules.md): new pairs in all
+        # curated contexts (cross design; none is a new pair's own context), appended after the original items
+        ctx = pas.drop_duplicates("context_id")[["context_id", "context_band", "prefix"]]
+        X = pd.read_csv(args.extra_pairs)
+        assert not set(X.verb_pair) & set(pas.verb_pair)
+        new = X[["verb_pair", "verb_band", "good_verb", "bad_verb"]].merge(ctx, how="cross")
+        pas = pd.concat([pas, new[pas.columns]], ignore_index=True)
     if args.max_pairs:
         keep = []
         for band, g in pas.drop_duplicates("verb_pair").groupby("verb_band"):
@@ -300,6 +311,7 @@ def run(args):
     out.mkdir(parents=True, exist_ok=True)
     M = Model(args)
     dev, d, tok = M.dev, M.d, M.R.tok
+    assert M.R.model.config.num_hidden_layers == N_SITES, "set LEACE_N_SITES to the model's layer count"
     pas, P, pairs = load_items(args, tok)
     pairs.to_csv(out / "pairs_folds.csv", index=False)
     # eraser "fold" of each prompt: its outer fold (cross-fitted) or 0 for every prompt (in-sample: one eraser set)
@@ -543,6 +555,8 @@ if __name__ == "__main__":
     ap.add_argument("--max-contexts", type=int, default=0, help="smoke test: contexts kept")
     ap.add_argument("--cumulative", action="store_true", help="also evaluate every scrub prefix 0..k")
     ap.add_argument("--insample", action="store_true", help="one eraser set fit on all items, evaluated on them")
+    ap.add_argument("--extra-pairs", default="", help="CSV verb_pair, verb_band, good_verb, bad_verb: new pairs added "
+                    "in all curated contexts (expanded eval set, reports/expanded_eval_rules.md)")
     ap.add_argument("--out-dir", default=None,
                     help="default results/pythia/leace_necessity (results/pythia/leace_insample with --insample)")
     a = ap.parse_args()

@@ -30,9 +30,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from run_leace_necessity import DAS_SITE, N_SITES, Model, Stop, apply_erasers, fit_stats, load_items, sha
+from run_leace_necessity import DAS_SITE, N_SITES, NEC_TOP, Model, Stop, apply_erasers, fit_stats, load_items, sha
 
-CONDS = {"scrub_0_8": 8, "scrub_0_12": 12, "scrub_all": N_SITES - 1, "single_8": None}
+CONDS = {"scrub_0_8": 8, f"scrub_0_{NEC_TOP}": NEC_TOP, "scrub_all": N_SITES - 1, "single_8": None}
 
 
 def permuted_labels(P, seed):

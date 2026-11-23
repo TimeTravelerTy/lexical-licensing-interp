@@ -44,7 +44,7 @@ from analyze_das_prep import OBJ, curated_items
 from build_das_prep_prompts import PAST
 from run_leace_permutation import permuted_labels
 
-N_SITES, DAS_SITE, NEC_TOP = 24, 8, 12
+N_SITES, DAS_SITE, NEC_TOP = nec.N_SITES, nec.DAS_SITE, nec.NEC_TOP
 
 
 def active_items(P, args):
