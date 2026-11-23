@@ -21,14 +21,16 @@ from pathlib import Path
 
 import pandas as pd
 
-L = {"pythia-1.4b": 24, "gemma-3-1b-pt": 26}
+L = {"pythia-1.4b": 24, "gemma-3-1b-pt": 26, "olmo-2-1b": 16}
 SWEEPS = {("pythia-1.4b", "active"): ["results/das_round2/sweep_strict/sweep.csv"],
           ("gemma-3-1b-pt", "active"): ["results/gemma/das/sweep_strict/sweep.csv"],
           ("pythia-1.4b", "passive"): ["results/das_round2/reverse/sweep.csv",
                                        "results/gemma/das/pythia_passive_sweep_fill/sweep.csv"],
-          ("gemma-3-1b-pt", "passive"): ["results/gemma/das/reverse_sweep/sweep.csv"]}
+          ("gemma-3-1b-pt", "passive"): ["results/gemma/das/reverse_sweep/sweep.csv"],
+          ("olmo-2-1b", "active"): ["results/olmo/das/sweep_strict/sweep.csv"]}
 DIRS = {("pythia-1.4b", "active"): "pythia_active", ("gemma-3-1b-pt", "active"): "gemma_active",
-        ("pythia-1.4b", "passive"): "pythia_passive", ("gemma-3-1b-pt", "passive"): "gemma_passive"}
+        ("pythia-1.4b", "passive"): "pythia_passive", ("gemma-3-1b-pt", "passive"): "gemma_passive",
+        ("olmo-2-1b", "active"): "../../../olmo/das/controls/olmo_active"}  # OLMo (reports/olmo/nonce_controls_rules.md)
 
 
 def trained(paths):
@@ -81,7 +83,27 @@ def main(args):
     for task in ("active", "passive"):
         P = A[(A.model == "pythia-1.4b") & (A.task == task)].set_index("site")
         G = A[(A.model == "gemma-3-1b-pt") & (A.task == task)].set_index("site")
+        O = A[(A.model == "olmo-2-1b") & (A.task == task)].set_index("site")
         if P.empty or G.empty:
+            continue
+        if args.with_olmo and not O.empty:
+            lines += [f"## {task} task, three models (OLMo site round(p × 16 / 24))", "",
+                      "| P site | G site | O site | P trained / random p95 / probe | G trained / random p95 / probe | "
+                      "O trained / random mean / p95 / unpatched / probe |", "|---:|---:|---:|---|---|---|"]
+            for p in P.index:
+                g, o = int(round(p * 26 / 24)), int(round(p * 16 / 24))
+                if g not in G.index or o not in O.index:
+                    continue
+                a, b, c = P.loc[p], G.loc[g], O.loc[o]
+                lines.append(f"| {p} | {g} | {o}{'†' if c.last_site else ''} | {f3(a.trained)} / {f3(a.random_p95)} / "
+                             f"{f3(a.probe)} | {f3(b.trained)} / {f3(b.random_p95)} / {f3(b.probe)} | {f3(c.trained)} / "
+                             f"{f3(c.random_mean)} / {f3(c.random_p95)} / {f3(c.unpatched)} / {f3(c.probe)} |")
+            lines += ["", "OLMo, every site:", "", "| O site | depth | trained | random mean / p95 | unpatched | probe | trained > random p95 |",
+                      "|---:|---|---:|---|---:|---:|---|"]
+            for o, c in O.iterrows():
+                lines.append(f"| {o}{'†' if c.last_site else ''} | {c.depth:.2f} | {f3(c.trained)} | {f3(c.random_mean)} / "
+                             f"{f3(c.random_p95)} | {f3(c.unpatched)} | {f3(c.probe)} | {'yes' if c.trained > c.random_p95 else 'no'} |")
+            lines.append("")
             continue
         lines += [f"## {task} task", "",
                   "| P site | G site | depth P / G | P trained | P random mean / p95 | P unpatched | P probe | "
@@ -108,4 +130,5 @@ if __name__ == "__main__":
     ap.add_argument("--root", default="results/gemma/das/controls")
     ap.add_argument("--csv", default="results/gemma/das/controls/summary.csv")
     ap.add_argument("--report", default="reports/gemma/das_controls.md")
+    ap.add_argument("--with-olmo", action="store_true", help="three-model tables (OLMo active controls)")
     main(ap.parse_args())
