@@ -10,6 +10,7 @@ context band; the same draws for every condition), for original / new / pooled p
 from __future__ import annotations
 
 import argparse
+import os
 import json
 from pathlib import Path
 
@@ -18,7 +19,8 @@ import pandas as pd
 
 from analyze_das_prep import Boot
 
-CONDS_MAIN = ("scrub_0_12", "scrub_0_8", "scrub_all", "single_8", "single_12")
+NEC = int(os.environ.get("LEACE_NEC_TOP", 12))  # declared scrub top (Pythia 12; Gemma 13, OLMo 8)
+CONDS_MAIN = tuple(dict.fromkeys((f"scrub_0_{NEC}", "scrub_0_8", "scrub_all", "single_8", f"single_{NEC}")))
 
 
 def ci(d):
@@ -62,8 +64,8 @@ def run(a):
         plain_q = iq.verb_pair.map(lambda vp: cls.get(vp.split("/")[-1])).eq("plain").to_numpy()
         comp = {}
         for sub, mk in (("all", np.ones(len(iq), bool)), ("plain", plain_q)):
-            for c in CONDS_MAIN + ("scrub_0_23",):
-                cq = "scrub_all" if c == "scrub_0_23" else c
+            for c in CONDS_MAIN:
+                cq = c
                 if f"lp_by__{cq}" not in Q.columns or f"lp_by__{cq}" not in P.columns:
                     continue
                 sh_st = bq.means((Gq[f"lp_by__{cq}"] - Bq[f"lp_by__{cq}"]).to_numpy(), mk) / \
@@ -71,7 +73,7 @@ def run(a):
                 sh_ex = bq.means((Go[f"lp_by__{cq}"] - Bo[f"lp_by__{cq}"]).to_numpy(), mk) / \
                     bq.means((Go.lp_by__natural - Bo.lp_by__natural).to_numpy(), mk)
                 comp[f"{sub} {cq}"] = {"stored": ci(sh_st), "expanded_fit": ci(sh_ex), "difference": ci(sh_ex - sh_st)}
-        checks["stored_scrub_0_12_share_recomputed"] = comp["all scrub_0_12"]["stored"]
+        checks[f"stored_scrub_0_{NEC}_share_recomputed"] = comp[f"all scrub_0_{NEC}"]["stored"]
         checks["comparison_a"] = comp
     rc = json.loads((res / "checks.json").read_text())
     checks["run_checks"] = rc
@@ -98,15 +100,18 @@ def run(a):
          "Rules: `reports/expanded_eval_rules.md` (D). Scripts: `scripts/run_leace_necessity.py --extra-pairs`, "
          "`scripts/analyze_expanded_leace.py`. Erasers cross-fitted over all pairs (5 verb-level folds); share of the "
          "natural *by* gap remaining, 95% CIs (pairs within verb band x contexts).", "",
-         f"Stored 126-pair reference (Settled 1): scrub 0–12 leaves {a.stored_ref}.", "",
+         f"Stored 126-pair reference: scrub 0–{NEC} leaves {a.stored_ref} (recomputed here from the stored run: "
+         + (f"{checks[f'stored_scrub_0_{NEC}_share_recomputed'][0]:.3f}" if f"stored_scrub_0_{NEC}_share_recomputed" in checks else "n/a")
+         + ").", "",
          "| subset | pairs | natural gap | " + " | ".join(CONDS_MAIN) + " |", "|---|---:|---|" + "---|" * len(CONDS_MAIN)]
     for m in masks:
         q = S[S.subset == m].set_index("condition")
         nat = q.loc["natural"]
         L.append(f"| {m} | {nat.n_pairs} | {nat.gap:.2f} [{nat.gap_lo:.2f}, {nat.gap_hi:.2f}] | "
                  + " | ".join(f3(q.loc[c]) if c in q.index else "—" for c in CONDS_MAIN) + " |")
-    pooled = S[(S.subset == "pooled all") & (S.condition == "scrub_0_12")].iloc[0]
-    ref = float(a.stored_ref.split()[0])
+    pooled = S[(S.subset == "pooled all") & (S.condition == f"scrub_0_{NEC}")].iloc[0]
+    ref = (checks[f"stored_scrub_0_{NEC}_share_recomputed"][0] if f"stored_scrub_0_{NEC}_share_recomputed" in checks
+           else float(a.stored_ref.split()[0]))
     verdict = ("lower" if pooled.share_hi < ref else "higher" if pooled.share_lo > ref
                else "compatible with the stored point estimate")
     if "comparison_a" in checks:
@@ -115,7 +120,7 @@ def run(a):
         g = lambda t: f"{t[0]:.2f} [{t[1]:.2f}, {t[2]:.2f}]"
         for k, v in checks["comparison_a"].items():
             L.append(f"| {k} | {g(v['stored'])} | {g(v['expanded_fit'])} | {g(v['difference'])} |")
-    L += ["", f"**Declared comparison 2:** pooled (all classes, as the stored 126-pair number) scrub 0–12 leaves "
+    L += ["", f"**Declared comparison 2:** pooled (all classes, as the stored 126-pair number) scrub 0–{NEC} leaves "
           f"{f3(pooled)}, against the stored {ref:.2f}: **{verdict}**.", "", "## Checks", "", "```",
           json.dumps(checks, indent=1, default=float), "```", ""]
     Path(a.report).parent.mkdir(parents=True, exist_ok=True)

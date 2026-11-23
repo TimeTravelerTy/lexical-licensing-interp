@@ -160,5 +160,5 @@ if __name__ == "__main__":
     ap.add_argument("--sites", default="4,6,8,10,12,14,16,17", help="sites (default: the Pythia-1.4B sites; Gemma replication passes its own)")
     ap.add_argument("--token-sites", default="8,17", help="sites whose per-token log-probs are saved")
     a = ap.parse_args()
-    SITES, TOKEN_SITES = tuple(int(s) for s in a.sites.split(",")), tuple(int(s) for s in a.token_sites.split(","))
+    SITES, TOKEN_SITES = tuple(int(s) for s in a.sites.split(",")), tuple(int(s) for s in a.token_sites.split(",") if s)
     run(a)

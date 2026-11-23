@@ -76,7 +76,7 @@ def run(a):
     a_repro = abs(r["A-cf_c_share"] - r0["share_A"][0]) if r0 else None
     if r0 and a_repro > 1e-9:
         problems.append(f"A-cf (c) share differs from the cross-frame readings by {a_repro}")
-    pmin = R0["perm"]["c_scrub_12"]["min"]
+    pmin = R0["perm"][f"c_scrub_{NEC_TOP}"]["min"]
     rem_lo, rem_hi = 1 - r["A-cf_c_share_hi"], 1 - r["A-cf_c_share_lo"]
     below = r["A-cf_c_share_hi"] < pmin
     rho, rlo, rhi = r.rho_matched, r.rho_matched_lo, r.rho_matched_hi

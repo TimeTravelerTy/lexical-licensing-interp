@@ -29,6 +29,7 @@ from analyze_das_prep import BANDS, Boot, load_readout, table
 from build_das_prep_prompts import pid
 
 DAS_SITE = 8
+N_SITES = int(os.environ.get("LEACE_N_SITES", 24))
 NEC_TOP = int(os.environ.get("LEACE_NEC_TOP", 12))  # sites 0..~12: the necessity-relevant range (later sites sit next to the readout)
 # Round 5, B5 (reports/round5/b5_necessity.md), frame `hasbeen`, all 64 pairs: share of the natural good - bad
 # " by" gap removed, with 95% CIs. Different items (B7 items, "The N has been V"), fp32.
@@ -319,7 +320,7 @@ def run(args):
     trs += [row("scrub_0_8", f"scrub, sites 0–{DAS_SITE}")]
     best = A.loc[[c for c in erased if c.startswith("single_")]].share_remaining.idxmin()
     trs += [row(f"single_{DAS_SITE}", f"single site {DAS_SITE} (DAS site)"),
-            row(best, f"single site {best.split('_')[1]}: lowest of 24 (post hoc; pointwise CI)")]
+            row(best, f"single site {best.split('_')[1]}: lowest of {N_SITES} (post hoc; pointwise CI)")]
     if ins:
         ibest = A.loc[[c for c in erased if c.startswith("insample_single_")]].share_remaining.idxmin()
         trs += [row("insample_scrub_all", "in-sample: scrub, all sites (0–L−1)")]
@@ -327,7 +328,7 @@ def run(args):
             trs += [row(f"insample_scrub_0_{NEC_TOP}", f"in-sample: scrub, sites 0–{NEC_TOP}")]
         trs += [row("insample_scrub_0_8", f"in-sample: scrub, sites 0–{DAS_SITE}"),
                 row(f"insample_single_{DAS_SITE}", f"in-sample: single site {DAS_SITE} (DAS site)"),
-                row(ibest, f"in-sample: single site {ibest.split('_')[-1]}: lowest of 24 (post hoc; pointwise CI)")]
+                row(ibest, f"in-sample: single site {ibest.split('_')[-1]}: lowest of {N_SITES} (post hoc; pointwise CI)")]
     for n, k, e, lo, hi in REFS:
         trs.append([f"ref (B5): {n}", "", f"{1 - e:.2f} [{1 - hi:.2f}, {1 - lo:.2f}]", "", "", ""])
     L += table(hdr, trs) + [""]
@@ -335,7 +336,7 @@ def run(args):
     L += ["## Single-site LEACE, every site", "",
           "Natural linear / MLP probe accuracy at the same site in the last two columns.", ""]
     trs = []
-    for s in range(24):
+    for s in range(N_SITES):
         c = f"single_{s}"
         trs.append(row(c, str(s)) + [nat_probe(s, "linear"), nat_probe(s, "mlp")])
     L += table(["Site", "*by* gap", "share remaining", "KL", "linear probe", "MLP probe", "natural linear",
@@ -347,7 +348,7 @@ def run(args):
           "(which feeds the readout) is not probed.", ""]
     trs = []
     pv = probes.pivot_table(index="site", columns=["condition", "probe"], values="acc")
-    for s in range(24):
+    for s in range(N_SITES):
         trs.append([str(s)] + [f"{pv.loc[s, (c, k)]:.3f}" for c in ("natural", "scrub_all", "scrub_0_8")
                                for k in ("linear", "mlp")])
     L += table(["Site", "natural lin", "natural MLP", "scrub 0–23 lin", "scrub 0–23 MLP", "scrub 0–8 lin",
@@ -360,7 +361,7 @@ def run(args):
               "scrubbing 0–23 at that site.", ""]
         pv = probes.pivot_table(index="site", columns=["condition", "probe"], values="acc")
         trs = []
-        for s in range(24):
+        for s in range(N_SITES):
             trs.append(row(f"insample_single_{s}", str(s)) +
                        [f"{pv.loc[s, ('insample_single', 'linear_fitset')]:.3f}"] +
                        [f"{pv.loc[s, ('insample_scrub_all', k)]:.3f}" for k in ("linear_fitset", "linear", "mlp")])
@@ -371,13 +372,13 @@ def run(args):
         return pre + ("scrub_all" if k == 23 else f"scrub_0_{k}")
 
     curve_runs = [(lab, pre) for lab, pre in (("cross-fitted", ""), ("in-sample", "insample_"))
-                  if all(scrub_name(k, pre) in A.index for k in range(24))]
+                  if all(scrub_name(k, pre) in A.index for k in range(N_SITES))]
     if curve_runs:
         L += ["## Cumulative scrub curve", "",
               "Scrubbing sites 0..k (the first k + 1 erasers of the sequential fit), share of the natural gap "
               f"remaining and KL, k = 0..23. Sites after ~{NEC_TOP} sit next to the readout (see Flags).", ""]
         trs, cur = [], []
-        for k in range(24):
+        for k in range(N_SITES):
             r = [str(k)]
             for lab, pre in curve_runs:
                 q = A.loc[scrub_name(k, pre)]
@@ -426,7 +427,7 @@ def run(args):
                   f"{sc.share_remaining:.2f}) and {A.loc['scrub_all'].share_remaining - sc.share_remaining:+.2f} in "
                   f"sites {ref + 1}–23.", ""]
         trs, crow = [], []
-        for s_ in range(24):
+        for s_ in range(N_SITES):
             r = [str(s_)]
             for lab, c in cos.items():
                 for part in ("edit", "read"):
