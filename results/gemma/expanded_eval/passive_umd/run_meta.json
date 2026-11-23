@@ -1,0 +1,42 @@
+{
+  "args": {
+    "prompts": "results/gemma/expanded_eval/passive_test/prompts.csv",
+    "plan": "results/gemma/expanded_eval/passive_test/plan.csv.gz",
+    "folds": "results/gemma/das/transfer/final_strict/pairs_folds.csv",
+    "sites": "5,8,12,15",
+    "site_dirs": {
+      "5": "results/gemma/expanded_eval/umd_bases/umd_site5",
+      "8": "results/gemma/expanded_eval/umd_bases/umd_site8",
+      "12": "results/gemma/expanded_eval/umd_bases/umd_site12",
+      "15": "results/gemma/expanded_eval/umd_bases/umd_site15"
+    },
+    "out_dir": "results/gemma/expanded_eval/passive_umd",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 62281,
+  "plan_rows": 4384189,
+  "plan_sha256": "0cf54f967d19b2bbed23da9c418141fbe1fbb6a32d1b481627aaabe557ce503a",
+  "bases_sha256": {
+    "5": "67feeccc924beb52626e21db1724843060dc0d40918973b7e1d1530f081f6db8",
+    "8": "ce0acde1fb370e442c295b6d0b8e97a87084d25dab51397c0edcd6ee592e81a3",
+    "12": "b10c20605c934b800ccc8e23e3ba2a2bdb839670b19d89f0ee892f55e060f21a",
+    "15": "f8530b143f54b38ad5d559ed8a36a9a5c6d992666576ef4c211b9adce9899cfb"
+  },
+  "checks": {
+    "5": {
+      "self_patch_max_abs_dM": 0.05915069580078125
+    },
+    "8": {
+      "self_patch_max_abs_dM": 0.07798099517822266
+    },
+    "12": {
+      "self_patch_max_abs_dM": 0.1024332046508789
+    },
+    "15": {
+      "self_patch_max_abs_dM": 0.044551849365234375
+    }
+  }
+}

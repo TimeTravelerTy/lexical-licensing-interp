@@ -1,0 +1,40 @@
+{
+ "v_passive_checks": {
+  "5": {
+   "self_patch_max_abs_dM": 0.030130386352539062,
+   "heldout_recompute_max_abs_dM": 0.09097576141357422,
+   "heldout_recompute_median_abs_dM": 0.0
+  },
+  "8": {
+   "self_patch_max_abs_dM": 0.05850982666015625,
+   "heldout_recompute_max_abs_dM": 0.057201385498046875,
+   "heldout_recompute_median_abs_dM": 0.0
+  },
+  "12": {
+   "self_patch_max_abs_dM": 0.05901336669921875,
+   "heldout_recompute_max_abs_dM": 0.059413909912109375,
+   "heldout_recompute_median_abs_dM": 0.0
+  },
+  "15": {
+   "self_patch_max_abs_dM": 0.05316925048828125,
+   "heldout_recompute_max_abs_dM": 0.06627273559570312,
+   "heldout_recompute_median_abs_dM": 0.0
+  }
+ },
+ "umd_passive_checks": {
+  "5": {
+   "self_patch_max_abs_dM": 0.05915069580078125
+  },
+  "8": {
+   "self_patch_max_abs_dM": 0.07798099517822266
+  },
+  "12": {
+   "self_patch_max_abs_dM": 0.1024332046508789
+  },
+  "15": {
+   "self_patch_max_abs_dM": 0.044551849365234375
+  }
+ },
+ "v_original_D_bad_by_vs_stored_max_abs": 1.1102230246251565e-16,
+ "reproduction_ok": true
+}

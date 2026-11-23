@@ -1,0 +1,42 @@
+{
+  "args": {
+    "prompts": "results/olmo/expanded_eval/passive_test/prompts.csv",
+    "plan": "results/olmo/expanded_eval/passive_test/plan.csv.gz",
+    "folds": "results/olmo/das/transfer/final_strict/pairs_folds.csv",
+    "sites": "9,11,12,13",
+    "site_dirs": {
+      "9": "results/olmo/expanded_eval/umd_bases/umd_site9",
+      "11": "results/olmo/expanded_eval/umd_bases/umd_site11",
+      "12": "results/olmo/expanded_eval/umd_bases/umd_site12",
+      "13": "results/olmo/expanded_eval/umd_bases/umd_site13"
+    },
+    "out_dir": "results/olmo/expanded_eval/passive_umd",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 1024
+  },
+  "prompts": 62288,
+  "plan_rows": 4382878,
+  "plan_sha256": "0c7db54e336ff333166513f9dd62c67d6fc2663b80558bff3eb2681a502cee6f",
+  "bases_sha256": {
+    "9": "928ae08e3c81a90fe52bb0ac99bb0ddd3e95b5b00001ba35305f973009e15410",
+    "11": "45071626ba1bf5e2232bf795c343dbeffb74297ed442a6448f5af8fbb0e03245",
+    "12": "fdbab322e2a1c5c13d3740a2ca7a8afbd7950b620b3b6aa5b4c2be2aaeb49c2e",
+    "13": "23f1ce05d322ac3852c9869631caa0fc19b4f7e12ab168647903e1b267a444f8"
+  },
+  "checks": {
+    "9": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "11": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "12": {
+      "self_patch_max_abs_dM": 0.0
+    },
+    "13": {
+      "self_patch_max_abs_dM": 0.0
+    }
+  }
+}

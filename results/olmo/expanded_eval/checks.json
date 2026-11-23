@@ -1,0 +1,40 @@
+{
+ "v_passive_checks": {
+  "9": {
+   "self_patch_max_abs_dM": 0.0,
+   "heldout_recompute_max_abs_dM": 0.03632831573486328,
+   "heldout_recompute_median_abs_dM": 0.0
+  },
+  "11": {
+   "self_patch_max_abs_dM": 0.0,
+   "heldout_recompute_max_abs_dM": 0.0375523567199707,
+   "heldout_recompute_median_abs_dM": 0.0
+  },
+  "12": {
+   "self_patch_max_abs_dM": 0.0,
+   "heldout_recompute_max_abs_dM": 0.038712978363038,
+   "heldout_recompute_median_abs_dM": 0.0
+  },
+  "13": {
+   "self_patch_max_abs_dM": 0.0,
+   "heldout_recompute_max_abs_dM": 0.028995037078857866,
+   "heldout_recompute_median_abs_dM": 0.0
+  }
+ },
+ "umd_passive_checks": {
+  "9": {
+   "self_patch_max_abs_dM": 0.0
+  },
+  "11": {
+   "self_patch_max_abs_dM": 0.0
+  },
+  "12": {
+   "self_patch_max_abs_dM": 0.0
+  },
+  "13": {
+   "self_patch_max_abs_dM": 0.0
+  }
+ },
+ "v_original_D_bad_by_vs_stored_max_abs": 5.551115123125783e-17,
+ "reproduction_ok": true
+}
