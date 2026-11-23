@@ -42,7 +42,7 @@ def run(a):
     cf = boot.means((Gc[f"lp_by__{cond}"] - Bc[f"lp_by__{cond}"]).to_numpy(), m) / nat
     ins = boot.means((Gi[f"lp_by__{cond}"] - Bi[f"lp_by__{cond}"]).to_numpy(), m) / nat
     perm = pd.read_csv(Path(a.perm_summary)).set_index("condition")
-    p5 = float(perm.loc[cond, "perm_share_p5"])
+    p5 = float(perm.loc[[cond], "perm_share_p5"].iloc[0])
     r = {"model": a.model_name, "condition": cond, "natural_gap": ci(nat), "cf_share": ci(cf), "cf_removed": ci(1 - cf),
          "insample_share": ci(ins), "insample_minus_cf": ci(ins - cf), "perm_p5": p5}
     r["N1"] = r["cf_share"][2] < 1

@@ -29,6 +29,7 @@ from analyze_das_prep import table
 NEC_TOP = int(os.environ.get("LEACE_NEC_TOP", 12))
 CONDS = [("scrub_0_8", "scrub, sites 0–8"), (f"scrub_0_{NEC_TOP}", f"scrub, sites 0–{NEC_TOP}"), ("scrub_all", "scrub, all sites (0–L−1)"),
          ("single_8", "single site 8")]
+CONDS = list(dict(CONDS).items())  # OLMo: NEC_TOP = 8 duplicates scrub_0_8
 
 
 def run(args):
