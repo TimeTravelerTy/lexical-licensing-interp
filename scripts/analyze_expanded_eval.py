@@ -78,8 +78,9 @@ def run(a):
         from transformers import AutoTokenizer
         tok = AutoTokenizer.from_pretrained(a.tokenizer)
         n1 = lambda w: len(tok(" " + w, add_special_tokens=False).input_ids) == 1
-        ex = pd.read_csv(a.expanded).set_index("pair_id")
-        meta["single_token"] = meta.pair_id.map(lambda i: n1(ex.at[i, "trans_participle"]) and n1(ex.at[i, "intrans_participle"]))
+        ex = pd.read_csv(a.expanded).drop_duplicates(["trans_lemma", "intrans_lemma"]).set_index(["trans_lemma", "intrans_lemma"])
+        meta["single_token"] = [n1(ex.at[k, "trans_participle"]) and n1(ex.at[k, "intrans_participle"])
+                                for k in zip(meta.trans_lemma, meta.intrans_lemma)]
         print("single-token new pairs:", int(meta.single_token.sum()), "of", len(meta))
     pr, pops = pops_for(items, meta)
     sites = [int(s) for s in a.sites.split(",")]
