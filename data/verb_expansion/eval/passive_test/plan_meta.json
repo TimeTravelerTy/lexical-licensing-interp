@@ -1,0 +1,25 @@
+{
+  "items": 33600,
+  "pairs": 268,
+  "prompts": 62288,
+  "plan_rows": 4382878,
+  "plan_rows_by_cond": {
+    "matched_T": 1350755,
+    "T": 1163516,
+    "I": 1163516,
+    "matched_I": 301891,
+    "same_verb": 201600,
+    "passive_swap": 201600
+  },
+  "primary_pairs_by_band": {
+    "gap": 8,
+    "head": 12,
+    "near_head": 19,
+    "out": 6,
+    "tail": 31,
+    "xtail": 57
+  },
+  "seed": 17,
+  "folds_sha256": "963dc0319e968b0a87a1a33474b2e1521030ca638a9410bad060a7751d1857f2",
+  "plan_sha256": "ce46f7f18ffaf264b21262bc14165706471d00fa1bce704be898871a813bf131"
+}

@@ -140,3 +140,24 @@ results/pythia/leace_crossframe*/items_*.csv.gz
 results/pythia/leace_pcf_recentered*/items_*.csv.gz
 results/pythia/das_expanded_stability*/passive_*/
 results/pythia/das_expanded_stability*/*_site*/heldout_swaps.csv.gz
+# Expanded eval set (reports/expanded_eval_rules.md): regenerable plans and raw dumps stay on TSUBAME
+data/verb_expansion/eval/*/plan.csv.gz
+results/*/expanded_eval/passive_*/*.parquet
+results/*/expanded_eval/constructions_*/*.parquet
+results/*/expanded_eval/constructions_*/*.npz
+results/*/expanded_eval/leace_cf/items.csv.gz
+results/*/expanded_eval/leace_cf/erasers.npz
+results/*/expanded_eval/umd_bases/
+# Stability extension / reverse DAS: passive dumps and held-out swaps stay on TSUBAME
+results/stability_ext/*/passive_*/
+results/stability_ext/*/*_site*/heldout_swaps.csv.gz
+results/stability_ext_smoke/
+results/pythia/das_reverse_freq/passive_*/
+results/pythia/das_reverse_freq/*_site*/heldout_swaps.csv.gz
+results/pythia/das_reverse_freq/v_site*_swaps.csv.gz
+# LEACE replication raw dumps
+results/gemma/leace_*/items*.csv.gz
+results/gemma/leace_*/erasers.npz
+results/olmo/leace_*/items*.csv.gz
+results/olmo/leace_*/erasers.npz
+results/*_leace_smoke/
