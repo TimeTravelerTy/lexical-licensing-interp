@@ -1,0 +1,11 @@
+{
+  "scrub_replay": {
+    "mean_maxabs": 0.0004028397706861142,
+    "xcov_rel": 1.9625824385483582e-06,
+    "post_xcov_resid_max": 1.9790963270310693e-06
+  },
+  "self_patch_max_abs": 0.0,
+  "outside_anchor_max_abs": 0.0,
+  "single_offline_max_abs": 0.0,
+  "natural_vs_pass_max_abs": 0.0
+}

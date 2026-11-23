@@ -1,0 +1,18 @@
+{
+  "folds_equal_stored": true,
+  "scrub_replay_in": {
+    "mean_maxabs": 0.0,
+    "xcov_rel": 0.0,
+    "post_xcov_resid_max": 2.1554718106510383e-08
+  },
+  "scrub_replay_cf": {
+    "mean_maxabs": 0.0,
+    "xcov_rel": 0.0,
+    "post_xcov_resid_max": 2.2803913623677227e-08
+  },
+  "perm_max_abs_r": 0.0,
+  "self_patch_max_abs": 0.0,
+  "outside_anchor_max_abs": 0.0,
+  "single_offline_max_abs": 0.0,
+  "active_natural_vs_pass_max_abs": 0.0
+}

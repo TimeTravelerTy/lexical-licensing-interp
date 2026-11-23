@@ -1,0 +1,40 @@
+{
+  "args": {
+    "scores": "/gs/fs/tga-sip_arase/tyrone/lexical_licensing_interp_passive_band_cross/results/passive_band_cross/pythia14b_scores.csv",
+    "v2_pairs": "data/matched_passives_v2/pairs.jsonl",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "batch_size": 256,
+    "n_folds": 5,
+    "split_seed": 0,
+    "ref_cf": "results/olmo/leace_necessity",
+    "max_pairs": 0,
+    "max_contexts": 0,
+    "out_dir": "results/olmo/leace_pcf_recentered",
+    "dtype": "float32"
+  },
+  "n_prompts": 31500,
+  "n_pairs": 126,
+  "sites": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "smoke": false,
+  "ref_erasers_sha256": "a5d04116261f15adf99b1f9306df8a304fbd8de29a9053244c635971ad0ca6e4",
+  "ref_items_sha256": "70d7097676b42cbf456387bf72125f6be89e994dffd55f1b8e293da2363475e5",
+  "minutes": 28.593068079153696
+}

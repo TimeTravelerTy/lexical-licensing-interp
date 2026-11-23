@@ -1,0 +1,44 @@
+{
+ "reading": "majority transfer",
+ "flags": [],
+ "reading_stored_ref": "majority transfer",
+ "share_A": [
+  0.6064017545558547,
+  0.3681325254189047,
+  0.7310162960030785
+ ],
+ "share_P_matched": [
+  0.5792974945575323,
+  0.3342536655166774,
+  0.7086019333444566
+ ],
+ "share_P_stored": [
+  0.5643433654225732,
+  0.3114737894810793,
+  0.6957994604290413
+ ],
+ "rho_matched": [
+  0.9355738089322386,
+  0.8487801004218192,
+  1.0406448114588094
+ ],
+ "rho_stored": [
+  0.9034597758987953,
+  0.8141091099551659,
+  1.0037438384577866
+ ],
+ "perm_min": 0.9329039684365983,
+ "below_perm_min": true,
+ "problems": [],
+ "checks": {
+  "folds_equal_stored": true,
+  "stored_repro_max_abs": 1.7763568394002505e-15,
+  "stored_repro_n": 33,
+  "stored_repro_worst": "Pcf_u_single_1",
+  "natural_vs_crossframe_max_abs": 0.0,
+  "A_share_vs_readings": 0.0
+ },
+ "outputs_sha256": {
+  "items_passive.csv.gz": "302bdc735ebb390f485531b678f6ebad347cbb91d33efafce794d96083f7ac98"
+ }
+}

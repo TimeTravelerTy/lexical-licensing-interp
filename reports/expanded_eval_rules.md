@@ -75,3 +75,25 @@ After Pythia, the same steps (A–D) at each model's rule sites (Gemma 5 / 8, pr
 5. **Context support (descriptive caveat).** Original passive pairs have 122–125 contexts (contexts sharing the pair's own prefix text are removed), new pairs all 126 context IDs (109 distinct prefixes); in LEACE originals have 125 and new pairs 126. The claim is generalization to new verbs in these curated contexts, which were curated for the original transitives.
 6. **Bands:** frequency stays a continuous covariate (slope on intransitive Zipf); band rows are not used for new pairs (their tags include near-head, gap and out).
 7. **Gemma / OLMo:** the single-token robustness row uses each model's own token counts.
+
+## Result, Pythia (Nov 23; reports `reports/pythia/expanded_eval_passive.md`, `expanded_eval_leace.md`, `expanded_eval/constructions_*.md`)
+
+**Checks pass.** The expanded passive plan's original rows equal the stored plan (all 2,042,621 rows, by prompt text; plan SHA-256 rebuilt identically on TSUBAME). v on the original plain pairs reproduces the stored D_bad(*by*) to 1.9e-5 nats; the passive runs' held-out recomputes equal the stored run's exactly. LEACE: original items' natural log P(*by*) within 4.4e-5 of the stored run; this script recomputes the stored scrub 0–12 share (0.586); all fit checks 0.
+
+**A. Behavior.** Natural *by* gap per pair: original plain 0.67, new plain 0.75 (share of pairs > 0: 0.71 / 0.76). Its slope on intransitive participle Zipf is flat (pooled plain +0.11 [−0.19, +0.45]).
+
+**B / C. Transfer generalizes to the new verbs** (declared comparison 1, both instruments, both rule sites):
+
+| | site | new plain | original plain | new / original | D_new − 0.5·D_orig |
+|---|---:|---|---|---|---|
+| v | 8 | 0.72 [0.62, 0.82] | 0.71 [0.62, 0.80] | 1.01 [0.88, 1.17] | 0.36 [0.27, 0.46] |
+| v | 12 | 0.80 [0.71, 0.88] | 0.79 [0.71, 0.88] | 1.01 [0.90, 1.14] | 0.40 [0.32, 0.48] |
+| u_md | 8 | 0.60 [0.52, 0.70] | 0.62 [0.54, 0.71] | 0.96 [0.82, 1.13] | 0.29 [0.21, 0.37] |
+| u_md | 12 | 0.87 [0.77, 0.97] | 0.89 [0.78, 1.00] | 0.98 [0.86, 1.11] | 0.42 [0.33, 0.52] |
+
+OR and TC D(O): RISE for original, new and pooled verbs at 8, 12 and 17, with both instruments (new within ±0.15 nats of original). Prepositional verbs (separate group): *by* RISE at 8 and 12 too. Robustness rows (no selection-flagged verbs; FreqBLiMP vs reviewed transitives) give the same picture, with wider CIs for the 15 pairs with reviewed transitives.
+
+**D. Cross-fitted LEACE: the verb-general removal grows with more training verbs** (declared comparison 2: **lower** share remaining).
+- (a) Same 126 original items, erasers fit on 268 pairs instead of 126: scrub 0–12 leaves 0.42 [0.12, 0.58] instead of 0.59 [0.35, 0.70]; paired difference −0.16 [−0.26, −0.09]. Plain only: 0.49 vs 0.59, difference −0.10 [−0.24, −0.00]. The same holds at scrub 0–8, scrub 0–23 and single sites 8 / 12 (differences −0.11 to −0.16).
+- (b) Pooled 268 pairs: 0.47 [0.33, 0.56] (removed 0.53); new 142: 0.50 [0.33, 0.61]; plain pooled (133): 0.48 [0.22, 0.62].
+- **Headline (by the declared rule): erasers fit on other verbs remove 0.53 [0.44, 0.67] of a new verb's *by* gap** (pooled, all classes), up from 0.41. The earlier learning curve (flat by point estimate from 75 to 125 pairs) did not predict this; with 214 training pairs per fold the removal is larger. "Verb-general" was underestimated by the small verb set.

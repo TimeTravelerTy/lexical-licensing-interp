@@ -1,0 +1,17 @@
+{
+  "label_corr": {
+    "true": 1.0,
+    "p0": 0.0,
+    "p1": 0.0,
+    "p2": 0.0,
+    "p3": 0.0,
+    "p4": 0.0
+  },
+  "natural_vs_reference_max_abs": 8.881784197001252e-16,
+  "true_vs_insample_max_abs": {
+    "scrub_0_8": 1.7763568394002505e-15,
+    "scrub_all": 1.7763568394002505e-15,
+    "single_8": 1.7763568394002505e-15
+  },
+  "reference_items_sha256": "0bc45d6d8a9abe34f402b2248a9d5b5b0ad4ff04ed000a786900ea0b5f28dbe9"
+}
