@@ -6,6 +6,8 @@ Generalizes run_das_expanded_stability.py to any model and site set. For each si
   R      stored pairs, stored seed (10000 + 100*split + fold)
   S1-S5  stored pairs, seed + 5000, 6000, 7000, 8000, 9000 (seed band; S1 = the Nov 18 S)
   P      fold's stored training pairs + the new plain pairs of the Nov 18 batch (always in training)
+  P2, P3 P with seed + 5000, 6000 (P's own seed band; training only)
+  L      stored pairs trained for P's number of updates (epochs x P / stored training items, per fold; training only)
 Writes {C}_site{s}/ laid out like a round-2 final (bases.pt r1_s{k}_f{f}, items.csv, heldout_swaps.csv.gz,
 pairs_folds.csv) so run_passive_test.py runs unchanged; plus cosines.csv, active_summary.csv, checks.json, meta.json.
 """
@@ -24,6 +26,7 @@ import pandas as pd
 import run_das_round2 as d2
 
 S_OFFSETS = {"S1": 5000, "S2": 6000, "S3": 7000, "S4": 8000, "S5": 9000}
+P_OFFSETS = {"P": 0, "P2": 5000, "P3": 6000}
 
 
 def plain_pairs_csv(stored_pairs, expanded, intrans_class, out, batch="nov18"):
@@ -79,10 +82,10 @@ def run(a):
             assert fm[s]["args"][k] == sa[k], (s, k)
         assert fm[s]["chosen_rank"] == 1 and fm[s]["site"] == s, s
     assert Path(sa["model"]).name == Path(a.model).name or sa["model"] == a.model, (sa["model"], a.model)
-    stored_ref = json.loads(Path(a.stored_passive_meta).read_text())["checks"] if a.stored_passive_meta else {}
+    stored_ref = json.loads(Path(a.stored_passive_meta).read_text())["checks"]
     n_old, n_new = plain_pairs_csv(a.stored_pairs, a.expanded, a.intrans_class, out / "pairs_P.csv")
     log(f"pairs: {n_old} stored + {n_new} new plain (P)")
-    conds = ["R", *S_OFFSETS, "P"] if not a.conds else a.conds.split(",")
+    conds = ["R", *S_OFFSETS, *P_OFFSETS, "L"] if not a.conds else a.conds.split(",")
 
     def args_for(pairs):
         return SimpleNamespace(pairs=str(pairs), model=a.model, device=a.device, dtype=sa["dtype"], lr=sa["lr"],
@@ -131,20 +134,23 @@ def run(a):
                 recompute.append(np.abs(mg.M_patched - mg.M_patched_stored).to_numpy())
                 seed = 10000 + 100 * k + f
                 for c in conds:
-                    if c == "P":
-                        items, reps, nat, tr, te, sd = itemsP, repsP, natP, trP, teP, seed
+                    ep = epochs
+                    if c in P_OFFSETS:
+                        items, reps, nat, tr, te, sd = itemsP, repsP, natP, trP, teP, seed + P_OFFSETS[c]
                     else:
                         items, reps, nat, tr, te = itemsS, repsS, natS, trS, teS
                         sd = seed + S_OFFSETS.get(c, 0)
-                    b, _ = d2.train(runner, items, reps, tr, items.cls.to_numpy(), s, 1, epochs, args_for(""), sd)
+                        if c == "L":
+                            ep = int(round(epochs * len(trP) / len(trS)))
+                    b, _ = d2.train(runner, items, reps, tr, items.cls.to_numpy(), s, 1, ep, args_for(""), sd)
                     df = d2.evaluate(runner, items, reps, nat, te, s, b, detail=True)
                     df["rank"], df["split"], df["fold"] = 1, k, f
-                    if c == "P":  # re-index held-out swaps to the stored item order (prompts are unique)
+                    if c in P_OFFSETS:  # re-index held-out swaps to the stored item order (prompts are unique)
                         df["base"] = pos[items.prompt.values[df.base]].to_numpy()
                         df["src"] = pos[items.prompt.values[df.src]].to_numpy()
                     details[c].append(df)
                     new_b[c][key] = b.cpu()
-                    act_rows.append({"site": s, "cond": c, "split": k, "fold": f, "n_train_items": len(tr),
+                    act_rows.append({"site": s, "cond": c, "split": k, "fold": f, "n_train_items": len(tr), "epochs": ep,
                                      **d2.summarize(df, itemsS)})
                     cos_rows.append({"site": s, "cond": c, "split": k, "fold": f,
                                      "abs_cos": float(abs(b[:, 0].float() @ v[:, 0]))})
@@ -182,10 +188,10 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--site-dirs", required=True, help="site=stored final dir,...")
     ap.add_argument("--stored-pairs", default="data/das_round2/train_pairs.csv")
-    ap.add_argument("--stored-passive-meta", default="", help="stored passive run_meta.json (recompute bar)")
+    ap.add_argument("--stored-passive-meta", required=True, help="stored passive run_meta.json (recompute bar)")
     ap.add_argument("--expanded", default="data/verb_expansion/expanded_pairs.csv")
     ap.add_argument("--intrans-class", default="data/verb_expansion/expanded_intrans_class.csv")
-    ap.add_argument("--conds", default="", help="subset of R,S1..S5,P (default all)")
+    ap.add_argument("--conds", default="", help="subset of R,S1..S5,P,P2,P3,L (default all)")
     ap.add_argument("--model", default="EleutherAI/pythia-1.4b")
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--out-dir", required=True)

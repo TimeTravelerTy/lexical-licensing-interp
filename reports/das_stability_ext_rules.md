@@ -60,3 +60,16 @@ As item 14: the stored v stays the instrument whatever the outcome. The result i
 ## Cost
 
 Training is cheap (Nov 18: 24 min for 4 conditions × 2 sites in Pythia). The passive patches dominate: 6 conditions (S1–S5, P) × 3–4 sites per model. R is used for cosine and IIA only. `gpu_h`, one job per model.
+
+## Amendment (Nov 23, before any full run; after Codex review of the rules and runners)
+
+Only smoke runs had been made (Pythia site 12 split 0 / fold 0, whose P cosine 0.924 reproduces the Nov 18 value; Gemma and reverse smokes). Changes:
+
+1. **Evaluation overlap.** The stored passive plan contains the 19 earlier eval pairs; 7 of them share a verb with P's training pairs (5 in the primary population: *raze / relent*, *pillage / waver*, *requisition / flinch*, *cajole / saunter*, *besmirch / reemerge*). The reading now uses the **clean primary population**: primary (plain) minus every pair that shares a verb with P's training verbs, applied to stored, S and P alike (same pairs in numerator and reference). The full primary population is reported next to it, for comparability with Nov 18.
+2. **Two training-only controls** (cosine and held-out IIA; no passive run), because the seed band alone does not separate a change of vocabulary from a change of objective size and optimization length (P has about 3.6 times the training items and updates per epoch):
+   - **P2, P3:** P with seed offsets +5000 and +6000, so P has its own seed band (P, P2, P3).
+   - **L:** the stored pairs trained for P's number of updates (epochs scaled per fold by P's / the stored training-item count, rounded), stored seed. If L rotates as far as P, the rotation is about optimization length, not vocabulary.
+3. **Reading, split in two** (the three-level item-14 label is still computed, for continuity):
+   - **Direction:** P's median |cos| against the seed range of S1–S5 (inside if min ≤ P ≤ max, both bounds), with P's own seed range and L reported next to it. The ranges and the gap in seed-sd units are descriptive, not calibrated intervals.
+   - **Function:** the ratio D_P / D_stored on the clean population is *equivalent* if its 95% CI lies inside [0.8, 1.25], *larger* if the CI lies above 1.25, *smaller* if below 0.8, otherwise *unresolved*. Whether the CI excludes 1 is reported.
+4. **Reproduction:** if median |cos(R, v)| < 0.99 the site's reading is invalid (the earlier "R becomes the reference" fallback is dropped: R has no passive run).

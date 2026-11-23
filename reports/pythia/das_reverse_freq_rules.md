@@ -52,3 +52,15 @@ Transfers: one sentence in the rare-verb section ("a direction learned only from
 ## Cost
 
 Training: 2 conditions × 3 seeds × 3 sites, each over 43 pairs. Passive: 2 conditions × 3 sites. Under an hour on `gpu_h`.
+
+## Amendment (Nov 23, before any full run; after Codex review)
+
+Only a smoke run had been started (site 17, not read). Changes:
+
+1. **Correction:** the 43 pairs' transitives are tagged xtail 16, gap 10, tail 12, near-head 3 (*flour*, *counsel*, *hazard*), out 2, not "one near-head". Rarity is guaranteed on the intransitive only. Wording for any result from F or U: "a direction learned from rare intransitives contrasted with transitives of mixed frequency".
+2. **Added condition B, both sides rare:** the 28 pairs whose transitive is also xtail, gap or out, behavior-filtered as F. B carries the stronger "trained only on rare verbs" wording.
+3. **Evaluation overlap:** 3 pairs of the stored passive plan share a verb with the rare training pairs (*cajole / saunter*, *besmirch / reemerge*, primary; *browbeat / cohabit*, prepositional). Every D and ratio is computed on the primary population minus pairs sharing a verb with that condition's training verbs, for the rare direction and v alike.
+4. **Sites:** v's passive *by* effect is positive at 8 and 12 and negative at 17 (D_bad(*by*) on Head −0.90 [−1.10, −0.71]; site 17 is surface). So **8 and 12 are the transfer tests**; 17 is reported as signed retention (D_rare / D_v, same sign or not), descriptive.
+5. **Labels (Head band, sites 8 and 12):** *transfers* (CI of D_rare above 0 and point ratio ≥ 0.5); *weak transfer* (CI above 0, ratio < 0.5); *unresolved* (CI includes 0); *opposite* (CI below 0). Also reported: the paired contrast D_rare − 0.5·D_v with its CI ("retains at least half" if above 0). **Overall:** transfers if it transfers at both 8 and 12; *no positive transfer* if neither site has a CI above 0; otherwise mixed.
+6. **Seeds:** the pooled D averages the three seeds through the estimator's cells; per-seed D (plan rows of split k only) is reported next to it. The bootstrap is conditional on the fitted bases.
+7. **Held-out IIA:** one estimand, swap-weighted over all held-out cross-class swaps (the 15 folds pooled), for both the displayed values and the paired difference.

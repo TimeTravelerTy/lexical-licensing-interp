@@ -2,7 +2,8 @@
 """Reverse frequency transfer: rank-1 DAS trained only on rare plain pairs (rules: reports/pythia/das_reverse_freq_rules.md).
 
 Training pairs: plain pairs of the Nov 18 expansion batch whose intransitive is tagged xtail / gap / out (43), none
-sharing a verb with v's training pairs. Conditions F (behavior-filtered, as v) and U (unfiltered). Three seeds
+sharing a verb with v's training pairs. Conditions F (behavior-filtered, as v), U (unfiltered) and B (filtered, both
+sides rare: the transitive also xtail / gap / out). Three seeds
 (20000 + k); seed k's basis is written under r1_s{k}_f{0..4}, so run_passive_test.py runs the stored plan unchanged
 (every donor is a frequent stored pair, none in training).
 
@@ -83,7 +84,13 @@ def run(a):
               "dropped_F": sorted(set(pairsR.pair_id) - keepF),
               "failing_verbs": vf[~vf["pass"]][["verb", "cls", "n_correct"]].to_dict("records")}
     log(f"rare pairs {len(pairsR)}; filter keeps {len(keepF)}; failing verbs {checks['failing_verbs']}")
-    conds = {"F": itemsR.pair_id.isin(keepF).to_numpy(), "U": np.ones(len(itemsR), bool)}
+    both = set(pairsR[pairsR.trans_tag.isin(RARE_TAGS)].pair_id)
+    checks["n_both_rare"], checks["n_kept_B"] = len(both), len(both & keepF)
+    conds = {"F": itemsR.pair_id.isin(keepF).to_numpy(), "U": np.ones(len(itemsR), bool),
+             "B": itemsR.pair_id.isin(keepF & both).to_numpy()}
+    for c, sel in conds.items():
+        P_c = pairsR[pairsR.pair_id.isin(set(itemsR.pair_id[sel]))]
+        P_c.to_csv(out / f"pairs_{c}.csv", index=False)
 
     cos_rows, act_rows = [], []
     for s in sites:
