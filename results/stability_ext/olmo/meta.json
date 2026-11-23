@@ -1,0 +1,55 @@
+{
+  "args": {
+    "site_dirs": "9=results/olmo/das/transfer/final_strict_site9,11=results/olmo/das/transfer/final_strict_site11,12=results/olmo/das/transfer/final_strict_site12,13=results/olmo/das/transfer/final_strict",
+    "stored_pairs": "data/das_round2/train_pairs.csv",
+    "stored_passive_meta": "results/olmo/das/transfer/passive_test/run_meta.json",
+    "expanded": "data/verb_expansion/expanded_pairs.csv",
+    "intrans_class": "data/verb_expansion/expanded_intrans_class.csv",
+    "conds": "",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "out_dir": "results/stability_ext/olmo",
+    "smoke": false
+  },
+  "stored_args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/olmo/das/transfer/frozen_config_site9.json",
+    "out_dir": "../results/olmo/das/transfer/final_strict_site9",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01,
+    "bos": null,
+    "fp32_unembed": null
+  },
+  "epochs": {
+    "9": 4,
+    "11": 4,
+    "12": 4,
+    "13": 3
+  },
+  "conds": [
+    "R",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "P",
+    "P2",
+    "P3",
+    "L"
+  ],
+  "n_items_stored": 406,
+  "n_items_P": 1246,
+  "minutes": 103.09669046004613
+}

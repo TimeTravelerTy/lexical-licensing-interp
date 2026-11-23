@@ -1,0 +1,38 @@
+{
+  "runner_settings": {
+    "model_type": "gpt_neox",
+    "bos": false,
+    "fp32_unembed": false,
+    "site_check_max_abs_sites_0_to_L-1": 0.0,
+    "site_check_last_site": 77.1875
+  },
+  "dropped_stored": [],
+  "dropped_P_new": [
+    "tweeze/teethe"
+  ],
+  "n_new_pairs_kept_P": 61,
+  "stored_items_equal_site8": true,
+  "stored_recompute_site8": {
+    "max": 0.08890914916992188,
+    "median": 0.0,
+    "median_bar": 0.001,
+    "pass": true
+  },
+  "stored_items_equal_site12": true,
+  "stored_recompute_site12": {
+    "max": 0.10953044891357377,
+    "median": 0.0,
+    "median_bar": 0.001,
+    "pass": true
+  },
+  "stored_items_equal_site17": true,
+  "stored_recompute_site17": {
+    "max": 0.04273700714111328,
+    "median": 0.0,
+    "median_bar": 0.006559610366821456,
+    "pass": true
+  },
+  "R_median_abs_cos_site8": 0.9998922348022461,
+  "R_median_abs_cos_site12": 0.9998115301132202,
+  "R_median_abs_cos_site17": 0.9989653825759888
+}

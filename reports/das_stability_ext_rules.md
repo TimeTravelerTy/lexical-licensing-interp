@@ -73,3 +73,29 @@ Only smoke runs had been made (Pythia site 12 split 0 / fold 0, whose P cosine 0
    - **Direction:** P's median |cos| against the seed range of S1–S5 (inside if min ≤ P ≤ max, both bounds), with P's own seed range and L reported next to it. The ranges and the gap in seed-sd units are descriptive, not calibrated intervals.
    - **Function:** the ratio D_P / D_stored on the clean population is *equivalent* if its 95% CI lies inside [0.8, 1.25], *larger* if the CI lies above 1.25, *smaller* if below 0.8, otherwise *unresolved*. Whether the CI excludes 1 is reported.
 4. **Reproduction:** if median |cos(R, v)| < 0.99 the site's reading is invalid (the earlier "R becomes the reference" fallback is dropped: R has no passive run).
+
+## Result (Nov 23; reports `reports/{pythia,gemma,olmo}/das_stability_ext.md`)
+
+**Validity.** Gemma and OLMo: all checks pass. **Pythia: the declared reading is invalid** on one check. In the seed-band run S2 at site 17, the passive test's held-out recompute has max |ΔM| 0.66, above the 0.5 bar; its median (0.0039) is within the bar. Every other Pythia check passes, including R (|cos| ≥ 0.999). The Pythia numbers below are therefore exploratory.
+
+| model | site | median \|cos\| P (P seeds) | stored-pair seeds | L (P's update count) | D_bad(*by*) ratio P / stored, clean | function |
+|---|---:|---|---|---|---|---|
+| Pythia | 8 | 0.914 (0.914–0.916) | 0.996 | 0.995 | 1.11 [1.05, 1.18] | equivalent |
+| Pythia | 12 | 0.922 (0.922–0.923) | 0.993–0.994 | 0.992 | 1.06 [1.02, 1.11] | equivalent |
+| Pythia | 17 | 0.904 (0.902–0.904) | 0.936–0.938 | 0.958 | 1.31 [1.22, 1.41] | unresolved (larger FALL) |
+| Gemma | 5 | 0.724 (0.724–0.726) | 0.850–0.891 | 0.946 | 1.19 [1.07, 1.34] | unresolved |
+| Gemma | 8 | 0.898 (0.898) | 0.993–0.994 | 0.989 | 1.18 [1.11, 1.26] | unresolved |
+| Gemma | 12 | 0.897 (0.896–0.897) | 0.990–0.991 | 0.979 | 1.05 [1.00, 1.11] | equivalent |
+| Gemma | 15 | 0.848 (0.842–0.848) | 0.952–0.957 | 0.952 | 1.03 [0.97, 1.09] | equivalent |
+| OLMo | 9 | 0.921 (0.919–0.922) | 0.993–0.994 | 0.993 | 1.16 [1.10, 1.23] | equivalent |
+| OLMo | 11 | 0.923 (0.921–0.923) | 0.994 | 0.990 | 1.82 [1.48, 2.65] | **larger** |
+| OLMo | 12 | 0.908 (0.904–0.908) | 0.994 | 0.979 | 1.02 [0.92, 1.12] | equivalent |
+| OLMo | 13 | 0.830 (0.818–0.830) | 0.992–0.993 | 0.947 | 1.57 [1.47, 1.69] | **larger** (larger FALL) |
+
+**Direction: below the seed range at every site in every model.** The rotation is reproducible (P's three seeds agree to ≤ 0.01) and is not about training length (L, the stored pairs trained for P's number of updates, stays near the seed range). So adding the plain expansion verbs moves v by a fixed, model-wide amount (cos ≈ 0.90–0.92 at most sites, ≈ 23–26°; 0.72 at Gemma 5, where v itself is seed-unstable: one stored-pair seed basis reaches only |cos| 0.09).
+
+**Function: never smaller.** P's passive *by* effect is equivalent to v's or larger at every site. Held-out active IIA is equal or higher (e.g. Gemma 5: 0.94 vs 0.84–0.86).
+
+**OLMo flag.** At site 11, the declared site where OLMo's T1 (passive *by* RISE) failed, P transfers 1.82× v's *by* effect (0.27 [0.21, 0.33] vs 0.15 nats; seed range 0.98–1.06×). At 9 it is 1.16×. Part of OLMo's weak *by* transfer may therefore be v's 29 training verbs rather than the model. The declared T1 result stands (v is the instrument); this goes next to it in the replication section.
+
+**Reading for the paper.** One sentence plus an appendix table: "Retraining v with 61 more plain verbs rotates it by about 25° in all three models, reproducibly across seeds and not because of longer training, and the retrained direction transfers to passive *by* at least as strongly (1.0–1.2× at the rule sites; 1.8× at OLMo site 11)."

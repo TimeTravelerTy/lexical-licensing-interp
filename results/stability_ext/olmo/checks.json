@@ -1,0 +1,47 @@
+{
+  "runner_settings": {
+    "model_type": "olmo2",
+    "bos": false,
+    "fp32_unembed": true,
+    "site_check_max_abs_sites_0_to_L-1": 0.0,
+    "site_check_last_site": 45.875
+  },
+  "dropped_stored": [],
+  "dropped_P_new": [
+    "counsel/reverberate",
+    "sod/patter"
+  ],
+  "n_new_pairs_kept_P": 60,
+  "stored_items_equal_site9": true,
+  "stored_recompute_site9": {
+    "max": 8.881784197001252e-16,
+    "median": 0.0,
+    "median_bar": 0.001,
+    "pass": true
+  },
+  "stored_items_equal_site11": true,
+  "stored_recompute_site11": {
+    "max": 8.881784197001252e-16,
+    "median": 0.0,
+    "median_bar": 0.001,
+    "pass": true
+  },
+  "stored_items_equal_site12": true,
+  "stored_recompute_site12": {
+    "max": 8.881784197001252e-16,
+    "median": 0.0,
+    "median_bar": 0.001,
+    "pass": true
+  },
+  "stored_items_equal_site13": true,
+  "stored_recompute_site13": {
+    "max": 8.881784197001252e-16,
+    "median": 0.0,
+    "median_bar": 0.001,
+    "pass": true
+  },
+  "R_median_abs_cos_site9": 1.0000001192092896,
+  "R_median_abs_cos_site11": 1.0,
+  "R_median_abs_cos_site12": 1.0,
+  "R_median_abs_cos_site13": 1.0000001192092896
+}

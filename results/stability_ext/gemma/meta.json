@@ -1,0 +1,55 @@
+{
+  "args": {
+    "site_dirs": "5=results/gemma/das/transfer/final_strict_site5,8=results/gemma/das/transfer/final_strict_site8,12=results/gemma/das/transfer/final_strict_site12,15=results/gemma/das/transfer/final_strict",
+    "stored_pairs": "data/das_round2/train_pairs.csv",
+    "stored_passive_meta": "results/gemma/das/transfer/passive_test/run_meta.json",
+    "expanded": "data/verb_expansion/expanded_pairs.csv",
+    "intrans_class": "data/verb_expansion/expanded_intrans_class.csv",
+    "conds": "",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "out_dir": "results/stability_ext/gemma",
+    "smoke": false
+  },
+  "stored_args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/gemma/das/transfer/frozen_config_site5.json",
+    "out_dir": "../results/gemma/das/transfer/final_strict_site5",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01,
+    "bos": null,
+    "fp32_unembed": null
+  },
+  "epochs": {
+    "5": 2,
+    "8": 3,
+    "12": 3,
+    "15": 2
+  },
+  "conds": [
+    "R",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "P",
+    "P2",
+    "P3",
+    "L"
+  ],
+  "n_items_stored": 392,
+  "n_items_P": 1190,
+  "minutes": 106.94989165465037
+}
