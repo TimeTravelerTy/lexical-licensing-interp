@@ -100,9 +100,10 @@ def run(a):
          "Rules: `reports/expanded_eval_rules.md` (D). Scripts: `scripts/run_leace_necessity.py --extra-pairs`, "
          "`scripts/analyze_expanded_leace.py`. Erasers cross-fitted over all pairs (5 verb-level folds); share of the "
          "natural *by* gap remaining, 95% CIs (pairs within verb band x contexts).", "",
-         f"Stored 126-pair reference: scrub 0–{NEC} leaves {a.stored_ref} (recomputed here from the stored run: "
-         + (f"{checks[f'stored_scrub_0_{NEC}_share_recomputed'][0]:.3f}" if f"stored_scrub_0_{NEC}_share_recomputed" in checks else "n/a")
-         + ").", "",
+         (lambda r: f"Stored 126-pair reference (this model's necessity run, recomputed here): scrub 0–{NEC} leaves "
+          f"{r[0]:.2f} [{r[1]:.2f}, {r[2]:.2f}].")(checks[f"stored_scrub_0_{NEC}_share_recomputed"])
+         if f"stored_scrub_0_{NEC}_share_recomputed" in checks
+         else f"Stored 126-pair reference: scrub 0–{NEC} leaves {a.stored_ref}.", "",
          "| subset | pairs | natural gap | " + " | ".join(CONDS_MAIN) + " |", "|---|---:|---|" + "---|" * len(CONDS_MAIN)]
     for m in masks:
         q = S[S.subset == m].set_index("condition")

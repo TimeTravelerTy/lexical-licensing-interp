@@ -74,6 +74,13 @@ def run(a):
     P = pd.read_csv(data / "prompts.csv")
     plan = pd.read_csv(data / "plan.csv.gz", dtype={c: "category" for c in ("item_id", "side", "cond", "donor_pair")})
     meta = pd.read_csv(a.pairs_meta)
+    if a.tokenizer:  # rules amendment 7: single-token by this model's tokenizer (pairs_meta counts are Pythia's)
+        from transformers import AutoTokenizer
+        tok = AutoTokenizer.from_pretrained(a.tokenizer)
+        n1 = lambda w: len(tok(" " + w, add_special_tokens=False).input_ids) == 1
+        ex = pd.read_csv(a.expanded).set_index("pair_id")
+        meta["single_token"] = meta.pair_id.map(lambda i: n1(ex.at[i, "trans_participle"]) and n1(ex.at[i, "intrans_participle"]))
+        print("single-token new pairs:", int(meta.single_token.sum()), "of", len(meta))
     pr, pops = pops_for(items, meta)
     sites = [int(s) for s in a.sites.split(",")]
     # intransitive participle Zipf: new pairs from pairs_meta, originals from the v2 pairs
@@ -175,6 +182,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--data-dir", default="data/verb_expansion/eval/passive_test")
     ap.add_argument("--pairs-meta", default="data/verb_expansion/eval/pairs_meta.csv")
+    ap.add_argument("--tokenizer", default="", help="model id: recompute single-token pairs with this tokenizer")
+    ap.add_argument("--expanded", default="data/verb_expansion/expanded_pairs.csv")
     ap.add_argument("--v2-pairs", default="data/matched_passives_v2/pairs.jsonl")
     ap.add_argument("--root", default="results/das_round2")
     ap.add_argument("--stored-passive", default="results/das_round2/passive_test")
