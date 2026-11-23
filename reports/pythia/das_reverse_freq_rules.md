@@ -64,3 +64,17 @@ Only a smoke run had been started (site 17, not read). Changes:
 5. **Labels (Head band, sites 8 and 12):** *transfers* (CI of D_rare above 0 and point ratio ≥ 0.5); *weak transfer* (CI above 0, ratio < 0.5); *unresolved* (CI includes 0); *opposite* (CI below 0). Also reported: the paired contrast D_rare − 0.5·D_v with its CI ("retains at least half" if above 0). **Overall:** transfers if it transfers at both 8 and 12; *no positive transfer* if neither site has a CI above 0; otherwise mixed.
 6. **Seeds:** the pooled D averages the three seeds through the estimator's cells; per-seed D (plan rows of split k only) is reported next to it. The bootstrap is conditional on the fitted bases.
 7. **Held-out IIA:** one estimand, swap-weighted over all held-out cross-class swaps (the 15 folds pooled), for both the displayed values and the paired difference.
+
+## Result (Nov 23; TSUBAME jobs 9531586, 9532448; report `reports/pythia/das_reverse_freq.md`)
+
+**Checks.** F and B pass every check (self-patch 0; held-out recompute medians ≤ 3.5e-3 at 17 and ≤ 4e-4 at 8 / 12, maxima ≤ 0.39; the stored v reproduces `transfer_summary.csv`). U misses the Amendment 2 median bar at site 12 by 1e-5 (0.00101 against 0.001). The analyzer applied that failure to all three conditions and printed "invalid" for each. Read per condition, as the check is per passive run: **F (primary) and B are valid; U at site 12 is invalid** (its numbers are shown but not read).
+
+**F (primary), Head band: transfers at both test sites.**
+- Site 8: D_bad(*by*) 1.09 [0.96, 1.22], v 1.08; ratio 1.00 [0.89, 1.14]; D_rare − 0.5·D_v 0.54 [0.43, 0.67] (retains at least half).
+- Site 12: 0.99 [0.88, 1.10], v 1.05; ratio 0.94 [0.85, 1.04]; contrast 0.46 [0.37, 0.56].
+- All bands: ratio 1.02 [0.93, 1.13] at 8 and 0.92 [0.85, 0.98] at 12. The three seeds agree (Head ratio 0.98–1.04 at 8, 0.92–0.96 at 12).
+- **B (both sides rare, 27 pairs): transfers at 8 and 12** (Head ratio 1.01 [0.89, 1.15] and 0.92 [0.82, 1.02]).
+- Site 17 (signed retention, descriptive): the rare directions reproduce v's *by* FALL on Head at 0.79 (F) and 0.61 (B) of v's size.
+- Held-out active IIA on v's frequent pairs is lower than v's own (F: 0.63 vs 0.78 at 8, 0.81 vs 0.90 at 12), and the directions sit at |cos| 0.80–0.83 to v (P, trained on frequent plus rare verbs: 0.91–0.92).
+
+**Reading.** A direction learned only from rare verbs moves frequent verbs' passive *by* preference as much as v does (Head ratio 0.94–1.00 with F; 0.92–1.01 with both sides rare), although it controls their actives somewhat less well. Filtering makes no difference (F vs U, 1 of 43 pairs dropped). So the class feature the passive reads is shared across frequency; the rare-verb deficit is not a missing feature.
