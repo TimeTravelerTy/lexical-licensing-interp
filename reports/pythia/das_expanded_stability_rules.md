@@ -96,3 +96,15 @@ Both get the same measures and the same reading rule. The passive test runs for 
 - **E rotates more** (cos ≈ 0.89) without a larger transfer gain, which fits the prepositional intransitives diluting the class.
 
 Outputs are on TSUBAME (`results/pythia/das_expanded_stability/`, hashes in `large_files_sha256.txt`). Report: `reports/pythia/das_expanded_stability.md`.
+
+## Amendment 2 (Nov 23): the held-out recompute check uses the stored run's own precision
+
+Declared before any of the extension runs (more sites, Gemma / OLMo, seed band, reverse DAS). It replaces the max |ΔM| < 1e-2 check above for every run from here on; the Nov 18 run is re-read under it in the Result section (exploratory there, since it was set after that run).
+
+**The bar.** At each site, a held-out recompute passes if it is no worse than the stored passive run at that site (`results/das_round2/passive_test/run_meta.json`, or the stored run of the same model for Gemma / OLMo):
+- median |ΔM| ≤ max(1e-3, 1.5 × the stored median at that site), and
+- max |ΔM| ≤ 0.5.
+
+Stored Pythia values: median 4e-16 / 5.0e-4 / 4.4e-3 and max 0.29 / 0.36 / 0.43 at sites 8 / 12 / 17. Self-patch = unpatched stays exact (0.0).
+
+**Why.** The stored pipeline runs in bf16 with batch 1024, and a recompute batches the held-out swaps differently. In bf16 the result of a matmul depends on batch composition (kernel choice and accumulation order), so a few swaps differ by up to 0.3–0.4 nats while the median difference is about 0. The stored run, whose numbers every v result rests on, shows exactly this spread against its own training-time evaluation. A tolerance tighter than that (the 1e-2 above) fails the stored pipeline itself, so it cannot tell a broken pipeline from bf16 noise. The median catches a systematic error (wrong basis, wrong site, wrong token position), and the max bound catches an error confined to a few items beyond the stored spread.

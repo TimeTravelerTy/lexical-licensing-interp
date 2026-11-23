@@ -1,0 +1,41 @@
+{
+  "args": {
+    "stored_root": "results/das_round2",
+    "stored_pairs": "data/das_round2/train_pairs.csv",
+    "expanded": "data/verb_expansion/expanded_pairs.csv",
+    "intrans_class": "data/verb_expansion/expanded_intrans_class.csv",
+    "sites": "8,12",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "out_dir": "results/pythia/das_expanded_stability",
+    "smoke": false
+  },
+  "stored_args": {
+    "mode": "final",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "config": "../results/das_round2/frozen_config_site8.json",
+    "out_dir": "../results/das_round2/final_strict_site8",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "sites": "",
+    "epochs": 8,
+    "n_folds": 5,
+    "n_splits": 3,
+    "n_random": 100,
+    "n_cross": 4,
+    "n_same": 2,
+    "batch_size": 64,
+    "lr": 0.01
+  },
+  "epochs": {
+    "8": 3,
+    "12": 2
+  },
+  "n_items_stored": 406,
+  "n_items": {
+    "E": 2086,
+    "P": 1260
+  },
+  "minutes": 23.552825363477073
+}

@@ -1,0 +1,19 @@
+{
+  "dropped_stored": [],
+  "dropped_E": [
+    "arraign/intercede",
+    "explicate/clam",
+    "tweeze/teethe"
+  ],
+  "n_new_pairs_kept_E": 120,
+  "dropped_P": [
+    "tweeze/teethe"
+  ],
+  "n_new_pairs_kept_P": 61,
+  "stored_items_equal_site8": true,
+  "stored_heldout_recompute_max_abs_site8": 0.08890914916992188,
+  "stored_items_equal_site12": true,
+  "stored_heldout_recompute_max_abs_site12": 0.10953044891357377,
+  "R_median_abs_cos_site8": 0.9998922348022461,
+  "R_median_abs_cos_site12": 0.9998115301132202
+}
