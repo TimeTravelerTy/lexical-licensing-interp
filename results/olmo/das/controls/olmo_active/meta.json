@@ -1,0 +1,35 @@
+{
+ "task": "active",
+ "model": "allenai/OLMo-2-0425-1B",
+ "settings": {
+  "model_type": "olmo2",
+  "bos": false,
+  "fp32_unembed": true,
+  "site_check_max_abs_sites_0_to_L-1": 0.0,
+  "site_check_last_site": 45.875
+ },
+ "sites": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16
+ ],
+ "n_random": 20,
+ "seed": 7,
+ "n_items": 406,
+ "sweep_dir": "../results/olmo/das/sweep_strict",
+ "d_model": 2048
+}

@@ -1,0 +1,16 @@
+{
+  "args": {
+    "data_dir": "data/olmo/nonce/nonce_passive",
+    "bases": "results/olmo/das/nonce/bases_rank1.npz",
+    "out_dir": "results/olmo/das/nonce/nonce_passive",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch": 256,
+    "sites": "0,1,2,3,4,5,6,7,8,9,11,12,13",
+    "causal_sites": "3,5,9"
+  },
+  "prompts": 7190,
+  "token_suffix_check": "passed",
+  "bases_sha256": "e8f7f890f95c39f1f0fe4fe8c07128f453fb816567b751d67e6b7a7ce5b699a4"
+}
