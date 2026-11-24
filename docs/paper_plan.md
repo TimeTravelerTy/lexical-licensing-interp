@@ -181,7 +181,7 @@ Run whatever could break the claim first, then polish.
    - **Serial chain** (R5-B6): heads → mid MLPs → late object MLPs. Freezing leaves 0.14–0.26 of the late switch; the chain holds for 2 of 4 targets (mixed).
    - **Shared readers** (R5-C9): the same switch neurons read the verb class in wh-gap frames, but only with a filler present (ρ 1.4–1.9).
    - **In the wild** (R5-B7, Pile text): the top neurons fire on passives with *by* next (MLP14.n2114 / n5407) or on transitive verbs with a missing object (MLP11.n3462).
-   - **Limits:** not necessary (R5-B5: the top-50 neurons remove 0.09 of *by*); restoring them alone does not beat random at the translation stage (R4-E13T).
+   - **Limits:** not necessary (R5-B5: the top-50 neurons remove 0.09 of *by*); restoring them at the translation stage beats random (+0.169 [0.107, 0.234]), but the declared claim fails on the Head control and deficit closure (R4-E13T).
    - **Paper role:** one section, "how the class is read", between transfer and necessity, with one figure (heads → MLP switch shares, plus the conjunction-neuron share). Wording: "components", not "circuit"; Pythia-only, stated.
    - **Also bring back (reconciled with `results_index.md`, Nov 19).** These are earlier site-8 results the plan had not cited.
      - **Why passives get no object rise** (R2-mech, main): a signed decomposition at site 8. Object survival is 0.46 [0.40, 0.50]; the object MLPs 15 / 18 / 21 / 22 vanish in passives, while MLPs 11, 13, 14, 16 and 17 flip sign on *by*. This is the entry point for the head / neuron story.
