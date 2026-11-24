@@ -42,10 +42,20 @@ Agreement between directions from different verbs rises with n at every site, an
 
 Not a fair comparison, so not claimed: the half-sample directions are closer to v2 (0.92–0.94 at n = 20) than to v (0.86–0.88), but their pairs come from v2's own pool.
 
-## 3. Necessity
+## 3. Necessity (Pythia, mean ablation at the verb's last token; `reports/pythia/v2/das_direction_check.md` §3)
 
-Pending: Pythia direction check and mean ablation along v2 (`v2c_pythia_dirchk`).
+Share of the natural gap removed by mean-ablating v2 vs the stored v, paired: same items, same bootstrap draws (`analyze_das_direction_check.py --ref-ablation`, stored run at `/gs/fs/.../lli_dirchk/results/pythia/das_direction_check`). Run-to-run noise floor: the natural rows are identical, and u_md (the same vector in both runs) has shares that differ by at most 0.0007.
+
+| site | passive good − bad log P(*by*): v2 | v | v2 − v [95% CI] | active T − I log P(O): v2 | v | v2 − v [95% CI] |
+|---|---|---|---|---|---|---|
+| 4 | 0.459 | 0.398 | +0.061 [+0.033, +0.119] | 0.387 | 0.430 | −0.044 [−0.079, −0.004] |
+| 6 | 0.453 | 0.413 | +0.040 [+0.018, +0.082] | 0.521 | 0.537 | −0.016 [−0.050, +0.021] |
+| 8 | 0.397 | 0.366 | +0.031 [+0.009, +0.066] | 0.638 | 0.630 | +0.008 [−0.032, +0.048] |
+| 12 | 0.371 | 0.365 | +0.006 [−0.014, +0.026] | 0.766 | 0.739 | +0.027 [−0.014, +0.068] |
+| 17 | 0.071 | 0.049 | +0.022 [+0.013, +0.043] | 1.047 | 0.957 | +0.090 [+0.056, +0.128] |
+
+Ablating v2 removes more of the passive *by* gap than ablating v at every site, with the CI above zero at 4, 6, 8 and 17 (not at 12). The gains are small: about 0.03 of the gap at rule site 8, with 0.37–0.46 removed in all. On the active object gap, v2 removes less at site 4, about the same at 6–12, and more at 17. Gemma and OLMo: not ported (the direction check is Pythia-only).
 
 ## Downstream chain
 
-Submitted Nov 24 (`jobs/v2_chain.sh`): passive (rule sites + depth), constructions + in-range, filler-gap, nonce for each model; Pythia direction check; split edit after passive (and the direction check in Pythia). Readings are reported three ways (own δ, common δ_v, raw / natural gap) in `reports/v2_replication_criteria.md` once they are in.
+Submitted Nov 24 (`jobs/v2_chain.sh`): passive (rule sites + depth), constructions + in-range, filler-gap, nonce for each model; Pythia direction check; split edit after passive (and the direction check in Pythia). Readings are reported three ways (own δ, common δ_v, raw / natural gap) in `reports/v2_replication_criteria.md` (Nov 25).

@@ -1,0 +1,294 @@
+{
+  "outcomes": {
+    "full": {
+      "0": "abstract (takes an object)",
+      "1": "abstract (takes an object)",
+      "2": "unresolved",
+      "3": "unresolved",
+      "4": "abstract (takes an object)",
+      "5": "unresolved",
+      "6": "mixed",
+      "7": "surface (object next)",
+      "8": "surface (object next)",
+      "9": "surface (object next)",
+      "10": "surface (object next)",
+      "11": "surface (object next)",
+      "12": "surface (object next)",
+      "13": "surface (object next)",
+      "14": "surface (object next)",
+      "15": "surface (object next)"
+    },
+    "on": {
+      "0": "nothing moves (active-specific)",
+      "1": "nothing moves (active-specific)",
+      "2": "nothing moves (active-specific)",
+      "3": "nothing moves (active-specific)",
+      "4": "nothing moves (active-specific)",
+      "5": "nothing moves (active-specific)",
+      "6": "nothing moves (active-specific)",
+      "7": "nothing moves (active-specific)",
+      "8": "nothing moves (active-specific)",
+      "9": "surface (object next)",
+      "10": "surface (object next)",
+      "11": "surface (object next)",
+      "12": "surface (object next)",
+      "13": "surface (object next)",
+      "14": "surface (object next)",
+      "15": "surface (object next)"
+    },
+    "umd": {
+      "0": "unresolved",
+      "1": "nothing moves (active-specific)",
+      "2": "nothing moves (active-specific)",
+      "3": "nothing moves (active-specific)",
+      "4": "nothing moves (active-specific)",
+      "5": "unresolved",
+      "6": "unresolved",
+      "7": "surface (object next)",
+      "8": "surface (object next)",
+      "9": "surface (object next)",
+      "10": "surface (object next)",
+      "11": "surface (object next)",
+      "12": "surface (object next)",
+      "13": "surface (object next)",
+      "14": "surface (object next)",
+      "15": "surface (object next)"
+    },
+    "u_pas": {
+      "0": "nothing moves (active-specific)",
+      "1": "nothing moves (active-specific)",
+      "2": "nothing moves (active-specific)",
+      "3": "nothing moves (active-specific)",
+      "4": "nothing moves (active-specific)",
+      "5": "nothing moves (active-specific)",
+      "6": "nothing moves (active-specific)",
+      "7": "nothing moves (active-specific)",
+      "8": "nothing moves (active-specific)",
+      "9": "nothing moves (active-specific)",
+      "10": "nothing moves (active-specific)",
+      "11": "nothing moves (active-specific)",
+      "12": "nothing moves (active-specific)",
+      "13": "nothing moves (active-specific)",
+      "14": "nothing moves (active-specific)",
+      "15": "nothing moves (active-specific)"
+    }
+  },
+  "R-A1": {
+    "sites": {
+      "6": {
+        "off_share_O": 0.5385411977767944,
+        "class_on_O": "NO RISE",
+        "held": true
+      },
+      "7": {
+        "off_share_O": 0.4939746856689453,
+        "class_on_O": "NO RISE",
+        "held": false
+      },
+      "8": {
+        "off_share_O": 0.5449427962303162,
+        "class_on_O": "NO RISE",
+        "held": true
+      },
+      "9": {
+        "off_share_O": 0.5045436024665833,
+        "class_on_O": "RISE",
+        "held": false
+      },
+      "10": {
+        "off_share_O": 0.5090387463569641,
+        "class_on_O": "RISE",
+        "held": false
+      },
+      "11": {
+        "off_share_O": 0.6411823034286499,
+        "class_on_O": "RISE",
+        "held": false
+      },
+      "12": {
+        "off_share_O": 0.692253589630127,
+        "class_on_O": "RISE",
+        "held": false
+      },
+      "13": {
+        "off_share_O": 0.9045906662940979,
+        "class_on_O": "RISE",
+        "held": false
+      },
+      "14": {
+        "off_share_O": 0.9408470988273621,
+        "class_on_O": "RISE",
+        "held": false
+      },
+      "15": {
+        "off_share_O": 0.969046950340271,
+        "class_on_O": "RISE",
+        "held": false
+      }
+    },
+    "held_at_rule_sites": false,
+    "rule_sites_applicable": [
+      9,
+      11
+    ],
+    "held_all_applicable_sites": false,
+    "held_n": "2 / 10"
+  },
+  "R-A2": {
+    "sites": {
+      "0": {
+        "on_share_by": 0.3847258985042572,
+        "held": false
+      },
+      "1": {
+        "on_share_by": 0.40430593490600586,
+        "held": false
+      },
+      "4": {
+        "on_share_by": 0.45438098907470703,
+        "held": false
+      },
+      "5": {
+        "on_share_by": 0.5384839177131653,
+        "held": true
+      },
+      "6": {
+        "on_share_by": 0.5749521851539612,
+        "held": true
+      }
+    },
+    "held_at_rule_sites": "n/a",
+    "rule_sites_applicable": [],
+    "held_all_applicable_sites": false,
+    "held_n": "2 / 5"
+  },
+  "S1": {
+    "full": {
+      "abstract": [
+        0,
+        1,
+        4
+      ],
+      "surface": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "pass": true
+    },
+    "on": {
+      "abstract": [],
+      "surface": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "pass": false
+    },
+    "umd": {
+      "abstract": [],
+      "surface": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "pass": false
+    },
+    "u_pas": {
+      "abstract": [],
+      "surface": [],
+      "pass": false
+    }
+  },
+  "T1": {
+    "full": {
+      "by_class": {
+        "9": "unresolved",
+        "11": "NO RISE"
+      },
+      "pass": false
+    },
+    "on": {
+      "by_class": {
+        "9": "NO RISE",
+        "11": "NO RISE"
+      },
+      "pass": false
+    },
+    "umd": {
+      "by_class": {
+        "9": "NO RISE",
+        "11": "NO RISE"
+      },
+      "pass": false
+    },
+    "u_pas": {
+      "by_class": {
+        "9": "NO RISE",
+        "11": "NO RISE"
+      },
+      "pass": false
+    }
+  },
+  "B1": {
+    "held": false,
+    "sites_failing": [
+      13,
+      14,
+      15
+    ]
+  },
+  "B2": {
+    "9": {
+      "cos": 0.251973114817709,
+      "split_half_pas": 0.8055065703076665,
+      "below": true
+    },
+    "11": {
+      "cos": 0.2570038579142273,
+      "split_half_pas": 0.8348551506569958,
+      "below": true
+    }
+  },
+  "FI_all": {
+    "0": 1.514,
+    "1": 1.105,
+    "2": 0.867,
+    "3": 0.851,
+    "4": 0.637,
+    "5": 0.57,
+    "6": 0.475,
+    "7": 0.442,
+    "8": 0.348,
+    "9": 0.341,
+    "10": 0.349,
+    "11": 0.326,
+    "12": 0.295,
+    "13": 0.221,
+    "14": 0.183,
+    "15": 0.101
+  },
+  "FI": {
+    "values": {
+      "9": 0.3406791219907939,
+      "11": 0.3263853010036358
+    },
+    "decision": "low: 'one direction every construction reads'"
+  }
+}
