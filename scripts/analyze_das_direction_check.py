@@ -182,6 +182,15 @@ def main(args):
 
     # ---------------------------------------------------------------- 3a. active ablation
     ab = pd.read_csv(res / "ablation_active.csv.gz")
+    ref = Path(args.ref_ablation) if args.ref_ablation else None
+    ref_check = {}
+    if ref:   # another instrument's run on the same items: its v enters as v_ref, paired with this v on shared draws
+        rb = pd.read_csv(ref / "ablation_active.csv.gz")
+        k = ["site", "direction", "split", "fold", "item"]
+        j = ab[ab.direction.isin(["none", "u_md"])].merge(rb, on=k, suffixes=("", "_r"), validate="one_to_one")
+        assert len(j) == (ab.direction.isin(["none", "u_md"])).sum()
+        ref_check["active_none_umd_max_abs_dO"] = float((j.O - j.O_r).abs().max())
+        ab = pd.concat([ab, rb[rb.direction == "v"].assign(direction="v_ref")], ignore_index=True)
     an = pd.read_csv(res / "active_natural.csv")
     an["item"] = np.arange(len(an))
     pairs = sorted(an.pair_id.unique())
@@ -210,11 +219,25 @@ def main(args):
                 ab_rows.append({"site": s, "frame": "active", "direction": name, "readout": c,
                                 "gap_nat": nb[0], "gap_nat_pass": float(nat_pass_gap[c].mean()), "gap_abl": abl[0],
                                 **{f"share_{k}": v for k, v in q(1 - abl / nb).items()}})
+        if "v_ref" in gaps:
+            for c in ("O", "M"):
+                nb = gaps["none"][c][ixb].mean(1)
+                d = (gaps["v_ref"][c][ixb].mean(1) - gaps["v"][c][ixb].mean(1)) / nb
+                ab_rows.append({"site": s, "frame": "active", "direction": "v - v_ref", "readout": c,
+                                "gap_nat": nb[0], **{f"share_{k}": v for k, v in q(d).items()}})
     # ---------------------------------------------------------------- 3b. passive ablation
     if have_passive:
         for s in sites:
             x = pd.read_parquet(res / f"ablation_passive_site{s}.parquet")
             x["item_id"] = x.item_id.astype(str)
+            if ref:
+                r = pd.read_parquet(ref / f"ablation_passive_site{s}.parquet")
+                r["item_id"] = r.item_id.astype(str)
+                k = ["item_id", "split", "side", "base", "direction"]
+                j = x[x.direction.isin(["none", "u_md"])].merge(r, on=k, suffixes=("", "_r"), validate="one_to_one")
+                assert len(j) == x.direction.isin(["none", "u_md"]).sum()
+                ref_check[f"passive_site{s}_none_umd_max_abs_by"] = float((j.by - j.by_r).abs().max())
+                x = pd.concat([x, r[r.direction == "v"].assign(direction="v_ref")], ignore_index=True)
             bt = Boot(len(ctx_ix), args.n_boot, args.seed)
             one = np.ones((bt.B + 1, 1), np.float32)
             pix = np.array(sorted({pair_ix[p] for p in item_pair.loc[x.item_id.unique(), "pair_id"].unique()}))
@@ -244,8 +267,16 @@ def main(args):
                     ab_rows.append({"site": s, "frame": "passive", "direction": name, "readout": rd,
                                     "gap_nat": float(S["none"][0, r]), "gap_nat_pass": float(Spass[0, r]),
                                     "gap_abl": float(Sab[0, r]), **{f"share_{k}": v for k, v in q(sh).items()}})
+            if "v_ref" in S:
+                for r, rd in enumerate(RD):
+                    with np.errstate(divide="ignore", invalid="ignore"):
+                        d = (S["v_ref"][:, r] - S["v"][:, r]) / S["none"][:, r]
+                    ab_rows.append({"site": s, "frame": "passive", "direction": "v - v_ref", "readout": rd,
+                                    "gap_nat": float(S["none"][0, r]), **{f"share_{k}": v for k, v in q(d).items()}})
     AB = pd.DataFrame(ab_rows)
     AB.to_csv(res / "summary_ablation.csv", index=False)
+    if ref:
+        gate["ref_ablation"] = {"dir": str(ref), **ref_check}
     (res / "gates.json").write_text(json.dumps(gate, indent=2) + "\n")
 
     # ---------------------------------------------------------------- report
@@ -336,6 +367,20 @@ def main(args):
             L.append(f"| {s} | {frame} | {'T − I' if frame == 'active' else 'good − bad'} {LAB[rd]} | "
                      f"{x.loc['v', 'gap_nat']:.3f} | {x.loc['v', 'gap_abl']:.3f} | {f3(sv)} | "
                      f"{x.loc['u_md', 'gap_abl']:.3f} | {f3(su)} | {rr.mean():.3f} [{rr.min():.3f}, {rr.max():.3f}] |")
+    if ref:
+        L += ["", f"### This v vs the reference v (`{ref}`), paired", "",
+              "Share removed by this run's v minus the reference v's, on the same items, natural readouts and bootstrap "
+              "draws (the reference run's v ablation rows; its none / u_md rows agree with this run's: "
+              f"{json.dumps(ref_check)}).", "",
+              "| Site | Frame | Gap | share, v | share, reference v | difference [95% CI] |", "|---:|---|---|---|---|---|"]
+        for s in sites:
+            for frame, rd in (("active", "O"), ("active", "M"), ("passive", "by"), ("passive", "O")):
+                x = AB[(AB.site == s) & (AB.frame == frame) & (AB.readout == rd)].set_index("direction")
+                if "v - v_ref" not in x.index:
+                    continue
+                g = lambda n: {k: x.loc[n, f"share_{k}"] for k in ("est", "lo95", "hi95")}
+                L.append(f"| {s} | {frame} | {'T − I' if frame == 'active' else 'good − bad'} {LAB[rd]} | "
+                         f"{f3(g('v'))} | {f3(g('v_ref'))} | {f3(g('v - v_ref'))} |")
     Path(args.report).write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))
 
@@ -350,4 +395,6 @@ if __name__ == "__main__":
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
     ap.add_argument("--run-label", default="TSUBAME")
+    ap.add_argument("--ref-ablation", default=None,
+                    help="direction-check results of another v on the same items: paired share difference (v - v_ref)")
     main(ap.parse_args())
