@@ -35,12 +35,16 @@ def run(a):
     fm = json.loads((stored / "final_meta.json").read_text())
     vm = json.loads((v2 / "final_meta.json").read_text())
     assert fm["site"] == vm["site"] == s and not vm["v2"]["smoke"]
+    import hashlib
+    assert Path(vm["args"]["model"]).name == Path(a.model).name, (vm["args"]["model"], a.model)
+    assert hashlib.sha256(Path(a.pairs).read_bytes()).hexdigest() == vm["v2"]["pairs_sha256"], "pairs differ from v2's"
     sa = fm["args"]
     args = SimpleNamespace(pairs=a.stored_pairs, model=a.model, device=a.device, dtype=sa["dtype"], lr=sa["lr"],
                            batch_size=sa["batch_size"], n_cross=sa["n_cross"], n_same=sa["n_same"], bos=sa.get("bos"),
                            fp32_unembed=sa.get("fp32_unembed"))
     runner, pairsS, itemsS, repsS, natS, droppedS = d2.setup(args)
     itemsP, repsP, natP, _, n_keep = filtered(runner, a.pairs, pairsS.pair_id)
+    assert n_keep == vm["v2"]["n_new_pairs"], (n_keep, vm["v2"]["n_new_pairs"])
     folds_df = pd.read_csv(stored / "pairs_folds.csv")
     assign = dict(zip(folds_df.pair_id, folds_df.fold_split0))
     vb = {k: v.float() for k, v in torch.load(v2 / "bases.pt").items()}
@@ -90,6 +94,6 @@ if __name__ == "__main__":
     ap.add_argument("--n-folds-used", type=int, default=3)
     ap.add_argument("--pairs", default="data/das_v2/train_pairs_v2.csv")
     ap.add_argument("--stored-pairs", default="data/das_round2/train_pairs.csv")
-    ap.add_argument("--model", default="EleutherAI/pythia-1.4b")
+    ap.add_argument("--model", required=True)
     ap.add_argument("--device", default="cuda")
     run(ap.parse_args())

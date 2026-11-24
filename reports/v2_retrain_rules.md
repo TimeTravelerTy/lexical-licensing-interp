@@ -17,8 +17,8 @@ Reason: v was trained on 29 pairs, the ceiling of the October pool (Settled 14),
 - **Training pairs:** for split k, fold f, the stored fold's training pairs (stored fold assignment of the 29 stored pairs) plus the 44 new pairs that pass this model's behavior filter (≥ 4 of the verb's items correct, both verbs), always in training.
 - **Held-out active evaluation:** the stored held-out fold's items (29 stored pairs; 28 in Gemma), evaluated in the stored item order with the stored natural readouts, so held-out IIA is paired with v's. Uncertainty is over pairs.
 - **Settings:** per site, the stored final's epochs, lr, batch size, n_cross, n_same, dtype, BOS and unembedding settings; seed 10000 + 100·split + fold; rank 1; 3 splits × 5 folds.
-- **Controls in each final:** 100 random directions and their norm-matched versions per fold (generator seeded per fold, so draws are not paired with round 2's), and a shuffled-label direction trained on v2's training pool, saved (`shuffled_bases.pt`).
-- **Evaluation sets are untouched:** v2's training verbs occur in none of them, and v's 8 original training pairs keep their fold-matched bases. Every plan, gate and natural readout is the stored one.
+- **Controls in each final:** 100 random directions and their norm-matched versions per fold (generator seeded per fold from 900007, so no draws are paired with round 2's), and a shuffled-label direction trained on v2's training pool, saved (`shuffled_bases.pt`).
+- **Evaluation sets are untouched:** v2's new training verbs occur in none of them, and v's 8 original training pairs keep their fold-matched bases. Every plan, gate and natural readout is the stored one.
 
 ## Sites
 
@@ -42,8 +42,8 @@ Output roots: `results/{pythia,gemma,olmo}/das_v2/` (smoke: `das_v2_smoke/`). Re
 
 1. Pairs: the training file's sha256 equals `data/das_v2/meta.json`, and its stored rows equal `data/das_round2/train_pairs.csv`.
 2. Stored items equal and stored folds reproduce at every site.
-3. Recompute: the stored v's held-out swaps recomputed in the same process: median |ΔM| ≤ 0.01 and max ≤ 0.5.
-4. Disjointness, re-run in each site job on the same mandatory file list: zero hits.
+3. Recompute: the stored v's held-out swaps recomputed in the same process, patched M and the natural M of base and source: median |Δ| ≤ 0.01 and max ≤ 0.5.
+4. Disjointness of the new training pairs (v's stored pairs are protected by their folds, as before), re-run in each site job on that model's mandatory file list (the job checks every file exists): zero hits.
 5. Layout: each written final has the 15 keys r1_s{0..2}_f{0..4} (smoke: its own root only), heldout_swaps covering every (split, fold) with one-to-one (base, src) keys and finite values.
 6. Downstream: each rerun's natural (unpatched) readouts equal the stored run's by prompt (max |Δ| ≤ 1e-6), as in `jobs/umd_tr.sh`; filler-gap gates equal the stored gates except the base-form gate along the direction.
 

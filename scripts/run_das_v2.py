@@ -17,7 +17,7 @@ and shuffled-label controls), so every downstream script runs on the v2 root unc
 Checks (checks_{sites}.json; a failed hard check stops the run):
   pairs file sha256 equals data/das_v2/meta.json (hard);
   stored items equal, stored folds reproduce (hard);
-  stored held-out recompute along the stored v: median |dM| <= 0.01 and max <= 0.5 (hard);
+  stored held-out recompute along the stored v, patched M and natural M_base / M_src: median |d| <= 0.01, max <= 0.5 (hard);
   disjoint: no lemma or participle of a new training pair is a cell value of any --eval-files file (hard; required);
   layout: 15 keys, one-to-one finite held-out swaps per (split, fold) (hard);
   descriptive: |cos| with the stored v and, where --p-ref is given, with stability-ext P.
@@ -47,9 +47,8 @@ def disjoint_check(new_pairs, eval_csvs):
     for f in eval_csvs:
         E = pd.read_csv(f, low_memory=False)
         vals = set()
-        for c in E.columns:
-            if E[c].dtype == object:
-                vals |= set(E[c].astype(str))
+        for c in E.select_dtypes(exclude="number").columns:
+            vals |= set(E[c].dropna().astype(str))
         hits[f] = sorted(forms & vals)
     return hits
 
@@ -90,8 +89,13 @@ def run(a):
     itemsP, repsP, natP, droppedP, n_keep = filtered(runner, a.pairs, pairsS.pair_id)
     allP = pd.read_csv(a.pairs).assign(pair_id=lambda d: d.trans + "/" + d.intrans)
     stored_only = pd.read_csv(a.stored_pairs)
-    assert allP[allP.source != "expanded"][stored_only.columns].reset_index(drop=True).astype(str).equals(
-        stored_only.astype(str)), "stored rows of the v2 pairs file differ from the stored pairs"
+    mine = allP[allP.source != "expanded"][stored_only.columns].reset_index(drop=True)
+    assert len(mine) == len(stored_only)
+    for c in stored_only.columns:
+        x, y = mine[c], stored_only[c]
+        same = (np.allclose(pd.to_numeric(x), y, equal_nan=True) if pd.api.types.is_numeric_dtype(y)
+                else x.fillna("").astype(str).equals(y.fillna("").astype(str)))
+        assert same, f"stored rows of the v2 pairs file differ from the stored pairs in column {c}"
     newP = allP[(allP.source == "expanded") & allP.pair_id.isin(set(itemsP.pair_id))]
     assert len(newP) == n_keep
     newP.to_csv(out / f"new_pairs_trained_{tag}.csv", index=False)
@@ -110,11 +114,12 @@ def run(a):
         assert (st_items.prompt.to_numpy() == itemsS.prompt.to_numpy()).all(), f"stored items differ at {s}"
         folds_df = pd.read_csv(R0 / "pairs_folds.csv")
         stored_b = {k: v.float().to(runner.device) for k, v in torch.load(R0 / "bases.pt").items() if k.startswith("r1_")}
-        st_hs = pd.read_csv(R0 / "heldout_swaps.csv.gz", usecols=["base", "src", "M_patched", "rank", "split", "fold"])
+        st_hs = pd.read_csv(R0 / "heldout_swaps.csv.gz",
+                            usecols=["base", "src", "M_patched", "M_base", "M_src", "rank", "split", "fold"])
         st_hs = st_hs[st_hs["rank"] == 1]
         ref_b = torch.load(p_ref[s] / "bases.pt") if s in p_ref else None
         epochs = fm[s]["epochs"]
-        bases, shuf_b, details, summ, recompute, cos_v, cos_p = {}, {}, [], [], [], [], []
+        bases, shuf_b, details, summ, recompute, nat_diff, cos_v, cos_p = {}, {}, [], [], [], [], [], []
         for k in range(sa["n_splits"]):
             assign = dict(zip(folds_df.pair_id, folds_df[f"fold_split{k}"]))
             assert assign == d2.folds(pairsS, sa["n_folds"], k), f"stored folds do not reproduce at {s}"
@@ -130,6 +135,7 @@ def run(a):
                 mg = dv.merge(g, on=["base", "src"], suffixes=("", "_stored"))
                 assert len(mg) == len(g) == len(dv)
                 recompute.append(np.abs(mg.M_patched - mg.M_patched_stored).to_numpy())
+                nat_diff.append(np.abs(np.r_[mg.M_base - mg.M_base_stored, mg.M_src - mg.M_src_stored]))
                 b, _ = d2.train(runner, itemsP, repsP, trP, labelsP, s, 1, epochs, args_for(""), 10000 + 100 * k + f)
                 # held-out swaps on the stored items, stored order and stored natural readouts (= teP's prompts)
                 df = d2.evaluate(runner, itemsS, repsS, natS, teS, s, b, detail=True)
@@ -143,7 +149,7 @@ def run(a):
                 if ref_b is not None:
                     cos_p.append(float(abs(b[:, 0].float().cpu() @ ref_b[key][:, 0].float())))
                 # controls, as run_das_round2.run_final (held-out stored fold; shuffled labels on v2's training set)
-                gen = torch.Generator(device="cpu").manual_seed(7 + 1000 * (100 * k + f))
+                gen = torch.Generator(device="cpu").manual_seed(900007 + 1000 * (100 * k + f))  # not round 2's seed-7 stream
                 for r in range(sa["n_random"] if not a.smoke else 2):
                     rnd = torch.linalg.qr(torch.randn(b.shape, generator=gen))[0].to(runner.device)
                     for name, mn in (("random", None), ("random_normmatched", b)):
@@ -159,9 +165,11 @@ def run(a):
                 shuf_b[key] = sb.cpu()
                 log(f"site {s} split {k} fold {f}: iia_cross {iia:.3f} "
                     f"|cos v| {cos_v[-1]:.3f}" + (f" |cos P| {cos_p[-1]:.4f}" if cos_p else ""))
-        rc = np.concatenate(recompute)
+        rc, nd = np.concatenate(recompute), np.concatenate(nat_diff)
         checks[f"site{s}"] = {"recompute_median": float(np.median(rc)), "recompute_max": float(rc.max()),
-                              "recompute_pass": bool(np.median(rc) <= 0.01 and rc.max() <= 0.5),
+                              "natural_M_median": float(np.median(nd)), "natural_M_max": float(nd.max()),
+                              "recompute_pass": bool(np.median(rc) <= 0.01 and rc.max() <= 0.5
+                                                     and np.median(nd) <= 0.01 and nd.max() <= 0.5),
                               "abs_cos_stored_v": [min(cos_v), float(np.median(cos_v)), max(cos_v)],
                               "abs_cos_P_ref": [min(cos_p), float(np.median(cos_p))] if cos_p else None,
                               }
@@ -174,8 +182,8 @@ def run(a):
             assert not g.duplicated(["base", "src"]).any() and np.isfinite(g.M_patched).all(), (s, k, f)
         assert sorted(det.groupby(["split", "fold"]).groups) == want
         name = "final_strict" if s == a.primary else f"final_strict_site{s}"
-        d = out / f".{name}.tmp"
-        shutil.rmtree(d, ignore_errors=True)
+        import os
+        d = out / f".{name}.{os.getpid()}.tmp"
         d.mkdir()
         torch.save(bases, d / "bases.pt")
         torch.save(shuf_b, d / "shuffled_bases.pt")
@@ -202,8 +210,11 @@ def run(a):
         (d / "final_meta.json").write_text(json.dumps(meta, indent=2, default=str) + "\n")
         final = out / name
         assert not final.exists() or a.overwrite, f"{final} exists (pass --overwrite)"
-        shutil.rmtree(final, ignore_errors=True)
+        old = out / f".{name}.{os.getpid()}.old"
+        if final.exists():
+            final.rename(old)
         d.rename(final)
+        shutil.rmtree(old, ignore_errors=True)
         log(f"site {s} written to {final}: {checks[f'site{s}']}")
     (out / f"meta_{tag}.json").write_text(json.dumps(
         {"args": vars(a), "stored_args": sa, "minutes": (time.time() - t0) / 60}, indent=2, default=str) + "\n")
