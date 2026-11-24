@@ -114,12 +114,17 @@ def run(a):
         assert (st_items.prompt.to_numpy() == itemsS.prompt.to_numpy()).all(), f"stored items differ at {s}"
         folds_df = pd.read_csv(R0 / "pairs_folds.csv")
         stored_b = {k: v.float().to(runner.device) for k, v in torch.load(R0 / "bases.pt").items() if k.startswith("r1_")}
-        st_hs = pd.read_csv(R0 / "heldout_swaps.csv.gz",
-                            usecols=["base", "src", "M_patched", "M_base", "M_src", "rank", "split", "fold"])
-        st_hs = st_hs[st_hs["rank"] == 1]
+        has_swaps = (R0 / "heldout_swaps.csv.gz").exists()
+        if has_swaps:
+            st_hs = pd.read_csv(R0 / "heldout_swaps.csv.gz",
+                                usecols=["base", "src", "M_patched", "M_base", "M_src", "rank", "split", "fold"])
+            st_hs = st_hs[st_hs["rank"] == 1]
+        else:  # only summary.csv was kept: compare per-fold summary metrics instead
+            st_sum = pd.read_csv(R0 / "summary.csv")
+            st_sum = st_sum[(st_sum["rank"] == 1) & (st_sum.control == "das")]
         ref_b = torch.load(p_ref[s] / "bases.pt") if s in p_ref else None
         epochs = fm[s]["epochs"]
-        bases, shuf_b, details, summ, recompute, nat_diff, cos_v, cos_p = {}, {}, [], [], [], [], [], []
+        bases, shuf_b, details, summ, recompute, nat_diff, sum_diff, cos_v, cos_p = {}, {}, [], [], [], [], [], [], []
         for k in range(sa["n_splits"]):
             assign = dict(zip(folds_df.pair_id, folds_df[f"fold_split{k}"]))
             assert assign == d2.folds(pairsS, sa["n_folds"], k), f"stored folds do not reproduce at {s}"
@@ -131,11 +136,17 @@ def run(a):
                 trP, teP = d2.fold_indices(itemsP, assign, f)
                 assert (itemsP.prompt.values[teP] == itemsS.prompt.values[teS]).all()
                 dv = d2.evaluate(runner, itemsS, repsS, natS, teS, s, stored_b[key])
-                g = st_hs[(st_hs.split == k) & (st_hs.fold == f)]
-                mg = dv.merge(g, on=["base", "src"], suffixes=("", "_stored"))
-                assert len(mg) == len(g) == len(dv)
-                recompute.append(np.abs(mg.M_patched - mg.M_patched_stored).to_numpy())
-                nat_diff.append(np.abs(np.r_[mg.M_base - mg.M_base_stored, mg.M_src - mg.M_src_stored]))
+                if has_swaps:
+                    g = st_hs[(st_hs.split == k) & (st_hs.fold == f)]
+                    mg = dv.merge(g, on=["base", "src"], suffixes=("", "_stored"))
+                    assert len(mg) == len(g) == len(dv)
+                    recompute.append(np.abs(mg.M_patched - mg.M_patched_stored).to_numpy())
+                    nat_diff.append(np.abs(np.r_[mg.M_base - mg.M_base_stored, mg.M_src - mg.M_src_stored]))
+                else:
+                    g = st_sum[(st_sum.split == k) & (st_sum.fold == f)]
+                    assert len(g) == 1, (s, k, f, len(g))
+                    sm = d2.summarize(dv, itemsS)
+                    sum_diff.append([abs(sm[c] - float(g[c].iloc[0])) for c in ("iia_cross", "iia_same", "pc_frac_median")])
                 b, _ = d2.train(runner, itemsP, repsP, trP, labelsP, s, 1, epochs, args_for(""), 10000 + 100 * k + f)
                 # held-out swaps on the stored items, stored order and stored natural readouts (= teP's prompts)
                 df = d2.evaluate(runner, itemsS, repsS, natS, teS, s, b, detail=True)
@@ -165,11 +176,19 @@ def run(a):
                 shuf_b[key] = sb.cpu()
                 log(f"site {s} split {k} fold {f}: iia_cross {iia:.3f} "
                     f"|cos v| {cos_v[-1]:.3f}" + (f" |cos P| {cos_p[-1]:.4f}" if cos_p else ""))
-        rc, nd = np.concatenate(recompute), np.concatenate(nat_diff)
-        checks[f"site{s}"] = {"recompute_median": float(np.median(rc)), "recompute_max": float(rc.max()),
-                              "natural_M_median": float(np.median(nd)), "natural_M_max": float(nd.max()),
-                              "recompute_pass": bool(np.median(rc) <= 0.01 and rc.max() <= 0.5
-                                                     and np.median(nd) <= 0.01 and nd.max() <= 0.5),
+        if has_swaps:
+            rc, nd = np.concatenate(recompute), np.concatenate(nat_diff)
+            rec = {"recompute_mode": "heldout_swaps", "recompute_median": float(np.median(rc)),
+                   "recompute_max": float(rc.max()), "natural_M_median": float(np.median(nd)),
+                   "natural_M_max": float(nd.max()),
+                   "recompute_pass": bool(np.median(rc) <= 0.01 and rc.max() <= 0.5
+                                          and np.median(nd) <= 0.01 and nd.max() <= 0.5)}
+        else:
+            sd_ = np.array(sum_diff)
+            rec = {"recompute_mode": "summary", "summary_max_abs_diff": dict(zip(
+                       ("iia_cross", "iia_same", "pc_frac_median"), sd_.max(0).tolist())),
+                   "recompute_pass": bool(sd_[:, :2].max() <= 0.01 and sd_[:, 2].max() <= 0.02)}
+        checks[f"site{s}"] = {**rec,
                               "abs_cos_stored_v": [min(cos_v), float(np.median(cos_v)), max(cos_v)],
                               "abs_cos_P_ref": [min(cos_p), float(np.median(cos_p))] if cos_p else None,
                               }

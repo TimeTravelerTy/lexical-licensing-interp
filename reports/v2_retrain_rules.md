@@ -42,7 +42,7 @@ Output roots: `results/{pythia,gemma,olmo}/das_v2/` (smoke: `das_v2_smoke/`). Re
 
 1. Pairs: the training file's sha256 equals `data/das_v2/meta.json`, and its stored rows equal `data/das_round2/train_pairs.csv`.
 2. Stored items equal and stored folds reproduce at every site.
-3. Recompute: the stored v's held-out swaps recomputed in the same process, patched M and the natural M of base and source: median |Δ| ≤ 0.01 and max ≤ 0.5.
+3. Recompute: the stored v's held-out swaps recomputed in the same process, patched M and the natural M of base and source: median |Δ| ≤ 0.01 and max ≤ 0.5. *Amendment (Nov 24, after the first finals jobs, before any v2 result was read):* the stored finals kept `heldout_swaps.csv.gz` only at Pythia 8, 12, 17, Gemma 5, 8, 12, 15 and every OLMo site. At the other sites the recomputed per-fold summary (cross and same IIA, median patched fraction) is compared with the stored `summary.csv`: |Δ IIA| ≤ 0.01, |Δ median fraction| ≤ 0.02. The natural pass does not depend on the site, so its check at the sites with swaps covers the model.
 4. Disjointness of the new training pairs (v's stored pairs are protected by their folds, as before), re-run in each site job on that model's mandatory file list (the job checks every file exists): zero hits.
 5. Layout: each written final has the 15 keys r1_s{0..2}_f{0..4} (smoke: its own root only), heldout_swaps covering every (split, fold) with one-to-one (base, src) keys and finite values.
 6. Downstream: each rerun's natural (unpatched) readouts equal the stored run's by prompt (max |Δ| ≤ 1e-6), as in `jobs/umd_tr.sh`; filler-gap gates equal the stored gates except the base-form gate along the direction.
