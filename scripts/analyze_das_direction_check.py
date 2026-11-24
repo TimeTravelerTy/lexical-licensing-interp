@@ -190,7 +190,8 @@ def main(args):
         j = ab[ab.direction.isin(["none", "u_md"])].merge(rb, on=k, suffixes=("", "_r"), validate="one_to_one")
         assert len(j) == (ab.direction.isin(["none", "u_md"])).sum()
         ref_check["active_none_umd_max_abs_dO"] = float((j.O - j.O_r).abs().max())
-        ab = pd.concat([ab, rb[rb.direction == "v"].assign(direction="v_ref")], ignore_index=True)
+        ab = pd.concat([ab, rb[rb.direction == "v"].assign(direction="v_ref"),
+                        rb[rb.direction == "none"].assign(direction="none_ref")], ignore_index=True)
     an = pd.read_csv(res / "active_natural.csv")
     an["item"] = np.arange(len(an))
     pairs = sorted(an.pair_id.unique())
@@ -212,17 +213,19 @@ def main(args):
             assert len(per_item) == len(an) and (g.groupby("item").size() == 3).all(), "cross-fitting incomplete"
             gaps[name] = {c: pair_gap(per_item, c) for c in ("O", "M")}
         for name in gaps:
-            if name == "none":
+            if name in ("none", "none_ref"):
                 continue
             for c in ("O", "M"):
-                nb, abl = gaps["none"][c][ixb].mean(1), gaps[name][c][ixb].mean(1)
+                nb = gaps["none_ref" if name == "v_ref" else "none"][c][ixb].mean(1)
+                abl = gaps[name][c][ixb].mean(1)
                 ab_rows.append({"site": s, "frame": "active", "direction": name, "readout": c,
                                 "gap_nat": nb[0], "gap_nat_pass": float(nat_pass_gap[c].mean()), "gap_abl": abl[0],
                                 **{f"share_{k}": v for k, v in q(1 - abl / nb).items()}})
         if "v_ref" in gaps:
             for c in ("O", "M"):
-                nb = gaps["none"][c][ixb].mean(1)
-                d = (gaps["v_ref"][c][ixb].mean(1) - gaps["v"][c][ixb].mean(1)) / nb
+                nb, nr = gaps["none"][c][ixb].mean(1), gaps["none_ref"][c][ixb].mean(1)
+                d = (1 - gaps["v"][c][ixb].mean(1) / nb) - (1 - gaps["v_ref"][c][ixb].mean(1) / nr)
+                ref_check[f"active_site{s}_{c}_gap_nat_minus_ref"] = float(nb[0] - nr[0])
                 ab_rows.append({"site": s, "frame": "active", "direction": "v - v_ref", "readout": c,
                                 "gap_nat": nb[0], **{f"share_{k}": v for k, v in q(d).items()}})
     # ---------------------------------------------------------------- 3b. passive ablation
@@ -237,7 +240,8 @@ def main(args):
                 j = x[x.direction.isin(["none", "u_md"])].merge(r, on=k, suffixes=("", "_r"), validate="one_to_one")
                 assert len(j) == x.direction.isin(["none", "u_md"]).sum()
                 ref_check[f"passive_site{s}_none_umd_max_abs_by"] = float((j.by - j.by_r).abs().max())
-                x = pd.concat([x, r[r.direction == "v"].assign(direction="v_ref")], ignore_index=True)
+                x = pd.concat([x, r[r.direction == "v"].assign(direction="v_ref"),
+                               r[r.direction == "none"].assign(direction="none_ref")], ignore_index=True)
             bt = Boot(len(ctx_ix), args.n_boot, args.seed)
             one = np.ones((bt.B + 1, 1), np.float32)
             pix = np.array(sorted({pair_ix[p] for p in item_pair.loc[x.item_id.unique(), "pair_id"].unique()}))
@@ -259,18 +263,20 @@ def main(args):
                 m = g.groupby(["item_id", "side"])[list(RD)].mean().unstack("side")
                 S[name] = boot_gap(pd.DataFrame({c: m[(c, "good")] - m[(c, "bad")] for c in RD}).join(item_pair))
             for name, Sab in S.items():
-                if name == "none":
+                if name in ("none", "none_ref"):
                     continue
+                Sn = S["none_ref" if name == "v_ref" else "none"]
                 for r, rd in enumerate(RD):
                     with np.errstate(divide="ignore", invalid="ignore"):
-                        sh = 1 - Sab[:, r] / S["none"][:, r]
+                        sh = 1 - Sab[:, r] / Sn[:, r]
                     ab_rows.append({"site": s, "frame": "passive", "direction": name, "readout": rd,
-                                    "gap_nat": float(S["none"][0, r]), "gap_nat_pass": float(Spass[0, r]),
+                                    "gap_nat": float(Sn[0, r]), "gap_nat_pass": float(Spass[0, r]),
                                     "gap_abl": float(Sab[0, r]), **{f"share_{k}": v for k, v in q(sh).items()}})
             if "v_ref" in S:
                 for r, rd in enumerate(RD):
                     with np.errstate(divide="ignore", invalid="ignore"):
-                        d = (S["v_ref"][:, r] - S["v"][:, r]) / S["none"][:, r]
+                        d = (1 - S["v"][:, r] / S["none"][:, r]) - (1 - S["v_ref"][:, r] / S["none_ref"][:, r])
+                    ref_check[f"passive_site{s}_{rd}_gap_nat_minus_ref"] = float(S["none"][0, r] - S["none_ref"][0, r])
                     ab_rows.append({"site": s, "frame": "passive", "direction": "v - v_ref", "readout": rd,
                                     "gap_nat": float(S["none"][0, r]), **{f"share_{k}": v for k, v in q(d).items()}})
     AB = pd.DataFrame(ab_rows)
@@ -369,9 +375,10 @@ def main(args):
                      f"{x.loc['u_md', 'gap_abl']:.3f} | {f3(su)} | {rr.mean():.3f} [{rr.min():.3f}, {rr.max():.3f}] |")
     if ref:
         L += ["", f"### This v vs the reference v (`{ref}`), paired", "",
-              "Share removed by this run's v minus the reference v's, on the same items, natural readouts and bootstrap "
-              "draws (the reference run's v ablation rows; its none / u_md rows agree with this run's: "
-              f"{json.dumps(ref_check)}).", "",
+              "Share removed by this run's v minus the reference v's, on the same items and bootstrap draws, each "
+              "share against its own run's natural readouts (zero-basis rows). Per-item max |Δ| of the none / u_md rows "
+              "between the runs (bf16 run-to-run) and the natural-gap differences: "
+              f"{json.dumps({k: round(v, 4) for k, v in ref_check.items()})}.", "",
               "| Site | Frame | Gap | share, v | share, reference v | difference [95% CI] |", "|---:|---|---|---|---|---|"]
         for s in sites:
             for frame, rd in (("active", "O"), ("active", "M"), ("passive", "by"), ("passive", "O")):
