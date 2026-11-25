@@ -1,4 +1,4 @@
-# Paper outline: which results carry which claim (Nov 24, revised after Codex review)
+# Paper outline: which results carry which claim (Nov 24, revised after Codex review; C1 + C2 updated Nov 25 to v2 on the expanded set)
 
 This file sits under `docs/paper_plan.md`. It maps each claim to the results that carry it in the main text, the ones that go to the appendix, and the experiments still worth running before the Dec 11 freeze. Anything not listed as main or appendix is cut from this paper (it stays in the thesis).
 
@@ -10,7 +10,7 @@ This file sits under `docs/paper_plan.md`. It maps each claim to the results tha
 
 ## Thesis, with the limits next to it
 
-- A verb-class signal at the verb, sensitive to surface NP cues (nonce, R4-C9), supports interventions that transfer across several constructions. The effects are model- and instrument-dependent: OLMo misses the declared passive margin, T3 flips between v and u_md, embedded wh is not uniform.
+- A verb-class signal at the verb, sensitive to surface NP cues (nonce, R4-C9), supports interventions that transfer across several constructions. On the held-out evaluation set (224 pairs; 89 plain primary) the v2 edit moves passive *by* by about the natural gap at the first rule site of Pythia and OLMo (D / G 1.05, 0.89), and by more than the gap in Gemma (1.8–2.5× from site 8). The object side is model- and construction-dependent: the edit matches the natural object-relative profile only at the first OR site of Pythia and OLMo, and overshoots the natural object effect elsewhere.
 - Erasers fit on other verbs reduce the passive *by* gap by 0.53 [0.44, 0.67] (Pythia), 0.83 [0.61, 1.22] (Gemma) and 0.57 [0.45, 0.74] (OLMo). These are pooled reductions of a T − I gap, not per-verb fractions. Say "about half or more", never "at least half" (the Pythia and OLMo lower bounds are below 0.5).
 - In Pythia, heads route voice into MLPs 11–17, and a passive-conjunction set in MLPs 11 / 14 carries most of the edit-induced *by* switch. These components are not necessary for natural behavior (R5-B5).
 - Rare verbs keep class information that is decodable from their own verb state and transferable. Their deficit shows in predicting the participle itself, and writing the class read from the verb state into the participle's output row repairs it. R5-A5 rules out an exclusively output-side account.
@@ -36,11 +36,23 @@ C4 is introduced as "one implementation of the context dependence observed above
 
 ### C1 + C2. Transfer and context (§3)
 
-- **Main:** transfer of v and u_md to passive *by*, OR, TC, embedded and matrix wh in 3 models, as D / natural gap curves at representative sites with declared sites marked (R2-ptest, R4-A2, R4-B, R5-C8; Settled 9, 11, 12). u_md is training-free (the Kumon & Yanaka answer). New verbs: passive transfer holds on 74 unseen plain verbs in 7 of 8 declared readings (Settled 16, 20; these are site × instrument readings, not 8 constructions).
-- **Main, one paragraph:** the Pythia split edit as the illusion defense. The on-axis piece carries 0.66–0.80 of *by*, the off-axis piece the O rise (Settled 2). In the same paragraph, the cross-model failures: Gemma R-A2 not held, OLMo R-A1 not held (Settled 10).
-- **Main, nonce panel in the transfer figure:** class set from context, onset 0.12–0.31 of depth, driven by an adjacent NP (R4-C9; Settled 18). Frame invariance early, frame-specific with depth, with Gemma's non-monotone FI stated (Settled 5, 10).
-- **Main, one clause each:** OLMo passive *by* misses the declared margin (0.30–1.19 of the gap at 0–11); T3 instrument flips.
-- **Appendix:** full depth curves, in-range profiles, gap- and self-scaled classes, staging, R4-C8, DAS stability (exploratory; Pythia's declared reading failed its recompute check), reverse DAS R3-B5.
+Source: `reports/v2_expanded_readings.md` (v2, 224 held-out pairs, primary 89 plain; criteria `reports/criteria_audit.md`). The paper reports only this set; it does not mention the 126-pair runs. Unit: D / natural gap G, with the T-arm recovery (T-patched − unpatched) / G beside it.
+
+- **Main, passive *by* (Figure 1a):** D / G curves over all sites, three models, rule sites marked.
+  - Pythia 8 / 12: 1.05 [0.77, 1.65] / 1.11; T arm 0.89 / 0.88. OLMo 9 / 11: 0.89 [0.61, 1.70] / 0.46; T arm 0.80 / 0.36. Wording: "about the size of the natural gap", not "reproduces" (the gap CIs are wide).
+  - Gemma 5 / 8 / 12 / 15: 1.27 / 1.77 / 2.45 / 2.34 against a small natural gap (0.39 [0.15, 0.62]). Selective at 5 (T arm on bad bases +0.48, on good bases +0.05); at 15 partly a general *by* push (0.76 vs 0.39). Say both.
+  - Deepest sites (Pythia 17, OLMo 12–13): *by* falls while O rises 3.6–4.1 nats. This is the object-next regime and belongs on the same curve.
+  - Prepositional pairs (128) as their own panel or sentence: *by* RISE at every first and second rule site.
+- **Main, depth profile (same figure):** *by* rise with small O, then both, then O with *by* suppressed, in depth order in Pythia (A 1–9, M 11–14, S− 16–17) and OLMo (A 1–4, M 6–11, S− 12–15). Gemma shows the first two regimes only (A 0–4, M 5–15). "Abstract" = O inside the small-effect margin, not zero: Pythia 8 O +0.29 [0.23, 0.36], 12% of the edit's active O effect. Disclose in methods that the equivalence-first classifier order was adopted after the output was read; OLMo's S1 holds only under it (frozen order in the appendix).
+- **Main, OR / TC (Figure 1b), read against each construction's natural profile:**
+  - At the first rule sites the edit raises the closure readout itself (OR +1.60 / +0.46 / +1.40 nats; TC +0.87 / +0.25 / +0.65, Pythia / Gemma / OLMo) and lowers PREP, so L rises in every model.
+  - No detected object overshoot only for OR at Pythia 8 and OLMo 9 (D_O − G_O [−0.27, +0.21] and [−0.02, +0.50]; not equivalence). Elsewhere the object push exceeds the construction's natural O gap. New verbs alone overshoot slightly even at those two cells.
+  - At the deepest sites L rises only because PREP falls faster than closure; do not call it licensing there.
+- **Main, filler-gap (one paragraph, own frame items):** the audited frame interaction J_O (`results/v2_summary/t3_interaction.csv`). v2 is licensing-like in OLMo (matrix at every rule site, embedded from 11) and Gemma matrix 8–15; Pythia is licensing-like only at matrix 17, and its embedded frame goes the opposite way at 8 and 12. Model-dependent; say so.
+- **Main, new verbs (one sentence + table row):** 30 new plain pairs, 23 lemma-fresh. D_new / D_orig CIs contain 1 at every rule site, and D_new − 0.5·D_orig is above 0 everywhere (Gemma 5 lemma-fresh lower bound 0.00).
+- **Main, nonce panel in Figure 1:** class set from context, onset 0.12–0.31 of depth, driven by an adjacent NP (R4-C9; Settled 18).
+- **Methods, one sentence each:** v2 replaces v (declared IIA gate); paired v2 − v on the same draws: equal or more *by*, equal or less O at the rule sites (Gemma 5 O push −41%). u_md as the training-free instrument (Kumon & Yanaka answer); its expanded-set numbers still to be quoted from the stored u_md runs.
+- **Appendix:** split edit (decided Nov 25: appendix only, one pointer sentence in §3). It dissociates only at the second rule site (Pythia 12: Δ_by +0.34, Δ_O +0.61; OLMo 11: +0.81, +0.35), not at the first sites and not in Gemma, where the off-axis piece carries both readouts. Also: full per-site tables, frozen-order staging, gap- and self-scaled classes, v beside v2, DAS stability, reverse DAS R3-B5, R4-C8.
 
 ### C3. How much is verb-general (§4)
 
@@ -67,7 +79,7 @@ The two positions are the point, not a confound. After reading a rare verb, the 
 
 ## Figures
 
-1. Transfer and context: constructions × models (v and u_md, D / gap), nonce onset panel.
+1. Transfer and context: passive *by* D / G depth curves (v2, three models, rule sites marked, staging regimes shaded), OR / TC against natural, nonce onset panel.
 2. Erasure: cross-fitted vs in-sample vs permutation (matched inventory), learning curve, rank-k panel.
 3. Pythia readers: heads → MLP switch shares, conjunction-neuron share, with the necessity number beside it.
 4. Rare verbs: classify-from-z and rare-trained transfer (plus a checkpoint panel if dynamics lands).
@@ -86,10 +98,11 @@ No separate summary table if it repeats the figures; the pass / fail table again
 | 3 | C4 mediation: under the verb-site edit, restore the selected neurons to unedited values (and the converse replay), with random-neuron controls; read final log P(*by*) | Necessity / sufficiency for the edit's effect, the bridge from C1 to C4 | ~1 GPU-hour |
 | 3 | Classify-from-z edit on more verbs: D11 Tail singletons and the new single-token rare pairs, z from v, P and u_md, frozen θ from Head | Takes §6 beyond 12 affected pairs; shows the edit does not need the stored v | forward passes |
 | 4 | Pythia-6.9B: natural gaps on the paper's items and u_md transfer; LEACE only with its controls | Scale | a few GPU-hours |
-| 5 | Dynamics: a small declared checkpoint set bracketing steps 256 / 1000 / 3000, training-free verb-site measures, Pythia | The paragraph in §6 (sensei asked) | a few GPU-hours |
+| 2 | Dynamics: a small declared checkpoint set bracketing steps 256 / 1000 / 3000, training-free verb-site measures, Pythia | The paragraph in §6 (sensei asked) | a few GPU-hours |
 | — | Second-model conjunction neurons | Optional; not a substitute for the mediation test | ~1 GPU-hour + porting |
 
 ## Cut from this paper
 
-- **Replacing v: decided (Nov 24), v2 replaces v** in the core chain of all three models (`reports/v2_retrain_rules.md`). The declared gate passed at every rule site (v2 − v held-out cross IIA ≥ 0 in point estimate everywhere, no CI below −0.02; `reports/v2/instrument_measures.md`). Downstream readings (`reports/v2_replication_criteria.md`, same pass / fail under own δ and δ_v): T2, S1, R-A1, Pythia R-A2 and nonce unchanged; Gemma T1 now fails (site 5 *by* +0.52 vs δ 0.54–0.57; v passed by 0.02), and T3 is licensing-like at no declared site (v2's in-range write overshoots T's O level). Per the declared rule, C1 narrows to Pythia for T1 + T2 with v's Gemma pass beside it. The Pythia site-8 mechanism tail stays on v unless ported (decide by Dec 4).
+- **Replacing v: decided (Nov 24), v2 replaces v** in the core chain of all three models (`reports/v2_retrain_rules.md`; declared IIA gate passed at every rule site, `reports/v2/instrument_measures.md`). The Nov 24 threshold readings (Gemma T1 failing by 0.02 nats, T3 by the "not above T" ceiling) are superseded by the audited criteria (`reports/criteria_audit.md`), under which *by* is read on the natural-gap scale and T3 by the frame interaction. The Pythia site-8 mechanism tail stays on v unless ported (decide by Dec 4).
+- **Split edit** moves to the appendix (Nov 25); it no longer serves as the main-text illusion defense.
 - DAS at 6.9B and at checkpoints; alternating verbs; SAE lookup; further direction-check suites; staging as a headline claim; embedded wh beyond one limitation sentence.
