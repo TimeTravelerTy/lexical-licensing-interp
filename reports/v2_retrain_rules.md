@@ -91,5 +91,10 @@ reproduction check and are not presented separately.
 - **Not on the expanded set:**
   - T3 (filler-gap): its verb gates and in-range targets are per verb and declared on its own set.
   - Nonce: no real verbs.
-  - Split edit (R-A1 / R-A2): decided after the criteria audit, before any expanded result is read.
+  - (Split edit: see the next bullet.)
+- **Split edit on the expanded set (decided Nov 25 after the criteria audit, before any expanded result was read):**
+  - v2 only, on v2's evaluation plain items (89 pairs; the 44 training pairs are dropped from the items file);
+  - sites: Pythia 4, 6, 8, 12, 17; Gemma 5, 8, 12, 15; OLMo 9, 11, 12, 13;
+  - read by the audit's dissociation contrast (`reports/criteria_audit.md`, claim 5);
+  - check: full-direction D on the same items equals the expanded v2 passive run's.
 - **Readings:** the criteria are reviewed against the claims they support (`reports/criteria_audit.md`) before any expanded v2 result is read. That review may change a margin or a criterion for every instrument at once, never for one instrument or model.

@@ -171,6 +171,9 @@ def main(args):
             with np.errstate(divide="ignore", invalid="ignore"):
                 for c in ("on", "off", "u_pas") + (("umd",) if umd else ()):
                     row.update({f"share_{c}_{k}": v for k, v in ci(S[c][:, r] / S["full"][:, r]).items()})
+                # dissociation contrast (reports/criteria_audit.md, claim 5): standalone share on - off, same draws
+                row.update({f"share_on_minus_off_{k}": v
+                            for k, v in ci((S["on"][:, r] - S["off"][:, r]) / S["full"][:, r]).items()})
             row.update({f"additivity_{k}": v for k, v in ci(S["full"][:, r] - S["on"][:, r] - S["off"][:, r]).items()})
             P_rows.append(row)
             if rd in ("O", "by") and not smoke and stored is not None:

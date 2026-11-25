@@ -341,9 +341,14 @@ def transfer(args, site, items, plan, nat, bt, pr, pops, delta):
                            "readout": rd, **ci(s[:, r])}
                     if k == "D_bad" and rd in ("O", "by", "dot"):
                         row["class"] = classify(row, delta)
-                    if k == "D_bad":
-                        frac = s[:, r] / S["nat_gap"][:, r]
+                    if k in ("D_bad", "T_bad"):
+                        G = S["nat_gap"][:, r]
+                        frac = s[:, r] / G
                         row.update({f"frac_natgap_{a}": b for a, b in ci(frac).items()})
+                        # joint-draw contrasts against 0.2 x the natural gap (reports/criteria_audit.md): minimum
+                        # effect (lo95 of D - 0.2 G > 0) and equivalence (D - 0.2 G < 0 < D + 0.2 G at 90%)
+                        row.update({f"minus20gap_{a}": b for a, b in ci(s[:, r] - 0.2 * G).items()})
+                        row.update({f"plus20gap_{a}": b for a, b in ci(s[:, r] + 0.2 * G).items()})
                     rows.append(row)
     return rows
 
