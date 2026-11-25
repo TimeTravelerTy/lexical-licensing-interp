@@ -177,6 +177,11 @@ def main(a):
                  for k in ("v2", "v")}
             for ri, rd in enumerate(("by", "O")):
                 x2, x1 = D["v2"][:, ri], D["v"][:, ri]
+                for k, x in (("v2", x2), ("v", x1)):  # same estimate as transfer.csv's D_bad for this cell
+                    t = T[(T.instrument == k) & (T.population == pop) & (T.condition == "D_bad") & (T.site == s) & (T.readout == rd)]
+                    if len(t):
+                        dev = abs(float(x[0]) - float(t.est.iloc[0]))
+                        checks["paired_matches_transfer_max_abs"] = max(checks.get("paired_matches_transfer_max_abs", 0.0), dev)
                 prow.append({"site": s, "population": pop, "readout": rd,
                              **{f"v2_{k}": q for k, q in apt.ci(x2).items()}, **{f"v_{k}": q for k, q in apt.ci(x1).items()},
                              **{f"diff_{k}": q for k, q in apt.ci(x2 - x1).items()},
@@ -195,7 +200,7 @@ def d_bad_all(pdir, site, plan, items, nat, bt, pair_ix, ctx_ix, das_q):
     for c in ("by", "O"):
         df[c] = pat[c].to_numpy() - nn[c].to_numpy()
     df = df.join(items.set_index("item_id")[["pair_id", "context_id"]], on="item_id")
-    d = df[(df.side == "bad") & df.cond.isin(["T", "I"])]
+    d = df[(df.side == "bad") & df.cond.isin(["T", "I"])].assign(dq=lambda x: x.donor_pair.astype(str))
     qix = {q: i for i, q in enumerate(das_q)}
     vT, mT = apt.cells(d[d.cond == "T"], pair_ix, ctx_ix, qix, len(das_q), ["by", "O"])
     vI, mI = apt.cells(d[d.cond == "I"], pair_ix, ctx_ix, qix, len(das_q), ["by", "O"])
