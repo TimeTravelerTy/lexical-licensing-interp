@@ -110,6 +110,8 @@ def run(args):
     z = np.load(d / "conjunction.npz", allow_pickle=True)  # band / lemma labels are object arrays
     layers = [int(l) for l in z["layers"]]
     rng = np.random.default_rng(args.seed)
+    rng2 = np.random.default_rng(args.seed + 1)  # new CIs (mechanism_v2_rules) without moving the stored draws
+    assert (z["cnt"].sum(0) > 0).all(), "a pair x frame x donor-class cell has no rows"
     A = np.concatenate([cell_means(z, f"a_{l}") for l in layers], -1)  # [P, 2, 2, 2D]
     sig = cell_means(z, "sigma")[:, 0].mean(1)  # per pair: mean final-LN scale of the was-frame patched runs
     wby = np.concatenate([z[f"w_by_{l}"] for l in layers])
@@ -137,6 +139,14 @@ def run(args):
            "by_layer": {f"MLP{l}": int(sel[i * D:(i + 1) * D].sum()) for i, l in enumerate(layers)},
            "categories": {c: int((cat == c).sum()) for c in sorted(set(cat[sel]))}}
     pc = cat == "passive-conjunction"
+    if args.frozen:  # instrument check: the selection, signs and halves of another run, nothing selected here
+        fz = np.load(args.frozen, allow_pickle=True)
+        assert list(fz["pairs"]) == list(z["pairs"]) and (fz["halves"] == ph).all(), "frozen run has other pairs / halves"
+        pc, sgn, t, p = fz["pc"], fz["sgn"], fz["t"], fz["p"]
+        out["frozen_from"] = str(args.frozen)
+        out["n_passive_conjunction_frozen"] = int(pc.sum())
+    else:
+        np.savez_compressed(d / "conjunction_selection.npz", pairs=z["pairs"], halves=ph, pc=pc, sgn=sgn, t=t, p=p, sel=sel)
     rows = []
     if pc.any():
         xb = I[B_][:, pc] * sgn[pc]
@@ -154,11 +164,14 @@ def run(args):
 
         out.update({"halfB_sign_agreement": agree, "halfB_aligned_I": mI, "halfB_aligned_was": mw, "halfB_aligned_has": mh,
                     "switch_share": share(set_I, all_I), "passive_TI_share": share(set_W, all_W),
-                    "de_switch_set": float(set_I.mean()), "de_switch_all": float(all_I.mean())})
+                    "de_switch_set": float(set_I.mean()), "de_switch_all": float(all_I.mean()),
+                    "de_switch_all_ci": bci(all_I, args.n_boot, rng2), "de_switch_set_ci": bci(set_I, args.n_boot, rng2)})
         out["exist"] = bool(pc.sum() >= 10 and agree >= 0.8 and mI["lo95"] > 0 and mw["lo95"] > 0
                             and abs(mh["est"]) < 0.5 * mw["est"])
         sh = out["switch_share"]
-        out["carry_by"] = bool(sh["est"] >= 0.25 and sh["lo95"] > 0)
+        out["carry_by"] = bool(sh["est"] >= 0.25 and sh["lo95"] > 0)  # D11's stored rule
+        out["carry_part"] = bool(out["de_switch_all_ci"]["lo95"] > 0 and sh["lo95"] > 0)  # mechanism_v2_rules N2 / U2
+        out["carry_quarter"] = bool(out["de_switch_all_ci"]["lo95"] > 0 and sh["lo95"] >= 0.25)
         top = np.flatnonzero(pc)[np.argsort(-np.abs(t[pc]))][:args.top]
         for i in top:
             rows.append({"neuron": names[i], "t_A": float(t[i]), "p_A": float(p[i]), "I_A": float(xa[:, i].mean()),
@@ -242,6 +255,10 @@ def write_report(args, o, top):
          f"({o['pairs_B']} pairs). Direct effects on \" by\" through one reference final-LN scale per pair.", "",
          f"**Selected on half A:** {o['n_selected']} neurons ({', '.join(f'{k}: {v}' for k, v in o['by_layer'].items())}); "
          "categories: " + ", ".join(f"{k} {v}" for k, v in o["categories"].items()) + "."]
+    if o.get("frozen_from"):
+        L += ["", f"**Frozen set:** the selection above is this run's own and is not used. Every half-B test below uses "
+              f"the {o['n_passive_conjunction_frozen']} passive-conjunction neurons and half-A signs of "
+              f"`{o['frozen_from']}`."]
     if "halfB_aligned_I" in o:
         L += [f"- Passive-conjunction set on half B: sign agreement {o['halfB_sign_agreement']:.2f}; aligned I_n "
               f"{f(o['halfB_aligned_I'])}; was T − I {f(o['halfB_aligned_was'])}; has T − I {f(o['halfB_aligned_has'])}.",
@@ -294,6 +311,7 @@ if __name__ == "__main__":
     ap.add_argument("--dir", default="results/round4/translation")
     ap.add_argument("--report", default="reports/round4/d11_conjunction.md")
     ap.add_argument("--q", type=float, default=0.05)
+    ap.add_argument("--frozen", default=None, help="conjunction_selection.npz of another run: test its set here")
     ap.add_argument("--top", type=int, default=25)
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
