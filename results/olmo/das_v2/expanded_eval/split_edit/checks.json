@@ -1,0 +1,61 @@
+{
+  "items": 406,
+  "pairs": 29,
+  "dropped_pairs": [],
+  "smoke": false,
+  "sites": {
+    "9": {
+      "decomp_max_err": 6.938893903907228e-18,
+      "w_dot_u_max": 2.8102520310824275e-16,
+      "write_eq_read_max_abs_dM": 0.0
+    },
+    "11": {
+      "decomp_max_err": 6.938893903907228e-18,
+      "w_dot_u_max": 2.5326962749261384e-16,
+      "write_eq_read_max_abs_dM": 0.0
+    },
+    "12": {
+      "decomp_max_err": 6.938893903907228e-18,
+      "w_dot_u_max": 2.2724877535296173e-16,
+      "write_eq_read_max_abs_dM": 0.0
+    },
+    "13": {
+      "decomp_max_err": 6.938893903907228e-18,
+      "w_dot_u_max": 2.3245294578089215e-16,
+      "write_eq_read_max_abs_dM": 0.0
+    }
+  },
+  "leace_items": {
+    "prompts": 31500,
+    "pairs": 126,
+    "contexts": 126,
+    "prompts_per_verb": [
+      125
+    ]
+  },
+  "c_fit": {
+    "0": {
+      "pairs_kept": 108,
+      "pairs_excluded": 18
+    },
+    "1": {
+      "pairs_kept": 109,
+      "pairs_excluded": 17
+    },
+    "2": {
+      "pairs_kept": 108,
+      "pairs_excluded": 18
+    },
+    "3": {
+      "pairs_kept": 108,
+      "pairs_excluded": 18
+    },
+    "4": {
+      "pairs_kept": 106,
+      "pairs_excluded": 20
+    },
+    "active": {
+      "pairs_kept": 118
+    }
+  }
+}

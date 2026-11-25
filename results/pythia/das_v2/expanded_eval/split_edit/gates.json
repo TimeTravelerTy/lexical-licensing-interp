@@ -1,0 +1,35 @@
+{
+  "active_iia_full": {
+    "4": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    },
+    "6": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    },
+    "8": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    },
+    "12": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    },
+    "17": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    }
+  },
+  "passive_D_full": {
+    "4": {},
+    "6": {},
+    "8": {},
+    "12": {},
+    "17": {}
+  },
+  "B0": {
+    "min_abs_cos": 0.9983954266114861,
+    "pass": true
+  }
+}

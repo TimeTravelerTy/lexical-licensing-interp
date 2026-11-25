@@ -1,0 +1,178 @@
+{
+  "outcomes": {
+    "full": {
+      "9": "surface (object next)",
+      "11": "surface (object next)",
+      "12": "surface (object next)",
+      "13": "surface (object next)"
+    },
+    "on": {
+      "9": "surface (object next)",
+      "11": "surface (object next)",
+      "12": "surface (object next)",
+      "13": "surface (object next)"
+    },
+    "umd": {
+      "9": "surface (object next)",
+      "11": "surface (object next)",
+      "12": "surface (object next)",
+      "13": "surface (object next)"
+    },
+    "u_pas": {
+      "9": "nothing moves (active-specific)",
+      "11": "nothing moves (active-specific)",
+      "12": "nothing moves (active-specific)",
+      "13": "nothing moves (active-specific)"
+    }
+  },
+  "R-A1": {
+    "sites": {
+      "9": {
+        "off_share_O": 0.5092626214027405,
+        "class_on_O": "RISE",
+        "held": false
+      },
+      "11": {
+        "off_share_O": 0.6520841717720032,
+        "class_on_O": "RISE",
+        "held": false
+      },
+      "12": {
+        "off_share_O": 0.7007738351821899,
+        "class_on_O": "RISE",
+        "held": false
+      },
+      "13": {
+        "off_share_O": 0.9071974754333496,
+        "class_on_O": "RISE",
+        "held": false
+      }
+    },
+    "held_at_rule_sites": false,
+    "rule_sites_applicable": [
+      9,
+      11
+    ],
+    "held_all_applicable_sites": false,
+    "held_n": "0 / 4"
+  },
+  "R-A2": {
+    "sites": {},
+    "held_at_rule_sites": "n/a",
+    "rule_sites_applicable": [],
+    "held_all_applicable_sites": false,
+    "held_n": "0 / 0"
+  },
+  "S1": {
+    "full": {
+      "abstract": [],
+      "surface": [
+        9,
+        11,
+        12,
+        13
+      ],
+      "pass": false
+    },
+    "on": {
+      "abstract": [],
+      "surface": [
+        9,
+        11,
+        12,
+        13
+      ],
+      "pass": false
+    },
+    "umd": {
+      "abstract": [],
+      "surface": [
+        9,
+        11,
+        12,
+        13
+      ],
+      "pass": false
+    },
+    "u_pas": {
+      "abstract": [],
+      "surface": [],
+      "pass": false
+    }
+  },
+  "T1": {
+    "full": {
+      "by_class": {
+        "9": "NO RISE",
+        "11": "NO RISE"
+      },
+      "pass": false
+    },
+    "on": {
+      "by_class": {
+        "9": "NO RISE",
+        "11": "NO RISE"
+      },
+      "pass": false
+    },
+    "umd": {
+      "by_class": {
+        "9": "NO RISE",
+        "11": "NO RISE"
+      },
+      "pass": false
+    },
+    "u_pas": {
+      "by_class": {
+        "9": "NO RISE",
+        "11": "NO RISE"
+      },
+      "pass": false
+    }
+  },
+  "B1": {
+    "held": false,
+    "sites_failing": [
+      13,
+      14,
+      15
+    ]
+  },
+  "B2": {
+    "9": {
+      "cos": 0.251973114817709,
+      "split_half_pas": 0.8055065703076665,
+      "below": true
+    },
+    "11": {
+      "cos": 0.2570038579142273,
+      "split_half_pas": 0.8348551506569958,
+      "below": true
+    }
+  },
+  "FI_all": {
+    "0": 1.514,
+    "1": 1.105,
+    "2": 0.867,
+    "3": 0.851,
+    "4": 0.637,
+    "5": 0.57,
+    "6": 0.475,
+    "7": 0.442,
+    "8": 0.348,
+    "9": 0.341,
+    "10": 0.349,
+    "11": 0.326,
+    "12": 0.295,
+    "13": 0.221,
+    "14": 0.183,
+    "15": 0.101
+  },
+  "FI": {
+    "values": {
+      "9": 0.3406791219907939,
+      "11": 0.3263853010036358
+    },
+    "decision": "low: 'one direction every construction reads'"
+  }
+}

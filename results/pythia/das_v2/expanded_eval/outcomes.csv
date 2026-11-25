@@ -1,0 +1,281 @@
+instrument,population,o_margin,site,O,by,outcome
+v,all plain (268-set),class_audit,8,NO RISE,RISE,abstract
+v,all plain (268-set),class_audit,12,RISE,RISE,mixed
+v,all plain (268-set),class_audit,17,RISE,FALL,"surface, by suppressed"
+v,all plain (268-set),class_audit_delta_v,8,NO RISE,RISE,abstract
+v,all plain (268-set),class_audit_delta_v,12,RISE,RISE,mixed
+v,all plain (268-set),class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v,eval new plain,class_audit,8,"positive, magnitude unresolved",RISE,unresolved
+v,eval new plain,class_audit,12,RISE,RISE,mixed
+v,eval new plain,class_audit,17,RISE,FALL,"surface, by suppressed"
+v,eval new plain,class_audit_delta_v,8,"positive, magnitude unresolved",RISE,unresolved
+v,eval new plain,class_audit_delta_v,12,RISE,RISE,mixed
+v,eval new plain,class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v,"eval new plain, lemma-fresh",class_audit,8,"positive, magnitude unresolved",RISE,unresolved
+v,"eval new plain, lemma-fresh",class_audit,12,RISE,RISE,mixed
+v,"eval new plain, lemma-fresh",class_audit,17,RISE,FALL,"surface, by suppressed"
+v,"eval new plain, lemma-fresh",class_audit_delta_v,8,"positive, magnitude unresolved",RISE,unresolved
+v,"eval new plain, lemma-fresh",class_audit_delta_v,12,RISE,RISE,mixed
+v,"eval new plain, lemma-fresh",class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v,eval original plain,class_audit,8,NO RISE,RISE,abstract
+v,eval original plain,class_audit,12,RISE,RISE,mixed
+v,eval original plain,class_audit,17,RISE,FALL,"surface, by suppressed"
+v,eval original plain,class_audit_delta_v,8,NO RISE,RISE,abstract
+v,eval original plain,class_audit_delta_v,12,RISE,RISE,mixed
+v,eval original plain,class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v,eval plain,class_audit,8,NO RISE,RISE,abstract
+v,eval plain,class_audit,12,RISE,RISE,mixed
+v,eval plain,class_audit,17,RISE,FALL,"surface, by suppressed"
+v,eval plain,class_audit_delta_v,8,NO RISE,RISE,abstract
+v,eval plain,class_audit_delta_v,12,RISE,RISE,mixed
+v,eval plain,class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v,eval prep,class_audit,8,RISE,RISE,mixed
+v,eval prep,class_audit,12,RISE,RISE,mixed
+v,eval prep,class_audit,17,RISE,FALL,"surface, by suppressed"
+v,eval prep,class_audit_delta_v,8,RISE,RISE,mixed
+v,eval prep,class_audit_delta_v,12,RISE,RISE,mixed
+v,eval prep,class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v,v2 training pairs (in-sample),class_audit,8,"positive, magnitude unresolved",RISE,unresolved
+v,v2 training pairs (in-sample),class_audit,12,RISE,RISE,mixed
+v,v2 training pairs (in-sample),class_audit,17,RISE,FALL,"surface, by suppressed"
+v,v2 training pairs (in-sample),class_audit_delta_v,8,"positive, magnitude unresolved",RISE,unresolved
+v,v2 training pairs (in-sample),class_audit_delta_v,12,RISE,RISE,mixed
+v,v2 training pairs (in-sample),class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v2,all plain (268-set),class_audit,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,all plain (268-set),class_audit,1,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit,2,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit,3,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit,4,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit,5,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit,6,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit,7,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit,8,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit,9,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit,10,"positive, magnitude unresolved",RISE,unresolved
+v2,all plain (268-set),class_audit,11,RISE,RISE,mixed
+v2,all plain (268-set),class_audit,12,RISE,RISE,mixed
+v2,all plain (268-set),class_audit,13,RISE,RISE,mixed
+v2,all plain (268-set),class_audit,14,RISE,RISE,mixed
+v2,all plain (268-set),class_audit,16,RISE,FALL,"surface, by suppressed"
+v2,all plain (268-set),class_audit,17,RISE,FALL,"surface, by suppressed"
+v2,all plain (268-set),class_audit_delta_v,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,all plain (268-set),class_audit_delta_v,1,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit_delta_v,2,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit_delta_v,3,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit_delta_v,4,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit_delta_v,5,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit_delta_v,6,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit_delta_v,7,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit_delta_v,8,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit_delta_v,9,NO RISE,RISE,abstract
+v2,all plain (268-set),class_audit_delta_v,10,"positive, magnitude unresolved",RISE,unresolved
+v2,all plain (268-set),class_audit_delta_v,11,RISE,RISE,mixed
+v2,all plain (268-set),class_audit_delta_v,12,RISE,RISE,mixed
+v2,all plain (268-set),class_audit_delta_v,13,RISE,RISE,mixed
+v2,all plain (268-set),class_audit_delta_v,14,RISE,RISE,mixed
+v2,all plain (268-set),class_audit_delta_v,16,RISE,FALL,"surface, by suppressed"
+v2,all plain (268-set),class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v2,eval new plain,class_audit,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,eval new plain,class_audit,1,NO RISE,RISE,abstract
+v2,eval new plain,class_audit,2,NO RISE,RISE,abstract
+v2,eval new plain,class_audit,3,NO RISE,RISE,abstract
+v2,eval new plain,class_audit,4,NO RISE,RISE,abstract
+v2,eval new plain,class_audit,5,NO RISE,RISE,abstract
+v2,eval new plain,class_audit,6,NO RISE,RISE,abstract
+v2,eval new plain,class_audit,7,NO RISE,RISE,abstract
+v2,eval new plain,class_audit,8,NO RISE,RISE,abstract
+v2,eval new plain,class_audit,9,"positive, magnitude unresolved",RISE,unresolved
+v2,eval new plain,class_audit,10,"positive, magnitude unresolved",RISE,unresolved
+v2,eval new plain,class_audit,11,RISE,RISE,mixed
+v2,eval new plain,class_audit,12,RISE,RISE,mixed
+v2,eval new plain,class_audit,13,RISE,RISE,mixed
+v2,eval new plain,class_audit,14,RISE,RISE,mixed
+v2,eval new plain,class_audit,16,RISE,FALL,"surface, by suppressed"
+v2,eval new plain,class_audit,17,RISE,FALL,"surface, by suppressed"
+v2,eval new plain,class_audit_delta_v,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,eval new plain,class_audit_delta_v,1,NO RISE,RISE,abstract
+v2,eval new plain,class_audit_delta_v,2,NO RISE,RISE,abstract
+v2,eval new plain,class_audit_delta_v,3,NO RISE,RISE,abstract
+v2,eval new plain,class_audit_delta_v,4,NO RISE,RISE,abstract
+v2,eval new plain,class_audit_delta_v,5,NO RISE,RISE,abstract
+v2,eval new plain,class_audit_delta_v,6,NO RISE,RISE,abstract
+v2,eval new plain,class_audit_delta_v,7,NO RISE,RISE,abstract
+v2,eval new plain,class_audit_delta_v,8,NO RISE,RISE,abstract
+v2,eval new plain,class_audit_delta_v,9,"positive, magnitude unresolved",RISE,unresolved
+v2,eval new plain,class_audit_delta_v,10,"positive, magnitude unresolved",RISE,unresolved
+v2,eval new plain,class_audit_delta_v,11,RISE,RISE,mixed
+v2,eval new plain,class_audit_delta_v,12,RISE,RISE,mixed
+v2,eval new plain,class_audit_delta_v,13,RISE,RISE,mixed
+v2,eval new plain,class_audit_delta_v,14,RISE,RISE,mixed
+v2,eval new plain,class_audit_delta_v,16,RISE,FALL,"surface, by suppressed"
+v2,eval new plain,class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v2,"eval new plain, lemma-fresh",class_audit,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,"eval new plain, lemma-fresh",class_audit,1,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit,2,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit,3,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit,4,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit,5,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit,6,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit,7,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit,8,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit,9,"positive, magnitude unresolved",RISE,unresolved
+v2,"eval new plain, lemma-fresh",class_audit,10,"positive, magnitude unresolved",RISE,unresolved
+v2,"eval new plain, lemma-fresh",class_audit,11,RISE,RISE,mixed
+v2,"eval new plain, lemma-fresh",class_audit,12,RISE,RISE,mixed
+v2,"eval new plain, lemma-fresh",class_audit,13,RISE,RISE,mixed
+v2,"eval new plain, lemma-fresh",class_audit,14,RISE,RISE,mixed
+v2,"eval new plain, lemma-fresh",class_audit,16,RISE,FALL,"surface, by suppressed"
+v2,"eval new plain, lemma-fresh",class_audit,17,RISE,FALL,"surface, by suppressed"
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,1,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,2,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,3,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,4,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,5,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,6,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,7,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,8,NO RISE,RISE,abstract
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,9,"positive, magnitude unresolved",RISE,unresolved
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,10,"positive, magnitude unresolved",RISE,unresolved
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,11,RISE,RISE,mixed
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,12,RISE,RISE,mixed
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,13,RISE,RISE,mixed
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,14,RISE,RISE,mixed
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,16,RISE,FALL,"surface, by suppressed"
+v2,"eval new plain, lemma-fresh",class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v2,eval original plain,class_audit,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,eval original plain,class_audit,1,NO RISE,RISE,abstract
+v2,eval original plain,class_audit,2,NO RISE,RISE,abstract
+v2,eval original plain,class_audit,3,NO RISE,RISE,abstract
+v2,eval original plain,class_audit,4,NO RISE,RISE,abstract
+v2,eval original plain,class_audit,5,NO RISE,RISE,abstract
+v2,eval original plain,class_audit,6,NO RISE,RISE,abstract
+v2,eval original plain,class_audit,7,NO RISE,RISE,abstract
+v2,eval original plain,class_audit,8,NO RISE,RISE,abstract
+v2,eval original plain,class_audit,9,NO RISE,RISE,abstract
+v2,eval original plain,class_audit,10,"positive, magnitude unresolved",RISE,unresolved
+v2,eval original plain,class_audit,11,RISE,RISE,mixed
+v2,eval original plain,class_audit,12,RISE,RISE,mixed
+v2,eval original plain,class_audit,13,RISE,RISE,mixed
+v2,eval original plain,class_audit,14,RISE,RISE,mixed
+v2,eval original plain,class_audit,16,RISE,FALL,"surface, by suppressed"
+v2,eval original plain,class_audit,17,RISE,FALL,"surface, by suppressed"
+v2,eval original plain,class_audit_delta_v,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,eval original plain,class_audit_delta_v,1,NO RISE,RISE,abstract
+v2,eval original plain,class_audit_delta_v,2,NO RISE,RISE,abstract
+v2,eval original plain,class_audit_delta_v,3,NO RISE,RISE,abstract
+v2,eval original plain,class_audit_delta_v,4,NO RISE,RISE,abstract
+v2,eval original plain,class_audit_delta_v,5,NO RISE,RISE,abstract
+v2,eval original plain,class_audit_delta_v,6,NO RISE,RISE,abstract
+v2,eval original plain,class_audit_delta_v,7,NO RISE,RISE,abstract
+v2,eval original plain,class_audit_delta_v,8,NO RISE,RISE,abstract
+v2,eval original plain,class_audit_delta_v,9,NO RISE,RISE,abstract
+v2,eval original plain,class_audit_delta_v,10,"positive, magnitude unresolved",RISE,unresolved
+v2,eval original plain,class_audit_delta_v,11,RISE,RISE,mixed
+v2,eval original plain,class_audit_delta_v,12,RISE,RISE,mixed
+v2,eval original plain,class_audit_delta_v,13,RISE,RISE,mixed
+v2,eval original plain,class_audit_delta_v,14,RISE,RISE,mixed
+v2,eval original plain,class_audit_delta_v,16,RISE,FALL,"surface, by suppressed"
+v2,eval original plain,class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v2,eval plain,class_audit,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,eval plain,class_audit,1,NO RISE,RISE,abstract
+v2,eval plain,class_audit,2,NO RISE,RISE,abstract
+v2,eval plain,class_audit,3,NO RISE,RISE,abstract
+v2,eval plain,class_audit,4,NO RISE,RISE,abstract
+v2,eval plain,class_audit,5,NO RISE,RISE,abstract
+v2,eval plain,class_audit,6,NO RISE,RISE,abstract
+v2,eval plain,class_audit,7,NO RISE,RISE,abstract
+v2,eval plain,class_audit,8,NO RISE,RISE,abstract
+v2,eval plain,class_audit,9,NO RISE,RISE,abstract
+v2,eval plain,class_audit,10,"positive, magnitude unresolved",RISE,unresolved
+v2,eval plain,class_audit,11,RISE,RISE,mixed
+v2,eval plain,class_audit,12,RISE,RISE,mixed
+v2,eval plain,class_audit,13,RISE,RISE,mixed
+v2,eval plain,class_audit,14,RISE,RISE,mixed
+v2,eval plain,class_audit,16,RISE,FALL,"surface, by suppressed"
+v2,eval plain,class_audit,17,RISE,FALL,"surface, by suppressed"
+v2,eval plain,class_audit_delta_v,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,eval plain,class_audit_delta_v,1,NO RISE,RISE,abstract
+v2,eval plain,class_audit_delta_v,2,NO RISE,RISE,abstract
+v2,eval plain,class_audit_delta_v,3,NO RISE,RISE,abstract
+v2,eval plain,class_audit_delta_v,4,NO RISE,RISE,abstract
+v2,eval plain,class_audit_delta_v,5,NO RISE,RISE,abstract
+v2,eval plain,class_audit_delta_v,6,NO RISE,RISE,abstract
+v2,eval plain,class_audit_delta_v,7,NO RISE,RISE,abstract
+v2,eval plain,class_audit_delta_v,8,NO RISE,RISE,abstract
+v2,eval plain,class_audit_delta_v,9,NO RISE,RISE,abstract
+v2,eval plain,class_audit_delta_v,10,"positive, magnitude unresolved",RISE,unresolved
+v2,eval plain,class_audit_delta_v,11,RISE,RISE,mixed
+v2,eval plain,class_audit_delta_v,12,RISE,RISE,mixed
+v2,eval plain,class_audit_delta_v,13,RISE,RISE,mixed
+v2,eval plain,class_audit_delta_v,14,RISE,RISE,mixed
+v2,eval plain,class_audit_delta_v,16,RISE,FALL,"surface, by suppressed"
+v2,eval plain,class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v2,eval prep,class_audit,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,eval prep,class_audit,1,"positive, magnitude unresolved",RISE,unresolved
+v2,eval prep,class_audit,2,"positive, magnitude unresolved",RISE,unresolved
+v2,eval prep,class_audit,3,"positive, magnitude unresolved",RISE,unresolved
+v2,eval prep,class_audit,4,"positive, magnitude unresolved",RISE,unresolved
+v2,eval prep,class_audit,5,"positive, magnitude unresolved",RISE,unresolved
+v2,eval prep,class_audit,6,RISE,RISE,mixed
+v2,eval prep,class_audit,7,RISE,RISE,mixed
+v2,eval prep,class_audit,8,RISE,RISE,mixed
+v2,eval prep,class_audit,9,RISE,RISE,mixed
+v2,eval prep,class_audit,10,RISE,RISE,mixed
+v2,eval prep,class_audit,11,RISE,RISE,mixed
+v2,eval prep,class_audit,12,RISE,RISE,mixed
+v2,eval prep,class_audit,13,RISE,RISE,mixed
+v2,eval prep,class_audit,14,RISE,RISE,mixed
+v2,eval prep,class_audit,16,RISE,FALL,"surface, by suppressed"
+v2,eval prep,class_audit,17,RISE,FALL,"surface, by suppressed"
+v2,eval prep,class_audit_delta_v,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,eval prep,class_audit_delta_v,1,"positive, magnitude unresolved",RISE,unresolved
+v2,eval prep,class_audit_delta_v,2,NO RISE,RISE,abstract
+v2,eval prep,class_audit_delta_v,3,"positive, magnitude unresolved",RISE,unresolved
+v2,eval prep,class_audit_delta_v,4,"positive, magnitude unresolved",RISE,unresolved
+v2,eval prep,class_audit_delta_v,5,"positive, magnitude unresolved",RISE,unresolved
+v2,eval prep,class_audit_delta_v,6,RISE,RISE,mixed
+v2,eval prep,class_audit_delta_v,7,RISE,RISE,mixed
+v2,eval prep,class_audit_delta_v,8,RISE,RISE,mixed
+v2,eval prep,class_audit_delta_v,9,RISE,RISE,mixed
+v2,eval prep,class_audit_delta_v,10,RISE,RISE,mixed
+v2,eval prep,class_audit_delta_v,11,RISE,RISE,mixed
+v2,eval prep,class_audit_delta_v,12,RISE,RISE,mixed
+v2,eval prep,class_audit_delta_v,13,RISE,RISE,mixed
+v2,eval prep,class_audit_delta_v,14,RISE,RISE,mixed
+v2,eval prep,class_audit_delta_v,16,RISE,FALL,"surface, by suppressed"
+v2,eval prep,class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"
+v2,v2 training pairs (in-sample),class_audit,0,"positive, magnitude unresolved","positive, magnitude unresolved",unresolved
+v2,v2 training pairs (in-sample),class_audit,1,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit,2,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit,3,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit,4,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit,5,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit,6,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit,7,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit,8,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit,9,"positive, magnitude unresolved",RISE,unresolved
+v2,v2 training pairs (in-sample),class_audit,10,RISE,RISE,mixed
+v2,v2 training pairs (in-sample),class_audit,11,RISE,RISE,mixed
+v2,v2 training pairs (in-sample),class_audit,12,RISE,RISE,mixed
+v2,v2 training pairs (in-sample),class_audit,13,RISE,RISE,mixed
+v2,v2 training pairs (in-sample),class_audit,14,RISE,RISE,mixed
+v2,v2 training pairs (in-sample),class_audit,16,RISE,FALL,"surface, by suppressed"
+v2,v2 training pairs (in-sample),class_audit,17,RISE,FALL,"surface, by suppressed"
+v2,v2 training pairs (in-sample),class_audit_delta_v,0,NO RISE,"positive, magnitude unresolved",unresolved
+v2,v2 training pairs (in-sample),class_audit_delta_v,1,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit_delta_v,2,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit_delta_v,3,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit_delta_v,4,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit_delta_v,5,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit_delta_v,6,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit_delta_v,7,NO RISE,RISE,abstract
+v2,v2 training pairs (in-sample),class_audit_delta_v,8,"positive, magnitude unresolved",RISE,unresolved
+v2,v2 training pairs (in-sample),class_audit_delta_v,9,"positive, magnitude unresolved",RISE,unresolved
+v2,v2 training pairs (in-sample),class_audit_delta_v,10,RISE,RISE,mixed
+v2,v2 training pairs (in-sample),class_audit_delta_v,11,RISE,RISE,mixed
+v2,v2 training pairs (in-sample),class_audit_delta_v,12,RISE,RISE,mixed
+v2,v2 training pairs (in-sample),class_audit_delta_v,13,RISE,RISE,mixed
+v2,v2 training pairs (in-sample),class_audit_delta_v,14,RISE,RISE,mixed
+v2,v2 training pairs (in-sample),class_audit_delta_v,16,RISE,FALL,"surface, by suppressed"
+v2,v2 training pairs (in-sample),class_audit_delta_v,17,RISE,FALL,"surface, by suppressed"

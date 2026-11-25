@@ -1,0 +1,54 @@
+{
+  "args": {
+    "sites": "4,6,8,12,17",
+    "root": "../results/pythia/das_v2",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "items": "../results/pythia/das_v2/expanded_eval/se_items.csv",
+    "prompts": "../data/verb_expansion/eval/passive_test/prompts.csv",
+    "plan": "../data/verb_expansion/eval/passive_test/plan.csv.gz",
+    "scores": "../results/passive_band_cross/pythia14b_scores.csv",
+    "v2_pairs": "../data/matched_passives_v2/pairs.jsonl",
+    "leace_insample": "/gs/fs/tga-sip_arase/tyrone/lli_leace/results/pythia/leace_insample/erasers.npz",
+    "primary_site": 17,
+    "umd": false,
+    "dirchk_dir": "../results/pythia/das_v2/direction_check",
+    "out_dir": "../results/pythia/das_v2/expanded_eval/split_edit",
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "n_folds": 5,
+    "batch": 1024,
+    "max_items": 0,
+    "max_pairs": 0,
+    "max_contexts": 0,
+    "bos": null,
+    "fp32_unembed": null
+  },
+  "runner_settings": {
+    "model_type": "gpt_neox",
+    "bos": false,
+    "fp32_unembed": false,
+    "site_check_max_abs_sites_0_to_L-1": 0.0,
+    "site_check_last_site": 77.1875
+  },
+  "bases_sha256": {
+    "4": "796e6c70146094aefcdcd2d3c35da6767afaff9a44f084304f2ad34025cdc530",
+    "6": "e4aacc667ed865d9a5c9b0ba2343cc4f65d59347ae9514920039eb9d9bfb7509",
+    "8": "a4994801b449c4d5c624b5796946e1753c1b3535ab67c499487d31889ac24eb0",
+    "12": "a6f9323cc000d0077dee844381d73484ddb19c9ca8e3a0cecc2e0c82d25cf4d0",
+    "17": "9caee65e2304dfbdac9d1049f5866981fd8b1e841aa1cfcbfbb95fe610a31046"
+  },
+  "n_sites_b": 24,
+  "site_dirs": {
+    "4": "final_strict_site4",
+    "6": "final_strict_site6",
+    "8": "final_strict_site8",
+    "12": "final_strict_site12",
+    "17": "final_strict"
+  },
+  "plan_sha256": "ec03a9805486144834224f1996b31370dce44757fd4faf417418e5c90c3a9ae6",
+  "leace_insample_sha256": "ccca270b4cf2251951ae186f67830033a9530fc88534860047b3bd9f945b2775",
+  "passive_patch_rows": 381780,
+  "passive_items": 11133,
+  "minutes": 18.492947006225585
+}

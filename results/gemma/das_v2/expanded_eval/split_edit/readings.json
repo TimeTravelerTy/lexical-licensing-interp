@@ -1,0 +1,205 @@
+{
+  "outcomes": {
+    "full": {
+      "5": "surface (object next)",
+      "8": "mixed",
+      "12": "mixed",
+      "15": "mixed"
+    },
+    "on": {
+      "5": "nothing moves (active-specific)",
+      "8": "nothing moves (active-specific)",
+      "12": "nothing moves (active-specific)",
+      "15": "surface (object next)"
+    },
+    "umd": {
+      "5": "unresolved",
+      "8": "surface (object next)",
+      "12": "mixed",
+      "15": "mixed"
+    },
+    "u_pas": {
+      "5": "nothing moves (active-specific)",
+      "8": "nothing moves (active-specific)",
+      "12": "nothing moves (active-specific)",
+      "15": "nothing moves (active-specific)"
+    }
+  },
+  "R-A1": {
+    "sites": {
+      "5": {
+        "off_share_O": 0.7863231897354126,
+        "class_on_O": "NO RISE",
+        "held": true
+      },
+      "8": {
+        "off_share_O": 0.7163764834403992,
+        "class_on_O": "NO RISE",
+        "held": true
+      },
+      "12": {
+        "off_share_O": 0.7685118913650513,
+        "class_on_O": "NO RISE",
+        "held": true
+      },
+      "15": {
+        "off_share_O": 0.8612766861915588,
+        "class_on_O": "RISE",
+        "held": false
+      }
+    },
+    "held_at_rule_sites": true,
+    "rule_sites_applicable": [
+      5,
+      8
+    ],
+    "held_all_applicable_sites": false,
+    "held_n": "3 / 4"
+  },
+  "R-A2": {
+    "sites": {
+      "8": {
+        "on_share_by": 0.503327488899231,
+        "held": true
+      },
+      "12": {
+        "on_share_by": 0.43716663122177124,
+        "held": false
+      },
+      "15": {
+        "on_share_by": 0.40556958317756653,
+        "held": false
+      }
+    },
+    "held_at_rule_sites": true,
+    "rule_sites_applicable": [
+      8
+    ],
+    "held_all_applicable_sites": false,
+    "held_n": "1 / 3"
+  },
+  "S1": {
+    "full": {
+      "abstract": [],
+      "surface": [
+        5
+      ],
+      "pass": false
+    },
+    "on": {
+      "abstract": [],
+      "surface": [
+        15
+      ],
+      "pass": false
+    },
+    "umd": {
+      "abstract": [],
+      "surface": [
+        8
+      ],
+      "pass": false
+    },
+    "u_pas": {
+      "abstract": [],
+      "surface": [],
+      "pass": false
+    }
+  },
+  "T1": {
+    "full": {
+      "by_class": {
+        "5": "unresolved",
+        "8": "RISE"
+      },
+      "pass": false
+    },
+    "on": {
+      "by_class": {
+        "5": "NO RISE",
+        "8": "NO RISE"
+      },
+      "pass": false
+    },
+    "umd": {
+      "by_class": {
+        "5": "unresolved",
+        "8": "NO RISE"
+      },
+      "pass": false
+    },
+    "u_pas": {
+      "by_class": {
+        "5": "NO RISE",
+        "8": "NO RISE"
+      },
+      "pass": false
+    }
+  },
+  "B1": {
+    "held": false,
+    "sites_failing": [
+      1,
+      4,
+      5,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      19,
+      20,
+      21,
+      24,
+      25
+    ]
+  },
+  "B2": {
+    "5": {
+      "cos": 0.11984141324474604,
+      "split_half_pas": 0.8164755012734619,
+      "below": true
+    },
+    "8": {
+      "cos": 0.5406393448843466,
+      "split_half_pas": 0.9357784479851616,
+      "below": true
+    }
+  },
+  "FI_all": {
+    "0": 1.055,
+    "1": 0.895,
+    "2": 0.984,
+    "3": 0.925,
+    "4": 0.524,
+    "5": 0.173,
+    "6": 0.866,
+    "7": 0.701,
+    "8": 0.696,
+    "9": 0.847,
+    "10": 0.733,
+    "11": 0.552,
+    "12": 0.314,
+    "13": 0.37,
+    "14": -0.006,
+    "15": -0.034,
+    "16": 0.253,
+    "17": 0.205,
+    "18": 0.28,
+    "19": 0.23,
+    "20": 0.262,
+    "21": 0.329,
+    "22": 0.339,
+    "23": 0.322,
+    "24": 0.3,
+    "25": 0.304
+  },
+  "FI": {
+    "values": {
+      "5": 0.17271422309184326,
+      "8": 0.6955452427649841
+    },
+    "decision": "mixed: decide in the write-up"
+  }
+}

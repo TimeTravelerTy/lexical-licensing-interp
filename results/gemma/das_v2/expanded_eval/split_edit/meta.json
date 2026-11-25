@@ -1,0 +1,52 @@
+{
+  "args": {
+    "sites": "5,8,12,15",
+    "root": "../results/gemma/das_v2",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "items": "../results/gemma/das_v2/expanded_eval/se_items.csv",
+    "prompts": "../results/gemma/expanded_eval/passive_test/prompts.csv",
+    "plan": "../results/gemma/expanded_eval/passive_test/plan.csv.gz",
+    "scores": "../results/passive_band_cross/pythia14b_scores.csv",
+    "v2_pairs": "../data/matched_passives_v2/pairs.jsonl",
+    "leace_insample": "",
+    "primary_site": 15,
+    "umd": true,
+    "dirchk_dir": "",
+    "out_dir": "../results/gemma/das_v2/expanded_eval/split_edit",
+    "model": "google/gemma-3-1b-pt",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "n_folds": 5,
+    "batch": 1024,
+    "max_items": 0,
+    "max_pairs": 0,
+    "max_contexts": 0,
+    "bos": null,
+    "fp32_unembed": null
+  },
+  "runner_settings": {
+    "model_type": "gemma3_text",
+    "bos": true,
+    "fp32_unembed": true,
+    "site_check_max_abs_sites_0_to_L-1": 0.0,
+    "site_check_last_site": 57855.87109375
+  },
+  "bases_sha256": {
+    "5": "393f29718866a065429d295f778cb925ee4a647a05d7524ac39d2cadd754aeef",
+    "8": "09b1470e70ae4bb97304cca8b97cf6e7ccc95c0c27ba46b5dee83a0897c1c0b2",
+    "12": "4fd4bfaf6a2512c1ee87583bea194c19d15113ee8c50eb6938598e91d39d9d1a",
+    "15": "074affb03a0d07197a02e50f0042830a404c0684de7ca86f3b3e4219de8440d5"
+  },
+  "n_sites_b": 26,
+  "site_dirs": {
+    "5": "final_strict_site5",
+    "8": "final_strict_site8",
+    "12": "final_strict_site12",
+    "15": "final_strict"
+  },
+  "plan_sha256": "21c1d0242e6d1e53491af383206cca29a244e3e9b9e60413a37de8a10a31ff46",
+  "leace_insample_sha256": null,
+  "passive_patch_rows": 368876,
+  "passive_items": 11133,
+  "minutes": 44.189999322096504
+}

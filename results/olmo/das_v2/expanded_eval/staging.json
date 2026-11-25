@@ -1,0 +1,330 @@
+{
+ "v | all plain (268-set) | class_audit": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | all plain (268-set) | class_audit_delta_v": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | eval new plain | class_audit": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | eval new plain | class_audit_delta_v": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | eval new plain, lemma-fresh | class_audit": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | eval new plain, lemma-fresh | class_audit_delta_v": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | eval original plain | class_audit": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | eval original plain | class_audit_delta_v": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | eval plain | class_audit": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | eval plain | class_audit_delta_v": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | eval prep | class_audit": {
+  "abstract": [],
+  "surface": [
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | eval prep | class_audit_delta_v": {
+  "abstract": [],
+  "surface": [
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | v2 training pairs (in-sample) | class_audit": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v | v2 training pairs (in-sample) | class_audit_delta_v": {
+  "abstract": [],
+  "surface": [
+   11,
+   12,
+   13
+  ],
+  "holds": false
+ },
+ "v2 | all plain (268-set) | class_audit": {
+  "abstract": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | all plain (268-set) | class_audit_delta_v": {
+  "abstract": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | eval new plain | class_audit": {
+  "abstract": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | eval new plain | class_audit_delta_v": {
+  "abstract": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | eval new plain, lemma-fresh | class_audit": {
+  "abstract": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | eval new plain, lemma-fresh | class_audit_delta_v": {
+  "abstract": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | eval original plain | class_audit": {
+  "abstract": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | eval original plain | class_audit_delta_v": {
+  "abstract": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | eval plain | class_audit": {
+  "abstract": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | eval plain | class_audit_delta_v": {
+  "abstract": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | eval prep | class_audit": {
+  "abstract": [],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": false
+ },
+ "v2 | eval prep | class_audit_delta_v": {
+  "abstract": [],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": false
+ },
+ "v2 | v2 training pairs (in-sample) | class_audit": {
+  "abstract": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ },
+ "v2 | v2 training pairs (in-sample) | class_audit_delta_v": {
+  "abstract": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "surface": [
+   12,
+   13,
+   14,
+   15
+  ],
+  "holds": true
+ }
+}

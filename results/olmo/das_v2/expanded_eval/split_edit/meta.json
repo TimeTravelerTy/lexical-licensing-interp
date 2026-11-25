@@ -1,0 +1,52 @@
+{
+  "args": {
+    "sites": "9,11,12,13",
+    "root": "../results/olmo/das_v2",
+    "pairs": "../data/das_round2/train_pairs.csv",
+    "items": "../results/olmo/das_v2/expanded_eval/se_items.csv",
+    "prompts": "../results/olmo/expanded_eval/passive_test/prompts.csv",
+    "plan": "../results/olmo/expanded_eval/passive_test/plan.csv.gz",
+    "scores": "../results/passive_band_cross/pythia14b_scores.csv",
+    "v2_pairs": "../data/matched_passives_v2/pairs.jsonl",
+    "leace_insample": "",
+    "primary_site": 13,
+    "umd": true,
+    "dirchk_dir": "",
+    "out_dir": "../results/olmo/das_v2/expanded_eval/split_edit",
+    "model": "allenai/OLMo-2-0425-1B",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "n_folds": 5,
+    "batch": 1024,
+    "max_items": 0,
+    "max_pairs": 0,
+    "max_contexts": 0,
+    "bos": null,
+    "fp32_unembed": null
+  },
+  "runner_settings": {
+    "model_type": "olmo2",
+    "bos": false,
+    "fp32_unembed": true,
+    "site_check_max_abs_sites_0_to_L-1": 0.0,
+    "site_check_last_site": 45.875
+  },
+  "bases_sha256": {
+    "9": "6e51a626b80859bb83a2aecef9fb243c7c4fda329b35af0fdaed7af455e20430",
+    "11": "2e8fd0ef746d26738226ef59cc04492d9db18ecb1f71c872a734862fa2d1dd7e",
+    "12": "704278989badd9da8f45f9e34105ce0d99bbeb9ef1e3120605ddfbc88af37dbe",
+    "13": "d3e54e51776a349fc397624186c7bd4394b9d960558ba5b14fb7b527055bb031"
+  },
+  "n_sites_b": 16,
+  "site_dirs": {
+    "9": "final_strict_site9",
+    "11": "final_strict_site11",
+    "12": "final_strict_site12",
+    "13": "final_strict"
+  },
+  "plan_sha256": "62437509d9ffb161e8e0fde62197a9be61e2e43f7a40d11e30300068a0475ab4",
+  "leace_insample_sha256": null,
+  "passive_patch_rows": 381780,
+  "passive_items": 11133,
+  "minutes": 40.227910339832306
+}

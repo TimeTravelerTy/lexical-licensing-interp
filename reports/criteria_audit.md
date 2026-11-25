@@ -32,19 +32,27 @@ reaches another frame. Every effect is also shown in nats. L readouts keep δ_L 
 declared.
 
 **Classes (one classifier for all instruments):**
+- Checked in this order (erratum below):
 - *by*:
   - **RISE** if lo95(D − 0.2 G) > 0;
-  - **positive, magnitude unresolved** if lo95(D) > 0 otherwise;
-  - **NO RISE** (equivalent) if hi90(D − 0.2 G) < 0 and lo90(D + 0.2 G) > 0;
   - **FALL** (suppressed) if hi95(D) < 0;
+  - **NO RISE** (equivalent) if hi90(D − 0.2 G) < 0 and lo90(D + 0.2 G) > 0;
+  - **positive, magnitude unresolved** if lo95(D) > 0 otherwise;
   - **unresolved** otherwise.
 - O:
   - **RISE** if lo95(D) > δ_O;
-  - **positive, magnitude unresolved** if lo95(D) > 0 otherwise;
-  - **NO RISE** if the 90% CI is within ±δ_O;
   - **FALL** if hi95(D) < −δ_O;
+  - **NO RISE** if the 90% CI is within ±δ_O;
+  - **positive, magnitude unresolved** if lo95(D) > 0 otherwise;
   - **unresolved** otherwise.
 - Differences from before: the margin is tested on the CI, not the point estimate, and *by* gets its own unit.
+- **Erratum (Nov 25, found while reading the expanded output).** As first committed, this list and `analyze_v2_expanded.py`
+  checked "positive, magnitude unresolved" before NO RISE. A shift that is significantly above 0 but whose 90% CI lies
+  inside the margin was then never NO RISE (OLMo v2 site 1: O 0.05 [0.01, 0.10] against δ_O 0.31). That contradicts
+  the line above (the old classifier, `apt.classify`, tests equivalence before anything but RISE / FALL) and the
+  class's name: inside the margin the magnitude is resolved. The order is now equivalence first. Only O cells change
+  (and with them some outcomes: "unresolved" becomes "abstract" at Pythia v2 sites 4–9 and v site 8, Gemma v2 0–4 except 2,
+  OLMo v2 1–4). This flips S1 for OLMo v2 and Pythia v from failing to holding. Codex argues the frozen order should stay primary, since the frozen text and code agreed; which order is primary is the author's decision, and `reports/v2_expanded_readings.md` §2 shows both.
 
 **Per claim:**
 1. **Passive *by* transfer.** Per (model, rule site, instrument), the *by* class plus D / G with its joint-draw CI. D / G is shown only where lo95(G) > 0; otherwise nats only. Also the T-arm recovery (T-patched − unpatched) / G, the quantity behind any "reproduces" wording. The text states the cells; no model-level verdict.

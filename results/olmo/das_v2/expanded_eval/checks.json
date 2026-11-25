@@ -1,0 +1,19 @@
+{
+ "n_pairs": {
+  "eval plain": 89,
+  "eval prep": 128,
+  "eval original plain": 59,
+  "eval new plain": 30,
+  "eval new plain, lemma-fresh": 23,
+  "v2 training pairs (in-sample)": 44,
+  "all plain (268-set)": 133
+ },
+ "natural_max_abs_vs_v_run": {
+  "results/olmo/das_v2/expanded_eval/passive_a": 0.0,
+  "results/olmo/das_v2/expanded_eval/passive_b": 0.0,
+  "results/olmo/das_v2/expanded_eval/passive_c": 0.0,
+  "results/olmo/das_v2/expanded_eval/passive_rule": 0.0
+ },
+ "v_stored_expanded_reproduced_max_abs": 4.440892098500626e-16,
+ "paired_matches_transfer_max_abs": 0.0
+}

@@ -1,0 +1,26 @@
+{
+  "active_iia_full": {
+    "9": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    },
+    "11": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    },
+    "12": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    },
+    "13": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    }
+  },
+  "passive_D_full": {
+    "9": {},
+    "11": {},
+    "12": {},
+    "13": {}
+  }
+}
