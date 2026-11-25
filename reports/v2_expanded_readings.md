@@ -30,7 +30,9 @@ at shallow sites). I found this while reading the output, so §2 shows S1 under 
 Codex's objection, which is fair: the frozen text and code agreed with each other. The old classifier had no
 "positive" class, so it sets no precedent for the overlap. On that view equivalence-first is a post-output amendment, and the
 frozen order should stay primary with equivalence-first as a sensitivity row. It matters for two S1 verdicts: OLMo v2 and Pythia v
-(see §2). **Which order is primary is left for the author to decide.**
+(see §2). **Decision (Nov 25, author): equivalence first is primary.** The frozen order is reported as a sensitivity
+column in §2, and the paper discloses the amendment and both S1 readings. The S1 verdicts for OLMo v2 and Pythia v hold only
+under the amended order and should be stated that way.
 
 ## 1. Passive *by* transfer (claim 1): v2, eval plain (89)
 
@@ -72,7 +74,7 @@ T-arm recovery is (T-patched − unpatched) / G on bad bases, the quantity behin
 Every frozen site of the run is included. A = abstract (*by* RISE, O NO RISE), M = mixed (both RISE), S− = surface with
 *by* suppressed, ? = neither.
 
-| Model | Sites (equivalence first) | S1 | S1, frozen order |
+| Model | Sites (equivalence first, primary) | S1 | S1, frozen order (sensitivity) |
 |---|---|---|---|
 | Pythia v2 | 0 ?, **1–9 A**, 10 ?, 11–14 M, **16–17 S−** | holds | holds (A = 1–3) |
 | Gemma v2 | **0–4 A**, 5–15 M (no surface site within the frozen range) | fails | fails (A = 2) |
@@ -200,5 +202,5 @@ Claim 1 on the 30 new plain pairs, v2:
 4. **Split edit.** The dissociation holds at the second rule site (Pythia 12, OLMo 11), not at the first, and not in Gemma.
    This is weaker than "the on-axis piece is the licensing piece".
 5. **Forking paths** (as in the audit):
-   - The criteria were fixed before this output was read, except the classifier erratum (open, see top).
+   - The criteria were fixed before this output was read, except the classifier erratum (equivalence first adopted as primary after the output was read; frozen order kept as sensitivity, see top).
    - 59 of the 89 primary pairs are originals whose 126-pair readings were seen. The new and lemma-fresh rows are the cleaner test, and they agree.

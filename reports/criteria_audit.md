@@ -52,7 +52,7 @@ declared.
   the line above (the old classifier, `apt.classify`, tests equivalence before anything but RISE / FALL) and the
   class's name: inside the margin the magnitude is resolved. The order is now equivalence first. Only O cells change
   (and with them some outcomes: "unresolved" becomes "abstract" at Pythia v2 sites 4–9 and v site 8, Gemma v2 0–4 except 2,
-  OLMo v2 1–4). This flips S1 for OLMo v2 and Pythia v from failing to holding. Codex argues the frozen order should stay primary, since the frozen text and code agreed; which order is primary is the author's decision, and `reports/v2_expanded_readings.md` §2 shows both.
+  OLMo v2 1–4). This flips S1 for OLMo v2 and Pythia v from failing to holding. Codex argues the frozen order should stay primary, since the frozen text and code agreed. **Decision (Nov 25, author): equivalence first is primary**, because it is what the class means; the frozen order is reported as a sensitivity reading (`reports/v2_expanded_readings.md` §2 shows both), and the amendment is disclosed as made after the output was read.
 
 **Per claim:**
 1. **Passive *by* transfer.** Per (model, rule site, instrument), the *by* class plus D / G with its joint-draw CI. D / G is shown only where lo95(G) > 0; otherwise nats only. Also the T-arm recovery (T-patched − unpatched) / G, the quantity behind any "reproduces" wording. The text states the cells; no model-level verdict.
