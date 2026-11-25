@@ -16,7 +16,7 @@ unchanged.
 | Claim | Old criterion | Problem |
 |---|---|---|
 | Passive *by* transfer (T1) | D(*by*) est ≥ δ and lo95 > 0, δ = 0.2 × the instrument's active **O** effect | Wrong unit. In OLMo δ (0.53–0.59) exceeds the whole natural *by* gap (0.48), so a patch can reproduce the full natural difference and fail. The point-estimate test flips on hundredths of a nat (Gemma 5). |
-| Object push in OR / TC (T2) | D(O) RISE against the same δ | Fine as an object-start test, but it is not a licensing test: an object rise after a verb whose object is supplied by a filler is evidence *against* gap licensing. Natural O gaps are about 0 (OLMo TC +0.06 [−0.24, +0.36]), so O cannot be gap-scaled. |
+| OR / TC (T2) | D(O) RISE against the same δ | Ignores the construction's own natural behavior (amended Nov 25, below). Unpatched intransitive items mostly predict a preposition (Pythia OR: PREP 0.63, closure 0.04, O 0.02); transitives raise closure *and* O. The natural O gap in OR is large (+1.14 to +1.66 nats; TC +0.06 to +0.56), so an O rise is not evidence against licensing by itself; only O beyond the natural gap is. The licensing readout L (closure vs PREP) was secondary. |
 | Filler-gap licensing (T3) | A conjunction of classes plus a ceiling: the filled-frame O level after the write may not exceed T's natural level ("not above") | Never requires the frame interaction itself: OLMo embedded 9 passed with v at an interaction of −0.04 [−0.31, +0.22]. Penalizes a stronger write. "Any declared site in either experiment" is a search over 8–16 cells. |
 | Staging (S1) | ≥ 1 abstract site, every surface site deeper | Passes with zero surface sites (Gemma, v). "Surface" lumps *by* unchanged, unresolved and suppressed. |
 | Split-edit dissociation (R-A1 / R-A2) | Standalone share of the full effect ≥ 0.5 (point estimate), only at sites where the full effect is RISE | The shares are standalone recoveries and overlap. At Pythia 8 with v2 the off-axis write alone recovers *more* of *by* (0.66) than the on-axis write (0.59). The pieces interact (full − on − off ≈ −0.20 nats). Eligibility depends on the outcome: Gemma 5 left R-A2 with v2 while its on-axis share stayed 0.32. |
@@ -26,7 +26,7 @@ unchanged.
 ## Criteria (main text)
 
 **Units.** *by* is scaled by its own natural good − bad gap G on the same items. G and D come from the same pair and
-context draws, and D also resamples donors. O is scaled by the instrument's held-out active O effect A (δ_O = 0.2 ×
+context draws, and D also resamples donors. In OR / TC, L and O are both read against the construction's own natural gaps (claim 2). Elsewhere O is scaled by the instrument's held-out active O effect A (δ_O = 0.2 ×
 A, the stored δ). O's natural gap is about 0, and the O claims are about how much of the edit's own object push
 reaches another frame. Every effect is also shown in nats. L readouts keep δ_L = 0.2 × their natural gap, as
 declared.
@@ -48,7 +48,16 @@ declared.
 
 **Per claim:**
 1. **Passive *by* transfer.** Per (model, rule site, instrument), the *by* class plus D / G with its joint-draw CI. D / G is shown only where lo95(G) > 0; otherwise nats only. Also the T-arm recovery (T-patched − unpatched) / G, the quantity behind any "reproduces" wording. The text states the cells; no model-level verdict.
-2. **Object push in OR / TC.** D(O) class (lo95 > δ_O) and D(O) / A per construction at the rule sites. It is called transfer of an object-start bias. Licensing language is not used for it; D(L) against 0.2 G_L is shown as a secondary readout.
+2. **OR / TC: does the edit reproduce the construction's natural profile?** (amended Nov 25, before any expanded output was read.) Per construction, rule site and instrument, with G_L and G_O the natural good − bad gaps on the same items, from the same draws as D:
+   - **Licensing readout:** L RISE if lo95(D_L − 0.2 G_L) > 0. As before, it is read only where the natural L gate passes (lo95(G_L) > 0) and, for TC, the base-form gate passes.
+   - **Object relative to natural:** O is *beyond natural* if lo95(D_O − G_O) > 0, and *not beyond natural* otherwise.
+   - **Readings:**
+     - *licensing-like (natural profile)*: L RISE, O not beyond natural;
+     - *licensing plus object overshoot*: L RISE, O beyond natural;
+     - *surface*: O beyond natural, L not RISE;
+     - otherwise *unresolved*.
+   - **Shown:** D_L / G_L and D_O / G_O with joint-draw CIs (a ratio only where lo95(G) > 0; OLMo's TC O gap is about 0, so there any O rise is beyond natural), and D(O) against δ_O as the transfer of the edit's object push.
+   - **Why:** an unpatched intransitive repairs toward a prepositional gap ("the house that John emerged *from*"); transitives take closure. A transitive edit that lowers PREP and raises closure licenses the gap at the verb. An O rise up to the natural O gap is what the model's own transitives do in these frames, partly because "that" can open a complement clause.
 3. **Filler-gap (own item set; not on the expanded set).**
    - Primary readout: the frame interaction J_O = D_nofill(O) − D_fill(O) at each declared site and experiment, with its paired CI. The filled frame should attenuate the object push. "Licensing-like" requires lo95(J_O) > 0.
    - Shown beside it: fill L, PREP and "." separately.
@@ -81,7 +90,7 @@ estimates; the Pythia and OLMo lower bounds are below half.
 
 ## Where this differs from Codex
 
-- **O margin.** Codex proposed a fixed ±0.20-nat O margin. We keep 0.2 × the instrument's active O effect, tested on the CI. S1 and T2 are claims about how much of an edit's object push survives a frame change. A fixed nat margin would treat an O shift that is 4% of a large active effect and one that is 40% of a small one alike. O's natural gap is about 0, so O cannot be gap-scaled; the active effect is the edit's own reference.
+- **O margin.** Codex proposed a fixed ±0.20-nat O margin. In passives (claim 1, S1) we keep 0.2 × the instrument's active O effect, tested on the CI: S1 is a claim about how much of an edit's object push survives a frame change. In OR / TC, O is read against the construction's natural O gap (claim 2). Codex's "natural O gaps are about 0" holds for OLMo TC only. A fixed nat margin would treat an O shift that is 4% of a large active effect and one that is 40% of a small one alike. The passive natural O gap is about 0 (−0.22 in Pythia), so passive O cannot be gap-scaled; the active effect is the edit's own reference.
 - **R-A dissociation.** Codex suggested testing "removing the on-axis piece costs more than half" as well. We use the on − off standalone contrast, which needs no further runs, and show the interaction.
 
 ## Forking paths (disclosed in the paper's appendix)

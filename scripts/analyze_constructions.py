@@ -112,6 +112,13 @@ def run(args):
                         row["class"] = classify(row, delta)
                     if k == "D_bad" and rd == "L":
                         row["class"] = classify(row, abs(dL))
+                    if k == "D_bad":
+                        # joint-draw contrasts against the construction's natural gap (reports/criteria_audit.md, claim 2)
+                        G = S["nat_gap"][:, j]
+                        with np.errstate(divide="ignore", invalid="ignore"):
+                            row.update({f"frac_natgap_{a}": b for a, b in ci(s[:, j] / G).items()})
+                        row.update({f"minus20gap_{a}": b for a, b in ci(s[:, j] - 0.2 * G).items()})
+                        row.update({f"minusgap_{a}": b for a, b in ci(s[:, j] - G).items()})
                     rows.append(row)
             # natural projection: good - bad z in the construction vs the same verbs in actives
             si = list(pz["sites"]).index(site)
