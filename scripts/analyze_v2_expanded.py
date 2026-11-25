@@ -40,10 +40,10 @@ def classify_by(r):
         return "RISE"
     if r["hi95"] < 0:
         return "FALL"
+    if r["minus20gap_hi90"] < 0 and r["plus20gap_lo90"] > 0:  # equivalence first, as in apt.classify (erratum, Nov 25)
+        return "NO RISE"
     if r["lo95"] > 0:
         return "positive, magnitude unresolved"
-    if r["minus20gap_hi90"] < 0 and r["plus20gap_lo90"] > 0:
-        return "NO RISE"
     return "unresolved"
 
 
@@ -53,10 +53,10 @@ def classify_o(r, d):
         return "RISE"
     if r["hi95"] < -d:
         return "FALL"
+    if r["lo90"] > -d and r["hi90"] < d:  # equivalence first, as in apt.classify (erratum, Nov 25)
+        return "NO RISE"
     if r["lo95"] > 0:
         return "positive, magnitude unresolved"
-    if r["lo90"] > -d and r["hi90"] < d:
-        return "NO RISE"
     return "unresolved"
 
 
@@ -74,6 +74,38 @@ def staging(oc):
     ab = sorted(s for s, v in oc.items() if v == "abstract")
     su = sorted(s for s, v in oc.items() if v.startswith("surface"))
     return {"abstract": ab, "surface": su, "holds": bool(ab) and bool(su) and max(ab) < min(su)}
+
+
+def stage(T, xdir):
+    """Audited outcomes and staging per instrument and population (O margin: own delta; and delta_v)."""
+    oc_rows, s1 = [], {}
+    for (inst, pop), g in T[T.condition == "D_bad"].groupby(["instrument", "population"]):
+        for col in ("class_audit", "class_audit_delta_v"):
+            oc = {}
+            for s_, gs in g.groupby("site"):
+                ro, rb = gs[gs.readout == "O"].iloc[0], gs[gs.readout == "by"].iloc[0]
+                if pd.isna(ro.get(col)):
+                    continue
+                oc[int(s_)] = outcome(ro[col], rb["class_audit"])
+                oc_rows.append({"instrument": inst, "population": pop, "o_margin": col, "site": int(s_),
+                                "O": ro[col], "by": rb["class_audit"], "outcome": oc[int(s_)]})
+            if oc:
+                s1[f"{inst} | {pop} | {col}"] = staging(oc)
+    pd.DataFrame(oc_rows).to_csv(xdir / "outcomes.csv", index=False)
+    (xdir / "staging.json").write_text(json.dumps(s1, indent=1) + "\n")
+
+
+def reclassify(model):
+    """Recompute the audited classes, outcomes and staging from the saved transfer.csv."""
+    xdir = Path(f"results/{model}/das_v2/expanded_eval")
+    T = pd.read_csv(xdir / "transfer.csv", low_memory=False)
+    m = T.condition == "D_bad"
+    T.loc[m & (T.readout == "by"), "class_audit"] = T[m & (T.readout == "by")].apply(classify_by, axis=1)
+    o = m & (T.readout == "O")
+    T.loc[o, "class_audit"] = T[o].apply(lambda r: classify_o(r, r.delta_own), axis=1)
+    T.loc[o, "class_audit_delta_v"] = T[o].apply(lambda r: classify_o(r, r.delta_v), axis=1)
+    T.to_csv(xdir / "transfer.csv", index=False)
+    stage(T, xdir)
 
 
 def populations(items, frozen, old_eval):
@@ -115,6 +147,9 @@ def main(a):
         keep = {int(s) for s in a.sites.split(",")}
         runs = {k: {s: d for s, d in r.items() if s in keep} for k, r in runs.items()}
     checks = {"n_pairs": {k: int(v.sum()) for k, v in pops.items()}}
+    if a.retention_only:
+        retention(a, cfg, runs, plan, items, pr, pops, xdir)
+        return
     nat0 = pd.read_parquet(runs["v"][cfg["v_sites"][0]] / "natural.parquet").set_index("pid").sort_index()
     num = [c for c in nat0.columns if pd.api.types.is_numeric_dtype(nat0[c])]
     checks["natural_max_abs_vs_v_run"] = {
@@ -141,22 +176,7 @@ def main(a):
                 rows.append(r)
     T = pd.DataFrame(rows)
     T.to_csv(xdir / "transfer.csv", index=False)
-    # audited outcomes and staging per instrument and population (O margin: own delta; and delta_v)
-    oc_rows, s1 = [], {}
-    for (inst, pop), g in T[T.condition == "D_bad"].groupby(["instrument", "population"]):
-        for col in ("class_audit", "class_audit_delta_v"):
-            oc = {}
-            for s_, gs in g.groupby("site"):
-                ro, rb = gs[gs.readout == "O"].iloc[0], gs[gs.readout == "by"].iloc[0]
-                if pd.isna(ro.get(col)):
-                    continue
-                oc[int(s_)] = outcome(ro[col], rb["class_audit"])
-                oc_rows.append({"instrument": inst, "population": pop, "o_margin": col, "site": int(s_),
-                                "O": ro[col], "by": rb["class_audit"], "outcome": oc[int(s_)]})
-            if oc:
-                s1[f"{inst} | {pop} | {col}"] = staging(oc)
-    pd.DataFrame(oc_rows).to_csv(xdir / "outcomes.csv", index=False)
-    (xdir / "staging.json").write_text(json.dumps(s1, indent=1) + "\n")
+    stage(T, xdir)
     # reproduction of v's stored expanded transfer.csv (population "pooled plain" = all plain here)
     st = pd.read_csv(Path(f"results/{a.model}/expanded_eval/transfer.csv"))
     st = st[(st.instrument == "v") & (st.population == "pooled plain") & (st.condition == "D_bad")].set_index(["site", "readout"]).est
@@ -187,6 +207,7 @@ def main(a):
                              **{f"diff_{k}": q for k, q in apt.ci(x2 - x1).items()},
                              **{f"ratio_{k}": q for k, q in apt.ci(x2 / x1).items()}})
     pd.DataFrame(prow).to_csv(xdir / "paired.csv", index=False)
+    retention(a, cfg, runs, plan, items, pr, pops, xdir)
     (xdir / "checks.json").write_text(json.dumps(checks, indent=1) + "\n")
     print(json.dumps(checks, indent=1))
 
@@ -208,6 +229,39 @@ def d_bad_all(pdir, site, plan, items, nat, bt, pair_ix, ctx_ix, das_q):
     return apt.pair_values(vT - vI, mT, bt.wc, bt.donor_weights("das", len(das_q)))
 
 
+def retention(a, cfg, runs, plan, items, pr, pops, xdir):
+    """Claim 6 (criteria_audit.md): D_new - 0.5 D_orig and D_new / D_orig on one set of draws, at the declared sites.
+
+    New = eval new plain (30) and its lemma-fresh subset (23); orig = eval original plain (59). *by* only.
+    """
+    nat = pd.read_parquet(runs["v"][cfg["v_sites"][0]] / "natural.parquet")
+    pair_ix = {p: i for i, p in enumerate(pr.index)}
+    ctx_ix = {c: i for i, c in enumerate(sorted(items.context_id.unique()))}
+    das_q = sorted(plan[plan.cond == "T"].donor_pair.dropna().astype(str).unique())
+    rows = []
+    for inst in ("v2", "v"):
+        for s in cfg["v_sites"]:
+            if s not in runs[inst]:
+                continue
+            bt = apt.Boot(items.context_id.nunique(), a.n_boot, a.seed)
+            A = d_bad_all(runs[inst][s], s, plan, items, nat, bt, pair_ix, ctx_ix, das_q)
+            D = {}
+            for name in ("eval original plain", "eval new plain", "eval new plain, lemma-fresh"):
+                ix = np.flatnonzero(pops[name].to_numpy())
+                D[name] = apt.summarize(A, bt.pair_weights(pr.band.to_numpy()[ix]), ix)[:, 0]
+            do = D["eval original plain"]
+            for new in ("eval new plain", "eval new plain, lemma-fresh"):
+                dn = D[new]
+                cn, cc, cr = apt.ci(dn), apt.ci(dn - 0.5 * do), apt.ci(dn / do)
+                lab = ("D_new not above 0" if cn["lo95"] <= 0 else "at least half" if cc["lo95"] > 0 else
+                       "below half" if cc["hi95"] < 0 else "inconclusive")
+                rows.append({"instrument": inst, "site": s, "new": new, "reading": lab,
+                             **{f"Dnew_{k}": v for k, v in cn.items()}, **{f"Dorig_{k}": v for k, v in apt.ci(do).items()},
+                             **{f"ratio_{k}": v for k, v in cr.items()}, **{f"half_{k}": v for k, v in cc.items()}})
+    pd.DataFrame(rows).to_csv(xdir / "retention.csv", index=False)
+    print(pd.DataFrame(rows)[["instrument", "site", "new", "Dnew_est", "Dorig_est", "ratio_est", "half_lo95", "half_hi95", "reading"]].round(2).to_string(index=False))
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--model", required=True, choices=list(CFG))
@@ -216,4 +270,7 @@ if __name__ == "__main__":
     ap.add_argument("--sites", default="", help="restrict to these sites (smoke)")
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--seed", type=int, default=17)
-    main(ap.parse_args())
+    ap.add_argument("--retention-only", action="store_true", help="only the new vs original retention contrast")
+    ap.add_argument("--reclassify", action="store_true", help="only recompute classes, outcomes and staging from transfer.csv")
+    args = ap.parse_args()
+    reclassify(args.model) if args.reclassify else main(args)
