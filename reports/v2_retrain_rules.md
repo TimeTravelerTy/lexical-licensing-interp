@@ -74,3 +74,22 @@ The Pythia site-8 mechanism results built on the stored v (R2-mech, R2-dose, R3-
 ## Cost
 
 v2 finals: 49 site-finals (Pythia 17, Gemma 16, OLMo 16) in jobs of about 4 sites on `gpu_h`; resolution: 6 rule sites × 54 short trainings. Then per model the chain: passive test and depth curve, constructions and in-range, filler-gap, split edit, nonce, about 4 h of wall clock per model with stages in parallel.
+
+## Amendment: the expanded set is the paper's evaluation set (Nov 25, before any v2 expanded run)
+
+Decision (user, Nov 25): the paper evaluates transfer on the expanded set; the 126-pair readings above become the
+reproduction check and are not presented separately.
+
+- **Pairs (frozen): `data/das_v2/expanded_eval_pairs.csv`** (sha256 4a9229d7…). v2 is evaluated on every expanded pair except its 44 new training pairs:
+  - all 126 originals. The 8 originals that contain one of v's stored training verbs are fold-protected, as for v: each is patched with the basis from the fold that held it out.
+  - 98 new pairs: 30 plain and 68 prepositional.
+  - Total 224 pairs; plain (primary) 59 + 30 = 89.
+
+  The 44 are excluded in all three models, including pairs a model's behavior filter dropped from its training, so there is one list. The 44 training pairs' readings are computed and may be shown only as in-sample.
+- **v beside v2:** the stored expanded v runs (`results/{m}/expanded_eval/passive_v`, `constructions_v`) use the same plan, prompts and draws. v is read on the same 224 pairs; v's 268-pair reading stays attributed to v.
+- **Runs:** `run_passive_test.py` on the stored expanded plan with v2 site dirs at every v2 site (T1 at the rule sites, the S1 depth curve), and `run_construction_test.py` on the expanded constructions with v2 bases at the stored expanded sites (T2). Folds, prompts and batch settings are as in `jobs/item5.sh` / `item5m.sh`. Check: the natural (unpatched) readouts equal the stored expanded run's (max |Δ| ≤ 1e-6).
+- **Not on the expanded set:**
+  - T3 (filler-gap): its verb gates and in-range targets are per verb and declared on its own set.
+  - Nonce: no real verbs.
+  - Split edit (R-A1 / R-A2): decided after the criteria audit, before any expanded result is read.
+- **Readings:** the criteria are reviewed against the claims they support (`reports/criteria_audit.md`) before any expanded v2 result is read. That review may change a margin or a criterion for every instrument at once, never for one instrument or model.
