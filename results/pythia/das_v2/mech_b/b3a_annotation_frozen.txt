@@ -1,0 +1,2 @@
+Claude labels frozen Thu Nov 26 12:27:35 JST 2026 sha256 5f67ff9c7eb2db08
+Codex labels frozen Thu Nov 26 12:30:07 JST 2026 sha256 bd807c9ddaa84640

@@ -1,0 +1,28 @@
+{
+ "kappa": 0.9081515499425947,
+ "agreement": 0.9375,
+ "neurons": {
+  "MLP11.n4925": {
+   "reading": "other",
+   "vp": {
+    "claude": 0.0,
+    "codex": 0.0
+   },
+   "gap": {
+    "claude": 0.35,
+    "codex": 0.3
+   }
+  },
+  "MLP14.n4241": {
+   "reading": "passive-participle detector",
+   "vp": {
+    "claude": 0.75,
+    "codex": 0.725
+   },
+   "gap": {
+    "claude": 0.075,
+    "codex": 0.05
+   }
+  }
+ }
+}
