@@ -21,7 +21,7 @@ Words to avoid: "one feature" (rank-1 success is not uniqueness; class informati
 | § | Title (working) | Pages | Carries |
 |---|---|---|---|
 | 1 | Introduction | 0.75 | Question, contributions |
-| 2 | Setup | 1.0 | Minimal pairs, 3 models, instruments (v, u_md, LEACE), D / natural gap as the common unit, rules in one paragraph |
+| 2 | Setup | 1.0 | Minimal pairs, 3 models, instruments (the DAS direction v2 with its shuffled-label comparator, u_md, LEACE), D / natural gap as the common unit, rules in one paragraph |
 | 3 | Reusable class information: transfer and context | 2.0 | C1 + C2 (verb positions and the graded check late in the section, before nonce) |
 | 4 | How much of the preference it carries | 1.25 | C3 (rank-k to the appendix) |
 | 5 | How Pythia reads it | 1.25 | C4, built around what the core neurons detect (0.8–1.0 if its checks fail) |
