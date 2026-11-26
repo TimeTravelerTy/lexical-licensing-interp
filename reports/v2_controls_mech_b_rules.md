@@ -1,197 +1,236 @@
-# C1 trained-direction controls and C4 phase 1b (where the effect goes, natural mediation, the core neurons): rules (declared Nov 26, before any run)
+# C1 trained-direction controls and C4 phase 1b (where the effect goes, natural mediation, the core neurons): rules (declared Nov 26, before any run; revised the same day after Codex review, still before any full run)
 
 **Why.**
 - **C1 controls.** C1 compares v2 only with random directions, and only in training-time units (pc_frac ≈ 0). v2's own
   finals hold a shuffled-label direction per fold. It recovers 0.45 / 0.55 / 0.47 of held-out pc_frac at the first
   rule site of Pythia / Gemma / OLMo, against v2's 0.80 / 0.99 / 0.81. The paper needs both controls in its own unit
-  (D / G on the 89 eval plain pairs), on the same plan and draws as v2.
+  (D / G on the 89 eval plain pairs), on the same plan as v2.
 - **C4 phase 1b.** Phase 1 (`reports/pythia/mechanism_v2_rules.md`, read in `reports/pythia/v2_mech/readings.md`)
   leaves three gaps:
   - about three quarters of the edit's effect on *by* is not located (P 0.19, all of MLPs 11 + 14 0.26);
   - every mediated share is a share of the edit's effect, not of the model's own T − I gap;
-  - the neurons have natural-text descriptions (R5-B7), but no test ties a description to the neuron's causal role
-    or its response in other constructions.
+  - the neurons have natural-text descriptions (R5-B7), but nothing ties a description to the neuron's causal role or
+    its response in other constructions.
 
-Phase 1's sets, keys, halves and instruments are reused unchanged. No new selection is made anywhere in this file.
+Phase 1's P, keys, halves and instruments are reused unchanged. The only new sets are controls (B2, B3b), built from
+half-A data before any half-B outcome of this file is computed.
+
+**Revision after Codex (gpt-6.2-sol, xhigh), before any full run:**
+- every check now fails closed: an analysis whose check fails writes INVALID and no decision;
+- B2's primary controls are now matched on the natural swap, not the edit;
+- B2 adds a same-class different-verb swap, which decides the "class-specific" wording;
+- B2 adds a v2-coordinate swap between the paired natural sentences, and asks whether P mediates it;
+- B3c's ratio dissociation (old D2) is descriptive, gated on a positive passive contrast, and B3c is labelled a
+  follow-up on reused activations;
+- A1's wording is narrowed, and (D_v2 − D_shuf) / G is added;
+- B1 reports both references, with no additive "slice" wording;
+- the "no non-P neuron reaches the core" sentence is corrected (B3b).
 
 ## Part A. Trained-direction controls for C1 (Pythia, Gemma, OLMo)
 
-**Instruments**, each a rank-1 interchange with its own unit direction per (split, fold), at the first two rule sites
-of each model's C1 table (Pythia 8, 12; Gemma 5, 8; OLMo 9, 11):
-- **Shuffled-label direction** (`shuffled_bases.pt` of the same v2 final). It was trained with the class labels
-  permuted across v2's training verbs (`run_das_v2.py`; generator seed 100 · split + fold), with the same objective,
-  pool and epochs as v2.
-- **Random directions:** 3 draws per (split, fold) key, standard normal then normalized, at the first rule site only.
-  The generator is seeded with 910001 + 100 · draw + 10 · split + fold, a stream no stored run uses.
+**Instruments.** Each is a rank-1 interchange with its own unit direction per (split, fold), at the first two rule
+sites of each model's C1 table (Pythia 8, 12; Gemma 5, 8; OLMo 9, 11).
+- **Shuffled-label trained comparator** (`shuffled_bases.pt` of the same v2 final):
+  - one direction per (split, fold), so 15 independent label permutations across v2's training verbs (`run_das_v2.py`,
+    generator 100 · split + fold);
+  - the same objective, pool and epochs as v2, a different training seed.
+  - The permutation changes the BCE targets and which swaps count as same- or cross-class, so this is a label-corrupted
+    trained direction, not a null.
+- **Random directions:** 3 draws per (split, fold) key, standard normal then normalized, first rule site only.
+  Generator 910001 + 100 · draw + 10 · split + fold, a stream no stored run uses.
 
-**Run.** `run_passive_test.py` with the same prompts, plan, folds and settings as v2's `passive_rule` run. Only
-`--site-dirs` changes: each points to a directory holding the control's `bases.pt` (keys as v2's) and v2's
-`pairs_folds.csv`. Checks:
-- natural readouts equal v's stored expanded run (`natcheck`, ≤ 1e-6);
-- the runner's self-patch check passes;
-- the fold assignment check passes;
-- the control's keys and shapes equal v2's.
+**Run.** `run_passive_test.py` with v2's `passive_rule` prompts, plan, folds and settings. Only `--site-dirs` changes,
+pointing to a directory with the control's `bases.pt` and the final's `pairs_folds.csv`.
+- **Jobs:** one per model and instrument family. `heldout_swaps.csv.gz` is absent from control directories, so that
+  diagnostic is skipped (v2's swaps refer to v2's basis).
 
-**Analysis.** `analyze_c1_controls.py`, on the same populations and bootstrap draws (seed and n_boot as
-`analyze_v2_expanded.py`) and the same `d_bad_all` / `summarize` code. Per site and readout (*by*, O), on eval plain
-(89): D, D / G, and the paired difference v2 − control on the same draws, as nats and as control / v2. Eval new
-plain and lemma-fresh pairs are descriptive.
+**Checks (fail closed; any failure writes INVALID and no decision):**
+- natural readouts equal v's stored expanded run: same pid set, all finite, max abs difference ≤ 1e-6;
+- self-patch ≤ 0.05 (v2's own runs: 0 to 0.042);
+- the runner's fold check;
+- the control's keys, shapes and unit norms equal v2's, and the sha256 in `run_meta.json` equals the control's
+  `control_meta.json`;
+- every expected control × site file present;
+- the plan's `row` column equals its position;
+- every patched row finite.
 
-**Declared (per model, at each first rule site, readout *by*):**
-- **A1: v2 exceeds its shuffled-label direction.** lo95(D_v2 − D_shuf) > 0.
-- **A2: random directions do not move *by*.** For each draw, the 95% CI of D lies within ±0.1 · G. If a draw's CI
-  falls outside, that draw is reported.
+**Analysis.** `analyze_c1_controls.py`. One set of joint draws per site is shared by v2, every control and G:
+contexts, DAS donor pairs and pairs within band, seed 17, 2,000 draws. The point estimates equal `transfer.csv`'s. CI
+endpoints can differ slightly from it, because the stored analysis consumes the generator in a different order.
 
-The second rule site and the O readout are reported, not declared.
+Per site and readout (*by*, O), on eval plain (89):
+- D and D / G;
+- v2 − control in nats and as a share of G;
+- control / v2.
 
-**Similarity to v2 (descriptive):** per (split, fold), |cos| between the shuffled-label direction and v2's direction
-(random rank-1 directions in 2,048 dimensions give about 0.02). The text reports the mean and the range. A round-2
-note on v read the shuffled direction as "a weaker copy of d", because a permutation leaves many labels correct. This
-file reports the cosine and does not test that account.
+Eval new plain and lemma-fresh are descriptive.
 
-**Reading for the paper.** The shuffled-label direction is a trained-on-noise floor. The objective still rewards a
-direction along which an interchange moves the output's T / I preference, so the floor is not zero.
-- A1 holds: "a direction trained with shuffled labels moves *by* by X of the gap; v2 moves it by Y, Z more on the same
-  draws".
-- A1 fails at a site: that site's v2 transfer is not distinguished from the trained-on-noise floor, and C1 says so
-  there.
-- In either case, "not an artefact of DAS training" rests on u_md (training-free) and on A1 together.
+**Declared (per model, first rule site, *by*):**
+- **A1:** lo95(D_v2 − D_shuf) > 0.
+- **A2:** for each of the three random draws, the 95% CI of D lies within ±0.1 · G (lo95(D + 0.1 G) > 0 and
+  hi95(D − 0.1 G) < 0). This is a statement about these three draws.
+
+**Descriptive:** |cos| with v2 per (split, fold) (random 2,048-dimensional directions: about 0.02); the second rule
+site; the O readout.
+
+**Wording.**
+- A1 holds: "v2 transfers more strongly than its shuffled-label trained comparator, by Δ nats (Δ / G of the natural gap)
+  on the same items and donor draws; the comparator itself moves *by* by X of the gap."
+- A1 fails at a site: v2 is not distinguished from its label-corrupted comparator there, and C1 says so.
+- "Not an artefact of DAS optimization" rests on u_md, the direction estimated without DAS, stated separately. A1 does
+  not carry that claim.
 
 ## Part B. Pythia C4 phase 1b
 
-Rows: phase 1's mediation keys (half B, 46 pairs, 8,414 keys). The runners rebuild them and assert equality with
-`results/pythia/das_v2/mech/med_v2/mediation_keys.parquet`. Readout: log P(" by") at the participle's last token,
-in fp32. Every share is pair-averaged, then a ratio of averages. Pair bootstrap: 2,000 draws, seed 17. Controls are
-the mean of their sets within each draw, as in phase 1.
+**Common to all of Part B:**
+- **Edit rows:** phase 1's mediation keys (half B, 46 pairs, 8,414 keys), rebuilt and asserted equal to
+  `results/pythia/das_v2/mech/med_v2/mediation_keys.parquet`.
+- **Natural rows:** the same sampled items (half B, 46 pairs, 32 contexts each, 1,472 items).
+- **Readout:** log P(" by") at the participle's last token, fp32.
+- **Shares:** pair-averaged, then ratios of averages. Pair bootstrap, 2,000 draws, seed 17. Controls are the mean of
+  their sets within each draw.
 
-### B1. Where the edit's effect goes: component sweep (v2)
+### B1. Where the edit's effect goes: component sweep (v2, descriptive)
 
-For each component at the participle's last token, clamp its output to its value in the other arm's run of the same
-key. This uses phase 1's T ← I and I ← T definitions, applied to component outputs instead of neuron
-post-activations. Components:
-- attention output (`attention.dense` output) for each of layers 8–23;
+Each component's output at the participle's last token is set to its value in the other arm's run of the same key,
+as phase 1's T ← I and I ← T. Components:
+- attention output (`attention.dense`) for each of layers 8–23;
 - MLP output for each of layers 8–23;
-- groups: all attention 8–23; all MLP 8–23; all components 8–23; MLPs 11 + 14.
+- groups: all attention 8–23, all MLP 8–23, all components 8–23, MLPs 11 + 14.
 
-The site-8 edit enters the residual stream before block 8 (output of block 7). "All components" therefore leaves only
-the direct residual path from the edit to the readout.
+Under "all components", only the residual path from the edit (output of block 7) to the final layer norm differs.
 
-**Check:** the MLPs 11 + 14 output clamp must reproduce phase 1's ALL-neuron clamp, max |Δ log P| ≤ 1e-4 per key, in
-both directions. Otherwise B1 is invalid.
+**Checks (fail closed):**
+- MLPs 11 + 14 reproduce phase 1's ALL-neuron clamp, max |Δ log P| ≤ 1e-4 per key, both directions;
+- TT and II equal phase 1's (≤ 1e-5);
+- empty-set clamps equal their references;
+- no non-finite cells;
+- under "all" (T ← I), the final-norm input minus II's equals the site-8 state difference, max abs difference
+  ≤ 1e-4 × the largest abs value of that difference.
 
-**Reported (descriptive, no declared test):**
-- m and r for every component and group, with CIs;
-- the direct-path share, 1 − m(all components), next to the sum of single-component shares (they need not add up:
-  clamps interact);
-- the rank of MLP 11, MLP 14 and P among the single components.
+**Reported:**
+- m (I-referenced) and r (T-referenced) for every component and group, with CIs;
+- the residual-only shares 1 − m(all) and 1 − r(all);
+- the sum of single-component m beside the joint clamps (clamps interact; no additive partition is implied);
+- P and the MLP 11 + 14 joint clamp side by side;
+- the ranks of MLP 11 and MLP 14 among the single components.
 
-The figure shows where the effect goes. P is drawn as a labelled slice of MLPs 11 + 14.
+The paper keeps one grouped comparison; the layer sweep goes to the appendix.
 
 ### B2. Natural mediation: do the same neurons carry the model's own T − I gap?
 
-Items: the half-B pairs' natural passives "The N was V", with the same 32 contexts per pair as phase 1 (same rng draw).
-The good (T verb) and bad (I verb) prompts of each item share the context. G = Y[good] − Y[bad].
-- **B_nat(S) = Y[good] − Y[good ← bad(S)]:** the gap removed by clamping S, at the participle's last token, to the bad
-  prompt's values. m_nat = B_nat / G.
-- **R_nat(S) = Y[bad ← good(S)] − Y[bad]:** the gap restored by the converse. r_nat = R_nat / G.
+Each half-B item has a good (T verb) and a bad (I verb) prompt with the same context. G = Y[good] − Y[bad].
 
-Sets: phase 1's frozen `mediation_sets.npz` (P, ALL, P_mlp11 / 14, top-k, rand / mag / de × 20), plus the core sets of
-B3.
+**(a) Neuron swap.**
+- B_nat(S) = Y[good] − Y[good ← bad(S)]: S's post-activations at the last token set to the bad prompt's;
+  m_nat = B_nat / G.
+- R_nat(S) = Y[bad ← good(S)] − Y[bad]; r_nat = R_nat / G.
+- Both are reported in nats and as shares of G.
 
-**Caveat.** The clamp moves the other verb's values, so it carries lexical identity along with class. The matched
-controls take the generic part, and the text states this.
+**Natural-matched controls (primary).** Built from a half-A natural run (the half-A pairs' sampled items, good and
+bad, unclamped) before half B is opened:
+- **magnat_k (k < 20):** layer × decile matching on |pair-averaged half-A good − bad| of each neuron's post-activation,
+  i.e. the size of the natural swap. Decile counts are matched to P's, drawn from the complement of P, with the lower
+  decile shortfall rule as in phase 1. Seed 900101 + 3000 + k.
+- **denat_k:** the same on |pair-averaged half-A good − bad × the neuron's " by" output weight| (unscaled coupling).
+  Seed 900101 + 4000 + k.
+- The P vs control means of both matching variables, and the shortfall, are reported. Phase 1's edit-matched mag / de
+  / rand are reported as secondary.
+
+**(b) Same-class swap control.**
+- Each half-B item's good prompt gets a donor: the good prompt of another eval plain pair with the same context and a
+  different good lemma. Same token count where available, otherwise nearest; ties at random, seed 17.
+- B_same(S) = Y[good] − Y[good ← good′(S)].
+- If the neuron swap only disrupted generic lexical content, B_same(P) would match B_nat(P).
+
+**(c) v2-coordinate swap between the paired sentences.** At site 8, the good prompt's v2 coordinate is set to the
+bad prompt's own (h ← h + ((h_bad − h) · d) d), with d the split-0 basis of the item's fold from the plan, and the
+converse.
+- C_g = Y[good] − Y[good ~ bad]; C_b = Y[bad ~ good] − Y[bad]; shares of G.
+- **Mediation of the swap by S** (S held at the unswapped run's values during the swap):
+  - BC_g(S) = Y[good ~ bad | S ← good] − Y[good ~ bad], as a share of C_g;
+  - BC_b(S) = Y[bad ~ good] − Y[bad ~ good | S ← bad], as a share of C_b.
+- Sets: P, ALL, and phase 1's mag (edit-matched; the swap is an interchange along v2).
 
 **Declared:**
 - **Gate:** G lo95 > 0.
-- **NM1 (P carries part of the natural gap):** lo95 m_nat(P) > 0 and lo95(m_nat(P) − mean m_nat(mag)) > 0.
+- **NM1:** lo95 m_nat(P) > 0 and lo95(m_nat(P) − mean m_nat(magnat)) > 0.
 - **NM2:** the same for r_nat.
-- **Beyond de:** stated separately, as in phase 1.
-- Reported beside them: m_nat(ALL), P / ALL where lo95 m_nat(ALL) > 0, and the descriptive new / lemma-fresh subsets.
+- Beyond denat and beyond the edit-matched mag are stated separately.
+- **NM-class:** lo95((B_nat(P) − B_same(P)) / G) > 0. Without it the text may not call the swap effect class-specific.
+- **CS1 (the coordinate carries part of the model's own gap):** lo95 C_g / G > 0.
+- **CS2 (P mediates part of the coordinate's natural effect):** lo95 BC_g(P) / C_g > 0 and lo95((BC_g(P) − mean
+  BC_g(mag)) / C_g) > 0. The b-direction counterparts are reported, not declared.
+- **Descriptive:** m_nat(ALL), P / ALL where lo95 > 0, new / lemma-fresh subsets.
 
-**Outcomes:**
-- **NM1 holds:** "the same neurons carry X of the model's own T − I gap on held-out verbs (Y for activation-matched
-  neurons)", next to the edit's 0.19.
-- **NM1 fails:** "the edit is read through these neurons; the model's own contrast is not detectably carried by them
-  under this clamp", stated as a limit in §5. B5's ablation result (0.09 of the natural gap, on v's set) is consistent
-  with either outcome, and is cited in the appendix only.
+**Wording:**
+- **NM1:** "Replacing P's activations in the good prompts with those of the paired bad prompts lowers log P(*by*) by
+  X nats, Y of the observed gap (natural-matched neurons: Z)."
+- **"Class-specific"** only with NM-class.
+- **CS1 + CS2:** "Swapping only the v2 coordinate between the paired sentences removes C of the gap, and holding P fixed
+  blocks B of that."
+- **NM1 fails:** a limit in §5: "the edit is read through these neurons; the model's own contrast is not detectably
+  carried by them under this swap".
 
 ### B3. The core neurons: what they respond to and what each carries
 
-**Core (fixed now):** the top 5 of P by half-A direct effect on the switch, from
-`results/pythia/das_v2/mech/conj_v2/conjunction_switch_neurons.csv`:
-MLP11.n3462, MLP14.n5407, MLP14.n2114, MLP11.n4925, MLP14.n4241. These are v's top 5 in a different order (v's ranks
-1, 3, 2, 4, 5), so the stored instrument-free Pile-10k activations of R5-B7 cover them.
+**Core (fixed before any B3 run):** the top 5 of P by half-A direct effect on the switch
+(`results/pythia/das_v2/mech/conj_v2/conjunction_switch_neurons.csv`): MLP11.n3462, MLP14.n5407, MLP14.n2114,
+MLP11.n4925, MLP14.n4241. These are v's top 5 in another order, so R5-B7's instrument-free Pile-10k activations cover
+them.
 
-**B3a. Labels from natural text.**
-- Ranks 1–3 keep R5-B7's labels (two independent annotators, κ = 1.00): MLP11.n3462 *gap-sensitive participle
-  reader*; MLP14.n2114 and MLP14.n5407 *passive-participle detectors*.
-- MLP11.n4925 and MLP14.n4241 were not annotated. Their top 40 raw contexts from the stored `wild_tokens.parquet`
-  (same extraction as B7) are pooled, shuffled and labelled independently by Claude and Codex with B7's frozen guide
-  (`results/round5/wild/b7_annotation_guide.md`).
-- Labels follow B7's rule exactly (`analyze_neurons_wild.py decide`), for both annotators:
-  - verbal passive ≥ 0.5 of the top 40 → *passive-participle detector*;
-  - otherwise, verbal passive + object gap ≥ 0.5 with object gap ≥ 0.15 → *gap-sensitive participle reader*;
-  - otherwise *other*.
-- κ and the confusion table are reported. The items come from the stored `b7_top_contexts.csv` (raw mode, k ≤ 40),
-  pooled across the two neurons and shuffled (seed 17). The key stays hidden from both annotators.
-- **Seen before this file:** B7's surface-proxy summary for these two neurons. MLP11.n4925's top words are
-  prepositions; MLP14.n4241 has 0.82 participles and 0.82 be / get within 3 words. The proxies suggest *other* and
-  *passive-participle detector*. The labels come from the annotation, not from the proxies.
+**B3a. Labels from natural text** (done, `reports/pythia/v2_mech/b3a_annotation.md`, κ 0.91).
+- Ranks 1–3 keep R5-B7's labels: MLP11.n3462 *gap-sensitive participle reader*; MLP14.n2114 and MLP14.n5407
+  *passive-participle detectors*.
+- Ranks 4–5 were labelled blind by Claude and Codex with B7's frozen guide and rule: MLP14.n4241 *passive-participle
+  detector*; MLP11.n4925 *other* (mostly stranded prepositions, object gaps 0.30–0.35).
+- The analysis requires exactly these five labels and does not let the B3a file overwrite B7's.
 
-**B3b. Causal role of each core neuron.** Sets, as masks on phase 1's layout:
-- each core neuron alone; the top 3; the top 5;
-- single-neuron controls: per layer, the 20 non-P neurons with the largest half-A |direct effect| (ties by index).
-  This was checked while building the sets, before any run: no non-P neuron reaches the core's coupling. Core: MLP 11
-  0.055–0.197, MLP 14 0.068–0.157. Strongest non-P neuron: MLP 11 0.058, MLP 14 0.013. So these are the strongest
-  available non-conjunction comparators, not matched ones, and the text says so.
+**B3b. Causal role of each core neuron (descriptive).**
+- **Sets:** each core neuron alone, the top 3, the top 5.
+- **Per-layer controls:** the 20 non-P neurons with the largest half-A |direct effect| on the was metric.
+- **Coupling, measured while building the sets:** the core's half-A |direct effect| is 0.055–0.197 (MLP 11) and
+  0.068–0.157 (MLP 14). The strongest non-P neuron is 0.058 in MLP 11, above MLP11.n4925's 0.055, and 0.013 in MLP 14.
+  So the controls are the strongest available non-P comparators. They do not isolate the conjunction property at fixed
+  coupling.
+- **Reported:** edit m, r and natural m_nat, r_nat per set, against the layer's controls (mean, max, rank). The edit
+  shares are also given with donors averaged within item first, for comparison with the natural shares.
 
-They enter the edit mediation (phase 1's runner with this sets file) and B2. Descriptive: m, r, m_nat and r_nat per
-set, each core neuron against its layer's 20 controls (mean and rank).
+**B3c. Frame profiles (a targeted follow-up on reused activations).** For each core neuron, the T − I difference of its
+post-activation at the verb's last token:
+- **passive:** good − bad on B2's half-B items;
+- **C8 frames:** the stored natural post-activations (`results/round5/shared/sr_natural_fg.parquet`, a column per
+  neuron mapped through `sr_meta.json`), T lemmas minus I lemmas, on a complete (class, lemma) grid:
+  - embedded "I know what John V" (fill) and "I know that John V" (nofill);
+  - matrix "What did John V" and "Did John V".
 
-**B3c. Declared double dissociation (natural activations, no instrument).** For each core neuron, the T − I difference
-of its post-activation at the verb's last token:
-- **passive:** good − bad on the half-B items of B2 ("The N was V"), recorded in B2's unclamped runs;
-- **object-gap frame:** R4-C8's embedded items, "I know what John V" (fill) and "I know that John V" (nofill). The
-  values are the stored natural post-activations (`results/round5/shared/sr_natural_fg.parquet`), T items minus I
-  items, all 156 C8 lemmas;
-- **matrix frames (descriptive):** "What did John V" and "Did John V".
+Bootstrap: C8 lemmas resampled within class and passive pairs, on the same draw index (the two populations share 28
+lemmas; the intervals condition on both item pools).
 
-Index: ρ = (fill T − I) / (passive T − I). Bootstrap: lemmas resampled for C8 and pairs for the passives,
-independently, 2,000 draws, seed 17.
+**Declared:**
+- **D1 (the gap reader's class response depends on a filler):** for MLP11.n3462, lo95(fill T − I) > 0 and
+  lo95((fill − nofill) T − I) > 0.
 
-Declared:
-- **D1 (the gap reader depends on the filler):** for MLP11.n3462, lo95(fill T − I) > 0 and lo95((fill − nofill)
-  T − I) > 0.
-- **D2 (dissociation):** for each passive detector (MLP14.n2114, MLP14.n5407, and any rank-4 / 5 neuron labelled
-  passive detector in B3a), lo95(ρ(n3462) − ρ(detector)) > 0.
-- Neurons labelled *other* are reported without a test.
+**Descriptive:**
+- every neuron's raw contrasts with CIs;
+- ρ = fill / passive, shown only for neurons whose passive contrast has lo95 > 0;
+- the same on C8's gated population (non-DAS T lemmas and the kept non-DAS I lemmas of `kept_I_emb.csv`).
 
-**Outcomes:**
-- **D1 and D2 hold:** §5 gets an interpretable core. One neuron reads a transitive verb whose object is missing,
-  whether the gap comes from passive voice or from a filler. Others detect the passive participle itself. Each is
-  shown with its share of the edit's effect and of the natural gap.
-- **D2 fails:** the core neurons are described by their natural-text labels only, and the text does not claim they
-  divide the work.
+**Wording:** "the core neurons have different frame profiles". A division of labour is not claimed. D1 supports "the
+gap reader's class response appears with a filler", as an activation profile, not a causal role in the filler-gap
+construction.
 
-**Disclosed:** C9's set-level results on these items were seen (Oct 14), including that the top 10 respond more in the
-"what" frame than in passives (ρ_nat 2.2). Per-neuron frame profiles were not tabulated then and are first computed
-here. The B7 labels of ranks 1–3 were also seen.
-
-## Checks (a stage whose check fails is reported as invalid, not read)
-
-- **A:** natural readouts; self-patch; folds; control keys and shapes equal v2's.
-- **B:** keys equal phase 1's; empty-set clamps equal their references (≤ 1e-5); hook checks as in phase 1; B1's
-  MLPs 11 + 14 vs ALL (≤ 1e-4); B2's G recomputed from the unclamped runs matches the stored natural passive readouts
-  for the same prompts (`results/pythia/das_v2/expanded_eval/passive_rule/natural.parquet`, joined by prompt; median
-  |Δ| ≤ 0.05 for the bf16 reference).
-- **B3:** the core neuron indices equal the switch table's; the C8 columns are mapped by name through `sr_meta.json`'s
-  `neuron_columns`.
+**Disclosed:**
+- C9's set-level results on these items were seen on Oct 14 (top 10 respond more in the "what" frame; per-neuron sign
+  agreement and cosine).
+- Per-neuron profiles are first computed here.
+- The B7 labels of ranks 1–3 were seen.
 
 ## Forking paths
 
-- Part A's sites and readouts are C1's, fixed before this file.
-- B1 is descriptive by design. Its component list is the full set of blocks after the edit.
-- B2 reuses phase 1's sets and rules unchanged.
-- The core is the exploratory top 5 from phase 1, fixed here before any B3 run. The B3c predictions follow from the B7
-  labels, which were set in October on v's ranking.
-- Not run: heads (phase 2), a second model, a serial head → neuron → *by* test.
+- Part A's sites and readouts are C1's.
+- B1 is descriptive over the full block list.
+- B2's natural-matched controls and same-class donors are fixed by rules written before half B is opened. The
+  coordinate swap follows Codex's suggestion, made before any B run.
+- The core is phase 1's exploratory top 5. B3c reuses an inspected dataset.
+- **Not run:** heads (phase 2), a second model, a serial head → neuron → *by* test, fresh-verb frame replication.

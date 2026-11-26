@@ -47,11 +47,44 @@ def main(a):
     v2dir = Path(f"results/{a.model}/das_v2/expanded_eval/passive_rule")
     nat = pd.read_parquet(v2dir / "natural.parquet")
     ctrl = dict(x.split("=") for x in a.controls.split(","))
-    checks = {}
-    for name, d in ctrl.items():  # every control run has the same natural readouts as v2's run
-        cn = pd.read_parquet(Path(d) / "natural.parquet").set_index("pid").sort_index()
-        vn = nat.set_index("pid").sort_index()
-        checks[f"natural_max_abs_{name}"] = float(np.nanmax(np.abs(cn[["by", "O"]].to_numpy(float) - vn[["by", "O"]].to_numpy(float))))
+    s0, s1 = RULE_SITES[a.model]
+    expected = {"shuffled": (s0, s1), **{f"random_{k}": (s0,) for k in range(3)}}
+    checks, bad = {}, []
+    assert (plan.row.to_numpy() == np.arange(len(plan))).all(), "plan row column is not its position"
+    vn = nat.set_index("pid").sort_index()
+    for name, sites in expected.items():  # fail closed: every expected control x site, checked before any decision
+        if name not in ctrl:
+            bad.append(f"{name}: missing run")
+            continue
+        d = Path(ctrl[name])
+        cn = pd.read_parquet(d / "natural.parquet").set_index("pid").sort_index()
+        same = cn.index.equals(vn.index)
+        fin = bool(np.isfinite(cn[["by", "O"]].to_numpy(float)).all())
+        dmax = float(np.nanmax(np.abs(cn[["by", "O"]].to_numpy(float) - vn[["by", "O"]].to_numpy(float)))) if same else float("inf")
+        rm = json.loads((d / "run_meta.json").read_text())
+        checks[name] = {"natural_same_pids": bool(same), "natural_finite": fin, "natural_max_abs": dmax}
+        if not (same and fin and dmax <= 1e-6):
+            bad.append(f"{name}: natural readouts")
+        for s in sites:
+            pf = d / f"patches_site{s}.parquet"
+            mp = d.parent / "bases" / f"{name}_site{s}" / "control_meta.json"
+            if not pf.exists() or not mp.exists():
+                bad.append(f"{name} site {s}: missing patches or control_meta")
+                continue
+            pat = pd.read_parquet(pf, columns=["row", "by", "O"])
+            sp = float(rm["checks"][str(s)]["self_patch_max_abs_dM"])
+            sha_ok = rm["bases_sha256"][str(s)] == json.loads(mp.read_text())["sha256"]
+            fin_p = bool(np.isfinite(pat[["by", "O"]].to_numpy(float)).all())
+            checks[f"{name}_site{s}"] = {"self_patch_max_abs_dM": sp, "sha_matches_control_meta": sha_ok,
+                                         "patched_finite": fin_p, "rows": len(pat)}
+            if not (sp <= 0.05 and sha_ok and fin_p and len(pat) == len(plan)):
+                bad.append(f"{name} site {s}: self-patch / sha / finite / rows")
+    if bad:
+        Path(a.out_dir).mkdir(parents=True, exist_ok=True)
+        (Path(a.out_dir) / "c1_controls_decisions.json").write_text(json.dumps({"INVALID": bad, "checks": checks}, indent=1) + "\n")
+        Path(a.report).parent.mkdir(parents=True, exist_ok=True)
+        Path(a.report).write_text(f"# C1 trained-direction controls: {a.model}\n\nINVALID: {bad}\n\nChecks: {json.dumps(checks)}\n")
+        raise SystemExit(f"INVALID: {bad}")
     pair_ix = {p: i for i, p in enumerate(pr.index)}
     ctx_ix = {c: i for i, c in enumerate(sorted(items.context_id.unique()))}
     das_q = sorted(plan[plan.cond == "T"].donor_pair.dropna().astype(str).unique())
@@ -80,6 +113,7 @@ def main(a):
                          **{f"G_{k}": q for k, q in apt.ci(g).items()}}
                     if n != "v2":
                         r.update({f"v2_minus_{k}": q for k, q in apt.ci(v - x).items()})
+                        r.update({f"v2_minus_G_{k}": q for k, q in apt.ci((v - x) / g).items()})
                         r.update({f"ratio_to_v2_{k}": q for k, q in apt.ci(x / v).items()})
                         r.update({f"plus10G_{k}": q for k, q in apt.ci(x + 0.1 * g).items()})
                         r.update({f"minus10G_{k}": q for k, q in apt.ci(x - 0.1 * g).items()})
@@ -109,10 +143,12 @@ def main(a):
     L = [f"# C1 trained-direction controls: {a.model}", "",
          "Rules: `reports/v2_controls_mech_b_rules.md` (part A). Same plan, draws and populations as v2's expanded run; "
          "nats.", "", f"Checks: {json.dumps(checks)}. |cos| with v2: {json.dumps(dec['abs_cos_with_v2'])}.", "",
-         "| site | population | readout | instrument | D | D / G | v2 − control | control / v2 |", "|---|---|---|---|---|---|---|---|"]
+         "| site | population | readout | instrument | D | D / G | v2 − control (nats) | (v2 − control) / G | control / v2 |",
+         "|---|---|---|---|---|---|---|---|---|"]
     for r in T.to_dict("records"):
         L.append(f"| {r['site']} | {r['population']} ({r['n_pairs']}) | {r['readout']} | {r['instrument']} | {f(r, 'D')} | "
                  f"{f(r, 'DG')} | {f(r, 'v2_minus') if r['instrument'] != 'v2' else ''} | "
+                 f"{f(r, 'v2_minus_G') if r['instrument'] != 'v2' else ''} | "
                  f"{f(r, 'ratio_to_v2') if r['instrument'] != 'v2' else ''} |")
     L += ["", f"**Declared (site {s0}, by, eval plain):** A1 v2 exceeds shuffled **{dec.get('A1_v2_exceeds_shuffled')}**; "
               f"A2 random within ±0.1 G {dec['A2_random_within_10pct_G']}.", ""]
