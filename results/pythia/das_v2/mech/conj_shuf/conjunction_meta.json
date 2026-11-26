@@ -1,0 +1,21 @@
+{
+  "args": {
+    "prompts": "data/verb_expansion/eval/passive_test/prompts.csv",
+    "items": "data/das_v2/mechanism/items.csv",
+    "plan": "data/verb_expansion/eval/passive_test/plan.csv.gz",
+    "site_dir": "results/pythia/das_v2/mech/shuffled_site8",
+    "nonce_prompts": "data/nonce_passive/prompts.csv",
+    "out_dir": "results/pythia/das_v2/mech/conj_shuf",
+    "contexts": 32,
+    "seed": 17,
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 64,
+    "dtype": "float32"
+  },
+  "rows": 32592,
+  "pairs": 89,
+  "nonce_lemmas": 80,
+  "bases_sha256": "c9ddb4be2f072089af0ddb3e2955e433a6d96d294eba7275faf841f05cdb845e",
+  "seconds": 122.2
+}

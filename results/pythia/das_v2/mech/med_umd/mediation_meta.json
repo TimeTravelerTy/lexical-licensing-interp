@@ -1,0 +1,31 @@
+{
+  "args": {
+    "prompts": "data/verb_expansion/eval/passive_test/prompts.csv",
+    "items": "data/das_v2/mechanism/items.csv",
+    "plan": "data/verb_expansion/eval/passive_test/plan.csv.gz",
+    "site_dir": "results/pythia/expanded_eval/umd_bases/umd_site8",
+    "selection": "results/pythia/das_v2/mech/conj_v2/conjunction_selection.npz",
+    "sets": "results/pythia/das_v2/mech/conj_v2/mediation_sets.npz",
+    "out_dir": "results/pythia/das_v2/mech/med_umd",
+    "contexts": 32,
+    "seed": 17,
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 128,
+    "dtype": "float32"
+  },
+  "keys": 8414,
+  "pairs": 46,
+  "checks": {
+    "hook_out_max": 0.0,
+    "hook_in_max": 0.0,
+    "T<-I:empty_vs_TT_max": 0.0,
+    "T<-nat:empty_vs_TT_max": 0.0,
+    "I<-T:empty_vs_II_max": 0.0,
+    "I<-nat:empty_vs_II_max": 0.0,
+    "nan_cells": 0
+  },
+  "bases_sha256": "73ca528323a9c40eb646d2cbfdbadbcd8da2c0f88bd98a5ef6267153eb3c5c5d",
+  "sets_sha256": "81c29246174303f4d6cda2923f0cfc8bbb1359f390511a7e57368e1c0c60158c",
+  "seconds": 2129.3
+}

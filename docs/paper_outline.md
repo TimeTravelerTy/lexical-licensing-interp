@@ -1,4 +1,4 @@
-# Paper outline: which results carry which claim (Nov 24, revised after Codex review; C1 + C2 updated Nov 25 to v2 on the expanded set)
+# Paper outline: which results carry which claim (Nov 24, revised after Codex review; C1 + C2 updated Nov 25 to v2 on the expanded set; C4 updated Nov 26 to v2)
 
 This file sits under `docs/paper_plan.md`. It maps each claim to the results that carry it in the main text, the ones that go to the appendix, and the experiments still worth running before the Dec 11 freeze. Anything not listed as main or appendix is cut from this paper (it stays in the thesis).
 
@@ -12,7 +12,7 @@ This file sits under `docs/paper_plan.md`. It maps each claim to the results tha
 
 - A verb-class signal at the verb, sensitive to surface NP cues (nonce, R4-C9), supports interventions that transfer across several constructions. On the held-out evaluation set (224 pairs; 89 plain primary) the v2 edit moves passive *by* by about the natural gap at the first rule site of Pythia and OLMo (D / G 1.05, 0.89), and by more than the gap in Gemma (1.8–2.5× from site 8). The object side is model- and construction-dependent: the edit matches the natural object-relative profile only at the first OR site of Pythia and OLMo, and overshoots the natural object effect elsewhere.
 - Erasers fit on other verbs reduce the passive *by* gap by 0.53 [0.44, 0.67] (Pythia), 0.83 [0.61, 1.22] (Gemma) and 0.57 [0.45, 0.74] (OLMo). These are pooled reductions of a T − I gap, not per-verb fractions. Say "about half or more", never "at least half" (the Pythia and OLMo lower bounds are below 0.5).
-- In Pythia, heads route voice into MLPs 11–17, and a passive-conjunction set in MLPs 11 / 14 carries most of the edit-induced *by* switch. These components are not necessary for natural behavior (R5-B5).
+- In Pythia, a passive-conjunction set in MLPs 11 / 14, selected with v2 on half the held-out pairs, carries 0.62 [0.58, 0.66] of those layers' edit-induced *by* switch on the other half. Clamping it mediates 0.19 [0.15, 0.23] of the edit's T − I effect on *by* (activation-matched neurons 0.01; all of MLPs 11 + 14 0.26). The training-free u_md gives the same numbers on the frozen set. Most of the edit's effect runs outside these two layers.
 - Rare verbs keep class information that is decodable from their own verb state and transferable. Their deficit shows in predicting the participle itself, and writing the class read from the verb state into the participle's output row repairs it. R5-A5 rules out an exclusively output-side account.
 
 Words to avoid: "one feature" (rank-1 success is not uniqueness; class information survives erasure), "every construction", "an NP follows this verb" as the meaning for known verbs, "circuit", "downstream" for the rare-verb deficit.
@@ -61,12 +61,14 @@ Source: `reports/v2_expanded_readings.md` (v2, 224 held-out pairs, primary 89 pl
 - **Main, needs running:** a learning curve with a fixed evaluation population, repeated training subsets, and equal-size fits that include vs exclude the evaluated verbs. If the cross-fitted share keeps rising with n, the in-sample advantage is mostly fit size, and the text says so. Then rank-k erasure as a sensitivity test (Pythia first), refitting on the erased representation each step (re-applying one binary LEACE projection is not rank-k), with the removed rank, held-out residual class information and KL against rank-matched random controls. It constrains "shared in more directions"; it does not close the question.
 - **Appendix:** 126-pair numbers, LOO, translation flag, centering fix, side splits, subset tables.
 
-### C4. How Pythia reads it (§5; stored site-8 v)
+### C4. How Pythia reads it (§5; v2 on the held-out set, `reports/pythia/v2_mech/readings.md`)
 
-- **Main (one figure):** R2-mech (object MLPs vanish in passives; MLPs 11–17 flip sign on *by*) → heads switch the *by* MLPs between voices, 67–115% (R3-B7), a voice switch (R4-D10) → the 2,782 passive-conjunction neurons in MLPs 11 / 14 carry 0.65 [0.60, 0.70] of the MLP11+14 switch on held-out pairs, and the top 10 carry 0.66 (exploratory) (R4-D11) → the same neurons read the class in wh-gap frames with a filler present (R5-C9).
-- **Denominators in the figure:** 0.65 is a share of the MLP11+14 intervention-induced switch, not of natural behavior. Next to it: top-50 ablation removes 0.09 of the natural *by* gap (R5-B5); serial chain mixed (R5-B6); B7 missed the "few heads" prediction.
-- **Main, one sentence:** in Pile text the top neurons fire on passives with *by* next and on transitive verbs missing an object (R5-B7).
-- **Appendix:** dose (R2-dose), persistence (R3-A2), *got* frames (R3-B6), previous-token check (R4-A5), E13T (neurons beat random by +0.169 [0.107, 0.234]; the declared claim fails on the Head control and deficit closure, not on the random comparison).
+- **Main (one figure), all v2, half-B pairs (46; selection on 43):** 2,986 passive-conjunction neurons in MLPs 11 / 14 (sign agreement 0.99) carry **0.62 [0.58, 0.66] of the MLP11+14 *by* switch** (N1, N2, "at least a quarter") → **mediation:** clamping them to their I-run values removes **0.19 [0.15, 0.23] (0.15 nats) of the edit's T − I effect on *by*** against 0.01 (activation-matched), 0.03 (direct-effect-matched) and 0.02 (random); the converse restores 0.28 [0.23, 0.33] (M1, M2, both beyond de) → all of MLPs 11 + 14 mediate 0.26, so P is 0.73 of what the two layers carry, and most of the effect runs elsewhere.
+- **One sentence each:** u_md on the frozen set: switch share 0.70, mediated 0.19, restored 0.26 (U1, U2, M1 / M2 hold). New and lemma-fresh half-B pairs: m(P) 0.22 / 0.23. MLP 14 alone 0.14, MLP 11 alone 0.06.
+- **Denominators in the figure:** 0.62 is a share of the MLP11+14 direct-effect switch; 0.19 is a share of the edit's whole T − I effect on *by*. Neither is a share of natural behavior. Never write "carries most of the effect".
+- **Exploratory, labelled:** top 10 neurons (half-A ranking) mediate 0.23, more than the full set (the rest partly cancels); top 100 0.28. Shuffled-label direction: the set responds at 0.56–0.60 of v2, in proportion to what that direction itself transmits (pc_frac 0.45 vs v2 0.80 in v2's final). Report it as proportional, not as a specificity control.
+- **Still on v's set, to port or drop (forward passes):** wh-gap reading with a filler present (R5-C9); Pile-text activations of the top neurons (R5-B7; top-10 overlap with v2 is 9 / 10); natural necessity ablation (R5-B5, cut as a new run). Heads (R3-B7, R4-D10) deferred: at most one labelled appendix sentence on v. No serial head → neuron → *by* claim.
+- **Appendix:** dose (R2-dose), persistence (R3-A2), *got* frames (R3-B6), previous-token check (R4-A5), v / v2 set overlap (1,918 shared, Jaccard 0.50), control distributions and ranks (P first in all 60 control sets, both instruments).
 
 ### C5. Rare verbs: the class is read correctly but not used when predicting the verb (§6, 0.75 page)
 
@@ -81,7 +83,7 @@ The two positions are the point, not a confound. After reading a rare verb, the 
 
 1. Transfer and context: passive *by* D / G depth curves (v2, three models, rule sites marked, staging regimes shaded), OR / TC against natural, nonce onset panel.
 2. Erasure: cross-fitted vs in-sample vs permutation (matched inventory), learning curve, rank-k panel.
-3. Pythia readers: heads → MLP switch shares, conjunction-neuron share, with the necessity number beside it.
+3. Pythia readers (v2): conjunction-neuron switch share, mediated and restored shares against matched controls, with MLP 11 + 14 total beside them; u_md bars.
 4. Rare verbs: classify-from-z and rare-trained transfer (plus a checkpoint panel if dynamics lands).
 
 No separate summary table if it repeats the figures; the pass / fail table against declared rules is in the appendix.
@@ -93,9 +95,8 @@ No separate summary table if it repeats the figures; the pass / fail table again
 | 1 | Expanded-set in-sample LEACE + 20-permutation control, 3 models | Matched references for the C3 headline | LEACE only |
 | 1 | Learning curve, fixed eval population, include vs exclude at equal size, 3 models | Whether the in-sample advantage is fit size | LEACE only |
 | 2 | Rank-k erasure with refitting and controls, Pythia first | Constrains "shared in more directions" | LEACE only |
-| 2 | C4 on new verbs: frozen neuron set, class × voice interaction on the 142 new pairs (74 plain primary), Pythia | C4 is not about the original verbs | forward passes |
-| 2 | C4 instrument check: repeat the key switch with stored v, P (already trained) and u_md at matched dose | C4 is about a class signal, not one DAS direction | < 1 GPU-hour |
-| 3 | C4 mediation: under the verb-site edit, restore the selected neurons to unedited values (and the converse replay), with random-neuron controls; read final log P(*by*) | Necessity / sufficiency for the edit's effect, the bridge from C1 to C4 | ~1 GPU-hour |
+| 3 | Port R5-C9 (wh-gap reading) and R5-B7 (Pile-text activations) to the v2 set | Removes the last v numbers from §5 | forward passes |
+| 1 | Shuffled-label direction beside the random controls in C1 (Pythia has it in v2's final; Gemma / OLMo with the illusion check) | C1 controls include a trained-on-noise direction, not only random ones | stored / small |
 | 3 | Classify-from-z edit on more verbs: D11 Tail singletons and the new single-token rare pairs, z from v, P and u_md, frozen θ from Head | Takes §6 beyond 12 affected pairs; shows the edit does not need the stored v | forward passes |
 | 4 | Pythia-6.9B: natural gaps on the paper's items and u_md transfer; LEACE only with its controls | Scale | a few GPU-hours |
 | 2 | Dynamics: a small declared checkpoint set bracketing steps 256 / 1000 / 3000, training-free verb-site measures, Pythia | The paragraph in §6 (sensei asked) | a few GPU-hours |

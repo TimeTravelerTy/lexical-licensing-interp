@@ -1,0 +1,23 @@
+{
+  "shortfall_drawn_from_lower_deciles_total": {
+    "mag": 0,
+    "de": 0
+  },
+  "sizes": {
+    "P": 2986,
+    "ALL": 16384,
+    "rand_0": 2986,
+    "mag_0": 2986,
+    "de_0": 2986,
+    "top10": 10,
+    "top50": 50,
+    "top100": 100,
+    "P_mlp11": 1488,
+    "P_mlp14": 1498
+  },
+  "P_mean_halfA_mag": 0.04152662343564732,
+  "mag_ctrl_mean_halfA_mag": 0.0389518745711077,
+  "P_mean_halfA_de": 0.0009162747012848321,
+  "de_ctrl_mean_halfA_de": 0.0006414267898844913,
+  "rand_ctrl_mean_halfA_mag": 0.01957867255445835
+}
