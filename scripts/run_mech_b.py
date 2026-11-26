@@ -369,7 +369,7 @@ def run(args):
         don.to_parquet(out / "natural_donors.parquet")
         keys.drop(columns=["good_prompt", "bad_prompt", "donor_prompt"]).to_parquet(out / "natural_keys.parquet")
     checks["nan_cells"] = int(np.isnan(res).sum())
-    np.savez_compressed(out / f"{args.mode}.npz", by=res, conds=np.array(conds))
+    np.savez_compressed(out / (f"{args.mode}_by.npz" if args.mode == "natural_halfA" else f"{args.mode}.npz"), by=res, conds=np.array(conds))  # halfA: do not overwrite natural_halfA.npz
     meta = {"args": vars(args), "rows": len(keys), "pairs": int(keys.pair.nunique()), "checks": checks,
             "seconds": round(time.time() - t0, 1)}
     if args.site_dir:

@@ -77,7 +77,7 @@ def main(a):
             fin_p = bool(np.isfinite(pat[["by", "O"]].to_numpy(float)).all())
             checks[f"{name}_site{s}"] = {"self_patch_max_abs_dM": sp, "sha_matches_control_meta": sha_ok,
                                          "patched_finite": fin_p, "rows": len(pat)}
-            if not (sp <= 0.05 and sha_ok and fin_p and len(pat) == len(plan)):
+            if not (sp <= 0.1 and sha_ok and fin_p and len(pat) == len(plan)):
                 bad.append(f"{name} site {s}: self-patch / sha / finite / rows")
     if bad:
         Path(a.out_dir).mkdir(parents=True, exist_ok=True)

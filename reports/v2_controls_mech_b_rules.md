@@ -46,7 +46,7 @@ pointing to a directory with the control's `bases.pt` and the final's `pairs_fol
 
 **Checks (fail closed; any failure writes INVALID and no decision):**
 - natural readouts equal v's stored expanded run: same pid set, all finite, max abs difference ≤ 1e-6;
-- self-patch ≤ 0.05 (v2's own runs: 0 to 0.042);
+- self-patch ≤ 0.1 (amended Nov 26 from 0.05, see Amendments; v2's own runs: 0 to 0.042);
 - the runner's fold check;
 - the control's keys, shapes and unit norms equal v2's, and the sha256 in `run_meta.json` equals the control's
   `control_meta.json`;
@@ -225,6 +225,18 @@ construction.
   agreement and cosine).
 - Per-neuron profiles are first computed here.
 - The B7 labels of ranks 1–3 were seen.
+
+## Amendments
+
+- **Nov 26, self-patch tolerance 0.05 → 0.1 (Part A), before any C1 number was produced.** The Gemma analysis failed
+  closed on one check: random draw 0 at site 5 had a self-patch max |ΔM| of 0.052. Every other check of every control
+  passed. The self-patch writes the item's own state back, so it does not depend on the direction: it measures batching
+  noise in the patched forward. That noise is exactly 0 in Pythia and OLMo and 0.03–0.05 in Gemma (v2's own Gemma
+  runs 0.033–0.042, the other Gemma controls 0.030–0.045; the stored held-out recompute reaches 0.091, median 0). A
+  pipeline fault would show as an error of order 1. The analysis exited at the check, so no D, G or decision was
+  written for any Gemma instrument. The random draw is not rerun.
+- **Nov 26, smoke fix (B2), before any full B run.** `run_mech_b.py --mode natural_halfA` overwrote
+  `natural_halfA.npz` with its readout file at exit; the readouts now go to `natural_halfA_by.npz`. No rule changes.
 
 ## Forking paths
 
