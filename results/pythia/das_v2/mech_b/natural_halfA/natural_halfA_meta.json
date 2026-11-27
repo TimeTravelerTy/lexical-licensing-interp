@@ -1,0 +1,32 @@
+{
+  "args": {
+    "mode": "natural_halfA",
+    "prompts": "data/verb_expansion/eval/passive_test/prompts.csv",
+    "items": "data/das_v2/mechanism/items.csv",
+    "plan": "data/verb_expansion/eval/passive_test/plan.csv.gz",
+    "site_dir": "results/pythia/das_v2/final_strict_site8",
+    "selection": "results/pythia/das_v2/mech/conj_v2/conjunction_selection.npz",
+    "phase1_dir": "results/pythia/das_v2/mech/med_v2",
+    "sets": null,
+    "swap_sets": "P,ALL",
+    "swap_families": "mag",
+    "switch": "results/pythia/das_v2/mech/conj_v2/conjunction_switch_neurons.csv",
+    "stored_natural": "results/pythia/das_v2/expanded_eval/passive_rule/natural.parquet",
+    "out_dir": "results/pythia/das_v2/mech_b/natural_halfA",
+    "contexts": 32,
+    "seed": 17,
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 128,
+    "dtype": "float32"
+  },
+  "rows": 1376,
+  "pairs": 43,
+  "checks": {
+    "hook_out_max": 0.0,
+    "hook_in_max": 0.0,
+    "nan_cells": 0
+  },
+  "seconds": 62.2,
+  "bases_sha256": "a4994801b449c4d5c624b5796946e1753c1b3535ab67c499487d31889ac24eb0"
+}

@@ -1,0 +1,31 @@
+{
+  "args": {
+    "prompts": "data/verb_expansion/eval/passive_test/prompts.csv",
+    "items": "data/das_v2/mechanism/items.csv",
+    "plan": "data/verb_expansion/eval/passive_test/plan.csv.gz",
+    "site_dir": "results/pythia/das_v2/final_strict_site8",
+    "selection": "results/pythia/das_v2/mech/conj_v2/conjunction_selection.npz",
+    "sets": "results/pythia/das_v2/mech_b/core_sets.npz",
+    "out_dir": "results/pythia/das_v2/mech_b/core_edit",
+    "contexts": 32,
+    "seed": 17,
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 128,
+    "dtype": "float32"
+  },
+  "keys": 8414,
+  "pairs": 46,
+  "checks": {
+    "hook_out_max": 0.0,
+    "hook_in_max": 0.0,
+    "T<-I:empty_vs_TT_max": 0.0,
+    "T<-nat:empty_vs_TT_max": 0.0,
+    "I<-T:empty_vs_II_max": 0.0,
+    "I<-nat:empty_vs_II_max": 0.0,
+    "nan_cells": 0
+  },
+  "bases_sha256": "a4994801b449c4d5c624b5796946e1753c1b3535ab67c499487d31889ac24eb0",
+  "sets_sha256": "695bad5c647b12e126f6a2f8f33997359967928601824b06543ae36ffeb21506",
+  "seconds": 1457.8
+}

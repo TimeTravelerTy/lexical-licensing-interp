@@ -1,0 +1,50 @@
+{
+  "args": {
+    "mode": "natural",
+    "prompts": "data/verb_expansion/eval/passive_test/prompts.csv",
+    "items": "data/das_v2/mechanism/items.csv",
+    "plan": "data/verb_expansion/eval/passive_test/plan.csv.gz",
+    "site_dir": "results/pythia/das_v2/final_strict_site8",
+    "selection": "results/pythia/das_v2/mech/conj_v2/conjunction_selection.npz",
+    "phase1_dir": "results/pythia/das_v2/mech/med_v2",
+    "sets": "results/pythia/das_v2/mech/conj_v2/mediation_sets.npz,results/pythia/das_v2/mech_b/core_sets.npz,results/pythia/das_v2/mech_b/natural_sets.npz",
+    "swap_sets": "P,ALL",
+    "swap_families": "mag",
+    "switch": "results/pythia/das_v2/mech/conj_v2/conjunction_switch_neurons.csv",
+    "stored_natural": "results/pythia/das_v2/expanded_eval/passive_rule/natural.parquet",
+    "out_dir": "results/pythia/das_v2/mech_b/natural",
+    "contexts": 32,
+    "seed": 17,
+    "model": "EleutherAI/pythia-1.4b",
+    "device": "cuda",
+    "batch": 128,
+    "dtype": "float32"
+  },
+  "rows": 1472,
+  "pairs": 46,
+  "checks": {
+    "hook_out_max": 0.0,
+    "hook_in_max": 0.0,
+    "g<-b:empty_vs_good_max": 0.0,
+    "b<-g:empty_vs_bad_max": 0.0,
+    "g<-g2:empty_vs_good_max": 0.0,
+    "gswap|empty_vs_gswap_max": 0.0,
+    "bswap|empty_vs_bswap_max": 0.0,
+    "stored_natural_missing": 0,
+    "stored_natural_median_abs": 0.04282653331756592,
+    "stored_natural_max_abs": 0.40903711318969727,
+    "stored_natural_pair_gap_mean_diff": 5.078801768831909e-05,
+    "core": [
+      "MLP11.n3462",
+      "MLP14.n5407",
+      "MLP14.n2114",
+      "MLP11.n4925",
+      "MLP14.n4241"
+    ],
+    "same_class_donor_ntok_diff_abs_mean": 0.0,
+    "same_class_donor_exact_len_share": 1.0,
+    "nan_cells": 0
+  },
+  "seconds": 934.9,
+  "bases_sha256": "a4994801b449c4d5c624b5796946e1753c1b3535ab67c499487d31889ac24eb0"
+}
